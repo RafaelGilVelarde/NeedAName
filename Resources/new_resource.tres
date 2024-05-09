@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="PartyCharacterBase" load_steps=6 format=3 uid="uid://c6wyjis2wb7eh"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_tdvww"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="1_vduku"]
+[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="2_gjpxo"]
+[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="3_yo0wj"]
+
+[sub_resource type="Resource" id="Resource_bkyk7"]
+script = ExtResource("1_tdvww")
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[resource]
+script = ExtResource("1_vduku")
+PartyId = 0
+BaseStats = SubResource("Resource_bkyk7")
+Name = "aaa"
+OverworldAnimator = ExtResource("3_yo0wj")
+BattleAnimator = ExtResource("2_gjpxo")
+TextEffectColor = Color(0, 0, 0, 0)

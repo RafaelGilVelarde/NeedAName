@@ -1,0 +1,540 @@
+[gd_scene load_steps=64 format=3 uid="uid://d3pmbeprgu7nc"]
+
+[ext_resource type="Texture2D" uid="uid://cjnctd6b2w22r" path="res://Sprites/Background/TestBG2.png" id="1_d5r2g"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="2_hip5a"]
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="3_gy58k"]
+[ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="4_ndfg7"]
+[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="4_yw2ny"]
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="6_bidvs"]
+[ext_resource type="Texture2D" uid="uid://dg4yq3rs1kgjd" path="res://Sprites/Overworld/BirbOverworld.png" id="6_ybcwn"]
+[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/BattleStart.cs" id="7_rpbe1"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="8_gqbhp"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="9_5o88u"]
+[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="10_5unik"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/StaticEnemyCharacterBase.cs" id="13_6ghqd"]
+[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="13_6qib6"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/bridgeMoveTest.cs" id="13_faay2"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="14_khjev"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="15_wvjb8"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="16_c7pgp"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="17_wlirl"]
+[ext_resource type="Texture2D" uid="uid://dpjjot5h63ywt" path="res://Sprites/Battle/Party/waterBattle.png" id="18_04t6q"]
+[ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="19_h8d31"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="20_1eu45"]
+[ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="21_j6ley"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Camera/Camera.cs" id="22_c8b1k"]
+[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="22_jpa0u"]
+[ext_resource type="PackedScene" uid="uid://c1xffkkh8tw2t" path="res://Prefabs/Animators/Party/Battle/BirbBattleAnimator.tscn" id="24_714v4"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Camera/BattleCamera.cs" id="26_4wd1o"]
+[ext_resource type="Texture2D" uid="uid://cxwucwhhd0j66" path="res://Sprites/Background/TestBG2-5.png" id="26_t1igd"]
+[ext_resource type="Texture2D" uid="uid://dkaiaqb7clc3d" path="res://Sprites/Background/TestBG2-4.png" id="27_0kod2"]
+[ext_resource type="Texture2D" uid="uid://b5h4wwcxikehv" path="res://Sprites/Background/TestBG2-3.png" id="28_mimni"]
+[ext_resource type="Texture2D" uid="uid://buw6q0l5avtth" path="res://Sprites/Background/TestBG2-2.png" id="29_6q26b"]
+[ext_resource type="Texture2D" uid="uid://dxw8j1mcunqf7" path="res://Sprites/Background/TestBG2-1.png" id="30_sdxkp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_g4rnl"]
+size = Vector2(1035, 264)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjfm6"]
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_52now"]
+
+[sub_resource type="Resource" id="Resource_cqcim"]
+script = ExtResource("8_gqbhp")
+
+[sub_resource type="Resource" id="Resource_1rlkq"]
+script = ExtResource("9_5o88u")
+MaxHP = 1
+HP = 1
+Atk = 1
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 1
+
+[sub_resource type="Resource" id="Resource_by311"]
+script = ExtResource("13_6ghqd")
+SeekBehaviours = Array[Object]([])
+IdleBehaviours = Array[Object]([])
+SteeringForce = 0.0
+BaseStats = SubResource("Resource_1rlkq")
+Name = "mmm"
+OverworldAnimator = ExtResource("4_ndfg7")
+BattleAnimator = ExtResource("24_714v4")
+TextEffectColor = Color(1, 0, 0, 1)
+
+[sub_resource type="Resource" id="Resource_lq0vg"]
+script = ExtResource("13_faay2")
+Speed = 3.0
+offset = Vector2(20, 0)
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "dfbvc"
+MoveTime = 5.0
+
+[sub_resource type="Resource" id="Resource_np6y3"]
+script = ExtResource("13_6qib6")
+Base = SubResource("Resource_lq0vg")
+
+[sub_resource type="Resource" id="Resource_2x5b3"]
+script = ExtResource("9_5o88u")
+MaxHP = 20
+HP = 20
+Atk = 3
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 5
+
+[sub_resource type="Resource" id="Resource_2rp3y"]
+resource_local_to_scene = true
+script = ExtResource("14_khjev")
+Base = SubResource("Resource_by311")
+Moves = Array[Object]([SubResource("Resource_np6y3")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_2x5b3")
+isControlledByPlayer = false
+Active = true
+status = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w2qex"]
+resource_local_to_scene = true
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
+size = Vector2(20, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1xr7"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[sub_resource type="Animation" id="Animation_h4ecl"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blockbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqxfr"]
+_data = {
+"RESET": SubResource("Animation_h4ecl")
+}
+
+[sub_resource type="Curve" id="Curve_nnuwj"]
+_data = [Vector2(0.00497512, 0.778947), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_s3x72"]
+max_value = 200.0
+_data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_medqc"]
+offsets = PackedFloat32Array(0.338028, 1)
+colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_fjcp6"]
+gradient = SubResource("Gradient_medqc")
+
+[sub_resource type="Curve" id="Curve_14tx8"]
+min_value = -50.0
+max_value = 50.0
+_data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ndws8"]
+curve = SubResource("Curve_14tx8")
+
+[sub_resource type="Curve" id="Curve_coejb"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984456, 0.326316), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_dfogn"]
+curve = SubResource("Curve_coejb")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_vr47v"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 0)
+direction = Vector3(0, -1, 0)
+spread = 74.85
+initial_velocity_min = 10.0
+initial_velocity_max = 87.81
+gravity = Vector3(0, -98, 0)
+linear_accel_max = 11.21
+linear_accel_curve = SubResource("CurveTexture_ndws8")
+scale_max = 15.63
+scale_curve = SubResource("CurveTexture_dfogn")
+color_ramp = SubResource("GradientTexture1D_fjcp6")
+
+[sub_resource type="Gradient" id="Gradient_p8sqr"]
+offsets = PackedFloat32Array(0, 0.673267, 1)
+colors = PackedColorArray(0.191553, 0.420498, 0.572298, 1, 0.106952, 0.518415, 1, 1, 0.811371, 0.706337, 0.361686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y36m5"]
+gradient = SubResource("Gradient_p8sqr")
+
+[sub_resource type="Gradient" id="Gradient_6qoqx"]
+offsets = PackedFloat32Array(0, 0.438944, 0.861386, 1)
+colors = PackedColorArray(0, 0.741176, 0, 1, 0.41511, 0.845658, 0.610832, 1, 0.690036, 0.955324, 0.911021, 1, 0.666667, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0dyv"]
+gradient = SubResource("Gradient_6qoqx")
+
+[sub_resource type="Gradient" id="Gradient_awthb"]
+offsets = PackedFloat32Array(0, 0.353135, 0.663366, 1)
+colors = PackedColorArray(0, 0, 0.760784, 1, 0.496331, 0.269289, 0.84728, 1, 0.770127, 0.593009, 0.959867, 1, 0.74902, 0.372549, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bb84a"]
+gradient = SubResource("Gradient_awthb")
+
+[sub_resource type="Gradient" id="Gradient_6uv37"]
+offsets = PackedFloat32Array(0, 0.994937)
+colors = PackedColorArray(0.855015, 1, 0.839864, 1, 1, 1, 0.211765, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8n0m8"]
+gradient = SubResource("Gradient_6uv37")
+
+[node name="TestBridge" type="Node2D"]
+
+[node name="TestBg2" type="Sprite2D" parent="."]
+visible = false
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("1_d5r2g")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="TestBg2"]
+visible = false
+scale = Vector2(0.5, 0.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestBg2/StaticBody2D"]
+position = Vector2(-11.2, -76.8)
+shape = SubResource("RectangleShape2D_g4rnl")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TestBg2/StaticBody2D"]
+position = Vector2(-14, 207)
+shape = SubResource("RectangleShape2D_g4rnl")
+
+[node name="Character" type="CharacterBody2D" parent="." groups=["Interactable"]]
+y_sort_enabled = true
+position = Vector2(164, 81)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" node_paths=PackedStringArray("battleStart")]
+shape = SubResource("RectangleShape2D_yjfm6")
+script = ExtResource("2_hip5a")
+battleStart = NodePath("../OverworldController/BattleStart")
+Timeline = "bridgeBattleStartTest"
+PauseWhenDialogue = true
+
+[node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Animator", "AnimatorTree", "Parent", "BattleCharacter", "OverworldCollider")]
+script = ExtResource("3_gy58k")
+enemyCollision = NodePath("Area2D")
+IdleTargets = []
+Obstacles = []
+Speed = 5000.0
+Friction = 1000.0
+MaxSpeed = 6000.0
+Animator = NodePath("AnimationPlayer2")
+AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
+Parent = NodePath("..")
+BattleCharacter = NodePath("../BattleCharacter")
+OverworldCollider = NodePath("../CollisionShape2D")
+
+[node name="AnimationPlayer2" parent="Character/OverworldController" instance=ExtResource("4_ndfg7")]
+
+[node name="AnimationTree" parent="Character/OverworldController/AnimationPlayer2" index="0"]
+parameters/Idle/blend_position = Vector2(-1, 0)
+parameters/Walking/blend_position = Vector2(-1, 0)
+
+[node name="AnimationPlayer" parent="Character/OverworldController" instance=ExtResource("4_yw2ny")]
+process_mode = 4
+active = false
+
+[node name="AnimationTree" parent="Character/OverworldController/AnimationPlayer" index="0"]
+active = false
+parameters/Idle/blend_position = Vector2(-1, 0)
+parameters/Walking/blend_position = Vector2(-1, 0)
+
+[node name="MainSprite" type="Sprite2D" parent="Character/OverworldController"]
+texture_filter = 1
+position = Vector2(-1, 0)
+texture = ExtResource("6_ybcwn")
+offset = Vector2(0, -18)
+hframes = 4
+vframes = 4
+frame = 3
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Animations/Overworld",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "Node2D/AnimationPlayer",
+"source": "res://Aseprites/Characters/Overworld/waterIdle.aseprite"
+}
+
+[node name="Area2D" type="Area2D" parent="Character/OverworldController" node_paths=PackedStringArray("battleStart")]
+script = ExtResource("6_bidvs")
+battleStart = NodePath("../BattleStart")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/OverworldController/Area2D"]
+shape = SubResource("RectangleShape2D_52now")
+
+[node name="BattleStart" type="Node2D" parent="Character/OverworldController"]
+script = ExtResource("7_rpbe1")
+scene = SubResource("Resource_cqcim")
+EnemyCharacters = []
+CharacterPrefab = 1
+PartyPos = Array[Vector2]([Vector2(-100, 0)])
+EnemyPos = Array[Vector2]([Vector2(100, 0)])
+
+[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles")]
+process_mode = 4
+visible = false
+script = ExtResource("15_wvjb8")
+AnimatorTree = NodePath("AnimationPlayer2/AnimationTree")
+AnimatorPlayer = NodePath("AnimationPlayer2")
+Character = SubResource("Resource_2rp3y")
+Hitbox = NodePath("Hitbox")
+Hurtbox = NodePath("Hurtbox")
+Blockbox = NodePath("Blockbox")
+Overworld = NodePath("../OverworldController")
+MultiplierAtk = Array[float]([1.0])
+MultiplierDef = Array[float]([1.0])
+MultiplierSpAtk = Array[float]([1.0])
+MultiplierSpDef = Array[float]([1.0])
+MultiplierSpeed = Array[float]([1.0])
+TimerAtk = Array[int]([1])
+TimerDef = Array[int]([1])
+TimerSpAtk = Array[int]([1])
+TimerSpDef = Array[int]([1])
+TimerSpeed = Array[int]([1])
+PartyButtons = []
+EnemyButtons = []
+selectActions = NodePath("ActionMenu")
+MainSprite = NodePath("MainSprite")
+ThisParty = []
+EnemyParty = []
+StateParticles = NodePath("StateParticles")
+HitParticles = NodePath("HitEffectParticles")
+battleState = 3
+actionState = 5
+
+[node name="Hitbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyHitbox"]]
+visible = false
+script = ExtResource("16_c7pgp")
+CanBeBlocked = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hitbox"]
+position = Vector2(0.06, -18)
+shape = SubResource("RectangleShape2D_w2qex")
+disabled = true
+
+[node name="Hurtbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyHurtbox"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox"]
+position = Vector2(0, -17)
+shape = SubResource("RectangleShape2D_6c1hy")
+disabled = true
+
+[node name="Blockbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyBlockbox"]]
+script = ExtResource("17_wlirl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Blockbox"]
+shape = SubResource("RectangleShape2D_l1xr7")
+disabled = true
+
+[node name="MainSprite" type="Sprite2D" parent="Character/BattleCharacter"]
+texture_filter = 1
+texture = ExtResource("18_04t6q")
+offset = Vector2(0, -18)
+hframes = 9
+vframes = 8
+frame = 5
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://Animations/Battle/Party",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "BattleCharacter/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
+}
+
+[node name="Arms" type="Sprite2D" parent="Character/BattleCharacter/MainSprite"]
+texture_filter = 1
+texture = ExtResource("19_h8d31")
+offset = Vector2(0, -18)
+hframes = 5
+vframes = 5
+frame = 2
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "_Arm",
+"o_ex_p": "",
+"o_folder": "res://Animations/Battle/Party",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "Character/BattleCharacter/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
+}
+
+[node name="Weapon" type="Sprite2D" parent="Character/BattleCharacter/MainSprite"]
+visible = false
+offset = Vector2(0, -18)
+
+[node name="Effects" type="AnimationPlayer" parent="Character/BattleCharacter"]
+
+[node name="ActionMenu" type="Node2D" parent="Character/BattleCharacter"]
+process_mode = 4
+visible = false
+script = ExtResource("20_1eu45")
+
+[node name="Move" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
+
+[node name="Item" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
+
+[node name="Run" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
+
+[node name="AnimationPlayer" parent="Character/BattleCharacter" instance=ExtResource("10_5unik")]
+process_mode = 4
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_rqxfr"),
+"WaterFight": ExtResource("21_j6ley")
+}
+
+[node name="AnimationTree" parent="Character/BattleCharacter/AnimationPlayer" index="0"]
+active = false
+libraries = {
+"": SubResource("AnimationLibrary_rqxfr"),
+"WaterFight": ExtResource("21_j6ley")
+}
+
+[node name="HitEffectParticles" type="CPUParticles2D" parent="Character/BattleCharacter"]
+process_mode = 3
+position = Vector2(0, -18)
+emitting = false
+amount = 20
+lifetime = 0.4
+one_shot = true
+explosiveness = 1.0
+local_coords = true
+emission_shape = 1
+emission_sphere_radius = 14.7
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 205.74
+scale_amount_min = 0.0
+scale_amount_max = 15.35
+scale_amount_curve = SubResource("Curve_nnuwj")
+color = Color(0.580392, 0.968627, 0.937255, 1)
+anim_speed_max = 200.15
+anim_speed_curve = SubResource("Curve_s3x72")
+anim_offset_max = 0.9809
+
+[node name="StateParticles" type="GPUParticles2D" parent="Character/BattleCharacter"]
+process_mode = 3
+position = Vector2(0, -8)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_vr47v")
+lifetime = 0.5
+one_shot = true
+script = ExtResource("22_jpa0u")
+ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
+processMaterial = SubResource("ParticleProcessMaterial_vr47v")
+
+[node name="AnimationPlayer2" parent="Character/BattleCharacter" instance=ExtResource("24_714v4")]
+
+[node name="OverworldCam" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(2, 2)
+limit_left = -625
+limit_top = -500
+limit_right = 625
+limit_bottom = 500
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("22_c8b1k")
+
+[node name="BattleCam" type="Camera2D" parent="."]
+process_mode = 3
+enabled = false
+zoom = Vector2(2, 2)
+limit_left = -625
+limit_top = -500
+limit_right = 625
+limit_bottom = 500
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("26_4wd1o")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("30_sdxkp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("29_6q26b")
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+follow_viewport_scale = 0.28
+
+[node name="ParallaxBackground" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(250, 100)
+scale = Vector2(2.5, 2.5)
+motion_scale = Vector2(0.25, 0.25)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxBackground"]
+texture = ExtResource("26_t1igd")
+region_rect = Rect2(9.67, 0, 1.71, 33.04)
+
+[node name="Sprite2D2" type="Sprite2D" parent="ParallaxBackground/ParallaxBackground"]
+texture = ExtResource("27_0kod2")
+
+[node name="ParallaxBackground3" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(0, 90)
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.5, 0.5)
+
+[node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/ParallaxBackground3"]
+texture = ExtResource("28_mimni")
+
+[editable path="Character/OverworldController/AnimationPlayer2"]
+[editable path="Character/OverworldController/AnimationPlayer"]
+[editable path="Character/BattleCharacter/AnimationPlayer"]
+[editable path="Character/BattleCharacter/AnimationPlayer2"]

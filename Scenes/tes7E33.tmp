@@ -1,0 +1,114 @@
+[gd_scene load_steps=18 format=3 uid="uid://5jxtto4ew51p"]
+
+[ext_resource type="PackedScene" uid="uid://d3nqqd8p0x1ga" path="res://Prefabs/Characters/Overworld/water.tscn" id="8_fvw5a"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/CharacterBase.cs" id="9_opryn"]
+[ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="10_nex0n"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="10_oja2w"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="11_ua6ok"]
+[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/RandomBattleStart.cs" id="12_1eu6t"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="13_jumgo"]
+
+[sub_resource type="Resource" id="Resource_ctoo7"]
+script = ExtResource("9_opryn")
+Name = ""
+
+[sub_resource type="Resource" id="Resource_qtwj2"]
+script = ExtResource("11_ua6ok")
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_gtyuj"]
+script = ExtResource("10_oja2w")
+Base = SubResource("Resource_ctoo7")
+Moves = Array[Object]([])
+items = null
+Equipment = Array[Object]([])
+stats = SubResource("Resource_qtwj2")
+isControlledByPlayer = false
+
+[sub_resource type="Resource" id="Resource_lfafu"]
+script = ExtResource("9_opryn")
+Name = ""
+
+[sub_resource type="Resource" id="Resource_ffl6q"]
+script = ExtResource("11_ua6ok")
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_2jwwl"]
+script = ExtResource("10_oja2w")
+Base = SubResource("Resource_lfafu")
+Moves = null
+items = null
+Equipment = Array[Object]([])
+stats = SubResource("Resource_ffl6q")
+isControlledByPlayer = false
+
+[sub_resource type="Resource" id="Resource_pc6au"]
+script = ExtResource("9_opryn")
+Name = ""
+
+[sub_resource type="Resource" id="Resource_61xyq"]
+script = ExtResource("11_ua6ok")
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_ojoby"]
+script = ExtResource("10_oja2w")
+Base = SubResource("Resource_pc6au")
+Moves = Array[Object]([])
+items = null
+Equipment = Array[Object]([])
+stats = SubResource("Resource_61xyq")
+isControlledByPlayer = false
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yvqso"]
+
+[node name="Node2D" type="Node2D" groups=["EnemyHitbox", "Enemyblockbox"]]
+y_sort_enabled = true
+position = Vector2(-3, -1)
+metadata/_edit_vertical_guides_ = []
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(213, 91)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+polygon = PackedVector2Array(12, -14, 123, -48, 288, 10, 265, 135, 121, 53, 78, -18)
+
+[node name="RandomFight" type="Node" parent="."]
+script = ExtResource("12_1eu6t")
+PartyPos = Array[Vector2]([Vector2(30, 100)])
+EnemyPos = Array[Vector2]([Vector2(200, 100), Vector2(200, 500)])
+CenterView = Vector2(100, 0)
+scene = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","script":ExtResource("13_jumgo"))
+
+
+[node name="Node" type="Node" parent="RandomFight"]
+script = ExtResource("13_jumgo")
+
+[node name="Water" parent="." instance=ExtResource("8_fvw5a")]
+process_mode = 4
+position = Vector2(405, 509)
+
+[node name="OverworldCharacterController" parent="Water" index="0"]
+process_mode = 4
+Animator = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","root_node":NodePath("../.."),"autoplay":"","reset_on_save":true,"playback_process_mode":1,"playback_default_blend_time":0.0,"speed_scale":1.0,"method_call_mode":0,"audio_max_polyphony":32,"movie_quit_on_finish":false,"libraries":{
+"": null
+},"blend_times":[],"script":null)
+
+random = Object(Node,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_prio

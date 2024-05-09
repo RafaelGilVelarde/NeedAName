@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cnmcvu3wurcq7"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/DialogicCSharp.cs" id="1_3yatr"]
+
+[node name="DialogicNode" type="Node"]
+script = ExtResource("1_3yatr")

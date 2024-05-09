@@ -1,0 +1,206 @@
+[gd_scene load_steps=7 format=3 uid="uid://b7iiupkqy5jmj"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/ScrollList.cs" id="3_w87jg"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
+
+[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "CharacterButtonParent", "itemList", "moveList")]
+process_mode = 4
+script = ExtResource("1_6q2le")
+BattleCamera = NodePath("Camera2D")
+CharacterButtonParent = NodePath("CharacterButtonParent")
+PositionMoveSpeed = 0.3
+itemList = NodePath("CanvasLayer/ItemList")
+moveList = NodePath("CanvasLayer/MoveList")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="MoveList" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("Buttons")]
+z_index = 5
+z_as_relative = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(0, 20)
+script = ExtResource("2_s8gjb")
+Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
+
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/MoveList" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("3_w87jg")
+List = NodePath("..")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MoveList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.333
+offset_right = 3.0
+offset_bottom = 0.00999832
+text = "uyhjbknlkml"
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MoveList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton2"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MoveList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton3"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MoveList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton4"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MoveList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton5"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/MoveList" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("3_w87jg")
+startEnd = 1
+List = NodePath("..")
+
+[node name="ItemList" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("Buttons")]
+z_index = 5
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("4_debr0")
+Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
+
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/ItemList" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("3_w87jg")
+List = NodePath("..")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/ItemList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("5_veub1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/ItemList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("5_veub1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton2"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/ItemList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("5_veub1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton3"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/ItemList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("5_veub1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton4"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/ItemList"]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("5_veub1")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton5"]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/ItemList" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("3_w87jg")
+startEnd = 1
+List = NodePath("..")
+
+[node name="CharacterButtonParent" type="BoxContainer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true

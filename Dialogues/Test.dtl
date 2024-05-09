@@ -1,0 +1,8 @@
+Helo {GameManager.Data.Party[0].Base.Name}
+Wanna fight?
+- Yes
+	Let's fight
+	Farewell {GameManager.Data.Party[0].Base.Name}
+	[signal arg="Fight"]
+- No
+	Let's not

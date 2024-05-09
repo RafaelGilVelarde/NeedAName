@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://bglwo7p4wpaq0"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Camera/Camera.cs" id="1_5a70w"]
+
+[node name="OverworldCam" type="Camera2D"]
+zoom = Vector2(2, 2)
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_5a70w")

@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://gutv8w8k080r"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/RandomBattleStart.cs" id="1_cw3gg"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="2_p2n5n"]
+
+[node name="RandomFight" type="Node" node_paths=PackedStringArray("scene", "Party", "Enemy")]
+script = ExtResource("1_cw3gg")
+scene = NodePath("")
+Party = [null]
+Enemy = [null]
+PartyPos = Array[Vector2]([Vector2(20, 20)])
+EnemyPos = Array[Vector2]([Vector2(40, 20)])
+
+[node name="Node" type="Node" parent="."]
+script = ExtResource("2_p2n5n")

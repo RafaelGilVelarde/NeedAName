@@ -1,0 +1,250 @@
+[gd_scene load_steps=30 format=3 uid="uid://c1xffkkh8tw2t"]
+
+[ext_resource type="AnimationLibrary" uid="uid://dpjm4sa62d52v" path="res://Animations/Battle/BirbFight.res" id="1_mp7ed"]
+
+[sub_resource type="Animation" id="Animation_kjcss"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blockbox/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(46.475, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.06, -18)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Blockbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 34)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0da8k"]
+_data = {
+"RESET": SubResource("Animation_kjcss")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
+animation = &"Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy8rl"]
+animation = &"BirbFight/Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5deye"]
+animation = &"BirbFight/Melee2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_itfrt"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_26rrj")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_oy8rl")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_5deye")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yfjc8"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_itfrt")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_enmkj"]
+animation = &"BirbFight/Block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7qjg"]
+animation = &"BirbFight/Dodge1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fk5x6"]
+animation = &"BirbFight/Dodge2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7bgb"]
+animation = &"BirbFight/Dodge3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8jsu"]
+animation = &"BirbFight/Dodge4"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ecmc3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_l7qjg")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fk5x6")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_m7bgb")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_y8jsu")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hmcb"]
+animation = &"BirbFight/idleFight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rcttj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1hmcb")
+blend_point_0/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7176c"]
+animation = &"BirbFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_is2pd"]
+animation = &"BirbFight/Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q67gl"]
+animation = &"BirbFight/DieLoop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mcs87"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3kam"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dkfo3"]
+states/BirbFight_Die/node = SubResource("AnimationNodeAnimation_is2pd")
+states/BirbFight_Die/position = Vector2(361, 85)
+states/BorbFight_DieLoop/node = SubResource("AnimationNodeAnimation_q67gl")
+states/BorbFight_DieLoop/position = Vector2(699, 94)
+states/Start/position = Vector2(163, 91)
+transitions = ["Start", "BirbFight_Die", SubResource("AnimationNodeStateMachineTransition_mcs87"), "BirbFight_Die", "BorbFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_x3kam")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtlmn"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_yfjc8")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_enmkj")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_ecmc3")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeBlendSpace1D_rcttj")
+blend_point_3/pos = 5.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_7176c")
+blend_point_4/pos = 3.0
+blend_point_5/node = SubResource("AnimationNodeStateMachine_dkfo3")
+blend_point_5/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+snap = 0.01
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixq5v"]
+animation = &"BirbFight/StartBattle"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah0no"]
+animation = &"BirbFight/StartBattle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyb26"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2vxd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_patbp"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cauuh"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
+states/ActionState/position = Vector2(570, 10.8326)
+states/BirbFight_StartBattle/node = SubResource("AnimationNodeAnimation_ixq5v")
+states/BirbFight_StartBattle/position = Vector2(878, 10.8326)
+states/Start/position = Vector2(76, 80)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_ah0no")
+states/StartBattle/position = Vector2(285, 10.8326)
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd"), "ActionState", "BirbFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp")]
+graph_offset = Vector2(0, -54.1674)
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_0da8k"),
+"BirbFight": ExtResource("1_mp7ed")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_0da8k"),
+"BirbFight": ExtResource("1_mp7ed")
+}
+tree_root = SubResource("AnimationNodeStateMachine_cauuh")
+anim_player = NodePath("..")
+parameters/conditions/Ended = false
+parameters/ActionState/blend_position = 5.01203
+parameters/ActionState/0/blend_position = 0.0
+parameters/ActionState/0/0/blend_position = 1.84634
+parameters/ActionState/2/blend_position = Vector2(-0.003003, 0.0241935)
+parameters/ActionState/3/blend_position = 0

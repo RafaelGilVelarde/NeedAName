@@ -1,0 +1,108 @@
+[gd_scene load_steps=20 format=3 uid="uid://bmhkp2rg2ouvk"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bms0eg5egx0v8" path="res://Sprites/Overworld/WaterOverworld.res" id="1_r5g1m"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5kdp"]
+animation = &"WaterOverworld/idleSide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yy60x"]
+animation = &"WaterOverworld/idleSide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jh07s"]
+animation = &"WaterOverworld/idleBack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v14w0"]
+animation = &"WaterOverworld/idleFront"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_04twk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_c5kdp")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_yy60x")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jh07s")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_v14w0")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vu7un"]
+animation = &"WaterOverworld/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m3i1y"]
+animation = &"WaterOverworld/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4m07"]
+animation = &"WaterOverworld/back"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_q6rct"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lawhp"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_h4m07")
+nodes/Animation/position = Vector2(-160, 80)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_q6rct")
+nodes/TimeSeek/position = Vector2(240, 80)
+nodes/output/position = Vector2(460, 60)
+node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dkp1o"]
+animation = &"WaterOverworld/front"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_1bbbb"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8deot"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dkp1o")
+nodes/Animation/position = Vector2(160, 60)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_1bbbb")
+nodes/TimeSeek/position = Vector2(500, 40)
+nodes/output/position = Vector2(680, 60)
+node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yaspl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vu7un")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_m3i1y")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeBlendTree_lawhp")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeBlendTree_8deot")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d51tl"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8h5u"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0cef"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cck0k"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_04twk")
+states/Idle/position = Vector2(365, 92)
+states/Start/position = Vector2(213, 100)
+states/Walking/node = SubResource("AnimationNodeBlendSpace2D_yaspl")
+states/Walking/position = Vector2(512, 92)
+transitions = ["Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_d51tl"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_p8h5u"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_e0cef")]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+process_mode = 3
+libraries = {
+"WaterOverworld": ExtResource("1_r5g1m")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"WaterOverworld": ExtResource("1_r5g1m")
+}
+tree_root = SubResource("AnimationNodeStateMachine_cck0k")
+anim_player = NodePath("..")
+parameters/conditions/Idle = false
+parameters/conditions/Walking = false
+parameters/Idle/blend_position = Vector2(-0.0103093, 0.30131)
+parameters/Walking/blend_position = Vector2(-0.0343643, -0.62766)
+parameters/Walking/2/TimeSeek/seek_request = -1.0
+parameters/Walking/3/TimeSeek/seek_request = -1.0
