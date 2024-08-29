@@ -1,0 +1,97 @@
+[gd_scene load_steps=14 format=3 uid="uid://cs53p3oec1d58"]
+
+[ext_resource type="Texture2D" uid="uid://bfhcsehlr1yo" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam5.png" id="1_fokbb"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/RayHitbox.cs" id="2_7jega"]
+[ext_resource type="Texture2D" uid="uid://dhy6oj7wp8r78" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam1.png" id="2_cnyta"]
+[ext_resource type="Texture2D" uid="uid://c3p8lnyml8jbe" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam2.png" id="3_6osqb"]
+[ext_resource type="Texture2D" uid="uid://cdyxokug6bwun" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam3.png" id="4_5cr7h"]
+[ext_resource type="Texture2D" uid="uid://dygfwsnn3xcnp" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam4.png" id="5_7fgp7"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cb3ci"]
+diffuse_texture = ExtResource("4_5cr7h")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4nfn6"]
+diffuse_texture = ExtResource("2_cnyta")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_4ns76"]
+diffuse_texture = ExtResource("3_6osqb")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_2mbrb"]
+diffuse_texture = ExtResource("5_7fgp7")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7a640"]
+diffuse_texture = ExtResource("1_fokbb")
+texture_repeat = 2
+
+[sub_resource type="Animation" id="Animation_8sf2i"]
+resource_name = "WaterBeam"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [SubResource("CanvasTexture_4nfn6"), SubResource("CanvasTexture_4ns76"), SubResource("CanvasTexture_cb3ci"), SubResource("CanvasTexture_2mbrb"), SubResource("CanvasTexture_7a640")]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.5),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("RayCast2D:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6s6es"]
+_data = {
+"WaterBeam": SubResource("Animation_8sf2i")
+}
+
+[node name="Line2D" type="Line2D"]
+process_mode = 3
+points = PackedVector2Array(-10, 0, 304, 0)
+width = 40.0
+texture = SubResource("CanvasTexture_cb3ci")
+texture_mode = 2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+visible = false
+enabled = false
+target_position = Vector2(100, 0)
+collide_with_areas = true
+collide_with_bodies = false
+script = ExtResource("2_7jega")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_6s6es")
+}
+autoplay = "WaterBeam"

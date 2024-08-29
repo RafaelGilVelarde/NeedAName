@@ -31,9 +31,12 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] Key SelectKey;
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
+	[Export] public Node2D ShootNode;
 
 	[Signal]
 	public delegate void _ReturnToIdleEventHandler(BattleCharacter character);
+	[Signal]
+	public delegate void _ShootEventHandler(BattleCharacter character);
 
 	Tween DodgeTween;
 
@@ -110,13 +113,14 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 	public void changeAction(ActionState state){
-		//SetIdle(false);
-		//Debug.WriteLine("Hitbox: "+Hitbox.GetChild<CollisionShape2D>(0).Disabled);
+
 		AnimatorPlayer.Play("RESET");
 		actionState=state;
 	}
 	public void changeState(BattleState state){
-		Debug.WriteLine("Ramp: "+Character.Base.Name);
+		if(Character.isControlledByPlayer && (int)state<3){
+			BattleManager.instance.ChangeTutorialLabel((int)state,false);
+		}
 		AnimatorPlayer.Play("RESET");
 		StateParticles.EmitParticles(state);
 		battleState=state;
@@ -137,6 +141,9 @@ public partial class BattleCharacter : CharacterBody2D
 	
 	public void UseItem(Items item){
 		item.Base.Effect(BattleManager.instance.TargetCharacters);
+	}
+	public void Shoot(){
+		EmitSignal("_Shoot",this);
 	}
 	public virtual void StartChoosingMove(){
 		if(!HoldingMove){
@@ -207,7 +214,7 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 
 
-	void GetHit(){
+	protected void GetHit(){
 		changeAction(ActionState.isHit);
 		if(battleState==BattleState.Dodging){
 			if(DodgeTween!=null){
@@ -339,15 +346,35 @@ public partial class BattleCharacter : CharacterBody2D
 			MultiplierSpeed.RemoveAt(Atk[i]);
 		}
 	}
+	public void ClearTimers(){
+		for(int i=1;i<MultiplierAtk.Count;i++){
+			TimerAtk.RemoveAt(i);
+			MultiplierAtk.RemoveAt(i);
+		}
+		for(int i=1;i<MultiplierDef.Count;i++){
+			TimerSpAtk.RemoveAt(i);
+			MultiplierAtk.RemoveAt(i);
+		}
+		for(int i=1;i<MultiplierSpAtk.Count;i++){
+			TimerSpAtk.RemoveAt(i);
+			MultiplierSpAtk.RemoveAt(i);
+		}
+		for(int i=1;i<MultiplierSpDef.Count;i++){
+			TimerSpAtk.RemoveAt(i);
+			MultiplierSpAtk.RemoveAt(i);
+		}
+		for(int i=1;i<MultiplierSpeed.Count;i++){
+			TimerSpeed.RemoveAt(i);
+			MultiplierSpeed.RemoveAt(i);
+		}
+	}
 
 	public void Seek(string path, float offset){
 		if(Looping){
 			AnimatorTree.Set(path, offset);
 		}
 	}
-	public void Check(string path){
-		Debug.WriteLine("SeekWack");
-	}
+
 	public void TurnOnBattle(){
 		ProcessMode=ProcessModeEnum.Inherit;
 		Show();
@@ -357,6 +384,7 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public virtual void TurnOffBattle(){
 		ProcessMode=ProcessModeEnum.Disabled;
+		ClearTimers();
 		Hide();
 		AnimatorTree.Active=false;
 		AnimatorTree.Set("parameters/conditions/Ended",false);
@@ -364,7 +392,6 @@ public partial class BattleCharacter : CharacterBody2D
 		Character._GetHit-=()=>changeAction(ActionState.isHit);
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
-		AnimatorTree.Active=false;
 		Overworld.BattleEnd();
 	}
 }

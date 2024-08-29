@@ -1,0 +1,197 @@
+[gd_scene load_steps=20 format=3 uid="uid://b6cj47rw55blg"]
+
+[ext_resource type="AnimationLibrary" uid="uid://dhsd5etrx30pt" path="res://Animations/Battle/ShrimpFight.res" id="1_3mc76"]
+
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_u5is8"]
+resource_name = "RESET"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0.06, -18)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(22, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("HitEffectParticles:amount")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("HitEffectParticles:lifetime")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.75]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("HitEffectParticles:scale_amount_curve")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Curve_0dopt")]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Shoot:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_j61uc"]
+_data = {
+"RESET": SubResource("Animation_u5is8")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4v72w"]
+animation = &"ShrimpFight/attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xqtt4"]
+animation = &"ShrimpFight/attack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_f0b48"]
+animation = &"ShrimpFight/attack3"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_xjnrd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_4v72w")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_xqtt4")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_f0b48")
+blend_point_2/pos = 3.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_cap4j"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_xjnrd")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_31ews"]
+animation = &"ShrimpFight/hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ueoqm"]
+animation = &"ShrimpFight/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ek0ct"]
+animation = &"ShrimpFight/die"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_a23km"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_cap4j")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_31ews")
+blend_point_1/pos = 3.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_ueoqm")
+blend_point_2/pos = 5.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_ek0ct")
+blend_point_3/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ni35o"]
+animation = &"ShrimpFight/battleStart"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7l57b"]
+animation = &"ShrimpFight/battleStart"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pxsxw"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_uva63"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6sx8t"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_32flu"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_a23km")
+states/ActionState/position = Vector2(565, 38)
+states/End/position = Vector2(1110, 60)
+states/ShrimpFight_battleStart/node = SubResource("AnimationNodeAnimation_7l57b")
+states/ShrimpFight_battleStart/position = Vector2(309, 38)
+"states/ShrimpFight_battleStart 2/node" = SubResource("AnimationNodeAnimation_ni35o")
+"states/ShrimpFight_battleStart 2/position" = Vector2(862, 38)
+states/Start/position = Vector2(77, 38)
+transitions = ["Start", "ShrimpFight_battleStart", SubResource("AnimationNodeStateMachineTransition_pxsxw"), "ShrimpFight_battleStart", "ActionState", SubResource("AnimationNodeStateMachineTransition_uva63"), "ActionState", "ShrimpFight_battleStart 2", SubResource("AnimationNodeStateMachineTransition_6sx8t")]
+graph_offset = Vector2(0, -54.1674)
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_j61uc"),
+"ShrimpFight": ExtResource("1_3mc76")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_j61uc"),
+"ShrimpFight": ExtResource("1_3mc76")
+}
+tree_root = SubResource("AnimationNodeStateMachine_32flu")
+anim_player = NodePath("..")
+parameters/conditions/Ended = false
+parameters/ActionState/blend_position = 3.15306
+parameters/ActionState/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = 0

@@ -4,8 +4,7 @@ using System.Diagnostics;
 
 public partial class Hitbox : Area2D
 {
-	[Export]public bool CanBeBlocked;
-	[Export]BattleCharacter Character;
+	[Export]public BattleCharacter Character;
 
 	[Signal]
 	public delegate void _HitEventHandler(BattleCharacter Target);
@@ -23,24 +22,17 @@ public partial class Hitbox : Area2D
 	}
 	public virtual void OnTriggerEnter(Area2D node){
 		if((node.IsInGroup("EnemyHurtbox")&&this.IsInGroup("PlayerHitbox"))||(node.IsInGroup("PlayerHurtbox")&&this.IsInGroup("EnemyHitbox"))){
-		Debug.WriteLine(GetChild<CollisionShape2D>(0).Disabled);
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
-			BattleCharacter Attacking=this.GetNode<BattleCharacter>("..");
-		        for (int i=0;i<Attacking.Character.Equipment.Count;i++){
-            		Attacking.Character.Equipment[i].Base.HitEnemyEffect(Attacking,Attacking.MoveUsed.Base);
+		        for (int i=0;i<Character.Character.Equipment.Count;i++){
+            		Character.Character.Equipment[i].Base.HitEnemyEffect(Character,Character.MoveUsed.Base);
         		}
 			EmitSignal("_Hit",Target);
 		}
 		if((IsInGroup("EnemyHitbox")&&node.IsInGroup("PlayerBlockbox"))||(IsInGroup("PlayerHitbox")&&node.IsInGroup("EnemyBlockbox"))){
-			Debug.WriteLine("DDDDDD");
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
 			EmitSignal("_Block",Target);
         }
 	} 
-	public void getBlocked(){
-		if(CanBeBlocked){
-		}
-	}
 
 	
 }

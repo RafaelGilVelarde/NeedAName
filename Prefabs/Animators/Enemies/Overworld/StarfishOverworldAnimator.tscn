@@ -1,0 +1,64 @@
+[gd_scene load_steps=12 format=3 uid="uid://dhdsnhldpw4it"]
+
+[ext_resource type="AnimationLibrary" uid="uid://gmu1rwf03a1r" path="res://Animations/Overworld/StarfishOverworld.res" id="1_18jw6"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g448i"]
+animation = &"StarfishOverworld/Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jgw50"]
+animation = &"StarfishOverworld/Attack1_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1wq6j"]
+animation = &"StarfishOverworld/Attack1_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emgej"]
+animation = &"StarfishOverworld/idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayg3n"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2uha2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_amb5w"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dm8hr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7jlu6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_yrwj3"]
+states/StarfishOverworld_Attack1/node = SubResource("AnimationNodeAnimation_g448i")
+states/StarfishOverworld_Attack1/position = Vector2(732, 182.859)
+states/StarfishOverworld_Attack1_End/node = SubResource("AnimationNodeAnimation_jgw50")
+states/StarfishOverworld_Attack1_End/position = Vector2(381, 182.859)
+states/StarfishOverworld_Attack1_Start/node = SubResource("AnimationNodeAnimation_1wq6j")
+states/StarfishOverworld_Attack1_Start/position = Vector2(732, 103)
+states/StarfishOverworld_idle/node = SubResource("AnimationNodeAnimation_emgej")
+states/StarfishOverworld_idle/position = Vector2(381, 103)
+states/Start/position = Vector2(213, 100)
+transitions = ["StarfishOverworld_idle", "StarfishOverworld_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_ayg3n"), "StarfishOverworld_Attack1_Start", "StarfishOverworld_Attack1", SubResource("AnimationNodeStateMachineTransition_2uha2"), "StarfishOverworld_Attack1", "StarfishOverworld_Attack1_End", SubResource("AnimationNodeStateMachineTransition_amb5w"), "StarfishOverworld_Attack1_End", "StarfishOverworld_idle", SubResource("AnimationNodeStateMachineTransition_dm8hr"), "Start", "StarfishOverworld_idle", SubResource("AnimationNodeStateMachineTransition_7jlu6")]
+graph_offset = Vector2(0, 40.827)
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+process_mode = 4
+libraries = {
+"StarfishOverworld": ExtResource("1_18jw6")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+active = false
+root_node = NodePath("../..")
+libraries = {
+"StarfishOverworld": ExtResource("1_18jw6")
+}
+tree_root = SubResource("AnimationNodeStateMachine_yrwj3")
+anim_player = NodePath("..")
+parameters/conditions/Idle = false
+parameters/conditions/Walking = false

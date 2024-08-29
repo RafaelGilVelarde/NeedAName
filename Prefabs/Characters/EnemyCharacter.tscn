@@ -1,18 +1,16 @@
-[gd_scene load_steps=68 format=3 uid="uid://bwechl06etngi"]
+[gd_scene load_steps=113 format=3 uid="uid://bwechl06etngi"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="1_d5p4d"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="1_d5yrq"]
-[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_myjba"]
 [ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="3_7at5k"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="3_xeb2i"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="4_1bhow"]
+[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="4_4na67"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="4_7sqs1"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="4_xi1xx"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="5_c0xxe"]
-[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="5_h81mw"]
+[ext_resource type="Texture2D" uid="uid://bxol8k2rcwxa2" path="res://Sprites/Overworld/Enemies/starfish.png" id="5_cyn34"]
 [ext_resource type="Script" path="res://Scripts/Battle/StartBattle/BattleStart.cs" id="5_jm1ut"]
-[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="6_gyom6"]
-[ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="7_7dwue"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="8_r8twf"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="9_ltwbp"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_qbtlp"]
@@ -20,17 +18,20 @@
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="9_voesq"]
 [ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="10_ih616"]
 [ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="15_sd2km"]
+[ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="15_ud6pj"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="17_0tx57"]
-[ext_resource type="Texture2D" uid="uid://dpjjot5h63ywt" path="res://Sprites/Battle/Party/waterBattle.png" id="17_hkrt6"]
+[ext_resource type="AnimationLibrary" uid="uid://bms0eg5egx0v8" path="res://Sprites/Overworld/WaterOverworld.res" id="18_5buxi"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="18_ol0yk"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="18_t1xvf"]
-[ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="20_1xql6"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="21_4wbol"]
+[ext_resource type="Texture2D" uid="uid://bm1a1elihmf3n" path="res://Sprites/Battle/Enemies/_arm.png" id="25_51d2j"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yjfm6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yups"]
+resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_52now"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ava3a"]
+resource_local_to_scene = true
 size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_cqcim"]
@@ -62,6 +63,7 @@ TextEffectColor = Color(1, 0, 0, 1)
 [sub_resource type="Resource" id="Resource_44g3j"]
 script = ExtResource("9_voesq")
 Speed = 3.0
+Combo = 1
 offset = Vector2(50, 0)
 type = 0
 Power = 1
@@ -97,7 +99,7 @@ isControlledByPlayer = false
 Active = true
 status = 0
 
-[sub_resource type="Resource" id="Resource_lchfq"]
+[sub_resource type="Resource" id="Resource_qlj5e"]
 script = ExtResource("4_1bhow")
 MaxHP = 5
 HP = 5
@@ -107,6 +109,252 @@ SpAtk = 5
 SpDef = 5
 Speed = 5
 
+[sub_resource type="Animation" id="Animation_l6drn"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blockbox/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(46.475, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hitbox/CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(22, 20)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.06, -18)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Blockbox/CollisionShape2D:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [true]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(20, 34)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -17)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cldp0"]
+_data = {
+"RESET": SubResource("Animation_l6drn")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
+animation = &"Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy8rl"]
+animation = &"WaterFight/Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5deye"]
+animation = &"WaterFight/Melee2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_itfrt"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_26rrj")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_oy8rl")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_5deye")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yfjc8"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_itfrt")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_enmkj"]
+animation = &"WaterFight/Block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7qjg"]
+animation = &"WaterFight/Dodge1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fk5x6"]
+animation = &"WaterFight/Dodge2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7bgb"]
+animation = &"WaterFight/Dodge3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8jsu"]
+animation = &"WaterFight/Dodge4"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ecmc3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_l7qjg")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fk5x6")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_m7bgb")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_y8jsu")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hmcb"]
+animation = &"WaterFight/idleFight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rcttj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1hmcb")
+blend_point_0/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7176c"]
+animation = &"WaterFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_is2pd"]
+animation = &"WaterFight/Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q67gl"]
+animation = &"WaterFight/DieLoop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mcs87"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3kam"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dkfo3"]
+states/Start/position = Vector2(163, 91)
+states/WaterFight_Die/node = SubResource("AnimationNodeAnimation_is2pd")
+states/WaterFight_Die/position = Vector2(361, 85)
+states/WaterFight_DieLoop/node = SubResource("AnimationNodeAnimation_q67gl")
+states/WaterFight_DieLoop/position = Vector2(699, 94)
+transitions = ["Start", "WaterFight_Die", SubResource("AnimationNodeStateMachineTransition_mcs87"), "WaterFight_Die", "WaterFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_x3kam")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtlmn"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_yfjc8")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_enmkj")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_ecmc3")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeBlendSpace1D_rcttj")
+blend_point_3/pos = 5.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_7176c")
+blend_point_4/pos = 3.0
+blend_point_5/node = SubResource("AnimationNodeStateMachine_dkfo3")
+blend_point_5/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+snap = 0.01
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah0no"]
+animation = &"WaterFight/StartBattle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixq5v"]
+animation = &"WaterFight/StartBattle"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_patbp"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyb26"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2vxd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_52r8s"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
+states/ActionState/position = Vector2(566, 10.8326)
+states/Start/position = Vector2(77, 38)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_ah0no")
+states/StartBattle/position = Vector2(285, 10.8326)
+states/WaterFight_StartBattle/node = SubResource("AnimationNodeAnimation_ixq5v")
+states/WaterFight_StartBattle/position = Vector2(878, 10.8326)
+transitions = ["ActionState", "WaterFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp"), "Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd")]
+graph_offset = Vector2(0, -54.1674)
+
+[sub_resource type="PackedScene" id="PackedScene_rp2fb"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("AnimationPlayer", "AnimationPlayer", "libraries", "AnimationTree", "AnimationTree", "root_node", "libraries", "tree_root", "anim_player", "parameters/conditions/Ended", "parameters/ActionState/blend_position", "parameters/ActionState/0/blend_position", "parameters/ActionState/0/0/blend_position", "parameters/ActionState/2/blend_position", "parameters/ActionState/3/blend_position"),
+"node_count": 2,
+"node_paths": [NodePath(".")],
+"nodes": PackedInt32Array(-1, -1, 1, 0, -1, 1, 2, 0, 0, 1073741824, 0, 4, 3, -1, 10, 5, 1, 6, 2, 7, 3, 8, 4, 9, 5, 10, 6, 11, 7, 12, 8, 13, 9, 14, 10, 0),
+"variants": [{
+"": SubResource("AnimationLibrary_cldp0"),
+"WaterFight": ExtResource("15_ud6pj")
+}, NodePath("../.."), {
+"": SubResource("AnimationLibrary_cldp0"),
+"WaterFight": ExtResource("15_ud6pj")
+}, SubResource("AnimationNodeStateMachine_52r8s"), NodePath(".."), false, 2.42553, 0.0, 1.84634, Vector2(-0.009009, 1), 0],
+"version": 3
+}
+
 [sub_resource type="Resource" id="Resource_7kn8y"]
 script = ExtResource("17_0tx57")
 radius = 30.0
@@ -115,6 +363,106 @@ ShowGizmo = false
 [sub_resource type="Resource" id="Resource_1dto8"]
 script = ExtResource("18_ol0yk")
 ReachThreshold = 30.0
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5kdp"]
+animation = &"WaterOverworld/idleSide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yy60x"]
+animation = &"WaterOverworld/idleSide"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jh07s"]
+animation = &"WaterOverworld/idleBack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_v14w0"]
+animation = &"WaterOverworld/idleFront"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_04twk"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_c5kdp")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_yy60x")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_jh07s")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeAnimation_v14w0")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vu7un"]
+animation = &"WaterOverworld/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m3i1y"]
+animation = &"WaterOverworld/Walk"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_h4m07"]
+animation = &"WaterOverworld/back"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_q6rct"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_lawhp"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_h4m07")
+nodes/Animation/position = Vector2(-160, 80)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_q6rct")
+nodes/TimeSeek/position = Vector2(240, 80)
+nodes/output/position = Vector2(460, 60)
+node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_dkp1o"]
+animation = &"WaterOverworld/front"
+
+[sub_resource type="AnimationNodeTimeSeek" id="AnimationNodeTimeSeek_1bbbb"]
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_8deot"]
+nodes/Animation/node = SubResource("AnimationNodeAnimation_dkp1o")
+nodes/Animation/position = Vector2(160, 60)
+nodes/TimeSeek/node = SubResource("AnimationNodeTimeSeek_1bbbb")
+nodes/TimeSeek/position = Vector2(500, 40)
+nodes/output/position = Vector2(680, 60)
+node_connections = [&"TimeSeek", 0, &"Animation", &"output", 0, &"TimeSeek"]
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_yaspl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_vu7un")
+blend_point_0/pos = Vector2(-1, 0)
+blend_point_1/node = SubResource("AnimationNodeAnimation_m3i1y")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeBlendTree_lawhp")
+blend_point_2/pos = Vector2(0, 1)
+blend_point_3/node = SubResource("AnimationNodeBlendTree_8deot")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_d51tl"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8h5u"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0cef"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cck0k"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_04twk")
+states/Idle/position = Vector2(365, 92)
+states/Start/position = Vector2(213, 100)
+states/Walking/node = SubResource("AnimationNodeBlendSpace2D_yaspl")
+states/Walking/position = Vector2(512, 92)
+transitions = ["Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_d51tl"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_p8h5u"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_e0cef")]
+
+[sub_resource type="PackedScene" id="PackedScene_h2tka"]
+_bundled = {
+"conn_count": 0,
+"conns": PackedInt32Array(),
+"editable_instances": [],
+"names": PackedStringArray("AnimationPlayer", "process_mode", "libraries", "AnimationTree", "root_node", "tree_root", "anim_player", "parameters/conditions/Idle", "parameters/conditions/Walking", "parameters/Idle/blend_position", "parameters/Walking/blend_position", "parameters/Walking/2/TimeSeek/seek_request", "parameters/Walking/3/TimeSeek/seek_request"),
+"node_count": 2,
+"node_paths": [],
+"nodes": PackedInt32Array(-1, -1, 0, 0, -1, 2, 1, 0, 2, 1, 0, 0, 0, 3, 3, -1, 10, 4, 2, 2, 1, 5, 3, 6, 4, 7, 5, 8, 5, 9, 6, 10, 7, 11, 8, 12, 8, 0),
+"variants": [3, {
+"WaterOverworld": ExtResource("18_5buxi")
+}, NodePath("../.."), SubResource("AnimationNodeStateMachine_cck0k"), NodePath(".."), false, Vector2(-0.0103093, 0.30131), Vector2(-0.0343643, -0.62766), -1.0],
+"version": 3
+}
 
 [sub_resource type="Resource" id="Resource_gcdsi"]
 script = ExtResource("17_0tx57")
@@ -129,38 +477,39 @@ interestGizmo = PackedFloat32Array()
 ShowGizmo = false
 showResult = false
 
-[sub_resource type="Resource" id="Resource_o0w1e"]
+[sub_resource type="Resource" id="Resource_m1uvd"]
 script = ExtResource("15_sd2km")
 SeekBehaviours = Array[Object]([SubResource("Resource_gcdsi"), SubResource("Resource_hl810")])
 IdleBehaviours = Array[Object]([SubResource("Resource_7kn8y"), SubResource("Resource_1dto8")])
 SteeringForce = 5.0
-BaseStats = SubResource("Resource_lchfq")
+BaseStats = SubResource("Resource_qlj5e")
 Name = "mmm"
-OverworldAnimator = ExtResource("6_gyom6")
-BattleAnimator = ExtResource("5_h81mw")
+OverworldAnimator = SubResource("PackedScene_h2tka")
+BattleAnimator = SubResource("PackedScene_rp2fb")
 TextEffectColor = Color(1, 0, 0, 1)
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("9_voesq")
 Speed = 3.0
+Combo = 1
 offset = Vector2(30, 0)
 type = 0
-Power = 1
+Power = 3
 UserAmount = 1
 TargetAmount = 1
 TargetsParty = false
 Name = "b"
 MoveTime = 2.0
 
-[sub_resource type="Resource" id="Resource_np6y3"]
+[sub_resource type="Resource" id="Resource_7ebqa"]
 script = ExtResource("9_ltwbp")
 Base = SubResource("Resource_woo47")
 
-[sub_resource type="Resource" id="Resource_2x5b3"]
+[sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("4_1bhow")
 MaxHP = 20
 HP = 20
-Atk = 1
+Atk = 2
 Def = 1
 SpAtk = 1
 SpDef = 1
@@ -169,11 +518,11 @@ Speed = 5
 [sub_resource type="Resource" id="Resource_p2e0b"]
 resource_local_to_scene = true
 script = ExtResource("8_r8twf")
-Base = SubResource("Resource_o0w1e")
-Moves = Array[Object]([SubResource("Resource_np6y3")])
+Base = SubResource("Resource_m1uvd")
+Moves = Array[Object]([SubResource("Resource_7ebqa")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_2x5b3")
+stats = SubResource("Resource_0ckdn")
 isControlledByPlayer = false
 Active = true
 status = 0
@@ -183,43 +532,12 @@ resource_local_to_scene = true
 size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
+resource_local_to_scene = true
 size = Vector2(20, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
-size = Vector2(22.95, 20)
-
-[sub_resource type="Animation" id="Animation_h4ecl"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Hitbox/CollisionShape2D:disabled")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Blockbox/CollisionShape2D:disabled")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [true]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rqxfr"]
-_data = {
-"RESET": SubResource("Animation_h4ecl")
-}
+size = Vector2(46.475, 59)
 
 [sub_resource type="Gradient" id="Gradient_ea8j0"]
 offsets = PackedFloat32Array(0.338028, 1)
@@ -285,8 +603,8 @@ gradient = SubResource("Gradient_awthb")
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_8n0m8"]
 gradient = SubResource("Gradient_6uv37")
 
-[sub_resource type="Curve" id="Curve_nnuwj"]
-_data = [Vector2(0.00497512, 0.778947), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_s3x72"]
@@ -298,50 +616,42 @@ point_count = 2
 y_sort_enabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("battleStart")]
-shape = SubResource("RectangleShape2D_yjfm6")
+shape = SubResource("RectangleShape2D_5yups")
 script = ExtResource("1_d5yrq")
 battleStart = NodePath("../OverworldController/BattleStart")
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Animator", "AnimatorTree", "Parent", "BattleCharacter", "OverworldCollider")]
+[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Parent", "BattleCharacter", "OverworldCollider")]
+visible = false
 script = ExtResource("1_d5p4d")
 enemyCollision = NodePath("Area2D")
 state = 1
 IdleTargets = []
 Obstacles = []
 LayerMask = 2
-Speed = 5000.0
+Speed = 25.0
 Friction = 1000.0
-MaxSpeed = 6000.0
-Animator = NodePath("AnimationPlayer")
-AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
+MaxSpeed = 50.0
+TileOffset = Vector2(9, 9)
 Parent = NodePath("..")
 BattleCharacter = NodePath("../BattleCharacter")
 OverworldCollider = NodePath("../CollisionShape2D")
 
-[node name="AnimationPlayer" parent="OverworldController" instance=ExtResource("6_gyom6")]
-
-[node name="AnimationTree" parent="OverworldController/AnimationPlayer" index="0"]
-parameters/Idle/blend_position = Vector2(-1, 0)
-parameters/Walking/blend_position = Vector2(-1, 0)
-
 [node name="MainSprite" type="Sprite2D" parent="OverworldController"]
 texture_filter = 1
-position = Vector2(-1, 0)
-texture = ExtResource("2_myjba")
+texture = ExtResource("4_4na67")
 offset = Vector2(0, -18)
 hframes = 7
 vframes = 6
-frame = 29
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
 "o_ex_p": "",
-"o_folder": "res://Animations/Overworld",
+"o_folder": "res://Sprites/Overworld/Enemies",
 "o_name": "",
 "only_visible": false,
-"op_exp": false,
-"player": "Node2D/AnimationPlayer",
-"source": "res://Aseprites/Characters/Overworld/waterIdle.aseprite"
+"op_exp": true,
+"player": "OverworldController/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/Enemies/starfish.aseprite"
 }
 
 [node name="Area2D" type="Area2D" parent="OverworldController" node_paths=PackedStringArray("battleStart")]
@@ -349,7 +659,7 @@ script = ExtResource("3_7at5k")
 battleStart = NodePath("../BattleStart")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/Area2D"]
-shape = SubResource("RectangleShape2D_52now")
+shape = SubResource("RectangleShape2D_ava3a")
 
 [node name="BattleStart" type="Node2D" parent="OverworldController"]
 script = ExtResource("5_jm1ut")
@@ -359,12 +669,10 @@ CharacterPrefab = 1
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 100)])
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode")]
 process_mode = 4
 visible = false
 script = ExtResource("3_xeb2i")
-AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
-AnimatorPlayer = NodePath("AnimationPlayer")
 Character = SubResource("Resource_p2e0b")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
@@ -388,13 +696,13 @@ ThisParty = []
 EnemyParty = []
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
+ShootNode = NodePath("Shoot")
 battleState = 3
 actionState = 5
 
-[node name="Hitbox" type="Area2D" parent="BattleCharacter" groups=["EnemyHitbox"]]
-visible = false
+[node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["EnemyHitbox"]]
 script = ExtResource("4_xi1xx")
-CanBeBlocked = true
+Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
 position = Vector2(0.06, -18)
@@ -417,40 +725,41 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
 texture_filter = 1
-texture = ExtResource("17_hkrt6")
+texture = ExtResource("5_cyn34")
 offset = Vector2(0, -18)
-hframes = 9
-vframes = 8
-frame = 5
+hframes = 7
+vframes = 6
+frame = 27
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
 "o_ex_p": "_",
-"o_folder": "res://Animations/Battle/Party",
+"o_folder": "res://Sprites/Battle/Enemies",
 "o_name": "",
 "only_visible": false,
-"op_exp": true,
+"op_exp": false,
 "player": "BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
+"source": "res://Aseprites/Characters/Battle/Enemies/shripmyang.aseprite"
 }
 
 [node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
+visible = false
 texture_filter = 1
-texture = ExtResource("7_7dwue")
+texture = ExtResource("25_51d2j")
 offset = Vector2(0, -18)
-hframes = 5
-vframes = 5
-frame = 2
+hframes = 7
+vframes = 6
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
-"layer": "_Arm",
+"layer": "_arm",
 "o_ex_p": "",
-"o_folder": "res://Animations/Battle/Party",
+"o_folder": "res://Sprites/Battle/Enemies",
 "o_name": "",
 "only_visible": false,
-"op_exp": true,
-"player": "Character/BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
+"op_exp": false,
+"player": "BattleCharacter/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/Enemies/shripmyang.aseprite"
 }
 
 [node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite"]
@@ -470,19 +779,6 @@ script = ExtResource("9_qbtlp")
 
 [node name="Run" type="Sprite2D" parent="BattleCharacter/ActionMenu"]
 
-[node name="AnimationPlayer" parent="BattleCharacter" instance=ExtResource("5_h81mw")]
-process_mode = 4
-libraries = {
-"": SubResource("AnimationLibrary_rqxfr"),
-"WaterFight": ExtResource("20_1xql6")
-}
-
-[node name="AnimationTree" parent="BattleCharacter/AnimationPlayer" index="0"]
-libraries = {
-"": SubResource("AnimationLibrary_rqxfr"),
-"WaterFight": ExtResource("20_1xql6")
-}
-
 [node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter"]
 process_mode = 3
 position = Vector2(0, -8)
@@ -499,8 +795,8 @@ processMaterial = SubResource("ParticleProcessMaterial_wfo7d")
 process_mode = 3
 position = Vector2(0, -18)
 emitting = false
-amount = 20
-lifetime = 0.4
+amount = 22
+lifetime = 0.75
 one_shot = true
 explosiveness = 1.0
 local_coords = true
@@ -511,11 +807,10 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 205.74
 scale_amount_min = 0.0
 scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_nnuwj")
+scale_amount_curve = SubResource("Curve_0dopt")
 color = Color(0.580392, 0.968627, 0.937255, 1)
 anim_speed_max = 200.15
 anim_speed_curve = SubResource("Curve_s3x72")
 anim_offset_max = 0.9809
 
-[editable path="OverworldController/AnimationPlayer"]
-[editable path="BattleCharacter/AnimationPlayer"]
+[node name="Shoot" type="Node2D" parent="BattleCharacter"]

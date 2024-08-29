@@ -45,9 +45,7 @@ public partial class IdleBehaviour : SteeringBehaviours
             query.Exclude=new Godot.Collections.Array<Rid> {enemy.Parent.GetRid()};
             query.CollideWithAreas=true;
             var result = spaceState.IntersectRay(query);
-                    Debug.WriteLine("result: "+result);
             if(result.Count>0){
-            Debug.WriteLine("collide: "+result["collider"]+" target: "+enemy.IdleTargets[enemy.CurrentIdleTarget]);
                 if(result["collider"].As<Node2D>()==enemy.IdleTargets[enemy.CurrentIdleTarget].GetChild<Node2D>(0)){
                     /*
                     Debug.WriteLine("This Position: "+enemy.GlobalPosition);

@@ -46,10 +46,6 @@ public partial class TargetBehaviours : SteeringBehaviours
                             }*/
                         }
                     }
-                        if (showResult)
-                        {
-                            Debug.WriteLine("value "+j+": "+result);
-                        }
                 }
 
                 interestGizmo = interest;
@@ -63,16 +59,9 @@ public partial class TargetBehaviours : SteeringBehaviours
             var result = spaceState.IntersectRay(query);
             if(result.Count>0){
                 if(result["collider"].As<Node2D>()==enemy.CurrentTarget && enemy.detectArea.Entered){
-                    //Debug.WriteLine("result: "+result["position"]);
-                    /*Debug.WriteLine("Position: "+enemy.CurrentTarget.GlobalPosition);
-                    Debug.WriteLine("This Position: "+enemy.GlobalPosition);
-                    Debug.WriteLine("Origin: "+enemy.Transform.Origin);*/
                     enemy.CachedTargetPosition=enemy.CurrentTarget.GlobalPosition;
                     enemy.state=MoveState.Seek;
                 }
-                /*else{
-                    Debug.WriteLine("Cache: "+CachedTargetPosition);
-                }*/
             }
             enemy.RaycastTarget=enemy.CurrentTarget.GlobalPosition;
             enemy.QueueRedraw();

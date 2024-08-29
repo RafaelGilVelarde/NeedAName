@@ -33,7 +33,7 @@ Speed = 1
 script = ExtResource("5_wfrc5")
 PartyId = 0
 BaseStats = SubResource("Resource_2dgrd")
-Name = ""
+Name = "Player1"
 OverworldAnimator = ExtResource("4_7sjec")
 BattleAnimator = ExtResource("3_lckip")
 TextEffectColor = Color(0.196078, 0.176471, 0.733333, 1)
@@ -41,7 +41,10 @@ TextEffectColor = Color(0.196078, 0.176471, 0.733333, 1)
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
 Speed = 3.0
+AtkMultiplier = 1.5
 offset = Vector2(-15, 0)
+Combo1 = 1
+Combo2 = 2
 type = 0
 Power = 3
 UserAmount = 1
@@ -57,7 +60,10 @@ Base = SubResource("Resource_rgtf8")
 [sub_resource type="Resource" id="Resource_fsnsl"]
 script = ExtResource("3_mdbab")
 Speed = 3.0
+AtkMultiplier = 1.5
 offset = Vector2(-15, 0)
+Combo1 = 1
+Combo2 = 2
 type = 0
 Power = 2
 UserAmount = 1
@@ -113,7 +119,10 @@ TextEffectColor = Color(0, 0, 0.952941, 1)
 [sub_resource type="Resource" id="Resource_gt6au"]
 script = ExtResource("3_mdbab")
 Speed = 4.0
+AtkMultiplier = 1.5
 offset = Vector2(-15, 0)
+Combo1 = 1
+Combo2 = 2
 type = 0
 Power = 2
 UserAmount = 1
@@ -152,6 +161,7 @@ resource_name = "AAAA"
 script = ExtResource("2_1hul1")
 Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy")])
 Flags = SubResource("Resource_pgs4m")
+Position = Vector2(0, 0)
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("Characters")]
 script = ExtResource("1_mg7l2")

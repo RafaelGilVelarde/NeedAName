@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 [GlobalClass]
 public partial class BattleScene : Resource
 {
@@ -30,16 +31,55 @@ public partial class BattleScene : Resource
     public virtual void EndBattleEffect(){
 
     }
-    public virtual void WinEffect(){
+    public virtual void BattleEnd(){
         BattleManager.instance.ReturnToOverworld();
     }
-    public virtual void LoseEffect(){
-        BattleManager.instance.ReturnToOverworld();
+    public virtual void ReturnToOverworld(){
+        BattleManager Battle=BattleManager.instance;
+        BattleState State=Battle.State;
+        for(int i=0;i<Battle.EnemyParty.Count;i++){
+            BattleCharacter Enemy=Battle.EnemyParty[i];
+            Enemy.Character.stats.HP=Enemy.Character.stats.MaxHP;
+            Enemy.Character.status=Character.Status.Normal;
+        }
+        switch (State){
+            case BattleState.Win:
+                for(int i=0;i<Battle.EnemyParty.Count;i++){
+                    CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
+                    Tween End=Enemy.CreateTween();
+                    End.TweenProperty(Enemy,"modulate:a",0,0.5f);
+                    End.Finished+=Enemy.QueueFree;
+                    End.Finished+=End.Kill;
+                }
+            break;
+            case BattleState.Lose:
+                for(int i=0;i<Battle.Party.Count;i++){
+                    Battle.Party[i].Character.stats.HP=Battle.Party[i].Character.stats.MaxHP;
+                    Battle.Party[i].Character.status=Character.Status.Normal;
+                }
+                if(Battle.EnemyParty.Count>1){
+                    for(int i=1;i<Battle.EnemyParty.Count;i++){
+                        Tween End=Battle.EnemyParty[i].CreateTween();
+                        CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
+                        End.TweenProperty(Enemy,"modulate:a",0,0.5f);
+                        End.Finished+=Enemy.QueueFree;
+                        End.Finished+=End.Kill;
+                    }
+                }
+            break;
+            case BattleState.Run:
+                if(Battle.EnemyParty.Count>1){
+                    for(int i=1;i<Battle.EnemyParty.Count;i++){
+                        Tween End=Battle.EnemyParty[i].CreateTween();
+                        CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
+                        End.TweenProperty(Enemy,"modulate:a",0,0.5f);
+                        End.Finished+=Enemy.QueueFree;
+                        End.Finished+=End.Kill;
+                    }
+                }
+            break;
+        }
     }
-    public virtual void RunEffect(){
-        BattleManager.instance.ReturnToOverworld();
-    }
-
     public virtual Vector2 GetCenterView(Array<Vector2> Party, Array<Vector2>Enemy){
         float xMin=Mathf.Inf;
         float yMin=Mathf.Inf;

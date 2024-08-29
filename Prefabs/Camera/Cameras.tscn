@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://djo2i1fcdq2s"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Camera/Camera.cs" id="1_j2r7u"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Camera/BattleCamera.cs" id="2_k6rxs"]
+
+[node name="Cams" type="Node"]
+
+[node name="OverworldCam" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(2, 2)
+limit_left = -480
+limit_top = -500
+limit_right = 670
+limit_bottom = 385
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("1_j2r7u")
+
+[node name="BattleCam" type="Camera2D" parent="."]
+process_mode = 3
+zoom = Vector2(2, 2)
+limit_left = -380
+limit_top = -250
+limit_right = 500
+limit_bottom = 600
+limit_smoothed = true
+position_smoothing_enabled = true
+editor_draw_limits = true
+editor_draw_drag_margin = true
+script = ExtResource("2_k6rxs")

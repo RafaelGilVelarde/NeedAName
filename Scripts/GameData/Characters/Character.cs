@@ -55,7 +55,7 @@ public partial class Character : Resource
         RichTextLabel HPLabel=HPLabelParent.GetChild<RichTextLabel>(0);
         HPLabel.Text="[center]"+hp.ToString()+"[/center]";
         HPLabel.AddThemeColorOverride("default_color",Base.TextEffectColor);
-        Debug.WriteLine("Color: "+Base.TextEffectColor);
+        Debug.WriteLine("HP Loss: "+hp);
         character.AddChild(HPLabelParent);
         //HPLabel.SetGlobalPosition(character.GlobalPosition);
         if(hp<0){
@@ -65,7 +65,6 @@ public partial class Character : Resource
             HPLabel.Text="[center]BLOCKED[/center]";
         }
         if(stats.HP<=0){
-            Debug.WriteLine("Dying");
             stats.HP=0;
             status=Status.KO;
             EmitSignal("_Die");

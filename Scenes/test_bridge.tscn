@@ -1,4 +1,4 @@
-[gd_scene load_steps=64 format=3 uid="uid://d3pmbeprgu7nc"]
+[gd_scene load_steps=65 format=3 uid="uid://d3pmbeprgu7nc"]
 
 [ext_resource type="Texture2D" uid="uid://cjnctd6b2w22r" path="res://Sprites/Background/TestBG2.png" id="1_d5r2g"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="2_hip5a"]
@@ -69,7 +69,7 @@ script = ExtResource("13_faay2")
 Speed = 3.0
 offset = Vector2(20, 0)
 type = 0
-Power = 1
+Power = 3
 UserAmount = 1
 TargetAmount = 1
 TargetsParty = false
@@ -82,9 +82,9 @@ Base = SubResource("Resource_lq0vg")
 
 [sub_resource type="Resource" id="Resource_2x5b3"]
 script = ExtResource("9_5o88u")
-MaxHP = 20
-HP = 20
-Atk = 3
+MaxHP = 1000
+HP = 1000
+Atk = 1
 Def = 1
 SpAtk = 1
 SpDef = 1
@@ -112,6 +112,9 @@ size = Vector2(20, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1xr7"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_1xmhs"]
+diffuse_texture = ExtResource("18_04t6q")
 
 [sub_resource type="Animation" id="Animation_h4ecl"]
 length = 0.001
@@ -246,6 +249,7 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character" node_paths=PackedStringArray("battleStart")]
+position = Vector2(0, -1)
 shape = SubResource("RectangleShape2D_yjfm6")
 script = ExtResource("2_hip5a")
 battleStart = NodePath("../OverworldController/BattleStart")
@@ -288,7 +292,7 @@ texture = ExtResource("6_ybcwn")
 offset = Vector2(0, -18)
 hframes = 4
 vframes = 4
-frame = 3
+frame = 4
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -348,10 +352,10 @@ HitParticles = NodePath("HitEffectParticles")
 battleState = 3
 actionState = 5
 
-[node name="Hitbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyHitbox"]]
+[node name="Hitbox" type="Area2D" parent="Character/BattleCharacter" node_paths=PackedStringArray("Character") groups=["EnemyHitbox"]]
 visible = false
 script = ExtResource("16_c7pgp")
-CanBeBlocked = true
+Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hitbox"]
 position = Vector2(0.06, -18)
@@ -374,7 +378,7 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="Character/BattleCharacter"]
 texture_filter = 1
-texture = ExtResource("18_04t6q")
+texture = SubResource("CanvasTexture_1xmhs")
 offset = Vector2(0, -18)
 hframes = 9
 vframes = 8

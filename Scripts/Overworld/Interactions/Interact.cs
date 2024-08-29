@@ -20,6 +20,7 @@ public partial class Interact : CollisionShape2D
         for(int i=0;i<party.Count;i++){
             if(party[i].Leader){
                 party[i].InteractCollider.GetChild<CollisionShape2D>(0).Disabled=true;
+                Debug.WriteLine("Hello");
             }
         }
         disable=new Callable(this,MethodName.Disable);

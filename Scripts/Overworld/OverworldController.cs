@@ -3,24 +3,38 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 
+public enum TileTypes{
+	Normal,
+	Water
+}
 public partial class OverworldController : Node2D
 {
 	[Export] public float Speed;
 	[Export] protected float Friction;
 	[Export] protected float MaxSpeed;
+
+	[Export]public  Vector2 Axis=Vector2.Zero, AxisAux;
+	protected Vector2 FacingDirection;
+	protected Vector2I Coords;
+
 	[Export] protected AnimationPlayer Animator;
 	[Export] public AnimationTree AnimatorTree;
+
 	[Export] public Area2D InteractCollider;
 	[Export] Interact Interactable;
-	[Export]public  Vector2 Axis=Vector2.Zero;
-	protected Vector2 FacingDirection;
+	
+	[Export] public TileMap DataMap;
+	[Export] protected TileTypes tileTypes;
+	[Export] protected Node2D TileDetector;
+	[Export] protected Vector2 TileOffset;
+
+
 	[Export] protected RandomBattleStart random;
 	[Export] public CharacterBody2D Parent;
 	[Export] public BattleCharacter BattleCharacter;
 	public bool Leader;
 	[Export] public CollisionShape2D OverworldCollider;
 	[Export] public OverworldController Controller;
-	[Export] NavigationAgent2D Navigation;
 	//[Export] Timer timer;
 	[Export] public Array<Vector2> AxisList;
 	[Export] public Array<Vector2> PositionList, AuxPositionList;
@@ -31,64 +45,47 @@ public partial class OverworldController : Node2D
     {
         InteractCollider.BodyEntered+=OnInteractionEnter;
 		InteractCollider.BodyExited+=OnInteractionExit;
-		/*Navigation.PathDesiredDistance = 10.0f;
-        Navigation.TargetDesiredDistance = 50.0f;*/
+		if(AnimatorTree == null){
+			SetAnimators();
+		}
         Callable.From(ActorSetup).CallDeferred();	
     }
     public override void _Process(double delta)
     {
 		PlayAnimations(Axis);
 		if(Leader){
-			Axis=GetInput();
-			if(Input.IsActionJustPressed("Confirm")){
-				if(Interactable!=null){
-					Axis=Vector2.Zero;
-					AnimatorTree.Set("parameters/conditions/Idle",true);
-					AnimatorTree.Set("parameters/conditions/Walking",false);
-					Interactable.interact();
-				}
-			}
-			//if(Axis!=Vector2.Zero){
-				RecordAxis();
-			//}
+			switch (tileTypes){
+				case TileTypes.Normal:
+					Axis=GetInput();
+					if(Input.IsActionJustPressed("Confirm")){
+						Debug.WriteLine(Interactable);
+						if(Interactable!=null){
+							Axis=Vector2.Zero;
+							AnimatorTree.Set("parameters/conditions/Idle",true);
+							AnimatorTree.Set("parameters/conditions/Walking",false);
+							Interactable.interact();
+						}
+					}
+						RecordAxis();
+				break;
+				case TileTypes.Water:
+					Axis=(Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");
+				break;
+			}			
 		}
-		/*else{
-			if(Controller.Axis!=Vector2.Zero){
-				FollowLeader();
-			}
-			else{
-				Axis=Vector2.Zero;
-			}
-		}*/
 		if(Axis!=Vector2.Zero){
 			FacingDirection=Axis;
 		}
+		AxisAux = Axis;
+		if(Axis.X*Axis.Y!=0){
+			AxisAux = new Vector2(Axis.X,0);
+		}	
+		//Coords = DataMap.LocalToMap(TileDetector.GlobalPosition);
+		Coords = DataMap.LocalToMap(Parent.GlobalPosition-(AxisAux*TileOffset));
+		tileTypes = (TileTypes)(int)DataMap.GetCellTileData(0, Coords).GetCustomData("TileType");	
     }
     public override void _PhysicsProcess(double delta)
 	{
-		/*if(!Leader && Controller!=null){
-				if(!Navigation.IsNavigationFinished()){
-					Axis=GlobalTransform.Origin.DirectionTo(Navigation.GetNextPathPosition()).Normalized();
-				}
-				else{
-					Axis=Vector2.Zero;
-					Debug.WriteLine("Reached");
-				}
-				Debug.WriteLine(Axis);
-		}*/
-		/*if(Leader){
-			if(Axis!=Vector2.Zero){
-				RecordAxis();
-			}
-		}
-		else{
-			if(Controller.Axis!=Vector2.Zero){
-				FollowLeader();
-			}
-			else{
-				Axis=Vector2.Zero;
-			}			
-		}*/
 		if(Leader){
 			Move(Speed * Axis * (float)delta);
 		}
@@ -96,11 +93,6 @@ public partial class OverworldController : Node2D
 				ApplyFriction((float)(Friction * delta));
 		}
 			Parent.MoveAndSlide();
-	
-
-		//Debug.WriteLine("Dir: "+FacingDirection.X/Mathf.Abs(FacingDirection.X));
-		//Debug.WriteLine("Scale: "+Scale);
-
 	}
 	public Vector2 GetInput(){
 		Vector2 Axis;
@@ -173,24 +165,22 @@ public partial class OverworldController : Node2D
 	}
 	
 	void OnInteractionEnter(Node2D body){
-		Debug.WriteLine(body.GetGroups());
 		if(body.IsInGroup("Interactable")){
-	
+				Debug.WriteLine("In Body: "+body);
 			Interactable=body.GetChild<Interact>(0);
         }
 	}
 	void OnInteractionExit(Node2D body){
 		if(body.IsInGroup("Interactable")){
+			Debug.WriteLine("Body: "+body);
 			Interactable=null;
         }
 	}
 
-	    private async void ActorSetup()
+	private async void ActorSetup()
     {
-        // Wait for the first physics frame so the NavigationServer can sync.
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 
-        // Now that the navigation map is no longer empty, set the movement target.
         Controller = GameManager.Instance.controller;
 		ClearAxis();
     }
@@ -228,9 +218,21 @@ public partial class OverworldController : Node2D
 		
 	}
 	void ClearAxis(){
-		for(int i=0;i<AxisList.Count;i++){
-			Controller.AxisList[i]=Vector2.Zero;
-			Controller.PositionList[i]=Controller.GlobalPosition;
+		if(Controller!=null){
+			for(int i=0;i<AxisList.Count;i++){
+				Controller.AxisList[i]=Vector2.Zero;
+				Controller.PositionList[i]=Controller.GlobalPosition;
+			}
 		}
+	}
+
+	public void SetAnimators(){
+			AnimationPlayer OverworldAnimator=BattleCharacter.Character.Base.OverworldAnimator.Instantiate<AnimationPlayer>();
+			AnimationPlayer BattleAnimator=BattleCharacter.Character.Base.BattleAnimator.Instantiate<AnimationPlayer>();
+			AddChild(OverworldAnimator);
+			AnimatorTree=OverworldAnimator.GetChild<AnimationTree>(0);
+			BattleCharacter.AddChild(BattleAnimator);
+			BattleCharacter.AnimatorPlayer=BattleAnimator;
+			BattleCharacter.AnimatorTree=BattleAnimator.GetChild<AnimationTree>(0);
 	}
 }

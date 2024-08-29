@@ -5,10 +5,18 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
+public enum BattleState{
+	Neutral,
+	Win,
+	Lose,
+	Run
+}
 public partial class BattleManager : Node
 {
-	[Export]public BattleScene Scene;
-	[Export]Camera2D BattleCamera;
+	[Export] public BattleScene Scene;
+	[Export] public BattleState State;
+	[Export] Camera2D BattleCamera;
+	[Export] public Control TutorialLabels;
 	public Array<BattleCharacter> Party=new Array<BattleCharacter>(), EnemyParty=new Array<BattleCharacter>(),TurnOrder=new Array<BattleCharacter>();
 	public Array<BattleCharacter> UserCharacters=new Array<BattleCharacter>(),TargetCharacters=new Array<BattleCharacter>();
 	[Export] Node CharacterButtonParent;
@@ -180,11 +188,9 @@ public partial class BattleManager : Node
 
 	}
 	public void EndTurn(){
-		Debug.WriteLine("PartyAlive: "+AliveParty);
-		Debug.WriteLine("EnemyAlive: "+AliveEnemy);
-
 		TargetCharacters.Clear();
 		UserCharacters.Clear();
+		ChangeTutorialLabel(0,true);
 		if(!BattleEnded){
 				CurrentTurn++;
 			if(CurrentTurn==TurnOrder.Count){
@@ -220,23 +226,30 @@ public partial class BattleManager : Node
 	public void EndBattle(){
 
 		if(AliveParty==0){
-				Scene.LoseEffect();
+				State=BattleState.Lose;
 			}
 		if(AliveEnemy==0){
-				Scene.WinEffect();
+				State=BattleState.Win;
 			}
+		Scene.BattleEnd();
 	}
 	public void Run(){
-		Scene.RunEffect();
+		State=BattleState.Run;
+		Scene.BattleEnd();
 	}
 
 	public void ReturnToOverworld(){
 		Tween tween=CreateTween();
 		Vector2 EndPosition=Vector2.Zero;
 		EndPosition=partyOrigin;
+		Vector2 EnemyEndPosition=enemyOrigin;
 		for(int i=0;i<Party.Count;i++){
 			MoveCharacters(tween,Party[i],EndPosition,(float)PositionMoveSpeed);				
 			Party[i].AnimatorTree.Set("parameters/conditions/Ended",true);
+		}
+		if(EnemyParty[0].Character.status!=Character.Status.KO){
+			//MoveCharacters(tween,EnemyParty[0],EnemyEndPosition,(float)PositionMoveSpeed);				
+			EnemyParty[0].AnimatorTree.Set("parameters/conditions/Ended",true);	
 		}
 		GameManager.Instance.ChangeCam(Vector2.Zero,false,(float)PositionMoveSpeed);
 		tween.TweenInterval(0.5);
@@ -245,11 +258,6 @@ public partial class BattleManager : Node
 		tween.Finished+=tween.Kill;
 	}
 	public void Clear(){
-
-		for(int i=0;i<EnemyParty.Count;i++){
-			EnemyParty[i].OriginPos=Vector2.Zero;
-			EnemyParty[i].TurnOffBattle();
-		}
 		for(int i=0;i<CharacterButtonParent.GetChildCount();i++){
 			CharacterButtonParent.GetChild(i).QueueFree();
 		}
@@ -261,14 +269,21 @@ public partial class BattleManager : Node
 			EnemyButtons[i].FocusMode=Control.FocusModeEnum.None;
 			EnemyButtons[i].Hide();
 		}
-		for(int i=0;i<Party.Count;i++){
-			Party[i].OriginPos=Vector2.Zero;
-			Party[i].TurnOffBattle();
-		}
 
 		AliveEnemy=0;
 		CurrentTurn=-1;
 		AliveParty=0;
+		for(int i=0;i<Party.Count;i++){
+			Party[i].OriginPos=Vector2.Zero;
+			Party[i].TurnOffBattle();
+		}
+		for(int i=0;i<Party.Count;i++){
+			EnemyParty[i].OriginPos=Vector2.Zero;
+			EnemyParty[i].TurnOffBattle();
+		}
+		Scene.ReturnToOverworld();
+
+		State=BattleState.Neutral;
 		Party.Clear();
 		EnemyParty.Clear();
 		TurnOrder.Clear();
@@ -288,5 +303,13 @@ public partial class BattleManager : Node
 	}
 	public void OpenDialogue(){
 
+	}
+	public void ChangeTutorialLabel(int Label, bool All){
+		for(int i=0;i<TutorialLabels.GetChildCount();i++){
+			TutorialLabels.GetChild<RichTextLabel>(i).Visible=false;
+		}
+		if(!All){
+			BattleManager.instance.TutorialLabels.GetChild<RichTextLabel>(Label).Visible=true;
+		}
 	}
 }

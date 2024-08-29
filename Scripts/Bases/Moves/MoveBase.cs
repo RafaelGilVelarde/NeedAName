@@ -24,8 +24,20 @@ public partial class MoveBase : Resource
     [Export] protected float MoveTime;
 
     public virtual void Effect(Array<BattleCharacter> Users, Array<BattleCharacter>Targets){
-		Vector2 ScaleAux=Users[0].Scale;
-		float RotationAux=Users[0].Rotation;
+		Array<Vector2> ScaleAux=new Array<Vector2>();
+		Array<float> RotationAux=new Array<float>();
+        for(int i=0;i<Users.Count;i++){
+            ScaleAux.Add(Users[i].Scale);      
+            RotationAux.Add(Users[i].Rotation);
+        }
+
+        
+        Array<Vector2> TargetScaleAux=new Array<Vector2>();
+		Array<float> TargetRotationAux=new Array<float>();
+        for(int i=0;i<Targets.Count;i++){
+            TargetScaleAux.Add(Targets[i].Scale);     
+            TargetRotationAux.Add(Targets[i].Rotation);
+        }
 
 		Tween timer=Users[0].CreateTween();
    		timer.TweenInterval(MoveTime);
@@ -33,6 +45,7 @@ public partial class MoveBase : Resource
 		timer.Finished+=timer.Kill;
 
         void onHit(BattleCharacter Target){
+            Debug.WriteLine("Hit");
 			Hit(Users[0],Target);
 		}		
 		void blocked(BattleCharacter Target){
@@ -40,11 +53,16 @@ public partial class MoveBase : Resource
 		}
         void End(){
             for(int i=0;i<Users.Count;i++){
-                Users[0].Hitbox._Hit-=onHit;
-                Users[0].Hitbox._Block-=blocked;
+                Users[i].Hitbox._Hit-=onHit;
+                Users[i].Hitbox._Block-=blocked;
+                Users[i].GetParent<Node2D>().Rotation=RotationAux[i];
+                Users[i].GetParent<Node2D>().Scale=ScaleAux[i];
             }
-        	Users[0].GetParent<Node2D>().Rotation=RotationAux;
-			Users[0].GetParent<Node2D>().Scale=ScaleAux;
+            for(int i=0;i<Targets.Count;i++){
+                Targets[i].GetParent<Node2D>().Scale=TargetScaleAux[i];
+		        Targets[i].GetParent<Node2D>().Rotation=TargetRotationAux[i];
+            }
+
 			BattleManager.instance.CallDeferred("EndMove");
 		}
 

@@ -277,7 +277,7 @@ public partial class SelectActions : Node2D
 		tween.Finished+=tween.Kill;
 	}
 	void FlipText(){
-		Array<Node>Labels=GetChildren(true);
+		Array<Node>Labels=GetChildren();
 		for(int i=0;i<Labels.Count;i++){
 			if(Labels[i].GetType()==typeof(TextureRect)){
 				Node2D Text=Labels[i].GetChild<Node2D>(0);
@@ -285,6 +285,13 @@ public partial class SelectActions : Node2D
 				float NormalizedY=character.GlobalScale.Y/Mathf.Abs(character.GlobalScale.Y);
 				Text.Scale=new Vector2(NormalizedX,NormalizedY);
 				Text.Rotation=character.GlobalRotation;
+				RichTextLabel KeyButton=Text.GetChild<RichTextLabel>(1);
+				if(NormalizedY==-1){
+					KeyButton.Position=new Vector2(12,KeyButton.Position.Y);
+				}
+				else{
+					KeyButton.Position=new Vector2(-26.9f,KeyButton.Position.Y);
+				}
 			}
 		}	
 	}

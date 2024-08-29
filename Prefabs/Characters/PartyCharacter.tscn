@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_kj4rx"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="4_6l7n6"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
-[ext_resource type="Texture2D" uid="uid://ciffay7i8raaf" path="res://Sprites/Battle/Party/birbBattle.png" id="6_3k6vb"]
+[ext_resource type="Texture2D" uid="uid://dpjjot5h63ywt" path="res://Sprites/Battle/Party/waterBattle.png" id="6_00jgu"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
-[ext_resource type="Texture2D" uid="uid://d1j8dpmyjctse" path="res://Sprites/Battle/Party/birbArm_Arm.png" id="7_a1p4b"]
+[ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="7_qv8kd"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="9_0mctb"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
@@ -33,7 +33,7 @@ resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
 [sub_resource type="Curve" id="Curve_0dopt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.953052, 0.368421), 0.0, 0.0, 0, 0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3g4di"]
@@ -200,7 +200,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BattleCharacter/ActionMenu/Move:visible")
+tracks/0/path = NodePath("BattleCharacter/ActionMenu/Fight:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -212,7 +212,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BattleCharacter/ActionMenu/Move:texture")
+tracks/1/path = NodePath("BattleCharacter/ActionMenu/Fight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -272,7 +272,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:scale")
+tracks/6/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -308,11 +308,59 @@ tracks/8/keys = {
 tracks/9/type = "value"
 tracks/9/imported = false
 tracks/9/enabled = true
-tracks/9/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:self_modulate")
+tracks/9/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:self_modulate")
 tracks/9/interp = 1
 tracks/9/loop_wrap = true
 tracks/9/keys = {
 "times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:scale")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, 0.45), Vector2(0.9, 0.9), Vector2(0.45, 0.45)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.2),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
@@ -399,7 +447,7 @@ loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BattleCharacter/ActionMenu/Move:visible")
+tracks/0/path = NodePath("BattleCharacter/ActionMenu/Fight:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -411,7 +459,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BattleCharacter/ActionMenu/Move:texture")
+tracks/1/path = NodePath("BattleCharacter/ActionMenu/Fight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -564,7 +612,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BattleCharacter/ActionMenu/Move:visible")
+tracks/0/path = NodePath("BattleCharacter/ActionMenu/Fight:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -576,7 +624,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BattleCharacter/ActionMenu/Move:texture")
+tracks/1/path = NodePath("BattleCharacter/ActionMenu/Fight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -660,7 +708,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:self_modulate")
+tracks/8/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -680,6 +728,54 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.63, 0.63), Vector2(2, 2), Vector2(0.63, 0.63)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:modulate")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:scale")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, 0.45), Vector2(0.9, 0.9), Vector2(0.45, 0.45)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_iwxqx"]
@@ -711,7 +807,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:visible")
+tracks/2/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:visible")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -723,7 +819,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:self_modulate")
+tracks/3/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:self_modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -759,7 +855,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:scale")
+tracks/6/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:scale")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -791,6 +887,78 @@ tracks/8/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 0,
 "values": [Vector2(0.63, 0.63)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:modulate")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.45, 0.45)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:scale")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.45, 0.45)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:scale")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.45, 0.45)]
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_csoiq"]
@@ -888,7 +1056,7 @@ length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BattleCharacter/ActionMenu/Move:visible")
+tracks/0/path = NodePath("BattleCharacter/ActionMenu/Fight:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -900,7 +1068,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BattleCharacter/ActionMenu/Move:texture")
+tracks/1/path = NodePath("BattleCharacter/ActionMenu/Fight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -984,7 +1152,7 @@ tracks/7/keys = {
 tracks/8/type = "value"
 tracks/8/imported = false
 tracks/8/enabled = true
-tracks/8/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:self_modulate")
+tracks/8/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:self_modulate")
 tracks/8/interp = 1
 tracks/8/loop_wrap = true
 tracks/8/keys = {
@@ -1004,6 +1172,54 @@ tracks/9/keys = {
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Vector2(0.63, 0.63), Vector2(2, 2), Vector2(0.63, 0.63)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:modulate")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:scale")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.45, 0.45), Vector2(0.9, 0.9), Vector2(0.45, 0.45)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:modulate")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:modulate")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cjed"]
@@ -1071,7 +1287,7 @@ length = 0.4
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("BattleCharacter/ActionMenu/Move:visible")
+tracks/0/path = NodePath("BattleCharacter/ActionMenu/Fight:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = false
 tracks/0/keys = {
@@ -1083,7 +1299,7 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("BattleCharacter/ActionMenu/Move:texture")
+tracks/1/path = NodePath("BattleCharacter/ActionMenu/Fight:texture")
 tracks/1/interp = 1
 tracks/1/loop_wrap = false
 tracks/1/keys = {
@@ -1143,7 +1359,7 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:visible")
+tracks/6/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:visible")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
@@ -1155,7 +1371,7 @@ tracks/6/keys = {
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:scale")
+tracks/7/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:scale")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
@@ -1215,7 +1431,7 @@ tracks/11/keys = {
 tracks/12/type = "value"
 tracks/12/imported = false
 tracks/12/enabled = true
-tracks/12/path = NodePath("BattleCharacter/ActionMenu/Move/Node2D/RichTextLabel:self_modulate")
+tracks/12/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/RichTextLabel:self_modulate")
 tracks/12/interp = 1
 tracks/12/loop_wrap = true
 tracks/12/keys = {
@@ -1412,12 +1628,14 @@ visible = false
 shape = SubResource("RectangleShape2D_yjfm6")
 disabled = true
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "Parent", "BattleCharacter", "OverworldCollider")]
+[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "Parent", "BattleCharacter", "OverworldCollider")]
 script = ExtResource("1_xup3b")
 Speed = 5000.0
 Friction = 1000.0
 MaxSpeed = 6000.0
 InteractCollider = NodePath("InteractionCollider")
+TileDetector = NodePath("TileCollider")
+TileOffset = Vector2(9, 9)
 Parent = NodePath("..")
 BattleCharacter = NodePath("../BattleCharacter")
 OverworldCollider = NodePath("../CollisionShape2D")
@@ -1431,7 +1649,7 @@ texture = ExtResource("2_kj4rx")
 offset = Vector2(0, -18)
 hframes = 7
 vframes = 6
-frame = 36
+frame = 39
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1445,12 +1663,15 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="InteractionCollider" type="Area2D" parent="OverworldController"]
-position = Vector2(0, 15)
+position = Vector2(0, -15)
+disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider"]
 shape = SubResource("RectangleShape2D_dwf8m")
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "ThisParty", "EnemyParty", "StateParticles", "HitParticles")]
+[node name="TileCollider" type="Node2D" parent="OverworldController"]
+
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
@@ -1477,12 +1698,13 @@ EnemyParty = []
 SelectKey = 90
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
+ShootNode = NodePath("Shoot")
 battleState = 3
 actionState = 5
 
-[node name="Hitbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHitbox"]]
+[node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
 script = ExtResource("5_5pejn")
-CanBeBlocked = true
+Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
 position = Vector2(0.06, -18)
@@ -1506,11 +1728,11 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
 texture_filter = 1
-texture = ExtResource("6_3k6vb")
+texture = ExtResource("6_00jgu")
 offset = Vector2(0, -18)
-hframes = 8
+hframes = 9
 vframes = 8
-frame = 26
+frame = 61
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1525,11 +1747,11 @@ metadata/_aseprite_wizard_config_ = {
 
 [node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
 texture_filter = 1
-texture = ExtResource("7_a1p4b")
+texture = ExtResource("7_qv8kd")
 offset = Vector2(0, -18)
-hframes = 3
-vframes = 3
-frame = 4
+hframes = 5
+vframes = 5
+frame = 19
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Arm",
@@ -1551,7 +1773,7 @@ process_mode = 3
 position = Vector2(0, -18)
 emitting = false
 amount = 22
-lifetime = 3.0
+lifetime = 0.4
 one_shot = true
 explosiveness = 1.0
 local_coords = true
@@ -1607,15 +1829,14 @@ parameters/conditions/Choice = false
 parameters/conditions/Start = false
 parameters/Choice/blend_position = 0.998211
 
-[node name="Move" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-visible = false
+[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu"]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_mctvn")
+texture = SubResource("AtlasTexture_ix7nu")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Fight",
@@ -1628,10 +1849,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Move"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight"]
 position = Vector2(34, 21)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Move/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
 layout_direction = 2
 anchors_preset = -1
 anchor_right = 0.4
@@ -1647,17 +1868,28 @@ pivot_offset = Vector2(16, 9)
 theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "Fight"
-fit_content = true
+scroll_active = false
+
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+offset_left = -26.9
+offset_top = -11.0
+offset_right = -10.9
+offset_bottom = 12.0
+scale = Vector2(0.45, 0.45)
+pivot_offset = Vector2(8, 11.5)
+bbcode_enabled = true
+text = "[center]Z[/center]"
+scroll_active = false
+visible_characters = 1
 
 [node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-visible = false
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_kskeb")
+texture = SubResource("AtlasTexture_rre2n")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Item",
@@ -1690,15 +1922,26 @@ text = "Item"
 fit_content = true
 scroll_active = false
 
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+offset_left = -26.9
+offset_top = -11.0
+offset_right = -10.9
+offset_bottom = 12.0
+scale = Vector2(0.45, 0.45)
+pivot_offset = Vector2(8, 11.5)
+bbcode_enabled = true
+text = "[center]X[/center]"
+scroll_active = false
+visible_characters = 1
+
 [node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-visible = false
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_t077f")
+texture = SubResource("AtlasTexture_ga1l0")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Run",
@@ -1728,9 +1971,20 @@ theme_override_font_sizes/normal_font_size = 13
 text = "Run"
 fit_content = true
 
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+offset_left = -26.9
+offset_top = -11.0
+offset_right = -10.9
+offset_bottom = 12.0
+scale = Vector2(0.45, 0.45)
+pivot_offset = Vector2(8, 11.5)
+bbcode_enabled = true
+text = "[center]C[/center]"
+scroll_active = false
+visible_characters = 1
+
 [node name="AnimationPlayer" parent="BattleCharacter" instance=ExtResource("9_0mctb")]
 process_mode = 4
-active = false
 libraries = {
 "": SubResource("AnimationLibrary_mkiqx"),
 "WaterFight": ExtResource("10_fethi")
@@ -1744,5 +1998,7 @@ libraries = {
 "WaterFight": ExtResource("10_fethi")
 }
 parameters/ActionState/blend_position = 3.43571
+
+[node name="Shoot" type="Node2D" parent="BattleCharacter"]
 
 [editable path="BattleCharacter/AnimationPlayer"]

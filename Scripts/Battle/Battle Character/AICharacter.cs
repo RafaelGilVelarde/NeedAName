@@ -25,11 +25,14 @@ public partial class AICharacter : BattleCharacter
     public override void TurnOffBattle()
     {
 		ProcessMode=ProcessModeEnum.Disabled;
-		//Hide();
+		ClearTimers();
 		AnimatorTree.Active=false;
 		AnimatorTree.Set("parameters/conditions/Ended",false);
-		Character._GetHit-=()=>changeAction(ActionState.isHit);
+		Character._GetHit-=GetHit;
 		Character._Die-=Die;
-		AnimatorTree.Active=false;
+        if(Character.status!=Character.Status.KO){
+		    Hide();
+		    Overworld.BattleEnd();
+        }
    }
 }

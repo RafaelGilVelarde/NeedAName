@@ -16,12 +16,7 @@ public partial class DialogicCSharp : Node
     Callable endAutoAdvance;
     public override void _EnterTree()
     {
-        instance=this;
-        DialogicRoot = GetNode("/root/Dialogic");
-        DialogicRoot.ProcessMode=ProcessModeEnum.Always;
-        Callable unPause = new Callable(this, MethodName.UnPause);
-        endAutoAdvance = new Callable(this, MethodName.EndAutoAdvance);
-        DialogicRoot.Connect("timeline_ended",unPause);
+
         /*Callable manualOff = new Callable(this, MethodName.ManualAdvanceOff);
         DialogicRoot.Connect("timeline_started",manualOff);*/
     }
@@ -101,7 +96,12 @@ public partial class DialogicCSharp : Node
     private async void Setup()
     {
         await ToSignal(GetTree(), SceneTree.SignalName.ProcessFrame);
-
+        instance=this;
+        DialogicRoot = GetNode("/root/Dialogic");
+        DialogicRoot.ProcessMode=ProcessModeEnum.Always;
+        Callable unPause = new Callable(this, MethodName.UnPause);
+        endAutoAdvance = new Callable(this, MethodName.EndAutoAdvance);
+        DialogicRoot.Connect("timeline_ended",unPause);
         Styles=GetNode("/root/Dialogic/Styles");
         
     }

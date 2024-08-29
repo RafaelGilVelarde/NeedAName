@@ -7,10 +7,11 @@
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
 
-[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "CharacterButtonParent", "itemList", "moveList")]
+[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "CharacterButtonParent", "itemList", "moveList")]
 process_mode = 4
 script = ExtResource("1_6q2le")
 BattleCamera = NodePath("Camera2D")
+TutorialLabels = NodePath("CanvasLayer/Controls")
 CharacterButtonParent = NodePath("CharacterButtonParent")
 PositionMoveSpeed = 0.3
 itemList = NodePath("CanvasLayer/ItemList")
@@ -195,6 +196,64 @@ layout_mode = 2
 script = ExtResource("3_w87jg")
 startEnd = 1
 List = NodePath("..")
+
+[node name="Controls" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Controls"]
+visible = false
+clip_contents = false
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 652.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(37, 12)
+bbcode_enabled = true
+text = "Attack: Z"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Controls"]
+visible = false
+clip_contents = false
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 652.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(37, 12)
+bbcode_enabled = true
+text = "Block: Z"
+fit_content = true
+scroll_active = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Controls"]
+visible = false
+clip_contents = false
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1152.0
+offset_bottom = 652.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(37, 12)
+bbcode_enabled = true
+text = "Dodge: Arrows+Z"
+fit_content = true
+scroll_active = false
 
 [node name="CharacterButtonParent" type="BoxContainer" parent="."]
 

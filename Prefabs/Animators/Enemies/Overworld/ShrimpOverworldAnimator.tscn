@@ -1,0 +1,85 @@
+[gd_scene load_steps=16 format=3 uid="uid://qv65iak5mgqv"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bfg0y6r0c4ba" path="res://Animations/Overworld/ShrimpOverworld.res" id="1_m3w8p"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bhgpo"]
+animation = &"ShrimpOverworld/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_rg8w7"]
+animation = &"ShrimpOverworld/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7kjb7"]
+animation = &"ShrimpOverworld/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jwnho"]
+animation = &"ShrimpOverworld/front"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_dpfpq"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_bhgpo")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_rg8w7")
+blend_point_1/pos = Vector2(1, 0)
+blend_point_2/node = SubResource("AnimationNodeAnimation_7kjb7")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_jwnho")
+blend_point_3/pos = Vector2(0, -1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_poi60"]
+animation = &"ShrimpOverworld/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4k6b"]
+animation = &"ShrimpOverworld/front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_22khs"]
+animation = &"ShrimpOverworld/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pg1ii"]
+animation = &"ShrimpOverworld/side"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_332g5"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_poi60")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_m4k6b")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_22khs")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_pg1ii")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ldb25"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ovtup"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_65h6k"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_m7gjr"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_dpfpq")
+states/Idle/position = Vector2(386, 100)
+states/Walking/node = SubResource("AnimationNodeBlendSpace2D_332g5")
+states/Walking/position = Vector2(595, 100)
+transitions = ["Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_ldb25"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_ovtup"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_65h6k")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer"]
+process_mode = 3
+libraries = {
+"ShrimpOverworld": ExtResource("1_m3w8p")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"ShrimpOverworld": ExtResource("1_m3w8p")
+}
+tree_root = SubResource("AnimationNodeStateMachine_m7gjr")
+anim_player = NodePath("..")
+parameters/conditions/Idle = false
+parameters/conditions/Walking = false
+parameters/Idle/blend_position = Vector2(0, 0)
+parameters/Walking/blend_position = Vector2(0, 0)

@@ -31,6 +31,9 @@ public partial class EnemyOverworldController : OverworldController
     {
 		characterBase=(EnemyCharacterBase)BattleCharacter.Character.Base;
 		CurrentTarget=GameManager.Instance.controller.Parent;
+		if(AnimatorTree == null){
+			SetAnimators();
+		}
     }
     public override void _Process(double delta)
 	{
@@ -47,7 +50,6 @@ public partial class EnemyOverworldController : OverworldController
 		Parent.Velocity+=Vel;
 		Parent.Velocity=Parent.Velocity.LimitLength(MaxSpeed);
 		Parent.MoveAndSlide();
-		//Debug.WriteLine(Parent.Velocity);
 	}
 
 	void PlayAnimations(Vector2 Axis){
@@ -86,12 +88,15 @@ public partial class EnemyOverworldController : OverworldController
 		enemyCollision.ProcessMode=ProcessModeEnum.Disabled;
 		base.BattleStart();
 	}
+    public override void BattleEnd()
+    {
+		ProcessMode=ProcessModeEnum.Inherit;
+		OverworldCollider.Disabled=false;
+		Show();
+		enemyCollision.ProcessMode=ProcessModeEnum.Inherit;
+    }
     public override void _Draw()
     {
-        //base._Draw();
-		/*for(int i=0;i<RaycastPos.Length;i++){
-			DrawLine(Transform.Origin,RaycastPos[i],new Color(1,0,0));
-		}*/
 					DrawLine(Transform.Origin,RaycastTarget,new Color(1,0,0));
     }
 }

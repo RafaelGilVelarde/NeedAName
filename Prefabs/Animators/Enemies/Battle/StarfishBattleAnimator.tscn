@@ -1,0 +1,198 @@
+[gd_scene load_steps=30 format=3 uid="uid://cp3deo572pc5j"]
+
+[ext_resource type="AnimationLibrary" uid="uid://w7gynme7xycl" path="res://Animations/Battle/StarfishFight.res" id="1_q3tsi"]
+
+[sub_resource type="Animation" id="Animation_gn5gt"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -9)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(20, 38)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_r8nev"]
+_data = {
+"RESET": SubResource("Animation_gn5gt")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ltit"]
+animation = &"StarfishFight/Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpod3"]
+animation = &"StarfishFight/Attack1_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1ynh"]
+animation = &"StarfishFight/Attack1_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dsd1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3olu"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5ekg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4vyu5"]
+states/End/position = Vector2(1016, 94)
+states/StarfishFight_Attack1/node = SubResource("AnimationNodeAnimation_4ltit")
+states/StarfishFight_Attack1/position = Vector2(533, 100)
+states/StarfishFight_Attack1_End/node = SubResource("AnimationNodeAnimation_vpod3")
+states/StarfishFight_Attack1_End/position = Vector2(793, 100)
+states/StarfishFight_Attack1_Start/node = SubResource("AnimationNodeAnimation_e1ynh")
+states/StarfishFight_Attack1_Start/position = Vector2(293, 100)
+states/Start/position = Vector2(95, 100)
+transitions = ["Start", "StarfishFight_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_8dsd1"), "StarfishFight_Attack1", "StarfishFight_Attack1_End", SubResource("AnimationNodeStateMachineTransition_n3olu"), "StarfishFight_Attack1_Start", "StarfishFight_Attack1", SubResource("AnimationNodeStateMachineTransition_j5ekg")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egk0c"]
+animation = &"StarfishFight/Attack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2pbw1"]
+animation = &"StarfishFight/Attack2_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hv7gh"]
+animation = &"StarfishFight/Attack2_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7acgh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7p4l"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33w4f"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mwwpb"]
+states/End/position = Vector2(1091, 93)
+states/StarfishFight_Attack2/node = SubResource("AnimationNodeAnimation_egk0c")
+states/StarfishFight_Attack2/position = Vector2(589, 93)
+states/StarfishFight_Attack2_End/node = SubResource("AnimationNodeAnimation_2pbw1")
+states/StarfishFight_Attack2_End/position = Vector2(849, 93)
+states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_hv7gh")
+states/StarfishFight_Attack2_Start/position = Vector2(360, 93)
+transitions = ["Start", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_7acgh"), "StarfishFight_Attack2_Start", "StarfishFight_Attack2", SubResource("AnimationNodeStateMachineTransition_s7p4l"), "StarfishFight_Attack2", "StarfishFight_Attack2_End", SubResource("AnimationNodeStateMachineTransition_33w4f")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_snlp8"]
+blend_point_0/node = SubResource("AnimationNodeStateMachine_4vyu5")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeStateMachine_mwwpb")
+blend_point_1/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_g1qjj"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_snlp8")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wc8gf"]
+animation = &"StarfishFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hw6s4"]
+animation = &"StarfishFight/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_441ef"]
+animation = &"StarfishFight/Die"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_70jgx"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_g1qjj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_wc8gf")
+blend_point_1/pos = 3.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_hw6s4")
+blend_point_2/pos = 5.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_441ef")
+blend_point_3/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0yos"]
+animation = &"StarfishFight/Attack2_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0qu7i"]
+animation = &"StarfishFight/Attack1_End"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bprue"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2e11c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sa5gj"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sp0h8"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_70jgx")
+states/ActionState/position = Vector2(566, 100)
+states/End/position = Vector2(1009, 100)
+states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_i0yos")
+states/StarfishFight_Attack2_Start/position = Vector2(826, 105.833)
+states/Start/position = Vector2(77, 38)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_0qu7i")
+states/StartBattle/position = Vector2(285, 100)
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_bprue"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_2e11c"), "ActionState", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_sa5gj")]
+graph_offset = Vector2(0, -54.1674)
+
+[node name="AnimationPlayer2" type="AnimationPlayer"]
+process_mode = 3
+libraries = {
+"": SubResource("AnimationLibrary_r8nev"),
+"StarfishFight": ExtResource("1_q3tsi")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+process_mode = 4
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_r8nev"),
+"StarfishFight": ExtResource("1_q3tsi")
+}
+tree_root = SubResource("AnimationNodeStateMachine_sp0h8")
+anim_player = NodePath("..")
+parameters/conditions/Ended = false
+parameters/ActionState/blend_position = 3.11735
+parameters/ActionState/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/0/0/conditions/MoveEnded = false
+parameters/ActionState/0/0/1/conditions/MoveEnded = false

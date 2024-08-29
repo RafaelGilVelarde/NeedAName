@@ -8,31 +8,28 @@ using System.Diagnostics;
 [GlobalClass]
 public partial class DummyMove1 : MoveBase
 {
-	[Export] float Speed;
+	[Export] float Speed, AtkMultiplier = 1.5f;
 	[Export] Vector2 offset;
+	[Export] int Combo1 = 1, Combo2 = 2;
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
 	{
 		base.Effect(Users,Targets);
-		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
-		/*Vector2 ScaleAux=Users[0].Scale;
-		float RotationAux=Users[0].Rotation;
 		
-		void onHit(BattleCharacter Target){
-			Hit(Users[0],Target);
-		}
-		Users[0].Hitbox._Hit+=onHit;*/
-
+		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 		if(Dir==1||Dir==-1){
-			Debug.WriteLine("Dir: "+Dir);		
 			Users[0].GetParent<Node2D>().Rotation=0;
 			Users[0].GetParent<Node2D>().Scale=new Vector2(Dir,1);
-		}
+			
+			Targets[0].GetParent<Node2D>().Rotation=0;
+			Targets[0].GetParent<Node2D>().Scale=new Vector2(-Dir,1);
+		}		
 		else{
 			Dir=Users[0].GetParent<Node2D>().Scale.Y;
 		}
-		Users[0].Combo=2;
+
+		Users[0].Combo=Combo2;
 		Users[0]._ReturnToIdle+=idle;
-		Users[0].AddAtkMultiplier(1.5f,1);
+		Users[0].AddAtkMultiplier(AtkMultiplier,1);
 
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
@@ -53,7 +50,7 @@ public partial class DummyMove1 : MoveBase
 
 		void idle(BattleCharacter character){
 			character.battleState=BattleCharacter.BattleState.Idle;
-			Users[0].Combo=1;
+			Users[0].Combo=Combo1;
 			Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
 			Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
 			Users[0]._ReturnToIdle-=idle;
