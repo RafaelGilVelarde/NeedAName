@@ -15,7 +15,8 @@ public enum MoveState{
 public partial class EnemyOverworldController : OverworldController
 {
 	[Export] EnemyCollision enemyCollision;
-	[Export] public Vector2 CachedTargetPosition;
+	[Export] MovementController movementController;
+	[Export] public Vector2 CachedTargetPosition, RandMin, RandMax;
 	EnemyCharacterBase characterBase;
 	[Export] public MoveState state;
 	[Export] public Node2D CurrentTarget;
@@ -23,14 +24,21 @@ public partial class EnemyOverworldController : OverworldController
 	[Export] public int CurrentIdleTarget;
 	[Export] public Array<Node2D> Obstacles;
 	[Export] public uint LayerMask;
-	[Export] public DetectArea detectArea;
+	[Export] public DetectArea detectArea{get;private set;}
+	[Export] public BattleStart Battle;
 	public Vector2[] RaycastPos=new Vector2[8];
 	public Vector2 RaycastTarget;
-	public int DirectionIndex;
+	[Export]public int DirectionIndex;
     public override void _Ready()
     {
 		characterBase=(EnemyCharacterBase)BattleCharacter.Character.Base;
 		CurrentTarget=GameManager.Instance.controller.Parent;
+		if(detectArea!=null){
+			(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
+		}
+		CachedTargetPosition = GlobalPosition;
+
+
 		if(AnimatorTree == null){
 			SetAnimators();
 		}
@@ -44,12 +52,14 @@ public partial class EnemyOverworldController : OverworldController
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		Vector2 Moving;
-		(Moving,Axis,DirectionIndex)=characterBase.Moving(this);
-		Vector2 Vel=Moving*(float)delta;
-		Parent.Velocity+=Vel;
-		Parent.Velocity=Parent.Velocity.LimitLength(MaxSpeed);
-		Parent.MoveAndSlide();
+		if(movementController!=null){
+			Vector2 Moving;				
+			(Moving,Axis,DirectionIndex)=movementController.Moving(this);
+			Vector2 Vel=Moving*(float)delta;
+			Parent.Velocity+=Vel;
+			Parent.Velocity=Parent.Velocity.LimitLength(MaxSpeed);
+			Parent.MoveAndSlide();
+		}
 	}
 
 	void PlayAnimations(Vector2 Axis){
@@ -83,6 +93,20 @@ public partial class EnemyOverworldController : OverworldController
 		}
 	}
 
+    (Vector2 Min, Vector2 Max) MinMaxArray(Vector2[] Array){
+        Array<float> AuxX = new Array<float>(),AuxY = new Array<float>();
+        for (int i = 0;i<Array.Length;i++){
+            AuxX.Add(Array[i].X);
+            AuxY.Add(Array[i].Y);
+        }
+        return (new Vector2(AuxX.Min(),AuxY.Min()),new Vector2(AuxX.Max(),AuxY.Max()));
+        
+    }
+
+	public void SetArea(DetectArea area){
+		detectArea = area;
+		(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
+	}
 
 	public override void BattleStart(){
 		enemyCollision.ProcessMode=ProcessModeEnum.Disabled;

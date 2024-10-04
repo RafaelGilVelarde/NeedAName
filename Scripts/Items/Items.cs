@@ -1,7 +1,8 @@
 using Godot;
 using System;
 
-public partial class Items: GodotObject
+[GlobalClass]
+public partial class Items: Resource
 {
-    public ItemBase Base;
+    [Export]public ItemBase Base;
 }

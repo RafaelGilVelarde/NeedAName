@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://n1mlp7dl7nw6"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bed8im7ji4gbu" path="res://Animations/Overworld/NPCs/Water/Isopod.res" id="1_7mjo8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0bxda"]
+animation = &"Isopod/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7p86d"]
+animation = &"Isopod/front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_8r5ee"]
+animation = &"Isopod/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1ye4j"]
+animation = &"Isopod/side"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_b3byb"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0bxda")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7p86d")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_8r5ee")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_1ye4j")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yyklb"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7gvxu"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_b3byb")
+states/Idle/position = Vector2(403, 47)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_yyklb")]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"Isopod": ExtResource("1_7mjo8")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"Isopod": ExtResource("1_7mjo8")
+}
+tree_root = SubResource("AnimationNodeStateMachine_7gvxu")
+anim_player = NodePath("..")
+parameters/Idle/blend_position = Vector2(0.0294659, -0.189427)

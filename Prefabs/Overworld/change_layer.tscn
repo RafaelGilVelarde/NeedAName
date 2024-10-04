@@ -1,0 +1,45 @@
+[gd_scene load_steps=6 format=3 uid="uid://ff04r6c2v0vw"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/ChangeLayer.cs" id="1_a577d"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7x4c8"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_h6gpt"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_564pq"]
+size = Vector2(32, 8)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4ys48"]
+size = Vector2(32, 4)
+
+[node name="ChangeLayer" type="Node2D"]
+
+[node name="Out" type="Area2D" parent="."]
+script = ExtResource("1_a577d")
+Out = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Out"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_7x4c8")
+
+[node name="In" type="Area2D" parent="."]
+position = Vector2(0, 32)
+collision_layer = 2
+script = ExtResource("1_a577d")
+Z = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="In"]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_h6gpt")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="In"]
+position = Vector2(0, -12)
+shape = SubResource("RectangleShape2D_564pq")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, 48)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_4ys48")

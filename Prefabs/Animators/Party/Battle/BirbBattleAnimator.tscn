@@ -217,7 +217,8 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"Ended"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cauuh"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h4ks0"]
+resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
 states/ActionState/position = Vector2(570, 10.8326)
 states/BirbFight_StartBattle/node = SubResource("AnimationNodeAnimation_ixq5v")
@@ -240,7 +241,7 @@ libraries = {
 "": SubResource("AnimationLibrary_0da8k"),
 "BirbFight": ExtResource("1_mp7ed")
 }
-tree_root = SubResource("AnimationNodeStateMachine_cauuh")
+tree_root = SubResource("AnimationNodeStateMachine_h4ks0")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 5.01203

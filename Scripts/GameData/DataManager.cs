@@ -7,7 +7,8 @@ using System.Collections.Generic;
 public partial class DataManager : Resource
 {
 	[Export]public Array<PartyCharacters> Party;
+	[Export]public Array<Items> items;
 	[Export]public Flags Flags;
-	[Export] public PackedScene Scene;
+	[Export] public int Scene, AreaIndex;
 	[Export] public Vector2 Position;
 }

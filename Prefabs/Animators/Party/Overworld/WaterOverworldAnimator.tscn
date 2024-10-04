@@ -1,6 +1,6 @@
 [gd_scene load_steps=20 format=3 uid="uid://bmhkp2rg2ouvk"]
 
-[ext_resource type="AnimationLibrary" uid="uid://bms0eg5egx0v8" path="res://Sprites/Overworld/WaterOverworld.res" id="1_r5g1m"]
+[ext_resource type="AnimationLibrary" uid="uid://bms0eg5egx0v8" path="res://Animations/Overworld/WaterOverworld.res" id="1_r5g1m"]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_c5kdp"]
 animation = &"WaterOverworld/idleSide"
@@ -79,7 +79,8 @@ advance_condition = &"Idle"
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_e0cef"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cck0k"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4w6fs"]
+resource_local_to_scene = true
 states/Idle/node = SubResource("AnimationNodeBlendSpace2D_04twk")
 states/Idle/position = Vector2(365, 92)
 states/Start/position = Vector2(213, 100)
@@ -98,7 +99,7 @@ root_node = NodePath("../..")
 libraries = {
 "WaterOverworld": ExtResource("1_r5g1m")
 }
-tree_root = SubResource("AnimationNodeStateMachine_cck0k")
+tree_root = SubResource("AnimationNodeStateMachine_4w6fs")
 anim_player = NodePath("..")
 parameters/conditions/Idle = false
 parameters/conditions/Walking = false

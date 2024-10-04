@@ -11,6 +11,26 @@ public partial class BattleStart : Node2D
     [Export]Array<Character> EnemyCharacters;
     [Export] int CharacterPrefab;
     [Export]Array<Vector2>PartyPos,EnemyPos;
+
+    public void Constructor(Array<Vector2> Party, Array<Vector2> Enemy, int Prefab, Array<Character> Characters, BattleScene Battle){
+        PartyPos = Party;
+        EnemyPos = Enemy;
+        CharacterPrefab = Prefab;
+        EnemyCharacters.Clear();
+        int Index = 0;
+        if(EnemyPos.Count>0){
+            while(EnemyCharacters.Count<EnemyPos.Count-1){
+                int Aux=Index%Characters.Count;
+                RandomNumberGenerator RNG = new RandomNumberGenerator();
+                int chance=RNG.RandiRange(0,Characters.Count-1);
+                if(chance == Index%Characters.Count){
+                    EnemyCharacters.Add((Character)Characters[Aux].Duplicate(true));
+                }
+                Index++;
+            }
+        }
+        scene = Battle;
+    }
     public virtual void StartBattle(){
         if(BattleManager.instance.Scene==null){
             Array<OverworldController> Characters=GameManager.Instance.Characters;
@@ -29,6 +49,7 @@ public partial class BattleStart : Node2D
             }
             for(int i=0;i<EnemyBattle.Count;i++){
                 EnemyBattle[i].Overworld.BattleStart();
+                EnemyBattle[i].Character.SetStats();
             }
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();

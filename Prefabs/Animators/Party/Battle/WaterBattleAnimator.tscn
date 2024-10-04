@@ -218,7 +218,8 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_52r8s"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3c0al"]
+resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
 states/ActionState/position = Vector2(566, 10.8326)
 states/Start/position = Vector2(77, 38)
@@ -241,7 +242,7 @@ libraries = {
 "": SubResource("AnimationLibrary_cldp0"),
 "WaterFight": ExtResource("1_1wfpp")
 }
-tree_root = SubResource("AnimationNodeStateMachine_52r8s")
+tree_root = SubResource("AnimationNodeStateMachine_3c0al")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 2.42553

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1kfehsm20xfd"
-path="res://.godot/imported/Shrimpyang.png-21c372c6a81458068cac06c5a782b9a7.ctex"
+uid="uid://by4kl26agrfky"
+path="res://.godot/imported/Mollusk.png-f08f11efb08557dc39dccc83923fa67c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Animations/Overworld/Shrimpyang.png"
-dest_files=["res://.godot/imported/Shrimpyang.png-21c372c6a81458068cac06c5a782b9a7.ctex"]
+source_file="res://Sprites/Overworld/NPCs/Mollusk.png"
+dest_files=["res://.godot/imported/Mollusk.png-f08f11efb08557dc39dccc83923fa67c.ctex"]
 
 [params]
 

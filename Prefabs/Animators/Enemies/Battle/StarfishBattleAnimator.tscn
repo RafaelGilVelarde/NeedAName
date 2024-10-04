@@ -162,7 +162,8 @@ advance_mode = 2
 advance_mode = 2
 advance_condition = &"Ended"
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sp0h8"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u8n6x"]
+resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_70jgx")
 states/ActionState/position = Vector2(566, 100)
 states/End/position = Vector2(1009, 100)
@@ -174,21 +175,19 @@ states/StartBattle/position = Vector2(285, 100)
 transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_bprue"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_2e11c"), "ActionState", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_sa5gj")]
 graph_offset = Vector2(0, -54.1674)
 
-[node name="AnimationPlayer2" type="AnimationPlayer"]
-process_mode = 3
+[node name="AnimationPlayer" type="AnimationPlayer"]
 libraries = {
 "": SubResource("AnimationLibrary_r8nev"),
 "StarfishFight": ExtResource("1_q3tsi")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
-process_mode = 4
 root_node = NodePath("../..")
 libraries = {
 "": SubResource("AnimationLibrary_r8nev"),
 "StarfishFight": ExtResource("1_q3tsi")
 }
-tree_root = SubResource("AnimationNodeStateMachine_sp0h8")
+tree_root = SubResource("AnimationNodeStateMachine_u8n6x")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 3.11735

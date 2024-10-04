@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://b33qfgu07gcl5"]
+[gd_scene load_steps=9 format=3 uid="uid://b33qfgu07gcl5"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_kfrbi"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_0shvs"]
 [ext_resource type="Texture2D" uid="uid://ta1ltcypinpv" path="res://Sprites/Background/Tilemaps/Tilemap Data.png" id="2_lhpxa"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="3_17meg"]
+[ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_7evjy"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fb8cl"]
 texture = ExtResource("2_lhpxa")
@@ -103,6 +104,10 @@ custom_data_layer_2/name = "Direction"
 custom_data_layer_2/type = 5
 sources/1 = SubResource("TileSetAtlasSource_fb8cl")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgifx"]
+resource_local_to_scene = true
+size = Vector2(122, 16)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -134,4 +139,19 @@ limit_top = -330
 limit_right = 580
 limit_bottom = 385
 
+[node name="Door" parent="." instance=ExtResource("5_7evjy")]
+position = Vector2(64, 264)
+Scene = 2
+LoadPosition = Vector2(248, -200)
+
+[node name="CollisionShape2D" parent="Door" index="0"]
+shape = SubResource("RectangleShape2D_jgifx")
+
+[node name="Door2" parent="." instance=ExtResource("5_7evjy")]
+position = Vector2(-328, 0)
+rotation = 1.5708
+Scene = 1
+LoadPosition = Vector2(360, -104)
+
 [editable path="Cams"]
+[editable path="Door"]

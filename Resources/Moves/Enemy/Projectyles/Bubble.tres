@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DumyShootMove" load_steps=3 format=3 uid="uid://ctdvr3y2a0x6g"]
+
+[ext_resource type="PackedScene" uid="uid://b7yn0nhscvc8d" path="res://Prefabs/BattleProjectyles/WaterBubble.tscn" id="1_mncyt"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyShootMove.cs" id="2_jprdv"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("2_jprdv")
+Speed = 3.0
+Middle = 3.0
+Timer2 = 3.0
+Height = 80.0
+Combo = 2
+Tag = "EnemyHitbox"
+Proyectile = ExtResource("1_mncyt")
+offset = Vector2(0, 0)
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "Bubble"
+MoveTime = 3.5

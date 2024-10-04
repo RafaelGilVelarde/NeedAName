@@ -1,6 +1,6 @@
-[gd_scene load_steps=32 format=3 uid="uid://c47skycpqv3jq"]
+[gd_scene load_steps=32 format=3 uid="uid://dq2iua24fjxad"]
 
-[ext_resource type="Texture2D" uid="uid://c8avimgmhihjb" path="res://Sprites/Battle/Party/waterBattle.png" id="1_il0vm"]
+[ext_resource type="Texture2D" uid="uid://c8avimgmhihjb" path="res://Sprites/Battle/Party/backup/waterBattle.png" id="1_il0vm"]
 [ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="2_bu4tl"]
 
 [sub_resource type="Animation" id="Animation_5d543"]
@@ -1138,9 +1138,12 @@ libraries = {
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_un6mm")
+}
 tree_root = SubResource("AnimationNodeStateMachine_mikoi")
 anim_player = NodePath("..")
-active = true
 parameters/conditions/Idle = false
 parameters/conditions/notIdle = false
 parameters/ActionState/blend_position = 1.64378

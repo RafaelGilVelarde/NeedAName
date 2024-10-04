@@ -20,6 +20,7 @@ script = ExtResource("1_j2r7u")
 
 [node name="BattleCam" type="Camera2D" parent="."]
 process_mode = 3
+enabled = false
 zoom = Vector2(2, 2)
 limit_left = -380
 limit_top = -250

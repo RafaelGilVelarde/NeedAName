@@ -8,7 +8,7 @@ public partial class BattleInteract : Interact
     [Export] BattleStart battleStart;
         Callable startBattle;
         Callable EndTimeline;
-    public override void interact()
+    public override void interact(OverworldController Player)
     {
         Debug.WriteLine("StartDialogue");
         startBattle=new Callable(this,MethodName.Battle);
@@ -17,7 +17,7 @@ public partial class BattleInteract : Interact
         Node DialogicRoot=DialogicCSharp.instance.DialogicRoot;
         DialogicRoot.Connect("signal_event",startBattle);
         DialogicRoot.Connect("timeline_ended",EndTimeline);
-        base.interact();
+        base.interact(Player);
     }
     void Battle(string argument){
         Node DialogicRoot=DialogicCSharp.instance.DialogicRoot;

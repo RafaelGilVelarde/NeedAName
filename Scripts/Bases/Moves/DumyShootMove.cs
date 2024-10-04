@@ -64,7 +64,9 @@ public partial class DumyShootMove : MoveBase
 			if(proyectile.CanStart){
 				proyectile.PosStart=Users[0].ShootNode.GlobalPosition;
 				proyectile.PosEnd=Targets[0].GlobalPosition;
-				proyectile.PosMiddle=new Vector2((Targets[0].GlobalPosition.X+Users[0].GlobalPosition.X)/Middle,Users[0].GlobalPosition.Y-Height);
+				float MiddleX =proyectile.PosStart.X+((proyectile.PosEnd.X-proyectile.PosStart.X)/Middle);
+				proyectile.PosMiddle=new Vector2(MiddleX,Users[0].GlobalPosition.Y-Height);
+
 				proyectile.GlobalPosition=User.ShootNode.GlobalPosition;
 				proyectile.GlobalScale=User.GlobalScale;
 				proyectile.GlobalRotation=User.GlobalRotation;

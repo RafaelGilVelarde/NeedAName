@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://duas732nrxldm"]
+
+[ext_resource type="AnimationLibrary" uid="uid://byh1xahq0mhn3" path="res://Animations/Overworld/NPCs/Water/Plankton.res" id="1_5lwym"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_a1di3"]
+animation = &"Plankton/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7x5t8"]
+animation = &"Plankton/front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_k5enq"]
+animation = &"Plankton/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cu4if"]
+animation = &"Plankton/side"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_nenjl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_a1di3")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_7x5t8")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_k5enq")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_cu4if")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_56s1e"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nrd8c"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_nenjl")
+states/Idle/position = Vector2(552, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_56s1e")]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+root_node = NodePath("../../..")
+libraries = {
+"Plankton": ExtResource("1_5lwym")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../../../..")
+libraries = {
+"Plankton": ExtResource("1_5lwym")
+}
+tree_root = SubResource("AnimationNodeStateMachine_nrd8c")
+anim_player = NodePath("..")
+parameters/Idle/blend_position = Vector2(-0.392265, 0.427313)

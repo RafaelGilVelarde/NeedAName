@@ -166,6 +166,7 @@ advance_mode = 2
 advance_condition = &"Ended"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_32flu"]
+resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_a23km")
 states/ActionState/position = Vector2(565, 38)
 states/End/position = Vector2(1110, 60)

@@ -11,8 +11,9 @@ public partial class ItemBase : Resource
     Key,
     Equipment,
   }
-    [Export] public String Name;
-    [Export] public String Description;
+    [Export] public int ID;
+    [Export] public string Name;
+    [Export] public string Description;
     [Export] public Type type;
       public virtual void Effect(Array<BattleCharacter> Targets){
 

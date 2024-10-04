@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="DumySpinMove" load_steps=2 format=3 uid="uid://bvtcpl6qec87k"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumySpinMove.cs" id="1_etq3m"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_etq3m")
+MaxSpeed = 6.0
+Combo = 1
+offset = 15.0
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "Spin"
+MoveTime = 4.0

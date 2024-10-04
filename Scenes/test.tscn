@@ -1,10 +1,11 @@
-[gd_scene load_steps=125 format=3 uid="uid://5jxtto4ew51p"]
+[gd_scene load_steps=159 format=3 uid="uid://5jxtto4ew51p"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="4_d7j8l"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="2_cm5nb"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="3_fy7is"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="4_miq47"]
 [ext_resource type="PackedScene" uid="uid://b6cj47rw55blg" path="res://Prefabs/Animators/Enemies/Battle/ShrimpBattleAnimator.tscn" id="4_qohtc"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/MovementController.cs" id="5_2f884"]
 [ext_resource type="PackedScene" uid="uid://qv65iak5mgqv" path="res://Prefabs/Animators/Enemies/Overworld/ShrimpOverworldAnimator.tscn" id="5_4hh36"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="5_52mhd"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="5_g5mj8"]
 [ext_resource type="PackedScene" uid="uid://cs53p3oec1d58" path="res://Prefabs/BattleEffects/WaterBeam.tscn" id="7_dh2bn"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="8_5bsmi"]
 [ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="8_vyg0y"]
@@ -21,7 +22,7 @@
 [ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="14_c5cih"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Camera/BattleCamera.cs" id="15_onjcw"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DetectArea.cs" id="16_w62nb"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Doors/Door.cs" id="18_jwwvf"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Door.cs" id="18_jwwvf"]
 [ext_resource type="PackedScene" uid="uid://d3pmbeprgu7nc" path="res://Scenes/test_bridge.tscn" id="19_lne82"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="22_hfs38"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="27_tepac"]
@@ -47,6 +48,39 @@
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
+[sub_resource type="Resource" id="Resource_3iuvs"]
+resource_local_to_scene = true
+script = ExtResource("2_cm5nb")
+radius = 50.0
+ShowGizmo = false
+
+[sub_resource type="Resource" id="Resource_k1vgm"]
+resource_local_to_scene = true
+script = ExtResource("3_fy7is")
+ReachThreshold = 5.0
+
+[sub_resource type="Resource" id="Resource_31rvb"]
+resource_local_to_scene = true
+script = ExtResource("2_cm5nb")
+radius = 50.0
+ShowGizmo = false
+
+[sub_resource type="Resource" id="Resource_ew2qi"]
+resource_local_to_scene = true
+script = ExtResource("4_miq47")
+ReachThreshold = 30.0
+InterestVariable = 60.0
+interestGizmo = PackedFloat32Array()
+ShowGizmo = false
+showResult = false
+
+[sub_resource type="Resource" id="Resource_qkdgc"]
+resource_local_to_scene = true
+script = ExtResource("5_2f884")
+SteeringForce = 2.0
+SeekBehaviours = Array[Object]([SubResource("Resource_31rvb"), SubResource("Resource_ew2qi")])
+IdleBehaviours = Array[Object]([SubResource("Resource_3iuvs"), SubResource("Resource_k1vgm")])
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cia4f"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
@@ -63,9 +97,6 @@ Speed = 0
 
 [sub_resource type="Resource" id="Resource_aks3e"]
 script = ExtResource("10_04vua")
-SeekBehaviours = Array[Object]([null])
-IdleBehaviours = Array[Object]([null])
-SteeringForce = 10.0
 BaseStats = SubResource("Resource_gnclr")
 Name = "njknjkm"
 OverworldAnimator = ExtResource("5_4hh36")
@@ -156,33 +187,8 @@ SpAtk = 2
 SpDef = 2
 Speed = 2
 
-[sub_resource type="Resource" id="Resource_sy53b"]
-script = ExtResource("4_d7j8l")
-radius = 30.0
-ShowGizmo = false
-
-[sub_resource type="Resource" id="Resource_3jdhh"]
-script = ExtResource("5_g5mj8")
-ReachThreshold = 5.0
-
-[sub_resource type="Resource" id="Resource_m2a7v"]
-script = ExtResource("4_d7j8l")
-radius = 30.0
-ShowGizmo = false
-
-[sub_resource type="Resource" id="Resource_6alwi"]
-script = ExtResource("5_52mhd")
-ReachThreshold = 5.0
-InterestVariable = 0.0
-interestGizmo = PackedFloat32Array()
-ShowGizmo = false
-showResult = false
-
 [sub_resource type="Resource" id="Resource_gw5l7"]
 script = ExtResource("10_04vua")
-SeekBehaviours = Array[Object]([SubResource("Resource_m2a7v"), SubResource("Resource_6alwi")])
-IdleBehaviours = Array[Object]([SubResource("Resource_sy53b"), SubResource("Resource_3jdhh")])
-SteeringForce = 1.0
 BaseStats = SubResource("Resource_oirbg")
 Name = "mmm"
 OverworldAnimator = ExtResource("9_se3yi")
@@ -344,9 +350,6 @@ Speed = 2
 [sub_resource type="Resource" id="Resource_bvhfa"]
 resource_local_to_scene = true
 script = ExtResource("10_04vua")
-SeekBehaviours = null
-IdleBehaviours = null
-SteeringForce = 0.0
 BaseStats = SubResource("Resource_2lpbm")
 Name = "dfbv"
 OverworldAnimator = ExtResource("34_tfohy")
@@ -392,6 +395,51 @@ isControlledByPlayer = false
 Active = true
 status = 0
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_g448i"]
+animation = &"StarfishOverworld/Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jgw50"]
+animation = &"StarfishOverworld/Attack1_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1wq6j"]
+animation = &"StarfishOverworld/Attack1_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_emgej"]
+animation = &"StarfishOverworld/idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ayg3n"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2uha2"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_amb5w"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dm8hr"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7jlu6"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_xh0ks"]
+resource_local_to_scene = true
+states/StarfishOverworld_Attack1/node = SubResource("AnimationNodeAnimation_g448i")
+states/StarfishOverworld_Attack1/position = Vector2(732, 182.859)
+states/StarfishOverworld_Attack1_End/node = SubResource("AnimationNodeAnimation_jgw50")
+states/StarfishOverworld_Attack1_End/position = Vector2(381, 182.859)
+states/StarfishOverworld_Attack1_Start/node = SubResource("AnimationNodeAnimation_1wq6j")
+states/StarfishOverworld_Attack1_Start/position = Vector2(732, 103)
+states/StarfishOverworld_idle/node = SubResource("AnimationNodeAnimation_emgej")
+states/StarfishOverworld_idle/position = Vector2(381, 103)
+states/Start/position = Vector2(213, 100)
+transitions = ["StarfishOverworld_idle", "StarfishOverworld_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_ayg3n"), "StarfishOverworld_Attack1_Start", "StarfishOverworld_Attack1", SubResource("AnimationNodeStateMachineTransition_2uha2"), "StarfishOverworld_Attack1", "StarfishOverworld_Attack1_End", SubResource("AnimationNodeStateMachineTransition_amb5w"), "StarfishOverworld_Attack1_End", "StarfishOverworld_idle", SubResource("AnimationNodeStateMachineTransition_dm8hr"), "Start", "StarfishOverworld_idle", SubResource("AnimationNodeStateMachineTransition_7jlu6")]
+graph_offset = Vector2(0, 40.827)
+
 [sub_resource type="Resource" id="Resource_lchfq"]
 script = ExtResource("11_ua6ok")
 MaxHP = 5
@@ -402,33 +450,8 @@ SpAtk = 5
 SpDef = 5
 Speed = 5
 
-[sub_resource type="Resource" id="Resource_7kn8y"]
-script = ExtResource("4_d7j8l")
-radius = 30.0
-ShowGizmo = false
-
-[sub_resource type="Resource" id="Resource_1dto8"]
-script = ExtResource("5_g5mj8")
-ReachThreshold = 30.0
-
-[sub_resource type="Resource" id="Resource_gcdsi"]
-script = ExtResource("4_d7j8l")
-radius = 30.0
-ShowGizmo = false
-
-[sub_resource type="Resource" id="Resource_hl810"]
-script = ExtResource("5_52mhd")
-ReachThreshold = 0.5
-InterestVariable = 0.0
-interestGizmo = PackedFloat32Array()
-ShowGizmo = false
-showResult = false
-
 [sub_resource type="Resource" id="Resource_o0w1e"]
 script = ExtResource("10_04vua")
-SeekBehaviours = Array[Object]([SubResource("Resource_gcdsi"), SubResource("Resource_hl810")])
-IdleBehaviours = Array[Object]([SubResource("Resource_7kn8y"), SubResource("Resource_1dto8")])
-SteeringForce = 5.0
 BaseStats = SubResource("Resource_lchfq")
 Name = "Enemy"
 OverworldAnimator = ExtResource("9_se3yi")
@@ -581,6 +604,135 @@ max_value = 200.0
 _data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ltit"]
+animation = &"StarfishFight/Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_vpod3"]
+animation = &"StarfishFight/Attack1_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_e1ynh"]
+animation = &"StarfishFight/Attack1_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8dsd1"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n3olu"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_j5ekg"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4vyu5"]
+states/End/position = Vector2(1016, 94)
+states/StarfishFight_Attack1/node = SubResource("AnimationNodeAnimation_4ltit")
+states/StarfishFight_Attack1/position = Vector2(533, 100)
+states/StarfishFight_Attack1_End/node = SubResource("AnimationNodeAnimation_vpod3")
+states/StarfishFight_Attack1_End/position = Vector2(793, 100)
+states/StarfishFight_Attack1_Start/node = SubResource("AnimationNodeAnimation_e1ynh")
+states/StarfishFight_Attack1_Start/position = Vector2(293, 100)
+states/Start/position = Vector2(95, 100)
+transitions = ["Start", "StarfishFight_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_8dsd1"), "StarfishFight_Attack1", "StarfishFight_Attack1_End", SubResource("AnimationNodeStateMachineTransition_n3olu"), "StarfishFight_Attack1_Start", "StarfishFight_Attack1", SubResource("AnimationNodeStateMachineTransition_j5ekg")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egk0c"]
+animation = &"StarfishFight/Attack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2pbw1"]
+animation = &"StarfishFight/Attack2_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hv7gh"]
+animation = &"StarfishFight/Attack2_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7acgh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7p4l"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33w4f"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mwwpb"]
+states/End/position = Vector2(1091, 93)
+states/StarfishFight_Attack2/node = SubResource("AnimationNodeAnimation_egk0c")
+states/StarfishFight_Attack2/position = Vector2(589, 93)
+states/StarfishFight_Attack2_End/node = SubResource("AnimationNodeAnimation_2pbw1")
+states/StarfishFight_Attack2_End/position = Vector2(849, 93)
+states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_hv7gh")
+states/StarfishFight_Attack2_Start/position = Vector2(360, 93)
+transitions = ["Start", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_7acgh"), "StarfishFight_Attack2_Start", "StarfishFight_Attack2", SubResource("AnimationNodeStateMachineTransition_s7p4l"), "StarfishFight_Attack2", "StarfishFight_Attack2_End", SubResource("AnimationNodeStateMachineTransition_33w4f")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_snlp8"]
+blend_point_0/node = SubResource("AnimationNodeStateMachine_4vyu5")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeStateMachine_mwwpb")
+blend_point_1/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_g1qjj"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_snlp8")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wc8gf"]
+animation = &"StarfishFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hw6s4"]
+animation = &"StarfishFight/idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_441ef"]
+animation = &"StarfishFight/Die"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_70jgx"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_g1qjj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_wc8gf")
+blend_point_1/pos = 3.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_hw6s4")
+blend_point_2/pos = 5.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_441ef")
+blend_point_3/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_i0yos"]
+animation = &"StarfishFight/Attack2_Start"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0qu7i"]
+animation = &"StarfishFight/Attack1_End"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_bprue"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2e11c"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sa5gj"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_c7pig"]
+resource_local_to_scene = true
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_70jgx")
+states/ActionState/position = Vector2(566, 100)
+states/End/position = Vector2(1009, 100)
+states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_i0yos")
+states/StarfishFight_Attack2_Start/position = Vector2(826, 105.833)
+states/Start/position = Vector2(77, 38)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_0qu7i")
+states/StartBattle/position = Vector2(285, 100)
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_bprue"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_2e11c"), "ActionState", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_sa5gj")]
+graph_offset = Vector2(0, -54.1674)
+
 [node name="Node2D" type="Node2D" groups=["EnemyHitbox", "Enemyblockbox"]]
 y_sort_enabled = true
 metadata/_edit_vertical_guides_ = []
@@ -593,7 +745,7 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_ke7ye")
 
 [node name="OverworldController" parent="Character" index="1" node_paths=PackedStringArray("IdleTargets", "detectArea")]
-visible = true
+movementController = SubResource("Resource_qkdgc")
 IdleTargets = [NodePath("../../Positions/Node2D"), NodePath("../../Positions/Node2D2"), NodePath("../../Positions/Node2D3"), NodePath("../../Positions/Node2D4")]
 detectArea = NodePath("../../Area2D")
 Speed = 20.0
@@ -753,7 +905,6 @@ collision_mask = 3
 shape = SubResource("RectangleShape2D_5kk8a")
 
 [node name="Area2D" type="Area2D" parent="."]
-visible = false
 position = Vector2(154, 142)
 scale = Vector2(0.605, 0.605)
 collision_layer = 256
@@ -762,14 +913,16 @@ script = ExtResource("16_w62nb")
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
 polygon = PackedVector2Array(122.314, -279.339, -732.231, -190.083, -570.248, 418.182, 130.578, 267.769)
 
-[node name="Area2D2" type="Area2D" parent="."]
+[node name="Polygon2D" type="Polygon2D" parent="Area2D"]
+
+[node name="Door" type="Area2D" parent="."]
 visible = false
 position = Vector2(296, -120)
 script = ExtResource("18_jwwvf")
 Scene = ExtResource("19_lne82")
 LoadPosition = Vector2(-100, 81)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D2"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(56, 16)
 shape = SubResource("RectangleShape2D_n8mux")
 
@@ -805,7 +958,7 @@ texture = ExtResource("29_bjlas")
 offset = Vector2(0, -18)
 hframes = 7
 vframes = 6
-frame = 10
+frame = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -834,10 +987,9 @@ PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 100)])
 
 [node name="AnimationPlayer2" parent="Character2/OverworldController" instance=ExtResource("35_0a1m3")]
-process_mode = 0
 
 [node name="AnimationTree" parent="Character2/OverworldController/AnimationPlayer2" index="0"]
-active = true
+tree_root = SubResource("AnimationNodeStateMachine_xh0ks")
 
 [node name="BattleCharacter" type="CharacterBody2D" parent="Character2" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode")]
 process_mode = 4
@@ -990,6 +1142,7 @@ process_mode = 0
 
 [node name="AnimationTree" parent="Character2/BattleCharacter/AnimationPlayer2" index="0"]
 process_mode = 0
+tree_root = SubResource("AnimationNodeStateMachine_c7pig")
 
 [editable path="Character"]
 [editable path="Character2/OverworldController/AnimationPlayer2"]

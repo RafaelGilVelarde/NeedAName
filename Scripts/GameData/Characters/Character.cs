@@ -1,9 +1,7 @@
 using Godot;
 using Godot.Collections;
-using System;
 using System.Diagnostics;
-using System.Reflection;
-using System.Text;
+
 
 [GlobalClass]
 public partial class Character : Resource
@@ -29,22 +27,7 @@ public partial class Character : Resource
     };
     [Export]public Status status;
     public virtual void DamageCalc(BattleCharacter Character,BattleCharacter TargetCharacter, Moves move){
-        /*for (int i=0;i<Equipment.Count;i++){
-            Equipment[i].Base.GetHitEffect(TargetCharacter,move);
-        }
-        switch (move.Base.type){
-            case MoveBase.Type.Physical:
-                ChangeHP(Mathf.RoundToInt(Character.Character.stats.Atk*move.Base.Power*Character.MultiplyAtk()/stats.Def*TargetCharacter.MultiplyDef())*-1);
-                EmitSignal("_GetHit");
-            break;
-            case MoveBase.Type.Special:
-                ChangeHP(Mathf.RoundToInt(Character.Character.stats.SpAtk*move.Base.Power*Character.MultiplySpAtk()/stats.SpDef*TargetCharacter.MultiplySpDef())*-1);
-                EmitSignal("_GetHit");
-            break;
-            case MoveBase.Type.Recovery:
-                ChangeHP(Mathf.RoundToInt(stats.SpAtk*move.Base.Power*Character.MultiplySpAtk()));
-            break;
-        }*/
+
     }
     public virtual void ChangeHP(int hp,Node2D character){
         stats.HP+=hp;
@@ -69,5 +52,15 @@ public partial class Character : Resource
             status=Status.KO;
             EmitSignal("_Die");
         }
+    }
+    public virtual void SetStats(){
+        Stats BaseStats = Base.BaseStats;
+        stats.MaxHP= (int)(BaseStats.MaxHP*Mathf.Log(2* stats.Lv));
+        stats.Atk= (int)(BaseStats.Atk*Mathf.Log(2* stats.Lv));
+        stats.Def= (int)(BaseStats.Def*Mathf.Log(2* stats.Lv));
+        stats.SpAtk= (int)(BaseStats.SpAtk*Mathf.Log(2* stats.Lv));
+        stats.SpDef= (int)(BaseStats.SpDef*Mathf.Log(2* stats.Lv));
+        stats.Speed= (int)(BaseStats.Speed*Mathf.Log(2* stats.Lv));
+        Debug.WriteLine("Max HP: "+stats.MaxHP+ " Atk: "+stats.Atk+" Def: "+stats.Def);
     }
 }

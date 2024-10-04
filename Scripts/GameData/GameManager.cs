@@ -9,13 +9,14 @@ public partial class GameManager : Node
 	[Export]public Array<DataManager> Saves;
 	[Export] public int CurrentSave;
 	[Export]public DataManager Data;
+	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
 	[Export] public Array<OverworldController> Characters;
 	[Export] public Camera2D OverworldCam, BattleCam;
 	public static GameManager Instance;
 
-	public OverworldController controller;
+	[Export] public OverworldController controller;
 
 
 	public override void _Ready()
@@ -115,17 +116,20 @@ public partial class GameManager : Node
 		BattleCam=cam;
 		AssignBattleCamera(GetTree().CurrentScene);                
 	}
-	public async void SwitchScene(PackedScene scene, Vector2 Position){
+	public void SwitchScene(int scene, int Area, Vector2 Position){
+		Debug.WriteLine("AA");
 		RootCharacters();
 		OverworldCam=null;
 		BattleCam=null;
-		GetTree().ChangeSceneToPacked(scene);
-		await ToSignal(GetTree().CreateTimer(0.05f),"timeout");
-		MoveCharactersToScene(Position);
+		GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
+		SceneTreeTimer timer = GetTree().CreateTimer(0.05f,true,true,true);
+		timer.Timeout+=()=>MoveCharactersToScene(Position);
 	}
 	public void RootCharacters(){
-		controller.RemoveChild(OverworldCam);
+		//controller.RemoveChild(OverworldCam);
 		//GetTree().CurrentScene.AddChild(OverworldCam);
+		OverworldCam.QueueFree();
+		BattleCam.QueueFree();
 		for(int i=0;i<Characters.Count;i++){
 			Node2D aux=Characters[i].Parent;
 			aux.GetParent().RemoveChild(aux);
@@ -140,9 +144,9 @@ public partial class GameManager : Node
 	public void MoveCharactersToScene(Vector2 Position){
 		for(int i=0;i<Characters.Count;i++){
 			Node2D aux=Characters[i].Parent;
+			aux.GlobalPosition=Position;
 			aux.GetParent().RemoveChild(aux);
 			GetTree().CurrentScene.AddChild(aux);
-			aux.GlobalPosition=Position;
 		}	
 	}
 	public void Save(){
@@ -158,6 +162,6 @@ public partial class GameManager : Node
 		Data=Saves[Save];
 		CurrentSave=Save;
 		InstantiateCharacters();
-		SwitchScene(Data.Scene,Data.Position);
+		SwitchScene(Data.Scene, Data.AreaIndex,Data.Position);
 	}
 }

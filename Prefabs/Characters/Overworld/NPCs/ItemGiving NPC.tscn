@@ -1,0 +1,53 @@
+[gd_scene load_steps=9 format=3 uid="uid://d08xurs20mlb6"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemInteract.cs" id="1_5twem"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="2_7l12x"]
+[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="3_dkc2w"]
+[ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="4_qx5lk"]
+[ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="5_fnrdt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
+
+[sub_resource type="Resource" id="Resource_tuf43"]
+script = ExtResource("2_7l12x")
+Type = 0
+Stat = Array[int]([])
+StatChange = 0
+ID = 0
+Name = "aaa"
+Description = "bbb"
+type = 2
+
+[sub_resource type="Resource" id="Resource_snqwl"]
+script = ExtResource("3_dkc2w")
+Base = SubResource("Resource_tuf43")
+
+[node name="NPC" type="StaticBody2D" groups=["Interactable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e7ixu")
+script = ExtResource("1_5twem")
+ItemID = Array[int]([])
+ItemsToGive = Array[Object]([SubResource("Resource_snqwl")])
+PauseWhenDialogue = true
+Turn = true
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+texture = ExtResource("4_qx5lk")
+hframes = 4
+vframes = 3
+frame = 11
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/NPCs",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "CollisionShape2D/Sprite2D/AnimationPlayer",
+"source": "res://Aseprites/Characters/Overworld/NPCs/Isopod.aseprite"
+}
+
+[node name="AnimationPlayer2" parent="CollisionShape2D/Sprite2D" instance=ExtResource("5_fnrdt")]

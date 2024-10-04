@@ -17,7 +17,7 @@ ResourceScriptDirectories=["res://"]
 [application]
 
 config/name="Godot"
-run/main_scene="res://Scenes/test.tscn"
+run/main_scene="res://Scenes/Sea/Maps/Map 1.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -34,7 +34,7 @@ glossary/default_case_sensitive=true
 text/letter_speed=0.01
 text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
-text/autoadvance_per_character_delay=0.0
+text/autoadvance_per_character_delay=0
 text/autoadvance_ignored_characters_enabled=true
 animations/join_default_length=0.5
 animations/leave_default_length=0.5
@@ -55,14 +55,24 @@ translation/translation_folder=""
 choices/def_false_behaviour=0
 text/autocolor_names=true
 text/autoadvance_fixed_delay=1.0
-text/input_action="dialogic_default_action"
+text/input_action="Confirm"
 directories/dch_directory={}
 directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
+"Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"Item1": "res://Dialogues/Item Obtained/Water/Item1.dtl",
 "MoveBattleTest": "res://Dialogues/MoveBattleTest.dtl",
+"NPC1": "res://Dialogues/NPC Dialogue/Water/NPC1.dtl",
 "Test": "res://Dialogues/Test.dtl",
 "bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl"
 }
+text/autoadvance_per_word_delay=0
+layout/end_behaviour=0
+timer/process_in_physics=true
+translation/save_mode=0
+translation/add_separator=false
+choices/hotkey_behaviour=0
+text/split_at_new_lines=false
 
 [dotnet]
 

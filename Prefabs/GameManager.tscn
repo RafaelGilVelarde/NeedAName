@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=59 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -14,29 +14,59 @@
 [ext_resource type="PackedScene" uid="uid://c1xffkkh8tw2t" path="res://Prefabs/Animators/Party/Battle/BirbBattleAnimator.tscn" id="10_fxbec"]
 [ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="11_b1kte"]
 [ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="11_b4glo"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="12_d43qj"]
+[ext_resource type="PackedScene" uid="uid://b33qfgu07gcl5" path="res://Scenes/Sea/Maps/Map 1.tscn" id="13_m4cj7"]
+[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="13_t8ddd"]
 [ext_resource type="PackedScene" uid="uid://bkvh2oaps8v2p" path="res://Prefabs/TextEffects/BaseText.tscn" id="13_xpiea"]
+[ext_resource type="PackedScene" uid="uid://bbxpoq4krbxej" path="res://Scenes/Sea/Maps/Map 2.tscn" id="14_vfydq"]
+[ext_resource type="PackedScene" uid="uid://b5o0cjrcuemsu" path="res://Scenes/Sea/Maps/Map 3.tscn" id="15_dn5o8"]
+[ext_resource type="PackedScene" uid="uid://dbsjjfg65q1gc" path="res://Scenes/Sea/Maps/Map 4.tscn" id="16_fcc8q"]
+[ext_resource type="PackedScene" uid="uid://cidpvaj35nwkm" path="res://Scenes/Sea/Maps/Map 5.tscn" id="17_n77r6"]
+[ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
+[ext_resource type="PackedScene" uid="uid://dvfopsva3d6kc" path="res://Scenes/Sea/Maps/Map 7.tscn" id="19_36hit"]
+[ext_resource type="PackedScene" uid="uid://3kixx2q8tusp" path="res://Scenes/Sea/Maps/Map 8.tscn" id="20_livod"]
+[ext_resource type="PackedScene" uid="uid://b4g462db2jmdj" path="res://Scenes/Sea/Maps/Map 9.tscn" id="21_7ndos"]
+[ext_resource type="PackedScene" uid="uid://c1ctnjer4e83g" path="res://Scenes/Sea/Maps/Map 10.tscn" id="22_kd36x"]
+[ext_resource type="PackedScene" uid="uid://25u8i0j5fpqw" path="res://Scenes/Sea/Maps/Map 11.tscn" id="23_8ie6e"]
+[ext_resource type="PackedScene" uid="uid://dqkjym3frsrsp" path="res://Scenes/Sea/Maps/Map 12.tscn" id="24_hw1ek"]
+[ext_resource type="PackedScene" uid="uid://4jvi4almskcy" path="res://Scenes/Sea/Maps/Map 13.tscn" id="25_o7ox6"]
+[ext_resource type="PackedScene" uid="uid://1tlmx7skytd6" path="res://Scenes/Sea/Maps/Map 14.tscn" id="26_0jbi8"]
+[ext_resource type="PackedScene" uid="uid://cmjnqqak8m3wt" path="res://Scenes/Sea/Maps/Map 15.tscn" id="27_w55j7"]
+[ext_resource type="PackedScene" uid="uid://6fds17egmq8u" path="res://Scenes/Sea/Maps/Map 16.tscn" id="28_edpib"]
+[ext_resource type="PackedScene" uid="uid://bxe65s7fnlvxl" path="res://Scenes/Sea/Maps/Map 17.tscn" id="29_i1r84"]
+[ext_resource type="PackedScene" uid="uid://bci8vpk81qdgb" path="res://Scenes/Sea/Maps/Map 18.tscn" id="30_0v354"]
+[ext_resource type="Script" path="res://Scripts/GameData/Maps.cs" id="30_mj7rj"]
+[ext_resource type="PackedScene" uid="uid://beoo02ocbxhap" path="res://Scenes/Sea/Maps/Map 19.tscn" id="31_02ap6"]
+[ext_resource type="PackedScene" uid="uid://ch61xuau3belr" path="res://Scenes/Sea/Maps/Cave1.tscn" id="32_0lxxl"]
+[ext_resource type="PackedScene" uid="uid://wc85fh7e4de1" path="res://Scenes/Sea/Maps/Cave2.tscn" id="33_7xd5i"]
 
 [sub_resource type="Resource" id="Resource_pgs4m"]
+resource_local_to_scene = true
 script = ExtResource("2_a7det")
+ItemGiven = Array[bool]([false])
+PuzzleFlags = Array[bool]([false, false])
 
 [sub_resource type="Resource" id="Resource_2dgrd"]
 script = ExtResource("3_qc7bw")
-MaxHP = 1
-HP = 1
-Atk = 1
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 1
+Lv = 0
+MaxHP = 5
+HP = 5
+Atk = 5
+Def = 5
+SpAtk = 5
+SpDef = 5
+Speed = 5
 
 [sub_resource type="Resource" id="Resource_kqupm"]
 script = ExtResource("5_wfrc5")
 PartyId = 0
+ExpSpeed = 2.0
+ExpDistance = 5.0
 BaseStats = SubResource("Resource_2dgrd")
 Name = "Player1"
 OverworldAnimator = ExtResource("4_7sjec")
 BattleAnimator = ExtResource("3_lckip")
-TextEffectColor = Color(0.196078, 0.176471, 0.733333, 1)
+TextEffectColor = Color(0.188235, 0.811765, 0.305882, 1)
 
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
@@ -78,16 +108,19 @@ Base = SubResource("Resource_fsnsl")
 
 [sub_resource type="Resource" id="Resource_84h2k"]
 script = ExtResource("3_qc7bw")
-MaxHP = 11
-HP = 11
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
+Lv = 3
+MaxHP = 500
+HP = 500
+Atk = 5
+Def = 25
+SpAtk = 3
+SpDef = 3
 Speed = 10
 
 [sub_resource type="Resource" id="Resource_72ep1"]
 script = ExtResource("8_3wvmt")
+Exp = 0
+NextLevelExp = 30
 Base = SubResource("Resource_kqupm")
 Moves = Array[Object]([SubResource("Resource_fcftr"), SubResource("Resource_ucw66")])
 items = Array[Object]([])
@@ -99,6 +132,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
+Lv = 0
 MaxHP = 1
 HP = 1
 Atk = 1
@@ -110,6 +144,8 @@ Speed = 1
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
 PartyId = 0
+ExpSpeed = 2.0
+ExpDistance = 3.0
 BaseStats = SubResource("Resource_wyd7f")
 Name = "fbvc"
 OverworldAnimator = ExtResource("11_b4glo")
@@ -137,6 +173,7 @@ Base = SubResource("Resource_gt6au")
 
 [sub_resource type="Resource" id="Resource_0dvvf"]
 script = ExtResource("3_qc7bw")
+Lv = 1
 MaxHP = 2
 HP = 2
 Atk = 1
@@ -147,6 +184,8 @@ Speed = 1
 
 [sub_resource type="Resource" id="Resource_q6csy"]
 script = ExtResource("8_3wvmt")
+Exp = 0
+NextLevelExp = 30
 Base = SubResource("Resource_lu2dh")
 Moves = Array[Object]([SubResource("Resource_0nxwl")])
 items = Array[Object]([])
@@ -156,16 +195,36 @@ isControlledByPlayer = true
 Active = false
 status = 0
 
+[sub_resource type="Resource" id="Resource_ihdk5"]
+script = ExtResource("12_d43qj")
+ID = 0
+Name = ""
+Description = ""
+type = 1
+
+[sub_resource type="Resource" id="Resource_73w07"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_ihdk5")
+
 [sub_resource type="Resource" id="Resource_2cy41"]
+resource_local_to_scene = true
 resource_name = "AAAA"
 script = ExtResource("2_1hul1")
 Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy")])
+items = Array[Object]([SubResource("Resource_73w07")])
 Flags = SubResource("Resource_pgs4m")
+Scene = 0
+AreaIndex = 0
 Position = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_vdtia"]
+script = ExtResource("30_mj7rj")
+maps = Array[PackedScene]([ExtResource("13_m4cj7"), ExtResource("14_vfydq"), ExtResource("15_dn5o8"), ExtResource("16_fcc8q"), ExtResource("17_n77r6"), ExtResource("18_r5qh0"), ExtResource("19_36hit"), ExtResource("20_livod"), ExtResource("21_7ndos"), ExtResource("22_kd36x"), ExtResource("23_8ie6e"), ExtResource("24_hw1ek"), ExtResource("25_o7ox6"), ExtResource("26_0jbi8"), ExtResource("27_w55j7"), ExtResource("28_edpib"), ExtResource("29_i1r84"), ExtResource("30_0v354"), ExtResource("31_02ap6"), ExtResource("32_0lxxl"), ExtResource("33_7xd5i")])
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("Characters")]
 script = ExtResource("1_mg7l2")
 Data = SubResource("Resource_2cy41")
+AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
 TextEffectPrefabs = Array[PackedScene]([ExtResource("13_xpiea")])
 Characters = []

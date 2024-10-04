@@ -1,0 +1,48 @@
+[gd_scene load_steps=9 format=3 uid="uid://ckwqsf11orow2"]
+
+[ext_resource type="AnimationLibrary" uid="uid://8xtv1eggd6dv" path="res://Animations/Overworld/NPCs/Water/Mollusk.res" id="1_snrbk"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_abiln"]
+animation = &"Mollusk/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qetga"]
+animation = &"Mollusk/front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s10fp"]
+animation = &"Mollusk/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5law3"]
+animation = &"Mollusk/side"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_m257q"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_abiln")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_qetga")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_s10fp")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_5law3")
+blend_point_3/pos = Vector2(-1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_4awjy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_630rt"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_m257q")
+states/Idle/position = Vector2(403, 100)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_4awjy")]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"Mollusk": ExtResource("1_snrbk")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"Mollusk": ExtResource("1_snrbk")
+}
+tree_root = SubResource("AnimationNodeStateMachine_630rt")
+anim_player = NodePath("..")
+parameters/Idle/blend_position = Vector2(-0.0957643, -1.14097)

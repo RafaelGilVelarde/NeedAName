@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyCharacterBase" load_steps=6 format=3 uid="uid://6iy5icea64kl"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_mxy30"]
+[ext_resource type="PackedScene" uid="uid://b6cj47rw55blg" path="res://Prefabs/Animators/Enemies/Battle/ShrimpBattleAnimator.tscn" id="2_evcf6"]
+[ext_resource type="PackedScene" uid="uid://qv65iak5mgqv" path="res://Prefabs/Animators/Enemies/Overworld/ShrimpOverworldAnimator.tscn" id="3_8trff"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_exoht"]
+
+[sub_resource type="Resource" id="Resource_cltux"]
+script = ExtResource("1_mxy30")
+Lv = 0
+MaxHP = 3
+HP = 3
+Atk = 5
+Def = 3
+SpAtk = 3
+SpDef = 3
+Speed = 2
+
+[resource]
+script = ExtResource("4_exoht")
+ExpYield = 2.0
+BaseStats = SubResource("Resource_cltux")
+Name = "Shrimpy"
+OverworldAnimator = ExtResource("3_8trff")
+BattleAnimator = ExtResource("2_evcf6")
+TextEffectColor = Color(1, 0, 0, 1)

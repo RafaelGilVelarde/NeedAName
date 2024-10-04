@@ -23,10 +23,13 @@ public partial class BezierProyectile : Node2D
     }
 
     public void Hit(){
-        ProcessMode=ProcessModeEnum.Disabled;
+        CallDeferred("Disable");
         GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Hit",true);
 		GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Start",false);
     }
+        void Disable(){
+            ProcessMode=ProcessModeEnum.Disabled;
+        }
     public void EndSplash(){
         if(Ended){
             QueueFree();

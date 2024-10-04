@@ -29,6 +29,7 @@ public partial class TargetBehaviours : SteeringBehaviours
             
             Direction = TargetDirection.Length();
             if(Direction<ReachThreshold){
+                enemy.CachedTargetPosition = enemy.GlobalPosition;
                 enemy.state=MoveState.Idle;
             }
             else{

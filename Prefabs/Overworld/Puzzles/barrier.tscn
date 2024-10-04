@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dahqyou68igt4"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Puzzles/PuzzleBarriers/BarrierCheckFlag.cs" id="1_tddyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ypy8"]
+size = Vector2(64, 20)
+
+[node name="Barrier" type="StaticBody2D" node_paths=PackedStringArray("Animator", "Shape")]
+z_index = 1
+position = Vector2(80, 176)
+script = ExtResource("1_tddyv")
+Animator = NodePath("CollisionShape2D/Sprite2D/AnimationPlayer")
+Shape = NodePath("CollisionShape2D")
+CheckAtStart = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_3ypy8")
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/Sprite2D"]

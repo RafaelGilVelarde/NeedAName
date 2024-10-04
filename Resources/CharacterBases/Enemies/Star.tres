@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EnemyCharacterBase" load_steps=6 format=3 uid="uid://oinvkf7tklql"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_e2dfw"]
+[ext_resource type="PackedScene" uid="uid://cp3deo572pc5j" path="res://Prefabs/Animators/Enemies/Battle/StarfishBattleAnimator.tscn" id="2_5215y"]
+[ext_resource type="PackedScene" uid="uid://dhdsnhldpw4it" path="res://Prefabs/Animators/Enemies/Overworld/StarfishOverworldAnimator.tscn" id="3_sywpe"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_usypa"]
+
+[sub_resource type="Resource" id="Resource_jiguw"]
+script = ExtResource("1_e2dfw")
+Lv = 0
+MaxHP = 5
+HP = 0
+Atk = 4
+Def = 1
+SpAtk = 2
+SpDef = 1
+Speed = 5
+
+[resource]
+script = ExtResource("4_usypa")
+ExpYield = 2.0
+BaseStats = SubResource("Resource_jiguw")
+Name = "Starfish"
+OverworldAnimator = ExtResource("3_sywpe")
+BattleAnimator = ExtResource("2_5215y")
+TextEffectColor = Color(1, 0, 0, 1)

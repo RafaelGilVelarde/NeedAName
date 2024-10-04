@@ -5,5 +5,5 @@ using System;
 
 public partial class Stats : Resource
 {
-    [Export]public int MaxHP, HP, Atk, Def, SpAtk, SpDef, Speed;
+    [Export]public int Lv,MaxHP, HP, Atk, Def, SpAtk, SpDef, Speed;
 }
