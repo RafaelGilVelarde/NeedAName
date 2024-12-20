@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://brf1kg03d66t7"]
+
+[ext_resource type="Script" path="res://Scripts/Menu/StartMenu.cs" id="1_5qb0c"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="1_b7sp6"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuSaveButtons.cs" id="2_0epxr"]
+[ext_resource type="PackedScene" uid="uid://cuu3vd0olnl16" path="res://Scenes/Intro.tscn" id="2_8k5ur"]
+
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList")]
+script = ExtResource("1_5qb0c")
+Start = NodePath("VBoxContainer/Button")
+Continue = NodePath("VBoxContainer/Button2")
+SavesList = NodePath("SaveScrolls")
+NewGameScene = ExtResource("2_8k5ur")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+offset_right = 79.0
+offset_bottom = 66.0
+
+[node name="Button" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Continue"
+
+[node name="SaveScrolls" type="VBoxContainer" parent="." node_paths=PackedStringArray("Buttons")]
+visible = false
+offset_left = 219.0
+offset_top = 70.0
+offset_right = 298.0
+offset_bottom = 306.0
+theme_override_constants/separation = 10
+script = ExtResource("1_b7sp6")
+Buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4"), NodePath("Button5"), NodePath("Button6")]
+
+[node name="Button" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")
+
+[node name="Button2" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")
+
+[node name="Button3" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")
+
+[node name="Button4" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")
+
+[node name="Button5" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")
+
+[node name="Button6" type="Button" parent="SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("2_0epxr")

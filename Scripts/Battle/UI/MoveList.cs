@@ -15,7 +15,7 @@ public partial class MoveList : StuffList
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
-	{
+	{ 
 	}
     public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
     {
@@ -35,9 +35,9 @@ public partial class MoveList : StuffList
 		if(pointerStart<0){
 			pointerStart=0;
 		}
-			if(StartEnd==ScrollList.StartEnd.Start||StartEnd==ScrollList.StartEnd.Regular){
-				Buttons[0].GrabFocus();
-			}
+		if(StartEnd==ScrollList.StartEnd.Start||StartEnd==ScrollList.StartEnd.Regular){
+			Buttons[0].GrabFocus();
+		}
     }
     public override void ClearAll()
     {
@@ -46,24 +46,24 @@ public partial class MoveList : StuffList
 				Buttons[i].Hide();
 				Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text="AAA";
 			}
-			activeButtons=0;
+		activeButtons=0;
     }
 	void Fill(int Start,ScrollList.StartEnd StartEnd){
 		activeButtons=0;
 		for(int i=0;i<Buttons.Count;i++){
-					if(i+Start<character.Character.Moves.Count){
-						Buttons[i].move=character.Character.Moves[i+Start];
-						Buttons[i].Show();
-						Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].move.Base.Name;
-						activeButtons++;
-						if(StartEnd==ScrollList.StartEnd.End){
-							Buttons[i].GrabFocus();
-						}
-					}
-					else{
-						Buttons[i].move=null;
-						Buttons[i].Hide();
-					}
+			if(i+Start<character.Character.Moves.Count){
+				Buttons[i].move=character.Character.Moves[i+Start];
+				Buttons[i].Show();
+				Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].move.Base.Name;
+				activeButtons++;
+				if(StartEnd==ScrollList.StartEnd.End){
+					Buttons[i].GrabFocus();
 				}
+			}
+			else{
+				Buttons[i].move=null;
+				Buttons[i].Hide();
+			}
+		}
 	}
 }

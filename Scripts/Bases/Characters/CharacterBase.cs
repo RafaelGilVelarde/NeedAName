@@ -9,4 +9,5 @@ public partial class CharacterBase : Resource
     [Export]public string Name;
     [Export]public PackedScene OverworldAnimator, BattleAnimator;
     [Export] public Color TextEffectColor;
+    [Export] public Texture Icon;
 }

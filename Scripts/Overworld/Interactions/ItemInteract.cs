@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 [GlobalClass]
 public partial class ItemInteract : Interact
@@ -9,6 +10,7 @@ public partial class ItemInteract : Interact
     [Export] protected Array<int> ItemID;
     [Export] bool Delete;
     [Export] protected Array<Items> ItemsToGive;
+    [Export] ItemBase.Type ItemType;
     Callable DoAction;
     public override void _Ready()
     {
@@ -30,7 +32,8 @@ public partial class ItemInteract : Interact
     }
 
     public virtual void Action(string argument){
-        Array<Items> Items = GameManager.Instance.Data.items;
+        //Array<Items> Items = GameManager.Instance.Data.items[(int)ItemType].items;
+        Array<TypedItemList> ItemLists = GameManager.Instance.Data.items;
         /*if(TakeItems){
             for (int i = 0;i<ItemID.Count;i++){
                 for(int j=0;j<Items.Count;j++){
@@ -41,6 +44,8 @@ public partial class ItemInteract : Interact
             }
         }*/
         for(int i = 0;i<ItemsToGive.Count;i++){
+            Debug.WriteLine(ItemsToGive[i]);
+            Array<Items> Items = ItemLists[(int)ItemsToGive[i].Base.type].items;
             Items.Add(ItemsToGive[i]);
         }
         AnimatorTree?.Set("parameters/conditions/Taking",true);

@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://bbxpoq4krbxej"]
+[gd_scene load_steps=17 format=3 uid="uid://bbxpoq4krbxej"]
 
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_fxe1b"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_nepjs"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_hiigq"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_jnjlj"]
@@ -32,6 +33,7 @@ resource_local_to_scene = true
 script = ExtResource("9_uo7k0")
 
 [node name="Map2" type="Node2D"]
+script = ExtResource("1_fxe1b")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_nepjs")

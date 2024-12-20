@@ -1,6 +1,7 @@
-[gd_scene load_steps=60 format=3 uid="uid://4jvi4almskcy"]
+[gd_scene load_steps=63 format=3 uid="uid://4jvi4almskcy"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_ca3h3"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t2ra3"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_q5ata"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_gmmaf"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_a2bp1"]
@@ -22,6 +23,7 @@
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="20_cstwq"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="21_30s4q"]
 [ext_resource type="Resource" uid="uid://cqi3tmr64djan" path="res://Resources/Moves/Enemy/Beams/Bubblebeam.tres" id="21_ta71s"]
+[ext_resource type="Texture2D" uid="uid://d2bpo84o7t8cl" path="res://Sprites/Battle/Enemies/shripmyang.png" id="22_bq3r2"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Puzzles/EnemyOrderPuzzle.cs" id="23_7gyxu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpb63"]
@@ -106,6 +108,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yluil"]
@@ -170,6 +173,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tisk5"]
@@ -213,6 +217,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxtpi"]
@@ -227,7 +232,12 @@ size = Vector2(20, 34)
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
 [node name="Map13" type="Node2D"]
+script = ExtResource("1_t2ra3")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_ca3h3")
@@ -312,7 +322,18 @@ shape = SubResource("RectangleShape2D_se6ok")
 
 [node name="OverworldController" parent="Character" index="1" node_paths=PackedStringArray("detectArea")]
 movementController = SubResource("Resource_58oug")
+CachedTargetPosition = Vector2(0, 0)
+RandMin = Vector2(0, 0)
+RandMax = Vector2(0, 0)
+CurrentIdleTarget = 0
 detectArea = NodePath("../../Area2D3")
+DirectionIndex = 0
+Axis = Vector2(0, 0)
+AxisAux = Vector2(0, 0)
+Controllable = true
+Coords = Vector2i(0, 0)
+tileTypes = 0
+AxisOffset = 0
 
 [node name="CollisionShape2D" parent="Character/OverworldController/Area2D" index="0"]
 shape = SubResource("RectangleShape2D_7p8dp")
@@ -323,6 +344,16 @@ EnemyCharacters = Array[Object]([])
 
 [node name="BattleCharacter" parent="Character" index="2"]
 Character = SubResource("Resource_aul0c")
+Controllable = false
+OriginPos = Vector2(0, 0)
+Combo = 1
+HoldingMoveTimer = 0
+HoldingMove = false
+UsedComboMove = false
+BlockedEnemy = false
+Looping = false
+DodgeDir = Vector2(0, 0)
+SelectKey = 0
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_yluil")
@@ -333,6 +364,13 @@ shape = SubResource("RectangleShape2D_vypfs")
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" index="0"]
 shape = SubResource("RectangleShape2D_qbykw")
 
+[node name="RichTextLabel" parent="Character/BattleCharacter/HPBar" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 180.0
+offset_bottom = 90.0
+
 [node name="Character2" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(-264, 104)
 
@@ -341,7 +379,18 @@ shape = SubResource("RectangleShape2D_o51ho")
 
 [node name="OverworldController" parent="Character2" index="1" node_paths=PackedStringArray("detectArea")]
 movementController = SubResource("Resource_r3sc7")
+CachedTargetPosition = Vector2(0, 0)
+RandMin = Vector2(0, 0)
+RandMax = Vector2(0, 0)
+CurrentIdleTarget = 0
 detectArea = NodePath("../../Area2D")
+DirectionIndex = 0
+Axis = Vector2(0, 0)
+AxisAux = Vector2(0, 0)
+Controllable = true
+Coords = Vector2i(0, 0)
+tileTypes = 0
+AxisOffset = 0
 
 [node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" index="0"]
 shape = SubResource("RectangleShape2D_skdk6")
@@ -352,6 +401,16 @@ EnemyCharacters = Array[Object]([])
 
 [node name="BattleCharacter" parent="Character2" index="2"]
 Character = SubResource("Resource_wfa70")
+Controllable = false
+OriginPos = Vector2(0, 0)
+Combo = 1
+HoldingMoveTimer = 0
+HoldingMove = false
+UsedComboMove = false
+BlockedEnemy = false
+Looping = false
+DodgeDir = Vector2(0, 0)
+SelectKey = 0
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_tisk5")
@@ -362,6 +421,13 @@ shape = SubResource("RectangleShape2D_pwg37")
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" index="0"]
 shape = SubResource("RectangleShape2D_2ddaq")
 
+[node name="RichTextLabel" parent="Character2/BattleCharacter/HPBar" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 180.0
+offset_bottom = 90.0
+
 [node name="Character3" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(0, 168)
 
@@ -370,7 +436,18 @@ shape = SubResource("RectangleShape2D_t5qg3")
 
 [node name="OverworldController" parent="Character3" index="1" node_paths=PackedStringArray("detectArea")]
 movementController = SubResource("Resource_loujl")
+CachedTargetPosition = Vector2(0, 0)
+RandMin = Vector2(0, 0)
+RandMax = Vector2(0, 0)
+CurrentIdleTarget = 0
 detectArea = NodePath("../../Area2D2")
+DirectionIndex = 0
+Axis = Vector2(0, 0)
+AxisAux = Vector2(0, 0)
+Controllable = true
+Coords = Vector2i(0, 0)
+tileTypes = 0
+AxisOffset = 0
 
 [node name="CollisionShape2D" parent="Character3/OverworldController/Area2D" index="0"]
 shape = SubResource("RectangleShape2D_5fgmn")
@@ -380,7 +457,18 @@ scene = SubResource("Resource_rxaul")
 EnemyCharacters = Array[Object]([])
 
 [node name="BattleCharacter" parent="Character3" index="2"]
+process_mode = 3
 Character = SubResource("Resource_uvwry")
+Controllable = false
+OriginPos = Vector2(0, 0)
+Combo = 1
+HoldingMoveTimer = 0
+HoldingMove = false
+UsedComboMove = false
+BlockedEnemy = false
+Looping = false
+DodgeDir = Vector2(0, 0)
+SelectKey = 0
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_rxtpi")
@@ -391,13 +479,33 @@ shape = SubResource("RectangleShape2D_qbbby")
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Blockbox" index="0"]
 shape = SubResource("RectangleShape2D_wdgqp")
 
+[node name="MainSprite" parent="Character3/BattleCharacter" index="3"]
+texture = ExtResource("22_bq3r2")
+frame = 29
+
+[node name="Arms" parent="Character3/BattleCharacter/MainSprite" index="0"]
+visible = true
+frame = 30
+
+[node name="HitEffectParticles" parent="Character3/BattleCharacter" index="7"]
+scale_amount_curve = SubResource("Curve_0dopt")
+
+[node name="RichTextLabel" parent="Character3/BattleCharacter/HPBar" index="0"]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 180.0
+offset_bottom = 90.0
+
 [node name="Area2D" parent="." instance=ExtResource("21_30s4q")]
+visible = false
 position = Vector2(-176, 80)
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(0, -8, -112, -8, -136, 80, 24, 80)
 
 [node name="Area2D2" parent="." node_paths=PackedStringArray("Polygon", "Collision") instance=ExtResource("21_30s4q")]
+visible = false
 position = Vector2(56, 128)
 Polygon = NodePath("../Area2D/Polygon2D")
 Collision = NodePath("../Area2D/CollisionPolygon2D")
@@ -406,6 +514,7 @@ Collision = NodePath("../Area2D/CollisionPolygon2D")
 polygon = PackedVector2Array(32, -40, -128, -40, -136, 80, 40, 80)
 
 [node name="Area2D3" parent="." node_paths=PackedStringArray("Polygon", "Collision") instance=ExtResource("21_30s4q")]
+visible = false
 position = Vector2(176, -24)
 Polygon = NodePath("../Area2D/Polygon2D")
 Collision = NodePath("../Area2D/CollisionPolygon2D")

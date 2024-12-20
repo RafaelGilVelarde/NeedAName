@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=94 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -9,17 +9,20 @@
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="3_qc7bw"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="4_0i8ni"]
 [ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="4_7sjec"]
+[ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="5_8m0s2"]
 [ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_wfrc5"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/PartyCharacters.cs" id="8_3wvmt"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="9_ncips"]
 [ext_resource type="PackedScene" uid="uid://c1xffkkh8tw2t" path="res://Prefabs/Animators/Party/Battle/BirbBattleAnimator.tscn" id="10_fxbec"]
 [ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="11_b1kte"]
 [ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="11_b4glo"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="12_d43qj"]
 [ext_resource type="PackedScene" uid="uid://b33qfgu07gcl5" path="res://Scenes/Sea/Maps/Map 1.tscn" id="13_m4cj7"]
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="13_t8ddd"]
 [ext_resource type="PackedScene" uid="uid://bkvh2oaps8v2p" path="res://Prefabs/TextEffects/BaseText.tscn" id="13_xpiea"]
 [ext_resource type="PackedScene" uid="uid://bbxpoq4krbxej" path="res://Scenes/Sea/Maps/Map 2.tscn" id="14_vfydq"]
 [ext_resource type="PackedScene" uid="uid://b5o0cjrcuemsu" path="res://Scenes/Sea/Maps/Map 3.tscn" id="15_dn5o8"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/ConsumableBase.cs" id="15_ealcr"]
+[ext_resource type="Script" path="res://Scripts/GameData/TypedItemList.cs" id="15_i5m0s"]
 [ext_resource type="PackedScene" uid="uid://dbsjjfg65q1gc" path="res://Scenes/Sea/Maps/Map 4.tscn" id="16_fcc8q"]
 [ext_resource type="PackedScene" uid="uid://cidpvaj35nwkm" path="res://Scenes/Sea/Maps/Map 5.tscn" id="17_n77r6"]
 [ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
@@ -39,11 +42,28 @@
 [ext_resource type="PackedScene" uid="uid://beoo02ocbxhap" path="res://Scenes/Sea/Maps/Map 19.tscn" id="31_02ap6"]
 [ext_resource type="PackedScene" uid="uid://ch61xuau3belr" path="res://Scenes/Sea/Maps/Cave1.tscn" id="32_0lxxl"]
 [ext_resource type="PackedScene" uid="uid://wc85fh7e4de1" path="res://Scenes/Sea/Maps/Cave2.tscn" id="33_7xd5i"]
+[ext_resource type="PackedScene" uid="uid://dmlfsxsfwb2ft" path="res://Scenes/Sea/Maps/DummyWinScreen.tscn" id="36_wwm2g"]
+[ext_resource type="Script" path="res://Scripts/Menu/MainMenu.cs" id="42_2n8ol"]
+[ext_resource type="Script" path="res://Scripts/Menu/Screens/StatsScreen.cs" id="43_h24bu"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuCharacterList.cs" id="44_3bg8q"]
+[ext_resource type="PackedScene" uid="uid://brf1kg03d66t7" path="res://Scenes/MainMenu.tscn" id="44_nc1im"]
+[ext_resource type="Script" path="res://Scripts/Menu/Screens/ItemsScreen.cs" id="44_yxmx7"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/ScrollList.cs" id="45_b1lfr"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuCharacterButtons.cs" id="45_gqqbf"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuItemList.cs" id="48_8uklt"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuEquipmentList.cs" id="48_cq2x1"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuKeyButton.cs" id="48_mm0p2"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuItemButtons.cs" id="49_fclsk"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuCharacterChooseList.cs" id="49_v54bg"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/ItemTossAmountList.cs" id="50_v4jin"]
+[ext_resource type="Script" path="res://Scripts/Menu/Screens/SaveScreen.cs" id="53_hb5i3"]
+[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="54_m2lkd"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuSaveButtons.cs" id="55_x45r2"]
 
 [sub_resource type="Resource" id="Resource_pgs4m"]
 resource_local_to_scene = true
 script = ExtResource("2_a7det")
-ItemGiven = Array[bool]([false])
+ItemGiven = Array[bool]([false, false])
 PuzzleFlags = Array[bool]([false, false])
 
 [sub_resource type="Resource" id="Resource_2dgrd"]
@@ -67,6 +87,18 @@ Name = "Player1"
 OverworldAnimator = ExtResource("4_7sjec")
 BattleAnimator = ExtResource("3_lckip")
 TextEffectColor = Color(0.188235, 0.811765, 0.305882, 1)
+Icon = ExtResource("5_8m0s2")
+
+[sub_resource type="Resource" id="Resource_nhj1g"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
@@ -87,32 +119,50 @@ MoveTime = 2.0
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_rgtf8")
 
-[sub_resource type="Resource" id="Resource_fsnsl"]
-script = ExtResource("3_mdbab")
-Speed = 3.0
-AtkMultiplier = 1.5
-offset = Vector2(-15, 0)
-Combo1 = 1
-Combo2 = 2
-type = 0
-Power = 2
-UserAmount = 1
-TargetAmount = 1
-TargetsParty = false
-Name = "bbb"
-MoveTime = 2.0
+[sub_resource type="Resource" id="Resource_8yfa3"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 
-[sub_resource type="Resource" id="Resource_ucw66"]
-script = ExtResource("4_0i8ni")
-Base = SubResource("Resource_fsnsl")
+[sub_resource type="Resource" id="Resource_jdfak"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_jsd81"]
+script = ExtResource("9_ncips")
+EquipType = 0
+stats = SubResource("Resource_jdfak")
+StatChange = 0
+ID = 0
+Name = ""
+Description = ""
+type = 0
+
+[sub_resource type="Resource" id="Resource_2i4fn"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_jsd81")
+Amount = 0
 
 [sub_resource type="Resource" id="Resource_84h2k"]
 script = ExtResource("3_qc7bw")
 Lv = 3
-MaxHP = 500
-HP = 500
-Atk = 5
-Def = 25
+MaxHP = 50
+HP = 50
+Atk = 2
+Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 10
@@ -122,12 +172,15 @@ script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 30
 Base = SubResource("Resource_kqupm")
-Moves = Array[Object]([SubResource("Resource_fcftr"), SubResource("Resource_ucw66")])
-items = Array[Object]([])
-Equipment = Array[Object]([])
+Moves = Array[Object]([SubResource("Resource_fcftr")])
+items = Array[Object]([SubResource("Resource_2i4fn")])
+Equipment = Array[Object]([null, null, null, null])
 stats = SubResource("Resource_84h2k")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = true
 Active = true
+Key = 90
 status = 0
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
@@ -143,7 +196,7 @@ Speed = 1
 
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
-PartyId = 0
+PartyId = 1
 ExpSpeed = 2.0
 ExpDistance = 3.0
 BaseStats = SubResource("Resource_wyd7f")
@@ -151,6 +204,7 @@ Name = "fbvc"
 OverworldAnimator = ExtResource("11_b4glo")
 BattleAnimator = ExtResource("10_fxbec")
 TextEffectColor = Color(0, 0, 0.952941, 1)
+Icon = ExtResource("5_8m0s2")
 
 [sub_resource type="Resource" id="Resource_gt6au"]
 script = ExtResource("3_mdbab")
@@ -189,29 +243,92 @@ NextLevelExp = 30
 Base = SubResource("Resource_lu2dh")
 Moves = Array[Object]([SubResource("Resource_0nxwl")])
 items = Array[Object]([])
-Equipment = Array[Object]([])
+Equipment = Array[Object]([null, null, null, null])
 stats = SubResource("Resource_0dvvf")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = true
 Active = false
+Key = 88
 status = 0
 
-[sub_resource type="Resource" id="Resource_ihdk5"]
-script = ExtResource("12_d43qj")
+[sub_resource type="Resource" id="Resource_sfycj"]
+script = ExtResource("15_ealcr")
 ID = 0
-Name = ""
-Description = ""
-type = 1
+Name = "-"
+Description = "aaa"
+type = 0
 
-[sub_resource type="Resource" id="Resource_73w07"]
+[sub_resource type="Resource" id="Resource_2ejs3"]
 script = ExtResource("13_t8ddd")
-Base = SubResource("Resource_ihdk5")
+Base = SubResource("Resource_sfycj")
+Amount = 0
+
+[sub_resource type="Resource" id="Resource_rrylb"]
+script = ExtResource("15_ealcr")
+ID = 0
+Name = "--"
+Description = "aaa"
+type = 0
+
+[sub_resource type="Resource" id="Resource_x8ei1"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_vk0a4"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_qtpk2"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_n4885"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 2
+
+[sub_resource type="Resource" id="Resource_ym3nd"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 3
+
+[sub_resource type="Resource" id="Resource_4xqjt"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 23
+
+[sub_resource type="Resource" id="Resource_btcpy"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_gwhtf"]
+script = ExtResource("13_t8ddd")
+Base = SubResource("Resource_rrylb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_0f1ho"]
+script = ExtResource("15_i5m0s")
+items = Array[Object]([SubResource("Resource_2ejs3"), SubResource("Resource_x8ei1"), SubResource("Resource_vk0a4"), SubResource("Resource_qtpk2"), SubResource("Resource_n4885"), SubResource("Resource_ym3nd"), SubResource("Resource_4xqjt"), SubResource("Resource_btcpy"), SubResource("Resource_gwhtf")])
+
+[sub_resource type="Resource" id="Resource_wiso8"]
+script = ExtResource("15_i5m0s")
+items = Array[Object]([])
+
+[sub_resource type="Resource" id="Resource_xtejg"]
+script = ExtResource("15_i5m0s")
+items = Array[Object]([])
 
 [sub_resource type="Resource" id="Resource_2cy41"]
 resource_local_to_scene = true
 resource_name = "AAAA"
 script = ExtResource("2_1hul1")
 Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy")])
-items = Array[Object]([SubResource("Resource_73w07")])
+items = Array[Object]([SubResource("Resource_0f1ho"), SubResource("Resource_wiso8"), SubResource("Resource_xtejg")])
 Flags = SubResource("Resource_pgs4m")
 Scene = 0
 AreaIndex = 0
@@ -219,12 +336,845 @@ Position = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
-maps = Array[PackedScene]([ExtResource("13_m4cj7"), ExtResource("14_vfydq"), ExtResource("15_dn5o8"), ExtResource("16_fcc8q"), ExtResource("17_n77r6"), ExtResource("18_r5qh0"), ExtResource("19_36hit"), ExtResource("20_livod"), ExtResource("21_7ndos"), ExtResource("22_kd36x"), ExtResource("23_8ie6e"), ExtResource("24_hw1ek"), ExtResource("25_o7ox6"), ExtResource("26_0jbi8"), ExtResource("27_w55j7"), ExtResource("28_edpib"), ExtResource("29_i1r84"), ExtResource("30_0v354"), ExtResource("31_02ap6"), ExtResource("32_0lxxl"), ExtResource("33_7xd5i")])
+maps = Array[PackedScene]([ExtResource("13_m4cj7"), ExtResource("14_vfydq"), ExtResource("15_dn5o8"), ExtResource("16_fcc8q"), ExtResource("17_n77r6"), ExtResource("18_r5qh0"), ExtResource("19_36hit"), ExtResource("20_livod"), ExtResource("21_7ndos"), ExtResource("22_kd36x"), ExtResource("23_8ie6e"), ExtResource("24_hw1ek"), ExtResource("25_o7ox6"), ExtResource("26_0jbi8"), ExtResource("27_w55j7"), ExtResource("28_edpib"), ExtResource("29_i1r84"), ExtResource("30_0v354"), ExtResource("31_02ap6"), ExtResource("32_0lxxl"), ExtResource("33_7xd5i"), ExtResource("36_wwm2g"), ExtResource("36_wwm2g")])
 
 [node name="GameManager" type="Node" node_paths=PackedStringArray("Characters")]
 script = ExtResource("1_mg7l2")
+SavePath = "C:/Users/nosoy/Documents/SavesTest"
+Saves = Array[Object]([null, null, null])
 Data = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
 TextEffectPrefabs = Array[PackedScene]([ExtResource("13_xpiea")])
 Characters = []
+StartScene = ExtResource("44_nc1im")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
+visible = false
+script = ExtResource("42_2n8ol")
+MainButtons = NodePath("Node2D/VBoxContainer")
+CurrentScreen = NodePath("Node2D/Stats")
+Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, null, NodePath("Node2D/Saves")]
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer"]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
+action_mode = 0
+button_mask = 0
+text = "Stats"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
+action_mode = 0
+button_mask = 0
+text = "Items"
+
+[node name="Button3" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
+disabled = true
+action_mode = 0
+button_mask = 0
+text = "???"
+
+[node name="Button4" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
+disabled = true
+action_mode = 0
+button_mask = 0
+text = "Settings"
+
+[node name="Button5" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
+disabled = true
+action_mode = 0
+button_mask = 0
+text = "Save & Load"
+
+[node name="Stats" type="Control" parent="CanvasLayer/Node2D" node_paths=PackedStringArray("Equipments", "EquipList", "KeyButton", "CharacterList", "StatList", "CharacterName", "EquipmentButtons")]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 2.0
+offset_right = 313.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("43_h24bu")
+Equipments = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2")
+EquipList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip")
+KeyButton = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton")
+CharacterList = NodePath("VBoxContainer/VBoxContainer/HBoxContainer")
+StatList = [NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel7"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel4"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2/RichTextLabel6")]
+CharacterName = NodePath("VBoxContainer/VBoxContainer/RichTextLabel")
+EquipmentButtons = [NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel4"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel5")]
+PreviousStates = []
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats"]
+layout_mode = 0
+offset_right = 47.0
+offset_bottom = 40.0
+theme_override_constants/separation = 36
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer" node_paths=PackedStringArray("Buttons")]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+alignment = 1
+script = ExtResource("44_3bg8q")
+Buttons = [NodePath("TextureRect")]
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+startEnd = 1
+List = NodePath("..")
+
+[node name="TextureRect" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_gqqbf")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+startEnd = 1
+List = NodePath("..")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Name[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 64
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "LV"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "HP"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Atk"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Def"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SpAtk"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SpDef"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Speed"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+
+[node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "LV"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "HP"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Atk"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Def"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SpAtk"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "SpDef"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Speed"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Key"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Head"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Body"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Legs"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "Weapon"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+alignment = 1
+
+[node name="KeyButton" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+button_mask = 0
+text = "Key"
+
+[node name="Node" type="Node" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton" node_paths=PackedStringArray("Screen")]
+process_mode = 4
+script = ExtResource("48_mm0p2")
+Screen = NodePath("../../../../../../..")
+
+[node name="RichTextLabel4" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+button_mask = 0
+text = "Head"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Body"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+button_mask = 0
+text = "Legs
+"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+focus_mode = 0
+action_mode = 0
+button_mask = 0
+text = "Weapon"
+script = ExtResource("49_fclsk")
+
+[node name="Equip" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" node_paths=PackedStringArray("Buttons")]
+visible = false
+layout_mode = 2
+alignment = 1
+script = ExtResource("48_cq2x1")
+Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3"), NodePath("RichTextLabel5")]
+ItemType = 1
+items = []
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("45_b1lfr")
+List = NodePath("..")
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item1"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Item2"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item3
+"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item4"
+script = ExtResource("49_fclsk")
+
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" node_paths=PackedStringArray("List")]
+layout_mode = 2
+script = ExtResource("45_b1lfr")
+startEnd = 1
+List = NodePath("..")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats"]
+visible = false
+layout_mode = 0
+offset_left = 330.0
+offset_top = 159.0
+offset_right = 487.0
+offset_bottom = 295.0
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Equip1"
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Equip2
+"
+
+[node name="RichTextLabel6" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Equip3
+"
+
+[node name="RichTextLabel7" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Equip4"
+
+[node name="Items" type="Control" parent="CanvasLayer/Node2D" node_paths=PackedStringArray("ItemTypes", "ChoiceForItem", "ItemList", "CharacterSelect", "TossItem", "ItemTitle", "ItemDesc")]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 2.0
+offset_right = 313.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(20, 20)
+script = ExtResource("44_yxmx7")
+ItemTypes = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer")
+ChoiceForItem = NodePath("VBoxContainer3")
+ItemList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer3")
+CharacterSelect = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2")
+TossItem = NodePath("VBoxContainer4")
+ItemTitle = NodePath("VBoxContainer/VBoxContainer/RichTextLabel")
+ItemDesc = NodePath("VBoxContainer/VBoxContainer/RichTextLabel2")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Items"]
+visible = false
+layout_mode = 2
+offset_left = 193.0
+offset_top = 184.0
+offset_right = 350.0
+offset_bottom = 250.0
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Use
+"
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Toss
+"
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items" node_paths=PackedStringArray("Screen", "Amount")]
+visible = false
+layout_mode = 2
+offset_left = 193.0
+offset_top = 272.0
+offset_right = 350.0
+offset_bottom = 338.0
+alignment = 1
+script = ExtResource("50_v4jin")
+Screen = NodePath("..")
+Amount = NodePath("RichTextLabel2")
+
+[node name="RichTextLabel" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer4" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+startEnd = 1
+List = NodePath("..")
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer4"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "0"
+
+[node name="RichTextLabel3" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer4" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+List = NodePath("..")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items"]
+layout_mode = 0
+offset_top = 66.0
+offset_right = 142.0
+offset_bottom = 320.0
+theme_override_constants/separation = 64
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Name[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]Desc[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 16
+alignment = 1
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2" node_paths=PackedStringArray("Buttons")]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+script = ExtResource("49_v54bg")
+Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3")]
+FocusOff = Color(1, 1, 1, 1)
+FocusOn = Color(0.847059, 0, 0, 1)
+
+[node name="RichTextLabel" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_gqqbf")
+
+[node name="RichTextLabel2" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+script = ExtResource("45_gqqbf")
+
+[node name="RichTextLabel3" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_gqqbf")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+theme_override_constants/separation = 8
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Items
+"
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Equip"
+
+[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Key
+"
+
+[node name="HBoxContainer3" type="Control" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2" node_paths=PackedStringArray("Buttons")]
+layout_mode = 2
+script = ExtResource("48_8uklt")
+Buttons = [NodePath("VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer3/RichTextLabel"), NodePath("VBoxContainer3/RichTextLabel2"), NodePath("VBoxContainer3/RichTextLabel3"), NodePath("VBoxContainer3/RichTextLabel5")]
+items = []
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+offset_left = 7.0
+offset_right = 60.0
+offset_bottom = 136.0
+focus_neighbor_left = NodePath("../VBoxContainer")
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item1"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Item2"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item3
+"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item4"
+script = ExtResource("49_fclsk")
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 2
+offset_left = 96.0
+offset_right = 149.0
+offset_bottom = 136.0
+focus_neighbor_right = NodePath("../VBoxContainer4")
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item1"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = "Item2"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item3
+"
+script = ExtResource("49_fclsk")
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Item4"
+script = ExtResource("49_fclsk")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 0
+offset_left = -35.0
+offset_right = 5.0
+offset_bottom = 40.0
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+List = NodePath("../..")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
+layout_mode = 0
+offset_left = 155.0
+offset_top = 109.0
+offset_right = 195.0
+offset_bottom = 149.0
+
+[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer4" node_paths=PackedStringArray("List")]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+script = ExtResource("45_b1lfr")
+startEnd = 1
+List = NodePath("../..")
+
+[node name="Saves" type="Control" parent="CanvasLayer/Node2D" node_paths=PackedStringArray("SavesList", "ChooseAction", "ConfirmAction")]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 20.0
+offset_right = 313.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("53_hb5i3")
+SavesList = NodePath("SaveScrolls")
+ChooseAction = NodePath("ChooseAction")
+ConfirmAction = NodePath("Confirm")
+
+[node name="SaveScrolls" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" node_paths=PackedStringArray("Buttons")]
+layout_mode = 0
+offset_right = 100.0
+offset_bottom = 206.0
+theme_override_constants/separation = 10
+script = ExtResource("54_m2lkd")
+Buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4"), NodePath("Button5"), NodePath("Button6")]
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="Button3" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="Button4" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="Button5" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="Button6" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls"]
+layout_mode = 2
+text = "Save1"
+script = ExtResource("55_x45r2")
+
+[node name="ChooseAction" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves"]
+visible = false
+layout_mode = 0
+offset_left = 190.0
+offset_top = 50.0
+offset_right = 347.0
+offset_bottom = 151.0
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Save
+"
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Load
+"
+
+[node name="RichTextLabel6" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Delete"
+
+[node name="Confirm" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves"]
+visible = false
+layout_mode = 0
+offset_left = 190.0
+offset_top = 50.0
+offset_right = 347.0
+offset_bottom = 151.0
+alignment = 1
+
+[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Saves/Confirm"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "Yes"
+
+[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Saves/Confirm"]
+layout_mode = 2
+action_mode = 0
+button_mask = 0
+text = "No"

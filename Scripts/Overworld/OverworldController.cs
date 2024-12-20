@@ -55,13 +55,19 @@ public partial class OverworldController : Node2D
         if(Controllable){
 			if(Leader){
 				if(Input.IsActionJustPressed("Confirm")){
-							if(Interactable!=null){		
-								Axis=Vector2.Zero;
-								AnimatorTree.Set("parameters/conditions/Idle",true);
-								AnimatorTree.Set("parameters/conditions/Walking",false);
-								Interactable.interact(this);
-							}
-						}}}
+					if(Interactable!=null){		
+						Axis=Vector2.Zero;
+						AnimatorTree.Set("parameters/conditions/Idle",true);
+						AnimatorTree.Set("parameters/conditions/Walking",false);
+						Interactable.interact(this);
+					}
+				}
+				if(Input.IsActionJustPressed("Menu")){
+					MainMenu.Instance.OpenCloseMenu(true);
+					SetControllable(false);
+				}
+			}
+		}
     }
     public override void _Process(double delta)
     {
@@ -237,7 +243,18 @@ public partial class OverworldController : Node2D
 	}
 
 	public void EnterExitDialogue(bool Enter){
-		OverworldCollider.Disabled = Enter;
-		Controllable = !Enter;
+
+		SetControllable(!Enter);
+	}
+
+	public void SetControllable(bool control){
+		Debug.WriteLine("ControllableChangegd: "+control);
+		Controllable = control;
+		OverworldCollider.Disabled = !control;
+		if(!control){
+			Axis=Vector2.Zero;
+			AnimatorTree.Set("parameters/conditions/Idle",true);
+			AnimatorTree.Set("parameters/conditions/Walking",false);
+		}
 	}
 }

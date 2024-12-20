@@ -17,7 +17,7 @@ ResourceScriptDirectories=["res://"]
 [application]
 
 config/name="Godot"
-run/main_scene="res://Scenes/Sea/Maps/Map 1.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -51,18 +51,24 @@ variables={}
 translation/enabled=true
 translation/original_locale="en"
 translation/file_mode=1
-translation/translation_folder=""
+translation/translation_folder="res://Dialogues/Español"
 choices/def_false_behaviour=0
 text/autocolor_names=true
 text/autoadvance_fixed_delay=1.0
 text/input_action="Confirm"
-directories/dch_directory={}
+directories/dch_directory={
+"MC": "res://DialogicCharacters/MC.dch"
+}
 directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
 "Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"IntroCutscene": "res://Dialogues/Scene Dialogue/IntroCutscene.dtl",
 "Item1": "res://Dialogues/Item Obtained/Water/Item1.dtl",
 "MoveBattleTest": "res://Dialogues/MoveBattleTest.dtl",
 "NPC1": "res://Dialogues/NPC Dialogue/Water/NPC1.dtl",
+"OrderPuzzleHint": "res://Dialogues/NPC Dialogue/Water/OrderPuzzleHint.dtl",
+"PuzzleComplete": "res://Dialogues/PuzzleComplete.dtl",
+"SwitchHint": "res://Dialogues/NPC Dialogue/Water/SwitchHint.dtl",
 "Test": "res://Dialogues/Test.dtl",
 "bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl"
 }
@@ -70,13 +76,31 @@ text/autoadvance_per_word_delay=0
 layout/end_behaviour=0
 timer/process_in_physics=true
 translation/save_mode=0
-translation/add_separator=false
+translation/add_separator=true
 choices/hotkey_behaviour=0
 text/split_at_new_lines=false
+translation/id_counter=16
+translation/locales=[]
+save/autosave=false
+layout/style_list=["res://DialogicStyles/Basse.tres"]
+layout/default_style="res://DialogicStyles/Basse.tres"
+
+[display]
+
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/size/resizable=false
+window/stretch/mode="viewport"
+window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 
 [dotnet]
 
 project/assembly_name="Godot"
+
+[editor]
+
+export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
@@ -90,7 +114,6 @@ ui_accept={
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":4194310,"physical_keycode":0,"key_label":0,"unicode":0,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":32,"physical_keycode":0,"key_label":0,"unicode":32,"echo":false,"script":null)
 , Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":90,"key_label":0,"unicode":122,"echo":false,"script":null)
-, Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
 ]
 }
 MoveUp={
@@ -121,6 +144,11 @@ Confirm={
 Deny={
 "deadzone": 0.5,
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":88,"key_label":0,"unicode":120,"echo":false,"script":null)
+]
+}
+Menu={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"echo":false,"script":null)
 ]
 }
 Move={
@@ -155,6 +183,7 @@ SelectedKey0={
 
 [internationalization]
 
+locale/test="es"
 save_mode=0
 
 [rendering]

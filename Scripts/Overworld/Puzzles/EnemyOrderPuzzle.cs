@@ -19,6 +19,8 @@ public partial class EnemyOrderPuzzle: Node
             NextEnemy++;
             if(EnemiesBeaten.Count == TotalEnemies){
                 GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex]=true;
+                        DialogicCSharp Dialog=DialogicCSharp.instance;
+                        Dialog.StartDialogue("PuzzleComplete",true,false);
             }
         }
         else{

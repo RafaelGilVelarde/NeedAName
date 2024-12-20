@@ -32,14 +32,47 @@ public partial class BattleScene : Resource
 
     }
     public virtual void BattleEnd(){
-        BattleManager.instance.ReturnToOverworld();
+        BattleState State=Battle.State;
+        switch (State){
+            case BattleState.Win:
+                BattleManager.instance.ReturnToOverworld();
+            break;
+            case BattleState.Lose:
+                BattleManager.instance.OpenLossScreen();
+                                for(int i=0;i<Battle.Party.Count;i++){
+                    //Battle.Party[i].Character.stats.HP=Battle.Party[i].Character.TotalStats.MaxHP;
+                    Battle.Party[i].Character.status=Character.Status.Normal;
+                    Battle.Party[i].TurnOffBattle();
+
+                }
+                /*if(Battle.EnemyParty.Count>1){
+                    Battle.EnemyParty[0].Reset();
+                    for(int i=1;i<Battle.EnemyParty.Count;i++){
+                        Tween End=Battle.CreateTween();
+                        CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
+                        End.TweenProperty(Enemy,"modulate:a",0,0.5f);
+                        End.Finished+=Enemy.QueueFree;
+                        End.Finished+=End.Kill;
+                    }
+                }*/
+                for(int i=0;i<Battle.EnemyParty.Count;i++){
+                    Battle.EnemyParty[i].Character.stats.HP=Battle.EnemyParty[i].Character.TotalStats.MaxHP;
+                    Battle.EnemyParty[i].Character.status=Character.Status.Normal;
+                    Battle.EnemyParty[i].TurnOffBattle();
+                }
+            break;
+            case BattleState.Run:
+                BattleManager.instance.ReturnToOverworld();
+            break;
+        }
+
     }
     public virtual void ReturnToOverworld(){
         BattleManager Battle=BattleManager.instance;
         BattleState State=Battle.State;
         for(int i=0;i<Battle.EnemyParty.Count;i++){
             BattleCharacter Enemy=Battle.EnemyParty[i];
-            Enemy.Character.stats.HP=Enemy.Character.stats.MaxHP;
+            Enemy.Character.stats.HP=Enemy.Character.TotalStats.MaxHP;
             Enemy.Character.status=Character.Status.Normal;
         }
         switch (State){
@@ -48,44 +81,38 @@ public partial class BattleScene : Resource
                 for(int i=0;i<Battle.Party.Count;i++){
                     Battle.Party[i].Character.status=Character.Status.Normal;
                     Battle.Party[i].Reset();
+                    Battle.Party[i].OriginPos=Vector2.Zero;
+			        Battle.Party[i].ReturnToOverworld();
                 }
                 for(int i=0;i<Battle.EnemyParty.Count;i++){
+                    /*Battle.EnemyParty[i].OriginPos=Vector2.Zero;
+			        Battle.EnemyParty[i].ReturnToOverworld();*/
                     CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
-                    Tween End=Enemy.CreateTween();
+                    Tween End=Battle.CreateTween();
                     End.TweenProperty(Enemy,"modulate:a",0,0.5f);
                     End.Finished+=Enemy.QueueFree;
                     End.Finished+=End.Kill;
                 }
             break;
             case BattleState.Lose:
-                for(int i=0;i<Battle.Party.Count;i++){
-                    Battle.Party[i].Character.stats.HP=Battle.Party[i].Character.stats.MaxHP;
-                    Battle.Party[i].Character.status=Character.Status.Normal;
-                    Battle.Party[i].Reset();
 
-                }
-                if(Battle.EnemyParty.Count>1){
-                    Battle.EnemyParty[0].Reset();
-                    for(int i=1;i<Battle.EnemyParty.Count;i++){
-                        Tween End=Battle.EnemyParty[i].CreateTween();
-                        CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
-                        End.TweenProperty(Enemy,"modulate:a",0,0.5f);
-                        End.Finished+=Enemy.QueueFree;
-                        End.Finished+=End.Kill;
-                    }
-                }
             break;
             case BattleState.Run:
                 for(int i=0;i<Battle.Party.Count;i++){
                     Battle.Party[i].Character.status=Character.Status.Normal;
                     Battle.Party[i].Reset();
+                    Battle.Party[i].OriginPos=Vector2.Zero;
+			        Battle.Party[i].ReturnToOverworld();
                 }
+                Battle.EnemyParty[0].Reset();
+                Battle.EnemyParty[0].OriginPos=Vector2.Zero;
+			    Battle.EnemyParty[0].ReturnToOverworld();
                 if(Battle.EnemyParty.Count>1){
-                    Battle.EnemyParty[0].Reset();
                     for(int i=1;i<Battle.EnemyParty.Count;i++){
-                        Tween End=Battle.EnemyParty[i].CreateTween();
+                        Tween End=Battle.CreateTween();
                         CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
                         End.TweenProperty(Enemy,"modulate:a",0,0.5f);
+                        //End.Play();
                         End.Finished+=Enemy.QueueFree;
                         End.Finished+=End.Kill;
                     }

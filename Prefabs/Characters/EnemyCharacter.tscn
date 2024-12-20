@@ -1,4 +1,4 @@
-[gd_scene load_steps=66 format=3 uid="uid://bwechl06etngi"]
+[gd_scene load_steps=68 format=3 uid="uid://bwechl06etngi"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="1_d5p4d"]
 [ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="3_7at5k"]
@@ -73,6 +73,7 @@ script = ExtResource("4_7sqs1")
 [sub_resource type="Resource" id="Resource_2lpbm"]
 resource_local_to_scene = true
 script = ExtResource("4_1bhow")
+Lv = 0
 MaxHP = 2
 HP = 2
 Atk = 2
@@ -84,6 +85,7 @@ Speed = 2
 [sub_resource type="Resource" id="Resource_bvhfa"]
 resource_local_to_scene = true
 script = ExtResource("15_sd2km")
+ExpYield = 0.0
 BaseStats = SubResource("Resource_2lpbm")
 Name = "dfbv"
 OverworldAnimator = ExtResource("10_ih616")
@@ -110,6 +112,7 @@ Base = SubResource("Resource_44g3j")
 
 [sub_resource type="Resource" id="Resource_0t4aj"]
 script = ExtResource("4_1bhow")
+Lv = 0
 MaxHP = 10
 HP = 10
 Atk = 1
@@ -127,10 +130,12 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0t4aj")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="Resource" id="Resource_qlj5e"]
 script = ExtResource("4_1bhow")
+Lv = 0
 MaxHP = 5
 HP = 5
 Atk = 5
@@ -141,6 +146,7 @@ Speed = 5
 
 [sub_resource type="Resource" id="Resource_m1uvd"]
 script = ExtResource("15_sd2km")
+ExpYield = 0.0
 BaseStats = SubResource("Resource_qlj5e")
 Name = "mmm"
 OverworldAnimator = ExtResource("20_l6eef")
@@ -166,6 +172,7 @@ Base = SubResource("Resource_woo47")
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("4_1bhow")
+Lv = 0
 MaxHP = 20
 HP = 20
 Atk = 2
@@ -184,6 +191,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hcbx"]
@@ -271,6 +279,11 @@ max_value = 200.0
 _data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tosun"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+
 [node name="Character" type="CharacterBody2D" groups=["EnemyOverworldController"]]
 y_sort_enabled = true
 
@@ -281,18 +294,29 @@ shape = SubResource("RectangleShape2D_5yups")
 script = ExtResource("1_d5p4d")
 enemyCollision = NodePath("Area2D")
 movementController = SubResource("Resource_3r5w5")
+CachedTargetPosition = null
+RandMin = null
+RandMax = null
 state = 1
 IdleTargets = []
+CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
+DirectionIndex = null
 Speed = 25.0
 Friction = 1000.0
 MaxSpeed = 50.0
+Axis = null
+AxisAux = null
+Controllable = null
+Coords = null
+tileTypes = null
 TileOffset = Vector2(9, 9)
 Parent = NodePath("..")
 BattleCharacter = NodePath("../BattleCharacter")
 OverworldCollider = NodePath("../CollisionShape2D")
+AxisOffset = null
 
 [node name="MainSprite" type="Sprite2D" parent="OverworldController"]
 texture_filter = 1
@@ -327,7 +351,7 @@ CharacterPrefab = 1
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 100)])
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
 process_mode = 4
 visible = false
 script = ExtResource("3_xeb2i")
@@ -335,12 +359,20 @@ Character = SubResource("Resource_p2e0b")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
+Controllable = null
 Overworld = NodePath("../OverworldController")
+OriginPos = null
 MultiplierAtk = Array[float]([1.0])
 MultiplierDef = Array[float]([1.0])
 MultiplierSpAtk = Array[float]([1.0])
 MultiplierSpDef = Array[float]([1.0])
 MultiplierSpeed = Array[float]([1.0])
+Combo = null
+HoldingMoveTimer = null
+HoldingMove = null
+UsedComboMove = null
+BlockedEnemy = null
+Looping = null
 TimerAtk = Array[int]([1])
 TimerDef = Array[int]([1])
 TimerSpAtk = Array[int]([1])
@@ -349,12 +381,15 @@ TimerSpeed = Array[int]([1])
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
+DodgeDir = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
+SelectKey = null
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
+HPBar = NodePath("HPBar")
 battleState = 3
 actionState = 5
 
@@ -472,3 +507,35 @@ anim_speed_curve = SubResource("Curve_s3x72")
 anim_offset_max = 0.9809
 
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
+
+[node name="HPBar" type="ProgressBar" parent="BattleCharacter"]
+modulate = Color(1, 1, 1, 0)
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -52.0
+offset_right = 15.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_86cc5")
+theme_override_styles/fill = SubResource("StyleBoxFlat_tosun")
+max_value = 50.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar"]
+offset_left = -3.0
+offset_top = -13.0
+offset_right = 177.0
+offset_bottom = 77.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]50/50[/center]"
+scroll_active = false

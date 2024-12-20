@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class StuffList : VBoxContainer
+public partial class StuffList : Control
 {
     public int pointerStart,pointerEnd,activeButtons;
     public BattleCharacter character;

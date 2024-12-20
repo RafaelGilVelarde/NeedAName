@@ -16,12 +16,13 @@ public partial class ItemList : StuffList
 	}
 	public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
     {
+		Array<Items> items = GameManager.Instance.Data.items[0].items;
 		pointerStart=Start;
-		if(pointerStart>=0 &&pointerStart+Buttons.Count<character.Character.items.Count){
+		if(pointerStart>=0 &&pointerStart+Buttons.Count<items.Count){
 			for(int i=0;i<Buttons.Count;i++){
-				if(i+Start<character.Character.items.Count){
-					if(character.Character.items[i+Start].Base.type==ItemBase.Type.Consumable){
-						Buttons[i].item= (Consumables)character.Character.items[i+Start];
+				if(i+Start<items.Count){
+					if(items[i+Start].Base.type==ItemBase.Type.Consumable){
+						Buttons[i].item= (Consumables)items[i+Start];
 						Buttons[i].Show();
 						activeButtons++;
 						if(StartEnd==ScrollList.StartEnd.End){
@@ -38,7 +39,7 @@ public partial class ItemList : StuffList
 				if(pointerStart<0){
 			pointerStart=0;
 		}
-		if(pointerStart+activeButtons>character.Character.items.Count){
+		if(pointerStart+activeButtons>items.Count){
 			pointerStart-=1;
 			Buttons[activeButtons-1].GrabFocus();
 		}

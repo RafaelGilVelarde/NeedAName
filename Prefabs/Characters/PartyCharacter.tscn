@@ -1,4 +1,4 @@
-[gd_scene load_steps=164 format=3 uid="uid://ci40agixb3xuc"]
+[gd_scene load_steps=166 format=3 uid="uid://ci40agixb3xuc"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/OverworldController.cs" id="1_xup3b"]
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_kj4rx"]
@@ -1755,6 +1755,11 @@ states/WaterFight_StartBattle/position = Vector2(878, 10.8326)
 transitions = ["ActionState", "WaterFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp"), "Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd")]
 graph_offset = Vector2(0, -54.1674)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw5lv"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6q52"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+
 [node name="Character" type="CharacterBody2D" groups=["PlayerOverworldController"]]
 y_sort_enabled = true
 
@@ -1805,7 +1810,7 @@ shape = SubResource("RectangleShape2D_dwf8m")
 
 [node name="TileCollider" type="Node2D" parent="OverworldController"]
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
@@ -1833,6 +1838,7 @@ SelectKey = 90
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
+HPBar = NodePath("HPBar")
 battleState = 3
 actionState = 5
 
@@ -2135,5 +2141,37 @@ tree_root = SubResource("AnimationNodeStateMachine_ah3ft")
 parameters/ActionState/blend_position = 3.43571
 
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
+
+[node name="HPBar" type="ProgressBar" parent="BattleCharacter"]
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -52.0
+offset_right = 15.0
+offset_bottom = -47.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 1
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_lw5lv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f6q52")
+max_value = 50.0
+show_percentage = false
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = -13.0
+offset_right = 177.0
+offset_bottom = 77.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]50[/center]"
+scroll_active = false
 
 [editable path="BattleCharacter/AnimationPlayer"]

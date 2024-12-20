@@ -14,9 +14,13 @@ public enum BattleState{
 public partial class BattleManager : Node
 {
 	[Export] public BattleScene Scene;
+	[Export] BattleStart battleStart;
+	[Export] public TypedItemList AuxItems;
+
 	[Export] public BattleState State;
 	[Export] Camera2D BattleCamera;
 	[Export] public Control TutorialLabels;
+	[Export] public LossScreen Loss;
 	public Array<BattleCharacter> Party=new Array<BattleCharacter>(), EnemyParty=new Array<BattleCharacter>(),TurnOrder=new Array<BattleCharacter>();
 	public Array<BattleCharacter> UserCharacters=new Array<BattleCharacter>(),TargetCharacters=new Array<BattleCharacter>();
 	[Export] Node CharacterButtonParent;
@@ -37,10 +41,14 @@ public partial class BattleManager : Node
 	[Export]double PositionMoveSpeed;
 	[Export]public ItemList itemList;
 	[Export]public MoveList moveList;
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    // Called when the node enters the scene tree for the first time.
+    public override void _EnterTree()
+    {
+        base._EnterTree();
+		instance=this; 
+    }
+    public override void _Ready()
 	{
-		instance=this;
 		//GameManager.Instance.SetBattleCamera(BattleCamera);
 	}
 
@@ -48,7 +56,9 @@ public partial class BattleManager : Node
 	public override void _Process(double delta)
 	{
 	}
-	public void StartBattle(BattleScene scene,Array<BattleCharacter> party, Array<BattleCharacter> enemy, Array<Vector2>PartyPos, Array<Vector2> EnemyPos, Vector2 centerViewCam, Vector2 centerViewChar){
+	public void StartBattle(BattleScene scene,Array<BattleCharacter> party, Array<BattleCharacter> enemy, Array<Vector2>PartyPos, Array<Vector2> EnemyPos, Vector2 centerViewCam, Vector2 centerViewChar, BattleStart start){
+		AuxItems = (TypedItemList)GameManager.Instance.Data.items[0].Duplicate();
+		battleStart = start;
 		BattleEnded=false;
 		CenterView=centerViewChar;
 		/*BattleCamera.Position=centerViewCam;
@@ -102,7 +112,7 @@ public partial class BattleManager : Node
 
 		for(int i=0;i<TurnOrder.Count;i++){
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
-				TurnOrder[i].Character.Equipment[j].Base.TurnStartEffect(TurnOrder[i]);
+				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
 		}
 		scene.StartBattleEffect();
@@ -118,22 +128,48 @@ public partial class BattleManager : Node
 
 		for(int i=0;i<Party.Count;i++){
 			Node2D Parent=Party[i].GetParent<Node2D>();
+			ProgressBar HPBar = Party[i].HPBar;
+			/*float AuxCenterView = (CenterView.X-partyPos[i].X)/Mathf.Abs(CenterView.X-partyPos[i].X);
+			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);*/
 			float aux=(CenterView-partyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
+			//float aux=AuxCenterView/AuxScale;
 			if(aux<0){
+				//Debug.WriteLine("Flipped: "+AuxCenterView+","+AuxScale);
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
 			}
+			if(Parent.Rotation!=0){
+				HPBar.Rotation=Parent.GlobalRotation;
+				HPBar.Scale=Parent.GlobalScale;
+			}
+			else{
+				HPBar.Rotation = 0;
+				HPBar.Scale = new Vector2(1,1);
+			}
 			MoveCharacters(tween,Party[i],partyPos[i],(float)PositionMoveSpeed);
-			//tween.TweenProperty(Party[i].GetParent(),"position",partyPos[i],PositionMoveSpeed);
 		}
+
 		for(int i=0;i<EnemyParty.Count;i++){
 			Node2D Parent=EnemyParty[i].GetParent<Node2D>();
-			float aux=(CenterView-enemyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
+			ProgressBar HPBar = EnemyParty[i].HPBar;
+			//float aux=(CenterView-enemyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
+			float AuxCenterView = (CenterView.X-enemyPos[i].X)/Mathf.Abs(CenterView.X-enemyPos[i].X);
+			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
+			float aux=AuxCenterView/AuxScale;
 			if(aux<0){
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
+				HPBar.Rotation=Parent.Rotation;
+				HPBar.Scale=Parent.Scale;
 				}
-			//tween.TweenProperty(EnemyParty[i].GetParent(),"position",enemyPos[i],PositionMoveSpeed);
+			if(Parent.Rotation!=0){
+				HPBar.Rotation=Parent.GlobalRotation;
+				HPBar.Scale=Parent.GlobalScale;
+			}
+			else{
+				HPBar.Rotation = 0;
+				HPBar.Scale = new Vector2(1,1);
+			}
 			MoveCharacters(tween,EnemyParty[i],enemyPos[i],(float)PositionMoveSpeed);
 		}
 
@@ -152,7 +188,7 @@ public partial class BattleManager : Node
 		CurrentCharacter=TurnOrder[0];
 		for(int i=0;i<TurnOrder.Count;i++){
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
-				TurnOrder[i].Character.Equipment[j].Base.TurnStartEffect(TurnOrder[i]);
+				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
 		}
 		StartTurn(true);
@@ -161,6 +197,9 @@ public partial class BattleManager : Node
 	public void StartTurn(bool first){
 		Scene.StartTurnEffect(first);
 		if(CanStartTurn){
+			for (int i = 0;i<Party.Count;i++){
+				Party[i].ShowChangeHPBar(Party[i].Character.stats.HP);
+			}
 			UserCharacters.Add(CurrentCharacter);
 			CurrentCharacter.StartChoosingMove();
 		}
@@ -190,10 +229,10 @@ public partial class BattleManager : Node
 	public void EndTurn(){
 		TargetCharacters.Clear();
 		UserCharacters.Clear();
-		ChangeTutorialLabel(0,true);
+		ChangeTutorialLabel(0,true, TurnOrder[0].Character);
 		if(!BattleEnded){
 				CurrentTurn++;
-			if(CurrentTurn==TurnOrder.Count){
+			if(CurrentTurn==TurnOrder.Count || CurrentTurn ==0){
 			Debug.WriteLine("EndRound \n");
 				EndRound();
 			}
@@ -218,7 +257,7 @@ public partial class BattleManager : Node
 		for(int i=0;i<TurnOrder.Count;i++){
 			TurnOrder[i].ReduceMultiplyTimer();
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
-				TurnOrder[i].Character.Equipment[j].Base.TurnEndEffect(TurnOrder[i]);
+				TurnOrder[i].Character?.Equipment[j]?.TurnEndEffect(TurnOrder[i]);
 			}
 		}
 		OrderTurns();
@@ -246,10 +285,14 @@ public partial class BattleManager : Node
 		for(int i=0;i<Party.Count;i++){
 			MoveCharacters(tween,Party[i],EndPosition,(float)PositionMoveSpeed);				
 			Party[i].AnimatorTree.Set("parameters/conditions/Ended",true);
+			Party[i].HideChangeHPBar();
 		}
+		for(int i=0;i<EnemyParty.Count;i++){
+			EnemyParty[i].HideChangeHPBar();
+		}		
 		if(EnemyParty[0].Character.status!=Character.Status.KO){
 			//MoveCharacters(tween,EnemyParty[0],EnemyEndPosition,(float)PositionMoveSpeed);				
-			EnemyParty[0].AnimatorTree.Set("parameters/conditions/Ended",true);	
+			EnemyParty[0].AnimatorTree.Set("parameters/conditions/Ended",true);
 		}
 		GameManager.Instance.ChangeCam(Vector2.Zero,false,(float)PositionMoveSpeed);
 		tween.TweenInterval(0.5);
@@ -258,6 +301,7 @@ public partial class BattleManager : Node
 		tween.Finished+=tween.Kill;
 	}
 	public void Clear(){
+		AuxItems = null;
 		for(int i=0;i<CharacterButtonParent.GetChildCount();i++){
 			CharacterButtonParent.GetChild(i).QueueFree();
 		}
@@ -273,15 +317,15 @@ public partial class BattleManager : Node
 		AliveEnemy=0;
 		CurrentTurn=-1;
 		AliveParty=0;
-		for(int i=0;i<Party.Count;i++){
+		/*for(int i=0;i<Party.Count;i++){
 			Party[i].OriginPos=Vector2.Zero;
-			Party[i].TurnOffBattle();
+			Party[i].ReturnToOverworld();
 		}
-		for(int i=0;i<Party.Count;i++){
+		for(int i=0;i<EnemyParty.Count;i++){
 			EnemyParty[i].OriginPos=Vector2.Zero;
-			EnemyParty[i].TurnOffBattle();
-		}
-		Scene.ReturnToOverworld();
+			EnemyParty[i].ReturnToOverworld();
+		}*/
+		Scene?.ReturnToOverworld();
 
 		State=BattleState.Neutral;
 		Party.Clear();
@@ -304,12 +348,50 @@ public partial class BattleManager : Node
 	public void OpenDialogue(){
 
 	}
-	public void ChangeTutorialLabel(int Label, bool All){
+	public void ChangeTutorialLabel(int Label, bool All, Character character){
 		for(int i=0;i<TutorialLabels.GetChildCount();i++){
 			TutorialLabels.GetChild<RichTextLabel>(i).Visible=false;
 		}
 		if(!All){
-			BattleManager.instance.TutorialLabels.GetChild<RichTextLabel>(Label).Visible=true;
+			RichTextLabel CurrentLabel = TutorialLabels.GetChild<RichTextLabel>(Label);
+			CurrentLabel.Visible=true;
+			switch (Label){
+				case 0:
+					CurrentLabel.Text = $"Attack: {character.Key}";
+				break;
+				case 1:
+					CurrentLabel.Text = $"Block: {character.Key}";
+				break;
+				case 2:
+					CurrentLabel.Text = $"Dodge: Arrows + {character.Key}";
+				break;
+			}
 		}
+	}
+	public void OpenLossScreen(){
+		Loss.OpenScreen();
+	}
+	public void RetryBattle(){
+		GameManager.Instance.Data.items[0] = AuxItems;
+		State=BattleState.Neutral;
+		AliveEnemy=EnemyParty.Count;
+		BattleEnded = false;
+		CurrentTurn=-1;
+		CurrentRound=1;
+		AliveParty=Party.Count;
+		TurnOrder.Clear();
+		for(int i = 0;i<Party.Count;i++){
+			Party[i].TurnOnBattle();
+			Party[i].Reset();
+			TurnOrder.Add(Party[i]);
+		}
+		for(int i = 0;i<EnemyParty.Count;i++){
+			EnemyParty[i].TurnOnBattle();
+			Party[i].Reset();
+			TurnOrder.Add(EnemyParty[i]);
+		}
+		ResetPositions();
+		//Clear();
+		//battleStart.StartBattle();
 	}
 }

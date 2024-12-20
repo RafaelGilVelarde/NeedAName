@@ -1,16 +1,18 @@
-[gd_scene load_steps=17 format=3 uid="uid://cidpvaj35nwkm"]
+[gd_scene load_steps=20 format=3 uid="uid://cidpvaj35nwkm"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_7pk85"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_aqvd6"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_leos1"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_3yxba"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_vs0m1"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="5_a4cwd"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_5pxjj"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemCheckInteract.cs" id="7_y5qg3"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/ConsumableBase.cs" id="8_75uke"]
-[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="9_sptde"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="9_okban"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="10_22t73"]
 [ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="10_gfqhf"]
 [ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="11_1ia12"]
+[ext_resource type="Script" path="res://Scripts/Items/Equipment.cs" id="11_6rvsl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd6xa"]
 resource_local_to_scene = true
@@ -22,18 +24,34 @@ size = Vector2(128, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
 
-[sub_resource type="Resource" id="Resource_0dale"]
-script = ExtResource("8_75uke")
-ID = 2
-Name = "bbb"
-Description = "jihu"
-type = 0
+[sub_resource type="Resource" id="Resource_aijb6"]
+script = ExtResource("10_22t73")
+Lv = 0
+MaxHP = 1
+HP = 3
+Atk = 5
+Def = 2
+SpAtk = 1
+SpDef = 3
+Speed = 6
 
-[sub_resource type="Resource" id="Resource_hfvuh"]
-script = ExtResource("9_sptde")
-Base = SubResource("Resource_0dale")
+[sub_resource type="Resource" id="Resource_x20cs"]
+script = ExtResource("9_okban")
+EquipType = 0
+stats = SubResource("Resource_aijb6")
+StatChange = 2
+ID = 0
+Name = "adcv"
+Description = "fdbxvcvxbcv"
+type = 1
+
+[sub_resource type="Resource" id="Resource_gnh4x"]
+script = ExtResource("11_6rvsl")
+Base = SubResource("Resource_x20cs")
+Amount = 1
 
 [node name="Map5" type="Node2D"]
+script = ExtResource("1_aqvd6")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_7pk85")
@@ -98,8 +116,11 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 shape = SubResource("RectangleShape2D_e7ixu")
 script = ExtResource("7_y5qg3")
 TakeItems = true
+ItemType = 2
+GameID = 1
 ItemID = Array[int]([0])
-ItemsToGive = Array[Object]([SubResource("Resource_hfvuh")])
+ItemsToGive = Array[Object]([SubResource("Resource_gnh4x")])
+ItemType = 2
 Timelines = Array[String](["NPC1", "Test", "Item1", "NPC1"])
 PauseWhenDialogue = true
 Turn = true
@@ -109,7 +130,7 @@ texture_filter = 1
 texture = ExtResource("10_gfqhf")
 hframes = 4
 vframes = 3
-frame = 11
+frame = 8
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

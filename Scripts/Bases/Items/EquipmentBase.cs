@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 public enum EquipmentType{
     Head,
@@ -20,8 +21,8 @@ public enum StatIncrease{
 
 public partial class EquipmentBase : ItemBase
 {
-    [Export] public EquipmentType Type;
-    [Export] public Array<StatIncrease> Stat;
+    [Export] public EquipmentType EquipType;
+    [Export] public Stats stats = new Stats();
     [Export] public PackedScene Animator;
     
     [Export] int StatChange;
@@ -42,5 +43,27 @@ public partial class EquipmentBase : ItemBase
     }
     public virtual void GetHitEffect(BattleCharacter Character,MoveBase Move){
         
+    }
+    public override void Effect(Array<Character> Targets)
+    {
+        base.Effect(Targets);
+        Stats Aux = Targets[0].EquipStats;
+        Aux.MaxHP += stats.MaxHP;
+        Aux.Atk += stats.Atk;
+        Aux.Def += stats.Def;
+        Aux.SpAtk += stats.SpAtk;
+        Aux.SpDef += stats.SpDef;
+        Aux.Speed += stats.Speed;
+        Debug.WriteLine("Atk: "+Targets[0].EquipStats.Atk);
+    }
+
+    public virtual void UnEquipEffect(Character character){
+        Stats Aux = character.EquipStats;
+        Aux.MaxHP -= stats.MaxHP;
+        Aux.Atk -= stats.Atk;
+        Aux.Def -= stats.Def;
+        Aux.SpAtk -= stats.SpAtk;
+        Aux.SpDef -= stats.SpDef;
+        Aux.Speed -= stats.Speed;
     }
 }

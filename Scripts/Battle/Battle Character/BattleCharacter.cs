@@ -32,6 +32,8 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
 	[Export] public Node2D ShootNode;
+	[Export] public ProgressBar HPBar;
+	[Export] RichTextLabel HPText;
 
 	[Signal]
 	public delegate void _ReturnToIdleEventHandler(BattleCharacter character);
@@ -61,7 +63,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export]public ActionState actionState;
 	public override void _Ready()
 	{
-
+		HPText = HPBar.GetChild<RichTextLabel>(0);
 	}
 	public override void _Process(double delta)
 	{
@@ -99,7 +101,6 @@ public partial class BattleCharacter : CharacterBody2D
 						}
 					break;
 				}
-			Debug.WriteLine(actionState);
 			}
 			/*if(actionState==ActionState.isDodging&&Axis!=Godot.Vector2.Zero){
 				Position = new Godot.Vector2(Position.X,Position.Y).MoveToward(OriginPos+DodgeDir*3, 250);
@@ -119,7 +120,7 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public void changeState(BattleState state){
 		if(Character.isControlledByPlayer && (int)state<3){
-			BattleManager.instance.ChangeTutorialLabel((int)state,false);
+			BattleManager.instance.ChangeTutorialLabel((int)state,false, Character);
 		}
 		AnimatorPlayer.Play("RESET");
 		StateParticles.EmitParticles(state);
@@ -127,20 +128,27 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public void UseMove(Moves move){
 		for (int i=0;i<Character.Equipment.Count;i++){
-			Character.Equipment[i].Base.ActivateMoveEffect(this,move.Base);
+			Character?.Equipment[i]?.ActivateMoveEffect(this,move.Base);
 		}
 		MoveUsed=move;
 		move.Base.Effect(BattleManager.instance.UserCharacters,BattleManager.instance.TargetCharacters);
 		Controllable=true;
 		for(int i=0;i<BattleManager.instance.TargetCharacters.Count;i++){
 			BattleManager.instance.TargetCharacters[i].Hurtbox.GetChild<CollisionShape2D>(0).Disabled=false;
-
+		}
+		for(int i=0;i<BattleManager.instance.TurnOrder.Count;i++){
+			BattleManager.instance.TurnOrder[i].HideChangeHPBar();
 		}
 				selectActions.ProcessMode=ProcessModeEnum.Disabled;
 	}
 	
 	public void UseItem(Items item){
-		item.Base.Effect(BattleManager.instance.TargetCharacters);
+		Array<BattleCharacter> Aux = BattleManager.instance.TargetCharacters;
+		Array<Character> characters = new Array<Character>();
+		for(int i =0;i<Aux.Count;i++){
+			characters.Add(Aux[i].Character);
+		}
+		item.Base.Effect(characters);
 	}
 	public void Shoot(){
 		EmitSignal("_Shoot",this);
@@ -159,6 +167,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 		else{
 			Reset();
+			BattleManager.instance.EndTurn();
 		}
 	}
 
@@ -184,6 +193,7 @@ public partial class BattleCharacter : CharacterBody2D
 		changeAction(ActionState.isIdle);
 		Looping=false;
 		ReturnToIdle();
+		HideChangeHPBar();
 		Combo=1;
 		Controllable=false;
 		BlockedEnemy=false;
@@ -229,7 +239,22 @@ public partial class BattleCharacter : CharacterBody2D
 			tween.Finished+=tween.Kill;
 	}
 
-
+	public void ShowChangeHPBar(int HP){
+		Tween tween = CreateTween();
+		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
+		
+		tween.TweenProperty(HPBar,"modulate:a",1,0.1f);
+		tween.TweenProperty(HPBar,"value",Character.stats.HP,0.3f).SetEase(Tween.EaseType.InOut);
+		
+		if(Character.stats.HP<=0){
+			tween.Finished+=HideChangeHPBar;
+		}
+		tween.Finished+=tween.Kill;
+	}
+	public void HideChangeHPBar(){
+		Tween tween = CreateTween();
+		tween.TweenProperty(HPBar,"modulate:a",0,0.2f);
+	}
 	public void AddAtkMultiplier(float Multiplier, int Timer){
 		MultiplierAtk.Add(Multiplier);
 		TimerAtk.Add(Timer);
@@ -347,6 +372,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 	public void ClearTimers(){
+		HoldingMoveTimer = 0;
 		for(int i=1;i<MultiplierAtk.Count;i++){
 			TimerAtk.RemoveAt(i);
 			MultiplierAtk.RemoveAt(i);
@@ -377,21 +403,31 @@ public partial class BattleCharacter : CharacterBody2D
 
 	public void TurnOnBattle(){
 		ProcessMode=ProcessModeEnum.Inherit;
+		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
 		Show();
 		AnimatorTree.Active=true;
+		HPBar.MaxValue = Character.TotalStats.MaxHP;
 		Character._GetHit+=GetHit;
+		Character._ChangeHP+=ShowChangeHPBar;
 		Character._Die+=Die;
 	}
 	public virtual void TurnOffBattle(){
-		ProcessMode=ProcessModeEnum.Disabled;
+		MoveUsed = null;
+		HoldingMove = false;
 		ClearTimers();
-		Hide();
-		AnimatorTree.Active=false;
-		AnimatorTree.Set("parameters/conditions/Ended",false);
 		selectActions.clearAll();
 		Character._GetHit-=()=>changeAction(ActionState.isHit);
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
+		Character._ChangeHP-=ShowChangeHPBar;
+	}
+	public virtual void ReturnToOverworld(){
+		ProcessMode=ProcessModeEnum.Disabled;
+		TurnOffBattle();
+		AnimatorTree.Active=false;
+		AnimatorTree.Set("parameters/conditions/Ended",false);
+		Hide();
 		Overworld.BattleEnd();
 	}
+	
 }

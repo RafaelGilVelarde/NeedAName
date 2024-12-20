@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://25u8i0j5fpqw"]
+[gd_scene load_steps=10 format=3 uid="uid://25u8i0j5fpqw"]
 
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_38o62"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_88v26"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_3iyql"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_m17il"]
@@ -16,6 +17,7 @@ resource_local_to_scene = true
 size = Vector2(48, 32)
 
 [node name="Map11" type="Node2D"]
+script = ExtResource("1_38o62")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_88v26")
@@ -54,6 +56,7 @@ polygon = PackedVector2Array(400, 168, 336, 168, 336, 192, 272, 192, 272, 168, -
 [node name="Door" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(32, -208)
 Scene = 9
+Area = null
 LoadPosition = Vector2(-16, 160)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -62,6 +65,7 @@ shape = SubResource("RectangleShape2D_7cdga")
 [node name="Door2" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(240, -208)
 Scene = 9
+Area = null
 LoadPosition = Vector2(128, 160)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -70,6 +74,7 @@ shape = SubResource("RectangleShape2D_ygbyy")
 [node name="Door3" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(240, 208)
 Scene = 15
+Area = null
 LoadPosition = Vector2(176, -108)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

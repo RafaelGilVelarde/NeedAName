@@ -13,7 +13,7 @@ public partial class Switch : Interact
     public override void interact(OverworldController Player)
     {
         GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex] = true;
-        Check.ActivateEffect();
+        Check.ActivateEffectBySwitch();
     }
 }
 

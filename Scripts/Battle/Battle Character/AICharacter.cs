@@ -24,15 +24,21 @@ public partial class AICharacter : BattleCharacter
 	}
     public override void TurnOffBattle()
     {
-		ProcessMode=ProcessModeEnum.Disabled;
 		ClearTimers();
-		AnimatorTree.Active=false;
-		AnimatorTree.Set("parameters/conditions/Ended",false);
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
+        Character._ChangeHP-=ShowChangeHPBar;
+
+   }
+    public override void ReturnToOverworld()
+    {
+		ProcessMode=ProcessModeEnum.Disabled;
+		AnimatorTree.Active=false;
+		AnimatorTree.Set("parameters/conditions/Ended",false);
         if(Character.status!=Character.Status.KO){
 		    Hide();
 		    Overworld.BattleEnd();
         }
-   }
+        TurnOffBattle();
+    }
 }

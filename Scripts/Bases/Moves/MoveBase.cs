@@ -73,18 +73,23 @@ public partial class MoveBase : Resource
     }
     public virtual void DealDamage(BattleCharacter Users, BattleCharacter Targets,bool blocked){
         for (int i=0;i<Targets.Character.Equipment.Count;i++){
-            Targets.Character.Equipment[i].Base.GetHitEffect(Targets,this);
+            Targets.Character?.Equipment[i]?.GetHitEffect(Targets,this);
         }
+        int Calc;
         if(!blocked){
             switch (type){
                 case Type.Physical:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.stats.Atk*Power*Users.MultiplyAtk()-Targets.Character.stats.Def*Targets.MultiplyDef())*-1,Targets);
+                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk*Power*Users.MultiplyAtk()-Targets.Character.TotalStats.Def*Targets.MultiplyDef())*-1;
+                    Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
+                    Targets.Character.ChangeHP(Calc,Targets);
                 break;
                 case Type.Special:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.stats.SpAtk*Power*Users.MultiplySpAtk()-Targets.Character.stats.SpDef*Targets.MultiplySpDef())*-1,Targets);
+                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()-Targets.Character.TotalStats.SpDef*Targets.MultiplySpDef())*-1;
+                    Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
+                    Targets.Character.ChangeHP(Calc,Targets);
                 break;
                 case Type.Recovery:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.stats.SpAtk*Power*Users.MultiplySpAtk()),Targets);
+                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()),Targets);
                 break;
             }
         }

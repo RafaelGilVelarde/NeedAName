@@ -20,4 +20,7 @@ public partial class PuzzleCheck : Node2D
     public virtual void ActivateEffect(){
 
     }
+    public virtual void ActivateEffectBySwitch(){
+        ActivateEffect();
+    }
 }

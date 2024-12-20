@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://bxe65s7fnlvxl"]
+[gd_scene load_steps=16 format=3 uid="uid://bxe65s7fnlvxl"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_muw13"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_olu8a"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_hlnkc"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_tg4ec"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_bjhxs"]
@@ -25,6 +26,7 @@ resource_local_to_scene = true
 script = ExtResource("11_y2obq")
 
 [node name="Map17" type="Node2D"]
+script = ExtResource("1_olu8a")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_muw13")
@@ -50,8 +52,11 @@ limit_bottom = 160
 [node name="NPC" parent="." instance=ExtResource("5_q2fka")]
 position = Vector2(128, 128)
 
+[node name="CollisionShape2D" parent="NPC" index="0"]
+Timelines = Array[String](["SwitchHint"])
+
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 9
+frame = 10
 
 [node name="TileMap2" type="TileMap" parent="NPC"]
 visible = false

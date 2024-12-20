@@ -6,12 +6,11 @@ using System.Diagnostics;
 
 public partial class DumySpinMove : MoveBase
 {
-[Export] float MaxSpeed=20;
+[Export] float SpinCount = 2;
 [Export] int Combo = 1;
 	[Export] float offset;
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
 	{
-		Debug.WriteLine(Users[0].Character.Base.Name+"vs"+Targets[0].Character.Base.Name);
 		base.Effect(Users,Targets);
 		float Radius= 0.5f*(Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)-offset);
 		Vector2 OriginPos=Users[0].GlobalPosition;
@@ -39,7 +38,7 @@ public partial class DumySpinMove : MoveBase
 		Targets[0].Controllable=true;
 		Targets[0].changeState(BattleCharacter.BattleState.Defending);
 
-		tween.TweenMethod(Callable.From((float w)=>Rotate2(w,MiddlePos,Radius,(Node2D)Users[0].GetParent())), 0.5, 4f, 2.0);
+		tween.TweenMethod(Callable.From((float w)=>Rotate2(w,MiddlePos,Radius,(Node2D)Users[0].GetParent())), 0.5, SpinCount*2, MoveTime-0.5);
 
 		tween.Finished+=End;
 		tween.Finished+=tween.Kill;

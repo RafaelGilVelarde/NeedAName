@@ -1,5 +1,6 @@
-[gd_scene load_steps=17 format=3 uid="uid://b5o0cjrcuemsu"]
+[gd_scene load_steps=18 format=3 uid="uid://b5o0cjrcuemsu"]
 
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_4yjad"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_dqvc0"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="2_2d6tt"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_wtkmy"]
@@ -30,13 +31,15 @@ script = ExtResource("8_av3dv")
 ID = 0
 Name = "???"
 Description = "Not sure what this thing is, but it feels warm"
-type = 1
+type = 2
 
 [sub_resource type="Resource" id="Resource_hopv3"]
 script = ExtResource("8_v77sh")
 Base = SubResource("Resource_f0yfb")
+Amount = 1
 
 [node name="Map3" type="Node2D"]
+script = ExtResource("1_4yjad")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_dqvc0")
@@ -119,6 +122,7 @@ shape = SubResource("RectangleShape2D_nh5ac")
 script = ExtResource("7_k5ikf")
 Delete = true
 ItemsToGive = Array[Object]([SubResource("Resource_hopv3")])
+ItemType = 1
 Timelines = Array[String](["Item1"])
 PauseWhenDialogue = true
 

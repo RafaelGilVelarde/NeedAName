@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b7iiupkqy5jmj"]
+[gd_scene load_steps=8 format=3 uid="uid://b7iiupkqy5jmj"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
@@ -6,12 +6,14 @@
 [ext_resource type="Script" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/LossScreen.cs" id="7_bat71"]
 
-[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "CharacterButtonParent", "itemList", "moveList")]
+[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "itemList", "moveList")]
 process_mode = 4
 script = ExtResource("1_6q2le")
 BattleCamera = NodePath("Camera2D")
 TutorialLabels = NodePath("CanvasLayer/Controls")
+Loss = NodePath("CanvasLayer/LossScreen")
 CharacterButtonParent = NodePath("CharacterButtonParent")
 PositionMoveSpeed = 0.3
 itemList = NodePath("CanvasLayer/ItemList")
@@ -254,6 +256,43 @@ bbcode_enabled = true
 text = "Dodge: Arrows+Z"
 fit_content = true
 scroll_active = false
+
+[node name="LossScreen" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Reload", "TitleScreen", "Retry")]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("7_bat71")
+Reload = NodePath("VBoxContainer/Reload")
+TitleScreen = NodePath("VBoxContainer/Title Screen")
+Retry = NodePath("VBoxContainer/Retry")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LossScreen"]
+layout_mode = 0
+offset_right = 176.0
+offset_bottom = 101.0
+alignment = 1
+
+[node name="Retry" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+layout_mode = 2
+text = "Retry"
+
+[node name="Reload" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+layout_mode = 2
+text = "Return to Last Save"
+
+[node name="Title Screen" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+layout_mode = 2
+text = "Return to Title Screen"
 
 [node name="CharacterButtonParent" type="BoxContainer" parent="."]
 

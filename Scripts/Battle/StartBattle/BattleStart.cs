@@ -44,7 +44,7 @@ public partial class BattleStart : Node2D
             }
             EnemyBattle.Add(this.GetParent<OverworldController>().BattleCharacter);
             for(int i=0;i<EnemyCharacters.Count;i++){
-                EnemyBattle.Add(GameManager.Instance.AddCharacters(EnemyCharacters[i],CharacterPrefab).BattleCharacter);
+                EnemyBattle.Add(GameManager.Instance.AddCharacters((Character)EnemyCharacters[i].Duplicate(true), CharacterPrefab).BattleCharacter);
                 EnemyBattle[EnemyBattle.Count-1].GetParent<Node2D>().Position=GlobalPosition;
             }
             for(int i=0;i<EnemyBattle.Count;i++){
@@ -62,7 +62,7 @@ public partial class BattleStart : Node2D
                 EnemyPosGlobal.Add(Aux);
             }
             BattleManager.instance.ProcessMode=ProcessModeEnum.Inherit;
-            BattleManager.instance.StartBattle(scene,Party,EnemyBattle,PartyPosGlobal,EnemyPosGlobal,EnemyBattle[0].GlobalPosition,EnemyBattle[0].GlobalPosition);
+            BattleManager.instance.StartBattle(scene,Party,EnemyBattle,PartyPosGlobal,EnemyPosGlobal,EnemyBattle[0].GlobalPosition,EnemyBattle[0].GlobalPosition,this);
             GameManager.Instance.BattleStart();
         }
     }

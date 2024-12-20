@@ -64,8 +64,6 @@ public partial class TargetBehaviours : SteeringBehaviours
                     enemy.state=MoveState.Seek;
                 }
             }
-            enemy.RaycastTarget=enemy.CurrentTarget.GlobalPosition;
-            enemy.QueueRedraw();
     }
 
 }

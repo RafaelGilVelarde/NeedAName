@@ -22,7 +22,7 @@ public partial class EnemySpawner : Node2D
 
         RandomNumberGenerator RNG = new RandomNumberGenerator();
         int Index=RNG.RandiRange(0,MainEnemies.Count-1);        
-        EnemyOverworldController Overworld = (EnemyOverworldController)GameManager.Instance.AddCharacters(MainEnemies[Index],1);
+        EnemyOverworldController Overworld = (EnemyOverworldController)GameManager.Instance.AddCharacters((Character)MainEnemies[Index].Duplicate(true), 1);
         Overworld.Parent.Position=GlobalPosition;
         Overworld.CachedTargetPosition=GlobalPosition;
         Overworld.SetArea(detectArea);

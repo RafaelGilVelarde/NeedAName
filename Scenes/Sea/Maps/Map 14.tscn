@@ -1,5 +1,6 @@
-[gd_scene load_steps=38 format=3 uid="uid://1tlmx7skytd6"]
+[gd_scene load_steps=41 format=3 uid="uid://1tlmx7skytd6"]
 
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_mxof8"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_rkxe1"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_21f6a"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_g1ddu"]
@@ -25,9 +26,31 @@ size = Vector2(32, 8)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gurk8"]
 size = Vector2(32, 8)
 
+[sub_resource type="Resource" id="Resource_nhj1g"]
+script = ExtResource("9_r8lvc")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
 [sub_resource type="Resource" id="Resource_81b2e"]
 script = ExtResource("18_gxibl")
 Base = ExtResource("19_acsbm")
+
+[sub_resource type="Resource" id="Resource_8yfa3"]
+script = ExtResource("9_r8lvc")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 
 [sub_resource type="Resource" id="Resource_5oxtr"]
 script = ExtResource("9_r8lvc")
@@ -47,8 +70,11 @@ Moves = Array[Object]([SubResource("Resource_81b2e")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
 stats = SubResource("Resource_5oxtr")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="Resource" id="Resource_7spjv"]
@@ -73,8 +99,11 @@ Moves = Array[Object]([SubResource("Resource_7spjv")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
 stats = SubResource("Resource_4n0cw")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="Resource" id="Resource_c0q0j"]
@@ -99,8 +128,11 @@ Moves = Array[Object]([SubResource("Resource_c0q0j")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
 stats = SubResource("Resource_oxcfb")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="Resource" id="Resource_fs7gb"]
@@ -120,13 +152,16 @@ Speed = 1
 
 [sub_resource type="Resource" id="Resource_ar1de"]
 script = ExtResource("13_a13dn")
-Base = ExtResource("16_ntpd3")
+Base = ExtResource("9_msj5b")
 Moves = Array[Object]([SubResource("Resource_fs7gb")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
 stats = SubResource("Resource_f2qvq")
+EquipStats = SubResource("Resource_nhj1g")
+TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = false
 Active = true
+Key = 0
 status = 0
 
 [sub_resource type="Resource" id="Resource_lci7o"]
@@ -149,6 +184,7 @@ resource_local_to_scene = true
 size = Vector2(224, 24)
 
 [node name="Map14" type="Node2D"]
+script = ExtResource("1_mxof8")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_rkxe1")
@@ -205,7 +241,7 @@ position = Vector2(-72, 48)
 polygon = PackedVector2Array(400, 152, 264, 152, 240, 152, 40, 152, 24, 152, -104, 152, -104, 184, -168, 184, -168, 152, -256, 152, -256, 120, -288, 120, -288, -216, -256, -216, -256, -248, -96, -248, -96, -280, 240, -280, 240, -248, 400, -248, 400, 144, 392, 144, 392, -240, 232, -240, 232, -272, -88, -272, -88, -240, -248, -240, -248, -208, -280, -208, -280, 112, -248, 112, -248, 144, -160, 144, -160, 176, -112, 176, -112, 144, 32, 144, 48, 144, 240, 144, 256, 144, 400, 144)
 
 [node name="Node2D" type="Node2D" parent="." node_paths=PackedStringArray("detectArea")]
-position = Vector2(-40, -64)
+position = Vector2(104, 49)
 rotation = 1.5708
 script = ExtResource("8_sgboe")
 MainEnemies = Array[Object]([SubResource("Resource_r33gd"), SubResource("Resource_o7xc0")])
@@ -251,7 +287,6 @@ position = Vector2(-8, 8)
 shape = SubResource("RectangleShape2D_5avha")
 
 [node name="Area2D" parent="." instance=ExtResource("18_jr6bq")]
-visible = false
 position = Vector2(176, -8)
 
 [node name="Borders2" parent="." instance=ExtResource("7_2coxb")]
@@ -268,4 +303,5 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 [editable path="Door2"]
 [editable path="Door3"]
 [editable path="Door4"]
+[editable path="Area2D"]
 [editable path="Borders2"]

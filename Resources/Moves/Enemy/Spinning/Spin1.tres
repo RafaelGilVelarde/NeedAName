@@ -5,7 +5,7 @@
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_etq3m")
-MaxSpeed = 6.0
+SpinCount = 1.5
 Combo = 1
 offset = 15.0
 type = 0

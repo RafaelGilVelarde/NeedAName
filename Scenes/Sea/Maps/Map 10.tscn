@@ -1,5 +1,6 @@
-[gd_scene load_steps=15 format=3 uid="uid://c1ctnjer4e83g"]
+[gd_scene load_steps=16 format=3 uid="uid://c1ctnjer4e83g"]
 
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_wl176"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_xmny8"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_mg18h"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_x6rgh"]
@@ -29,6 +30,7 @@ size = Vector2(64, 32)
 
 [node name="Map10" type="Node2D"]
 position = Vector2(-8, 0)
+script = ExtResource("1_wl176")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_xmny8")
@@ -121,7 +123,7 @@ position = Vector2(160, -240)
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("9_8yric")
-frame = 9
+frame = 8
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0"]
 process_mode = 4

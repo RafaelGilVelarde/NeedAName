@@ -24,7 +24,7 @@ public partial class Hitbox : Area2D
 		if((node.IsInGroup("EnemyHurtbox")&&this.IsInGroup("PlayerHitbox"))||(node.IsInGroup("PlayerHurtbox")&&this.IsInGroup("EnemyHitbox"))){
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
 		        for (int i=0;i<Character.Character.Equipment.Count;i++){
-            		Character.Character.Equipment[i].Base.HitEnemyEffect(Character,Character.MoveUsed.Base);
+            		Character.Character?.Equipment[i]?.HitEnemyEffect(Character,Character.MoveUsed.Base);
         		}
 			EmitSignal("_Hit",Target);
 		}

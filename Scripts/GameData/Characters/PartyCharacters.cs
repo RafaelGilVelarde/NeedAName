@@ -18,6 +18,7 @@ public partial class PartyCharacters : Character
 		Debug.WriteLine("Current EXP: "+Exp);
 		if(Exp>NextLevelExp){
 			LevelUp();
+			SetTotalStats();
 		}
 	}
 

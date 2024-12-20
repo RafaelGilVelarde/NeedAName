@@ -25,7 +25,7 @@ public partial class RayHitbox : RayCast2D
         if((node.IsInGroup("EnemyHurtbox")&&this.IsInGroup("PlayerHitbox"))||(node.IsInGroup("PlayerHurtbox")&&this.IsInGroup("EnemyHitbox"))){
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
 		        for (int i=0;i<Attacking.Character.Equipment.Count;i++){
-            		Attacking.Character.Equipment[i].Base.HitEnemyEffect(Attacking,Attacking.MoveUsed.Base);
+            		Attacking.Character?.Equipment?[i].HitEnemyEffect(Attacking,Attacking.MoveUsed.Base);
         		}
 			EmitSignal("_Hit",Target);
 		}
