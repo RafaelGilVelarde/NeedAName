@@ -40,6 +40,7 @@ Amount = 1
 
 [node name="Map3" type="Node2D"]
 script = ExtResource("1_4yjad")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_dqvc0")
@@ -72,6 +73,8 @@ limit_bottom = 288
 
 [node name="Door" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(256, -232)
+Scene = null
+Area = null
 LoadPosition = Vector2(64, 230)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -81,6 +84,7 @@ shape = SubResource("RectangleShape2D_ib5bx")
 position = Vector2(456, -160)
 rotation = 1.5708
 Scene = 7
+Area = null
 LoadPosition = Vector2(-270, 64)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -90,11 +94,13 @@ shape = SubResource("RectangleShape2D_qxnxw")
 [node name="Door3" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(-80, 296)
 Scene = 6
+Area = null
 LoadPosition = Vector2(-208, -170)
 
 [node name="Door4" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(176, 296)
 Scene = 6
+Area = null
 LoadPosition = Vector2(8, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -120,11 +126,17 @@ collision_layer = 3
 [node name="ItemInteract" type="CollisionShape2D" parent="StaticBody2D"]
 shape = SubResource("RectangleShape2D_nh5ac")
 script = ExtResource("7_k5ikf")
+GameID = null
 Delete = true
 ItemsToGive = Array[Object]([SubResource("Resource_hopv3")])
 ItemType = 1
 Timelines = Array[String](["Item1"])
+TimelineIndex = null
+Timeline = null
 PauseWhenDialogue = true
+Turn = null
+SpokenTo = null
+FacingDirection = null
 
 [node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/ItemInteract"]
 scale = Vector2(0.15, 0.15)

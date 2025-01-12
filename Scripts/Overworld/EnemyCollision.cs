@@ -13,9 +13,7 @@ public partial class EnemyCollision : Area2D
 
     private void OnCollisionEntered(Node2D body)
     {
-        Debug.WriteLine(body.GetGroups());
         if(body.IsInGroup("PlayerOverworldController")){
-            Debug.WriteLine("Collision:"+body);
             battleStart.CallDeferred("StartBattle");
         }
     }

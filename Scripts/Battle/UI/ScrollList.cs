@@ -17,7 +17,6 @@ public partial class ScrollList : Control
     [Export]StartEnd startEnd;
     [Export]StuffList List;
     void Scroll(){
-        Debug.WriteLine("Scrolling");
         switch (startEnd){
             case  StartEnd.Start:
                     List.FillButtons(List.pointerStart-1,startEnd); 

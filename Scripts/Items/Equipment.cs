@@ -17,11 +17,11 @@ public partial class Equipment : Items
     }
 
 
-    public override void Use(Array<Items> ItemArray, Array<Character> Targets)
+    public override void Use(Array<Character> Targets)
     {
         Targets[0].UnEquip(((EquipmentBase)Base).EquipType);
         Targets[0].Equip(this);
-        base.Use(ItemArray, Targets);
+        base.Use(Targets);
     }
     /*protected virtual void Equip(Character character){
         character.Equipment[(int)Base.EquipType] = Base;

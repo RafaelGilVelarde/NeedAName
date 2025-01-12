@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://wc85fh7e4de1"]
+[gd_scene load_steps=13 format=3 uid="uid://wc85fh7e4de1"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_i8qnd"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_xlri6"]
@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="3_pfhse"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_0or4s"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="6_4yr0v"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="7_y0p5b"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="8_76hql"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="8_v2oit"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekbt3"]
@@ -18,17 +18,9 @@ size = Vector2(32, 32)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_ykg00"]
-resource_local_to_scene = true
-script = ExtResource("7_y0p5b")
-
-[sub_resource type="Resource" id="Resource_mj6y4"]
-resource_local_to_scene = true
-script = ExtResource("7_y0p5b")
-
-[sub_resource type="Resource" id="Resource_c8rcn"]
-resource_local_to_scene = true
-script = ExtResource("7_y0p5b")
+[sub_resource type="Resource" id="Resource_5jyyo"]
+script = ExtResource("8_76hql")
+Timeline = ""
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xlri6")
@@ -84,12 +76,12 @@ shape = SubResource("RectangleShape2D_uirin")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("6_4yr0v")]
 position = Vector2(-112, 48)
-Scene = SubResource("Resource_ykg00")
+Scene = SubResource("Resource_5jyyo")
 detectArea = NodePath("../Area2D")
 
 [node name="Enemy Spawner3" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("6_4yr0v")]
 position = Vector2(64, 176)
-Scene = SubResource("Resource_mj6y4")
+Scene = SubResource("Resource_5jyyo")
 detectArea = NodePath("../Area2D")
 
 [node name="Area2D" parent="." instance=ExtResource("8_v2oit")]
@@ -101,7 +93,7 @@ polygon = PackedVector2Array(24, -112, -184, -112, -184, 160, 152, 160, 152, 16,
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("6_4yr0v")]
 position = Vector2(384, 480)
 EnemyPos = Array[Vector2]([Vector2(50, 0)])
-Scene = SubResource("Resource_c8rcn")
+Scene = SubResource("Resource_5jyyo")
 detectArea = NodePath("../Area2D2")
 
 [node name="Area2D2" parent="." instance=ExtResource("8_v2oit")]

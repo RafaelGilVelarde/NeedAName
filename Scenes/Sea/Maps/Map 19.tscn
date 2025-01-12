@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://beoo02ocbxhap"]
+[gd_scene load_steps=20 format=3 uid="uid://beoo02ocbxhap"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_dglsu"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_vi1r0"]
@@ -11,8 +11,8 @@
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="9_elgi3"]
 [ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="11_eaj1n"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="12_6hj8d"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="12_qkwwk"]
 [ext_resource type="AnimationLibrary" uid="uid://c0awsl3dfhstk" path="res://Animations/Overworld/Effects/WaterBarrier.res" id="14_5j2mu"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="15_gnhle"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="33_roql3"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="34_o1vnt"]
 
@@ -28,20 +28,13 @@ size = Vector2(208, 32)
 resource_local_to_scene = true
 size = Vector2(256, 56)
 
-[sub_resource type="Resource" id="Resource_vwaxt"]
-resource_local_to_scene = true
-script = ExtResource("15_gnhle")
-
-[sub_resource type="Resource" id="Resource_g8ise"]
-resource_local_to_scene = true
-script = ExtResource("15_gnhle")
-
-[sub_resource type="Resource" id="Resource_8tuye"]
-resource_local_to_scene = true
-script = ExtResource("15_gnhle")
+[sub_resource type="Resource" id="Resource_3va3a"]
+script = ExtResource("12_qkwwk")
+Timeline = ""
 
 [node name="Map19" type="Node2D"]
 script = ExtResource("1_dglsu")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_vi1r0")
@@ -152,17 +145,17 @@ shape = SubResource("RectangleShape2D_a6vme")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_1c0n3")]
 position = Vector2(208, 40)
-Scene = SubResource("Resource_vwaxt")
+Scene = SubResource("Resource_3va3a")
 detectArea = NodePath("../Area2D")
 
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_1c0n3")]
 position = Vector2(56, -16)
-Scene = SubResource("Resource_g8ise")
+Scene = SubResource("Resource_3va3a")
 detectArea = NodePath("../Area2D")
 
 [node name="Enemy Spawner3" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_1c0n3")]
 position = Vector2(-88, -120)
-Scene = SubResource("Resource_8tuye")
+Scene = SubResource("Resource_3va3a")
 detectArea = NodePath("../Area2D")
 
 [node name="NPC" parent="." instance=ExtResource("11_eaj1n")]
@@ -174,9 +167,6 @@ TimelineIndex = null
 Timeline = ""
 SpokenTo = null
 FacingDirection = null
-
-[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
 
 [node name="Barrier" parent="." instance=ExtResource("12_6hj8d")]
 position = Vector2(80, 184)

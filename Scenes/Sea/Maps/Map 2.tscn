@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bbxpoq4krbxej"]
+[gd_scene load_steps=53 format=3 uid="uid://bbxpoq4krbxej"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_fxe1b"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_nepjs"]
@@ -9,8 +9,12 @@
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_222lk"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="7_hw13a"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_aago7"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="9_uo7k0"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="10_2hwlt"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="10_46xwg"]
+[ext_resource type="PackedScene" uid="uid://cgngdxrff32se" path="res://Prefabs/Characters/FollowerCharacter.tscn" id="12_522b7"]
+[ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="13_yobi0"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="14_b8ivr"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="15_kequw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpu5j"]
 resource_local_to_scene = true
@@ -24,16 +28,207 @@ size = Vector2(80, 16)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_7jp72"]
-resource_local_to_scene = true
-script = ExtResource("9_uo7k0")
+[sub_resource type="Resource" id="Resource_7kqbm"]
+script = ExtResource("10_46xwg")
+Timeline = "NPC1"
 
-[sub_resource type="Resource" id="Resource_ygudj"]
+[sub_resource type="Resource" id="Resource_uxay2"]
+script = ExtResource("10_46xwg")
+Timeline = ""
+
+[sub_resource type="Resource" id="Resource_bys87"]
+script = ExtResource("14_b8ivr")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_7h8q2"]
+script = ExtResource("14_b8ivr")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_p55wm"]
+script = ExtResource("14_b8ivr")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_sn7iw"]
+script = ExtResource("15_kequw")
+Base = ExtResource("13_yobi0")
+Moves = Array[Object]([])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_p55wm")
+EquipStats = SubResource("Resource_bys87")
+TotalStats = SubResource("Resource_7h8q2")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yo0pd"]
 resource_local_to_scene = true
-script = ExtResource("9_uo7k0")
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ldt6"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
+animation = &"Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy8rl"]
+animation = &"WaterFight/Melee1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5deye"]
+animation = &"WaterFight/Melee2"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_itfrt"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_26rrj")
+blend_point_0/pos = -1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_oy8rl")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_5deye")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yfjc8"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_itfrt")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_enmkj"]
+animation = &"WaterFight/Block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7qjg"]
+animation = &"WaterFight/Dodge1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fk5x6"]
+animation = &"WaterFight/Dodge2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7bgb"]
+animation = &"WaterFight/Dodge3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8jsu"]
+animation = &"WaterFight/Dodge4"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ecmc3"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_l7qjg")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_fk5x6")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_m7bgb")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_y8jsu")
+blend_point_3/pos = Vector2(1, 0)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hmcb"]
+animation = &"WaterFight/idleFight"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rcttj"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_1hmcb")
+blend_point_0/pos = 2.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7176c"]
+animation = &"WaterFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_is2pd"]
+animation = &"WaterFight/Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q67gl"]
+animation = &"WaterFight/DieLoop"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mcs87"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3kam"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dkfo3"]
+states/Start/position = Vector2(163, 91)
+states/WaterFight_Die/node = SubResource("AnimationNodeAnimation_is2pd")
+states/WaterFight_Die/position = Vector2(361, 85)
+states/WaterFight_DieLoop/node = SubResource("AnimationNodeAnimation_q67gl")
+states/WaterFight_DieLoop/position = Vector2(699, 94)
+transitions = ["Start", "WaterFight_Die", SubResource("AnimationNodeStateMachineTransition_mcs87"), "WaterFight_Die", "WaterFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_x3kam")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtlmn"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_yfjc8")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_enmkj")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_ecmc3")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeBlendSpace1D_rcttj")
+blend_point_3/pos = 5.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_7176c")
+blend_point_4/pos = 3.0
+blend_point_5/node = SubResource("AnimationNodeStateMachine_dkfo3")
+blend_point_5/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+snap = 0.01
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah0no"]
+animation = &"WaterFight/StartBattle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixq5v"]
+animation = &"WaterFight/StartBattle"
+play_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_patbp"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyb26"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2vxd"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_sjbw6"]
+resource_local_to_scene = true
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
+states/ActionState/position = Vector2(566, 10.8326)
+states/Start/position = Vector2(77, 38)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_ah0no")
+states/StartBattle/position = Vector2(285, 10.8326)
+states/WaterFight_StartBattle/node = SubResource("AnimationNodeAnimation_ixq5v")
+states/WaterFight_StartBattle/position = Vector2(878, 10.8326)
+transitions = ["ActionState", "WaterFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp"), "Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd")]
+graph_offset = Vector2(0, -54.1674)
 
 [node name="Map2" type="Node2D"]
 script = ExtResource("1_fxe1b")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_nepjs")
@@ -68,6 +263,8 @@ script = ExtResource("4_kiqpj")
 [node name="Door" parent="." instance=ExtResource("6_222lk")]
 position = Vector2(392, -104)
 rotation = 1.5708
+Scene = null
+Area = null
 LoadPosition = Vector2(-300, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -77,6 +274,7 @@ shape = SubResource("RectangleShape2D_gpu5j")
 [node name="Door2" parent="." instance=ExtResource("6_222lk")]
 position = Vector2(-160, 616)
 Scene = 5
+Area = null
 LoadPosition = Vector2(0, -120)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -91,6 +289,7 @@ polygon = PackedVector2Array(-304, 416, -304, 496, -184, 496, -184, 512, -88, 51
 [node name="Door3" parent="." instance=ExtResource("6_222lk")]
 position = Vector2(-208, 48)
 Scene = 19
+Area = null
 LoadPosition = Vector2(32, -592)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -98,7 +297,7 @@ shape = SubResource("RectangleShape2D_muyrc")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
 position = Vector2(80, 160)
-Scene = SubResource("Resource_7jp72")
+Scene = SubResource("Resource_7kqbm")
 detectArea = NodePath("../Area2D")
 
 [node name="Area2D" parent="." instance=ExtResource("10_2hwlt")]
@@ -107,23 +306,65 @@ position = Vector2(152, 112)
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(8, -96, -168, -104, -192, 16, -176, 136, 8, 128, 8, -32)
 
-[node name="Area2D2" parent="." node_paths=PackedStringArray("Polygon", "Collision") instance=ExtResource("10_2hwlt")]
+[node name="Area2D2" parent="." instance=ExtResource("10_2hwlt")]
 position = Vector2(-8, 424)
-Polygon = NodePath("../Area2D/Polygon2D")
-Collision = NodePath("../Area2D/CollisionPolygon2D")
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
 polygon = PackedVector2Array(-88, -112, -96, 24, -176, 24, -176, 136, 8, 136, 8, -112)
 
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
 position = Vector2(-56, 416)
-Scene = SubResource("Resource_ygudj")
+Scene = SubResource("Resource_uxay2")
 detectArea = NodePath("../Area2D2")
+
+[node name="Character" parent="." instance=ExtResource("12_522b7")]
+position = Vector2(96, -80)
+
+[node name="CollisionShape2D" parent="Character" index="0"]
+disabled = false
+Timelines = Array[String](["Dialogues/NPC1"])
+TimelineIndex = null
+Timeline = null
+Turn = true
+SpokenTo = null
+FacingDirection = null
+
+[node name="OverworldController" parent="Character" index="1" node_paths=PackedStringArray("DataMap")]
+DataMap = NodePath("../../TileMap2")
+tileTypes = null
+Axis = null
+AxisAux = null
+Controllable = null
+Coords = null
+
+[node name="BattleCharacter" parent="Character" index="2"]
+Character = SubResource("Resource_sn7iw")
+Controllable = null
+OriginPos = null
+Combo = null
+HoldingMoveTimer = null
+HoldingMove = null
+UsedComboMove = null
+BlockedEnemy = null
+Looping = null
+DodgeDir = null
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" index="0"]
+shape = SubResource("RectangleShape2D_yo0pd")
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" index="0"]
+shape = SubResource("RectangleShape2D_8ldt6")
+
+[node name="AnimationTree" parent="Character/BattleCharacter/AnimationPlayer" index="0"]
+tree_root = SubResource("AnimationNodeStateMachine_sjbw6")
 
 [editable path="Cams"]
 [editable path="Door"]
 [editable path="Door2"]
 [editable path="Borders"]
 [editable path="Door3"]
+[editable path="Enemy Spawner"]
 [editable path="Area2D"]
 [editable path="Area2D2"]
+[editable path="Character"]
+[editable path="Character/BattleCharacter/AnimationPlayer"]

@@ -57,17 +57,29 @@ text/autocolor_names=true
 text/autoadvance_fixed_delay=1.0
 text/input_action="Confirm"
 directories/dch_directory={
-"MC": "res://DialogicCharacters/MC.dch"
+"MC": "res://DialogicCharacters/MC.dch",
+"No Box": "res://DialogicCharacters/No Box.dch"
 }
 directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
 "Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"FirstItemNPC1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1.dtl",
+"FirstItemNPC1-1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1-1.dtl",
+"FirstItemNPC2": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC2.dtl",
+"FirstItemNPC3": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC3.dtl",
+"FirstScene": "res://Dialogues/Scene Dialogue/FirstScene.dtl",
 "IntroCutscene": "res://Dialogues/Scene Dialogue/IntroCutscene.dtl",
 "Item1": "res://Dialogues/Item Obtained/Water/Item1.dtl",
 "MoveBattleTest": "res://Dialogues/MoveBattleTest.dtl",
 "NPC1": "res://Dialogues/NPC Dialogue/Water/NPC1.dtl",
+"NPC2": "res://Dialogues/NPC Dialogue/Water/NPC2.dtl",
+"NPC2-2": "res://Dialogues/NPC Dialogue/Water/NPC2-2.dtl",
+"NPC3": "res://Dialogues/NPC Dialogue/Water/NPC3.dtl",
+"NPC4": "res://Dialogues/NPC Dialogue/Water/NPC4.dtl",
+"NPC5": "res://Dialogues/NPC Dialogue/Water/NPC5.dtl",
 "OrderPuzzleHint": "res://Dialogues/NPC Dialogue/Water/OrderPuzzleHint.dtl",
 "PuzzleComplete": "res://Dialogues/PuzzleComplete.dtl",
+"SecondItemNPC1": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC1.dtl",
 "SwitchHint": "res://Dialogues/NPC Dialogue/Water/SwitchHint.dtl",
 "Test": "res://Dialogues/Test.dtl",
 "bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl"
@@ -79,11 +91,15 @@ translation/save_mode=0
 translation/add_separator=true
 choices/hotkey_behaviour=0
 text/split_at_new_lines=false
-translation/id_counter=16
+translation/id_counter=95
 translation/locales=[]
 save/autosave=false
-layout/style_list=["res://DialogicStyles/Basse.tres"]
+layout/style_list=["res://DialogicStyles/Base.tres", "res://DialogicStyles/NoBox.tres"]
 layout/default_style="res://DialogicStyles/Basse.tres"
+portraits/default_portrait=""
+translation/intern/save_mode=0
+translation/intern/file_mode=1
+translation/intern/translation_folder="res://Dialogues/Español"
 
 [display]
 

@@ -90,7 +90,8 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectItem:
 				if(!animating){
 					if(Input.IsActionJustPressed("Confirm")){
-						move=BattleManager.instance.CurrentItemButton.item.moves;
+						character.CurrentItem = BattleManager.instance.CurrentItemButton.item;
+						move=((ConsumableBase)character.CurrentItem.Base).ItemMove;
 						character.MoveUsed=move;
 						if(move.Base.UserAmount>1){
 							previousState.Add(currentState);

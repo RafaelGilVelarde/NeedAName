@@ -33,7 +33,7 @@ public partial class BattleStart : Node2D
     }
     public virtual void StartBattle(){
         if(BattleManager.instance.Scene==null){
-            Array<OverworldController> Characters=GameManager.Instance.Characters;
+            Array<PlayerController> Characters=GameManager.Instance.Characters;
             Array<BattleCharacter> Party=new Array<BattleCharacter>();
             Array<BattleCharacter> EnemyBattle=new Array<BattleCharacter>(); 
             for(int i=0;i<Characters.Count;i++){
@@ -53,12 +53,12 @@ public partial class BattleStart : Node2D
             }
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();
-            for (int i=0;i<PartyPos.Count;i++){
-                Vector2 Aux=CheckPosition(GlobalPosition+PartyPos[i]);
+            for (int i=0;i<Party.Count;i++){
+                Vector2 Aux=CheckPosition(GlobalPosition+PartyPos[i]-Party[i].Character.Base.BattleOffset);
                 PartyPosGlobal.Add(Aux);
             }
-            for (int i=0;i<EnemyPos.Count;i++){
-                Vector2 Aux=CheckPosition(GlobalPosition+EnemyPos[i]);
+            for (int i=0;i<EnemyBattle.Count;i++){
+                Vector2 Aux=CheckPosition(GlobalPosition+EnemyPos[i]-EnemyBattle[i].Character.Base.BattleOffset);
                 EnemyPosGlobal.Add(Aux);
             }
             BattleManager.instance.ProcessMode=ProcessModeEnum.Inherit;

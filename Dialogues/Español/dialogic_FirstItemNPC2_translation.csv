@@ -1,0 +1,14 @@
+keys,en
+Text/25/text,Oh you have it! Do you want me to jog up your memory?
+Choice/26/text,Give the Soul Fragment 
+Choice/26/disabled_text,
+Text/27/text,Here you go!
+Text/28/text,Thanks! Just give me......one...secooooond....aaaand
+Text/29/text,Ok there it is! Take it!
+Text/2a/text,I can remember.....warmth...it feels strange...
+Text/2b/text,But thanks!
+Text/2c/text,Glad to be of help. Put it on your heart if you wanna feel the effects
+Text/2d/text,[You got the Warmth Memory]
+Choice/2e/text,I'd rather not
+Choice/2e/disabled_text,
+Text/2f/text,"It's ok, but if you change your mind I am here!"

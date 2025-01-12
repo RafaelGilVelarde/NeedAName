@@ -4,3 +4,4 @@
 
 [node name="DialogicNode" type="Node"]
 script = ExtResource("1_3yatr")
+DialogueStyles = Array[String](["res://DialogicStyles/Base.tres", "res://DialogicStyles/NoBox.tres"])

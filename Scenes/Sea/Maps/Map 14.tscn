@@ -13,9 +13,9 @@
 [ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="9_msj5b"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="9_r8lvc"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="13_a13dn"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="16_lsvw5"]
 [ext_resource type="Resource" uid="uid://oinvkf7tklql" path="res://Resources/CharacterBases/Enemies/Star.tres" id="16_ntpd3"]
 [ext_resource type="Resource" uid="uid://bvtcpl6qec87k" path="res://Resources/Moves/Enemy/Spinning/Spin1.tres" id="17_3p72u"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="17_6hkvh"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="18_gxibl"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="18_jr6bq"]
 [ext_resource type="Resource" uid="uid://cqi3tmr64djan" path="res://Resources/Moves/Enemy/Beams/Bubblebeam.tres" id="19_acsbm"]
@@ -164,8 +164,9 @@ Active = true
 Key = 0
 status = 0
 
-[sub_resource type="Resource" id="Resource_lci7o"]
-script = ExtResource("16_lsvw5")
+[sub_resource type="Resource" id="Resource_pn2gs"]
+script = ExtResource("17_6hkvh")
+Timeline = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th5io"]
 resource_local_to_scene = true
@@ -185,6 +186,7 @@ size = Vector2(224, 24)
 
 [node name="Map14" type="Node2D"]
 script = ExtResource("1_mxof8")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_rkxe1")
@@ -219,11 +221,22 @@ script = ExtResource("4_mfjd2")
 [node name="NPC" parent="." instance=ExtResource("5_o734i")]
 position = Vector2(-72, 40)
 
+[node name="CollisionShape2D" parent="NPC" index="0"]
+Timelines = Array[String](["NPC3", "NPC3"])
+TimelineIndex = null
+Timeline = null
+SpokenTo = null
+FacingDirection = null
+
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 11
+
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
 
 [node name="Out" parent="ChangeLayer" index="0"]
 visible = false
+Z = null
 
 [node name="In" parent="ChangeLayer" index="1"]
 z_index = 1
@@ -249,13 +262,14 @@ SideEnemies = Array[Object]([SubResource("Resource_028oy"), SubResource("Resourc
 Prefab = 1
 PartyPos = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 50), Vector2(150, 80)])
-Scene = SubResource("Resource_lci7o")
+Scene = SubResource("Resource_pn2gs")
 detectArea = NodePath("../Area2D")
 
 [node name="Door" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(-336, 0)
 rotation = 1.5708
 Scene = 6
+Area = null
 LoadPosition = Vector2(264, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -264,6 +278,7 @@ shape = SubResource("RectangleShape2D_th5io")
 [node name="Door2" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(0, -208)
 Scene = 14
+Area = null
 LoadPosition = Vector2(0, 168)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -272,6 +287,7 @@ shape = SubResource("RectangleShape2D_uownf")
 [node name="Door3" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(-208, 208)
 Scene = 18
+Area = null
 LoadPosition = Vector2(-208, -170)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -280,6 +296,7 @@ shape = SubResource("RectangleShape2D_swxsg")
 [node name="Door4" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(80, 208)
 Scene = 18
+Area = null
 LoadPosition = Vector2(32, -168)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -297,6 +314,7 @@ collision_layer = 1
 polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 
 [editable path="Cams"]
+[editable path="NPC"]
 [editable path="ChangeLayer"]
 [editable path="Borders"]
 [editable path="Door"]

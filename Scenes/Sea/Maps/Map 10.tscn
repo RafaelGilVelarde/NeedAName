@@ -31,6 +31,7 @@ size = Vector2(64, 32)
 [node name="Map10" type="Node2D"]
 position = Vector2(-8, 0)
 script = ExtResource("1_wl176")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_xmny8")
@@ -73,6 +74,7 @@ polygon = PackedVector2Array(320, 248, -112, 248, -112, 216, -272, 216, -272, 15
 [node name="Door" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 16)
 Scene = 8
+Area = null
 LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -81,6 +83,7 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door2" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 48)
 Scene = 8
+Area = null
 LoadPosition = Vector2(260, 48)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -89,6 +92,8 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door3" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, -16)
 Scene = 8
+Area = null
+LoadPosition = null
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_pixk1")
@@ -96,6 +101,7 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door4" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-96, 208)
 Scene = 10
+Area = null
 LoadPosition = Vector2(-96, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -104,6 +110,7 @@ shape = SubResource("RectangleShape2D_bokbe")
 [node name="Door5" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-16, 208)
 Scene = 10
+Area = null
 LoadPosition = Vector2(32, -170)
 
 [node name="CollisionShape2D" parent="Door5" index="0"]
@@ -113,6 +120,7 @@ shape = SubResource("RectangleShape2D_lj6rx")
 [node name="Door6" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(128, 208)
 Scene = 10
+Area = null
 LoadPosition = Vector2(240, -170)
 
 [node name="CollisionShape2D" parent="Door6" index="0"]
@@ -121,9 +129,18 @@ shape = SubResource("RectangleShape2D_7njse")
 [node name="NPC" parent="." instance=ExtResource("8_og6k7")]
 position = Vector2(160, -240)
 
+[node name="CollisionShape2D" parent="NPC" index="0"]
+GameID = null
+Delete = null
+ItemType = null
+Timelines = Array[String](["", "", "", ""])
+TimelineIndex = null
+Timeline = null
+SpokenTo = null
+FacingDirection = null
+
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("9_8yric")
-frame = 8
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0"]
 process_mode = 4

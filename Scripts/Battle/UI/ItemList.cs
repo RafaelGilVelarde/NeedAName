@@ -18,23 +18,13 @@ public partial class ItemList : StuffList
     {
 		Array<Items> items = GameManager.Instance.Data.items[0].items;
 		pointerStart=Start;
-		if(pointerStart>=0 &&pointerStart+Buttons.Count<items.Count){
-			for(int i=0;i<Buttons.Count;i++){
-				if(i+Start<items.Count){
-					if(items[i+Start].Base.type==ItemBase.Type.Consumable){
-						Buttons[i].item= (Consumables)items[i+Start];
-						Buttons[i].Show();
-						activeButtons++;
-						if(StartEnd==ScrollList.StartEnd.End){
-							Buttons[i].GrabFocus();
-						}
-					}
-				}
-				else{
-					Buttons[i].item=null;
-					Buttons[i].Hide();
-				}
+		if(StartEnd!=ScrollList.StartEnd.Regular){
+			if(pointerStart>=0 &&pointerStart+Buttons.Count<items.Count){
+				Fill(pointerStart,StartEnd);
 			}
+		}
+		else{
+			Fill(pointerStart,StartEnd);
 		}
 				if(pointerStart<0){
 			pointerStart=0;
@@ -55,4 +45,26 @@ public partial class ItemList : StuffList
 				Buttons[i].Hide();
 			}
     }
+	void Fill(int Start,ScrollList.StartEnd StartEnd){
+		activeButtons = 0;
+		Array<Items> items = GameManager.Instance.Data.items[0].items;
+		for(int i=0;i<Buttons.Count;i++){
+			if(i+Start<items.Count){
+					if(items[i+Start].Base.type==ItemBase.Type.Consumable){
+						Buttons[i].item= (Consumables)items[i+Start];
+						Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].item.Base.Name;
+						Buttons[i].Show();
+						activeButtons++;
+						if(StartEnd==ScrollList.StartEnd.End){
+							Buttons[i].GrabFocus();
+						}
+					}
+				}
+				else{
+					Buttons[i].item=null;
+					Buttons[i].Hide();
+				}
+			}
+	}
+
 }

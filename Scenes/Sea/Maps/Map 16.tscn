@@ -49,6 +49,7 @@ _data = {
 
 [node name="Map16" type="Node2D"]
 script = ExtResource("1_1obvw")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 y_sort_enabled = true
@@ -89,6 +90,7 @@ polygon = PackedVector2Array(312, 176, -280, 176, -280, -72, -312, -72, -312, -2
 position = Vector2(-304, -8)
 rotation = 1.5708
 Scene = 14
+Area = null
 LoadPosition = Vector2(300, 48)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -98,6 +100,7 @@ shape = SubResource("RectangleShape2D_78wiy")
 [node name="Door2" parent="." instance=ExtResource("6_su068")]
 position = Vector2(176, -144)
 Scene = 10
+Area = null
 LoadPosition = Vector2(240, 168)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -107,6 +110,7 @@ shape = SubResource("RectangleShape2D_wwdn1")
 position = Vector2(304, 16)
 rotation = 1.5708
 Scene = 16
+Area = null
 LoadPosition = Vector2(-260, 16)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -126,6 +130,12 @@ CheckAtStart = true
 shape = SubResource("RectangleShape2D_c8run")
 script = ExtResource("8_p6mcy")
 FlagIndex = 1
+TimelineIndex = null
+Timeline = null
+PauseWhenDialogue = null
+Turn = null
+SpokenTo = null
+FacingDirection = null
 
 [node name="Sprite2D" type="Sprite2D" parent="Barrier/CollisionShape2D"]
 scale = Vector2(0.2, 0.2)

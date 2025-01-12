@@ -1,0 +1,17 @@
+[remap]
+
+importer="csv_translation"
+type="Translation"
+uid="uid://4pc6jxelljo0"
+
+[deps]
+
+files=["res://Dialogues/Español/dialogic_SwitchHint_translation.en.translation"]
+
+source_file="res://Dialogues/Español/dialogic_SwitchHint_translation.csv"
+dest_files=["res://Dialogues/Español/dialogic_SwitchHint_translation.en.translation"]
+
+[params]
+
+compress=true
+delimiter=0

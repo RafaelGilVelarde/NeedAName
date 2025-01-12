@@ -14,14 +14,20 @@ public partial class GameManager : Node
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
-	[Export] public Array<OverworldController> Characters;
+	[Export] public Array<PlayerController> Characters, Followers = new Array<PlayerController>();
 	[Export] public Camera2D OverworldCam, BattleCam;
 	[Export] PackedScene StartScene;
+	[Export] AnimationPlayer TransitionAnimator;
+	[Export] TextureRect TransitionOverlay;
+	[Export] Color TransitionColor;
+	[Export] float TransitionTime = 0.4f;
 	public static GameManager Instance;
 
-	[Export] public OverworldController controller;
+	[Export] public PlayerController controller;
 
 	Vector2 PositionToMove;
+	public Tween TransitionTween;
+	
 
 
 	public override void _Ready()
@@ -42,10 +48,18 @@ public partial class GameManager : Node
 	}
 	void InstantiateCharacters(){
 		for(int i=0;i<Data.Party.Count;i++){
-
 			Character aux=Data.Party[i];
 			if(aux.Active){
-				Characters.Add(AddCharacters(aux,0));
+				Characters.Add((PlayerController)AddCharacters(aux,0));
+				if(i>0){
+					Characters[i].AxisOffset=i*3;
+				}
+			}
+		}
+		for(int i=0;i<Data.CurrentFollowers.Count;i++){
+			Character aux=Data.CurrentFollowers[i];
+			if(aux.Active){
+				Characters.Add((PlayerController)AddCharacters(aux,0));
 				if(i>0){
 					Characters[i].AxisOffset=i*3;
 				}
@@ -53,14 +67,42 @@ public partial class GameManager : Node
 		}
 		ChangeLeader(Characters[0],Characters[0]);
 	}
-	public void ChangeLeader(OverworldController A, OverworldController B){
+	public void AddFollowingCharacter(PlayerController A, bool NPC){
+		A.OverworldCollider.Disabled = true;
+		Tween tween = CreateTween();
+		tween.TweenProperty(A.Parent,"position",controller.GlobalPosition,0.2f);
+		tween.Finished+=()=>{
+			if(NPC){
+				Followers.Add(A);
+				A.AxisOffset = (Followers.Count-1)*3;
+			}
+			else{
+				A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
+			}
+			controller._Follow+=A.FollowLeader;
+		};
+		tween.Finished+=tween.Kill;
+		//A.Parent.Position = controller.GlobalPosition;
+	}
+	public void ChangeLeader(PlayerController A, PlayerController B){
 		A.Leader=false;
 		B.Leader=true;
 		A.OverworldCollider.Disabled=false;
-		controller=A;
+		controller=B;
 		for(int i=0;i<Characters.Count;i++){
+			if(Characters[i]!=A){
+				A._Follow-=Characters[i].FollowLeader;
+			}
 			if(Characters[i]!=B){
 				B._Follow+=Characters[i].FollowLeader;
+			}
+		}
+		for(int i=0;i<Followers.Count;i++){
+			if(Followers[i]!=A){
+				A._Follow-=Followers[i].FollowLeader;
+			}
+			if(Characters[i]!=B){
+				B._Follow+=Followers[i].FollowLeader;
 			}
 		}
 	}
@@ -108,6 +150,8 @@ public partial class GameManager : Node
 			Overworld.BattleCharacter.Character= character;
 			character.SetTotalStats();
 			Overworld.SetAnimators();
+
+			Overworld.SetOffsets();
 			GetTree().CurrentScene.AddChild(Prefab);
 			return Overworld;
 	}
@@ -120,13 +164,20 @@ public partial class GameManager : Node
 		AssignBattleCamera(GetTree().CurrentScene);                
 	}
 	public void SwitchScene(int scene, int Area, Vector2 Position){
-		Data.Scene = scene;
-		Data.AreaIndex = Area;
-		RootCharacters();
-		OverworldCam=null;
-		BattleCam=null;
-		GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
-		PositionToMove = Position;
+
+		PlayTransition(TransitionColor);
+		//SceneTreeTimer timer = GetTree().CreateTimer(0.6f,true,true,true);
+		/*timer.Timeout+=()=>*/
+		TransitionTween.Finished+=()=>
+		{
+			Data.Scene = scene;
+			Data.AreaIndex = Area;
+			RootCharacters();
+			OverworldCam=null;
+			BattleCam=null;
+			controller?.SetControllable(false);
+			PositionToMove = Position;
+			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);};
 		/*SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
 		timer.Timeout+=()=>MoveCharactersToScene(Position);*/
 	}
@@ -141,6 +192,14 @@ public partial class GameManager : Node
 		}
 		for(int i=0;i<Characters.Count;i++){
 			Node2D aux=Characters[i].Parent;
+			aux.Reparent(GetTree().Root);
+			//aux.GetParent().RemoveChild(aux);
+			aux.Position = new Vector2(int.MinValue,int.MinValue);
+			
+			//GetTree().Root.AddChild(aux);
+		}
+		for(int i=0;i<Followers.Count;i++){
+			Node2D aux=Followers[i].Parent;
 			aux.GetParent().RemoveChild(aux);
 			aux.Position = new Vector2(int.MinValue,int.MinValue);
 			GetTree().Root.AddChild(aux);
@@ -150,6 +209,9 @@ public partial class GameManager : Node
 		for(int i=0;i<Characters.Count;i++){
 			Characters[i].DataMap=Map;
 		}		
+		for(int i=0;i<Followers.Count;i++){
+			Followers[i].DataMap=Map;
+		}	
 	}
 	public void MoveCharactersToScene(){
 		for(int i=0;i<Characters.Count;i++){
@@ -157,13 +219,12 @@ public partial class GameManager : Node
 			aux.GlobalPosition=PositionToMove;
 			aux.GetParent().RemoveChild(aux);
 			GetTree().CurrentScene.AddChild(aux);
-			/*if(GetTree().CurrentScene!=null){
-				Debug.WriteLine("Character: "+aux+" Scene: "+GetTree().CurrentScene);
-			}
-			else{
-				SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
-				timer.Timeout+=()=>GetTree().CurrentScene.AddChild(aux);
-			}*/
+		}
+		for(int i=0;i<Followers.Count;i++){
+			Node2D aux=Followers[i].Parent;
+			aux.GlobalPosition=PositionToMove;
+			aux.GetParent().RemoveChild(aux);
+			GetTree().CurrentScene.AddChild(aux);
 		}	
 	}
 	public void Save(int save){
@@ -183,9 +244,7 @@ public partial class GameManager : Node
 		string Path = "user://"+"save"+i.ToString()+".tres";
 		Saves[i] = null;
 		if(ResourceLoader.Exists(Path)){
-			Debug.WriteLine("SaveScene: "+Saves[i]?.Party[0].stats.HP);
 			Saves[i]= (DataManager)ResourceLoader.Load<DataManager>(Path,null,ResourceLoader.CacheMode.Replace).Duplicate(true);
-			Debug.WriteLine("SaveScene: "+Saves[i].Party[0].stats.HP);
 		}
 		else{
 			Saves[i] = null;
@@ -216,5 +275,15 @@ public partial class GameManager : Node
 		OverworldCam = null;
 		BattleCam = null;
 		GetTree().ChangeSceneToPacked(StartScene);
+	}
+	public void PlayTransition(Color color){
+		TransitionTween = CreateTween();
+		TransitionTween.TweenProperty(TransitionAnimator.GetParent<Control>(),"modulate",color,TransitionTime);
+		TransitionTween.Finished+=TransitionTween.Kill;
+		/*TransitionAnimator.Stop();
+		if(TransitionAnimator.AssignedAnimation!=null){
+			TransitionAnimator.AssignedAnimation = null;
+		}
+		TransitionAnimator.Play("Transition");*/
 	}
 }

@@ -8,22 +8,24 @@ public partial class Items: Resource
     [Export]public ItemBase Base;
     [Export] public int Amount;
 
-    public virtual void Use(Array<Items> ItemArray, Array<Character> Targets){
+    public virtual void Use(Array<Character> Targets){
+        Array<Items> Aux = GameManager.Instance.Data.items[(int)Base.type].items;
         Base.Effect(Targets);
         Amount--;
         if(Amount<=0){
             Amount = 0;
-            if(ItemArray.Contains(this)){
-                ItemArray.Remove(this);
+            if(Aux.Contains(this)){
+                Aux.Remove(this);
             }
         }
     }
-        public virtual void Toss(Array<Items> ItemArray, int amount){
+        public virtual void Toss(int amount){
+                    Array<Items> Aux = GameManager.Instance.Data.items[(int)Base.type].items;
         Amount-=amount;
         if(Amount<=0){
             Amount = 0;
-            if(ItemArray.Contains(this)){
-                ItemArray.Remove(this);
+            if(Aux.Contains(this)){
+                Aux.Remove(this);
             }
         }
     }

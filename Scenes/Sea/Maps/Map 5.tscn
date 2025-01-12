@@ -121,7 +121,7 @@ GameID = 1
 ItemID = Array[int]([0])
 ItemsToGive = Array[Object]([SubResource("Resource_gnh4x")])
 ItemType = 2
-Timelines = Array[String](["NPC1", "Test", "Item1", "NPC1"])
+Timelines = Array[String](["FirstItemNPC1", "FirstItemNPC1-1", "FirstItemNPC2", "FirstItemNPC3"])
 PauseWhenDialogue = true
 Turn = true
 
@@ -130,7 +130,7 @@ texture_filter = 1
 texture = ExtResource("10_gfqhf")
 hframes = 4
 vframes = 3
-frame = 8
+frame = 9
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

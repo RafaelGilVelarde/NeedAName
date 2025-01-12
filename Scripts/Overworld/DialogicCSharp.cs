@@ -11,6 +11,7 @@ public partial class DialogicCSharp : Node
     Node Styles;
     bool Paused, autoAdvance;
         Callable Check;
+        [Export] Array<string> DialogueStyles;
 
 
     Array<InputEvent> EventAux=new Array<InputEvent>();
@@ -24,7 +25,6 @@ public partial class DialogicCSharp : Node
         Callable.From(Setup).CallDeferred();	
     }
     public void StartDialogue(string Timeline, bool Pause, bool auto){
-
         if(auto){
             autoAdvance=true;
         }
@@ -33,10 +33,10 @@ public partial class DialogicCSharp : Node
         Check=new Callable(this,MethodName.check);
         DialogicRoot.Connect("signal_event",Check);
 
-        Node aux= (Node)Styles.Call("get_layout_node");
-        aux.ProcessMode=ProcessModeEnum.Always;
+        //Node aux= (Node)Styles.Call("get_layout_node");
+        //aux.ProcessMode=ProcessModeEnum.Always;
         if(Pause){
-            Array<OverworldController> party=GameManager.Instance.Characters;
+            Array<PlayerController> party=GameManager.Instance.Characters;
             for(int i=0;i<party.Count;i++){
                 if(party[i].Leader){
                     party[i].EnterExitDialogue(Pause);
@@ -74,9 +74,8 @@ public partial class DialogicCSharp : Node
     }
     void UnPause(){
         Resource CurrentTimeline = (Resource)DialogicRoot.Get("current_timeline");
-        Debug.WriteLine("timeline UnPause: "+CurrentTimeline);
         AutoAdvance(false,false);
-        Array<OverworldController> party=GameManager.Instance.Characters;
+        Array<PlayerController> party=GameManager.Instance.Characters;
         for(int i=0;i<party.Count;i++){
             if(party[i].Leader){
                 party[i].EnterExitDialogue(false);
@@ -87,9 +86,7 @@ public partial class DialogicCSharp : Node
     void ManualAdvanceOff(){
         if(autoAdvance){
             Node Inputs=GetNode("/root/Dialogic/Inputs");
-            Debug.WriteLine("Manual: "+Inputs.Call("is_manualadvance_enabled"));
             Inputs.Call("set_manualadvance",false,false);
-            Debug.WriteLine("Manual: "+Inputs.Call("is_manualadvance_enabled"));
         }
     }
     private async void Setup()
@@ -102,6 +99,10 @@ public partial class DialogicCSharp : Node
         endAutoAdvance = new Callable(this, MethodName.EndAutoAdvance);
         DialogicRoot.Connect("timeline_ended",unPause);
         Styles=GetNode("/root/Dialogic/Styles");
+        for (int i = 0;i<DialogueStyles.Count;i++){
+            Resource aux = ResourceLoader.Load(DialogueStyles[i]);
+            aux.Call("prepare");
+        }
         
     }
     void check(string argument){

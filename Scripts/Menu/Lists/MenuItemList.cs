@@ -20,16 +20,18 @@ public partial class MenuItemList : StuffList
 		else{
 			Fill(Start,StartEnd);
 		}
-		if(pointerStart+activeButtons>items.Count){
-			pointerStart-=1;
-			Buttons[activeButtons-1].GrabFocus();
-		}
-		if(pointerStart<0){
-			pointerStart=0;
-		}
+		if(items.Count>0){
+			if(pointerStart+activeButtons>items.Count){
+				pointerStart-=1;
+				Buttons[activeButtons-1].GrabFocus();
+			}
+			if(pointerStart<0){
+				pointerStart=0;
+			}
 			if(StartEnd==ScrollList.StartEnd.Start||StartEnd==ScrollList.StartEnd.Regular){
 				Buttons[0].GrabFocus();
 			}
+		}
     }
     public override void ClearAll()
     {

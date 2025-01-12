@@ -6,6 +6,7 @@ using System.Diagnostics;
 [GlobalClass]
 public partial class Character : Resource
 {
+    public Node2D NodeCharacter;
     [Export]public CharacterBase Base {get; private set;}
     [Export]public Array<Moves> Moves;
     [Export]public Array<Items> items;
@@ -32,17 +33,17 @@ public partial class Character : Resource
     public virtual void DamageCalc(BattleCharacter Character,BattleCharacter TargetCharacter, Moves move){
 
     }
-    public virtual void ChangeHP(int hp,Node2D character){
+    public virtual void ChangeHP(int hp){
         stats.HP+=hp;
         stats.HP=Mathf.Clamp(stats.HP,0,TotalStats.MaxHP);
 
         Node2D HPLabelParent=GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        HPLabelParent.Scale=character.GlobalScale;
-        HPLabelParent.Rotation=character.GlobalRotation;
+        HPLabelParent.Scale=NodeCharacter.GlobalScale;
+        HPLabelParent.Rotation=NodeCharacter.GlobalRotation;
         RichTextLabel HPLabel=HPLabelParent.GetChild<RichTextLabel>(0);
         HPLabel.Text="[center]"+hp.ToString()+"[/center]";
         HPLabel.AddThemeColorOverride("default_color",Base.TextEffectColor);
-        character.AddChild(HPLabelParent);
+        NodeCharacter.AddChild(HPLabelParent);
         EmitSignal("_ChangeHP",hp);
         if(hp<0){
             EmitSignal("_GetHit");

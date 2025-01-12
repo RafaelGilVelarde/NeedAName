@@ -196,7 +196,7 @@ public partial class StatsScreen : MenuScreens
     }
     void Equip(MenuItemButtons Button){
         CurrentEquipment = Button.item;
-        CurrentEquipment.Use(GameManager.Instance.Data.items[1].items,new Array<Character>{CurrentCharacter});
+        CurrentEquipment.Use(new Array<Character>{CurrentCharacter});
         DisplayStats();
         PreviousStates.Clear();
         PreviousStates.Add(State.CharacterSelect);

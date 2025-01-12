@@ -81,28 +81,28 @@ public partial class MoveBase : Resource
                 case Type.Physical:
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk*Power*Users.MultiplyAtk()-Targets.Character.TotalStats.Def*Targets.MultiplyDef())*-1;
                     Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
-                    Targets.Character.ChangeHP(Calc,Targets);
+                    Targets.Character.ChangeHP(Calc);
                 break;
                 case Type.Special:
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()-Targets.Character.TotalStats.SpDef*Targets.MultiplySpDef())*-1;
                     Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
-                    Targets.Character.ChangeHP(Calc,Targets);
+                    Targets.Character.ChangeHP(Calc);
                 break;
                 case Type.Recovery:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()),Targets);
+                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()));
                 break;
             }
         }
         else{
              switch (type){
                 case Type.Physical:
-                    Targets.Character.ChangeHP(0,Targets);
+                    Targets.Character.ChangeHP(0);
                 break;
                 case Type.Special:
-                    Targets.Character.ChangeHP(0,Targets);
+                    Targets.Character.ChangeHP(0);
                 break;
                 case Type.Recovery:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(0),Targets);
+                    Targets.Character.ChangeHP(Mathf.RoundToInt(0));
                 break;
             }           
         }

@@ -7,6 +7,7 @@ public partial class StartMenu : Node
     [Export] BaseButton Start, Continue;
     [Export] MenuSavesList SavesList;
     [Export] PackedScene NewGameScene;
+    [Export] Color TransitionColor = Colors.Black;
 
     public override void _Ready()
     {
@@ -20,7 +21,10 @@ public partial class StartMenu : Node
     }
 
     void StartNewGame(){
-        GetTree().ChangeSceneToPacked(NewGameScene);
+        GameManager.Instance.PlayTransition(TransitionColor);
+        GameManager.Instance.TransitionTween.Finished+=()=>GetTree().ChangeSceneToPacked(NewGameScene);
+        //SceneTreeTimer timer = GetTree().CreateTimer(0.4f);
+        //timer.Timeout += ()=>GetTree().ChangeSceneToPacked(NewGameScene);
     }
     void LoadSavesList(){
         SavesList.Visible = true;

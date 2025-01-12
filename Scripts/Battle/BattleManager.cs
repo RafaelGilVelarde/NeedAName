@@ -21,7 +21,7 @@ public partial class BattleManager : Node
 	[Export] Camera2D BattleCamera;
 	[Export] public Control TutorialLabels;
 	[Export] public LossScreen Loss;
-	public Array<BattleCharacter> Party=new Array<BattleCharacter>(), EnemyParty=new Array<BattleCharacter>(),TurnOrder=new Array<BattleCharacter>();
+	[Export] public Array<BattleCharacter> Party=new Array<BattleCharacter>(), EnemyParty=new Array<BattleCharacter>(),TurnOrder=new Array<BattleCharacter>();
 	public Array<BattleCharacter> UserCharacters=new Array<BattleCharacter>(),TargetCharacters=new Array<BattleCharacter>();
 	[Export] Node CharacterButtonParent;
 	Array<CharacterButtons> PartyButtons=new Array<CharacterButtons>(), EnemyButtons=new Array<CharacterButtons>();
@@ -58,12 +58,21 @@ public partial class BattleManager : Node
 	}
 	public void StartBattle(BattleScene scene,Array<BattleCharacter> party, Array<BattleCharacter> enemy, Array<Vector2>PartyPos, Array<Vector2> EnemyPos, Vector2 centerViewCam, Vector2 centerViewChar, BattleStart start){
 		AuxItems = (TypedItemList)GameManager.Instance.Data.items[0].Duplicate();
+		GameManager Game = GameManager.Instance;
 		battleStart = start;
 		BattleEnded=false;
 		CenterView=centerViewChar;
 		/*BattleCamera.Position=centerViewCam;
 		BattleCamera.Enabled=true;*/
 		Scene=scene;
+
+		for(int i = 0; i<Game.Followers.Count;i++){
+			Tween tween = CreateTween();
+			tween.SetParallel(true);
+			tween.TweenProperty(Game.Followers[i],"modulate:a",0,0.3);
+			tween.Finished+=tween.Kill;
+		}
+
 		for(int i=0;i<party.Count;i++){
 			Party.Add(party[i]);
 			partyPos.Add(PartyPos[i]);
@@ -72,7 +81,7 @@ public partial class BattleManager : Node
 			Party[i].EnemyParty=EnemyParty;
 			Party[i].PartyButtons=PartyButtons;
 			Party[i].EnemyButtons=EnemyButtons;
-			if(Party[i].Overworld.Leader){
+			if(((PlayerController)Party[i].Overworld).Leader){
 				partyOrigin=Party[i].GlobalPosition;
 			}
 			TurnOrder.Add(Party[i]);
@@ -326,6 +335,15 @@ public partial class BattleManager : Node
 			EnemyParty[i].ReturnToOverworld();
 		}*/
 		Scene?.ReturnToOverworld();
+
+		GameManager Game = GameManager.Instance;
+		
+		for(int i = 0; i<Game.Followers.Count;i++){
+			Tween tween = CreateTween();
+			tween.SetParallel(true);
+			tween.TweenProperty(Game.Followers[i],"modulate:a",1,0.3);
+			tween.Finished+=tween.Kill;
+		}
 
 		State=BattleState.Neutral;
 		Party.Clear();

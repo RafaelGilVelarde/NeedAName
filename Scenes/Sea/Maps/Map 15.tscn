@@ -8,13 +8,13 @@
 [ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="5_dis5h"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="6_75qik"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="7_icgwb"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="15_21iul"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="9_a2of4"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="16_l606f"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="17_8n5jr"]
 
-[sub_resource type="Resource" id="Resource_ct8ee"]
-resource_local_to_scene = true
-script = ExtResource("15_21iul")
+[sub_resource type="Resource" id="Resource_br5uf"]
+script = ExtResource("9_a2of4")
+Timeline = ""
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imptm"]
 resource_local_to_scene = true
@@ -30,6 +30,7 @@ size = Vector2(32, 32)
 
 [node name="Map15" type="Node2D"]
 script = ExtResource("1_4nxge")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_k1u6e")
@@ -62,8 +63,14 @@ script = ExtResource("4_o863l")
 [node name="NPC" parent="." instance=ExtResource("5_dis5h")]
 position = Vector2(-160, 104)
 
+[node name="CollisionShape2D" parent="NPC" index="0"]
+TimelineIndex = null
+Timeline = null
+SpokenTo = null
+FacingDirection = null
+
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
+frame = 9
 
 [node name="Borders" parent="." instance=ExtResource("6_75qik")]
 position = Vector2(-32, 56)
@@ -72,7 +79,7 @@ position = Vector2(-32, 56)
 polygon = PackedVector2Array(360, 144, 264, 144, 264, 184, -200, 184, -200, 144, -296, 144, -296, -256, 360, -256, 360, -94.5842, 384, -96, 384, 80, 360, 80, 360, 136, 352, 136, 352, 72, 376, 72, 376, -88, 352, -88, 352, -248, -288, -248, -288, 136, -192, 136, -192, 176, 256, 176, 256, 136, 360, 136)
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("7_icgwb")]
-Scene = SubResource("Resource_ct8ee")
+Scene = SubResource("Resource_br5uf")
 detectArea = NodePath("../Area2D")
 
 [node name="Area2D" parent="." instance=ExtResource("16_l606f")]
@@ -85,6 +92,7 @@ polygon = PackedVector2Array(104, -88, -176, -96, -184, 8, -128, 104, -40, 88, 1
 [node name="Door" parent="." instance=ExtResource("17_8n5jr")]
 position = Vector2(0, 208)
 Scene = 13
+Area = null
 LoadPosition = Vector2(0, -168)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -95,6 +103,7 @@ shape = SubResource("RectangleShape2D_imptm")
 position = Vector2(336, 48)
 rotation = 1.5708
 Scene = 15
+Area = null
 LoadPosition = Vector2(-270, 0)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -103,6 +112,7 @@ shape = SubResource("RectangleShape2D_isyrh")
 [node name="Door3" parent="." instance=ExtResource("17_8n5jr")]
 position = Vector2(144, -80)
 Scene = 20
+Area = null
 LoadPosition = Vector2(112, 744)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

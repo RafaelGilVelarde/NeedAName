@@ -216,7 +216,7 @@ public partial class ItemsScreen : MenuScreens
         CurrentCharacter= character;
     }
     void UpdateDescription(MenuItemButtons Button){
-        if(Button.item.Base!=null){
+        if(Button?.item?.Base!=null){
             ItemBase item = Button.item.Base;
             ItemTitle.Text = item.Name;
             ItemDesc.Text = item.Description;
@@ -224,7 +224,7 @@ public partial class ItemsScreen : MenuScreens
     }
     void UseItem(){
         Array<Items> Aux = GameManager.Instance.Data.items[CurrentType].items;
-        CurrentItem.Use(Aux,new Array<Character>{CurrentCharacter});
+        CurrentItem.Use(new Array<Character>{CurrentCharacter});
         ItemList.FillButtons(ItemList.pointerStart,ScrollList.StartEnd.Regular);   
         if(CurrentItem.Amount == 0){
             CurrentItem = null;
@@ -240,7 +240,7 @@ public partial class ItemsScreen : MenuScreens
     }
     void Toss(){
         Array<Items> Aux = GameManager.Instance.Data.items[CurrentType].items;
-        CurrentItem.Toss(Aux, TossItem.pointerStart);
+        CurrentItem.Toss(TossItem.pointerStart);
         if(ItemPointerIndex>0){
             ItemPointerIndex -=1;
         }

@@ -24,3 +24,5 @@ Name = "Shrimpy"
 OverworldAnimator = ExtResource("3_8trff")
 BattleAnimator = ExtResource("2_evcf6")
 TextEffectColor = Color(1, 0, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)

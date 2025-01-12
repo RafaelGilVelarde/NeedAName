@@ -34,6 +34,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Node2D ShootNode;
 	[Export] public ProgressBar HPBar;
 	[Export] RichTextLabel HPText;
+	[Export] public Consumables CurrentItem;
 
 	[Signal]
 	public delegate void _ReturnToIdleEventHandler(BattleCharacter character);
@@ -41,6 +42,7 @@ public partial class BattleCharacter : CharacterBody2D
 	public delegate void _ShootEventHandler(BattleCharacter character);
 
 	Tween DodgeTween;
+
 
 	
 
@@ -61,7 +63,8 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	[Export]public BattleState battleState;
 	[Export]public ActionState actionState;
-	public override void _Ready()
+
+    public override void _Ready()
 	{
 		HPText = HPBar.GetChild<RichTextLabel>(0);
 	}
@@ -188,7 +191,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 	public void Reset(){
-
+		CurrentItem = null;
 		changeState(BattleState.Idle);
 		changeAction(ActionState.isIdle);
 		Looping=false;

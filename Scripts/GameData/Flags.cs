@@ -7,4 +7,6 @@ public partial class Flags : Resource
 {
     [Export] public Array<bool> ItemGiven;
     [Export] public Array<bool> PuzzleFlags;
+    [Export] public Array<bool> EventFlags;
+
 }

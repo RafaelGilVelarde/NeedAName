@@ -1,6 +1,6 @@
 [gd_scene load_steps=13 format=3 uid="uid://d3nqqd8p0x1ga"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/OverworldController.cs" id="1_at04d"]
+[ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_at04d"]
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_2jwdq"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="3_p8lv2"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="4_pogp0"]

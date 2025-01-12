@@ -6,10 +6,13 @@ public partial class IntroScene : Node
     [Export] string IntroDialogue;
     Callable StartGame;
     DialogicCSharp Dialogue;
+    [Export] Color TransitionColor = Color.Color8(0,0,0,0);
     public override void _Ready()
     {
-        SceneTreeTimer timer = GetTree().CreateTimer(0.5f);
-        timer.Timeout += StartScene;
+        GameManager.Instance.PlayTransition(TransitionColor);
+        GameManager.Instance.TransitionTween.Finished+=StartScene;
+        //SceneTreeTimer timer = GetTree().CreateTimer(0.5f);
+        //timer.Timeout += StartScene;
         base._Ready();
     }
     void StartScene(){

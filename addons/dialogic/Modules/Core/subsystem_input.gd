@@ -25,7 +25,6 @@ var manual_advance: DialogicManualAdvance = null
 ################################################################################
 
 func clear_game_state(_clear_flag := DialogicGameHandler.ClearFlags.FULL_CLEAR) -> void:
-	print("Clearing")
 	if not is_node_ready():
 		await ready
 

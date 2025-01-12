@@ -24,3 +24,5 @@ Name = "Starfish"
 OverworldAnimator = ExtResource("3_sywpe")
 BattleAnimator = ExtResource("2_5215y")
 TextEffectColor = Color(1, 0, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)

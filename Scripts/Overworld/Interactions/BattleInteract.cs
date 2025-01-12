@@ -10,7 +10,6 @@ public partial class BattleInteract : Interact
         Callable EndTimeline;
     public override void interact(OverworldController Player)
     {
-        Debug.WriteLine("StartDialogue");
         startBattle=new Callable(this,MethodName.Battle);
         EndTimeline=new Callable(this,MethodName.EndDialogue);
         

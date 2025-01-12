@@ -1,8 +1,8 @@
-Helo {GameManager.Data.Party[0].Base.Name}
-Wanna fight?
-- Yes
-	Let's fight
-	Farewell {GameManager.Data.Party[0].Base.Name}
+Helo {GameManager.Data.Party[0].Base.Name} #id:57
+Wanna fight? #id:58
+- Yes #id:59
+	Let's fight #id:5a
+	Farewell {GameManager.Data.Party[0].Base.Name} #id:5b
 	[signal arg="Fight"]
-- No
-	Let's not
+- No #id:5c
+	Let's not #id:5d

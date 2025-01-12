@@ -20,11 +20,11 @@ public partial class ItemInteract : Interact
             SpokenTo=true;
             Destroy();
         }
+        DoAction = new Callable(this,MethodName.Action);
         AnimatorTree?.Set("parameters/conditions/Taken",SpokenTo);
     }
     public override void interact(OverworldController Player)
     {
-        DoAction = new Callable(this,MethodName.Action);
     
         Node DialogicRoot=DialogicCSharp.instance.DialogicRoot;
         DialogicRoot.Connect("signal_event",DoAction);
@@ -44,7 +44,6 @@ public partial class ItemInteract : Interact
             }
         }*/
         for(int i = 0;i<ItemsToGive.Count;i++){
-            Debug.WriteLine(ItemsToGive[i]);
             Array<Items> Items = ItemLists[(int)ItemsToGive[i].Base.type].items;
             Items.Add(ItemsToGive[i]);
         }

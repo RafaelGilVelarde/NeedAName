@@ -180,9 +180,11 @@ func start(timeline:Variant, label:Variant="") -> Node:
 		scene = self.Styles.get_layout_node()
 
 	if not scene.is_node_ready():
+		print("Not Ready")
 		scene.ready.connect(clear.bind(ClearFlags.KEEP_VARIABLES))
 		scene.ready.connect(start_timeline.bind(timeline, label))
 	else:
+		print("Ready")
 		clear(ClearFlags.KEEP_VARIABLES)
 		start_timeline(timeline, label)
 
@@ -194,7 +196,6 @@ func start(timeline:Variant, label:Variant="") -> Node:
 ## @label_or_idx can be a label (string) or index (int) to skip to immediatly.
 func start_timeline(timeline:Variant, label_or_idx:Variant = "") -> void:
 	# load the resource if only the path is given
-	print("starting")
 	if typeof(timeline) == TYPE_STRING:
 		#check the lookup table if it's not a full file name
 		if (timeline as String).contains("res://"):
@@ -207,6 +208,7 @@ func start_timeline(timeline:Variant, label_or_idx:Variant = "") -> void:
 		return
 
 	await (timeline as DialogicTimeline).process()
+	print("starting timeline")
 
 	current_timeline = timeline
 	current_timeline_events = current_timeline.events

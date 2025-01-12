@@ -16,8 +16,11 @@ public partial class ItemButtons : Control
 	{
 	}
 	void OnFocusEntered(){
+				Modulate=Colors.Yellow;
+
 		BattleManager.instance.CurrentItemButton=this;
 	}
 	void OnFocusExited(){
+		Modulate=Colors.White;
 	}
 }

@@ -10,18 +10,19 @@ public partial class Interact : CollisionShape2D
     [Export]protected string Timeline ="Test";
     [Export]bool PauseWhenDialogue, Turn;
     [Export] protected bool  SpokenTo;
-    [Export] Vector2 FacingDirection;
+    [Export] protected Vector2 FacingDirection;
     [Export] protected AnimationPlayer Animator;
     [Export] protected AnimationTree AnimatorTree;
 
     Callable disable;
     public override void _Ready()
     {
-        if(GetChild(0)?.GetChildCount()>0){
-            Node Aux=GetChild(0).GetChild(0);
-            if(Aux.GetType()==typeof(AnimationPlayer)){
-                Animator = (AnimationPlayer)Aux;
-
+        if(GetChildCount()>0){
+            if(GetChild(0)?.GetChildCount()>0){
+                Node Aux=GetChild(0).GetChild(0);
+                if(Aux.GetType()==typeof(AnimationPlayer)){
+                    Animator = (AnimationPlayer)Aux;
+                }
             }
         }
         if(Animator?.GetChildCount()>0){
@@ -31,6 +32,7 @@ public partial class Interact : CollisionShape2D
 
             }
         }
+        disable=new Callable(this,MethodName.Disable);
     }
 
 
@@ -51,23 +53,21 @@ public partial class Interact : CollisionShape2D
 
     public void Enable(int id){
         Timeline = Timelines[id];
-
-        disable=new Callable(this,MethodName.Disable);
-        DialogicCSharp DialogicInstance= (DialogicCSharp)DialogicCSharp.instance;
+        DialogicCSharp DialogicInstance= DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Connect("timeline_ended",disable);
         DialogicInstance.StartDialogue(Timeline,PauseWhenDialogue,false);
     }
     public virtual void Disable(){
-        Array<OverworldController> party=GameManager.Instance.Characters;
+        Array<PlayerController> party=GameManager.Instance.Characters;
         for(int i=0;i<party.Count;i++){
             if(party[i].Leader){
                 party[i].InteractCollider.GetChild<CollisionShape2D>(0).Disabled=false;
             }
         }
-        DialogicCSharp DialogicInstance= (DialogicCSharp)DialogicCSharp.instance;
+        DialogicCSharp DialogicInstance= DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended",disable);
     }
-    void Flip(){
+    protected virtual void Flip(){
 		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)!=Scale.Y){
 			Scale=new Vector2(Scale.X*-1,Scale.Y);
 	    }
