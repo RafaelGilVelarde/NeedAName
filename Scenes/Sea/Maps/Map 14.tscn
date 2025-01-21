@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://1tlmx7skytd6"]
+[gd_scene load_steps=43 format=3 uid="uid://1tlmx7skytd6"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_mxof8"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_rkxe1"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="5_o734i"]
 [ext_resource type="PackedScene" uid="uid://ff04r6c2v0vw" path="res://Prefabs/Overworld/change_layer.tscn" id="6_blkad"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="7_2coxb"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="7_cgkd5"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="8_gkpdk"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Setup/EnemySpawner.cs" id="8_sgboe"]
 [ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="9_msj5b"]
@@ -19,6 +20,10 @@
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="18_gxibl"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="18_jr6bq"]
 [ext_resource type="Resource" uid="uid://cqi3tmr64djan" path="res://Resources/Moves/Enemy/Beams/Bubblebeam.tres" id="19_acsbm"]
+
+[sub_resource type="Resource" id="Resource_m2l0g"]
+script = ExtResource("7_cgkd5")
+DialogueTimelines = Array[String](["NPC3", "NPC4"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exkr6"]
 size = Vector2(32, 8)
@@ -72,10 +77,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_5oxtr")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="Resource" id="Resource_7spjv"]
 script = ExtResource("18_gxibl")
@@ -101,10 +106,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_4n0cw")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="Resource" id="Resource_c0q0j"]
 script = ExtResource("18_gxibl")
@@ -130,10 +135,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_oxcfb")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="Resource" id="Resource_fs7gb"]
 script = ExtResource("18_gxibl")
@@ -159,10 +164,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_f2qvq")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="Resource" id="Resource_pn2gs"]
 script = ExtResource("17_6hkvh")
@@ -189,6 +194,9 @@ script = ExtResource("1_mxof8")
 TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
+top_level = true
+z_index = -1
+z_as_relative = false
 tile_set = ExtResource("1_rkxe1")
 format = 2
 layer_0/tile_data = PackedInt32Array(-262149, 720896, 1342177294, -196613, 458752, 12, -131077, 458752, 12, -65541, 458752, 12, -5, 458752, 12, 65531, 458752, 12, 131067, 458752, 12, 196603, 458752, 12, 262139, 458752, 12, 327675, 458752, 12, -262148, 524288, 1073741838, -196612, 458752, 12, -131076, 458752, 12, -65540, 458752, 12, -4, 458752, 12, 65532, 458752, 12, 131068, 458752, 12, 196604, 458752, 12, 262140, 458752, 12, 327676, 458752, 12, -262147, 524288, 1073741838, -196611, 458752, 12, -131075, 458752, 12, -65539, 458752, 12, -3, 458752, 12, 65533, 458752, 12, 131069, 458752, 12, 196605, 458752, 12, 262141, 458752, 12, 327677, 458752, 12, -262146, 524288, 1073741838, -196610, 458752, 12, -131074, 458752, 12, -65538, 458752, 12, -2, 458752, 12, 65534, 458752, 12, 131070, 458752, 12, 196606, 458752, 12, 262142, 458752, 12, 327678, 458752, 12, -262145, 524288, 1073741838, -196609, 458752, 12, -131073, 458752, 12, -65537, 458752, 12, -1, 458752, 12, 65535, 458752, 12, 131071, 458752, 12, 196607, 458752, 12, 262143, 458752, 12, 327679, 458752, 12, -327680, 524288, 1073741838, -262144, 458752, 12, -196608, 458752, 12, -131072, 458752, 12, -65536, 458752, 12, 0, 458752, 12, 65536, 458752, 12, 131072, 458752, 12, 196608, 458752, 12, 262144, 458752, 12, -327679, 524288, 1073741838, -262143, 458752, 12, -196607, 458752, 12, -131071, 458752, 12, -65535, 458752, 12, 1, 458752, 12, 65537, 458752, 12, 131073, 458752, 12, 196609, 458752, 12, 262145, 458752, 12, -327678, 524288, 1073741838, -262142, 458752, 12, -196606, 458752, 12, -131070, 458752, 12, -65534, 458752, 12, 2, 458752, 12, 65538, 458752, 12, 131074, 458752, 12, 196610, 458752, 12, 262146, 458752, 12, -327677, 524288, 1073741838, -262141, 458752, 12, -196605, 458752, 12, -131069, 458752, 12, -65533, 458752, 12, 3, 458752, 12, 65539, 458752, 12, 131075, 458752, 12, 196611, 458752, 12, 262147, 458752, 12, -327676, 720896, 14, -262140, 458752, 12, -196604, 458752, 12, -131068, 458752, 12, -65532, 458752, 12, 4, 458752, 12, 65540, 458752, 12, 131076, 458752, 12, 196612, 458752, 12, 262148, 458752, 12, -327675, 458752, 12, -262139, 458752, 12, -196603, 458752, 12, -131067, 458752, 12, -65531, 458752, 12, 5, 458752, 12, 65541, 458752, 12, 131077, 458752, 12, 196613, 458752, 12, 262149, 458752, 12, -327674, 458752, 12, -262138, 458752, 12, -196602, 458752, 12, -131066, 458752, 12, -65530, 458752, 12, 6, 458752, 12, 65542, 458752, 12, 131078, 458752, 12, 196614, 458752, 12, 262150, 458752, 12, -262151, 458752, 12, -196615, 458752, 12, -131079, 458752, 12, -65543, 458752, 12, -7, 458752, 12, 65529, 458752, 12, 131065, 458752, 12, 196601, 458752, 12, 262137, 458752, 12, 327673, 458752, 12, -262150, 458752, 12, -196614, 458752, 12, -131078, 458752, 12, -65542, 458752, 12, -6, 458752, 12, 65530, 458752, 12, 131066, 458752, 12, 196602, 458752, 12, 262138, 458752, 12, 327674, 458752, 12, -327673, 458752, 12, -327672, 458752, 12, -327671, 458752, 12, -262135, 458752, 12, -196599, 458752, 12, -131063, 458752, 12, -65527, 458752, 12, 9, 458752, 12, 65545, 458752, 12, 131081, 458752, 12, 196617, 458752, 12, 262153, 458752, 12, 327689, 458752, 12, 327688, 458752, 12, 327687, 458752, 12, 327686, 458752, 12, 327685, 458752, 12, 327684, 458752, 12, 327683, 458752, 12, 327682, 458752, 12, 327681, 458752, 12, 327680, 458752, 12, 393215, 458752, 12, 393214, 458752, 12, 393213, 458752, 12, 393212, 458752, 12, 393211, 458752, 12, 393210, 458752, 12, 393209, 458752, 12, 393208, 458752, 12, 393207, 458752, 12, 393206, 458752, 12, -131082, 458752, 12, -65546, 458752, 12, -10, 458752, 12, 65526, 458752, 12, 131062, 458752, 12, 196598, 458752, 12, 262134, 458752, 12, 327670, 458752, 12, -131081, 458752, 12, -65545, 458752, 12, -9, 458752, 12, 65527, 458752, 12, 131063, 458752, 12, 196599, 458752, 12, 262135, 458752, 12, 327671, 458752, 12, -131080, 458752, 12, -65544, 458752, 12, -8, 458752, 12, 65528, 458752, 12, 131064, 458752, 12, 196600, 458752, 12, 262136, 458752, 12, 327672, 458752, 12, -327690, 458752, 12, -262154, 458752, 12, -196618, 458752, 12, -327689, 458752, 12, -262153, 458752, 12, -196617, 458752, 12, -327688, 458752, 12, -262152, 458752, 12, -196616, 458752, 12, -327687, 458752, 12, -327686, 458752, 12, -327685, 524288, 805306382, -327684, 720896, 15, -327683, 720896, 15, -327682, 720896, 15, -327681, 720896, 15, -393216, 720896, 15, -393215, 720896, 15, -393214, 720896, 15, -393213, 720896, 15, -393212, 524288, 536870926, -393211, 458752, 12, -393210, 458752, 12, -393209, 458752, 12, -393208, 458752, 12, -393207, 458752, 12, -262137, 458752, 12, -196601, 458752, 12, -131065, 458752, 12, -65529, 458752, 12, 7, 458752, 12, 65543, 458752, 12, -262136, 458752, 12, -196600, 458752, 12, -131064, 458752, 12, -65528, 458752, 12, 8, 458752, 12, 65544, 458752, 12, 131079, 458752, 12, 196615, 458752, 12, 262151, 458752, 12, 131080, 458752, 12, 196616, 458752, 12, 262152, 458752, 12)
@@ -222,14 +230,13 @@ script = ExtResource("4_mfjd2")
 position = Vector2(-72, 40)
 
 [node name="CollisionShape2D" parent="NPC" index="0"]
-Timelines = Array[String](["NPC3", "NPC3"])
+TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
+TimelineGroupIndex = null
 TimelineIndex = null
 Timeline = null
 SpokenTo = null
+FacingRight = null
 FacingDirection = null
-
-[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
 
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
@@ -270,7 +277,7 @@ position = Vector2(-336, 0)
 rotation = 1.5708
 Scene = 6
 Area = null
-LoadPosition = Vector2(264, 0)
+LoadPosition = Vector2(336, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 shape = SubResource("RectangleShape2D_th5io")

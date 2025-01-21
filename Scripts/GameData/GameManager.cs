@@ -59,12 +59,13 @@ public partial class GameManager : Node
 		for(int i=0;i<Data.CurrentFollowers.Count;i++){
 			Character aux=Data.CurrentFollowers[i];
 			if(aux.Active){
-				Characters.Add((PlayerController)AddCharacters(aux,0));
+				Followers.Add((PlayerController)AddCharacters(aux,0));
 				if(i>0){
-					Characters[i].AxisOffset=i*3;
+					Followers[i].AxisOffset=i*3;
 				}
 			}
 		}
+		SetLayers(Data.GraphicsLayer,Data.PhysicsLayer);
 		ChangeLeader(Characters[0],Characters[0]);
 	}
 	public void AddFollowingCharacter(PlayerController A, bool NPC){
@@ -261,6 +262,7 @@ public partial class GameManager : Node
 		OverworldCam?.QueueFree();
 		BattleCam?.QueueFree();
 		Characters.Clear();
+		Followers.Clear();
 
 		InstantiateCharacters();
 		CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position);
@@ -271,6 +273,7 @@ public partial class GameManager : Node
 	}
 	public void Restart(){
 		Characters.Clear();
+		Followers.Clear();
 		Data = null;
 		OverworldCam = null;
 		BattleCam = null;
@@ -285,5 +288,17 @@ public partial class GameManager : Node
 			TransitionAnimator.AssignedAnimation = null;
 		}
 		TransitionAnimator.Play("Transition");*/
+	}
+	public void SetLayers(int GraphicsLayer, uint PhysicsLayer){
+		Data.GraphicsLayer = GraphicsLayer;
+		Data.PhysicsLayer = PhysicsLayer;
+		for(int i=0;i<Characters.Count;i++){
+			Characters[i].Parent.ZIndex = GraphicsLayer;
+			Characters[i].Parent.CollisionMask = PhysicsLayer;
+		}
+		for(int i=0;i<Followers.Count;i++){
+			Followers[i].Parent.ZIndex = GraphicsLayer;
+			Followers[i].Parent.CollisionMask = PhysicsLayer;			
+		}	
 	}
 }

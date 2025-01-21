@@ -35,8 +35,9 @@ public partial class InteractFollowNPC : Interact
     }
     protected override void Flip()
     {
-		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)!=GlobalScale.Y){
+		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)>0!=FacingRight){
 			GetParent<Node2D>().Scale=new Vector2(GlobalScale.X*-1,GlobalScale.Y);
+            FacingRight=!FacingRight;
 	    }
     }
 }

@@ -13,6 +13,8 @@ public partial class ItemCheckInteract : ItemInteract
             bool Check = false;
             int aux = 0;
             Array<Items> Items = GameManager.Instance.Data.items[(int)ItemType].items;
+            Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
+
             for (int i = 0;i<ItemID.Count;i++){
                 for(int j=0;j<Items.Count;j++){
                     if(Items[j].Base.ID == ItemID[i]){
@@ -23,30 +25,31 @@ public partial class ItemCheckInteract : ItemInteract
             if(aux==ItemID.Count){
                 Check = true;
             }
-            if(Check){
-                TimelineIndex = 2;
+            if(Check || ItemGiven[GameID]){
+                TimelineGroupIndex = 1;
             }
 
-            Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
-            for (int i = 0;i<ItemGiven.Count;i++){
-                if(ItemGiven[GameID]){
-                    TimelineIndex = 3;
-                }
-            }
         base.interact(Player);
     }
     public override void Action(string argument)
     {
-        Array<Items> Items = GameManager.Instance.Data.items[(int)ItemType].items;
-        if(TakeItems){
-            for (int i = 0;i<ItemID.Count;i++){
-                for(int j=0;j<Items.Count;j++){
-                    if(Items[j].Base.ID == ItemID[i]){
-                        Items.RemoveAt(i);
+        switch (argument){
+            case "GiveItem":
+                Array<Items> Items = GameManager.Instance.Data.items[(int)ItemType].items;
+                if(TakeItems){
+                    for (int i = 0;i<ItemID.Count;i++){
+                        for(int j=0;j<Items.Count;j++){
+                            if(Items[j].Base.ID == ItemID[i]){
+                                Items.RemoveAt(i);
+                            }
+                        }
                     }
                 }
-            }
+                base.Action(argument);
+            break;
+            case "RefuseItem":
+                SpokenTo = false;
+            break;
         }
-        base.Action(argument);
     }
 }

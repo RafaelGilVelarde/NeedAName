@@ -1,0 +1,13 @@
+So, wanna remember your power?
+- Sure! [Give Soul Fragment]
+	Let's do this then!
+	C'mon....c'mooooooooooooooooooon
+	Finally! Here ya go
+	[signal arg="GiveItem"]
+	MC (Wondering): It feels.............loud?
+	I dunno that's for you to find out
+	[Received the Loud Memory]
+- I'd......rather not
+	Come back if ya change your mind
+	Or don't
+	[signal arg="RefuseItem"]

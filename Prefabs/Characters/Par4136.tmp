@@ -1,18 +1,18 @@
-[gd_scene load_steps=167 format=3 uid="uid://cgngdxrff32se"]
+[gd_scene load_steps=163 format=3 uid="uid://ci40agixb3xuc"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractFollowNPC.cs" id="1_0y2tr"]
-[ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_3bvdq"]
-[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_alsse"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="3_1rsro"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="4_uoxpk"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="5_1bgh8"]
-[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_3i2a6"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_sekui"]
-[ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="10_imaof"]
-[ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="11_h2kqt"]
-[ext_resource type="Texture2D" uid="uid://dnq7v2srfl0ii" path="res://Sprites/Battle/Party/Menu/_Run.png" id="12_1d1h4"]
-[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="13_ebyqd"]
-[ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="14_r8qca"]
+[ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
+[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_kj4rx"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="4_6l7n6"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
+[ext_resource type="Texture2D" uid="uid://dpjjot5h63ywt" path="res://Sprites/Battle/Party/waterBattle.png" id="6_00jgu"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
+[ext_resource type="Texture2D" uid="uid://xxo6ba55y2n1" path="res://Sprites/Battle/Party/_Arm.png" id="7_qv8kd"]
+[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
+[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="9_0mctb"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
+[ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="9_p6osb"]
+[ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="10_0c27x"]
+[ext_resource type="Texture2D" uid="uid://dnq7v2srfl0ii" path="res://Sprites/Battle/Party/Menu/_Run.png" id="11_tow1y"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nva1"]
 radius = 12.0
@@ -30,12 +30,6 @@ size = Vector2(20, 34)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lpari"]
-load_path = "res://.godot/imported/waterBattle.png-9dbb0c97f89b3af4700a787f2184a034.ctex"
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wm40p"]
-load_path = "res://.godot/imported/_Arm.png-632bdcf33829a14be9f617b9394fd216.ctex"
 
 [sub_resource type="Curve" id="Curve_0dopt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
@@ -111,92 +105,92 @@ gradient = SubResource("Gradient_awthb")
 gradient = SubResource("Gradient_6uv37")
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mctvn"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cxwyq"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(280, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jw5hj"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kgbuh"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(70, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_a5kpo"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(140, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tsr8h"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(210, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kskeb"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oscdt"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(280, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vyary"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88exu"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(70, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7h5nx"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(140, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4bvil"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(210, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t077f"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_e0skb"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(280, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bctos"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_w4e0e"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(70, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qyimr"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(140, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rt3fv"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(210, 128, 70, 64)
 filter_clip = true
 
@@ -372,77 +366,77 @@ tracks/13/keys = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_8yq7g"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tg43h"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(70, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qbl7y"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(140, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t0xic"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(210, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_88ri1"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(280, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rjywt"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vhs6o"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(70, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jcyvt"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(140, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_wfn2d"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(210, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7s2mv"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(280, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_msudj"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlhrf"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(70, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ov6as"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(140, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_71auy"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(210, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hiawy"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(280, 0, 70, 64)
 filter_clip = true
 
@@ -523,92 +517,92 @@ tracks/5/keys = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_onv4s"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vbg33"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(280, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3i873"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ndiws"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(70, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_l6km1"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(140, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_32rjv"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(210, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_140fi"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_j2bdn"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(280, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5r7qd"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_o1exk"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(70, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_oy80h"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(140, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hmc13"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(210, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_miu6n"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_6aplv"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(280, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ysyep"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_gc0o3"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(70, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nicnm"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(140, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sw31h"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(210, 128, 70, 64)
 filter_clip = true
 
@@ -967,92 +961,92 @@ tracks/14/keys = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_csoiq"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bbalv"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(280, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ix7nu"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_h0rka"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(70, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pftou"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(140, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_pgjf8"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(210, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vm1dn"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_1rjwb"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(280, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rre2n"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jxhf7"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(70, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_sa35w"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(140, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_s8wvs"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(210, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7b363"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 0, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3mby4"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(280, 128, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ga1l0"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_iiiqd"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(70, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_n7iem"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(140, 192, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_d0gn4"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(210, 192, 70, 64)
 filter_clip = true
 
@@ -1228,62 +1222,62 @@ tracks/13/keys = {
 }
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7cjed"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(0, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rpx8k"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(70, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_7rvfa"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(140, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5m2rx"]
-atlas = ExtResource("10_imaof")
+atlas = ExtResource("9_p6osb")
 region = Rect2(210, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_vgxlo"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(0, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_nfsto"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(70, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_p04vu"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(140, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_xqxdo"]
-atlas = ExtResource("11_h2kqt")
+atlas = ExtResource("10_0c27x")
 region = Rect2(210, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_k6qqc"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(0, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_i826r"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(70, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5865j"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(140, 64, 70, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_bwv3l"]
-atlas = ExtResource("12_1d1h4")
+atlas = ExtResource("11_tow1y")
 region = Rect2(210, 64, 70, 64)
 filter_clip = true
 
@@ -1532,98 +1526,10 @@ states/Start/position = Vector2(195, 92)
 "states/Start 1/position" = Vector2(335, 92)
 transitions = ["Start", "Start 1", SubResource("AnimationNodeStateMachineTransition_t6ikl"), "Idle", "Choice", SubResource("AnimationNodeStateMachineTransition_pmtxr"), "Start 1", "Idle", SubResource("AnimationNodeStateMachineTransition_v7la4"), "Choice", "Start 1", SubResource("AnimationNodeStateMachineTransition_jlstt")]
 
-[sub_resource type="Animation" id="Animation_igyyp"]
-resource_name = "RESET"
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Blockbox/CollisionShape2D:shape:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(46.475, 59)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Hitbox/CollisionShape2D:shape:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(22, 20)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/3/type = "value"
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/path = NodePath("Hitbox/CollisionShape2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(0.06, -18)]
-}
-tracks/4/type = "value"
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/path = NodePath("Blockbox/CollisionShape2D:disabled")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/5/type = "value"
-tracks/5/imported = false
-tracks/5/enabled = true
-tracks/5/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
-tracks/5/interp = 1
-tracks/5/loop_wrap = true
-tracks/5/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(20, 34)]
-}
-tracks/6/type = "value"
-tracks/6/imported = false
-tracks/6/enabled = true
-tracks/6/path = NodePath("Hurtbox/CollisionShape2D:position")
-tracks/6/interp = 1
-tracks/6/loop_wrap = true
-tracks/6/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [Vector2(0, -17)]
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw5lv"]
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mkiqx"]
-_data = {
-"RESET": SubResource("Animation_igyyp")
-}
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6q52"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
 animation = &"Melee1"
@@ -1748,7 +1654,7 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ah3ft"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_2wbqs"]
 resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
 states/ActionState/position = Vector2(566, 10.8326)
@@ -1760,445 +1666,25 @@ states/WaterFight_StartBattle/position = Vector2(878, 10.8326)
 transitions = ["ActionState", "WaterFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp"), "Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd")]
 graph_offset = Vector2(0, -54.1674)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw5lv"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6q52"]
-bg_color = Color(0.286275, 0.690196, 0.529412, 1)
-
-[node name="Character" type="CharacterBody2D" groups=["Interactable"]]
+[node name="Character" type="CharacterBody2D" groups=["PlayerOverworldController"]]
 y_sort_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Follower")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
-script = ExtResource("1_0y2tr")
-Follower = NodePath("../OverworldController")
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-PauseWhenDialogue = true
-Turn = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
-process_mode = 4
-script = ExtResource("1_3bvdq")
-InteractCollider = NodePath("InteractionCollider")
+[node name="OverworldController" type="Node2D" parent="."]
+script = ExtResource("1_yneer")
 tileTypes = null
-TileDetector = NodePath("TileCollider")
 TileOffset = Vector2(9, 9)
-MainSprite = NodePath("MainSprite")
 Speed = 5000.0
 Friction = 1000.0
 MaxSpeed = 6000.0
-Parent = NodePath("..")
-OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 AxisOffset = 5
 Axis = null
 AxisAux = null
-Controllable = false
-Coords = null
-BattleCharacter = NodePath("../BattleCharacter")
-
-[node name="MainSprite" type="Sprite2D" parent="OverworldController"]
-texture_filter = 1
-texture = ExtResource("2_alsse")
-hframes = 7
-vframes = 6
-frame = 39
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "res://Animations/Overworld",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "Node2D/AnimationPlayer",
-"source": "res://Aseprites/Characters/Overworld/waterIdle.aseprite"
-}
-
-[node name="InteractionCollider" type="Area2D" parent="OverworldController"]
-position = Vector2(0, -15)
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider"]
-shape = SubResource("RectangleShape2D_dwf8m")
-
-[node name="TileCollider" type="Node2D" parent="OverworldController"]
-
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
-process_mode = 4
-visible = false
-script = ExtResource("3_1rsro")
-AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
-Hitbox = NodePath("Hitbox")
-Hurtbox = NodePath("Hurtbox")
-Blockbox = NodePath("Blockbox")
 Controllable = null
-Overworld = NodePath("../OverworldController")
-OriginPos = null
-MultiplierAtk = Array[float]([1.0])
-MultiplierDef = Array[float]([1.0])
-MultiplierSpAtk = Array[float]([1.0])
-MultiplierSpDef = Array[float]([1.0])
-MultiplierSpeed = Array[float]([1.0])
-Combo = null
-HoldingMoveTimer = null
-HoldingMove = null
-UsedComboMove = null
-BlockedEnemy = null
-Looping = null
-TimerAtk = Array[int]([1])
-TimerDef = Array[int]([1])
-TimerSpAtk = Array[int]([1])
-TimerSpDef = Array[int]([1])
-TimerSpeed = Array[int]([1])
-PartyButtons = []
-EnemyButtons = []
-selectActions = NodePath("ActionMenu")
-DodgeDir = null
-MainSprite = NodePath("MainSprite")
-ThisParty = []
-EnemyParty = []
-SelectKey = 90
-StateParticles = NodePath("StateParticles")
-HitParticles = NodePath("HitEffectParticles")
-ShootNode = NodePath("Shoot")
-HPBar = NodePath("HPBar")
-battleState = 3
-actionState = 5
-
-[node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
-script = ExtResource("4_uoxpk")
-Character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
-position = Vector2(0.06, -18)
-shape = SubResource("RectangleShape2D_8hcbx")
-disabled = true
-
-[node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHurtbox"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
-position = Vector2(0, -17)
-shape = SubResource("RectangleShape2D_6c1hy")
-
-[node name="Blockbox" type="Area2D" parent="BattleCharacter" groups=["PlayerBlockbox"]]
-script = ExtResource("5_1bgh8")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox"]
-position = Vector2(25.75, 3)
-shape = SubResource("RectangleShape2D_kowf3")
-disabled = true
-
-[node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
-texture_filter = 1
-texture = SubResource("CompressedTexture2D_lpari")
-hframes = 9
-vframes = 8
-frame = 61
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "_",
-"o_folder": "res://Sprites/Battle/Party",
-"o_name": "birbBattle",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/AnimationPlayer2",
-"source": "res://Aseprites/Characters/Battle/Birb.aseprite"
-}
-
-[node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
-texture_filter = 1
-texture = SubResource("CompressedTexture2D_wm40p")
-hframes = 5
-vframes = 5
-frame = 19
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_Arm",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Party",
-"o_name": "birbArm",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/AnimationPlayer2",
-"source": "res://Aseprites/Characters/Battle/Birb.aseprite"
-}
-
-[node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite"]
-visible = false
-
-[node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter"]
-process_mode = 3
-position = Vector2(0, -18)
-emitting = false
-amount = 22
-lifetime = 0.4
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 14.7
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 205.74
-scale_amount_min = 0.0
-scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_0dopt")
-color = Color(0.580392, 0.968627, 0.937255, 1)
-anim_speed_max = 200.15
-anim_speed_curve = SubResource("Curve_3g4di")
-anim_offset_max = 0.9809
-
-[node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter"]
-process_mode = 3
-position = Vector2(0, 10)
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_3dsfc")
-lifetime = 0.5
-one_shot = true
-script = ExtResource("8_3i2a6")
-ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
-processMaterial = SubResource("ParticleProcessMaterial_3dsfc")
-
-[node name="Effects" type="AnimationPlayer" parent="BattleCharacter"]
-
-[node name="ActionMenu" type="Node2D" parent="BattleCharacter" node_paths=PackedStringArray("character", "Animator")]
-process_mode = 4
-visible = false
-position = Vector2(-50, -25)
-script = ExtResource("9_sekui")
-character = NodePath("..")
-Animator = NodePath("AnimationPlayer/AnimationTree")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu"]
-root_node = NodePath("../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
-
-[node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer"]
-root_node = NodePath("../../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
-tree_root = SubResource("AnimationNodeStateMachine_ygbtl")
-anim_player = NodePath("..")
-parameters/conditions/Choice = false
-parameters/conditions/Start = false
-parameters/Choice/blend_position = 0.998211
-
-[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-texture_filter = 1
-offset_left = -35.0
-offset_top = -23.0
-offset_right = 35.0
-offset_bottom = 41.0
-pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_ix7nu")
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_Fight",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Party/Menu",
-"o_name": "",
-"only_visible": false,
-"op_exp": true,
-"player": "BattleCharacter/ActionMenu/AnimationPlayer",
-"source": "res://Aseprites/ActionMenu.aseprite"
-}
-
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight"]
-position = Vector2(34, 21)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
-layout_direction = 2
-anchors_preset = -1
-anchor_right = 0.4
-anchor_bottom = 0.1
-offset_left = -16.0
-offset_top = -9.0
-offset_right = 16.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.63, 0.63)
-pivot_offset = Vector2(16, 9)
-theme_override_font_sizes/normal_font_size = 13
-bbcode_enabled = true
-text = "Fight"
-scroll_active = false
-
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
-offset_left = -26.9
-offset_top = -11.0
-offset_right = -10.9
-offset_bottom = 12.0
-scale = Vector2(0.45, 0.45)
-pivot_offset = Vector2(8, 11.5)
-bbcode_enabled = true
-text = "[center]Z[/center]"
-scroll_active = false
-visible_characters = 1
-
-[node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-texture_filter = 1
-offset_left = -35.0
-offset_top = -23.0
-offset_right = 35.0
-offset_bottom = 41.0
-pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_rre2n")
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_Item",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Party/Menu",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/ActionMenu/AnimationPlayer",
-"source": "res://Aseprites/ActionMenu.aseprite"
-}
-
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Item"]
-position = Vector2(34, 32)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
-anchors_preset = -1
-anchor_right = 0.4
-anchor_bottom = 0.1
-offset_left = -16.0
-offset_top = -9.0
-offset_right = 16.0
-offset_bottom = 9.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(0.63, 0.63)
-pivot_offset = Vector2(16, 9)
-theme_override_font_sizes/normal_font_size = 13
-text = "Item"
-fit_content = true
-scroll_active = false
-
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
-offset_left = -26.9
-offset_top = -11.0
-offset_right = -10.9
-offset_bottom = 12.0
-scale = Vector2(0.45, 0.45)
-pivot_offset = Vector2(8, 11.5)
-bbcode_enabled = true
-text = "[center]X[/center]"
-scroll_active = false
-visible_characters = 1
-
-[node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu"]
-texture_filter = 1
-offset_left = -35.0
-offset_top = -23.0
-offset_right = 35.0
-offset_bottom = 41.0
-pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_ga1l0")
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_Run",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Party/Menu",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/ActionMenu/AnimationPlayer",
-"source": "res://Aseprites/ActionMenu.aseprite"
-}
-
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Run"]
-position = Vector2(34, 43)
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
-anchors_preset = -1
-anchor_right = 0.4
-anchor_bottom = 0.1
-offset_left = -16.0
-offset_top = -9.0
-offset_right = 16.0
-offset_bottom = 9.0
-scale = Vector2(0.63, 0.63)
-pivot_offset = Vector2(16, 9)
-theme_override_font_sizes/normal_font_size = 13
-text = "Run"
-fit_content = true
-
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
-offset_left = -26.9
-offset_top = -11.0
-offset_right = -10.9
-offset_bottom = 12.0
-scale = Vector2(0.45, 0.45)
-pivot_offset = Vector2(8, 11.5)
-bbcode_enabled = true
-text = "[center]C[/center]"
-scroll_active = false
-visible_characters = 1
-
-[node name="AnimationPlayer" parent="BattleCharacter" instance=ExtResource("13_ebyqd")]
-process_mode = 4
-libraries = {
-"": SubResource("AnimationLibrary_mkiqx"),
-"WaterFight": ExtResource("14_r8qca")
-}
-
-[node name="AnimationTree" parent="BattleCharacter/AnimationPlayer" index="0"]
-process_mode = 4
-active = false
-libraries = {
-"": SubResource("AnimationLibrary_mkiqx"),
-"WaterFight": ExtResource("14_r8qca")
-}
-tree_root = SubResource("AnimationNodeStateMachine_ah3ft")
-parameters/ActionState/blend_position = 3.43571
-
-[node name="Shoot" type="Node2D" parent="BattleCharacter"]
-
-[node name="HPBar" type="ProgressBar" parent="BattleCharacter"]
-layout_direction = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -52.0
-offset_right = 15.0
-offset_bottom = -47.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_lw5lv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f6q52")
-max_value = 50.0
-show_percentage = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -13.0
-offset_right = 177.0
-offset_bottom = 77.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "[center]50[/center]"
-scroll_active = false
-
-[editable path="BattleCharacter/AnimationPlayer"]
+Coords = null
+InteractCollider = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, -15),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":1,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distanc

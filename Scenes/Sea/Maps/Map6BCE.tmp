@@ -130,10 +130,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 EquipStats = SubResource("Resource_o6qk4")
 TotalStats = SubResource("Resource_7bdca")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yluil"]
 resource_local_to_scene = true
@@ -197,10 +197,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 EquipStats = SubResource("Resource_o6qk4")
 TotalStats = SubResource("Resource_7bdca")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tisk5"]
 resource_local_to_scene = true
@@ -243,10 +243,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
 EquipStats = SubResource("Resource_o6qk4")
 TotalStats = SubResource("Resource_7bdca")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+isControlledByPlayer = null
+Active = null
+Key = null
+status = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rxtpi"]
 resource_local_to_scene = true
@@ -358,156 +358,11 @@ position = Vector2(128, -8)
 [node name="CollisionShape2D" parent="Character" index="0"]
 shape = SubResource("RectangleShape2D_se6ok")
 
-[node name="OverworldController" parent="Character" index="1" node_paths=PackedStringArray("detectArea")]
+[node name="OverworldController" parent="Character" index="1"]
 movementController = SubResource("Resource_58oug")
-detectArea = NodePath("../../Area2D3")
+enemyCollision = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":Resource("res://Scripts/Overworld/EnemyCollision.cs"),"battleStart":Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://Scripts/Battle/StartBattle/BattleStart.cs"),"scene":SubResource("Resource_gvn2q"),"EnemyCharacters":Array[Object]([]),"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)]),"EnemyPos":Array[Vector2]([Vector2(100, 0), Vector2(100, 100)]))
+)
 
-[node name="CollisionShape2D" parent="Character/OverworldController/Area2D" index="0"]
-shape = SubResource("RectangleShape2D_7p8dp")
+Battle = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":Resource("res://Scripts/Battle/StartBattle/BattleStart.cs"),"scene":SubResource("Resource_gvn2q"),"EnemyCharacters":Array[Object]([]),"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)]),"EnemyPos":Array[Vector2]([Vector2(100, 0), Vector2(100, 100)]))
 
-[node name="BattleStart" parent="Character/OverworldController" index="2"]
-scene = SubResource("Resource_gvn2q")
-EnemyCharacters = Array[Object]([])
-
-[node name="BattleCharacter" parent="Character" index="2"]
-Character = SubResource("Resource_aul0c")
-
-[node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_yluil")
-
-[node name="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_vypfs")
-
-[node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" index="0"]
-shape = SubResource("RectangleShape2D_qbykw")
-
-[node name="RichTextLabel" parent="Character/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
-
-[node name="Character2" parent="." instance=ExtResource("8_t47ti")]
-position = Vector2(-264, 104)
-
-[node name="CollisionShape2D" parent="Character2" index="0"]
-shape = SubResource("RectangleShape2D_o51ho")
-
-[node name="OverworldController" parent="Character2" index="1" node_paths=PackedStringArray("detectArea")]
-movementController = SubResource("Resource_r3sc7")
-detectArea = NodePath("../../Area2D")
-
-[node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" index="0"]
-shape = SubResource("RectangleShape2D_skdk6")
-
-[node name="BattleStart" parent="Character2/OverworldController" index="2"]
-scene = SubResource("Resource_2602s")
-EnemyCharacters = Array[Object]([])
-
-[node name="BattleCharacter" parent="Character2" index="2"]
-Character = SubResource("Resource_wfa70")
-
-[node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_tisk5")
-
-[node name="CollisionShape2D" parent="Character2/BattleCharacter/Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_pwg37")
-
-[node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" index="0"]
-shape = SubResource("RectangleShape2D_2ddaq")
-
-[node name="RichTextLabel" parent="Character2/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
-
-[node name="Character3" parent="." instance=ExtResource("8_t47ti")]
-position = Vector2(0, 168)
-
-[node name="CollisionShape2D" parent="Character3" index="0"]
-shape = SubResource("RectangleShape2D_t5qg3")
-
-[node name="OverworldController" parent="Character3" index="1" node_paths=PackedStringArray("detectArea")]
-movementController = SubResource("Resource_loujl")
-detectArea = NodePath("../../Area2D2")
-
-[node name="CollisionShape2D" parent="Character3/OverworldController/Area2D" index="0"]
-shape = SubResource("RectangleShape2D_5fgmn")
-
-[node name="BattleStart" parent="Character3/OverworldController" index="2"]
-scene = SubResource("Resource_rxaul")
-EnemyCharacters = Array[Object]([])
-
-[node name="BattleCharacter" parent="Character3" index="2"]
-process_mode = 3
-Character = SubResource("Resource_uvwry")
-
-[node name="CollisionShape2D" parent="Character3/BattleCharacter/Hitbox" index="0"]
-shape = SubResource("RectangleShape2D_rxtpi")
-
-[node name="CollisionShape2D" parent="Character3/BattleCharacter/Hurtbox" index="0"]
-shape = SubResource("RectangleShape2D_qbbby")
-
-[node name="CollisionShape2D" parent="Character3/BattleCharacter/Blockbox" index="0"]
-shape = SubResource("RectangleShape2D_wdgqp")
-
-[node name="MainSprite" parent="Character3/BattleCharacter" index="3"]
-texture = ExtResource("22_bq3r2")
-frame = 29
-
-[node name="HitEffectParticles" parent="Character3/BattleCharacter" index="7"]
-scale_amount_curve = SubResource("Curve_0dopt")
-
-[node name="RichTextLabel" parent="Character3/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
-
-[node name="Area2D" parent="." instance=ExtResource("21_30s4q")]
-visible = false
-position = Vector2(-176, 80)
-
-[node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PackedVector2Array(0, -8, -112, -8, -136, 80, 24, 80)
-
-[node name="Area2D2" parent="." node_paths=PackedStringArray("Polygon", "Collision") instance=ExtResource("21_30s4q")]
-visible = false
-position = Vector2(56, 128)
-Polygon = NodePath("../Area2D/Polygon2D")
-Collision = NodePath("../Area2D/CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" parent="Area2D2" index="0"]
-polygon = PackedVector2Array(32, -40, -128, -40, -136, 80, 40, 80)
-
-[node name="Area2D3" parent="." node_paths=PackedStringArray("Polygon", "Collision") instance=ExtResource("21_30s4q")]
-visible = false
-position = Vector2(176, -24)
-Polygon = NodePath("../Area2D/Polygon2D")
-Collision = NodePath("../Area2D/CollisionPolygon2D")
-
-[node name="CollisionPolygon2D" parent="Area2D3" index="0"]
-position = Vector2(-48, -32)
-polygon = PackedVector2Array(32, -64, -120, -64, -128, 80, 32, 80)
-
-[node name="OrderPuzzle" type="Node" parent="."]
-script = ExtResource("23_7gyxu")
-EnemiesBeaten = null
-NextEnemy = null
-TotalEnemies = 3
-FlagIndex = null
-
-[editable path="Cams"]
-[editable path="ChangeLayer"]
-[editable path="Borders"]
-[editable path="Door"]
-[editable path="Door3"]
-[editable path="Door2"]
-[editable path="Borders2"]
-[editable path="Character"]
-[editable path="Character2"]
-[editable path="Character3"]
-[editable path="Area2D"]
-[editable path="Area2D2"]
-[editable path="Area2D3"]
+MainSprite = Object(Sprite2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":1,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":Resource("res://Sprites/Overworld/waterIdle.png"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":7,"vframes":6,"frame":0,"region_enabled":false,"r

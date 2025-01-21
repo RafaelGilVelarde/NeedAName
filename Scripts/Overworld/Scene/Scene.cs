@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class Scene : Node
+public partial class Scene : Node2D
 {
     [Signal]
     public delegate void _SceneLoadedEventHandler();
@@ -14,6 +14,7 @@ public partial class Scene : Node
         GameManager.Instance.MoveCharactersToScene();
         GameManager.Instance.PlayTransition(TransitionColor);
         GameManager.Instance.TransitionTween.Finished += Setup;
+        YSortEnabled = true;
         //SceneTreeTimer timer = GetTree().CreateTimer(0.8f,true,true,true);
 		//timer.Timeout+=()=>Setup();
         

@@ -80,6 +80,9 @@ directories/dtl_directory={
 "OrderPuzzleHint": "res://Dialogues/NPC Dialogue/Water/OrderPuzzleHint.dtl",
 "PuzzleComplete": "res://Dialogues/PuzzleComplete.dtl",
 "SecondItemNPC1": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC1.dtl",
+"SecondItemNPC2": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC2.dtl",
+"SecondItemNPC3": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC3.dtl",
+"SecondItemNPC4": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC4.dtl",
 "SwitchHint": "res://Dialogues/NPC Dialogue/Water/SwitchHint.dtl",
 "Test": "res://Dialogues/Test.dtl",
 "bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl"

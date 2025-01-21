@@ -24,8 +24,12 @@ Timeline = ""
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xlri6")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
+top_level = true
+z_index = -1
+z_as_relative = false
 tile_set = ExtResource("1_i8qnd")
 collision_visibility_mode = 2
 navigation_visibility_mode = 2
@@ -60,6 +64,7 @@ limit_bottom = 800
 visible = false
 position = Vector2(-240, 176)
 Scene = 7
+Area = null
 LoadPosition = Vector2(80, 144)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -69,6 +74,7 @@ shape = SubResource("RectangleShape2D_ekbt3")
 visible = false
 position = Vector2(112, 784)
 Scene = 14
+Area = null
 LoadPosition = Vector2(144, -48)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]

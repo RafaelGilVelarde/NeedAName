@@ -33,7 +33,8 @@ public partial class DummyMove1 : MoveBase
 
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
-		tween.TweenProperty(Users[0].GetParent(),"position",Targets[0].GetParent<Node2D>().Position+offset*Dir,1/Speed);
+		Vector2 TargetPosition = Targets[0].Hitbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeState(BattleCharacter.BattleState.Attacking)));
 		
 		tween.TweenInterval(0.5);

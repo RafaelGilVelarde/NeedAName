@@ -58,10 +58,11 @@ public partial class DumyBeamMove : MoveBase
 		}
 
 		//timer.TweenInterval(MoveTime);
+		Vector2 TargetPosition = Targets[0].Hitbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
 
 		Tween tween = Users[0].CreateTween();
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Defending)));
-		tween.TweenProperty(Users[0].GetParent(),"position",Targets[0].GetParent<Node2D>().Position+offset*-Dir,1/Speed);
+		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeAction(BattleCharacter.ActionState.isAttacking)));
 
 

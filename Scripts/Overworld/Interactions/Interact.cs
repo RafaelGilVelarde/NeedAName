@@ -5,11 +5,11 @@ using System.Diagnostics;
 
 public partial class Interact : CollisionShape2D
 {
-    [Export]protected Array<string> Timelines;
-    [Export] protected int TimelineIndex;
+    [Export]protected Array<Timelines> TimelineGroup;
+    [Export] protected int TimelineGroupIndex, TimelineIndex;
     [Export]protected string Timeline ="Test";
     [Export]bool PauseWhenDialogue, Turn;
-    [Export] protected bool  SpokenTo;
+    [Export] protected bool  SpokenTo, FacingRight = true;
     [Export] protected Vector2 FacingDirection;
     [Export] protected AnimationPlayer Animator;
     [Export] protected AnimationTree AnimatorTree;
@@ -44,7 +44,7 @@ public partial class Interact : CollisionShape2D
             }
             AnimatorTree?.Set("parameters/Idle/blend_position",new Vector2(FacingDirection.X,-FacingDirection.Y));
         }
-        if(SpokenTo && TimelineIndex<Timelines.Count-1){
+        if(SpokenTo && TimelineIndex<TimelineGroup[TimelineGroupIndex].DialogueTimelines.Count-1){
             TimelineIndex++;
         }    
         SpokenTo=true;
@@ -52,7 +52,7 @@ public partial class Interact : CollisionShape2D
     }
 
     public void Enable(int id){
-        Timeline = Timelines[id];
+        Timeline = TimelineGroup[TimelineGroupIndex].DialogueTimelines[id];
         DialogicCSharp DialogicInstance= DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Connect("timeline_ended",disable);
         DialogicInstance.StartDialogue(Timeline,PauseWhenDialogue,false);
@@ -68,8 +68,9 @@ public partial class Interact : CollisionShape2D
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended",disable);
     }
     protected virtual void Flip(){
-		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)!=Scale.Y){
+		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)>0!=FacingRight){
 			Scale=new Vector2(Scale.X*-1,Scale.Y);
+            FacingRight=!FacingRight;
 	    }
     }
 }

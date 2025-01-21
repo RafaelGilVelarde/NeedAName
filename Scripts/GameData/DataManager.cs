@@ -12,6 +12,8 @@ public partial class DataManager : Resource
 	[Export]public Flags Flags;
 	[Export] public int Scene, AreaIndex;
 	[Export] public Vector2 Position;
+	[Export] public int GraphicsLayer;
+	[Export] public uint PhysicsLayer;
 
 	public DataManager DuplicateData(){
 		DataManager data = (DataManager)Duplicate(true);

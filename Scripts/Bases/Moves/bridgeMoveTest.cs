@@ -27,7 +27,7 @@ public partial class bridgeMoveTest : MoveBase
 
 
         tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Dodging)));
-		tween.TweenProperty(Users[0].GetParent(),"position",Targets[0].GetParent<Node2D>().Position+offset*-Dir,1/Speed);
+		tween.TweenProperty(Users[0].GetParent(),"position",Targets[0].MainSprite.GlobalPosition+offset*-Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeAction(BattleCharacter.ActionState.isAttacking)));
 		tween.TweenInterval(0.5);
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Defending)));

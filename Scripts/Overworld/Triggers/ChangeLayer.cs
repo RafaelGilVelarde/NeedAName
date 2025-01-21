@@ -11,9 +11,10 @@ public partial class ChangeLayer : Area2D
     
     private void OnTriggerEnter(Node2D body) {
         if(body.IsInGroup("PlayerOverworldController")){
-            CharacterBody2D Player = (CharacterBody2D)body;
+            /*CharacterBody2D Player = (CharacterBody2D)body;
             Player.CollisionMask = CollisionLayer;
-            Player.ZIndex = Z;
+            Player.ZIndex = Z;*/
+            GameManager.Instance.SetLayers(Z,CollisionLayer);
         } 
     }
     

@@ -6,9 +6,10 @@ Oh you have it! Do you want me to jog up your memory? #id:25
 	MC (Wondering): I can remember.....warmth...it feels strange... #id:2a
 	MC (Happy): But thanks! #id:2b
 	Glad to be of help. Put it on your heart if you wanna feel the effects #id:2c
-	[signal arg="argument"]
+	[signal arg="GiveItem"]
 	[You got the Warmth Memory] #id:2d
 	[end_timeline]
 - I'd rather not #id:2e
 	It's ok, but if you change your mind I am here! #id:2f
+	[signal arg="RefuseItem"]
 	[end_timeline]
