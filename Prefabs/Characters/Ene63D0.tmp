@@ -1,0 +1,359 @@
+[gd_scene load_steps=69 format=3 uid="uid://bwechl06etngi"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="1_d5p4d"]
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="3_7at5k"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="3_xeb2i"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="4_1bhow"]
+[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="4_4na67"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="4_7sqs1"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="4_xi1xx"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="5_c0xxe"]
+[ext_resource type="Texture2D" uid="uid://bxol8k2rcwxa2" path="res://Sprites/Overworld/Enemies/starfish.png" id="5_cyn34"]
+[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/BattleStart.cs" id="5_jm1ut"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/MovementController.cs" id="6_cml8b"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="8_r8twf"]
+[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="9_ltwbp"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_qbtlp"]
+[ext_resource type="PackedScene" uid="uid://c1xffkkh8tw2t" path="res://Prefabs/Animators/Party/Battle/BirbBattleAnimator.tscn" id="9_s6u5p"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="9_voesq"]
+[ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="10_ih616"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="15_sd2km"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="17_0tx57"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="18_ol0yk"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="18_t1xvf"]
+[ext_resource type="PackedScene" uid="uid://b6cj47rw55blg" path="res://Prefabs/Animators/Enemies/Battle/ShrimpBattleAnimator.tscn" id="19_e3f8d"]
+[ext_resource type="PackedScene" uid="uid://qv65iak5mgqv" path="res://Prefabs/Animators/Enemies/Overworld/ShrimpOverworldAnimator.tscn" id="20_l6eef"]
+[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="21_4wbol"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5yups"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[sub_resource type="Resource" id="Resource_3iuvs"]
+resource_local_to_scene = true
+script = ExtResource("17_0tx57")
+radius = 50.0
+ShowGizmo = false
+
+[sub_resource type="Resource" id="Resource_k1vgm"]
+resource_local_to_scene = true
+script = ExtResource("18_ol0yk")
+ReachThreshold = 40.0
+
+[sub_resource type="Resource" id="Resource_31rvb"]
+resource_local_to_scene = true
+script = ExtResource("17_0tx57")
+radius = 50.0
+ShowGizmo = false
+
+[sub_resource type="Resource" id="Resource_ew2qi"]
+resource_local_to_scene = true
+script = ExtResource("18_t1xvf")
+ReachThreshold = 30.0
+InterestVariable = 60.0
+interestGizmo = PackedFloat32Array()
+ShowGizmo = false
+showResult = false
+
+[sub_resource type="Resource" id="Resource_3r5w5"]
+resource_local_to_scene = true
+script = ExtResource("6_cml8b")
+SteeringForce = 2.0
+SeekBehaviours = Array[Object]([SubResource("Resource_31rvb"), SubResource("Resource_ew2qi")])
+IdleBehaviours = Array[Object]([SubResource("Resource_3iuvs"), SubResource("Resource_k1vgm")])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ava3a"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="Resource" id="Resource_cqcim"]
+script = ExtResource("4_7sqs1")
+
+[sub_resource type="Resource" id="Resource_2lpbm"]
+resource_local_to_scene = true
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 2
+HP = 2
+Atk = 2
+Def = 2
+SpAtk = 2
+SpDef = 2
+Speed = 2
+
+[sub_resource type="Resource" id="Resource_bvhfa"]
+resource_local_to_scene = true
+script = ExtResource("15_sd2km")
+ExpYield = 0.0
+BaseStats = SubResource("Resource_2lpbm")
+Name = "dfbv"
+OverworldAnimator = ExtResource("10_ih616")
+BattleAnimator = ExtResource("9_s6u5p")
+TextEffectColor = Color(1, 0, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_jipoy"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_44g3j"]
+script = ExtResource("9_voesq")
+Speed = 3.0
+Combo = 1
+offset = Vector2(50, 0)
+type = 0
+Power = 1
+UserAmount = 0
+TargetAmount = 1
+TargetsParty = false
+Name = "b"
+MoveTime = 3.0
+
+[sub_resource type="Resource" id="Resource_01p4i"]
+resource_local_to_scene = true
+script = ExtResource("9_ltwbp")
+Base = SubResource("Resource_44g3j")
+
+[sub_resource type="Resource" id="Resource_m514q"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_0t4aj"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 10
+HP = 10
+Atk = 1
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 1
+
+[sub_resource type="Resource" id="Resource_3kofi"]
+script = ExtResource("8_r8twf")
+Base = SubResource("Resource_bvhfa")
+Moves = Array[Object]([SubResource("Resource_01p4i")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_0t4aj")
+EquipStats = SubResource("Resource_jipoy")
+TotalStats = SubResource("Resource_m514q")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_qlj5e"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 5
+HP = 5
+Atk = 5
+Def = 5
+SpAtk = 5
+SpDef = 5
+Speed = 5
+
+[sub_resource type="Resource" id="Resource_m1uvd"]
+script = ExtResource("15_sd2km")
+ExpYield = 0.0
+BaseStats = SubResource("Resource_qlj5e")
+Name = "mmm"
+OverworldAnimator = ExtResource("20_l6eef")
+BattleAnimator = ExtResource("19_e3f8d")
+TextEffectColor = Color(1, 0, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_woo47"]
+script = ExtResource("9_voesq")
+Speed = 3.0
+Combo = 1
+offset = Vector2(30, 0)
+type = 0
+Power = 3
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "b"
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_7ebqa"]
+script = ExtResource("9_ltwbp")
+Base = SubResource("Resource_woo47")
+
+[sub_resource type="Resource" id="Resource_0ckdn"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 20
+HP = 20
+Atk = 2
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 5
+
+[sub_resource type="Resource" id="Resource_p2e0b"]
+resource_local_to_scene = true
+script = ExtResource("8_r8twf")
+Base = SubResource("Resource_m1uvd")
+Moves = Array[Object]([SubResource("Resource_7ebqa")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_0ckdn")
+EquipStats = SubResource("Resource_jipoy")
+TotalStats = SubResource("Resource_m514q")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8hcbx"]
+resource_local_to_scene = true
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
+resource_local_to_scene = true
+size = Vector2(20, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[sub_resource type="Gradient" id="Gradient_ea8j0"]
+offsets = PackedFloat32Array(0.338028, 1)
+colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0pj2p"]
+gradient = SubResource("Gradient_ea8j0")
+
+[sub_resource type="Curve" id="Curve_ww72p"]
+min_value = -50.0
+max_value = 50.0
+_data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uatdi"]
+curve = SubResource("Curve_ww72p")
+
+[sub_resource type="Curve" id="Curve_8h853"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984456, 0.326316), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4u1mo"]
+curve = SubResource("Curve_8h853")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfo7d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 0)
+direction = Vector3(0, -1, 0)
+spread = 74.85
+initial_velocity_min = 10.0
+initial_velocity_max = 87.81
+gravity = Vector3(0, -98, 0)
+linear_accel_max = 11.21
+linear_accel_curve = SubResource("CurveTexture_uatdi")
+scale_max = 15.63
+scale_curve = SubResource("CurveTexture_4u1mo")
+color_ramp = SubResource("GradientTexture1D_0pj2p")
+
+[sub_resource type="Gradient" id="Gradient_p8sqr"]
+offsets = PackedFloat32Array(0, 0.673267, 1)
+colors = PackedColorArray(0.752941, 0, 0, 1, 0.754535, 0.434297, 0.345287, 1, 0.811371, 0.706337, 0.361686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y36m5"]
+gradient = SubResource("Gradient_p8sqr")
+
+[sub_resource type="Gradient" id="Gradient_6qoqx"]
+offsets = PackedFloat32Array(0, 0.438944, 0.861386, 1)
+colors = PackedColorArray(0, 0.741176, 0, 1, 0.41511, 0.845658, 0.610832, 1, 0.690036, 0.955324, 0.911021, 1, 0.666667, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0dyv"]
+gradient = SubResource("Gradient_6qoqx")
+
+[sub_resource type="Gradient" id="Gradient_awthb"]
+offsets = PackedFloat32Array(0, 0.353135, 0.663366, 1)
+colors = PackedColorArray(0, 0, 0.760784, 1, 0.496331, 0.269289, 0.84728, 1, 0.770127, 0.593009, 0.959867, 1, 0.74902, 0.372549, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bb84a"]
+gradient = SubResource("Gradient_awthb")
+
+[sub_resource type="Gradient" id="Gradient_6uv37"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8n0m8"]
+gradient = SubResource("Gradient_6uv37")
+
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_s3x72"]
+max_value = 200.0
+_data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tosun"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+
+[node name="Character" type="CharacterBody2D" groups=["EnemyOverworldController"]]
+y_sort_enabled = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_5yups")
+
+[node name="OverworldController" type="Node2D" parent="."]
+script = ExtResource("1_d5p4d")
+movementController = SubResource("Resource_3r5w5")
+CachedTargetPosition = null
+RandMin = null
+RandMax = null
+state = 1
+CurrentIdleTarget = null
+LayerMask = 2
+DirectionIndex = null
+Speed = 25.0
+Friction = 1000.0
+MaxSpeed = 50.0
+AxisOffset = null
+Axis = null
+AxisAux = null
+Controllable = null
+Coords = null
+enemyCollision = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":ExtResource("3_7at5k"),"battleStart":Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("5_jm1ut"),"scene":SubResource("Resource_cqcim"),"EnemyCharacters":Array[Object]([SubResource("Resource_3kofi")]),"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)]),"EnemyPos":Array[Vector2]([Vector2(100, 0), Vector2(100, 100)]))
+)
+
+Battle = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("5_jm1ut"),"scene":SubResource("Resource_cqcim"),"EnemyCharacters":Array[Object]([SubResource("Resource_3kofi")]),"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)]),"EnemyPos":Array[Vector2]([Vector2(100, 0), Vector2(100, 100)]))
+
+MainSprite = Object(Sprite2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":1,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":ExtResource("4_4na67"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":7,"vframes":6,"frame":0,"region_enabled":false,"region_rect":Rect2(0, 0, 0, 0),"region_filter_clip_enabled":false,"script":null,"metadata/_aseprite_wizard_config_":{
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Enemies",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "OverworldController/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/Enemies/starfish.aseprite"
+})
+
+Parent = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":true,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":null)
+
+OverworldCollider = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_p

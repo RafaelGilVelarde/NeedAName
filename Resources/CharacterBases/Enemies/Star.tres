@@ -15,6 +15,7 @@ Def = 1
 SpAtk = 2
 SpDef = 1
 Speed = 5
+WP = 0
 
 [resource]
 script = ExtResource("4_usypa")

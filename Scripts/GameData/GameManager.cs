@@ -149,10 +149,11 @@ public partial class GameManager : Node
 			Node Prefab=CharacterPrefabs[prefab].Instantiate<Node>();
 			Overworld=Prefab.GetNode<OverworldController>("./OverworldController");
 			Overworld.BattleCharacter.Character= character;
-			character.SetTotalStats();
+			character.SetStats();
 			Overworld.SetAnimators();
 
 			Overworld.SetOffsets();
+			Overworld.BattleCharacter.SetOffsets();
 			GetTree().CurrentScene.AddChild(Prefab);
 			return Overworld;
 	}

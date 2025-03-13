@@ -41,6 +41,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_81b2e"]
 script = ExtResource("18_gxibl")
@@ -56,6 +57,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_5oxtr"]
 script = ExtResource("9_r8lvc")
@@ -67,6 +69,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_r33gd"]
 script = ExtResource("13_a13dn")
@@ -77,10 +80,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_5oxtr")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = null
-Active = null
-Key = null
-status = null
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
 
 [sub_resource type="Resource" id="Resource_7spjv"]
 script = ExtResource("18_gxibl")
@@ -96,6 +99,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_o7xc0"]
 script = ExtResource("13_a13dn")
@@ -106,10 +110,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_4n0cw")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = null
-Active = null
-Key = null
-status = null
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
 
 [sub_resource type="Resource" id="Resource_c0q0j"]
 script = ExtResource("18_gxibl")
@@ -125,6 +129,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_028oy"]
 script = ExtResource("13_a13dn")
@@ -135,10 +140,10 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_oxcfb")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = null
-Active = null
-Key = null
-status = null
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
 
 [sub_resource type="Resource" id="Resource_fs7gb"]
 script = ExtResource("18_gxibl")
@@ -154,6 +159,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_ar1de"]
 script = ExtResource("13_a13dn")
@@ -164,14 +170,14 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_f2qvq")
 EquipStats = SubResource("Resource_nhj1g")
 TotalStats = SubResource("Resource_8yfa3")
-isControlledByPlayer = null
-Active = null
-Key = null
-status = null
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
 
 [sub_resource type="Resource" id="Resource_pn2gs"]
 script = ExtResource("17_6hkvh")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th5io"]
 resource_local_to_scene = true
@@ -191,7 +197,6 @@ size = Vector2(224, 24)
 
 [node name="Map14" type="Node2D"]
 script = ExtResource("1_mxof8")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -229,21 +234,15 @@ script = ExtResource("4_mfjd2")
 [node name="NPC" parent="." instance=ExtResource("5_o734i")]
 position = Vector2(-72, 40)
 
-[node name="CollisionShape2D" parent="NPC" index="0"]
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
+Sprites = []
 
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
 
 [node name="Out" parent="ChangeLayer" index="0"]
 visible = false
-Z = null
 
 [node name="In" parent="ChangeLayer" index="1"]
 z_index = 1
@@ -276,7 +275,6 @@ detectArea = NodePath("../Area2D")
 position = Vector2(-336, 0)
 rotation = 1.5708
 Scene = 6
-Area = null
 LoadPosition = Vector2(336, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -285,7 +283,6 @@ shape = SubResource("RectangleShape2D_th5io")
 [node name="Door2" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(0, -208)
 Scene = 14
-Area = null
 LoadPosition = Vector2(0, 168)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -294,7 +291,6 @@ shape = SubResource("RectangleShape2D_uownf")
 [node name="Door3" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(-208, 208)
 Scene = 18
-Area = null
 LoadPosition = Vector2(-208, -170)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -303,7 +299,6 @@ shape = SubResource("RectangleShape2D_swxsg")
 [node name="Door4" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(80, 208)
 Scene = 18
-Area = null
 LoadPosition = Vector2(32, -168)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -311,6 +306,7 @@ position = Vector2(-8, 8)
 shape = SubResource("RectangleShape2D_5avha")
 
 [node name="Area2D" parent="." instance=ExtResource("18_jr6bq")]
+visible = false
 position = Vector2(176, -8)
 
 [node name="Borders2" parent="." instance=ExtResource("7_2coxb")]

@@ -9,7 +9,7 @@ public partial class DumyShootMove : MoveBase
 {
 [Export] float Speed, Middle=2, Timer2, Height=50;
 [Export] int Combo = 1;
-[Export] String Tag;
+[Export] string Tag;
 [Export] PackedScene Proyectile;
 	[Export] Vector2 offset;
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
@@ -37,6 +37,7 @@ public partial class DumyShootMove : MoveBase
 		Users[0]._Shoot+=shoot;
 		Hitbox._Hit+=onHit;
         Hitbox._Block+=blocked;
+		Hitbox._WP+=WPGraze;
 		Hitbox.Character=Users[0];
 
         Timer timer = new Timer
@@ -63,7 +64,8 @@ public partial class DumyShootMove : MoveBase
 		void shoot(BattleCharacter User){
 			if(proyectile.CanStart){
 				proyectile.PosStart=Users[0].ShootNode.GlobalPosition;
-				proyectile.PosEnd=Targets[0].GlobalPosition;
+				proyectile.PosEnd=Targets[0].GlobalPosition+new Vector2(offset.X*Dir,offset.Y);
+				proyectile.Target = Targets[0];
 				float MiddleX =proyectile.PosStart.X+((proyectile.PosEnd.X-proyectile.PosStart.X)/Middle);
 				proyectile.PosMiddle=new Vector2(MiddleX,Users[0].GlobalPosition.Y-Height);
 

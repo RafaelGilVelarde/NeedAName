@@ -5,32 +5,37 @@ using System.Diagnostics;
 public partial class BezierProyectile : Node2D
 {
     [Export] public Vector2 PosStart, PosMiddle, PosEnd;
-    [Export] public bool Ended, CanStart=true;
-    double Time;
+
+    [Export] public BattleCharacter Target;
+    [Export] public bool Ended, CanStart=true, Acting = true;
+    [Export] protected float Speed = 1;
+    protected double Time;
     public override void _PhysicsProcess(double delta)
     {
-        GlobalPosition=Bezier(Time);
-        Time+=delta;
-        if(Time>=1){
-            Time=0;
+        if(Acting){
+            GlobalPosition=Bezier(Time);
+            Time+=delta*Speed;
+            if(Time>=1){
+                Time=0;
+            }
         }
     }
-    Vector2 Bezier(double Time){
+    protected Vector2 Bezier(double Time){
         Vector2 Start=PosStart.Lerp(PosMiddle, (float)Time);
         Vector2 Middle=PosMiddle.Lerp(PosEnd,(float)Time);
         Vector2 Result=Start.Lerp(Middle,(float)Time);
         return Result;
     }
 
-    public void Hit(){
-        CallDeferred("Disable");
+    public virtual void Hit(){
+        Acting = false;
         GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Hit",true);
 		GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Start",false);
     }
         void Disable(){
             ProcessMode=ProcessModeEnum.Disabled;
         }
-    public void EndSplash(){
+    public virtual void EndSplash(){
         if(Ended){
             QueueFree();
         }

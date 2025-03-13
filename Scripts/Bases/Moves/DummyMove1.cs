@@ -33,7 +33,7 @@ public partial class DummyMove1 : MoveBase
 
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
-		Vector2 TargetPosition = Targets[0].Hitbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeState(BattleCharacter.BattleState.Attacking)));
 		
@@ -46,6 +46,9 @@ public partial class DummyMove1 : MoveBase
 			if(Users[0].battleState!=BattleCharacter.BattleState.Idle && Users[0].actionState!=BattleCharacter.ActionState.isAttacking){
 				idle(Users[0]);
 				Users[0].changeAction(BattleCharacter.ActionState.isAttacking);         
+			}
+			else{
+				Users[0].Character.ChangeWP(5);
 			}
 		}
 

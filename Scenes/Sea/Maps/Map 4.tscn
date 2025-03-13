@@ -30,7 +30,6 @@ Timeline = ""
 
 [node name="Map4" type="Node2D"]
 script = ExtResource("1_14rm4")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -68,9 +67,6 @@ limit_bottom = 384
 position = Vector2(-48, 80)
 rotation = 1.5708
 
-[node name="Out" parent="ChangeLayer" index="0"]
-Z = null
-
 [node name="Borders" parent="." instance=ExtResource("6_eumls")]
 position = Vector2(-88, 152)
 
@@ -96,7 +92,6 @@ polygon = PackedVector2Array(40, 8, 40, -8, -24, -8, -24, 8)
 [node name="Door" parent="." instance=ExtResource("7_vlvwc")]
 position = Vector2(-168, 392)
 Scene = 4
-Area = null
 LoadPosition = Vector2(-240, -230)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -106,7 +101,6 @@ shape = SubResource("RectangleShape2D_prnvm")
 [node name="Door2" parent="." instance=ExtResource("7_vlvwc")]
 position = Vector2(136, 392)
 Scene = 4
-Area = null
 LoadPosition = Vector2(0, -230)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -117,7 +111,6 @@ shape = SubResource("RectangleShape2D_5x05n")
 position = Vector2(80, -224)
 rotation = 1.5708
 Scene = 19
-Area = null
 LoadPosition = Vector2(-848, 176)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

@@ -10,6 +10,7 @@ public partial class BattleStart : Node2D
     [Export]BattleScene scene;
     [Export]Array<Character> EnemyCharacters;
     [Export] int CharacterPrefab;
+    [Export] Vector2 BorderOffset;
     [Export]Array<Vector2>PartyPos,EnemyPos;
 
     public void Constructor(Array<Vector2> Party, Array<Vector2> Enemy, int Prefab, Array<Character> Characters, BattleScene Battle){
@@ -48,8 +49,8 @@ public partial class BattleStart : Node2D
                 EnemyBattle[EnemyBattle.Count-1].GetParent<Node2D>().Position=GlobalPosition;
             }
             for(int i=0;i<EnemyBattle.Count;i++){
-                EnemyBattle[i].Overworld.BattleStart();
                 EnemyBattle[i].Character.SetStats();
+                EnemyBattle[i].Overworld.BattleStart();
             }
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();
@@ -78,6 +79,10 @@ public partial class BattleStart : Node2D
                     Node2D aux=result["collider"].As<Node2D>();
                     if(!aux.IsInGroup("EnemyOverworldController")&&!aux.IsInGroup("PlayerOverworldController")){
                         FinalPos=result["position"].As<Vector2>();
+                        if(!aux.IsInGroup("Borders")){
+                            Vector2 Normalized = new Vector2(FinalPos.X/Mathf.Abs(FinalPos.X),FinalPos.Y/Mathf.Abs(FinalPos.Y));
+                            FinalPos-=Normalized*BorderOffset;
+                        }
                 }
             }
             return FinalPos;

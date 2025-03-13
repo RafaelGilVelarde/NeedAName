@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://beoo02ocbxhap"]
+[gd_scene load_steps=20 format=3 uid="uid://beoo02ocbxhap"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_dglsu"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_vi1r0"]
@@ -8,11 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="5_s6cpo"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_1c0n3"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Door.cs" id="8_6ydr2"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="9_elgi3"]
 [ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="11_eaj1n"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="12_6hj8d"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="12_qkwwk"]
-[ext_resource type="AnimationLibrary" uid="uid://c0awsl3dfhstk" path="res://Animations/Overworld/Effects/WaterBarrier.res" id="14_5j2mu"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="14_kmhmi"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="33_roql3"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="34_o1vnt"]
@@ -39,7 +37,6 @@ DialogueTimelines = Array[String](["OrderPuzzleHint"])
 
 [node name="Map19" type="Node2D"]
 script = ExtResource("1_dglsu")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -131,24 +128,12 @@ position = Vector2(-1.74846e-07, -4)
 shape = SubResource("RectangleShape2D_orwuc")
 
 [node name="Door3" parent="." instance=ExtResource("34_o1vnt")]
-visible = false
 position = Vector2(80, 208)
-Scene = 22
+Scene = 21
 Area = null
-LoadPosition = null
+LoadPosition = Vector2(0, -160)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
-shape = SubResource("RectangleShape2D_a6vme")
-disabled = true
-
-[node name="Door5" type="Area2D" parent="."]
-position = Vector2(80, 208)
-script = ExtResource("9_elgi3")
-Scene = 22
-Area = null
-LoadPosition = null
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door5"]
 shape = SubResource("RectangleShape2D_a6vme")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_1c0n3")]
@@ -169,7 +154,7 @@ detectArea = NodePath("../Area2D")
 [node name="NPC" parent="." instance=ExtResource("11_eaj1n")]
 position = Vector2(-200, 128)
 
-[node name="CollisionShape2D" parent="NPC" index="0"]
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_i5mts")])
 TimelineGroupIndex = null
 TimelineIndex = null
@@ -177,26 +162,21 @@ Timeline = ""
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
+visualType = null
+Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 10
+frame = 11
 
 [node name="Barrier" parent="." instance=ExtResource("12_6hj8d")]
 position = Vector2(80, 184)
 collision_layer = 2
-FlagIndex = null
 DisableAnimation = "WaterBarrier/Disable"
-Dialogue = null
+FlagIndex = 1
 
-[node name="Sprite2D" parent="Barrier/CollisionShape2D" index="0"]
-position = Vector2(2.38419e-07, 1.90735e-06)
-scale = Vector2(0.228571, 0.4)
-
-[node name="AnimationPlayer" parent="Barrier/CollisionShape2D/Sprite2D" index="0"]
-libraries = {
-"WaterBarrier": ExtResource("14_5j2mu")
-}
-autoplay = "WaterBarrier/Barrier"
+[node name="Sprite2D" parent="Barrier" index="0"]
+position = Vector2(3.8147e-06, -9.53674e-07)
+scale = Vector2(0.2, 1)
 
 [editable path="Cams"]
 [editable path="Area2D"]

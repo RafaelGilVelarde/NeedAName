@@ -4,7 +4,7 @@ using System;
 using System.Diagnostics;
 
 [GlobalClass]
-public partial class ItemInteract : Interact
+public partial class ItemInteract : InteractText
 {
     [Export] protected int GameID;
     [Export] protected Array<int> ItemID;

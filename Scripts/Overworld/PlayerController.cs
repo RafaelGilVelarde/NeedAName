@@ -16,7 +16,7 @@ public partial class PlayerController : OverworldController
 	[Export] Interact Interactable;
 	
 	[Export] public TileMap DataMap;
-	[Export] protected TileTypes tileTypes;
+	[Export] protected TileTypes tileTypes, PreviousTileType;
 	[Export] protected Node2D TileDetector;
 	[Export] protected Vector2 TileOffset;
 
@@ -67,7 +67,9 @@ public partial class PlayerController : OverworldController
 			}	
 			Coords = (Vector2I)(DataMap?.LocalToMap(Parent.GlobalPosition-(AxisAux*TileOffset)));
 			TileData Data= DataMap?.GetCellTileData(0, Coords);
+			Vector2 SceneCoords = DataMap.MapToLocal(Coords);
 			if(Data!=null){
+				PreviousTileType = tileTypes;
 				tileTypes = (TileTypes)(int)Data.GetCustomData("TileType");
 			}
 			if(Leader){
@@ -78,6 +80,9 @@ public partial class PlayerController : OverworldController
 							RecordAxis();
 					break;
 					case TileTypes.Water:
+						if(tileTypes != PreviousTileType){
+							Parent.Position = SceneCoords;
+						}
 						Axis=(Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");
 					break;
 				}			
@@ -221,13 +226,5 @@ public partial class PlayerController : OverworldController
 		SetControllable(!Enter);
 	}
 
-	public void SetControllable(bool control){
-		if(!control){
-			Axis=Vector2.Zero;
-			AnimatorTree.Set("parameters/conditions/Idle",true);
-			AnimatorTree.Set("parameters/conditions/Walking",false);
-		}
-		Controllable = control;
-		OverworldCollider.Disabled = !control;
-	}
+
 }

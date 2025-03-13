@@ -1,6 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://dahqyou68igt4"]
+[gd_scene load_steps=6 format=3 uid="uid://dahqyou68igt4"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Puzzles/PuzzleBarriers/BarrierCheckFlag.cs" id="1_tddyv"]
+[ext_resource type="Texture2D" uid="uid://dhy6oj7wp8r78" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam1.png" id="2_8s3xc"]
+[ext_resource type="AnimationLibrary" uid="uid://c0awsl3dfhstk" path="res://Animations/Overworld/Effects/WaterBarrier.res" id="2_aycs1"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Switches/Switch.cs" id="4_y35jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ypy8"]
 size = Vector2(64, 20)
@@ -9,13 +12,41 @@ size = Vector2(64, 20)
 z_index = 1
 position = Vector2(80, 176)
 script = ExtResource("1_tddyv")
-Animator = NodePath("CollisionShape2D/Sprite2D/AnimationPlayer")
+Animator = NodePath("Sprite2D/AnimationPlayer")
 Shape = NodePath("CollisionShape2D")
-CheckAtStart = true
+DisableAnimation = null
+Dialogue = null
+CheckIntFlag = null
+HasDialogue = false
+ChecksBool = true
+ChecksInt = null
+FlagIndex = null
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_8s3xc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
+libraries = {
+"WaterBarrier": ExtResource("2_aycs1")
+}
+autoplay = "WaterBarrier/Barrier"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Check", "Sprites")]
 shape = SubResource("RectangleShape2D_3ypy8")
-
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="CollisionShape2D/Sprite2D"]
+script = ExtResource("4_y35jc")
+Toggleable = null
+Check = NodePath("..")
+HasDialogue = null
+SwitchState = null
+MaxStates = 2
+TimelineGroup = Array[Object]([])
+TimelineGroupIndex = null
+TimelineIndex = null
+Timeline = null
+PauseWhenDialogue = null
+Turn = null
+SpokenTo = null
+FacingRight = null
+FacingDirection = null
+visualType = null
+Sprites = Array[Object]([])

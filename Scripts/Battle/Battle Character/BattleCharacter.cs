@@ -13,7 +13,7 @@ public partial class BattleCharacter : CharacterBody2D
 
 	[Export]public Character Character;
 	[Export]public Hitbox Hitbox;
-	[Export]public Area2D Hurtbox, Blockbox;
+	[Export]public Area2D Hurtbox, Blockbox, WPbox;
 	[Export] public bool Controllable;
 	[Export] public OverworldController Overworld;
 	[Export]public Godot.Vector2 OriginPos;
@@ -32,12 +32,15 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
 	[Export] public Node2D ShootNode;
-	[Export] public ProgressBar HPBar;
-	[Export] RichTextLabel HPText;
+	[Export] RichTextLabel HPText, NameText, WPText;
 	[Export] public Consumables CurrentItem;
+	[Export] public ProgressBar HPBar, EXPBar, WPBar, WPAuxBar;
+
 
 	[Signal]
 	public delegate void _ReturnToIdleEventHandler(BattleCharacter character);
+	[Signal]
+	public delegate void _DoActionEventHandler();
 	[Signal]
 	public delegate void _ShootEventHandler(BattleCharacter character);
 
@@ -67,12 +70,12 @@ public partial class BattleCharacter : CharacterBody2D
     public override void _Ready()
 	{
 		HPText = HPBar.GetChild<RichTextLabel>(0);
+		NameText = HPBar.GetChild<RichTextLabel>(1);
+		WPText = WPBar?.GetChild<RichTextLabel>(1);
 	}
-	public override void _Process(double delta)
-	{
-		AnimatorTree.Set("parameters/ActionState/blend_position",(int)actionState);
-		AnimatorTree.Set("parameters/ActionState/0/0/blend_position",Combo);
-
+    public override void _Input(InputEvent @event)
+    {
+        base._Input(@event);
 
 		if(Character.isControlledByPlayer&&Controllable){
 			PartyCharacterBase aux=(PartyCharacterBase)Character.Base;
@@ -81,26 +84,34 @@ public partial class BattleCharacter : CharacterBody2D
 			Axis = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
 			Axis.X*=GlobalScale.Y;
 
+
 			if(battleState==BattleState.Dodging && actionState!=ActionState.isDodging){
 				//Godot.Vector2 AxisAux=new Godot.Vector2(Axis.X/Scale.Y,Axis.Y);
 				DodgeDir=Axis.Normalized();
+				if(GlobalScale.Y>0){
+					DodgeDir.X=Mathf.Clamp(DodgeDir.X,-1,0);
+				}
+				else{
+					DodgeDir.X=Mathf.Clamp(DodgeDir.X,0,1);
+				}
 				AnimatorTree.Set("parameters/ActionState/2/blend_position",DodgeDir);
 			}
 			if(Input.IsActionJustPressed("SelectedKey"+aux.PartyId)&&actionState==ActionState.isIdle){
 				switch(battleState){
 					case BattleState.Attacking:
-						changeAction(ActionState.isAttacking);
+						//changeAction(ActionState.isAttacking);
+						EmitSignal("_DoAction");
 					break;
 					case BattleState.Defending:
 						changeAction(ActionState.isDefending);
 					break;
 					case BattleState.Dodging:
-						if(actionState!=ActionState.isDodging && DodgeDir!=Godot.Vector2.Zero){
+						if(actionState!=ActionState.isDodging && DodgeDir!=Godot.Vector2.Zero &&(DodgeDir.X*DodgeDir.Y==0)){
 							changeAction(ActionState.isDodging);
+
 							DodgeTween=CreateTween();
 							DodgeTween.TweenProperty(this,"position",DodgeDir*20,0.2f);
 							DodgeTween.Finished+=DodgeTween.Kill;
-							Debug.WriteLine("Dodge: "+DodgeDir);
 						}
 					break;
 				}
@@ -115,6 +126,14 @@ public partial class BattleCharacter : CharacterBody2D
 				}
 			}*/
 		}
+    }
+    public override void _Process(double delta)
+	{
+		AnimatorTree.Set("parameters/ActionState/blend_position",(int)actionState);
+		AnimatorTree.Set("parameters/ActionState/0/0/blend_position",Combo);
+
+
+
 	}
 	public void changeAction(ActionState state){
 
@@ -138,11 +157,17 @@ public partial class BattleCharacter : CharacterBody2D
 		Controllable=true;
 		for(int i=0;i<BattleManager.instance.TargetCharacters.Count;i++){
 			BattleManager.instance.TargetCharacters[i].Hurtbox.GetChild<CollisionShape2D>(0).Disabled=false;
+			if(BattleManager.instance.TargetCharacters[i].Character.isControlledByPlayer){
+				BattleManager.instance.TargetCharacters[i].WPbox.GetChild<CollisionShape2D>(0).Disabled=false;
+			}
 		}
 		for(int i=0;i<BattleManager.instance.TurnOrder.Count;i++){
 			BattleManager.instance.TurnOrder[i].HideChangeHPBar();
 		}
-				selectActions.ProcessMode=ProcessModeEnum.Disabled;
+		if(Character.isControlledByPlayer){
+			Character.ChangeWP(-move.Base.Cost);
+		}
+		selectActions.ProcessMode=ProcessModeEnum.Disabled;
 	}
 	
 	public void UseItem(Items item){
@@ -178,6 +203,15 @@ public partial class BattleCharacter : CharacterBody2D
 		AnimatorTree.Set("parameters/conditions/Idle",idle);
 		AnimatorTree.Set("parameters/conditions/notIdle",!idle);
 	}*/
+	public void AddAttack(){
+		_DoAction+=ChangeToAttack;
+	}
+	public void RemoveAttack(){
+		_DoAction-=ChangeToAttack;
+	}
+	void ChangeToAttack(){
+		changeAction(ActionState.isAttacking);
+	}
 	void ReturnToIdle(){
 		if(!Looping){
 			ReturnLocalPos();
@@ -203,6 +237,9 @@ public partial class BattleCharacter : CharacterBody2D
 		Hitbox.GetChild<CollisionShape2D>(0).Disabled=true;
 		Hurtbox.GetChild<CollisionShape2D>(0).Disabled=true;
 		Blockbox.GetChild<CollisionShape2D>(0).Disabled=true;
+		if(WPbox!=null){
+			WPbox.GetChild<CollisionShape2D>(0).Disabled=true;			
+		}
 		if(!HoldingMove){
 			MoveUsed=null;
 		}else{
@@ -245,6 +282,7 @@ public partial class BattleCharacter : CharacterBody2D
 	public void ShowChangeHPBar(int HP){
 		Tween tween = CreateTween();
 		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
+		NameText.Text = $"[center]{Character.Base.Name}[/center]";
 		
 		tween.TweenProperty(HPBar,"modulate:a",1,0.1f);
 		tween.TweenProperty(HPBar,"value",Character.stats.HP,0.3f).SetEase(Tween.EaseType.InOut);
@@ -257,6 +295,45 @@ public partial class BattleCharacter : CharacterBody2D
 	public void HideChangeHPBar(){
 		Tween tween = CreateTween();
 		tween.TweenProperty(HPBar,"modulate:a",0,0.2f);
+	}
+	public void ShowChangeWPBar(int WP, bool Hide){
+		Tween tween = CreateTween();
+		WPText.Text = $"[center]{Character.stats.WP}/100[/center]";
+		tween.TweenProperty(WPBar,"modulate:a",1,0.1f);
+		tween.TweenProperty(WPBar,"value",WP,0.3f).SetEase(Tween.EaseType.InOut);
+		if(Hide){
+			tween.Finished+=HideChangeWPBar;
+		}
+		tween.Finished+=tween.Kill;
+	}
+	public void HideChangeWPBar(){
+		Tween tween = CreateTween();
+		tween.TweenProperty(WPBar,"modulate:a",0,0.1f);
+		tween.Finished+=()=>{WPAuxBar.Value = 0;};
+	}
+	public void ShowChangeWPAuxBar(int WP){
+		Tween tween = CreateTween();
+		tween.TweenProperty(WPAuxBar,"value",Character.stats.WP-WP,0.3f).SetEase(Tween.EaseType.InOut);
+		
+		tween.Finished+=tween.Kill;
+	}
+
+	public void ShowEXPBar(int ExpStart, int ExpEnd, int NextLvl){
+		PartyCharacters Aux = (PartyCharacters) Character;
+		EXPBar.MaxValue = NextLvl;
+		EXPBar.Value = ExpStart-Aux.PastLevelExp;
+		Tween tween = CreateTween();
+		tween.TweenProperty(EXPBar,"modulate:a",1,0.1f);
+		tween.TweenProperty(EXPBar,"value",ExpEnd-Aux.PastLevelExp,0.3f).SetEase(Tween.EaseType.InOut);
+		if(ExpEnd>Aux.NextLevelExp){
+			tween.Finished+=()=>{
+				ShowEXPBar(NextLvl,ExpEnd, (int)Mathf.Pow(Aux.stats.Lv/((PartyCharacterBase)Aux.Base).ExpSpeed,((PartyCharacterBase)Aux.Base).ExpDistance));
+			};
+		}
+	}
+	public void HideEXPBar(){
+		Tween tween = CreateTween();
+		tween.TweenProperty(EXPBar,"modulate:a",0,0.2f);
 	}
 	public void AddAtkMultiplier(float Multiplier, int Timer){
 		MultiplierAtk.Add(Multiplier);
@@ -413,16 +490,17 @@ public partial class BattleCharacter : CharacterBody2D
 		Character._GetHit+=GetHit;
 		Character._ChangeHP+=ShowChangeHPBar;
 		Character._Die+=Die;
+		Character._ChangeWP+=ShowChangeWPBar;
 	}
 	public virtual void TurnOffBattle(){
 		MoveUsed = null;
 		HoldingMove = false;
 		ClearTimers();
 		selectActions.clearAll();
-		Character._GetHit-=()=>changeAction(ActionState.isHit);
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
 		Character._ChangeHP-=ShowChangeHPBar;
+		Character._ChangeWP-=ShowChangeWPBar;
 	}
 	public virtual void ReturnToOverworld(){
 		ProcessMode=ProcessModeEnum.Disabled;
@@ -432,5 +510,11 @@ public partial class BattleCharacter : CharacterBody2D
 		Hide();
 		Overworld.BattleEnd();
 	}
-	
+	public void SetOffsets(){
+		HPBar.Position += Character.Base.BattleOffset;
+		if(Character.isControlledByPlayer){
+			EXPBar.Position += Character.Base.BattleOffset;
+			WPBar.Position += Character.Base.BattleOffset;
+		}
+	}
 }

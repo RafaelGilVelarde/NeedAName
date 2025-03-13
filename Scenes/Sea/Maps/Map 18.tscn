@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bci8vpk81qdgb"]
+[gd_scene load_steps=16 format=3 uid="uid://bci8vpk81qdgb"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_bug3q"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_vupof"]
@@ -8,12 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="5_oqwec"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_wm385"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="7_ll8yt"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="7_nh6gn"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_dqr3d"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_dgrkx"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="11_yftxn"]
-[ext_resource type="Texture2D" uid="uid://c3p8lnyml8jbe" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam2.png" id="12_brd8q"]
-[ext_resource type="AnimationLibrary" uid="uid://c0awsl3dfhstk" path="res://Animations/Overworld/Effects/WaterBarrier.res" id="12_uvfxp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xry3l"]
 resource_local_to_scene = true
@@ -25,14 +22,13 @@ size = Vector2(192, 64)
 
 [sub_resource type="Resource" id="Resource_alojh"]
 script = ExtResource("11_yftxn")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4a34h"]
 size = Vector2(190, 16)
 
 [node name="Map18" type="Node2D"]
 script = ExtResource("1_vupof")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -82,24 +78,11 @@ shape = SubResource("RectangleShape2D_xry3l")
 [node name="Door2" parent="." instance=ExtResource("6_wm385")]
 position = Vector2(320, 0)
 rotation = 1.5708
-Scene = 21
+Scene = 24
 Area = null
-LoadPosition = null
+LoadPosition = Vector2(-632, 0)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
-position = Vector2(2.38419e-07, 0)
-shape = SubResource("RectangleShape2D_bjupt")
-disabled = true
-
-[node name="Door3" type="Area2D" parent="."]
-position = Vector2(320, 0)
-rotation = 1.5708
-script = ExtResource("7_nh6gn")
-Scene = 21
-Area = null
-LoadPosition = null
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door3"]
 position = Vector2(2.38419e-07, 0)
 shape = SubResource("RectangleShape2D_bjupt")
 
@@ -119,21 +102,10 @@ detectArea = NodePath("../Area2D")
 [node name="Barrier" parent="." instance=ExtResource("10_dgrkx")]
 position = Vector2(280, 0)
 rotation = 1.5708
-FlagIndex = 1
 DisableAnimation = "WaterBarrier/Disable"
-Dialogue = null
 
-[node name="CollisionShape2D" parent="Barrier" index="0"]
+[node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_4a34h")
-
-[node name="Sprite2D" parent="Barrier/CollisionShape2D" index="0"]
-texture = ExtResource("12_brd8q")
-
-[node name="AnimationPlayer" parent="Barrier/CollisionShape2D/Sprite2D" index="0"]
-libraries = {
-"WaterBarrier": ExtResource("12_uvfxp")
-}
-autoplay = "WaterBarrier/Barrier"
 
 [editable path="Cams"]
 [editable path="Borders"]

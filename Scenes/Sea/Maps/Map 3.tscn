@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b5o0cjrcuemsu"]
+[gd_scene load_steps=12 format=3 uid="uid://b5o0cjrcuemsu"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_4yjad"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_dqvc0"]
@@ -7,11 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="3_cqfc7"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_t85o1"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="6_jphsr"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemInteract.cs" id="7_k5ikf"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="8_av3dv"]
-[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="8_v77sh"]
-[ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="10_lt8fh"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_5j0v3"]
+[ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="8_mkag5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib5bx"]
 resource_local_to_scene = true
@@ -24,24 +20,6 @@ size = Vector2(122, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5al3"]
 resource_local_to_scene = true
 size = Vector2(256, 16)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5ac"]
-
-[sub_resource type="Resource" id="Resource_f0yfb"]
-script = ExtResource("8_av3dv")
-ID = 0
-Name = "???"
-Description = "Not sure what this thing is, but it feels warm"
-type = 2
-
-[sub_resource type="Resource" id="Resource_hopv3"]
-script = ExtResource("8_v77sh")
-Base = SubResource("Resource_f0yfb")
-Amount = 1
-
-[sub_resource type="Resource" id="Resource_iwgnt"]
-script = ExtResource("11_5j0v3")
-DialogueTimelines = Array[String](["Item1"])
 
 [node name="Map3" type="Node2D"]
 script = ExtResource("1_4yjad")
@@ -81,6 +59,8 @@ limit_bottom = 288
 
 [node name="Door" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(256, -232)
+Scene = null
+Area = null
 LoadPosition = Vector2(64, 230)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -90,6 +70,7 @@ shape = SubResource("RectangleShape2D_ib5bx")
 position = Vector2(456, -160)
 rotation = 1.5708
 Scene = 7
+Area = null
 LoadPosition = Vector2(-270, 64)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -99,11 +80,13 @@ shape = SubResource("RectangleShape2D_qxnxw")
 [node name="Door3" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(-80, 296)
 Scene = 6
+Area = null
 LoadPosition = Vector2(-208, -170)
 
 [node name="Door4" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(176, 296)
 Scene = 6
+Area = null
 LoadPosition = Vector2(8, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -122,23 +105,18 @@ collision_layer = 1
 [node name="CollisionPolygon2D" parent="Borders2" index="0"]
 polygon = PackedVector2Array(56, 8, 56, -8, -72, -8, -72, 8)
 
-[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["Interactable"]]
+[node name="StaticBody2D" parent="." instance=ExtResource("8_mkag5")]
 position = Vector2(-112, -80)
-collision_layer = 3
+scale = Vector2(0.66, 0.66)
 
-[node name="ItemInteract" type="CollisionShape2D" parent="StaticBody2D"]
-shape = SubResource("RectangleShape2D_nh5ac")
-script = ExtResource("7_k5ikf")
-ItemID = Array[int]([])
-Delete = true
-ItemsToGive = Array[Object]([SubResource("Resource_hopv3")])
-ItemType = 1
-TimelineGroup = Array[Object]([SubResource("Resource_iwgnt")])
-PauseWhenDialogue = true
+[node name="ItemInteract" parent="StaticBody2D" index="0"]
+GameID = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/ItemInteract"]
-scale = Vector2(0.15, 0.15)
-texture = ExtResource("10_lt8fh")
+[node name="Sprite2D" parent="StaticBody2D/ItemInteract" index="0"]
+frame = 0
+
+[node name="AnimationPlayer" parent="StaticBody2D/ItemInteract/Sprite2D" index="0"]
+autoplay = "default"
 
 [editable path="Cams"]
 [editable path="Door"]
@@ -146,3 +124,4 @@ texture = ExtResource("10_lt8fh")
 [editable path="Door4"]
 [editable path="Borders"]
 [editable path="Borders2"]
+[editable path="StaticBody2D"]

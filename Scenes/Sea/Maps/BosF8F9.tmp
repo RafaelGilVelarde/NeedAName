@@ -1,0 +1,701 @@
+[gd_scene load_steps=90 format=3 uid="uid://dbs7iqu5fr21p"]
+
+[ext_resource type="Texture2D" uid="uid://cyd8rk3jjitin" path="res://Sprites/Background/Side View/Boss Arena 1 Ground.png" id="1_q1sx7"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t3ogn"]
+[ext_resource type="Texture2D" uid="uid://dffdc6uwont07" path="res://Sprites/Background/Side View/Boss Arena 1.png" id="2_dd8q1"]
+[ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_4beiu"]
+[ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_t3ott"]
+[ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="6_dj4c6"]
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="7_4k8em"]
+[ext_resource type="Texture2D" uid="uid://ble8wnq0hloba" path="res://Sprites/Overworld/Effects/Soul/soul1.png" id="7_qedwc"]
+[ext_resource type="Texture2D" uid="uid://dvqvjvpnkawos" path="res://Sprites/Overworld/Effects/Soul/soul2.png" id="8_25xpo"]
+[ext_resource type="Texture2D" uid="uid://c1nhx64ygfi7n" path="res://Sprites/Overworld/Effects/Soul/soul3.png" id="9_v3c2k"]
+[ext_resource type="Texture2D" uid="uid://c1me4p2pod0o1" path="res://Sprites/Overworld/Effects/Soul/soul4.png" id="10_kjnia"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="11_frgqn"]
+[ext_resource type="Texture2D" uid="uid://bvvxwoiwvkb4o" path="res://Sprites/Battle/Enemies/Boss1.png" id="12_c83it"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="12_ccuw4"]
+[ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="13_vbou1"]
+[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/BattleStart.cs" id="14_yifkv"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleScene.cs" id="15_bhcf2"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="16_q3s3b"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="19_04fsb"]
+[ext_resource type="AnimationLibrary" uid="uid://cvyxxjnn1wh11" path="res://Animations/Battle/Boss1.res" id="19_rbcig"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="20_7s2bh"]
+[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="21_8a1uq"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="22_dy6wk"]
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="23_1gxnh"]
+[ext_resource type="PackedScene" uid="uid://dflycr41il8v0" path="res://Prefabs/BattleProjectyles/WaterSpout.tscn" id="25_40e4m"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/BossSpoutMove.cs" id="26_8x2fq"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="26_n61em"]
+[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="27_hafdj"]
+[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="28_t57oh"]
+[ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="29_6dhwp"]
+[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="29_63fyv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k84y4"]
+size = Vector2(1592, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjpro"]
+size = Vector2(1592, 48)
+
+[sub_resource type="Curve" id="Curve_y2yeh"]
+max_value = 200.0
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.992857, 109.038), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_6mwnv"]
+curve = SubResource("Curve_y2yeh")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_cyuvy"]
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(1, 0, 0)
+emission_shape = 3
+emission_box_extents = Vector3(300, 1, 1)
+gravity = Vector3(0, -98, 0)
+anim_speed_curve = SubResource("CurveTexture_6mwnv")
+anim_offset_max = 1.0
+
+[sub_resource type="AnimatedTexture" id="AnimatedTexture_4hp3h"]
+frames = 4
+speed_scale = 12.0
+frame_0/texture = ExtResource("7_qedwc")
+frame_1/texture = ExtResource("8_25xpo")
+frame_1/duration = 1.0
+frame_2/texture = ExtResource("9_v3c2k")
+frame_2/duration = 1.0
+frame_3/texture = ExtResource("10_kjnia")
+frame_3/duration = 1.0
+
+[sub_resource type="Animation" id="Animation_pifli"]
+resource_name = "Leaves"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_dd8q1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 7, 8, 9, 10]
+}
+
+[sub_resource type="Animation" id="Animation_so7ks"]
+resource_name = "Main"
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_dd8q1")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [4]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o8v3m"]
+_data = {
+"Leaves": SubResource("Animation_pifli"),
+"Main": SubResource("Animation_so7ks")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_puscj"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[sub_resource type="Resource" id="Resource_sa4b1"]
+script = ExtResource("12_ccuw4")
+DialogueTimelines = Array[String](["Boss"])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_barrw"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="Resource" id="Resource_cqcim"]
+script = ExtResource("15_bhcf2")
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0guv5"]
+animation = &"Attack1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sr70r"]
+animation = &"Attack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6w0ti"]
+animation = &"Attack3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uhjyy"]
+animation = &"Attack4"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ptcog"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0guv5")
+blend_point_0/pos = 1.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_sr70r")
+blend_point_1/pos = 2.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_6w0ti")
+blend_point_2/pos = 3.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_uhjyy")
+blend_point_3/pos = 4.0
+min_space = 0.0
+max_space = 4.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3ab7"]
+animation = &"Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q0j88"]
+animation = &"Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83yyf"]
+animation = &"Die"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hojxb"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_ptcog")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_t3ab7")
+blend_point_1/pos = 3.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_q0j88")
+blend_point_2/pos = 5.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_83yyf")
+blend_point_3/pos = 6.0
+min_space = 0.0
+max_space = 6.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_126af"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vnr2o"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_hojxb")
+states/ActionState/position = Vector2(593, 103)
+states/Start/position = Vector2(201, 103)
+transitions = ["Start", "ActionState", SubResource("AnimationNodeStateMachineTransition_126af")]
+
+[sub_resource type="Resource" id="Resource_l1thn"]
+script = ExtResource("16_q3s3b")
+Lv = 1
+MaxHP = 40
+HP = 10
+Atk = 2
+Def = 5
+SpAtk = 2
+SpDef = 1
+Speed = 3
+
+[sub_resource type="Resource" id="Resource_n0kjw"]
+script = ExtResource("19_04fsb")
+ExpYield = 100.0
+BaseStats = SubResource("Resource_l1thn")
+Name = "Edicary"
+OverworldAnimator = ExtResource("29_6dhwp")
+BattleAnimator = ExtResource("29_6dhwp")
+TextEffectColor = Color(0, 0.741176, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_jipoy"]
+script = ExtResource("16_q3s3b")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_woo47"]
+script = ExtResource("20_7s2bh")
+State = 1
+Speed = 3.0
+Combo = 1
+offset = Vector2(30, 0)
+Movement = false
+type = 0
+Power = 3
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "Punch"
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_7ebqa"]
+script = ExtResource("21_8a1uq")
+Base = SubResource("Resource_woo47")
+
+[sub_resource type="Resource" id="Resource_je7yg"]
+script = ExtResource("26_8x2fq")
+Combo = 3
+Proyectile = ExtResource("25_40e4m")
+XOffset = 0.0
+Tag = "EnemyHitbox"
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "spout1"
+MoveTime = 2.5
+
+[sub_resource type="Resource" id="Resource_xvxfu"]
+script = ExtResource("21_8a1uq")
+Base = SubResource("Resource_je7yg")
+
+[sub_resource type="Resource" id="Resource_4jt63"]
+script = ExtResource("26_8x2fq")
+Combo = 3
+Proyectile = ExtResource("25_40e4m")
+XOffset = 50.0
+Tag = "EnemyHitbox"
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+TargetsParty = false
+Name = "Spout2"
+MoveTime = 2.5
+
+[sub_resource type="Resource" id="Resource_a4tlc"]
+script = ExtResource("21_8a1uq")
+Base = SubResource("Resource_4jt63")
+
+[sub_resource type="Resource" id="Resource_m514q"]
+script = ExtResource("16_q3s3b")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+
+[sub_resource type="Resource" id="Resource_0ckdn"]
+script = ExtResource("16_q3s3b")
+Lv = 5
+MaxHP = 1000
+HP = 1000
+Atk = 2
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 5
+
+[sub_resource type="Resource" id="Resource_i0rrr"]
+resource_local_to_scene = true
+script = ExtResource("22_dy6wk")
+Base = SubResource("Resource_n0kjw")
+Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_xvxfu"), SubResource("Resource_a4tlc")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_0ckdn")
+EquipStats = SubResource("Resource_jipoy")
+TotalStats = SubResource("Resource_m514q")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rd4dd"]
+resource_local_to_scene = true
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ft7k8"]
+resource_local_to_scene = true
+size = Vector2(20, 34)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mrp36"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[sub_resource type="Gradient" id="Gradient_ea8j0"]
+offsets = PackedFloat32Array(0.338028, 1)
+colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_0pj2p"]
+gradient = SubResource("Gradient_ea8j0")
+
+[sub_resource type="Curve" id="Curve_ww72p"]
+min_value = -50.0
+max_value = 50.0
+_data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_uatdi"]
+curve = SubResource("Curve_ww72p")
+
+[sub_resource type="Curve" id="Curve_8h853"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984456, 0.326316), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_4u1mo"]
+curve = SubResource("Curve_8h853")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfo7d"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(3, 0, 0)
+direction = Vector3(0, -1, 0)
+spread = 74.85
+initial_velocity_min = 10.0
+initial_velocity_max = 87.81
+gravity = Vector3(0, -98, 0)
+linear_accel_max = 11.21
+linear_accel_curve = SubResource("CurveTexture_uatdi")
+scale_max = 15.63
+scale_curve = SubResource("CurveTexture_4u1mo")
+color_ramp = SubResource("GradientTexture1D_0pj2p")
+
+[sub_resource type="Gradient" id="Gradient_p8sqr"]
+offsets = PackedFloat32Array(0, 0.673267, 1)
+colors = PackedColorArray(0.752941, 0, 0, 1, 0.754535, 0.434297, 0.345287, 1, 0.811371, 0.706337, 0.361686, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_y36m5"]
+gradient = SubResource("Gradient_p8sqr")
+
+[sub_resource type="Gradient" id="Gradient_6qoqx"]
+offsets = PackedFloat32Array(0, 0.438944, 0.861386, 1)
+colors = PackedColorArray(0, 0.741176, 0, 1, 0.41511, 0.845658, 0.610832, 1, 0.690036, 0.955324, 0.911021, 1, 0.666667, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0dyv"]
+gradient = SubResource("Gradient_6qoqx")
+
+[sub_resource type="Gradient" id="Gradient_awthb"]
+offsets = PackedFloat32Array(0, 0.353135, 0.663366, 1)
+colors = PackedColorArray(0, 0, 0.760784, 1, 0.496331, 0.269289, 0.84728, 1, 0.770127, 0.593009, 0.959867, 1, 0.74902, 0.372549, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bb84a"]
+gradient = SubResource("Gradient_awthb")
+
+[sub_resource type="Gradient" id="Gradient_6uv37"]
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8n0m8"]
+gradient = SubResource("Gradient_6uv37")
+
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_s3x72"]
+max_value = 200.0
+_data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_86cc5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tosun"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_t3ogn")
+TransitionColor = null
+
+[node name="TileMap" type="TileMap" parent="."]
+visible = false
+tile_set = ExtResource("3_4beiu")
+format = 2
+layer_0/tile_data = PackedInt32Array(-131085, 1, 0, -65549, 1, 0, -13, 1, 0, 65523, 1, 0, 131059, 1, 0, 196595, 1, 0, 262131, 1, 0, 327667, 1, 0, 393203, 1, 0, 458739, 1, 0, -131084, 1, 0, -65548, 1, 0, -12, 1, 0, 65524, 1, 0, 131060, 1, 0, 196596, 1, 0, 262132, 1, 0, 327668, 1, 0, 393204, 1, 0, 458740, 1, 0, -131083, 1, 0, -65547, 1, 0, -11, 1, 0, 65525, 1, 0, 131061, 1, 0, 196597, 1, 0, 262133, 1, 0, 327669, 1, 0, 393205, 1, 0, 458741, 1, 0, -131082, 1, 0, -65546, 1, 0, -10, 1, 0, 65526, 1, 0, 131062, 1, 0, 196598, 1, 0, 262134, 1, 0, 327670, 1, 0, 393206, 1, 0, 458742, 1, 0, -131081, 1, 0, -65545, 1, 0, -9, 1, 0, 65527, 1, 0, 131063, 1, 0, 196599, 1, 0, 262135, 1, 0, 327671, 1, 0, 393207, 1, 0, 458743, 1, 0, -131080, 1, 0, -65544, 1, 0, -8, 1, 0, 65528, 1, 0, 131064, 1, 0, 196600, 1, 0, 262136, 1, 0, 327672, 1, 0, 393208, 1, 0, 458744, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, 327673, 1, 0, 393209, 1, 0, 458745, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, 196602, 1, 0, 262138, 1, 0, 327674, 1, 0, 393210, 1, 0, 458746, 1, 0, -131077, 1, 0, -65541, 1, 0, -5, 1, 0, 65531, 1, 0, 131067, 1, 0, 196603, 1, 0, 262139, 1, 0, 327675, 1, 0, 393211, 1, 0, 458747, 1, 0, -131076, 1, 0, -65540, 1, 0, -4, 1, 0, 65532, 1, 0, 131068, 1, 0, 196604, 1, 0, 262140, 1, 0, 327676, 1, 0, 393212, 1, 0, 458748, 1, 0, -131075, 1, 0, -65539, 1, 0, -3, 1, 0, 65533, 1, 0, 131069, 1, 0, 196605, 1, 0, 262141, 1, 0, 327677, 1, 0, 393213, 1, 0, 458749, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, 327678, 1, 0, 393214, 1, 0, 458750, 1, 0, -131073, 1, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, 393215, 1, 0, 458751, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 327680, 1, 0, 393216, 1, 0, -196607, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, 327681, 1, 0, 393217, 1, 0, -196606, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 327682, 1, 0, 393218, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, 327683, 1, 0, 393219, 1, 0, -196604, 1, 0, -131068, 1, 0, -65532, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, 327684, 1, 0, 393220, 1, 0, -196603, 1, 0, -131067, 1, 0, -65531, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, 327685, 1, 0, 393221, 1, 0, -196602, 1, 0, -131066, 1, 0, -65530, 1, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, 327686, 1, 0, 393222, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 327687, 1, 0, 393223, 1, 0, -196600, 1, 0, -131064, 1, 0, -65528, 1, 0, 8, 1, 0, 65544, 1, 0, 131080, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, 393224, 1, 0, -458769, 1, 0, -393233, 1, 0, -327697, 1, 0, -262161, 1, 0, -196625, 1, 0, -131089, 1, 0, -65553, 1, 0, -17, 1, 0, 65519, 1, 0, 131055, 1, 0, 196591, 1, 0, 262127, 1, 0, 327663, 1, 0, 393199, 1, 0, 458735, 1, 0, 524271, 1, 0, 589807, 1, 0, -458768, 1, 0, -393232, 1, 0, -327696, 1, 0, -262160, 1, 0, -196624, 1, 0, -131088, 1, 0, -65552, 1, 0, -16, 1, 0, 65520, 1, 0, 131056, 1, 0, 196592, 1, 0, 262128, 1, 0, 327664, 1, 0, 393200, 1, 0, 458736, 1, 0, 524272, 1, 0, 589808, 1, 0, -458767, 1, 0, -393231, 1, 0, -327695, 1, 0, -262159, 1, 0, -196623, 1, 0, -131087, 1, 0, -65551, 1, 0, -15, 1, 0, 65521, 1, 0, 131057, 1, 0, 196593, 1, 0, 262129, 1, 0, 327665, 1, 0, 393201, 1, 0, 458737, 1, 0, 524273, 1, 0, 589809, 1, 0, -458766, 1, 0, -393230, 1, 0, -327694, 1, 0, -262158, 1, 0, -196622, 1, 0, -131086, 1, 0, -65550, 1, 0, -14, 1, 0, 65522, 1, 0, 131058, 1, 0, 196594, 1, 0, 262130, 1, 0, 327666, 1, 0, 393202, 1, 0, 458738, 1, 0, 524274, 1, 0, 589810, 1, 0, -458765, 1, 0, -393229, 1, 0, -327693, 1, 0, -262157, 1, 0, -196621, 1, 0, 524275, 1, 0, 589811, 1, 0, -458764, 1, 0, -393228, 1, 0, -327692, 1, 0, -262156, 1, 0, -196620, 1, 0, 524276, 1, 0, 589812, 1, 0, -458763, 1, 0, -393227, 1, 0, -327691, 1, 0, -262155, 1, 0, -196619, 1, 0, 524277, 1, 0, 589813, 1, 0, -458762, 1, 0, -393226, 1, 0, -327690, 1, 0, -262154, 1, 0, -196618, 1, 0, 524278, 1, 0, 589814, 1, 0, -458761, 1, 0, -393225, 1, 0, -327689, 1, 0, -262153, 1, 0, -196617, 1, 0, 524279, 1, 0, 589815, 1, 0, -458760, 1, 0, -393224, 1, 0, -327688, 1, 0, -262152, 1, 0, -196616, 1, 0, 524280, 1, 0, 589816, 1, 0, -458759, 1, 0, -393223, 1, 0, -327687, 1, 0, -262151, 1, 0, -196615, 1, 0, 524281, 1, 0, 589817, 1, 0, -458758, 1, 0, -393222, 1, 0, -327686, 1, 0, -262150, 1, 0, -196614, 1, 0, 524282, 1, 0, 589818, 1, 0, -458757, 1, 0, -393221, 1, 0, -327685, 1, 0, -262149, 1, 0, -196613, 1, 0, 524283, 1, 0, 589819, 1, 0, -458756, 1, 0, -393220, 1, 0, -327684, 1, 0, -262148, 1, 0, -196612, 1, 0, 524284, 1, 0, 589820, 1, 0, -458755, 1, 0, -393219, 1, 0, -327683, 1, 0, -262147, 1, 0, -196611, 1, 0, 524285, 1, 0, 589821, 1, 0, -458754, 1, 0, -393218, 1, 0, -327682, 1, 0, -262146, 1, 0, -196610, 1, 0, 524286, 1, 0, 589822, 1, 0, -458753, 1, 0, -393217, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, 524287, 1, 0, 589823, 1, 0, -524288, 1, 0, -458752, 1, 0, -393216, 1, 0, -327680, 1, 0, -262144, 1, 0, 458752, 1, 0, 524288, 1, 0, -524287, 1, 0, -458751, 1, 0, -393215, 1, 0, -327679, 1, 0, -262143, 1, 0, 458753, 1, 0, 524289, 1, 0, -524286, 1, 0, -458750, 1, 0, -393214, 1, 0, -327678, 1, 0, -262142, 1, 0, 458754, 1, 0, 524290, 1, 0, -524285, 1, 0, -458749, 1, 0, -393213, 1, 0, -327677, 1, 0, -262141, 1, 0, 458755, 1, 0, 524291, 1, 0, -524284, 1, 0, -458748, 1, 0, -393212, 1, 0, -327676, 1, 0, -262140, 1, 0, 458756, 1, 0, 524292, 1, 0, -524283, 1, 0, -458747, 1, 0, -393211, 1, 0, -327675, 1, 0, -262139, 1, 0, 458757, 1, 0, 524293, 1, 0, -524282, 1, 0, -458746, 1, 0, -393210, 1, 0, -327674, 1, 0, -262138, 1, 0, 458758, 1, 0, 524294, 1, 0, -524281, 1, 0, -458745, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, 458759, 1, 0, 524295, 1, 0, -524280, 1, 0, -458744, 1, 0, -393208, 1, 0, -327672, 1, 0, -262136, 1, 0, 458760, 1, 0, 524296, 1, 0, -524279, 1, 0, -458743, 1, 0, -393207, 1, 0, -327671, 1, 0, -262135, 1, 0, -196599, 1, 0, -131063, 1, 0, -65527, 1, 0, 9, 1, 0, 65545, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 1, 0, 327689, 1, 0, 393225, 1, 0, 458761, 1, 0, 524297, 1, 0, -524278, 1, 0, -458742, 1, 0, -393206, 1, 0, -327670, 1, 0, -262134, 1, 0, -196598, 1, 0, -131062, 1, 0, -65526, 1, 0, 10, 1, 0, 65546, 1, 0, 131082, 1, 0, 196618, 1, 0, 262154, 1, 0, 327690, 1, 0, 393226, 1, 0, 458762, 1, 0, 524298, 1, 0, -524277, 1, 0, -458741, 1, 0, -393205, 1, 0, -327669, 1, 0, -262133, 1, 0, -196597, 1, 0, -131061, 1, 0, -65525, 1, 0, 11, 1, 0, 65547, 1, 0, 131083, 1, 0, 196619, 1, 0, 262155, 1, 0, 327691, 1, 0, 393227, 1, 0, 458763, 1, 0, 524299, 1, 0, -524276, 1, 0, -458740, 1, 0, -393204, 1, 0, -327668, 1, 0, -262132, 1, 0, -196596, 1, 0, -131060, 1, 0, -65524, 1, 0, 12, 1, 0, 65548, 1, 0, 131084, 1, 0, 196620, 1, 0, 262156, 1, 0, 327692, 1, 0, 393228, 1, 0, 458764, 1, 0, 524300, 1, 0, -524275, 1, 0, -458739, 1, 0, -393203, 1, 0, -327667, 1, 0, -262131, 1, 0, -196595, 1, 0, -131059, 1, 0, -65523, 1, 0, 13, 1, 0, 65549, 1, 0, 131085, 1, 0, 196621, 1, 0, 262157, 1, 0, 327693, 1, 0, 393229, 1, 0, 458765, 1, 0, 524301, 1, 0, -393238, 1, 0, -327702, 1, 0, -262166, 1, 0, -196630, 1, 0, -131094, 1, 0, -65558, 1, 0, -22, 1, 0, 65514, 1, 0, 131050, 1, 0, 196586, 1, 0, 262122, 1, 0, 327658, 1, 0, 393194, 1, 0, 458730, 1, 0, 524266, 1, 0, 589802, 1, 0, -393237, 1, 0, -327701, 1, 0, -262165, 1, 0, -196629, 1, 0, -131093, 1, 0, -65557, 1, 0, -21, 1, 0, 65515, 1, 0, 131051, 1, 0, 196587, 1, 0, 262123, 1, 0, 327659, 1, 0, 393195, 1, 0, 458731, 1, 0, 524267, 1, 0, 589803, 1, 0, -393236, 1, 0, -327700, 1, 0, -262164, 1, 0, -196628, 1, 0, -131092, 1, 0, -65556, 1, 0, -20, 1, 0, 65516, 1, 0, 131052, 1, 0, 196588, 1, 0, 262124, 1, 0, 327660, 1, 0, 393196, 1, 0, 458732, 1, 0, 524268, 1, 0, 589804, 1, 0, -393235, 1, 0, -327699, 1, 0, -262163, 1, 0, -196627, 1, 0, -131091, 1, 0, -65555, 1, 0, -19, 1, 0, 65517, 1, 0, 131053, 1, 0, 196589, 1, 0, 262125, 1, 0, 327661, 1, 0, 393197, 1, 0, 458733, 1, 0, 524269, 1, 0, 589805, 1, 0, -393234, 1, 0, -327698, 1, 0, -262162, 1, 0, -196626, 1, 0, -131090, 1, 0, -65554, 1, 0, -18, 1, 0, 65518, 1, 0, 131054, 1, 0, 196590, 1, 0, 262126, 1, 0, 327662, 1, 0, 393198, 1, 0, 458734, 1, 0, 524270, 1, 0, 589806, 1, 0, -458738, 1, 0, -393202, 1, 0, -327666, 1, 0, -262130, 1, 0, -196594, 1, 0, -131058, 1, 0, -65522, 1, 0, 14, 1, 0, 65550, 1, 0, 131086, 1, 0, 196622, 1, 0, 262158, 1, 0, 327694, 1, 0, 393230, 1, 0, 458766, 1, 0, 524302, 1, 0, -458737, 1, 0, -393201, 1, 0, -327665, 1, 0, -262129, 1, 0, -196593, 1, 0, -131057, 1, 0, -65521, 1, 0, 15, 1, 0, 65551, 1, 0, 131087, 1, 0, 196623, 1, 0, 262159, 1, 0, 327695, 1, 0, 393231, 1, 0, 458767, 1, 0, 524303, 1, 0, -458736, 1, 0, -393200, 1, 0, -327664, 1, 0, -262128, 1, 0, -196592, 1, 0, -131056, 1, 0, -65520, 1, 0, 16, 1, 0, 65552, 1, 0, 131088, 1, 0, 196624, 1, 0, 262160, 1, 0, 327696, 1, 0, 393232, 1, 0, 458768, 1, 0, 524304, 1, 0, -458735, 1, 0, -393199, 1, 0, -327663, 1, 0, -262127, 1, 0, -196591, 1, 0, -131055, 1, 0, -65519, 1, 0, 17, 1, 0, 65553, 1, 0, 131089, 1, 0, 196625, 1, 0, 262161, 1, 0, 327697, 1, 0, 393233, 1, 0, 458769, 1, 0, 524305, 1, 0, -458734, 1, 0, -393198, 1, 0, -327662, 1, 0, -262126, 1, 0, -196590, 1, 0, -131054, 1, 0, -65518, 1, 0, 18, 1, 0, 65554, 1, 0, 131090, 1, 0, 196626, 1, 0, 262162, 1, 0, 327698, 1, 0, 393234, 1, 0, 458770, 1, 0, 524306, 1, 0, -458733, 1, 0, -393197, 1, 0, -327661, 1, 0, -262125, 1, 0, -196589, 1, 0, -131053, 1, 0, -65517, 1, 0, 19, 1, 0, 65555, 1, 0, 131091, 1, 0, 196627, 1, 0, 262163, 1, 0, 327699, 1, 0, 393235, 1, 0, 458771, 1, 0, 524307, 1, 0, -458732, 1, 0, -393196, 1, 0, -327660, 1, 0, -262124, 1, 0, -196588, 1, 0, -131052, 1, 0, -65516, 1, 0, 20, 1, 0, 65556, 1, 0, 131092, 1, 0, 196628, 1, 0, 262164, 1, 0, 327700, 1, 0, 393236, 1, 0, 458772, 1, 0, 524308, 1, 0, -458731, 1, 0, -393195, 1, 0, -327659, 1, 0, -262123, 1, 0, -196587, 1, 0, -131051, 1, 0, -65515, 1, 0, 21, 1, 0, 65557, 1, 0, 131093, 1, 0, 196629, 1, 0, 262165, 1, 0, 327701, 1, 0, 393237, 1, 0, 458773, 1, 0, 524309, 1, 0)
+script = ExtResource("4_t3ott")
+
+[node name="Cams" parent="." instance=ExtResource("6_dj4c6")]
+
+[node name="OverworldCam" parent="Cams" index="0"]
+limit_left = -700
+limit_right = 685
+limit_bottom = 210
+
+[node name="BattleCam" parent="Cams" index="1"]
+limit_left = -700
+limit_top = -500
+limit_right = 685
+limit_bottom = 210
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+visible = false
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 2
+position = Vector2(0, 203)
+shape = SubResource("RectangleShape2D_k84y4")
+disabled = true
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+z_index = 2
+position = Vector2(0, 129)
+shape = SubResource("RectangleShape2D_wjpro")
+disabled = true
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+z_index = -1
+position = Vector2(-4, 187)
+scale = Vector2(2, 2)
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_cyuvy")
+texture = SubResource("AnimatedTexture_4hp3h")
+lifetime = 3.65
+speed_scale = 2.0
+explosiveness = 0.4
+
+[node name="Ground" type="Node2D" parent="."]
+position = Vector2(-360, 112)
+
+[node name="BG3" type="Sprite2D" parent="Ground"]
+z_index = 1
+texture = ExtResource("1_q1sx7")
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://Sprites/Background/Side View",
+"o_name": "Boss Arena 1",
+"only_visible": false,
+"op_exp": true,
+"player": "BG1/AnimationPlayer",
+"source": "res://Aseprites/Backgrounds/Boss Arena 1.aseprite"
+}
+
+[node name="BG4" type="Sprite2D" parent="Ground"]
+z_index = 1
+position = Vector2(696, 0)
+texture = ExtResource("1_q1sx7")
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://Sprites/Background/Side View",
+"o_name": "Boss Arena 1",
+"only_visible": false,
+"op_exp": true,
+"player": "BG1/AnimationPlayer",
+"source": "res://Aseprites/Backgrounds/Boss Arena 1.aseprite"
+}
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(2, 2)
+motion_scale = Vector2(0.75, 1)
+
+[node name="BG1" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer"]
+z_index = -2
+texture_filter = 1
+position = Vector2(0, 35)
+texture = ExtResource("2_dd8q1")
+hframes = 4
+vframes = 3
+frame = 2
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://Sprites/Background/Side View",
+"o_name": "Boss Arena 1",
+"only_visible": false,
+"op_exp": true,
+"player": "BG1/AnimationPlayer",
+"source": "res://Aseprites/Backgrounds/Boss Arena 1.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer/BG1"]
+libraries = {
+"": SubResource("AnimationLibrary_o8v3m")
+}
+autoplay = "Main"
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+scale = Vector2(1.5, 1.5)
+motion_scale = Vector2(0.8, 1)
+
+[node name="BG2" type="Sprite2D" parent="ParallaxBackground/ParallaxLayer2"]
+z_index = -1
+texture_filter = 1
+position = Vector2(0, 55)
+texture = ExtResource("2_dd8q1")
+hframes = 4
+vframes = 3
+frame = 6
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "_",
+"o_folder": "res://Sprites/Background/Side View",
+"o_name": "Boss Arena 1",
+"only_visible": false,
+"op_exp": true,
+"player": "BG1/AnimationPlayer",
+"source": "res://Aseprites/Backgrounds/Boss Arena 1.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ParallaxBackground/ParallaxLayer2/BG2"]
+libraries = {
+"": SubResource("AnimationLibrary_o8v3m")
+}
+autoplay = "Leaves"
+
+[node name="Character" type="CharacterBody2D" parent="." groups=["EnemyOverworldController", "Interactable"]]
+y_sort_enabled = true
+position = Vector2(145, 129)
+rotation = 3.14159
+scale = Vector2(1, -1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character"]
+position = Vector2(0, 38)
+shape = SubResource("RectangleShape2D_puscj")
+script = ExtResource("11_frgqn")
+TimelineGroup = Array[Object]([SubResource("Resource_sa4b1")])
+TimelineGroupIndex = null
+TimelineIndex = null
+Timeline = null
+PauseWhenDialogue = true
+Turn = null
+SpokenTo = null
+FacingRight = false
+FacingDirection = null
+visualType = null
+battleStart = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_cqcim"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 33)]),"EnemyPos":Array[Vector2]([Vector2(0, 0)]))
+
+
+[node name="OverworldController" type="Node2D" parent="Character"]
+script = ExtResource("7_4k8em")
+CachedTargetPosition = null
+RandMin = null
+RandMax = null
+state = 1
+CurrentIdleTarget = null
+LayerMask = 2
+DirectionIndex = null
+Speed = null
+Friction = 1000.0
+MaxSpeed = 50.0
+AxisList = []
+PositionList = []
+AuxPositionList = []
+AxisOffset = null
+Axis = null
+AxisAux = null
+Controllable = false
+Coords = null
+enemyCollision = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":4,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":ExtResource("13_vbou1"),"battleStart":Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_cqcim"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 33)]),"EnemyPos":Array[Vector2]([Vector2(0, 0)]))
+)
+
+Battle = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_cqcim"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-100, 33)]),"EnemyPos":Array[Vector2]([Vector2(0, 0)]))
+
+MainSprite = Object(Sprite2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":1,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":ExtResource("12_c83it"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":7,"vframes":7,"frame":0,"region_enabled":false,"region_rect":Rect2(0, 0, 0, 0),"region_filter_clip_enabled":false,"script":null,"metadata/_aseprite_wizard_config_":{
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Enemies",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "OverworldController/AnimationPlayer",
+"source": "res://Aseprites/Characters/Battle/Enemies/starfish.aseprite"
+})
+
+Animator = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
+"": ExtResource("19_rbcig")
+},"autoplay":"","playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
+
+AnimatorTree = Object(AnimationTree,"_import_p

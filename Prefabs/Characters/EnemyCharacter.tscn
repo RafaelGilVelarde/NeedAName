@@ -80,6 +80,7 @@ Def = 2
 SpAtk = 2
 SpDef = 2
 Speed = 2
+WP = 0
 
 [sub_resource type="Resource" id="Resource_bvhfa"]
 resource_local_to_scene = true
@@ -103,16 +104,21 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_44g3j"]
 script = ExtResource("9_voesq")
+State = 2
 Speed = 3.0
 Combo = 1
 offset = Vector2(50, 0)
+Movement = true
 type = 0
 Power = 1
 UserAmount = 0
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = "b"
 MoveTime = 3.0
@@ -132,6 +138,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_0t4aj"]
 script = ExtResource("4_1bhow")
@@ -143,6 +150,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_3kofi"]
 script = ExtResource("8_r8twf")
@@ -168,6 +176,7 @@ Def = 5
 SpAtk = 5
 SpDef = 5
 Speed = 5
+WP = 0
 
 [sub_resource type="Resource" id="Resource_m1uvd"]
 script = ExtResource("15_sd2km")
@@ -182,13 +191,17 @@ BattleOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("9_voesq")
+State = 2
 Speed = 3.0
 Combo = 1
 offset = Vector2(30, 0)
+Movement = true
 type = 0
 Power = 3
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = "b"
 MoveTime = 2.0
@@ -207,6 +220,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
+WP = 0
 
 [sub_resource type="Resource" id="Resource_p2e0b"]
 resource_local_to_scene = true
@@ -225,11 +239,11 @@ status = 0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hcbx"]
 resource_local_to_scene = true
-size = Vector2(58, 55)
+size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
 resource_local_to_scene = true
-size = Vector2(20, 38)
+size = Vector2(20, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
@@ -425,14 +439,13 @@ script = ExtResource("4_xi1xx")
 Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
-position = Vector2(0, -1.5)
+position = Vector2(0.06, 0)
 shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["EnemyHurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
-position = Vector2(0, 9)
 shape = SubResource("RectangleShape2D_6c1hy")
 disabled = true
 
@@ -534,10 +547,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -52.0
-offset_right = 45.0
-offset_bottom = -47.0
+offset_left = -15.0
+offset_top = -60.0
+offset_right = 15.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_vertical = 1
@@ -557,4 +570,16 @@ scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 50
 bbcode_enabled = true
 text = "[center]50/50[/center]"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBar"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 177.0
+offset_bottom = 94.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]50[/center]"
 scroll_active = false

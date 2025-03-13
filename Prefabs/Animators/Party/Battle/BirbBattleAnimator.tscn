@@ -86,7 +86,7 @@ tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0, 1)]
+"values": [Vector2(0, 0)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0da8k"]
@@ -94,139 +94,139 @@ _data = {
 "RESET": SubResource("Animation_kjcss")
 }
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sbgia"]
 animation = &"Melee1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oy8rl"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2xgu0"]
 animation = &"BirbFight/Melee1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5deye"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lhbfn"]
 animation = &"BirbFight/Melee2"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_itfrt"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_26rrj")
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_e26cd"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_sbgia")
 blend_point_0/pos = -1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_oy8rl")
+blend_point_1/node = SubResource("AnimationNodeAnimation_2xgu0")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_5deye")
+blend_point_2/node = SubResource("AnimationNodeAnimation_lhbfn")
 blend_point_2/pos = 2.0
 min_space = 0.0
 max_space = 3.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_yfjc8"]
-blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_itfrt")
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_5r2qc"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_e26cd")
 blend_point_0/pos = 0.0
 min_space = 0.0
 max_space = 2.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_enmkj"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ip6ld"]
 animation = &"BirbFight/Block"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7qjg"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uk01u"]
 animation = &"BirbFight/Dodge1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fk5x6"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_usvm1"]
 animation = &"BirbFight/Dodge2"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m7bgb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_r0ii5"]
 animation = &"BirbFight/Dodge3"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y8jsu"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0vpqw"]
 animation = &"BirbFight/Dodge4"
 
-[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_ecmc3"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_l7qjg")
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_0eu1b"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_uk01u")
 blend_point_0/pos = Vector2(0, 1)
-blend_point_1/node = SubResource("AnimationNodeAnimation_fk5x6")
+blend_point_1/node = SubResource("AnimationNodeAnimation_usvm1")
 blend_point_1/pos = Vector2(0, -1)
-blend_point_2/node = SubResource("AnimationNodeAnimation_m7bgb")
+blend_point_2/node = SubResource("AnimationNodeAnimation_r0ii5")
 blend_point_2/pos = Vector2(-1, 0)
-blend_point_3/node = SubResource("AnimationNodeAnimation_y8jsu")
+blend_point_3/node = SubResource("AnimationNodeAnimation_0vpqw")
 blend_point_3/pos = Vector2(1, 0)
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1hmcb"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0hujp"]
 animation = &"BirbFight/idleFight"
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_rcttj"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_1hmcb")
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_3i7rn"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_0hujp")
 blend_point_0/pos = 2.0
 min_space = 0.0
 max_space = 2.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7176c"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_w8gtg"]
 animation = &"BirbFight/Hit"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_is2pd"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7aski"]
 animation = &"BirbFight/Die"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q67gl"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bksph"]
 animation = &"BirbFight/DieLoop"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_mcs87"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n62a2"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x3kam"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wrslv"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_dkfo3"]
-states/BirbFight_Die/node = SubResource("AnimationNodeAnimation_is2pd")
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_cvba1"]
+states/BirbFight_Die/node = SubResource("AnimationNodeAnimation_7aski")
 states/BirbFight_Die/position = Vector2(361, 85)
-states/BorbFight_DieLoop/node = SubResource("AnimationNodeAnimation_q67gl")
+states/BorbFight_DieLoop/node = SubResource("AnimationNodeAnimation_bksph")
 states/BorbFight_DieLoop/position = Vector2(699, 94)
 states/Start/position = Vector2(163, 91)
-transitions = ["Start", "BirbFight_Die", SubResource("AnimationNodeStateMachineTransition_mcs87"), "BirbFight_Die", "BorbFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_x3kam")]
+transitions = ["Start", "BirbFight_Die", SubResource("AnimationNodeStateMachineTransition_n62a2"), "BirbFight_Die", "BorbFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_wrslv")]
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtlmn"]
-blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_yfjc8")
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_j68st"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_5r2qc")
 blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_enmkj")
+blend_point_1/node = SubResource("AnimationNodeAnimation_ip6ld")
 blend_point_1/pos = 1.0
-blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_ecmc3")
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_0eu1b")
 blend_point_2/pos = 2.0
-blend_point_3/node = SubResource("AnimationNodeBlendSpace1D_rcttj")
+blend_point_3/node = SubResource("AnimationNodeBlendSpace1D_3i7rn")
 blend_point_3/pos = 5.0
-blend_point_4/node = SubResource("AnimationNodeAnimation_7176c")
+blend_point_4/node = SubResource("AnimationNodeAnimation_w8gtg")
 blend_point_4/pos = 3.0
-blend_point_5/node = SubResource("AnimationNodeStateMachine_dkfo3")
+blend_point_5/node = SubResource("AnimationNodeStateMachine_cvba1")
 blend_point_5/pos = 6.0
 min_space = 0.0
 max_space = 6.0
 snap = 0.01
 blend_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ixq5v"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sv7ko"]
 animation = &"BirbFight/StartBattle"
 play_mode = 1
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah0no"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d67oy"]
 animation = &"BirbFight/StartBattle"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_dyb26"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qf3hx"]
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_t2vxd"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_yga8y"]
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_patbp"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wxon7"]
 advance_mode = 2
 advance_condition = &"Ended"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_h4ks0"]
 resource_local_to_scene = true
-states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_j68st")
 states/ActionState/position = Vector2(570, 10.8326)
-states/BirbFight_StartBattle/node = SubResource("AnimationNodeAnimation_ixq5v")
+states/BirbFight_StartBattle/node = SubResource("AnimationNodeAnimation_sv7ko")
 states/BirbFight_StartBattle/position = Vector2(878, 10.8326)
 states/Start/position = Vector2(76, 80)
-states/StartBattle/node = SubResource("AnimationNodeAnimation_ah0no")
+states/StartBattle/node = SubResource("AnimationNodeAnimation_d67oy")
 states/StartBattle/position = Vector2(285, 10.8326)
-transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd"), "ActionState", "BirbFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp")]
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_qf3hx"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_yga8y"), "ActionState", "BirbFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_wxon7")]
 graph_offset = Vector2(0, -54.1674)
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
@@ -244,7 +244,7 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_h4ks0")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
-parameters/ActionState/blend_position = 5.01203
+parameters/ActionState/blend_position = 3.02244
 parameters/ActionState/0/blend_position = 0.0
 parameters/ActionState/0/0/blend_position = 1.84634
 parameters/ActionState/2/blend_position = Vector2(-0.003003, 0.0241935)

@@ -22,14 +22,30 @@ public partial class Character : Resource
 	public delegate void _GetHitEventHandler();
     [Signal]
 	public delegate void _ChangeHPEventHandler(int HP);
+       [Signal]
+	public delegate void _ChangeWPEventHandler(int WP, bool Hide);
     [Signal]
 	public delegate void _DieEventHandler();
+
 
     public enum Status{
         Normal,
         KO,
     };
     [Export]public Status status;
+    public bool CheckWP(int WP){
+        if(stats.WP>=WP){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+    public void ChangeWP(int WP){
+        stats.WP+=WP;
+        stats.WP = Mathf.Clamp(stats.WP,0,100);
+        EmitSignal("_ChangeWP",stats.WP, true);
+    }
     public virtual void DamageCalc(BattleCharacter Character,BattleCharacter TargetCharacter, Moves move){
 
     }
@@ -37,20 +53,17 @@ public partial class Character : Resource
         stats.HP+=hp;
         stats.HP=Mathf.Clamp(stats.HP,0,TotalStats.MaxHP);
 
-        Node2D HPLabelParent=GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        HPLabelParent.Scale=NodeCharacter.GlobalScale;
-        HPLabelParent.Rotation=NodeCharacter.GlobalRotation;
-        RichTextLabel HPLabel=HPLabelParent.GetChild<RichTextLabel>(0);
-        HPLabel.Text="[center]"+hp.ToString()+"[/center]";
-        HPLabel.AddThemeColorOverride("default_color",Base.TextEffectColor);
-        NodeCharacter.AddChild(HPLabelParent);
+        if(hp!=0){
+            ShowTextLabel($"[center]{hp}[/center]",Base.TextEffectColor);
+        }
+        else{
+            ShowTextLabel("[center]BLOCKED[/center]",Base.TextEffectColor);
+        }
         EmitSignal("_ChangeHP",hp);
         if(hp<0){
             EmitSignal("_GetHit");
         }
-        else if (hp==0){
-            HPLabel.Text="[center]BLOCKED[/center]";
-        }
+
         if(stats.HP<=0){
             stats.HP=0;
             status=Status.KO;
@@ -58,18 +71,21 @@ public partial class Character : Resource
         }
     }
     public virtual void SetStats(){
-        /*Stats BaseStats = Base.BaseStats;
+        Stats BaseStats = Base.BaseStats;
+        if(stats.Lv==0){
+            stats.Lv = 1;
+        }
         stats.MaxHP= (int)(BaseStats.MaxHP*Mathf.Log(2* stats.Lv));
         stats.Atk= (int)(BaseStats.Atk*Mathf.Log(2* stats.Lv));
         stats.Def= (int)(BaseStats.Def*Mathf.Log(2* stats.Lv));
         stats.SpAtk= (int)(BaseStats.SpAtk*Mathf.Log(2* stats.Lv));
         stats.SpDef= (int)(BaseStats.SpDef*Mathf.Log(2* stats.Lv));
         stats.Speed= (int)(BaseStats.Speed*Mathf.Log(2* stats.Lv));
-        Debug.WriteLine("Max HP: "+stats.MaxHP+ " Atk: "+stats.Atk+" Def: "+stats.Def);
-        SetTotalStats();*/
+        SetTotalStats();
     }
     public void SetTotalStats(){
         TotalStats.MaxHP = stats.MaxHP + EquipStats.MaxHP;
+        stats.HP = Mathf.Clamp(stats.HP,0,TotalStats.MaxHP);
         TotalStats.Atk = stats.Atk + EquipStats.Atk;
         TotalStats.Def = stats.Def + EquipStats.Def;
         TotalStats.SpAtk = stats.SpAtk + EquipStats.SpAtk;
@@ -118,5 +134,14 @@ public partial class Character : Resource
         }
         Equipment[(int)type] = null;
         SetTotalStats();
+    }
+    public void ShowTextLabel(string Text, Color color){
+        Node2D HPLabelParent=GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
+        HPLabelParent.Scale=NodeCharacter.GlobalScale;
+        HPLabelParent.Rotation=NodeCharacter.GlobalRotation;
+        RichTextLabel HPLabel=HPLabelParent.GetChild<RichTextLabel>(0);
+        HPLabel.Text="[center]"+Text+"[/center]";
+        HPLabel.AddThemeColorOverride("default_color",color);
+        NodeCharacter.AddChild(HPLabelParent);
     }
 }

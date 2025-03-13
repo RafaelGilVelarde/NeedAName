@@ -6,9 +6,11 @@ using System.Diagnostics;
 
 public partial class DumyEnemyMove : MoveBase
 {
+	[Export] BattleCharacter.BattleState State = BattleCharacter.BattleState.Dodging;
 [Export] float Speed;
 [Export] int Combo = 1;
 	[Export] Vector2 offset;
+	[Export] bool Movement = true;
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
 	{
 		base.Effect(Users,Targets);
@@ -24,7 +26,8 @@ public partial class DumyEnemyMove : MoveBase
 		}		
 		else{
 			Dir=Users[0].GetParent<Node2D>().Scale.Y;
-		}		Users[0].Combo=Combo;
+		}		
+		Users[0].Combo=Combo;
 
 		int a=0;
 
@@ -38,9 +41,11 @@ public partial class DumyEnemyMove : MoveBase
 
 
 		//timer.TweenInterval(MoveTime);
-
-		Vector2 TargetPosition = Targets[0].Hitbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
-		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Dodging)));
+		Vector2 TargetPosition = Users[0].GlobalPosition;
+		if(Movement){
+			TargetPosition= Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+		}
+		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(State)));
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeState(BattleCharacter.BattleState.Attacking)));
 		
@@ -59,6 +64,8 @@ public partial class DumyEnemyMove : MoveBase
 				Users[0].changeAction(BattleCharacter.ActionState.isAttacking);         
 			}
 		}
+
+		Debug.WriteLine("Name: "+Name);
 
 	}
 }

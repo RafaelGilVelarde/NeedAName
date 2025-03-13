@@ -10,6 +10,8 @@ public partial class Hitbox : Area2D
 	public delegate void _HitEventHandler(BattleCharacter Target);
 	[Signal]
 	public delegate void _BlockEventHandler(BattleCharacter Target);
+		[Signal]
+	public delegate void _WPEventHandler(BattleCharacter Target);
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -32,6 +34,10 @@ public partial class Hitbox : Area2D
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
 			EmitSignal("_Block",Target);
         }
+		if(node.IsInGroup("PlayerWPBox")&&this.IsInGroup("EnemyHitbox")){
+			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
+		    EmitSignal("_WP",Target);
+		}
 	} 
 
 	

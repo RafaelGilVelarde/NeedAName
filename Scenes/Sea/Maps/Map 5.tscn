@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://cidpvaj35nwkm"]
+[gd_scene load_steps=26 format=3 uid="uid://cidpvaj35nwkm"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_7pk85"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_aqvd6"]
@@ -8,8 +8,10 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="5_a4cwd"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_5pxjj"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemCheckInteract.cs" id="7_y5qg3"]
+[ext_resource type="Resource" uid="uid://5ql8hfdj1knt" path="res://Resources/Items/Key/Soul Memory.tres" id="9_hnk1l"]
 [ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="9_okban"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="10_22t73"]
+[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="10_dc5yr"]
 [ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="10_gfqhf"]
 [ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="11_1ia12"]
 [ext_resource type="Script" path="res://Scripts/Items/Equipment.cs" id="11_6rvsl"]
@@ -24,6 +26,11 @@ resource_local_to_scene = true
 size = Vector2(128, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
+
+[sub_resource type="Resource" id="Resource_41uob"]
+script = ExtResource("10_dc5yr")
+Base = ExtResource("9_hnk1l")
+Amount = 1
 
 [sub_resource type="Resource" id="Resource_aijb6"]
 script = ExtResource("10_22t73")
@@ -127,12 +134,12 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 
 [node name="NPC" type="StaticBody2D" parent="." groups=["Interactable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPC" node_paths=PackedStringArray("Sprites")]
 shape = SubResource("RectangleShape2D_e7ixu")
 script = ExtResource("7_y5qg3")
 TakeItems = true
 ItemType = 2
-GameID = 1
+ItemsToTake = [SubResource("Resource_41uob")]
 ItemID = Array[int]([0])
 Delete = null
 ItemsToGive = Array[Object]([SubResource("Resource_gnh4x")])
@@ -140,12 +147,12 @@ ItemType = 2
 TimelineGroup = Array[Object]([SubResource("Resource_ca6w2"), SubResource("Resource_u4dea")])
 TimelineGroupIndex = null
 TimelineIndex = null
-Timeline = null
 PauseWhenDialogue = true
 Turn = true
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
+Sprites = []
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC/CollisionShape2D"]
 texture_filter = 1

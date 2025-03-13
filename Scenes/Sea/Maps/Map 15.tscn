@@ -71,7 +71,7 @@ script = ExtResource("4_o863l")
 [node name="NPC" parent="." instance=ExtResource("5_dis5h")]
 position = Vector2(-160, 104)
 
-[node name="CollisionShape2D" parent="NPC" index="0"]
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_674l3")])
 TimelineGroupIndex = null
 TimelineIndex = null
@@ -79,9 +79,8 @@ Timeline = null
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
-
-[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 10
+visualType = null
+Sprites = []
 
 [node name="Borders" parent="." instance=ExtResource("6_75qik")]
 position = Vector2(-32, 56)

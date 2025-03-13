@@ -2,17 +2,28 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Diagnostics;
+using System.Diagnostics.Tracing;
+public enum TimelineType{
+    None,
+    StartTurn,
+    Move,
+    EndBattle
+}
+
 [GlobalClass]
 public partial class BattleScene : Resource
 {
-    DialogicCSharp Dialog;
-    BattleManager Battle;
-    Callable endDialogue;
-    bool DialogueFlag;
+    protected DialogicCSharp Dialog;
+    protected BattleManager Battle;
+    protected Callable endDialogue;
+    protected TimelineType timelineType;
+    public string WinTimeline = "Win";
+    public bool DialogueFlag;
     public virtual void StartBattleEffect(){
         Dialog=DialogicCSharp.instance;
         Battle=BattleManager.instance;
         endDialogue=new Callable(this,MethodName.EndDialogue);
+        Dialog?.DialogicRoot?.Connect("timeline_ended",endDialogue);
     }
     public virtual void StartRoundEffect(){
 
@@ -35,7 +46,9 @@ public partial class BattleScene : Resource
         BattleState State=Battle.State;
         switch (State){
             case BattleState.Win:
-                BattleManager.instance.ReturnToOverworld();
+                AwardExp();
+                StartDialogue(WinTimeline,true,false,TimelineType.EndBattle);
+                //BattleManager.instance.ReturnToOverworld();
             break;
             case BattleState.Lose:
                 BattleManager.instance.OpenLossScreen();
@@ -68,6 +81,7 @@ public partial class BattleScene : Resource
 
     }
     public virtual void ReturnToOverworld(){
+        Dialog?.DialogicRoot?.Disconnect("timeline_ended",endDialogue);
         BattleManager Battle=BattleManager.instance;
         BattleState State=Battle.State;
         for(int i=0;i<Battle.EnemyParty.Count;i++){
@@ -77,11 +91,11 @@ public partial class BattleScene : Resource
         }
         switch (State){
             case BattleState.Win:
-                AwardExp();
                 for(int i=0;i<Battle.Party.Count;i++){
                     Battle.Party[i].Character.status=Character.Status.Normal;
                     Battle.Party[i].Reset();
                     Battle.Party[i].OriginPos=Vector2.Zero;
+                    Battle.Party[i].HideEXPBar();
 			        Battle.Party[i].ReturnToOverworld();
                 }
                 for(int i=0;i<Battle.EnemyParty.Count;i++){
@@ -156,16 +170,36 @@ public partial class BattleScene : Resource
             }
         }
         Vector2 Result=new Vector2((xMin+xMax)/2,(yMin+yMax)/2);
-        Debug.WriteLine("Result: x: "+xMin+","+xMax+","+"y: "+yMin+","+yMax+"Final: "+Result);
+        Debug.WriteLine("View: "+Result);
         return Result;
     }
-    public virtual void EndDialogue(string argument){
-        if(argument=="End"){
-            Battle.CanStartTurn=true;
-            Battle.StartTurn(false);
-            Dialog.DialogicRoot.Disconnect("signal_event",endDialogue);
+
+    public void StartDialogue(string timeline, bool Pause, bool Auto, TimelineType type){
+        timelineType = type;
+        Dialog.StartDialogue(timeline,Pause,Auto);
+        if(Auto){
+            Dialog.CallDeferred("AutoAdvance",true,false); 
         }
     }
+    public virtual void EndDialogue(){
+        //if(argument=="End"){
+        switch (timelineType){
+            case TimelineType.StartTurn:
+                Battle.CanStartTurn=true;
+                SceneTreeTimer timer = Battle.GetTree().CreateTimer(0.2);
+                timer.Timeout+=()=>
+                Battle.StartTurn(false);
+            break;
+            case TimelineType.Move:
+            break;
+            case TimelineType.EndBattle:
+                BattleManager.instance.ReturnToOverworld();
+            break;
+        }
+        timelineType = TimelineType.None;
+        //}
+    }
+
     public virtual void AwardExp(){
         BattleManager Battle=BattleManager.instance;
         int[] EXP = new int[Battle.Party.Count];
@@ -180,6 +214,7 @@ public partial class BattleScene : Resource
         }
         for(int i = 0;i<Battle.Party.Count;i++){
             PartyCharacters PartyCharacter=(PartyCharacters)Battle.Party[i].Character;        
+            Battle.Party[i].ShowEXPBar(PartyCharacter.Exp,PartyCharacter.Exp+EXP[i],PartyCharacter.NextLevelExp-PartyCharacter.PastLevelExp);
             PartyCharacter.GainExp(EXP[i]);
         }
     }

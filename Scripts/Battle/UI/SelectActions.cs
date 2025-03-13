@@ -71,18 +71,22 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectMove:
 				if(!animating){
 					if(Input.IsActionJustPressed("Confirm")){
-						move=BattleManager.instance.CurrentMoveButton.move;
-						character.MoveUsed=move;
-						if(move.Base.UserAmount>1){
-							previousState.Add(currentState);
-							ActivateState(SelectState.SelectUser);
-						}
-						else{
-							previousState.Add(currentState);
-							ActivateState(SelectState.SelectTarget);
+						Moves Aux = BattleManager.instance.CurrentMoveButton.move;
+						if(character.Character.CheckWP(Aux.Base.Cost)){
+							move = Aux;
+							character.MoveUsed=move;
+							if(move.Base.UserAmount>1){
+								previousState.Add(currentState);
+								ActivateState(SelectState.SelectUser);
+							}
+							else{
+								previousState.Add(currentState);
+								ActivateState(SelectState.SelectTarget);
+							}
 						}
 					}
 					if(Input.IsActionJustPressed("Deny")){
+						character.ShowChangeWPAuxBar(0);
 						ReturnToPreviousState();
 					}					
 				}
@@ -162,13 +166,13 @@ public partial class SelectActions : Node2D
 					Animator.Set("parameters/conditions/Choice",false);
 			break;
 			case SelectState.SelectMove:
-				BattleManager.instance.moveList.Show();
+				BattleManager.instance.moveList.GetParent<Control>().Show();
 
 				BattleManager.instance.moveList.FillButtons(BattleManager.instance.moveList.pointerStart,ScrollList.StartEnd.Regular);
 
 			break;
 			case SelectState.SelectItem:
-				BattleManager.instance.itemList.Show();
+				BattleManager.instance.itemList.GetParent<Control>().Show();
 				BattleManager.instance.itemList.FillButtons(BattleManager.instance.moveList.pointerStart,ScrollList.StartEnd.Regular);
 			break;
 			case SelectState.SelectUser:
@@ -250,8 +254,8 @@ public partial class SelectActions : Node2D
 
 		BattleManager.instance.moveList.ClearAll();
 		BattleManager.instance.itemList.ClearAll();
-		BattleManager.instance.moveList.Hide();
-		BattleManager.instance.itemList.Hide();
+		BattleManager.instance.moveList.GetParent<Control>().Hide();
+		BattleManager.instance.itemList.GetParent<Control>().Hide();
 
 		hideButtons();
 	}

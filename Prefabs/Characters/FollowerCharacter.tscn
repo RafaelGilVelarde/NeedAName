@@ -1768,25 +1768,18 @@ bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 [node name="Character" type="CharacterBody2D" groups=["Interactable"]]
 y_sort_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Follower")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Follower", "Sprites")]
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 script = ExtResource("1_0y2tr")
 Follower = NodePath("../OverworldController")
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
 PauseWhenDialogue = true
-Turn = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
+Sprites = []
 
 [node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 process_mode = 4
 script = ExtResource("1_3bvdq")
 InteractCollider = NodePath("InteractionCollider")
-tileTypes = null
 TileDetector = NodePath("TileCollider")
 TileOffset = Vector2(9, 9)
 MainSprite = NodePath("MainSprite")
@@ -1798,10 +1791,7 @@ OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 AxisOffset = 5
-Axis = null
-AxisAux = null
 Controllable = false
-Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="OverworldController"]
@@ -1839,20 +1829,12 @@ AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
-Controllable = null
 Overworld = NodePath("../OverworldController")
-OriginPos = null
 MultiplierAtk = Array[float]([1.0])
 MultiplierDef = Array[float]([1.0])
 MultiplierSpAtk = Array[float]([1.0])
 MultiplierSpDef = Array[float]([1.0])
 MultiplierSpeed = Array[float]([1.0])
-Combo = null
-HoldingMoveTimer = null
-HoldingMove = null
-UsedComboMove = null
-BlockedEnemy = null
-Looping = null
 TimerAtk = Array[int]([1])
 TimerDef = Array[int]([1])
 TimerSpAtk = Array[int]([1])
@@ -1861,7 +1843,6 @@ TimerSpeed = Array[int]([1])
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
-DodgeDir = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []

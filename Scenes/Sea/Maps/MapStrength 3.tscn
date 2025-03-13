@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://i1r7w4xb7dqs"]
+[gd_scene load_steps=19 format=3 uid="uid://i1r7w4xb7dqs"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_0o4wx"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="2_w38a5"]
@@ -7,6 +7,9 @@
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="5_yjqsp"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Intro.gdshader" id="6_l25r8"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="7_kwe0i"]
+[ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="8_5i46s"]
+[ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="9_vv45y"]
+[ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_l3025"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g4heo"]
 frequency = 0.016
@@ -36,6 +39,17 @@ shader_parameter/distortion_strength = 0.291
 shader_parameter/tone_color = Color(0.192157, 0, 0.831373, 1)
 shader_parameter/noise = SubResource("NoiseTexture2D_hgy5v")
 shader_parameter/noise1 = SubResource("NoiseTexture2D_2reyu")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jldeo"]
+resource_local_to_scene = true
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr5kj"]
+resource_local_to_scene = true
+size = Vector2(64, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jqjrs"]
+size = Vector2(208, 20)
 
 [node name="MapStrength1" type="Node2D"]
 y_sort_enabled = true
@@ -79,4 +93,39 @@ position = Vector2(-0.999968, 5.00679e-06)
 scale = Vector2(5.10938, 2.85938)
 texture = ExtResource("7_kwe0i")
 
+[node name="Borders" parent="." instance=ExtResource("8_5i46s")]
+
+[node name="CollisionPolygon2D" parent="Borders" index="0"]
+polygon = PackedVector2Array(328, 184, 40, 184, 40, 216, -40, 216, -40, 184, -328, 184, -328, -184, -40, -184, -40, -216, 40, -216, 40, -184, 328, -184, 328, 176, 320, 176, 320, -176, 32, -176, 32, -208, -32, -208, -32, -176, -320, -176, -320, 176, -32, 176, -32, 208, 32, 208, 32, 176, 328, 176)
+
+[node name="Door" parent="." instance=ExtResource("9_vv45y")]
+position = Vector2(0, 192)
+Scene = 27
+LoadPosition = Vector2(-687, 163)
+
+[node name="CollisionShape2D" parent="Door" index="0"]
+shape = SubResource("RectangleShape2D_jldeo")
+
+[node name="Door2" parent="." instance=ExtResource("9_vv45y")]
+position = Vector2(0, -192)
+Scene = 22
+LoadPosition = Vector2(0, 160)
+
+[node name="CollisionShape2D" parent="Door2" index="0"]
+shape = SubResource("RectangleShape2D_dr5kj")
+
+[node name="Barrier" parent="." instance=ExtResource("10_l3025")]
+position = Vector2(0, 144)
+DisableAnimation = "WaterBarrier/Disable"
+FlagIndex = 8
+
+[node name="CollisionShape2D" parent="Barrier" index="1"]
+shape = SubResource("RectangleShape2D_jqjrs")
+CheckAtStart = null
+Type = null
+
 [editable path="Cams"]
+[editable path="Borders"]
+[editable path="Door"]
+[editable path="Door2"]
+[editable path="Barrier"]

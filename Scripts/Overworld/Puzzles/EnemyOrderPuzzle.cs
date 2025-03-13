@@ -3,35 +3,33 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 
-public partial class EnemyOrderPuzzle: Node
+public partial class EnemyOrderPuzzle: PuzzleCheck
 {
-    public static EnemyOrderPuzzle instance;
     [Export] Array<int> EnemiesBeaten = new Array<int>();
-    [Export] int NextEnemy, TotalEnemies, FlagIndex;
+    [Export] int NextEnemy, TotalEnemies, FlagBoolIndex;
 
     public override void _Ready()
     {
-        instance = this;
+        /*instance = this;
+        GameManager.Instance.Data.Flags._PuzzleFlagsIntChanged+=EnemyDefeated;*/
     }
-    public void EnemyDefeated(int EnemyID){
-        if(EnemyID == NextEnemy){
-            EnemiesBeaten.Add(EnemyID);
-            NextEnemy++;
-            if(EnemiesBeaten.Count == TotalEnemies){
-                GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex]=true;
-                        DialogicCSharp Dialog=DialogicCSharp.instance;
-                        Dialog.StartDialogue("PuzzleComplete",true,false);
+    public override void CheckInt(int Index, bool Changed)
+    {
+        Flags flags = GameManager.Instance.Data.Flags;
+        if(Index == FlagIndex){
+            if(flags.PuzzleIntFlags[Index] == TotalEnemies && Changed){
+                ActivateEffect();
             }
         }
-        else{
-            EnemiesBeaten.Clear();
-            NextEnemy= 0;
-        }
     }
-    public override void _ExitTree()
+
+    public override void ActivateEffect()
     {
-        instance = null;
+        GameManager.Instance.Data.Flags.ChangeBoolFlag(FlagBoolIndex,true,FlagType.Puzzle);
+        DialogicCSharp Dialog=DialogicCSharp.instance;
+        Dialog.StartDialogue("PuzzleComplete",true,false);
     }
+
 
 
 }

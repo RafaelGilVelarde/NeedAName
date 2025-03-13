@@ -17,18 +17,26 @@ public partial class MoveBase : Resource
         Revive
     }
     [Export] public Type type;
-    [Export]public int Power, UserAmount, TargetAmount;
+    [Export]public int Power, UserAmount, TargetAmount, WP, Cost;
     [Export]public bool TargetsParty;
     [Export]public String Name;
 
     [Export] protected float MoveTime;
 
     public virtual void Effect(Array<BattleCharacter> Users, Array<BattleCharacter>Targets){
+        for(int i=0;i<Users.Count;i++){
+            Users[0].Hitbox._Hit+=onHit;
+            Users[0].Hitbox._Block+=blocked;
+            Users[0].Hitbox._WP+=Graze;
+        }
+
+        
 		Array<Vector2> ScaleAux=new Array<Vector2>();
 		Array<float> RotationAux=new Array<float>();
         for(int i=0;i<Users.Count;i++){
             ScaleAux.Add(Users[i].Scale);      
             RotationAux.Add(Users[i].Rotation);
+            Users[i].AddAttack();
         }
 
         
@@ -39,10 +47,10 @@ public partial class MoveBase : Resource
             TargetRotationAux.Add(Targets[i].Rotation);
         }
 
-		Tween timer=Users[0].CreateTween();
-   		timer.TweenInterval(MoveTime);
-		timer.Finished+=End;
-		timer.Finished+=timer.Kill;
+		SceneTreeTimer timer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
+   		//timer.TweenInterval(MoveTime);
+		timer.Timeout+=End;
+		//timer.Finished+=timer.Kill;
 
         void onHit(BattleCharacter Target){
             Debug.WriteLine("Hit");
@@ -51,10 +59,15 @@ public partial class MoveBase : Resource
 		void blocked(BattleCharacter Target){
 			Block(Target);
 		}
+        void Graze(BattleCharacter Target){
+            WPGraze(Target);
+        }
         void End(){
             for(int i=0;i<Users.Count;i++){
                 Users[i].Hitbox._Hit-=onHit;
+                Users[i].Hitbox._WP-=Graze;
                 Users[i].Hitbox._Block-=blocked;
+                Users[i].RemoveAttack();
                 Users[i].GetParent<Node2D>().Rotation=RotationAux[i];
                 Users[i].GetParent<Node2D>().Scale=ScaleAux[i];
             }
@@ -66,10 +79,6 @@ public partial class MoveBase : Resource
 			BattleManager.instance.CallDeferred("EndMove");
 		}
 
-        for(int i=0;i<Users.Count;i++){
-            Users[0].Hitbox._Hit+=onHit;
-            Users[0].Hitbox._Block+=blocked;
-        }
     }
     public virtual void DealDamage(BattleCharacter Users, BattleCharacter Targets,bool blocked){
         for (int i=0;i<Targets.Character.Equipment.Count;i++){
@@ -104,7 +113,8 @@ public partial class MoveBase : Resource
                 case Type.Recovery:
                     Targets.Character.ChangeHP(Mathf.RoundToInt(0));
                 break;
-            }           
+            }
+            Targets.Character.ChangeWP(WP);           
         }
     }
     
@@ -126,6 +136,10 @@ public partial class MoveBase : Resource
 	}
     public virtual void Block(BattleCharacter Target){
 			Target.BlockedEnemy=true;
+	}
+    public virtual void WPGraze(BattleCharacter Target){
+        Debug.WriteLine("Graze");
+			Target.Character.ChangeWP(WP);
 	}
 
 }

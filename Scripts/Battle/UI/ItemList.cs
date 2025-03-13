@@ -5,6 +5,7 @@ using System;
 public partial class ItemList : StuffList
 {
 	[Export]public Array<ItemButtons> Buttons;
+	[Export] VBoxContainer AmountList;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -53,6 +54,8 @@ public partial class ItemList : StuffList
 					if(items[i+Start].Base.type==ItemBase.Type.Consumable){
 						Buttons[i].item= (Consumables)items[i+Start];
 						Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].item.Base.Name;
+						AmountList.GetChild<RichTextLabel>(i+1).Show();
+						AmountList.GetChild<RichTextLabel>(i+1).Text = $"x{Buttons[i].item.Amount}";
 						Buttons[i].Show();
 						activeButtons++;
 						if(StartEnd==ScrollList.StartEnd.End){
@@ -61,6 +64,7 @@ public partial class ItemList : StuffList
 					}
 				}
 				else{
+					AmountList.GetChild<RichTextLabel>(i+1).Hide();
 					Buttons[i].item=null;
 					Buttons[i].Hide();
 				}

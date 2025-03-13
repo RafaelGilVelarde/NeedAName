@@ -61,7 +61,7 @@ limit_bottom = 192
 [node name="NPC" parent="." instance=ExtResource("5_q2fka")]
 position = Vector2(128, 128)
 
-[node name="CollisionShape2D" parent="NPC" index="0"]
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_4fxq3")])
 TimelineGroupIndex = null
 TimelineIndex = null
@@ -69,6 +69,8 @@ Timeline = null
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
+visualType = null
+Sprites = []
 
 [node name="TileMap2" type="TileMap" parent="NPC"]
 visible = false

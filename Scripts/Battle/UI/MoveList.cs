@@ -6,6 +6,7 @@ using System.Diagnostics;
 public partial class MoveList : StuffList
 {
 	[Export]public Array<MoveButtons> Buttons;
+	[Export] VBoxContainer AmountList;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -55,12 +56,15 @@ public partial class MoveList : StuffList
 				Buttons[i].move=character.Character.Moves[i+Start];
 				Buttons[i].Show();
 				Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].move.Base.Name;
+				AmountList.GetChild<RichTextLabel>(i+1).Show();
+				AmountList.GetChild<RichTextLabel>(i+1).Text = $"Cost: {Buttons[i].move.Base.Cost}";
 				activeButtons++;
 				if(StartEnd==ScrollList.StartEnd.End){
 					Buttons[i].GrabFocus();
 				}
 			}
 			else{
+				AmountList.GetChild<RichTextLabel>(i+1).Hide();
 				Buttons[i].move=null;
 				Buttons[i].Hide();
 			}

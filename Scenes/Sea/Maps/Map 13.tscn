@@ -82,6 +82,7 @@ size = Vector2(25, 25)
 [sub_resource type="Resource" id="Resource_gvn2q"]
 script = ExtResource("13_22wqw")
 Order = 2
+FlagIndex = 0
 
 [sub_resource type="Resource" id="Resource_o6qk4"]
 script = ExtResource("16_6qvww")
@@ -93,6 +94,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_mgcfi"]
 script = ExtResource("14_ap50m")
@@ -108,10 +110,11 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("16_6qvww")
-Lv = 0
+Lv = 3
 MaxHP = 10
 HP = 10
 Atk = 2
@@ -119,6 +122,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
+WP = 0
 
 [sub_resource type="Resource" id="Resource_aul0c"]
 resource_local_to_scene = true
@@ -165,16 +169,21 @@ size = Vector2(25, 25)
 [sub_resource type="Resource" id="Resource_2602s"]
 script = ExtResource("13_22wqw")
 Order = 1
+FlagIndex = 0
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_cstwq")
+State = 2
 Speed = 3.0
 Combo = 3
 offset = Vector2(20, 0)
+Movement = true
 type = 0
 Power = 3
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = "b"
 MoveTime = 2.0
@@ -232,6 +241,7 @@ size = Vector2(25, 25)
 [sub_resource type="Resource" id="Resource_rxaul"]
 script = ExtResource("13_22wqw")
 Order = 0
+FlagIndex = 0
 
 [sub_resource type="Resource" id="Resource_uvwry"]
 resource_local_to_scene = true
@@ -266,7 +276,6 @@ point_count = 2
 
 [node name="Map13" type="Node2D"]
 script = ExtResource("1_t2ra3")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -352,6 +361,13 @@ collision_layer = 1
 [node name="CollisionPolygon2D" parent="Borders2" index="0"]
 polygon = PackedVector2Array(32, 8, 32, -8, -32, -8, -32, 8)
 
+[node name="Borders3" parent="." instance=ExtResource("6_ygl2c")]
+position = Vector2(-176, -184)
+collision_layer = 1
+
+[node name="CollisionPolygon2D" parent="Borders3" index="0"]
+polygon = PackedVector2Array(32, 8, 32, -8, -32, -8, -32, 8)
+
 [node name="Character" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(128, -8)
 
@@ -382,10 +398,8 @@ shape = SubResource("RectangleShape2D_vypfs")
 shape = SubResource("RectangleShape2D_qbykw")
 
 [node name="RichTextLabel" parent="Character/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
+offset_top = 13.0
+offset_bottom = 103.0
 
 [node name="Character2" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(-264, 104)
@@ -417,10 +431,8 @@ shape = SubResource("RectangleShape2D_pwg37")
 shape = SubResource("RectangleShape2D_2ddaq")
 
 [node name="RichTextLabel" parent="Character2/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
+offset_top = 13.0
+offset_bottom = 103.0
 
 [node name="Character3" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(0, 168)
@@ -460,10 +472,8 @@ frame = 29
 scale_amount_curve = SubResource("Curve_0dopt")
 
 [node name="RichTextLabel" parent="Character3/BattleCharacter/HPBar" index="0"]
-offset_left = 0.0
-offset_top = 0.0
-offset_right = 180.0
-offset_bottom = 90.0
+offset_top = 13.0
+offset_bottom = 103.0
 
 [node name="Area2D" parent="." instance=ExtResource("21_30s4q")]
 visible = false
@@ -496,6 +506,10 @@ script = ExtResource("23_7gyxu")
 EnemiesBeaten = null
 NextEnemy = null
 TotalEnemies = 3
+FlagBoolIndex = 1
+HasDialogue = false
+ChecksBool = null
+ChecksInt = true
 FlagIndex = null
 
 [editable path="Cams"]
@@ -505,6 +519,7 @@ FlagIndex = null
 [editable path="Door3"]
 [editable path="Door2"]
 [editable path="Borders2"]
+[editable path="Borders3"]
 [editable path="Character"]
 [editable path="Character2"]
 [editable path="Character3"]

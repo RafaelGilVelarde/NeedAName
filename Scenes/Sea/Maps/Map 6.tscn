@@ -21,6 +21,7 @@ size = Vector2(128, 16)
 
 [node name="Map6" type="Node2D"]
 script = ExtResource("1_8xq5f")
+TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -34,16 +35,16 @@ layer_1/tile_data = PackedInt32Array(-196605, 0, 4, -196604, 262144, 3, -262141,
 [node name="Cams" parent="." instance=ExtResource("2_1nb3s")]
 
 [node name="OverworldCam" parent="Cams" index="0"]
-limit_left = -288
-limit_top = -163
-limit_right = 288
-limit_bottom = 161
+limit_left = -320
+limit_top = -182
+limit_right = 320
+limit_bottom = 178
 
 [node name="BattleCam" parent="Cams" index="1"]
-limit_left = -288
-limit_top = -163
-limit_right = 288
-limit_bottom = 161
+limit_left = -320
+limit_top = -182
+limit_right = 320
+limit_bottom = 178
 
 [node name="TileMap2" type="TileMap" parent="."]
 visible = false
@@ -53,25 +54,28 @@ layer_0/tile_data = PackedInt32Array(-393226, 1, 0, -327690, 1, 0, -262154, 1, 0
 script = ExtResource("4_ajnuj")
 
 [node name="Door" parent="." instance=ExtResource("5_jp614")]
-position = Vector2(0, 152)
+position = Vector2(0, 184)
 Scene = 11
+Area = null
 LoadPosition = Vector2(0, -180)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 shape = SubResource("RectangleShape2D_33xxx")
 
 [node name="Door2" parent="." instance=ExtResource("5_jp614")]
-position = Vector2(0, -152)
+position = Vector2(0, -192)
 Scene = 1
+Area = null
 LoadPosition = Vector2(-160, 585)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_kfnjs")
 
 [node name="Door3" parent="." instance=ExtResource("5_jp614")]
-position = Vector2(280, 0)
+position = Vector2(328, 0)
 rotation = 1.5708
 Scene = 6
+Area = null
 LoadPosition = Vector2(-260, 0)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

@@ -1,0 +1,95 @@
+[gd_scene load_steps=8 format=3 uid="uid://dvlo4mqckq5x4"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Switches/Switch.cs" id="1_w6vn5"]
+[ext_resource type="Texture2D" uid="uid://c7mumvhq3jfo4" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_SpriteLayer 1.png" id="2_so2m3"]
+[ext_resource type="AnimationLibrary" uid="uid://ct4msnymvrdyx" path="res://Animations/Overworld/Objects/SwitchInteract.res" id="3_i20ly"]
+[ext_resource type="Texture2D" uid="uid://dvdobu01tqqmh" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_Water_Water.png" id="3_jo8tr"]
+[ext_resource type="Texture2D" uid="uid://c1w6p371auy3q" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_Shine_Light.png" id="4_61mel"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bdg8w"]
+size = Vector2(20, 24)
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_nk1l1"]
+graph_offset = Vector2(-130, -15)
+
+[node name="CurrentSwitch" type="StaticBody2D" groups=["Interactable"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("MainSprite", "Sprites")]
+shape = SubResource("RectangleShape2D_bdg8w")
+script = ExtResource("1_w6vn5")
+Toggleable = true
+MaxStates = 2
+visualType = 2
+MainSprite = NodePath("../Sprite2D/Water")
+Sprites = []
+Colors = Array[Color]([Color(4, 0, 1, 1), Color(3, 1, 1.2, 1)])
+
+[node name="Sprite" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_so2m3")
+hframes = 2
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "Layer 1",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Objects/Water",
+"o_name": "CurrentSwitch_Sprite",
+"only_visible": false,
+"op_exp": false,
+"player": "AnimationPlayer",
+"source": "res://Aseprites/Objects/Water/CurrentSwitch.aseprite"
+}
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="Water" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(4, 0, 1, 1)
+texture_filter = 1
+texture = ExtResource("3_jo8tr")
+hframes = 5
+vframes = 4
+frame = 8
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "_Water",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Objects/Water",
+"o_name": "CurrentSwitch_Water",
+"only_visible": false,
+"op_exp": false,
+"player": "AnimationPlayer",
+"source": "res://Aseprites/Objects/Water/CurrentSwitch.aseprite"
+}
+
+[node name="Shine" type="Sprite2D" parent="Sprite2D"]
+modulate = Color(0.494118, 1, 1, 1)
+texture_filter = 1
+texture = ExtResource("4_61mel")
+hframes = 4
+vframes = 3
+frame = 8
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "_Light",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Objects/Water",
+"o_name": "CurrentSwitch_Shine",
+"only_visible": false,
+"op_exp": false,
+"player": "AnimationPlayer",
+"source": "res://Aseprites/Objects/Water/CurrentSwitch.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": ExtResource("3_i20ly")
+}
+autoplay = "default"
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer"]
+root_node = NodePath("../..")
+libraries = {
+"": ExtResource("3_i20ly")
+}
+tree_root = SubResource("AnimationNodeStateMachine_nk1l1")
+anim_player = NodePath("..")

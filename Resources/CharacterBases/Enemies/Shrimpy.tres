@@ -15,10 +15,11 @@ Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 2
+WP = 0
 
 [resource]
 script = ExtResource("4_exoht")
-ExpYield = 2.0
+ExpYield = 20.0
 BaseStats = SubResource("Resource_cltux")
 Name = "Shrimpy"
 OverworldAnimator = ExtResource("3_8trff")

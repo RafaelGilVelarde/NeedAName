@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://6fds17egmq8u"]
+[gd_scene load_steps=22 format=3 uid="uid://6fds17egmq8u"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_1obvw"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_ck61o"]
@@ -9,7 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_su068"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Puzzles/PuzzleBarriers/BarrierCheckFlag.cs" id="7_xd8e5"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Switches/Switch.cs" id="8_p6mcy"]
-[ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="9_sjyw0"]
+[ext_resource type="Texture2D" uid="uid://c7mumvhq3jfo4" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_SpriteLayer 1.png" id="10_ebft5"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="10_gjexl"]
+[ext_resource type="AnimationLibrary" uid="uid://ct4msnymvrdyx" path="res://Animations/Overworld/Objects/SwitchInteract.res" id="11_haljw"]
+[ext_resource type="Texture2D" uid="uid://dvdobu01tqqmh" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_Water_Water.png" id="11_jle6m"]
+[ext_resource type="Texture2D" uid="uid://c1w6p371auy3q" path="res://Sprites/Overworld/Objects/Water/CurrentSwitch_Shine_Light.png" id="12_8opig"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_78wiy"]
 resource_local_to_scene = true
@@ -27,12 +31,16 @@ size = Vector2(48, 32)
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="Animation" id="Animation_25pjw"]
+[sub_resource type="Resource" id="Resource_7jscj"]
+script = ExtResource("10_gjexl")
+DialogueTimelines = Array[String](["PuzzleComplete"])
+
+[sub_resource type="Animation" id="Animation_i4bmx"]
 resource_name = "Win"
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("../..:visible")
+tracks/0/path = NodePath("Sprite2D:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
@@ -42,9 +50,9 @@ tracks/0/keys = {
 "values": [false]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_dhcgo"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_h7ggg"]
 _data = {
-"Switch": SubResource("Animation_25pjw")
+"Switch": SubResource("Animation_i4bmx")
 }
 
 [node name="Map16" type="Node2D"]
@@ -118,39 +126,65 @@ LoadPosition = Vector2(-260, 16)
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_tlnlp")
 
-[node name="Barrier" type="StaticBody2D" parent="." node_paths=PackedStringArray("Shape") groups=["Interactable"]]
+[node name="Barrier" type="StaticBody2D" parent="." groups=["Interactable"]]
 z_index = 1
 position = Vector2(-48, 176)
-script = ExtResource("7_xd8e5")
-Shape = NodePath("CollisionShape2D")
-FlagIndex = 1
-DisableAnimation = "Switch"
-Dialogue = "PuzzleComplete"
-CheckAtStart = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier" node_paths=PackedStringArray("Check")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier" node_paths=PackedStringArray("Check", "Sprites")]
 shape = SubResource("RectangleShape2D_c8run")
 script = ExtResource("8_p6mcy")
-FlagIndex = 1
-Check = NodePath("..")
-TimelineGroup = Array[Object]([])
+Toggleable = null
+Check = NodePath("../PuzzleCheck")
+HasDialogue = true
+SwitchState = null
+MaxStates = 2
+TimelineGroup = Array[Object]([SubResource("Resource_7jscj")])
 TimelineGroupIndex = null
 TimelineIndex = null
 Timeline = null
-PauseWhenDialogue = null
+PauseWhenDialogue = true
 Turn = null
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
+Sprites = []
 
-[node name="Sprite2D" type="Sprite2D" parent="Barrier/CollisionShape2D"]
-scale = Vector2(0.2, 0.2)
-texture = ExtResource("9_sjyw0")
+[node name="Sprite" type="Sprite2D" parent="Barrier"]
+texture = ExtResource("10_ebft5")
+hframes = 2
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier/CollisionShape2D/Sprite2D"]
+[node name="Sprite2D" type="Sprite2D" parent="Barrier"]
+
+[node name="Water" type="Sprite2D" parent="Barrier/Sprite2D"]
+modulate = Color(0.670588, 1, 0.815686, 1)
+texture = ExtResource("11_jle6m")
+hframes = 5
+vframes = 4
+frame = 9
+
+[node name="Shine" type="Sprite2D" parent="Barrier/Sprite2D"]
+texture = ExtResource("12_8opig")
+hframes = 4
+vframes = 3
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier"]
 libraries = {
-"": SubResource("AnimationLibrary_dhcgo")
+"": SubResource("AnimationLibrary_h7ggg"),
+"SwitchInteract": ExtResource("11_haljw")
 }
+autoplay = "SwitchInteract/default"
+
+[node name="PuzzleCheck" type="Node" parent="Barrier" node_paths=PackedStringArray("Animator", "Shape")]
+script = ExtResource("7_xd8e5")
+Animator = NodePath("../AnimationPlayer")
+Shape = NodePath("../CollisionShape2D")
+DisableAnimation = "Switch"
+Dialogue = "PuzzleComplete"
+CheckIntFlag = null
+HasDialogue = false
+ChecksBool = true
+ChecksInt = null
+FlagIndex = null
 
 [editable path="Cams"]
 [editable path="Borders"]

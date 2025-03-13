@@ -22,6 +22,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_3evyq"]
 script = ExtResource("4_wgbhn")
@@ -29,13 +30,17 @@ Base = ExtResource("3_qg6b1")
 
 [sub_resource type="Resource" id="Resource_uyt0w"]
 script = ExtResource("5_r6ykn")
+State = 2
 Speed = 2.0
 Combo = 2
 offset = Vector2(30, 0)
+Movement = true
 type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = "Punchy"
 MoveTime = 2.0
@@ -46,13 +51,17 @@ Base = SubResource("Resource_uyt0w")
 
 [sub_resource type="Resource" id="Resource_kn4l5"]
 script = ExtResource("5_r6ykn")
+State = 2
 Speed = 2.0
 Combo = 3
 offset = Vector2(30, 0)
+Movement = true
 type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = "Punch2"
 MoveTime = 2.0
@@ -71,6 +80,7 @@ Def = 0
 SpAtk = 0
 SpDef = 0
 Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_5oxtr"]
 script = ExtResource("7_diplw")
@@ -82,6 +92,7 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_r33gd"]
 resource_local_to_scene = true
@@ -116,6 +127,7 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 2
+WP = 0
 
 [sub_resource type="Resource" id="Resource_o7xc0"]
 resource_local_to_scene = true
@@ -150,6 +162,7 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_itvlk"]
 script = ExtResource("6_ppbkd")
@@ -171,13 +184,17 @@ Base = ExtResource("3_qg6b1")
 
 [sub_resource type="Resource" id="Resource_a8w2k"]
 script = ExtResource("5_r6ykn")
+State = 2
 Speed = 3.0
 Combo = 2
 offset = Vector2(30, 0)
+Movement = true
 type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = ""
 MoveTime = 3.0
@@ -188,13 +205,17 @@ Base = SubResource("Resource_a8w2k")
 
 [sub_resource type="Resource" id="Resource_uvgkn"]
 script = ExtResource("5_r6ykn")
+State = 2
 Speed = 3.0
 Combo = 3
 offset = Vector2(30, 0)
+Movement = true
 type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
+WP = 0
+Cost = 0
 TargetsParty = false
 Name = ""
 MoveTime = 3.0
@@ -213,6 +234,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = 0
 
 [sub_resource type="Resource" id="Resource_mfdv7"]
 script = ExtResource("6_ppbkd")

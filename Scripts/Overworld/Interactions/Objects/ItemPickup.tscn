@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3 uid="uid://bcldqad87kwak"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemInteract.cs" id="1_yddrn"]
+[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="2_fcer4"]
+[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="3_vjysu"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="4_2dhmj"]
+[ext_resource type="Texture2D" uid="uid://48gfi8aqt1oj" path="res://Sprites/Overworld/Objects/Water/Item.png" id="5_dy2kq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5ac"]
+
+[sub_resource type="Resource" id="Resource_f0yfb"]
+script = ExtResource("2_fcer4")
+ID = 0
+Name = "???"
+Description = "Not sure what this thing is, but it feels warm"
+type = 2
+
+[sub_resource type="Resource" id="Resource_hopv3"]
+script = ExtResource("3_vjysu")
+Base = SubResource("Resource_f0yfb")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_iwgnt"]
+script = ExtResource("4_2dhmj")
+DialogueTimelines = Array[String](["Item1"])
+
+[sub_resource type="Animation" id="Animation_os0gx"]
+length = 0.6
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_dy2kq")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_o5jm4"]
+_data = {
+"default": SubResource("Animation_os0gx")
+}
+
+[node name="ItemPickup" type="StaticBody2D" groups=["Interactable"]]
+position = Vector2(-112, -80)
+scale = Vector2(0.66, 0.66)
+collision_layer = 3
+
+[node name="ItemInteract" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Sprites")]
+shape = SubResource("RectangleShape2D_nh5ac")
+script = ExtResource("1_yddrn")
+ItemID = Array[int]([])
+Delete = true
+ItemsToGive = Array[Object]([SubResource("Resource_hopv3")])
+ItemType = 1
+TimelineGroup = Array[Object]([SubResource("Resource_iwgnt")])
+PauseWhenDialogue = true
+Sprites = Array[int]([])
+
+[node name="Sprite2D" type="Sprite2D" parent="ItemInteract"]
+texture_filter = 1
+texture = ExtResource("5_dy2kq")
+hframes = 3
+vframes = 2
+frame = 3
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Objects/Water",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "StaticBody2D/ItemInteract/Sprite2D/AnimationPlayer",
+"source": "res://Aseprites/Objects/Water/Item.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemInteract/Sprite2D"]
+libraries = {
+"": SubResource("AnimationLibrary_o5jm4")
+}

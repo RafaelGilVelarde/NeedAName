@@ -47,7 +47,15 @@ choices/reveal_by_input=false
 save/autosave_delay=60.0
 save/encryption_on_exports_only=true
 text/autopauses={}
-variables={}
+variables={
+"Battle": {
+"Exp": 0,
+"Lvl": 0
+},
+"Characters": {
+"Name": ""
+}
+}
 translation/enabled=true
 translation/original_locale="en"
 translation/file_mode=1
@@ -62,7 +70,9 @@ directories/dch_directory={
 }
 directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
+"Boss": "res://Dialogues/NPC Dialogue/Water/Boss.dtl",
 "Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"FirstBattle": "res://Dialogues/Scene Dialogue/FirstBattle.dtl",
 "FirstItemNPC1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1.dtl",
 "FirstItemNPC1-1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1-1.dtl",
 "FirstItemNPC2": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC2.dtl",
@@ -85,7 +95,9 @@ directories/dtl_directory={
 "SecondItemNPC4": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC4.dtl",
 "SwitchHint": "res://Dialogues/NPC Dialogue/Water/SwitchHint.dtl",
 "Test": "res://Dialogues/Test.dtl",
-"bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl"
+"Win": "res://Dialogues/Win.dtl",
+"bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl",
+"bridgejoke1": "res://Dialogues/bridgejoke1.dtl"
 }
 text/autoadvance_per_word_delay=0
 layout/end_behaviour=0

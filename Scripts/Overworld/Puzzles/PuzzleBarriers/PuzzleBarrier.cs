@@ -1,26 +1,39 @@
 using Godot;
 using System;
 
-public partial class PuzzleCheck : Node2D
+public partial class PuzzleCheck : Node
 {
-    [Export] bool CheckAtStart;
+    [Export] protected bool HasDialogue = true, ChecksBool, ChecksInt;
+    [Export] public int FlagIndex;
 
-    public override void _Ready()
+    public override void _EnterTree()
     {
-        if(CheckAtStart){
-            if(Check()){
-                ActivateEffect();
-            }
+        Flags Aux = GameManager.Instance.Data.Flags;
+        if(ChecksBool){
+            Aux._PuzzleFlagsBoolChanged+=Check;
+        }
+        if(ChecksInt){
+            Aux._PuzzleFlagsIntChanged+=CheckInt;
         }
     }
-    public virtual bool Check(){
-        return false;
+    public override void _ExitTree()
+    {
+        Flags Aux = GameManager.Instance.Data.Flags;
+        if(ChecksBool){
+            Aux._PuzzleFlagsBoolChanged-=Check;
+        }
+        if(ChecksInt){
+            Aux._PuzzleFlagsIntChanged-=CheckInt;
+        }
     }
+    public virtual void Check(int Index, bool Changed){
 
+    }
+    public virtual void CheckInt(int Index, bool Changed){
+
+    }
     public virtual void ActivateEffect(){
 
     }
-    public virtual void ActivateEffectBySwitch(){
-        ActivateEffect();
-    }
+
 }

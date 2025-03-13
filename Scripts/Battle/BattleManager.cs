@@ -16,6 +16,7 @@ public partial class BattleManager : Node
 	[Export] public BattleScene Scene;
 	[Export] BattleStart battleStart;
 	[Export] public TypedItemList AuxItems;
+	[Export] Array<int> AuxHP = new Array<int>(), EnemyAuxHP = new Array<int>();
 
 	[Export] public BattleState State;
 	[Export] Camera2D BattleCamera;
@@ -26,8 +27,8 @@ public partial class BattleManager : Node
 	[Export] Node CharacterButtonParent;
 	Array<CharacterButtons> PartyButtons=new Array<CharacterButtons>(), EnemyButtons=new Array<CharacterButtons>();
 	[Export] Array<Vector2> partyPos= new Array<Vector2>(), enemyPos=new Array<Vector2>();
-	int AliveParty, AliveEnemy, CurrentTurn=-1;
-	public int ActiveMoves, CurrentRound;
+	int AliveParty, AliveEnemy;
+	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = -1;
 	public BattleCharacter CurrentCharacter;
 	public static BattleManager instance;
 	public bool CanStartTurn=true, BattleEnded;
@@ -61,7 +62,8 @@ public partial class BattleManager : Node
 		GameManager Game = GameManager.Instance;
 		battleStart = start;
 		BattleEnded=false;
-		CenterView=centerViewChar;
+		//CenterView=centerViewChar;
+		CenterView = scene.GetCenterView(PartyPos,EnemyPos);
 		/*BattleCamera.Position=centerViewCam;
 		BattleCamera.Enabled=true;*/
 		Scene=scene;
@@ -81,11 +83,11 @@ public partial class BattleManager : Node
 			Party[i].EnemyParty=EnemyParty;
 			Party[i].PartyButtons=PartyButtons;
 			Party[i].EnemyButtons=EnemyButtons;
+			AuxHP.Add(Party[i].Character.stats.HP);
 			if(((PlayerController)Party[i].Overworld).Leader){
 				partyOrigin=Party[i].GlobalPosition;
 			}
 			TurnOrder.Add(Party[i]);
-
 			AliveParty++;
 			CharacterButtons New=new CharacterButtons();
 			New.SetBattleCharacter(Party[i]);
@@ -103,6 +105,7 @@ public partial class BattleManager : Node
 			EnemyParty[i].EnemyParty=Party;
 			EnemyParty[i].PartyButtons=EnemyButtons;
 			EnemyParty[i].EnemyButtons=PartyButtons;
+			EnemyAuxHP.Add(EnemyParty[i].Character.stats.HP);
 			TurnOrder.Add(EnemyParty[i]);
 
 			EnemyParty[i].ProcessMode=ProcessModeEnum.Inherit;
@@ -129,7 +132,8 @@ public partial class BattleManager : Node
 	}
 	public void ResetPositions(){
 			if(CurrentTurn==-1){
-				GameManager.Instance.ChangeCam(Scene.GetCenterView(partyPos,enemyPos),true,(float)PositionMoveSpeed);
+				//GameManager.Instance.ChangeCam(Scene.GetCenterView(partyPos,enemyPos),true,(float)PositionMoveSpeed);
+				GameManager.Instance.ChangeCam(CenterView,true,(float)PositionMoveSpeed);
 			}
 		Tween tween = CreateTween();
 		tween.SetParallel(true);
@@ -141,19 +145,28 @@ public partial class BattleManager : Node
 			/*float AuxCenterView = (CenterView.X-partyPos[i].X)/Mathf.Abs(CenterView.X-partyPos[i].X);
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);*/
 			float aux=(CenterView-partyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
+
 			//float aux=AuxCenterView/AuxScale;
 			if(aux<0){
 				//Debug.WriteLine("Flipped: "+AuxCenterView+","+AuxScale);
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
+
 			}
 			if(Parent.Rotation!=0){
 				HPBar.Rotation=Parent.GlobalRotation;
 				HPBar.Scale=Parent.GlobalScale;
+
 			}
 			else{
 				HPBar.Rotation = 0;
 				HPBar.Scale = new Vector2(1,1);
+				if(Parent.Rotation<0){
+					HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
+				}
+				else{
+					HPBar.Position = new Vector2(-Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
+				}
 			}
 			MoveCharacters(tween,Party[i],partyPos[i],(float)PositionMoveSpeed);
 		}
@@ -165,19 +178,26 @@ public partial class BattleManager : Node
 			float AuxCenterView = (CenterView.X-enemyPos[i].X)/Mathf.Abs(CenterView.X-enemyPos[i].X);
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 			float aux=AuxCenterView/AuxScale;
+			Debug.WriteLine("CenterViewFirst: "+CenterView.X+" Pos: "+enemyPos[i].X);
+			Debug.WriteLine("CenterView: "+AuxCenterView + "Scale: "+AuxScale);
 			if(aux<0){
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
-				HPBar.Rotation=Parent.Rotation;
-				HPBar.Scale=Parent.Scale;
 				}
 			if(Parent.Rotation!=0){
 				HPBar.Rotation=Parent.GlobalRotation;
 				HPBar.Scale=Parent.GlobalScale;
+				HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
 			}
 			else{
 				HPBar.Rotation = 0;
 				HPBar.Scale = new Vector2(1,1);
+				if(Parent.Rotation<0){
+					HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
+				}
+				else{
+					HPBar.Position = new Vector2(-Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
+				}
 			}
 			MoveCharacters(tween,EnemyParty[i],enemyPos[i],(float)PositionMoveSpeed);
 		}
@@ -189,7 +209,12 @@ public partial class BattleManager : Node
 	}
 
 	void OrderTurns(){
-		TurnOrder.OrderBy(character=>character.Character.stats.Speed);
+		Array<BattleCharacter> Aux = TurnOrder.Duplicate();
+		IOrderedEnumerable<BattleCharacter> Order = Aux.OrderByDescending(character=>character.Character.TotalStats.Speed);
+		TurnOrder.Clear();
+		for(int i =0;i<Order.Count();i++){
+			TurnOrder.Add(Order.ElementAt(i));
+		}
 		StartRound();
 	}
 	void StartRound(){
@@ -206,10 +231,11 @@ public partial class BattleManager : Node
 	public void StartTurn(bool first){
 		Scene.StartTurnEffect(first);
 		if(CanStartTurn){
-			for (int i = 0;i<Party.Count;i++){
-				Party[i].ShowChangeHPBar(Party[i].Character.stats.HP);
-			}
 			UserCharacters.Add(CurrentCharacter);
+			if(Party.Contains(CurrentCharacter)){
+				CurrentCharacter.ShowChangeHPBar(CurrentCharacter.Character.stats.HP);
+				CurrentCharacter.ShowChangeWPBar(CurrentCharacter.Character.stats.WP,false);
+			}
 			CurrentCharacter.StartChoosingMove();
 		}
 	}
@@ -236,18 +262,20 @@ public partial class BattleManager : Node
 
 	}
 	public void EndTurn(){
+		Scene.DialogueFlag = false;
 		TargetCharacters.Clear();
 		UserCharacters.Clear();
 		ChangeTutorialLabel(0,true, TurnOrder[0].Character);
 		if(!BattleEnded){
 				CurrentTurn++;
-			if(CurrentTurn==TurnOrder.Count || CurrentTurn ==0){
+				TurnCount++;
+			if(CurrentTurn>=TurnOrder.Count || CurrentTurn ==0){
 			Debug.WriteLine("EndRound \n");
 				EndRound();
 			}
 			else{
 				Debug.WriteLine("Turn: "+CurrentTurn+"\n");
-				CurrentCharacter=TurnOrder[CurrentTurn];
+				CurrentCharacter=TurnOrder[CurrentTurn%TurnOrder.Count];
 				if(CurrentCharacter.UsedComboMove){
 					CurrentCharacter.UsedComboMove=false;
 					EndTurn();
@@ -295,6 +323,8 @@ public partial class BattleManager : Node
 			MoveCharacters(tween,Party[i],EndPosition,(float)PositionMoveSpeed);				
 			Party[i].AnimatorTree.Set("parameters/conditions/Ended",true);
 			Party[i].HideChangeHPBar();
+			Party[i].HideChangeWPBar();
+			Party[i].Character.stats.WP = 0;
 		}
 		for(int i=0;i<EnemyParty.Count;i++){
 			EnemyParty[i].HideChangeHPBar();
@@ -353,6 +383,8 @@ public partial class BattleManager : Node
 		enemyPos.Clear();
 		PartyButtons.Clear();
 		EnemyButtons.Clear();
+		AuxHP.Clear();
+		EnemyAuxHP.Clear();
 		CenterView=Vector2.Zero;
 		//GameManager.Instance.OverworldCam.Enabled=true;
 		//BattleCamera.Enabled=false;
@@ -401,11 +433,13 @@ public partial class BattleManager : Node
 		for(int i = 0;i<Party.Count;i++){
 			Party[i].TurnOnBattle();
 			Party[i].Reset();
+			Party[i].Character.ChangeHP(AuxHP[i]);
 			TurnOrder.Add(Party[i]);
 		}
 		for(int i = 0;i<EnemyParty.Count;i++){
 			EnemyParty[i].TurnOnBattle();
-			Party[i].Reset();
+			EnemyParty[i].Reset();
+			EnemyParty[i].Character.ChangeHP(EnemyAuxHP[i]);
 			TurnOrder.Add(EnemyParty[i]);
 		}
 		ResetPositions();

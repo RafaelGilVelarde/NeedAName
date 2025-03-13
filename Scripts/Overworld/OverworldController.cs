@@ -54,4 +54,18 @@ public partial class OverworldController : Node2D
 	public void SetOffsets(){
 		MainSprite.Position += BattleCharacter.Character.Base.OverworldOffset;
 	}
+	public void TweenMovement(Vector2 Position, float Duration){
+		SetControllable	(false);
+		Tween Move = CreateTween();
+		Move.TweenProperty(Parent,"position",Position,Duration);
+	}
+	public void SetControllable(bool control){
+		if(!control){
+			Axis=Vector2.Zero;
+			AnimatorTree.Set("parameters/conditions/Idle",true);
+			AnimatorTree.Set("parameters/conditions/Walking",false);
+		}
+		Controllable = control;
+		OverworldCollider.Disabled = !control;
+	}
 }

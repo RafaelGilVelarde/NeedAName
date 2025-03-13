@@ -6,8 +6,10 @@ using System.Diagnostics;
 
 public partial class PartyCharacters : Character
 {
-	[Export] int Exp;
-	[Export] int NextLevelExp;
+	[Export] public int Exp {get;private set;}
+	[Export] public int NextLevelExp{get;private set;}
+	[Export] public int PastLevelExp {get;private set;}
+
 	public void ChangeKey(String Action, InputEvent Event){
 		InputMap.EraseAction(Action);
 		InputMap.ActionAddEvent(Action,Event);
@@ -23,6 +25,7 @@ public partial class PartyCharacters : Character
 	}
 
 	public void LevelUp(){
+		PastLevelExp = NextLevelExp;
 		PartyCharacterBase Aux = (PartyCharacterBase)Base;
 		stats.Lv++;
 		NextLevelExp = (int)Mathf.Pow(stats.Lv/Aux.ExpSpeed,Aux.ExpDistance);

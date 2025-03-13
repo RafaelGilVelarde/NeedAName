@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=3 uid="uid://ci40agixb3xuc"]
+[gd_scene load_steps=142 format=3 uid="uid://ci40agixb3xuc"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_kj4rx"]
@@ -22,17 +22,18 @@ resource_local_to_scene = true
 size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
-size = Vector2(20, 34)
+size = Vector2(12, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0rr7"]
+resource_local_to_scene = true
+size = Vector2(33, 42.5)
+
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lpari"]
 load_path = "res://.godot/imported/waterBattle.png-9dbb0c97f89b3af4700a787f2184a034.ctex"
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_yftxj"]
-diffuse_texture = SubResource("CompressedTexture2D_lpari")
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wm40p"]
 load_path = "res://.godot/imported/_Arm.png-632bdcf33829a14be9f617b9394fd216.ctex"
@@ -1532,13 +1533,29 @@ states/Start/position = Vector2(195, 92)
 "states/Start 1/position" = Vector2(335, 92)
 transitions = ["Start", "Start 1", SubResource("AnimationNodeStateMachineTransition_t6ikl"), "Idle", "Choice", SubResource("AnimationNodeStateMachineTransition_pmtxr"), "Start 1", "Idle", SubResource("AnimationNodeStateMachineTransition_v7la4"), "Choice", "Start 1", SubResource("AnimationNodeStateMachineTransition_jlstt")]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_er3ea"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b0sdk"]
+bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lw5lv"]
+bg_color = Color(0.756863, 0.486275, 0.772549, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6q52"]
-bg_color = Color(0.286275, 0.690196, 0.529412, 1)
+bg_color = Color(0.4, 0.607843, 0.905882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iyjrh"]
+bg_color = Color(0.658824, 0.427451, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1pc0y"]
+bg_color = Color(0.4, 0.607843, 0.905882, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkh5t"]
+bg_color = Color(0.4, 0.607843, 0.905882, 1)
 
 [node name="Character" type="CharacterBody2D" groups=["PlayerOverworldController"]]
 y_sort_enabled = true
+floor_block_on_wall = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_7nva1")
@@ -1547,7 +1564,6 @@ disabled = true
 [node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("1_yneer")
 InteractCollider = NodePath("InteractionCollider")
-tileTypes = null
 TileDetector = NodePath("TileCollider")
 TileOffset = Vector2(9, 9)
 MainSprite = NodePath("MainSprite")
@@ -1559,10 +1575,6 @@ OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 AxisOffset = 5
-Axis = null
-AxisAux = null
-Controllable = null
-Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="OverworldController"]
@@ -1570,7 +1582,7 @@ texture_filter = 1
 texture = ExtResource("2_kj4rx")
 hframes = 7
 vframes = 6
-frame = 41
+frame = 10
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1584,36 +1596,29 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="InteractionCollider" type="Area2D" parent="OverworldController"]
-position = Vector2(0, -15)
+position = Vector2(0, 15)
 disable_mode = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider"]
 shape = SubResource("RectangleShape2D_dwf8m")
 
 [node name="TileCollider" type="Node2D" parent="OverworldController"]
-position = Vector2(0, 8)
+position = Vector2(0, -16)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
-Controllable = null
+WPbox = NodePath("WPBox")
 Overworld = NodePath("../OverworldController")
-OriginPos = null
 MultiplierAtk = Array[float]([1.0])
 MultiplierDef = Array[float]([1.0])
 MultiplierSpAtk = Array[float]([1.0])
 MultiplierSpDef = Array[float]([1.0])
 MultiplierSpeed = Array[float]([1.0])
-Combo = null
-HoldingMoveTimer = null
-HoldingMove = null
-UsedComboMove = null
-BlockedEnemy = null
-Looping = null
 TimerAtk = Array[int]([1])
 TimerDef = Array[int]([1])
 TimerSpAtk = Array[int]([1])
@@ -1622,7 +1627,6 @@ TimerSpeed = Array[int]([1])
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
-DodgeDir = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
@@ -1631,10 +1635,14 @@ StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
 HPBar = NodePath("HPBar")
+EXPBar = NodePath("Exp")
+WPBar = NodePath("WP")
+WPAuxBar = NodePath("WP/WP2")
 battleState = 3
 actionState = 5
 
 [node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
+visible = false
 script = ExtResource("5_5pejn")
 Character = NodePath("..")
 
@@ -1646,24 +1654,36 @@ disabled = true
 [node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHurtbox"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
-position = Vector2(0, -17)
+position = Vector2(-22, -17)
 shape = SubResource("RectangleShape2D_6c1hy")
 
-[node name="Blockbox" type="Area2D" parent="BattleCharacter" groups=["PlayerBlockbox"]]
+[node name="Blockbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerBlockbox"]]
+visible = false
 script = ExtResource("6_7n8og")
+Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox"]
 position = Vector2(25.75, -15)
 shape = SubResource("RectangleShape2D_kowf3")
 disabled = true
 
+[node name="WPBox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerWPBox"]]
+visible = false
+script = ExtResource("6_7n8og")
+Character = NodePath("..")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/WPBox"]
+position = Vector2(-11.5, -17)
+shape = SubResource("RectangleShape2D_m0rr7")
+disabled = true
+
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
 texture_filter = 1
 position = Vector2(0, -18)
-texture = SubResource("CanvasTexture_yftxj")
+texture = SubResource("CompressedTexture2D_lpari")
 hframes = 9
 vframes = 8
-frame = 29
+frame = 44
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1735,6 +1755,7 @@ processMaterial = SubResource("ParticleProcessMaterial_3dsfc")
 [node name="ActionMenu" type="Node2D" parent="BattleCharacter" node_paths=PackedStringArray("character", "Animator")]
 process_mode = 4
 visible = false
+z_index = 2
 position = Vector2(-50, -25)
 script = ExtResource("9_jx0hg")
 character = NodePath("..")
@@ -1764,7 +1785,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_mctvn")
+texture = SubResource("AtlasTexture_7cjed")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Fight",
@@ -1817,7 +1838,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_kskeb")
+texture = SubResource("AtlasTexture_vgxlo")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Item",
@@ -1869,7 +1890,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_t077f")
+texture = SubResource("AtlasTexture_k6qqc")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Run",
@@ -1914,6 +1935,8 @@ visible_characters = 1
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
 
 [node name="HPBar" type="ProgressBar" parent="BattleCharacter"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -1921,17 +1944,19 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -15.0
-offset_top = -52.0
+offset_top = -60.0
 offset_right = 15.0
-offset_bottom = -47.0
+offset_bottom = -55.0
 grow_horizontal = 2
 grow_vertical = 2
+pivot_offset = Vector2(15, 0)
 size_flags_vertical = 1
 theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_lw5lv")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f6q52")
+theme_override_styles/background = SubResource("StyleBoxFlat_er3ea")
+theme_override_styles/fill = SubResource("StyleBoxFlat_b0sdk")
 max_value = 50.0
 show_percentage = false
+metadata/_edit_use_anchors_ = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar"]
 layout_mode = 0
@@ -1941,6 +1966,99 @@ offset_right = 177.0
 offset_bottom = 77.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 50
+bbcode_enabled = true
+text = "[center]50[/center]"
+scroll_active = false
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBar"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 177.0
+offset_bottom = 94.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 30
+bbcode_enabled = true
+text = "[center]50[/center]"
+scroll_active = false
+
+[node name="Exp" type="ProgressBar" parent="BattleCharacter"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 30.0
+offset_right = 15.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 0)
+size_flags_vertical = 1
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_lw5lv")
+theme_override_styles/fill = SubResource("StyleBoxFlat_f6q52")
+max_value = 50.0
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="WP" type="ProgressBar" parent="BattleCharacter"]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+layout_direction = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 30.0
+offset_right = 15.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 0)
+size_flags_vertical = 1
+theme_override_constants/outline_size = 5
+theme_override_styles/background = SubResource("StyleBoxFlat_iyjrh")
+theme_override_styles/fill = SubResource("StyleBoxFlat_1pc0y")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="WP2" type="ProgressBar" parent="BattleCharacter/WP"]
+modulate = Color(1, 1, 1, 0.772549)
+layout_direction = 2
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = -2.5
+offset_right = 15.0
+offset_bottom = 2.5
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(15, 0)
+size_flags_vertical = 1
+theme_override_constants/outline_size = 5
+theme_override_styles/fill = SubResource("StyleBoxFlat_xkh5t")
+show_percentage = false
+metadata/_edit_use_anchors_ = true
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/WP"]
+layout_mode = 0
+offset_left = -3.0
+offset_top = 4.0
+offset_right = 177.0
+offset_bottom = 94.0
+scale = Vector2(0.2, 0.2)
+theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]50[/center]"
 scroll_active = false

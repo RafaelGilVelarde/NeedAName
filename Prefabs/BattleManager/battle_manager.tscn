@@ -16,188 +16,264 @@ TutorialLabels = NodePath("CanvasLayer/Controls")
 Loss = NodePath("CanvasLayer/LossScreen")
 CharacterButtonParent = NodePath("CharacterButtonParent")
 PositionMoveSpeed = 0.3
-itemList = NodePath("CanvasLayer/ItemList")
-moveList = NodePath("CanvasLayer/MoveList")
+itemList = NodePath("CanvasLayer/Items/ItemList")
+moveList = NodePath("CanvasLayer/Moves/MoveList")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MoveList" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("Buttons")]
+[node name="Moves" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 436.0
+offset_bottom = 174.0
+
+[node name="MoveList" type="VBoxContainer" parent="CanvasLayer/Moves" node_paths=PackedStringArray("Buttons", "AmountList")]
 z_index = 5
 z_as_relative = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-pivot_offset = Vector2(0, 20)
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
 script = ExtResource("2_s8gjb")
 Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
+AmountList = NodePath("../Amounts")
 
-[node name="MoveUp" type="TextureButton" parent="CanvasLayer/MoveList" node_paths=PackedStringArray("List")]
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Moves/MoveList" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 List = NodePath("..")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/MoveList"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.333
-offset_right = 3.0
-offset_bottom = 0.00999832
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton"]
+layout_mode = 2
+offset_right = 1155.0
+offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MoveList"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton2"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MoveList"]
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton3"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MoveList"]
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton4"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MoveList"]
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/MoveList/TextureButton5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton5"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="MoveDown" type="TextureButton" parent="CanvasLayer/MoveList" node_paths=PackedStringArray("List")]
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Moves/MoveList" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 startEnd = 1
 List = NodePath("..")
 
-[node name="ItemList" type="VBoxContainer" parent="CanvasLayer" node_paths=PackedStringArray("Buttons")]
+[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Moves"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+text = "5555srf"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="Items" type="HBoxContainer" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ItemList" type="VBoxContainer" parent="CanvasLayer/Items" node_paths=PackedStringArray("Buttons", "AmountList")]
 z_index = 5
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = 4.0
-grow_horizontal = 2
-grow_vertical = 2
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
 script = ExtResource("4_debr0")
 Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
+AmountList = NodePath("../Amounts")
 
-[node name="MoveUp" type="TextureButton" parent="CanvasLayer/ItemList" node_paths=PackedStringArray("List")]
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Items/ItemList" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 List = NodePath("..")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/ItemList"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/ItemList"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton2"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/ItemList"]
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton3"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/ItemList"]
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton4"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/ItemList"]
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/ItemList/TextureButton5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton5"]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="MoveDown" type="TextureButton" parent="CanvasLayer/ItemList" node_paths=PackedStringArray("List")]
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Items/ItemList" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 startEnd = 1
 List = NodePath("..")
+
+[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Items"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "5555srf"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+visible = false
+custom_minimum_size = Vector2(500, 50)
+layout_mode = 2
+text = "uyhjbknlkml"
 
 [node name="Controls" type="Control" parent="CanvasLayer"]
 layout_mode = 3

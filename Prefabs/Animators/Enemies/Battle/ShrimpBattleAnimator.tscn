@@ -193,6 +193,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_32flu")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
-parameters/ActionState/blend_position = 3.15306
+parameters/ActionState/blend_position = 2.62781
 parameters/ActionState/0/blend_position = 0
 parameters/ActionState/0/0/blend_position = 0

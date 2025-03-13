@@ -37,11 +37,10 @@ size = Vector2(268, 16)
 
 [sub_resource type="Resource" id="Resource_7ni3l"]
 script = ExtResource("13_iurx6")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [node name="Map7" type="Node2D"]
 script = ExtResource("1_7mnrv")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -77,18 +76,13 @@ script = ExtResource("4_bgxd8")
 
 [node name="NPC" parent="." instance=ExtResource("5_l0xyo")]
 
-[node name="CollisionShape2D" parent="NPC" index="0"]
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_t5uuj")])
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
+Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
-frame = 10
+frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
 
@@ -104,7 +98,6 @@ polygon = PackedVector2Array(392, 152, 184, 152, 184, 168, -96, 168, -96, 152, -
 [node name="Door" parent="." instance=ExtResource("9_gr6nm")]
 position = Vector2(-208, -200)
 Scene = 2
-Area = null
 LoadPosition = Vector2(-80, 270)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -114,7 +107,6 @@ shape = SubResource("RectangleShape2D_vt1oy")
 [node name="Door2" parent="." instance=ExtResource("9_gr6nm")]
 position = Vector2(-208, 200)
 Scene = 12
-Area = null
 LoadPosition = Vector2(-176, -190)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -124,7 +116,6 @@ shape = SubResource("RectangleShape2D_btlge")
 position = Vector2(-312, 0)
 rotation = 1.5708
 Scene = 5
-Area = null
 LoadPosition = Vector2(240, 0)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -134,7 +125,6 @@ shape = SubResource("RectangleShape2D_y2nor")
 [node name="Door5" parent="." instance=ExtResource("9_gr6nm")]
 position = Vector2(8, 200)
 Scene = 12
-Area = null
 LoadPosition = Vector2(40, -208)
 
 [node name="CollisionShape2D" parent="Door5" index="0"]
@@ -142,9 +132,8 @@ position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_lriiy")
 
 [node name="Door6" parent="." instance=ExtResource("9_gr6nm")]
-position = Vector2(8, -200)
+position = Vector2(8, -199)
 Scene = 2
-Area = null
 LoadPosition = Vector2(176, 272)
 
 [node name="CollisionShape2D" parent="Door6" index="0"]

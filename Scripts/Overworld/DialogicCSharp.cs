@@ -30,9 +30,6 @@ public partial class DialogicCSharp : Node
         }
 
         DialogicRoot.Call("start",Timeline);
-        Check=new Callable(this,MethodName.check);
-        DialogicRoot.Connect("signal_event",Check);
-
         //Node aux= (Node)Styles.Call("get_layout_node");
         //aux.ProcessMode=ProcessModeEnum.Always;
         if(Pause){
@@ -81,7 +78,6 @@ public partial class DialogicCSharp : Node
                 party[i].EnterExitDialogue(false);
             }
         }    
-        DialogicRoot.Disconnect("signal_event",Check);
     }
     void ManualAdvanceOff(){
         if(autoAdvance){
@@ -105,11 +101,5 @@ public partial class DialogicCSharp : Node
         }
         
     }
-    void check(string argument){
-        Resource CurrentTimeline = (Resource)DialogicRoot.Get("current_timeline");
-        Debug.WriteLine("timeline: "+CurrentTimeline);
-        if(CurrentTimeline==null){
-            Debug.WriteLine("null");
-        }
-    }
+
 }

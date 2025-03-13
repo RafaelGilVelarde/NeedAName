@@ -2,7 +2,7 @@ using Godot;
 using System;
 using System.Diagnostics;
 
-public partial class InteractFollowNPC : Interact
+public partial class InteractFollowNPC : InteractText
 {
     Callable FollowNPC;
     [Export] PlayerController Follower;

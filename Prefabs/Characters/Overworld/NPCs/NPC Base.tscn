@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7g5dkmqek4r4"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Interact.cs" id="1_lktyl"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="1_lktyl"]
 [ext_resource type="Texture2D" uid="uid://ct32indgttmby" path="res://Sprites/Overworld/NPCs/plankton.png" id="2_1rs4y"]
 [ext_resource type="PackedScene" uid="uid://duas732nrxldm" path="res://Prefabs/Animators/NPCs/Water/Plankton.tscn" id="3_3g2ry"]
 

@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics;
 
 
-public partial class BattleInteract : Interact
+public partial class BattleInteract : InteractText
 {
     [Export] BattleStart battleStart;
         Callable startBattle;
@@ -27,7 +27,7 @@ public partial class BattleInteract : Interact
     }
     void EndDialogue(){
         Node DialogicRoot=DialogicCSharp.instance.DialogicRoot;
-        DialogicRoot.Disconnect("signal_event",startBattle);
+        //DialogicRoot.Disconnect("signal_event",startBattle);
         DialogicRoot.Disconnect("timeline_ended",EndTimeline);
     }
 }
