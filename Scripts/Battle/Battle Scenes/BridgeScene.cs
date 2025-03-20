@@ -6,8 +6,8 @@ using System;
 public partial class BridgeScene : BattleScene
 {
         [Export] Array<string> Timeline;
-    public override void StartTurnEffect(bool first){
-        if(first){
+    public override void StartTurnEffect(){
+        if(Battle.TurnCount == 1){
                 Battle.CanStartTurn=false;
                 DialogueFlag=true;
                 StartDialogue(Timeline[Battle.CurrentTurn%Timeline.Count],false, false, TimelineType.StartTurn);

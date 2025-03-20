@@ -61,7 +61,7 @@ Atk = 1
 Def = 3
 SpAtk = 1
 SpDef = 1
-Speed = 1
+Speed = 30
 WP = 0
 
 [sub_resource type="Resource" id="Resource_by311"]

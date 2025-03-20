@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="PartyCharacterBase" load_steps=7 format=3 uid="uid://bdntehna6nida"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_8u7yd"]
+[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="2_pglog"]
+[ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="3_yi873"]
+[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="4_42con"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_pi5yp"]
+
+[sub_resource type="Resource" id="Resource_2dgrd"]
+script = ExtResource("1_8u7yd")
+Lv = 0
+MaxHP = 8
+HP = 5
+Atk = 2
+Def = 2
+SpAtk = 2
+SpDef = 2
+Speed = 2
+WP = 0
+
+[resource]
+script = ExtResource("5_pi5yp")
+PartyId = 0
+ExpSpeed = 2.0
+ExpDistance = 5.0
+BaseStats = SubResource("Resource_2dgrd")
+Name = "Player1"
+OverworldAnimator = ExtResource("4_42con")
+BattleAnimator = ExtResource("2_pglog")
+TextEffectColor = Color(0.188235, 0.811765, 0.305882, 1)
+Icon = ExtResource("3_yi873")
+OverworldOffset = Vector2(0, -18)
+BattleOffset = Vector2(0, -18)

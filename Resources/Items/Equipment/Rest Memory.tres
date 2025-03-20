@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EquipmentBase" load_steps=4 format=3 uid="uid://du1fel58q8in6"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="1_3tir1"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="2_ahkvh"]
+
+[sub_resource type="Resource" id="Resource_aiiyy"]
+script = ExtResource("2_ahkvh")
+Lv = 0
+MaxHP = 0
+HP = 5
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[resource]
+script = ExtResource("1_3tir1")
+EquipType = 0
+stats = SubResource("Resource_aiiyy")
+StatChange = 0
+ID = 4
+Name = "Rest Memory"
+Description = "So sleeeppyyyyy.... +5HP"
+type = 1

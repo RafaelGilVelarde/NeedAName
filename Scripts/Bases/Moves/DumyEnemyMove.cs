@@ -27,7 +27,7 @@ public partial class DumyEnemyMove : MoveBase
 		else{
 			Dir=Users[0].GetParent<Node2D>().Scale.Y;
 		}		
-		Users[0].Combo=Combo;
+		Users[0].changeCombo(Combo);
 
 		int a=0;
 

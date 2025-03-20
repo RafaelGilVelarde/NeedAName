@@ -6,7 +6,16 @@ using System.Diagnostics;
 public partial class FirstBattle : BattleScene
 {
     [Export] string Timeline = "FirstBattle";
-    public override void ReturnToOverworld()
+    public override void StartTurnEffect()
+    {
+        base.StartTurnEffect();
+        if(Battle.TurnCount == 1 && !GameManager.Instance.Data.Flags.EventFlags[1]){
+            Battle.CanStartTurn=false;
+            GameManager.Instance.Data.Flags.EventFlags[1] = true;
+            StartDialogue(Timeline,true,false,TimelineType.StartTurn);
+        }
+    }
+    /*public override void ReturnToOverworld()
     {
         base.ReturnToOverworld();
         if(!GameManager.Instance.Data.Flags.EventFlags[1]){
@@ -19,5 +28,5 @@ public partial class FirstBattle : BattleScene
                 break;
             }
         }
-    }
+    }*/
 }

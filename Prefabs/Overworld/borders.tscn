@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dq6edj6l6xo0c"]
 
-[node name="Borders" type="StaticBody2D"]
+[node name="Borders" type="StaticBody2D" groups=["Borders"]]
 collision_layer = 3
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]

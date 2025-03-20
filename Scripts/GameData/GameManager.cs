@@ -302,4 +302,10 @@ public partial class GameManager : Node
 			Followers[i].Parent.CollisionMask = PhysicsLayer;			
 		}	
 	}
+public override void _Notification(int what)
+{
+    if (what == NotificationWMCloseRequest)
+		Debug.WriteLine("Disposing");
+		
+		}
 }

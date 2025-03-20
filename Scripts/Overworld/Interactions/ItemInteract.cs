@@ -28,6 +28,9 @@ public partial class ItemInteract : InteractText
     
         Node DialogicRoot=DialogicCSharp.instance.DialogicRoot;
         DialogicRoot.Connect("signal_event",DoAction);
+        if(ItemsToGive.Count == 1){
+            DialogicCSharp.instance.SetVariable("ItemName","Items",ItemsToGive[0].Base.Name);
+        }
         base.interact(Player);
     }
 

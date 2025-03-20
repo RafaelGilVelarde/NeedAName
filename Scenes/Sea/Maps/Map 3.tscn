@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b5o0cjrcuemsu"]
+[gd_scene load_steps=17 format=3 uid="uid://b5o0cjrcuemsu"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_4yjad"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_dqvc0"]
@@ -8,6 +8,9 @@
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_t85o1"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="6_jphsr"]
 [ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="8_mkag5"]
+[ext_resource type="Resource" uid="uid://5ql8hfdj1knt" path="res://Resources/Items/Key/Soul Memory.tres" id="9_f7w28"]
+[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="10_a48sp"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_whugb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ib5bx"]
 resource_local_to_scene = true
@@ -20,6 +23,15 @@ size = Vector2(122, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i5al3"]
 resource_local_to_scene = true
 size = Vector2(256, 16)
+
+[sub_resource type="Resource" id="Resource_yem0c"]
+script = ExtResource("10_a48sp")
+Base = ExtResource("9_f7w28")
+Amount = 1
+
+[sub_resource type="Resource" id="Resource_2ayp2"]
+script = ExtResource("11_whugb")
+DialogueTimelines = Array[String](["Item1"])
 
 [node name="Map3" type="Node2D"]
 script = ExtResource("1_4yjad")
@@ -111,12 +123,8 @@ scale = Vector2(0.66, 0.66)
 
 [node name="ItemInteract" parent="StaticBody2D" index="0"]
 GameID = 2
-
-[node name="Sprite2D" parent="StaticBody2D/ItemInteract" index="0"]
-frame = 0
-
-[node name="AnimationPlayer" parent="StaticBody2D/ItemInteract/Sprite2D" index="0"]
-autoplay = "default"
+ItemsToGive = Array[Object]([SubResource("Resource_yem0c")])
+TimelineGroup = Array[Object]([SubResource("Resource_2ayp2")])
 
 [editable path="Cams"]
 [editable path="Door"]

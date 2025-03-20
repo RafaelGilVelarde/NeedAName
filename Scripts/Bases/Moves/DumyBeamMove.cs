@@ -30,7 +30,7 @@ public partial class DumyBeamMove : MoveBase
 			Dir=Users[0].GetParent<Node2D>().Scale.Y;
 		}
 
-		Users[0].Combo=Combo;
+		Users[0].changeCombo(Combo);
 		
 		Line2D Line=LineShoot.Instantiate<Line2D>();
 		RayHitbox Ray= (RayHitbox)Line.GetChild(0);

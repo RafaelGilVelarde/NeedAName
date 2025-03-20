@@ -19,7 +19,7 @@ DialogueTimelines = Array[String](["SwitchHint"])
 
 [sub_resource type="Resource" id="Resource_br5uf"]
 script = ExtResource("9_a2of4")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imptm"]
 resource_local_to_scene = true
@@ -35,7 +35,6 @@ size = Vector2(32, 32)
 
 [node name="Map15" type="Node2D"]
 script = ExtResource("1_4nxge")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -102,7 +101,6 @@ polygon = PackedVector2Array(104, -88, -176, -96, -184, 8, -128, 104, -40, 88, 1
 [node name="Door" parent="." instance=ExtResource("17_8n5jr")]
 position = Vector2(0, 208)
 Scene = 13
-Area = null
 LoadPosition = Vector2(0, -168)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -113,7 +111,6 @@ shape = SubResource("RectangleShape2D_imptm")
 position = Vector2(336, 48)
 rotation = 1.5708
 Scene = 15
-Area = null
 LoadPosition = Vector2(-270, 0)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -122,7 +119,6 @@ shape = SubResource("RectangleShape2D_isyrh")
 [node name="Door3" parent="." instance=ExtResource("17_8n5jr")]
 position = Vector2(144, -80)
 Scene = 20
-Area = null
 LoadPosition = Vector2(112, 744)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

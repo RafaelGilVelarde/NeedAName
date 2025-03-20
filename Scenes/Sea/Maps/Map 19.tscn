@@ -29,7 +29,7 @@ size = Vector2(256, 56)
 
 [sub_resource type="Resource" id="Resource_3va3a"]
 script = ExtResource("12_qkwwk")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [sub_resource type="Resource" id="Resource_i5mts"]
 script = ExtResource("14_kmhmi")
@@ -99,7 +99,6 @@ polygon = PackedVector2Array(32, 8, 32, -8, -32, -8, -32, 8)
 [node name="Door" parent="." instance=ExtResource("34_o1vnt")]
 position = Vector2(-208, -208)
 Scene = 13
-Area = null
 LoadPosition = Vector2(-208, 170)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -109,7 +108,6 @@ shape = SubResource("RectangleShape2D_a6vme")
 position = Vector2(32, -208)
 script = ExtResource("8_6ydr2")
 Scene = 13
-Area = null
 LoadPosition = Vector2(80, 178)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door4"]
@@ -120,7 +118,6 @@ shape = SubResource("RectangleShape2D_vluge")
 position = Vector2(-352, 0)
 rotation = 1.5708
 Scene = 12
-Area = null
 LoadPosition = Vector2(224, 32)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -130,7 +127,6 @@ shape = SubResource("RectangleShape2D_orwuc")
 [node name="Door3" parent="." instance=ExtResource("34_o1vnt")]
 position = Vector2(80, 208)
 Scene = 21
-Area = null
 LoadPosition = Vector2(0, -160)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -164,9 +160,6 @@ FacingRight = null
 FacingDirection = null
 visualType = null
 Sprites = []
-
-[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
 
 [node name="Barrier" parent="." instance=ExtResource("12_6hj8d")]
 position = Vector2(80, 184)

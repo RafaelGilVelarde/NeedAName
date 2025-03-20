@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 
 public partial class BattleStart : Node2D
@@ -50,6 +49,7 @@ public partial class BattleStart : Node2D
             }
             for(int i=0;i<EnemyBattle.Count;i++){
                 EnemyBattle[i].Character.SetStats();
+                EnemyBattle[i].Character.ResetCharacter();
                 EnemyBattle[i].Overworld.BattleStart();
             }
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();

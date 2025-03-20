@@ -4,9 +4,8 @@ using System;
 using System.Diagnostics;
 
 public enum EquipmentType{
-    Head,
     Body,
-    Legs,
+    Accessory,
     Weapon
 }
 public enum StatIncrease{

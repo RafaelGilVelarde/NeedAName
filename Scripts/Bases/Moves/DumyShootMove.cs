@@ -49,7 +49,7 @@ public partial class DumyShootMove : MoveBase
 		Users[0].GetTree().CurrentScene.AddChild(timer);
 		timer.Start();
 		Targets[0].Controllable=true;           
-		Users[0].Combo=Combo;
+		Users[0].changeCombo(Combo);
 		Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
 		Targets[0].Controllable=true;
 		Targets[0].changeState(BattleCharacter.BattleState.Defending);

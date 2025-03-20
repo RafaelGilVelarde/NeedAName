@@ -19,7 +19,7 @@ public partial class SpamMove : MoveBase
         Users[0]._ReturnToIdle+=SpamInterval;
 
         void SpamInterval(BattleCharacter character){
-            SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.1,true,true,true);
+            SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.2,true,true,true);
             AuxTimer.Timeout+=()=>{
             character.changeState(BattleCharacter.BattleState.Attacking);
             character.Character.ShowTextLabel($"{character.Character.Key}",character.Character.Base.TextEffectColor);
@@ -37,7 +37,8 @@ public partial class SpamMove : MoveBase
 
         void IncreaseSpam(){
             Users[0]._DoAction-=IncreaseSpam;
-            Users[0].Combo = (Spam+1)%(MaxCombo+1);
+            Users[0].changeCombo((Spam%MaxCombo)+1);
+            Debug.WriteLine("Spam: "+(Spam%MaxCombo)+1);
             Spam++;
             Users[0].changeState(BattleCharacter.BattleState.Idle);
             if(MultIndex ==  Users[0].MultiplierAtk.Count){
@@ -72,7 +73,7 @@ public partial class SpamMove : MoveBase
 		tween.Finished+=tween.Kill;
 
         void End(){
-            Debug.WriteLine("Endspam");
+            Debug.WriteLine($"Endspam, Index: {MultIndex}, Users: {Users.Count}");
             if(MultIndex !=  Users[0].MultiplierAtk.Count){
 			    Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
                 Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);

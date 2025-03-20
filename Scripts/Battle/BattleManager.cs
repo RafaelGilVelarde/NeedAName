@@ -1,7 +1,6 @@
 using Godot;
 using Godot.Collections;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 
@@ -28,7 +27,7 @@ public partial class BattleManager : Node
 	Array<CharacterButtons> PartyButtons=new Array<CharacterButtons>(), EnemyButtons=new Array<CharacterButtons>();
 	[Export] Array<Vector2> partyPos= new Array<Vector2>(), enemyPos=new Array<Vector2>();
 	int AliveParty, AliveEnemy;
-	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = -1;
+	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = 0;
 	public BattleCharacter CurrentCharacter;
 	public static BattleManager instance;
 	public bool CanStartTurn=true, BattleEnded;
@@ -225,17 +224,21 @@ public partial class BattleManager : Node
 				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
 		}
-		StartTurn(true);
+		StartTurn();
 		Scene.StartRoundEffect();
 	}
-	public void StartTurn(bool first){
-		Scene.StartTurnEffect(first);
-		if(CanStartTurn){
+	public void StartTurn(){
+		Scene.StartTurnEffect();
+		if(UserCharacters.Count == 0){
 			UserCharacters.Add(CurrentCharacter);
 			if(Party.Contains(CurrentCharacter)){
 				CurrentCharacter.ShowChangeHPBar(CurrentCharacter.Character.stats.HP);
 				CurrentCharacter.ShowChangeWPBar(CurrentCharacter.Character.stats.WP,false);
 			}
+		}
+		Debug.WriteLine("Can Start Turn: "+CanStartTurn);
+		if(CanStartTurn){
+			Debug.WriteLine("Starting turn");
 			CurrentCharacter.StartChoosingMove();
 		}
 	}
@@ -281,7 +284,7 @@ public partial class BattleManager : Node
 					EndTurn();
 				}
 				else{
-					StartTurn(true);
+					StartTurn();
 				}
 			}
 		}
@@ -432,14 +435,15 @@ public partial class BattleManager : Node
 		TurnOrder.Clear();
 		for(int i = 0;i<Party.Count;i++){
 			Party[i].TurnOnBattle();
-			Party[i].Reset();
-			Party[i].Character.ChangeHP(AuxHP[i]);
+			//Party[i].Reset();
+			Party[i].Character.stats.HP = AuxHP[i];
+			Party[i].Character.stats.WP = 0;
 			TurnOrder.Add(Party[i]);
 		}
 		for(int i = 0;i<EnemyParty.Count;i++){
 			EnemyParty[i].TurnOnBattle();
-			EnemyParty[i].Reset();
-			EnemyParty[i].Character.ChangeHP(EnemyAuxHP[i]);
+			//EnemyParty[i].Reset();
+			EnemyParty[i].Character.ResetCharacter();
 			TurnOrder.Add(EnemyParty[i]);
 		}
 		ResetPositions();

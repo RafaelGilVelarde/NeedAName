@@ -8,18 +8,18 @@
 [sub_resource type="Resource" id="Resource_jiguw"]
 script = ExtResource("1_e2dfw")
 Lv = 0
-MaxHP = 5
+MaxHP = 8
 HP = 0
-Atk = 4
-Def = 1
+Atk = 3
+Def = 2
 SpAtk = 2
 SpDef = 1
-Speed = 5
+Speed = 6
 WP = 0
 
 [resource]
 script = ExtResource("4_usypa")
-ExpYield = 2.0
+ExpYield = 3.0
 BaseStats = SubResource("Resource_jiguw")
 Name = "Starfish"
 OverworldAnimator = ExtResource("3_sywpe")

@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://cidpvaj35nwkm"]
+[gd_scene load_steps=23 format=3 uid="uid://cidpvaj35nwkm"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_7pk85"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_aqvd6"]
@@ -9,12 +9,11 @@
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_5pxjj"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemCheckInteract.cs" id="7_y5qg3"]
 [ext_resource type="Resource" uid="uid://5ql8hfdj1knt" path="res://Resources/Items/Key/Soul Memory.tres" id="9_hnk1l"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="9_okban"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="10_22t73"]
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="10_dc5yr"]
 [ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="10_gfqhf"]
 [ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="11_1ia12"]
 [ext_resource type="Script" path="res://Scripts/Items/Equipment.cs" id="11_6rvsl"]
+[ext_resource type="Resource" uid="uid://ucx4gbjlxlfk" path="res://Resources/Items/Equipment/Warmth Memory.tres" id="11_7otv1"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="12_86o1t"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cd6xa"]
@@ -32,30 +31,9 @@ script = ExtResource("10_dc5yr")
 Base = ExtResource("9_hnk1l")
 Amount = 1
 
-[sub_resource type="Resource" id="Resource_aijb6"]
-script = ExtResource("10_22t73")
-Lv = 0
-MaxHP = 1
-HP = 3
-Atk = 5
-Def = 2
-SpAtk = 1
-SpDef = 3
-Speed = 6
-
-[sub_resource type="Resource" id="Resource_x20cs"]
-script = ExtResource("9_okban")
-EquipType = 0
-stats = SubResource("Resource_aijb6")
-StatChange = 2
-ID = 0
-Name = "adcv"
-Description = "fdbxvcvxbcv"
-type = 1
-
 [sub_resource type="Resource" id="Resource_gnh4x"]
 script = ExtResource("11_6rvsl")
-Base = SubResource("Resource_x20cs")
+Base = ExtResource("11_7otv1")
 Amount = 1
 
 [sub_resource type="Resource" id="Resource_ca6w2"]
@@ -68,7 +46,6 @@ DialogueTimelines = Array[String](["FirstItemNPC2", "FirstItemNPC3"])
 
 [node name="Map5" type="Node2D"]
 script = ExtResource("1_aqvd6")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -83,15 +60,15 @@ layer_1/tile_data = PackedInt32Array(-458761, 917504, 805306373, -393225, 917504
 [node name="Cams" parent="." instance=ExtResource("2_leos1")]
 
 [node name="OverworldCam" parent="Cams" index="0"]
-limit_left = -288
+limit_left = -320
 limit_top = -256
-limit_right = 288
+limit_right = 320
 limit_bottom = 160
 
 [node name="BattleCam" parent="Cams" index="1"]
-limit_left = -288
+limit_left = -320
 limit_top = -256
-limit_right = 288
+limit_right = 320
 limit_bottom = 160
 
 [node name="TileMap2" type="TileMap" parent="."]
@@ -105,7 +82,7 @@ script = ExtResource("4_vs0m1")
 position = Vector2(-24, 0)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(320, 168, -272, 168, -272, -264, -248, -264, -248, -280, -184, -280, -184, -264, -48, -264, -48, -280, 96, -280, 96, -264, 328, -264, 320, 160, 312, 160, 312, -256, 88, -256, 88, -272, -40, -272, -40, -256, -192, -256, -192, -272, -240, -272, -240, -256, -264, -256, -264, 160, 320, 160)
+polygon = PackedVector2Array(352, 168, -304, 168, -304, -264, -248, -264, -248, -280, -184, -280, -184, -264, -48, -264, -48, -280, 96, -280, 96, -264, 352, -264, 352, 160, 344, 160, 344, -256, 88, -256, 88, -272, -40, -272, -40, -256, -192, -256, -192, -272, -240, -272, -240, -256, -296, -256, -296, 160, 352, 160)
 
 [node name="Door" parent="." instance=ExtResource("6_5pxjj")]
 position = Vector2(-240, -264)
@@ -140,6 +117,7 @@ script = ExtResource("7_y5qg3")
 TakeItems = true
 ItemType = 2
 ItemsToTake = [SubResource("Resource_41uob")]
+GameID = null
 ItemID = Array[int]([0])
 Delete = null
 ItemsToGive = Array[Object]([SubResource("Resource_gnh4x")])
@@ -147,11 +125,13 @@ ItemType = 2
 TimelineGroup = Array[Object]([SubResource("Resource_ca6w2"), SubResource("Resource_u4dea")])
 TimelineGroupIndex = null
 TimelineIndex = null
+Timeline = null
 PauseWhenDialogue = true
 Turn = true
 SpokenTo = null
 FacingRight = null
 FacingDirection = null
+visualType = null
 Sprites = []
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC/CollisionShape2D"]

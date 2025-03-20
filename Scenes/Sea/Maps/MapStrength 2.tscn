@@ -118,9 +118,6 @@ shape = SubResource("RectangleShape2D_xetmd")
 [node name="Barrier" parent="." instance=ExtResource("10_bvxbb")]
 position = Vector2(0, 144)
 DisableAnimation = "WaterBarrier/Disable"
-Dialogue = ""
-CheckIntFlag = 0
-ChecksInt = false
 FlagIndex = 7
 
 [node name="Sprite2D" parent="Barrier" index="0"]
@@ -128,18 +125,6 @@ texture = ExtResource("11_364y0")
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_qpauk")
-Toggleable = false
-HasDialogue = false
-SwitchState = 0
-TimelineGroupIndex = 0
-TimelineIndex = 0
-Timeline = "Test"
-PauseWhenDialogue = false
-Turn = false
-SpokenTo = false
-FacingRight = true
-FacingDirection = Vector2(0, 0)
-visualType = 0
 
 [editable path="Cams"]
 [editable path="Borders"]

@@ -39,7 +39,7 @@ public partial class bridgeMoveTest : MoveBase
             BattleManager.instance.Scene.StartDialogue("MoveBattleTest",false,true,TimelineType.Move);
         }
         void Attack2(){
-            Users[0].Combo=2;
+            Users[0].changeCombo(2);
             Users[0].changeState(BattleCharacter.BattleState.Attacking);
             Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
             Users[0].AddAtkMultiplier(1.5f,1);

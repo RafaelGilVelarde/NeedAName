@@ -80,7 +80,7 @@ libraries = {
 }
 tree_root = SubResource("AnimationNodeStateMachine_ijhwj")
 anim_player = NodePath("..")
-parameters/conditions/Idle = false
+parameters/conditions/Idle = true
 parameters/conditions/Walking = false
 parameters/Idle/blend_position = Vector2(0, 0)
 parameters/Walking/blend_position = Vector2(0, 0)

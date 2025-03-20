@@ -20,11 +20,10 @@ size = Vector2(32, 32)
 
 [sub_resource type="Resource" id="Resource_jbkna"]
 script = ExtResource("9_2vnxr")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fp0yd")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -61,7 +60,6 @@ limit_bottom = 608
 [node name="Door" parent="." instance=ExtResource("5_uqtgd")]
 position = Vector2(32, -624)
 Scene = 1
-Area = null
 LoadPosition = Vector2(-208, 8)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -71,7 +69,6 @@ shape = SubResource("RectangleShape2D_uv7jr")
 position = Vector2(-880, 176)
 rotation = 1.5708
 Scene = 3
-Area = null
 LoadPosition = Vector2(48, -224)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]

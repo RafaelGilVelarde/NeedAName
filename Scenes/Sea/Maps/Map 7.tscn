@@ -82,7 +82,7 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
-frame = 11
+frame = 10
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
 
@@ -96,7 +96,7 @@ position = Vector2(-32, 48)
 polygon = PackedVector2Array(392, 152, 184, 152, 184, 168, -96, 168, -96, 152, -144, 152, -144, 168, -208, 168, -208, 152, -264, 152, -264, 120, -312, 120, -312, -216, -264, -216, -264, -248, -208, -248, -208, -264, -144, -264, -144, -248, -96, -248, -96, -264, 184, -264, 184, -248, 392, -248, 392, -152, 424, -152, 424, 56, 392, 56, 392, 144, 384, 144, 384, 48, 416, 48, 416, -144, 384, -144, 384, -240, 176, -240, 176, -256, -88, -256, -88, -240, -152, -240, -152, -256, -200, -256, -200, -240, -256, -240, -256, -208, -304, -208, -304, 112, -256, 112, -256, 144, -200, 144, -200, 160, -152, 160, -152, 144, -88, 144, -88, 160, 176, 160, 176, 144, 392, 144)
 
 [node name="Door" parent="." instance=ExtResource("9_gr6nm")]
-position = Vector2(-208, -200)
+position = Vector2(-208, -196)
 Scene = 2
 LoadPosition = Vector2(-80, 270)
 

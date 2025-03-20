@@ -137,11 +137,17 @@ public partial class Character : Resource
     }
     public void ShowTextLabel(string Text, Color color){
         Node2D HPLabelParent=GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
+        Debug.WriteLine("Node: "+NodeCharacter+" HP: "+HPLabelParent);
         HPLabelParent.Scale=NodeCharacter.GlobalScale;
         HPLabelParent.Rotation=NodeCharacter.GlobalRotation;
         RichTextLabel HPLabel=HPLabelParent.GetChild<RichTextLabel>(0);
         HPLabel.Text="[center]"+Text+"[/center]";
         HPLabel.AddThemeColorOverride("default_color",color);
         NodeCharacter.AddChild(HPLabelParent);
+    }
+
+    public void ResetCharacter(){
+        stats.HP = TotalStats.MaxHP;
+        stats.WP = 0;
     }
 }

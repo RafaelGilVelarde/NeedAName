@@ -1,28 +1,15 @@
-[gd_scene load_steps=12 format=3 uid="uid://ri17sbak4ubw"]
+[gd_scene load_steps=8 format=3 uid="uid://ri17sbak4ubw"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemInteract.cs" id="1_5a7r1"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="2_yfhf7"]
-[ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="3_c6ecg"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="4_bag0d"]
 [ext_resource type="Texture2D" uid="uid://48gfi8aqt1oj" path="res://Sprites/Overworld/Objects/Water/Item.png" id="5_rbqq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5ac"]
 
-[sub_resource type="Resource" id="Resource_f0yfb"]
-script = ExtResource("2_yfhf7")
-ID = 0
-Name = "???"
-Description = "Not sure what this thing is, but it feels warm"
-type = 2
-
-[sub_resource type="Resource" id="Resource_hopv3"]
-script = ExtResource("3_c6ecg")
-Base = SubResource("Resource_f0yfb")
-Amount = 1
-
 [sub_resource type="Resource" id="Resource_iwgnt"]
+resource_local_to_scene = true
 script = ExtResource("4_bag0d")
-DialogueTimelines = Array[String](["Item1"])
+DialogueTimelines = Array[String](["ItemPick"])
 
 [sub_resource type="Animation" id="Animation_os0gx"]
 length = 0.6
@@ -101,7 +88,7 @@ shape = SubResource("RectangleShape2D_nh5ac")
 script = ExtResource("1_5a7r1")
 ItemID = Array[int]([])
 Delete = true
-ItemsToGive = Array[Object]([SubResource("Resource_hopv3")])
+ItemsToGive = Array[Object]([null])
 ItemType = 1
 TimelineGroup = Array[Object]([SubResource("Resource_iwgnt")])
 PauseWhenDialogue = true

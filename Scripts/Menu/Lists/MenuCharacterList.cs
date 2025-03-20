@@ -6,12 +6,19 @@ using System.Diagnostics;
 public partial class MenuCharacterList : StuffList
 {
     [Export] public Array<MenuCharacterButtons> Buttons;
-    Array<PartyCharacters>Characters;
+    Array<PartyCharacters>Characters = new Array<PartyCharacters>();
 	[Signal]
 	public delegate void _ChangeCharacterEventHandler(Character character);
     public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
     {
-        Characters = GameManager.Instance.Data.Party;
+        Characters.Clear();
+        Array<PartyCharacters>Aux = GameManager.Instance.Data.Party;
+
+        for(int i = 0;i<Aux.Count;i++){
+            if(Aux[i].Active){
+                Characters.Add(Aux[i]);
+            }
+        }
 		pointerStart=Start;
         Fill(Start,StartEnd);
     }

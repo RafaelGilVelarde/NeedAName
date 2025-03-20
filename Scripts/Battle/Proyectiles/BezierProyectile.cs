@@ -44,6 +44,7 @@ public partial class BezierProyectile : Node2D
     public void Start(){
             ProcessMode=ProcessModeEnum.Inherit;
             Time=0;
+            Acting = true;
             CanStart=false;
     }
 }

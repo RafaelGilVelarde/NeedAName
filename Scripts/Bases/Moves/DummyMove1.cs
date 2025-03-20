@@ -27,7 +27,7 @@ public partial class DummyMove1 : MoveBase
 			Dir=Users[0].GetParent<Node2D>().Scale.Y;
 		}
 
-		Users[0].Combo=Combo2;
+		Users[0].changeCombo(Combo2);
 		Users[0]._ReturnToIdle+=idle;
 		Users[0].AddAtkMultiplier(AtkMultiplier,1);
 
@@ -54,7 +54,7 @@ public partial class DummyMove1 : MoveBase
 
 		void idle(BattleCharacter character){
 			character.battleState=BattleCharacter.BattleState.Idle;
-			Users[0].Combo=Combo1;
+			Users[0].changeCombo(Combo1);
 			Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
 			Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
 			Users[0]._ReturnToIdle-=idle;

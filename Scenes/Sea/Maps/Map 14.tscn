@@ -238,6 +238,9 @@ position = Vector2(-72, 40)
 TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
 Sprites = []
 
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 11
+
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
 

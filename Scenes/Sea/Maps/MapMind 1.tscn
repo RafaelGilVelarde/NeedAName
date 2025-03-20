@@ -200,9 +200,10 @@ limit_top = -480
 limit_right = 488
 limit_bottom = 384
 
-[node name="Puzzle" type="Node" parent="." node_paths=PackedStringArray("CurrentArray")]
+[node name="Puzzle" type="Node" parent="." node_paths=PackedStringArray("CurrentArray", "DataTileMap")]
 script = ExtResource("8_ksnfo")
-CurrentArray = []
+CurrentArray = [NodePath("Currents")]
+DataTileMap = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
 ChecksInt = null
@@ -210,11 +211,12 @@ FlagIndex = 4
 
 [node name="Currents" type="Node" parent="Puzzle" node_paths=PackedStringArray("Currents")]
 script = ExtResource("9_reetp")
-Currents = []
+Currents = [NodePath("../../TileMap2"), NodePath("../../TileMap3")]
 
-[node name="Puzzle2" type="Node" parent="." node_paths=PackedStringArray("CurrentArray")]
+[node name="Puzzle2" type="Node" parent="." node_paths=PackedStringArray("CurrentArray", "DataTileMap")]
 script = ExtResource("8_ksnfo")
-CurrentArray = []
+CurrentArray = [NodePath("Currents2")]
+DataTileMap = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
 ChecksInt = null
@@ -222,7 +224,7 @@ FlagIndex = 5
 
 [node name="Currents2" type="Node" parent="Puzzle2" node_paths=PackedStringArray("Currents")]
 script = ExtResource("9_reetp")
-Currents = []
+Currents = [NodePath("../../TileMap4"), NodePath("../../TileMap5")]
 
 [node name="Borders" parent="." instance=ExtResource("10_an2f4")]
 
@@ -232,7 +234,6 @@ polygon = PackedVector2Array(496, 424, 416, 424, 416, 392, 200, 392, 200, 424, 1
 [node name="Door" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(-480, 400)
 Scene = 25
-Area = null
 LoadPosition = Vector2(-648, 256)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -241,7 +242,6 @@ shape = SubResource("RectangleShape2D_jhfig")
 [node name="Door2" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(160, 400)
 Scene = 25
-Area = null
 LoadPosition = Vector2(-448, -464)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -250,7 +250,6 @@ shape = SubResource("RectangleShape2D_pfqy0")
 [node name="Door3" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(456, 400)
 Scene = 26
-Area = null
 LoadPosition = Vector2(-648, 304)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -259,7 +258,6 @@ shape = SubResource("RectangleShape2D_sl7rx")
 [node name="Door4" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(-680, 0)
 Scene = 17
-Area = null
 LoadPosition = Vector2(264, 0)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -268,7 +266,6 @@ shape = SubResource("RectangleShape2D_288q8")
 [node name="Door5" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(-288, 400)
 Scene = 25
-Area = null
 LoadPosition = Vector2(-648, 128)
 
 [node name="CollisionShape2D" parent="Door5" index="0"]
@@ -278,11 +275,10 @@ shape = SubResource("RectangleShape2D_vo27a")
 z_index = 1
 position = Vector2(-472, 280)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier3" node_paths=PackedStringArray("Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier3" node_paths=PackedStringArray("Check", "Sprites")]
 shape = SubResource("RectangleShape2D_bagut")
 script = ExtResource("13_bkch4")
-Toggleable = null
-CheckAtStart = null
+Check = NodePath("../PuzzleCheck")
 HasDialogue = true
 Type = null
 SwitchState = null
@@ -305,6 +301,7 @@ hframes = 2
 frame = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Barrier3"]
+visible = false
 
 [node name="Shine" type="Sprite2D" parent="Barrier3/Sprite2D"]
 texture = ExtResource("15_1dykf")
@@ -326,8 +323,10 @@ libraries = {
 }
 autoplay = "SwitchInteract/default"
 
-[node name="PuzzleCheck" type="Node" parent="Barrier3"]
+[node name="PuzzleCheck" type="Node" parent="Barrier3" node_paths=PackedStringArray("Animator", "Shape")]
 script = ExtResource("12_7nwdf")
+Animator = NodePath("../AnimationPlayer")
+Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
 CheckIntFlag = null
@@ -340,13 +339,11 @@ FlagIndex = 3
 z_index = 1
 position = Vector2(-64, -416)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier4" node_paths=PackedStringArray("Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Barrier4" node_paths=PackedStringArray("Check", "Sprites")]
 shape = SubResource("RectangleShape2D_bagut")
 script = ExtResource("13_bkch4")
-Toggleable = null
-CheckAtStart = null
+Check = NodePath("../PuzzleCheck")
 HasDialogue = true
-Type = null
 SwitchState = null
 MaxStates = 2
 TimelineGroup = Array[Object]([SubResource("Resource_7jscj")])
@@ -385,8 +382,10 @@ libraries = {
 }
 autoplay = "SwitchInteract/default"
 
-[node name="PuzzleCheck" type="Node" parent="Barrier4"]
+[node name="PuzzleCheck" type="Node" parent="Barrier4" node_paths=PackedStringArray("Animator", "Shape")]
 script = ExtResource("12_7nwdf")
+Animator = NodePath("../AnimationPlayer")
+Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
 CheckIntFlag = null
@@ -399,7 +398,10 @@ FlagIndex = 2
 visible = false
 position = Vector2(-168, 440)
 
-[node name="CollisionShape2D" parent="CurrentSwitch" index="0"]
+[node name="CollisionShape2D" parent="CurrentSwitch" index="0" node_paths=PackedStringArray("Check")]
+Check = NodePath("../../Puzzle")
+CheckAtStart = true
+Type = 0
 visualType = null
 
 [node name="Water" parent="CurrentSwitch/Sprite2D" index="0"]
@@ -412,7 +414,10 @@ frame = 0
 visible = false
 position = Vector2(-112, 440)
 
-[node name="CollisionShape2D" parent="CurrentSwitch2" index="0"]
+[node name="CollisionShape2D" parent="CurrentSwitch2" index="0" node_paths=PackedStringArray("Check")]
+Check = NodePath("../../Puzzle2")
+CheckAtStart = true
+Type = 0
 visualType = null
 
 [editable path="Cams"]

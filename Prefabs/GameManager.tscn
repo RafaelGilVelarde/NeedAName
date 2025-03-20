@@ -1,14 +1,13 @@
-[gd_scene load_steps=102 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=99 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
 [ext_resource type="Script" path="res://Scripts/GameData/Flags.cs" id="2_a7det"]
 [ext_resource type="PackedScene" uid="uid://ci40agixb3xuc" path="res://Prefabs/Characters/PartyCharacter.tscn" id="3_1w6wv"]
-[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="3_lckip"]
+[ext_resource type="Resource" uid="uid://bdntehna6nida" path="res://Resources/CharacterBases/Party Members/Water.tres" id="3_iqci3"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DummyMove1.cs" id="3_mdbab"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="3_qc7bw"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="4_0i8ni"]
-[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="4_7sjec"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="5_8m0s2"]
 [ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_wfrc5"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/PartyCharacters.cs" id="8_3wvmt"]
@@ -79,32 +78,6 @@ EventFlags = Array[bool]([false, false, false, false, false, false, false, false
 PuzzleIntFlags = Array[int]([0, 0, 0, 0, 0, 0])
 EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0])
 
-[sub_resource type="Resource" id="Resource_2dgrd"]
-script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 5
-HP = 5
-Atk = 5
-Def = 5
-SpAtk = 5
-SpDef = 5
-Speed = 5
-WP = 0
-
-[sub_resource type="Resource" id="Resource_kqupm"]
-script = ExtResource("5_wfrc5")
-PartyId = 0
-ExpSpeed = 2.0
-ExpDistance = 5.0
-BaseStats = SubResource("Resource_2dgrd")
-Name = "Player1"
-OverworldAnimator = ExtResource("4_7sjec")
-BattleAnimator = ExtResource("3_lckip")
-TextEffectColor = Color(0.188235, 0.811765, 0.305882, 1)
-Icon = ExtResource("5_8m0s2")
-OverworldOffset = Vector2(0, -18)
-BattleOffset = Vector2(0, -18)
-
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
 Lv = 0
@@ -142,12 +115,12 @@ Base = SubResource("Resource_rgtf8")
 script = ExtResource("10_dck7k")
 offset = Vector2(-15, 0)
 AtkMultiplier = 1.1
-Speed = 1.0
+Speed = 2.0
 MaxCombo = 2
 type = 0
 Power = 2
 UserAmount = 1
-TargetAmount = 0
+TargetAmount = 1
 WP = 0
 Cost = 10
 TargetsParty = false
@@ -214,7 +187,7 @@ script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 30
 PastLevelExp = 0
-Base = SubResource("Resource_kqupm")
+Base = ExtResource("3_iqci3")
 Moves = Array[Object]([SubResource("Resource_fcftr"), SubResource("Resource_m80ms")])
 items = Array[Object]([SubResource("Resource_2i4fn")])
 Equipment = Array[Object]([null, null, null, null])
@@ -323,8 +296,8 @@ script = ExtResource("16_l3pik")
 HPHeal = 5
 ItemMove = SubResource("Resource_nlgn2")
 ID = 0
-Name = "itemheal"
-Description = "xfbcv"
+Name = "Refresher"
+Description = "Vitalizes your soul! Heals 5 HP"
 type = 0
 
 [sub_resource type="Resource" id="Resource_llqed"]
@@ -349,7 +322,7 @@ resource_local_to_scene = true
 resource_name = "AAAA"
 script = ExtResource("2_1hul1")
 Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy")])
-CurrentFollowers = null
+CurrentFollowers = Array[Object]([])
 items = Array[Object]([SubResource("Resource_0f1ho"), SubResource("Resource_wiso8"), SubResource("Resource_xtejg")])
 Flags = SubResource("Resource_pgs4m")
 Scene = 0
@@ -411,6 +384,7 @@ Characters = []
 StartScene = ExtResource("44_nc1im")
 TransitionAnimator = NodePath("CanvasLayer2/TextureRect/AnimationPlayer")
 TransitionOverlay = NodePath("CanvasLayer2/TextureRect")
+TransitionColor = Color(0, 0, 0, 1)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
 visible = false

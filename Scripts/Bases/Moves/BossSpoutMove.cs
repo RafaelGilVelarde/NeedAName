@@ -16,7 +16,7 @@ public partial class BossSpoutMove : MoveBase
         
 		SceneTreeTimer timer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
    		//timer.TweenInterval(MoveTime);
-		Users[0].Combo = Combo;
+		Users[0].changeCombo(Combo);
 		Users[0].changeAction(BattleCharacter.ActionState.isAttacking);   
 		
 		Targets[0].Controllable=true;                      

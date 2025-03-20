@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://bqg4cb27njwuj"]
+[gd_scene load_steps=19 format=3 uid="uid://bqg4cb27njwuj"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_1u4e7"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_8xq5f"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Maps/Water/FirstScene.cs" id="1_edh4q"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_1nb3s"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_7fohy"]
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_ajnuj"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_jp614"]
+[ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="7_k6qj3"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Utilities/HealInteract.cs" id="8_6sn7h"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="9_txaf5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_33xxx"]
 resource_local_to_scene = true
@@ -19,9 +22,37 @@ size = Vector2(192, 16)
 resource_local_to_scene = true
 size = Vector2(128, 16)
 
+[sub_resource type="Resource" id="Resource_uplwv"]
+script = ExtResource("9_txaf5")
+DialogueTimelines = Array[String](["Heal"])
+
+[sub_resource type="Gradient" id="Gradient_hcrw8"]
+colors = PackedColorArray(0, 0.898039, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_626tx"]
+gradient = SubResource("Gradient_hcrw8")
+
+[sub_resource type="Curve" id="Curve_13gdo"]
+max_value = 3.0
+_data = [Vector2(0.00842696, 2.95733), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.125, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_snuc8"]
+curve = SubResource("Curve_13gdo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqduc"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector3(0, -98, 0)
+scale_max = 1.45
+scale_curve = SubResource("CurveTexture_snuc8")
+color_ramp = SubResource("GradientTexture1D_626tx")
+
 [node name="Map6" type="Node2D"]
-script = ExtResource("1_8xq5f")
-TransitionColor = null
+script = ExtResource("1_edh4q")
+Timeline = "Explanation"
+EventFlag = 2
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -56,7 +87,6 @@ script = ExtResource("4_ajnuj")
 [node name="Door" parent="." instance=ExtResource("5_jp614")]
 position = Vector2(0, 184)
 Scene = 11
-Area = null
 LoadPosition = Vector2(0, -180)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -65,7 +95,6 @@ shape = SubResource("RectangleShape2D_33xxx")
 [node name="Door2" parent="." instance=ExtResource("5_jp614")]
 position = Vector2(0, -192)
 Scene = 1
-Area = null
 LoadPosition = Vector2(-160, 585)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -75,13 +104,28 @@ shape = SubResource("RectangleShape2D_kfnjs")
 position = Vector2(328, 0)
 rotation = 1.5708
 Scene = 6
-Area = null
 LoadPosition = Vector2(-260, 0)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_v7v4t")
 
+[node name="NPC" parent="." instance=ExtResource("7_k6qj3")]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
+script = ExtResource("8_6sn7h")
+TimelineGroup = Array[Object]([SubResource("Resource_uplwv")])
+Sprites = []
+
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 9
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="NPC"]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_gqduc")
+
 [editable path="Cams"]
 [editable path="Door"]
 [editable path="Door2"]
 [editable path="Door3"]
+[editable path="NPC"]

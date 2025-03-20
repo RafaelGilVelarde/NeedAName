@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://c1ctnjer4e83g"]
+[gd_scene load_steps=25 format=3 uid="uid://c1ctnjer4e83g"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_wl176"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_xmny8"]
@@ -14,8 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://ckwqsf11orow2" path="res://Prefabs/Animators/NPCs/Water/Mollusk.tscn" id="10_6wuln"]
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="10_xpfnf"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_anry4"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/EquipmentBase.cs" id="12_n64f0"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="13_kxlhn"]
+[ext_resource type="Resource" uid="uid://b0u10v1376rb0" path="res://Resources/Items/Equipment/Loud Memory.tres" id="12_ds34p"]
 [ext_resource type="Script" path="res://Scripts/Items/Equipment.cs" id="14_08h8k"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pixk1"]
@@ -39,30 +38,9 @@ script = ExtResource("10_xpfnf")
 Base = ExtResource("10_4bh6t")
 Amount = 1
 
-[sub_resource type="Resource" id="Resource_0w6sl"]
-script = ExtResource("13_kxlhn")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-
-[sub_resource type="Resource" id="Resource_22n1l"]
-script = ExtResource("12_n64f0")
-EquipType = 0
-stats = SubResource("Resource_0w6sl")
-StatChange = 0
-ID = 0
-Name = ""
-Description = ""
-type = 0
-
 [sub_resource type="Resource" id="Resource_ef2pa"]
 script = ExtResource("14_08h8k")
-Base = SubResource("Resource_22n1l")
+Base = ExtResource("12_ds34p")
 Amount = 1
 
 [sub_resource type="Resource" id="Resource_ygo20"]
@@ -75,7 +53,6 @@ DialogueTimelines = Array[String](["SecondItemNPC3", "SecondItemNPC4"])
 
 [node name="Map10" type="Node2D"]
 script = ExtResource("1_wl176")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -121,7 +98,6 @@ polygon = PackedVector2Array(384, 248, -112, 248, -112, 216, -272, 216, -272, 15
 [node name="Door" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 16)
 Scene = 8
-Area = null
 LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -130,7 +106,6 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door2" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 48)
 Scene = 8
-Area = null
 LoadPosition = Vector2(260, 48)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -139,7 +114,6 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door3" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, -16)
 Scene = 8
-Area = null
 LoadPosition = null
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -148,7 +122,6 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door4" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-96, 208)
 Scene = 10
-Area = null
 LoadPosition = Vector2(-96, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -157,7 +130,6 @@ shape = SubResource("RectangleShape2D_bokbe")
 [node name="Door5" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-16, 208)
 Scene = 10
-Area = null
 LoadPosition = Vector2(32, -170)
 
 [node name="CollisionShape2D" parent="Door5" index="0"]
@@ -167,7 +139,6 @@ shape = SubResource("RectangleShape2D_lj6rx")
 [node name="Door6" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(128, 208)
 Scene = 10
-Area = null
 LoadPosition = Vector2(240, -170)
 
 [node name="CollisionShape2D" parent="Door6" index="0"]
@@ -195,7 +166,7 @@ visualType = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("9_8yric")
-frame = 9
+frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0"]
 process_mode = 4

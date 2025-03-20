@@ -121,8 +121,6 @@ FlagIndex = 8
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_jqjrs")
-CheckAtStart = null
-Type = null
 
 [editable path="Cams"]
 [editable path="Borders"]

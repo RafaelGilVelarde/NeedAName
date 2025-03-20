@@ -1,9 +1,9 @@
 using Godot;
+using Godot.Collections;
 using System;
-using System.Collections.Generic;
 public static class Directions
 {
-    public static List<Vector2> directions = new List<Vector2>
+    public static Array<Vector2> directions = new Array<Vector2>
     {
         new Vector2(0,1),
         new Vector2(-1,1).Normalized(),

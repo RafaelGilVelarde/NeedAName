@@ -129,8 +129,7 @@ public partial class BattleCharacter : CharacterBody2D
     }
     public override void _Process(double delta)
 	{
-		AnimatorTree.Set("parameters/ActionState/blend_position",(int)actionState);
-		AnimatorTree.Set("parameters/ActionState/0/0/blend_position",Combo);
+
 
 
 
@@ -139,6 +138,7 @@ public partial class BattleCharacter : CharacterBody2D
 
 		AnimatorPlayer.Play("RESET");
 		actionState=state;
+		AnimatorTree.Set("parameters/ActionState/blend_position",(int)actionState);
 	}
 	public void changeState(BattleState state){
 		if(Character.isControlledByPlayer && (int)state<3){
@@ -147,6 +147,10 @@ public partial class BattleCharacter : CharacterBody2D
 		AnimatorPlayer.Play("RESET");
 		StateParticles.EmitParticles(state);
 		battleState=state;
+	}
+	public void changeCombo(int combo){
+		Combo = combo;
+		AnimatorTree.Set("parameters/ActionState/0/0/blend_position",Combo);
 	}
 	public void UseMove(Moves move){
 		for (int i=0;i<Character.Equipment.Count;i++){
@@ -231,7 +235,7 @@ public partial class BattleCharacter : CharacterBody2D
 		Looping=false;
 		ReturnToIdle();
 		HideChangeHPBar();
-		Combo=1;
+		changeCombo(1);
 		Controllable=false;
 		BlockedEnemy=false;
 		Hitbox.GetChild<CollisionShape2D>(0).Disabled=true;
@@ -485,8 +489,10 @@ public partial class BattleCharacter : CharacterBody2D
 		ProcessMode=ProcessModeEnum.Inherit;
 		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
 		Show();
+		AnimatorTree.Active=false;
 		AnimatorTree.Active=true;
 		HPBar.MaxValue = Character.TotalStats.MaxHP;
+		Reset();
 		Character._GetHit+=GetHit;
 		Character._ChangeHP+=ShowChangeHPBar;
 		Character._Die+=Die;
@@ -511,10 +517,10 @@ public partial class BattleCharacter : CharacterBody2D
 		Overworld.BattleEnd();
 	}
 	public void SetOffsets(){
-		HPBar.Position += Character.Base.BattleOffset;
+		HPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
 		if(Character.isControlledByPlayer){
-			EXPBar.Position += Character.Base.BattleOffset;
-			WPBar.Position += Character.Base.BattleOffset;
+			EXPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
+			WPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
 		}
 	}
 }

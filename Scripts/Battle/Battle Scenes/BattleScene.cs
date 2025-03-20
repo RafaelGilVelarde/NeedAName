@@ -28,16 +28,8 @@ public partial class BattleScene : Resource
     public virtual void StartRoundEffect(){
 
     }
-    public virtual void StartTurnEffect(bool first){
-        /*if(first==true){
-            Stats stats=BattleManager.instance.EnemyParty[0].Character.stats;
-            if(stats.MaxHP>stats.HP &&!DialogueFlag){
-                Battle.CanStartTurn=false;
-                Dialog.DialogicRoot.Connect("signal_event",endDialogue);
-                DialogueFlag=true;
-                Dialog.StartDialogue("BattleTest",false);
-            }
-        }*/
+    public virtual void StartTurnEffect(){
+
     }
     public virtual void EndBattleEffect(){
 
@@ -183,12 +175,13 @@ public partial class BattleScene : Resource
     }
     public virtual void EndDialogue(){
         //if(argument=="End"){
+        Debug.WriteLine("Ended dialogue, type: "+timelineType);
         switch (timelineType){
             case TimelineType.StartTurn:
                 Battle.CanStartTurn=true;
                 SceneTreeTimer timer = Battle.GetTree().CreateTimer(0.2);
                 timer.Timeout+=()=>
-                Battle.StartTurn(false);
+                Battle.StartTurn();
             break;
             case TimelineType.Move:
             break;

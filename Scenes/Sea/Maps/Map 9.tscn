@@ -59,7 +59,6 @@ polygon = PackedVector2Array(328, 176, -104, 176, -104, 152, -392, 152, -392, -2
 [node name="Door" parent="." instance=ExtResource("6_n6g4c")]
 position = Vector2(48, 208)
 Scene = 7
-Area = null
 LoadPosition = Vector2(16, -176)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -68,7 +67,6 @@ shape = SubResource("RectangleShape2D_hqmw6")
 [node name="Door2" parent="." instance=ExtResource("6_n6g4c")]
 position = Vector2(304, 112)
 Scene = 9
-Area = null
 LoadPosition = Vector2(-260, 80)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -78,7 +76,6 @@ shape = SubResource("RectangleShape2D_hqmw6")
 position = Vector2(304, 32)
 rotation = 1.5708
 Scene = 9
-Area = null
 LoadPosition = Vector2(-260, 48)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -88,7 +85,6 @@ shape = SubResource("RectangleShape2D_7vj0h")
 [node name="Door4" parent="." instance=ExtResource("6_n6g4c")]
 position = Vector2(304, -48)
 Scene = 9
-Area = null
 LoadPosition = Vector2(-260, -48)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]

@@ -53,7 +53,10 @@ variables={
 "Lvl": 0
 },
 "Characters": {
-"Name": ""
+"CharName": ""
+},
+"Items": {
+"ItemName": "aaa"
 }
 }
 translation/enabled=true
@@ -72,14 +75,18 @@ directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
 "Boss": "res://Dialogues/NPC Dialogue/Water/Boss.dtl",
 "Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"Explanation": "res://Dialogues/Scene Dialogue/Water/Explanation.dtl",
 "FirstBattle": "res://Dialogues/Scene Dialogue/FirstBattle.dtl",
 "FirstItemNPC1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1.dtl",
 "FirstItemNPC1-1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1-1.dtl",
 "FirstItemNPC2": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC2.dtl",
 "FirstItemNPC3": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC3.dtl",
 "FirstScene": "res://Dialogues/Scene Dialogue/FirstScene.dtl",
+"Heal": "res://Dialogues/Heal.dtl",
 "IntroCutscene": "res://Dialogues/Scene Dialogue/IntroCutscene.dtl",
 "Item1": "res://Dialogues/Item Obtained/Water/Item1.dtl",
+"ItemPick": "res://Dialogues/ItemPick.dtl",
+"Miniboss1": "res://Dialogues/NPC Dialogue/Water/Miniboss1.dtl",
 "MoveBattleTest": "res://Dialogues/MoveBattleTest.dtl",
 "NPC1": "res://Dialogues/NPC Dialogue/Water/NPC1.dtl",
 "NPC2": "res://Dialogues/NPC Dialogue/Water/NPC2.dtl",

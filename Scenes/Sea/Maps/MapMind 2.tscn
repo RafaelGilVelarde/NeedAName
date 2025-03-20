@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://c8k72xwhwmiww"]
+[gd_scene load_steps=26 format=3 uid="uid://c8k72xwhwmiww"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_bub72"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_pibpq"]
@@ -13,6 +13,8 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="10_28yqc"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="11_ayp8n"]
 [ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="12_wban4"]
+[ext_resource type="Resource" uid="uid://du1fel58q8in6" path="res://Resources/Items/Equipment/Rest Memory.tres" id="14_6yvjd"]
+[ext_resource type="Script" path="res://Scripts/Items/Equipment.cs" id="15_typ2r"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kj6p5"]
 frequency = 0.016
@@ -58,6 +60,11 @@ size = Vector2(64, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_y5565"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
+
+[sub_resource type="Resource" id="Resource_wwek3"]
+script = ExtResource("15_typ2r")
+Base = ExtResource("14_6yvjd")
+Amount = 1
 
 [node name="MapMind1" type="Node2D"]
 script = ExtResource("1_pibpq")
@@ -159,32 +166,39 @@ limit_top = -480
 limit_right = 488
 limit_bottom = 384
 
-[node name="Puzzle" type="Node" parent="." node_paths=PackedStringArray("CurrentArray")]
+[node name="Puzzle" type="Node" parent="." node_paths=PackedStringArray("CurrentArray", "DataTileMap")]
 script = ExtResource("7_3ukjg")
-CurrentArray = []
+CurrentArray = [NodePath("Currents")]
+DataTileMap = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
+ChecksInt = null
 FlagIndex = 4
 
 [node name="Currents" type="Node" parent="Puzzle" node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_xvc4f")
-Currents = []
+Currents = [NodePath("../../TileMap3"), NodePath("../../TileMap4")]
 
-[node name="Puzzle2" type="Node" parent="." node_paths=PackedStringArray("CurrentArray")]
+[node name="Puzzle2" type="Node" parent="." node_paths=PackedStringArray("CurrentArray", "DataTileMap")]
 script = ExtResource("7_3ukjg")
-CurrentArray = []
+CurrentArray = [NodePath("Currents2")]
+DataTileMap = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
+ChecksInt = null
 FlagIndex = 5
 
 [node name="Currents2" type="Node" parent="Puzzle2" node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_xvc4f")
-Currents = []
+Currents = [NodePath("../../TileMap5"), NodePath("../../TileMap6")]
 
 [node name="CurrentSwitch" parent="." instance=ExtResource("9_4ehok")]
 position = Vector2(96, 152)
 
-[node name="CollisionShape2D" parent="CurrentSwitch" index="0"]
+[node name="CollisionShape2D" parent="CurrentSwitch" index="0" node_paths=PackedStringArray("Check")]
+Check = NodePath("../../Puzzle")
+CheckAtStart = true
+Type = 0
 Colors = Array[Color]([Color(4, 0, 1, 1), Color(0.513726, 0.101961, 0.976471, 1)])
 
 [node name="Borders" parent="." instance=ExtResource("10_28yqc")]
@@ -228,14 +242,25 @@ shape = SubResource("RectangleShape2D_y5565")
 visible = false
 position = Vector2(-112, 440)
 
-[node name="CollisionShape2D" parent="CurrentSwitch3" index="0"]
-visualType = 0
+[node name="CollisionShape2D" parent="CurrentSwitch3" index="0" node_paths=PackedStringArray("Check")]
+Check = NodePath("../../Puzzle2")
+CheckAtStart = true
+Type = 0
+visualType = null
 
 [node name="ItemPickup" parent="." instance=ExtResource("12_wban4")]
 position = Vector2(-552, 48)
 
 [node name="ItemInteract" parent="ItemPickup" index="0"]
 GameID = 4
+ItemsToGive = Array[Object]([SubResource("Resource_wwek3")])
+TimelineGroupIndex = null
+TimelineIndex = null
+Timeline = null
+Turn = null
+SpokenTo = null
+FacingRight = null
+FacingDirection = null
 
 [node name="Sprite2D" parent="ItemPickup/ItemInteract" index="0"]
 frame = 2

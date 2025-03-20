@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://wc85fh7e4de1"]
+[gd_scene load_steps=14 format=3 uid="uid://wc85fh7e4de1"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_i8qnd"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_xlri6"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="6_4yr0v"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="8_76hql"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="8_v2oit"]
+[ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="10_2dpo3"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekbt3"]
 resource_local_to_scene = true
@@ -20,11 +21,10 @@ size = Vector2(32, 32)
 
 [sub_resource type="Resource" id="Resource_5jyyo"]
 script = ExtResource("8_76hql")
-Timeline = ""
+Timeline = "FirstBattle"
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xlri6")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -64,7 +64,6 @@ limit_bottom = 800
 visible = false
 position = Vector2(-240, 176)
 Scene = 7
-Area = null
 LoadPosition = Vector2(80, 144)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -74,7 +73,6 @@ shape = SubResource("RectangleShape2D_ekbt3")
 visible = false
 position = Vector2(112, 784)
 Scene = 14
-Area = null
 LoadPosition = Vector2(144, -48)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -107,6 +105,9 @@ position = Vector2(272, 464)
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
 polygon = PackedVector2Array(272, -16, -8, -16, -8, 40, 272, 40)
+
+[node name="ItemPickup" parent="." instance=ExtResource("10_2dpo3")]
+position = Vector2(592, 224)
 
 [editable path="Cams"]
 [editable path="Door3"]

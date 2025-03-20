@@ -33,7 +33,7 @@ public partial class DumySpinMove : MoveBase
 		}
 		Spin=new Vector2(Spin.X*Dir,1);
 
-		Users[0].Combo=Combo;
+		Users[0].changeCombo(Combo);
 		Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
 		Targets[0].Controllable=true;
 		Targets[0].changeState(BattleCharacter.BattleState.Defending);

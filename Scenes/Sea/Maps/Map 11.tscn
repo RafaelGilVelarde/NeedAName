@@ -18,7 +18,6 @@ size = Vector2(48, 32)
 
 [node name="Map11" type="Node2D"]
 script = ExtResource("1_38o62")
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -60,8 +59,7 @@ polygon = PackedVector2Array(400, 168, 336, 168, 336, 192, 272, 192, 272, 168, -
 [node name="Door" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(32, -208)
 Scene = 9
-Area = null
-LoadPosition = Vector2(-16, 160)
+LoadPosition = Vector2(-16.04, 160)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 shape = SubResource("RectangleShape2D_7cdga")
@@ -69,8 +67,7 @@ shape = SubResource("RectangleShape2D_7cdga")
 [node name="Door2" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(240, -208)
 Scene = 9
-Area = null
-LoadPosition = Vector2(128, 160)
+LoadPosition = Vector2(-16.04, 160)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_ygbyy")
@@ -78,8 +75,7 @@ shape = SubResource("RectangleShape2D_ygbyy")
 [node name="Door3" parent="." instance=ExtResource("6_3ix2o")]
 position = Vector2(240, 208)
 Scene = 15
-Area = null
-LoadPosition = Vector2(176, -108)
+LoadPosition = Vector2(-16.04, -108)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_ygbyy")

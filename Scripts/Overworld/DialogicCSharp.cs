@@ -101,5 +101,10 @@ public partial class DialogicCSharp : Node
         }
         
     }
-
+    public void SetVariable(string VariableName,string Folder,Variant Value){
+        Node Var = (Node)DialogicRoot.Get("VAR");
+        GodotObject Aux = (GodotObject)Var.Get(Folder);
+        Aux.Set(VariableName,Value);
+        Debug.WriteLine("Var: "+Aux.Get(VariableName));
+    }
 }

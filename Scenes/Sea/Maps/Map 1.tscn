@@ -112,7 +112,6 @@ size = Vector2(122, 16)
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_6p3ko")
 Timeline = "FirstScene"
-TransitionColor = null
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -149,7 +148,6 @@ limit_bottom = 256
 [node name="Door" parent="." instance=ExtResource("5_7evjy")]
 position = Vector2(64, 264)
 Scene = 2
-Area = null
 LoadPosition = Vector2(248, -200)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -159,7 +157,6 @@ shape = SubResource("RectangleShape2D_jgifx")
 position = Vector2(-328, 0)
 rotation = 1.5708
 Scene = 1
-Area = null
 LoadPosition = Vector2(360, -104)
 
 [editable path="Cams"]
