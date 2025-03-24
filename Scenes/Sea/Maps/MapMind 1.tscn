@@ -298,23 +298,21 @@ Sprites = []
 [node name="Sprite" type="Sprite2D" parent="Barrier3"]
 texture = ExtResource("14_wl6wv")
 hframes = 2
-frame = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="Barrier3"]
-visible = false
 
 [node name="Shine" type="Sprite2D" parent="Barrier3/Sprite2D"]
 texture = ExtResource("15_1dykf")
 hframes = 4
 vframes = 3
-frame = 2
+frame = 9
 
 [node name="Water" type="Sprite2D" parent="Barrier3/Sprite2D"]
 modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("16_4i2g4")
 hframes = 5
 vframes = 4
-frame = 2
+frame = 11
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier3"]
 libraries = {

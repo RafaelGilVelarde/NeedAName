@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=100 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -58,6 +58,7 @@
 [ext_resource type="PackedScene" uid="uid://c8k72xwhwmiww" path="res://Scenes/Sea/Maps/MapMind 2.tscn" id="45_hqcvo"]
 [ext_resource type="PackedScene" uid="uid://bytcgbwfd3p41" path="res://Scenes/Sea/Maps/MapMind 3.tscn" id="46_1hs07"]
 [ext_resource type="PackedScene" uid="uid://dbs7iqu5fr21p" path="res://Scenes/Sea/Maps/Boss.tscn" id="47_v5box"]
+[ext_resource type="PackedScene" uid="uid://dmlfsxsfwb2ft" path="res://Scenes/Sea/Maps/DummyWinScreen.tscn" id="48_8s7ty"]
 [ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuItemList.cs" id="48_8uklt"]
 [ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuEquipmentList.cs" id="48_cq2x1"]
 [ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuKeyButton.cs" id="48_mm0p2"]
@@ -72,11 +73,11 @@
 [sub_resource type="Resource" id="Resource_pgs4m"]
 resource_local_to_scene = true
 script = ExtResource("2_a7det")
-ItemGiven = Array[bool]([false, false, false, false, false])
-PuzzleFlags = Array[bool]([false, false, false, false, false, false, false, false])
+ItemGiven = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
+PuzzleFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
 EventFlags = Array[bool]([false, false, false, false, false, false, false, false])
-PuzzleIntFlags = Array[int]([0, 0, 0, 0, 0, 0])
-EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0])
+PuzzleIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
@@ -333,7 +334,7 @@ PhysicsLayer = 1
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
-maps = Array[PackedScene]([ExtResource("13_m4cj7"), ExtResource("14_vfydq"), ExtResource("15_dn5o8"), ExtResource("16_fcc8q"), ExtResource("17_n77r6"), ExtResource("18_r5qh0"), ExtResource("19_36hit"), ExtResource("20_livod"), ExtResource("21_7ndos"), ExtResource("22_kd36x"), ExtResource("23_8ie6e"), ExtResource("24_hw1ek"), ExtResource("25_o7ox6"), ExtResource("26_0jbi8"), ExtResource("27_w55j7"), ExtResource("28_edpib"), ExtResource("29_i1r84"), ExtResource("30_0v354"), ExtResource("31_02ap6"), ExtResource("32_0lxxl"), ExtResource("33_7xd5i"), ExtResource("41_w7evb"), ExtResource("42_felnt"), ExtResource("43_raokn"), ExtResource("44_bhvmm"), ExtResource("45_hqcvo"), ExtResource("46_1hs07"), ExtResource("47_v5box")])
+maps = Array[PackedScene]([ExtResource("13_m4cj7"), ExtResource("14_vfydq"), ExtResource("15_dn5o8"), ExtResource("16_fcc8q"), ExtResource("17_n77r6"), ExtResource("18_r5qh0"), ExtResource("19_36hit"), ExtResource("20_livod"), ExtResource("21_7ndos"), ExtResource("22_kd36x"), ExtResource("23_8ie6e"), ExtResource("24_hw1ek"), ExtResource("25_o7ox6"), ExtResource("26_0jbi8"), ExtResource("27_w55j7"), ExtResource("28_edpib"), ExtResource("29_i1r84"), ExtResource("30_0v354"), ExtResource("31_02ap6"), ExtResource("32_0lxxl"), ExtResource("33_7xd5i"), ExtResource("41_w7evb"), ExtResource("42_felnt"), ExtResource("43_raokn"), ExtResource("44_bhvmm"), ExtResource("45_hqcvo"), ExtResource("46_1hs07"), ExtResource("47_v5box"), ExtResource("48_8s7ty")])
 
 [sub_resource type="Animation" id="Animation_ea2p4"]
 length = 0.001

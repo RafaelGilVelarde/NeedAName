@@ -72,7 +72,7 @@ visualType = null
 Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 9
+frame = 11
 
 [node name="TileMap2" type="TileMap" parent="NPC"]
 visible = false
@@ -97,7 +97,9 @@ polygon = PackedVector2Array(408, 192, -248, 192, -248, 40, -296, 40, -296, -24,
 
 [node name="Door" parent="." instance=ExtResource("8_15hoo")]
 position = Vector2(-312, 16)
+collision_layer = 2
 Scene = 15
+PlayerZIndex = 1
 LoadPosition = Vector2(368, 16)
 
 [node name="CollisionShape2D" parent="Door" index="0"]

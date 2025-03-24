@@ -8,7 +8,7 @@ public partial class MenuCharacterChooseList : StuffList
 {
     [Export] public Array<MenuCharacterButtons> Buttons;
     [Export] Color FocusOff, FocusOn;
-    Array<PartyCharacters>Characters;
+    Array<PartyCharacters>Characters = new Array<PartyCharacters>();
     int CurrentPointer;
     public override void _Ready()
     {
@@ -22,7 +22,14 @@ public partial class MenuCharacterChooseList : StuffList
     }
     public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
     {        
-        Characters = GameManager.Instance.Data.Party;
+        Characters.Clear();
+        Array<PartyCharacters>Aux = GameManager.Instance.Data.Party;
+
+        for(int i = 0;i<Aux.Count;i++){
+            if(Aux[i].Active){
+                Characters.Add(Aux[i]);
+            }
+        }
 		pointerStart=Start;
 
 		if(StartEnd!=ScrollList.StartEnd.Regular){

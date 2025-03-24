@@ -34,7 +34,7 @@ public partial class DumyBeamMove : MoveBase
 		
 		Line2D Line=LineShoot.Instantiate<Line2D>();
 		RayHitbox Ray= (RayHitbox)Line.GetChild(0);
-		Ray.AddExceptions(new Array<CollisionObject2D>{Users[0].Hurtbox,Users[0].Hitbox,Users[0].Blockbox,Targets[0].Hitbox});
+		Ray.AddExceptions(new Array<CollisionObject2D>{Users[0].Hurtbox,Users[0].Hitbox,Users[0].Blockbox,Targets[0].Hitbox,Targets[0].WPbox});
 		Ray.AddToGroup(Tag);
 		Users[0]._Shoot+=shoot;
 		Ray._Hit+=onHit;
@@ -52,7 +52,7 @@ public partial class DumyBeamMove : MoveBase
 			Line.GlobalPosition=User.ShootNode.GlobalPosition;
 			Line.ClearPoints();
 			Line.AddPoint(Vector2.Zero);
-			Line.AddPoint(new Vector2(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X+Dir*10,0));
+			Line.AddPoint(new Vector2(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X+Dir*20,0));
 			User.GetTree().CurrentScene.AddChild(Line);
 			User._Shoot-=shoot;
 		}

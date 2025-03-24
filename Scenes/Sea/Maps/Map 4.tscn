@@ -91,7 +91,9 @@ polygon = PackedVector2Array(40, 8, 40, -8, -24, -8, -24, 8)
 
 [node name="Door" parent="." instance=ExtResource("7_vlvwc")]
 position = Vector2(-168, 392)
+collision_layer = 2
 Scene = 4
+PlayerZIndex = 1
 LoadPosition = Vector2(-240, -230)
 
 [node name="CollisionShape2D" parent="Door" index="0"]

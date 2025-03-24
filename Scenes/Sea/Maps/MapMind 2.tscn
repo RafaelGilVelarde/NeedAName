@@ -252,7 +252,7 @@ visualType = null
 position = Vector2(-552, 48)
 
 [node name="ItemInteract" parent="ItemPickup" index="0"]
-GameID = 4
+GameID = 5
 ItemsToGive = Array[Object]([SubResource("Resource_wwek3")])
 TimelineGroupIndex = null
 TimelineIndex = null

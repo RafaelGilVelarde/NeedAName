@@ -43,7 +43,7 @@ public partial class DumyShootMove : MoveBase
         Timer timer = new Timer
         {
             OneShot = true,
-            WaitTime = Timer2
+            WaitTime = MoveTime-0.5
         };
         timer.Timeout+=End;
 		Users[0].GetTree().CurrentScene.AddChild(timer);

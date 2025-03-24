@@ -25,9 +25,11 @@ public partial class CharacterButtons : Control
 		BattleManager.instance.CurrentCharacterButton=this;
 		Character.MainSprite.Modulate=Colors.IndianRed;
 		Character.ShowChangeHPBar(Character.Character.stats.HP);
+		Character.ShowStatsMods();
 	}
 	void OnFocusExited(){
 		Character.MainSprite.Modulate=Colors.White;
 		Character.HideChangeHPBar();
+		Character.HideStatsMods();
 	}
 }

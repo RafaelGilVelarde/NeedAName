@@ -239,7 +239,7 @@ TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
 Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
+frame = 10
 
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
@@ -293,7 +293,9 @@ shape = SubResource("RectangleShape2D_uownf")
 
 [node name="Door3" parent="." instance=ExtResource("8_gkpdk")]
 position = Vector2(-208, 208)
+collision_layer = 2
 Scene = 18
+PlayerZIndex = 1
 LoadPosition = Vector2(-208, -170)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

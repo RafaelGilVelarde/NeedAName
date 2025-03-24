@@ -19,7 +19,7 @@ public partial class OverworldController : Node2D
     	[Export] public int AxisOffset;
 
 	[Export]public  Vector2 Axis=Vector2.Zero, AxisAux;
-	[Export] protected bool Controllable = true;
+	[Export] protected bool Controllable = true, OffsetsSet;
 	public Vector2 FacingDirection{get;protected set;}
 	[Export]protected Vector2I Coords;
     	[Export] public BattleCharacter BattleCharacter;
@@ -29,6 +29,7 @@ public partial class OverworldController : Node2D
 		if(AnimatorTree == null){
 			SetAnimators();
 		}
+		SetOffsets();
 
 
     }
@@ -52,7 +53,11 @@ public partial class OverworldController : Node2D
 
 	}
 	public void SetOffsets(){
-		MainSprite.Position += BattleCharacter.Character.Base.OverworldOffset;
+		if(!OffsetsSet){
+			MainSprite.Position += BattleCharacter.Character.Base.OverworldOffset;
+			OffsetsSet = true;
+		}
+		
 	}
 	public void TweenMovement(Vector2 Position, float Duration){
 		SetControllable	(false);

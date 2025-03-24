@@ -254,7 +254,7 @@ MiniProyectile = ExtResource("2_imbc3")
 Proyectiles = []
 ProyMax = 4
 Intervals = Array[float]([0.0, 0.0])
-Limits = Array[float]([0.5, 0.5])
+Limits = Array[float]([0.5, 1.0])
 
 [node name="Area2D" type="Area2D" parent="."]
 script = ExtResource("2_4dyhw")
@@ -267,7 +267,7 @@ texture_filter = 1
 texture = ExtResource("3_dyhxw")
 hframes = 4
 vframes = 4
-frame = 4
+frame = 6
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

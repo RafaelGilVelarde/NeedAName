@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddxto1kpe6l18"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Utilities/HealInteract.cs" id="1_asxtu"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="2_e07kg"]
+[ext_resource type="Texture2D" uid="uid://ct32indgttmby" path="res://Sprites/Overworld/NPCs/plankton.png" id="3_w32nq"]
+[ext_resource type="PackedScene" uid="uid://duas732nrxldm" path="res://Prefabs/Animators/NPCs/Water/Plankton.tscn" id="4_4njn2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
+
+[sub_resource type="Resource" id="Resource_uplwv"]
+script = ExtResource("2_e07kg")
+DialogueTimelines = Array[String](["Heal"])
+
+[sub_resource type="Gradient" id="Gradient_hcrw8"]
+colors = PackedColorArray(0, 0.898039, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_626tx"]
+gradient = SubResource("Gradient_hcrw8")
+
+[sub_resource type="Curve" id="Curve_13gdo"]
+max_value = 3.0
+_data = [Vector2(0.00842696, 2.95733), 0.0, 0.0, 0, 0, Vector2(1, 0), -14.125, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_snuc8"]
+curve = SubResource("Curve_13gdo")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_gqduc"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 30.0
+gravity = Vector3(0, -98, 0)
+scale_max = 1.45
+scale_curve = SubResource("CurveTexture_snuc8")
+color_ramp = SubResource("GradientTexture1D_626tx")
+
+[node name="Heal" type="StaticBody2D" groups=["Interactable"]]
+position = Vector2(0, 32)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Sprites")]
+shape = SubResource("RectangleShape2D_e7ixu")
+script = ExtResource("1_asxtu")
+TimelineGroup = Array[Object]([SubResource("Resource_uplwv")])
+PauseWhenDialogue = true
+Turn = true
+Sprites = []
+
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+texture = ExtResource("3_w32nq")
+hframes = 4
+vframes = 3
+frame = 8
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/NPCs",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "CollisionShape2D/Sprite2D/AnimationPlayer",
+"source": "res://Aseprites/Characters/Overworld/NPCs/Isopod.aseprite"
+}
+
+[node name="AnimationPlayer" parent="CollisionShape2D/Sprite2D" instance=ExtResource("4_4njn2")]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 12
+process_material = SubResource("ParticleProcessMaterial_gqduc")

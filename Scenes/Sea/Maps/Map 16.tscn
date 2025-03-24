@@ -107,7 +107,9 @@ shape = SubResource("RectangleShape2D_78wiy")
 
 [node name="Door2" parent="." instance=ExtResource("6_su068")]
 position = Vector2(176, -144)
+collision_layer = 2
 Scene = 10
+PlayerZIndex = 1
 LoadPosition = Vector2(240, 168)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -116,7 +118,9 @@ shape = SubResource("RectangleShape2D_wwdn1")
 [node name="Door3" parent="." instance=ExtResource("6_su068")]
 position = Vector2(400, 16)
 rotation = 1.5708
+collision_layer = 2
 Scene = 16
+PlayerZIndex = 1
 LoadPosition = Vector2(-260, 16)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]

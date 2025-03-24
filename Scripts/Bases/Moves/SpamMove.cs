@@ -50,7 +50,7 @@ public partial class SpamMove : MoveBase
         }   
 
 
-        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime,true,true,true);
+        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.5,true,true,true);
         Timer.Timeout+=End;
 
         float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);

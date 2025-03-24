@@ -234,6 +234,8 @@ public partial class BattleManager : Node
 			if(Party.Contains(CurrentCharacter)){
 				CurrentCharacter.ShowChangeHPBar(CurrentCharacter.Character.stats.HP);
 				CurrentCharacter.ShowChangeWPBar(CurrentCharacter.Character.stats.WP,false);
+				
+				CurrentCharacter.ShowStatsMods();
 			}
 		}
 		Debug.WriteLine("Can Start Turn: "+CanStartTurn);
@@ -326,11 +328,13 @@ public partial class BattleManager : Node
 			MoveCharacters(tween,Party[i],EndPosition,(float)PositionMoveSpeed);				
 			Party[i].AnimatorTree.Set("parameters/conditions/Ended",true);
 			Party[i].HideChangeHPBar();
+			Party[i].HideStatsMods();
 			Party[i].HideChangeWPBar();
 			Party[i].Character.stats.WP = 0;
 		}
 		for(int i=0;i<EnemyParty.Count;i++){
 			EnemyParty[i].HideChangeHPBar();
+			EnemyParty[i].HideStatsMods();
 		}		
 		if(EnemyParty[0].Character.status!=Character.Status.KO){
 			//MoveCharacters(tween,EnemyParty[0],EnemyEndPosition,(float)PositionMoveSpeed);				

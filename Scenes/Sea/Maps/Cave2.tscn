@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://wc85fh7e4de1"]
+[gd_scene load_steps=17 format=3 uid="uid://wc85fh7e4de1"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_i8qnd"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_xlri6"]
@@ -10,6 +10,8 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="8_76hql"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="8_v2oit"]
 [ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="10_2dpo3"]
+[ext_resource type="Resource" uid="uid://ccbpggt45xqro" path="res://Resources/Items/Consumable/Refresher.tres" id="11_og0cg"]
+[ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="12_sbnd0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ekbt3"]
 resource_local_to_scene = true
@@ -22,6 +24,11 @@ size = Vector2(32, 32)
 [sub_resource type="Resource" id="Resource_5jyyo"]
 script = ExtResource("8_76hql")
 Timeline = "FirstBattle"
+
+[sub_resource type="Resource" id="Resource_wdukf"]
+script = ExtResource("12_sbnd0")
+Base = ExtResource("11_og0cg")
+Amount = 1
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_xlri6")
@@ -109,8 +116,13 @@ polygon = PackedVector2Array(272, -16, -8, -16, -8, 40, 272, 40)
 [node name="ItemPickup" parent="." instance=ExtResource("10_2dpo3")]
 position = Vector2(592, 224)
 
+[node name="ItemInteract" parent="ItemPickup" index="0"]
+GameID = 4
+ItemsToGive = Array[Object]([SubResource("Resource_wdukf")])
+
 [editable path="Cams"]
 [editable path="Door3"]
 [editable path="Door4"]
 [editable path="Area2D"]
 [editable path="Area2D2"]
+[editable path="ItemPickup"]

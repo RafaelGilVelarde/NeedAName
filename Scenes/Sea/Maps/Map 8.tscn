@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://3kixx2q8tusp"]
+[gd_scene load_steps=12 format=3 uid="uid://3kixx2q8tusp"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_4hdn2"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_jv7g5"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_m0stu"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="5_uxd1c"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="6_ixm3s"]
+[ext_resource type="PackedScene" uid="uid://0227y1s8gwy7" path="res://Prefabs/Overworld/Events/BaseEventArea.tscn" id="8_ajh4c"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bo8k"]
 resource_local_to_scene = true
@@ -134,6 +135,12 @@ LoadPosition = Vector2(-200, 176)
 [node name="CollisionShape2D" parent="Door9" index="0"]
 shape = SubResource("RectangleShape2D_svfa1")
 
+[node name="Area2D" parent="." instance=ExtResource("8_ajh4c")]
+position = Vector2(-104, -56)
+
+[node name="CollisionPolygon2D" parent="Area2D" index="0"]
+polygon = PackedVector2Array(-96, 16, -96, 224, -184, 224, -184, 240, -72, 240, -72, 0, -184, 0, -184, 16)
+
 [editable path="Cams"]
 [editable path="Borders"]
 [editable path="Door"]
@@ -145,3 +152,4 @@ shape = SubResource("RectangleShape2D_svfa1")
 [editable path="Door7"]
 [editable path="Door8"]
 [editable path="Door9"]
+[editable path="Area2D"]

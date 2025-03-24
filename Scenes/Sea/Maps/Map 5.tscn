@@ -86,8 +86,9 @@ polygon = PackedVector2Array(352, 168, -304, 168, -304, -264, -248, -264, -248, 
 
 [node name="Door" parent="." instance=ExtResource("6_5pxjj")]
 position = Vector2(-240, -264)
+collision_layer = 2
 Scene = 3
-Area = null
+PlayerZIndex = 1
 LoadPosition = Vector2(-168, 360)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -96,7 +97,6 @@ shape = SubResource("RectangleShape2D_cd6xa")
 [node name="Door2" parent="." instance=ExtResource("6_5pxjj")]
 position = Vector2(0, -264)
 Scene = 3
-Area = null
 LoadPosition = Vector2(136, 360)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -117,14 +117,12 @@ script = ExtResource("7_y5qg3")
 TakeItems = true
 ItemType = 2
 ItemsToTake = [SubResource("Resource_41uob")]
-GameID = null
+GameID = 1
 ItemID = Array[int]([0])
 Delete = null
 ItemsToGive = Array[Object]([SubResource("Resource_gnh4x")])
 ItemType = 2
 TimelineGroup = Array[Object]([SubResource("Resource_ca6w2"), SubResource("Resource_u4dea")])
-TimelineGroupIndex = null
-TimelineIndex = null
 Timeline = null
 PauseWhenDialogue = true
 Turn = true

@@ -4,7 +4,7 @@ using System.Diagnostics;
 
 public partial class Door : Area2D
 {
-    [Export] int Scene;
+    [Export] int Scene, PlayerZIndex;
     [Export] Areas Area;
     [Export] Vector2 LoadPosition;
     public override void _Ready()
@@ -15,8 +15,9 @@ public partial class Door : Area2D
     {
 
         if(body.IsInGroup("PlayerOverworldController")){
-            SetDeferred("monitoring",false);
-            GameManager.Instance.CallDeferred("SwitchScene",Scene, (int)Area, LoadPosition);
+            /*SetDeferred("monitoring",false);
+            GameManager.Instance.CallDeferred("SwitchScene",Scene, (int)Area, LoadPosition);*/
+            CallDeferred("GoThroughDoor");
         }
     }
     	private async void ActorSetup()
@@ -24,5 +25,10 @@ public partial class Door : Area2D
         await ToSignal(GetTree().CreateTimer(0.1f,true),"timeout");
         BodyEntered+=OnCollisionEntered;        
     }
-	
+	void GoThroughDoor(){
+        Monitoring = false;
+        GameManager.Instance.SetLayers(PlayerZIndex,CollisionLayer);
+        GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition);
+
+    }
 }

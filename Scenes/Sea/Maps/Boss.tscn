@@ -1,4 +1,4 @@
-[gd_scene load_steps=94 format=3 uid="uid://dbs7iqu5fr21p"]
+[gd_scene load_steps=99 format=3 uid="uid://dbs7iqu5fr21p"]
 
 [ext_resource type="Texture2D" uid="uid://cyd8rk3jjitin" path="res://Sprites/Background/Side View/Boss Arena 1 Ground.png" id="1_q1sx7"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t3ogn"]
@@ -31,8 +31,10 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="27_hafdj"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyShootMove.cs" id="27_om6rh"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="28_t57oh"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="29_1p83n"]
 [ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="29_6dhwp"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="29_63fyv"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="34_wr8hh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k84y4"]
 size = Vector2(1592, 48)
@@ -228,9 +230,6 @@ animation = &"Attack2"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6w0ti"]
 animation = &"Attack3"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uhjyy"]
-animation = &"Attack4"
-
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ptcog"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_0guv5")
 blend_point_0/pos = 1.0
@@ -238,10 +237,8 @@ blend_point_1/node = SubResource("AnimationNodeAnimation_sr70r")
 blend_point_1/pos = 2.0
 blend_point_2/node = SubResource("AnimationNodeAnimation_6w0ti")
 blend_point_2/pos = 3.0
-blend_point_3/node = SubResource("AnimationNodeAnimation_uhjyy")
-blend_point_3/pos = 4.0
 min_space = 0.0
-max_space = 4.0
+max_space = 3.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3ab7"]
@@ -253,6 +250,9 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83yyf"]
 animation = &"Die"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mpdyy"]
+animation = &"Attack4"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hojxb"]
 blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_ptcog")
 blend_point_0/pos = 0.0
@@ -262,8 +262,10 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_q0j88")
 blend_point_2/pos = 5.0
 blend_point_3/node = SubResource("AnimationNodeAnimation_83yyf")
 blend_point_3/pos = 6.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_mpdyy")
+blend_point_4/pos = 7.0
 min_space = 0.0
-max_space = 6.0
+max_space = 7.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_126af"]
@@ -281,7 +283,7 @@ Lv = 1
 MaxHP = 40
 HP = 10
 Atk = 2
-Def = 7
+Def = 3
 SpAtk = 2
 SpDef = 1
 Speed = 3
@@ -345,7 +347,7 @@ WP = 2
 Cost = 0
 TargetsParty = false
 Name = "spout1"
-MoveTime = 2.5
+MoveTime = 3.5
 
 [sub_resource type="Resource" id="Resource_xvxfu"]
 script = ExtResource("21_8a1uq")
@@ -375,7 +377,7 @@ Base = SubResource("Resource_4jt63")
 script = ExtResource("27_om6rh")
 Speed = 2.0
 Middle = 2.0
-Timer2 = 5.0
+Timer2 = 7.0
 Height = 50.0
 Combo = 2
 Tag = "EnemyHitbox"
@@ -389,11 +391,42 @@ WP = 1
 Cost = 0
 TargetsParty = false
 Name = "aaa"
-MoveTime = 5.0
+MoveTime = 7.0
 
 [sub_resource type="Resource" id="Resource_cu4sm"]
 script = ExtResource("21_8a1uq")
 Base = SubResource("Resource_mwkff")
+
+[sub_resource type="Resource" id="Resource_72lul"]
+script = ExtResource("29_1p83n")
+AtkTime = 3
+DefTime = 0
+SpAtkTime = 0
+SpDefTime = 0
+SpeedTime = 0
+AtkMult = 1.5
+DefMult = 0.0
+SpAtkMult = 0.0
+SpDefMult = 0.0
+SpeedMult = 0.0
+Atk = true
+Def = false
+Spatk = false
+Spdef = false
+Speed = false
+type = 0
+Power = 0
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = true
+Name = "Ed"
+MoveTime = 2.5
+
+[sub_resource type="Resource" id="Resource_q5c5c"]
+script = ExtResource("21_8a1uq")
+Base = SubResource("Resource_72lul")
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("16_q3s3b")
@@ -423,7 +456,7 @@ WP = 0
 resource_local_to_scene = true
 script = ExtResource("22_dy6wk")
 Base = SubResource("Resource_n0kjw")
-Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_xvxfu"), SubResource("Resource_a4tlc"), SubResource("Resource_cu4sm")])
+Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_xvxfu"), SubResource("Resource_a4tlc"), SubResource("Resource_cu4sm"), SubResource("Resource_q5c5c")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
 stats = SubResource("Resource_0ckdn")
@@ -524,6 +557,10 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tosun"]
 bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_airv7"]
+resource_local_to_scene = true
+size = Vector2(38, 16)
+
 [node name="Node2D" type="Node2D"]
 position = Vector2(0, 3)
 script = ExtResource("1_t3ogn")
@@ -558,13 +595,11 @@ visible = false
 z_index = 2
 position = Vector2(0, 203)
 shape = SubResource("RectangleShape2D_k84y4")
-disabled = true
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 z_index = 2
 position = Vector2(0, 129)
 shape = SubResource("RectangleShape2D_wjpro")
-disabled = true
 
 [node name="Ground" type="Node2D" parent="."]
 position = Vector2(-360, 112)
@@ -739,7 +774,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 7
 vframes = 7
-frame = 3
+frame = 6
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -845,7 +880,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 7
 vframes = 7
-frame = 35
+frame = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -974,6 +1009,15 @@ process_mode = 3
 
 [node name="AnimationTree" parent="Character/BattleCharacter/AnimationPlayer" index="0"]
 parameters/ActionState/blend_position = 3.20733
+
+[node name="Door" type="Area2D" parent="."]
+position = Vector2(269, 170)
+script = ExtResource("34_wr8hh")
+Scene = 28
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
+position = Vector2(1, 0)
+shape = SubResource("RectangleShape2D_airv7")
 
 [editable path="Cams"]
 [editable path="Character/BattleCharacter/AnimationPlayer"]

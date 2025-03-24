@@ -97,7 +97,7 @@ FacingDirection = null
 Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
+frame = 10
 
 [node name="Door" parent="." instance=ExtResource("6_222lk")]
 position = Vector2(392, -104)
@@ -157,6 +157,7 @@ detectArea = NodePath("../Area2D2")
 position = Vector2(288, 496)
 
 [node name="ItemInteract" parent="ItemPickup" index="0"]
+GameID = 3
 ItemsToGive = Array[Object]([SubResource("Resource_c4sed")])
 TimelineGroup = Array[Object]([SubResource("Resource_xmjlp")])
 

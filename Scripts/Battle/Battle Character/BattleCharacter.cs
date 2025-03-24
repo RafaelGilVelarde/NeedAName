@@ -35,6 +35,8 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] RichTextLabel HPText, NameText, WPText;
 	[Export] public Consumables CurrentItem;
 	[Export] public ProgressBar HPBar, EXPBar, WPBar, WPAuxBar;
+	[Export] HBoxContainer StatMods;
+	[Export] Array<RichTextLabel> StatModTimers = new Array<RichTextLabel>();
 
 
 	[Signal]
@@ -62,7 +64,8 @@ public partial class BattleCharacter : CharacterBody2D
 		isHit,
 		isBlocked,
 		isIdle,
-		isDead
+		isDead,
+		isStatus
 	}
 	[Export]public BattleState battleState;
 	[Export]public ActionState actionState;
@@ -72,6 +75,12 @@ public partial class BattleCharacter : CharacterBody2D
 		HPText = HPBar.GetChild<RichTextLabel>(0);
 		NameText = HPBar.GetChild<RichTextLabel>(1);
 		WPText = WPBar?.GetChild<RichTextLabel>(1);
+
+		for (int i = 0;i<StatMods.GetChildCount();i++){
+			Node Aux = StatMods.GetChild(i);
+			StatModTimers.Add((RichTextLabel)Aux.GetChild(1));
+
+		}
 	}
     public override void _Input(InputEvent @event)
     {
@@ -167,6 +176,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 		for(int i=0;i<BattleManager.instance.TurnOrder.Count;i++){
 			BattleManager.instance.TurnOrder[i].HideChangeHPBar();
+			BattleManager.instance.TurnOrder[i].HideStatsMods();
 		}
 		if(Character.isControlledByPlayer){
 			Character.ChangeWP(-move.Base.Cost);
@@ -235,6 +245,7 @@ public partial class BattleCharacter : CharacterBody2D
 		Looping=false;
 		ReturnToIdle();
 		HideChangeHPBar();
+		HideStatsMods();
 		changeCombo(1);
 		Controllable=false;
 		BlockedEnemy=false;
@@ -339,25 +350,116 @@ public partial class BattleCharacter : CharacterBody2D
 		Tween tween = CreateTween();
 		tween.TweenProperty(EXPBar,"modulate:a",0,0.2f);
 	}
+	public void ShowStatsMods(){
+		Tween tween = CreateTween();
+		tween.TweenProperty(StatMods,"modulate:a",1,0.3f).SetEase(Tween.EaseType.InOut);		
+		tween.Finished+=tween.Kill;
+	}
+	public void HideStatsMods(){
+		Tween tween = CreateTween();
+		tween.TweenProperty(StatMods,"modulate:a",0,0.3f).SetEase(Tween.EaseType.InOut);		
+		tween.Finished+=tween.Kill;
+	}
+	
 	public void AddAtkMultiplier(float Multiplier, int Timer){
 		MultiplierAtk.Add(Multiplier);
 		TimerAtk.Add(Timer);
+
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int i = 1;i<TimerAtk.Count;i++){
+			if(MultiplierAtk[i]>0){
+				Aux+=TimerAtk[i];
+			}
+			else{
+				AuxNeg+=TimerAtk[i];
+			}
+		}
+		StatModTimers[0].Text = $"[center]{Aux}[/center]";
+		StatModTimers[4].Text = $"[center]{AuxNeg}[/center]";
+
+		StatMods.GetChild(0).GetChild<Control>(0).Visible = true;
+		StatMods.GetChild(5).GetChild<Control>(0).Visible = true;
 	}
 	public void AddDefMultiplier(float Multiplier, int Timer){
 		MultiplierDef.Add(Multiplier);
 		TimerDef.Add(Timer);
+
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int i = 1;i<TimerDef.Count;i++){
+			if(MultiplierDef[i]>0){
+				Aux+=TimerDef[i];
+			}
+			else{
+				AuxNeg+=TimerDef[i];
+			}
+		}
+		StatModTimers[1].Text = $"[center]{Aux}[/center]";
+		StatModTimers[5].Text = $"[center]{AuxNeg}[/center]";
+		
+		StatMods.GetChild(1).GetChild<Control>(0).Visible = true;
+		StatMods.GetChild(6).GetChild<Control>(0).Visible = true;
 	}
 	public void AddSpAtkMultiplier(float Multiplier, int Timer){
 		MultiplierSpAtk.Add(Multiplier);
 		TimerSpAtk.Add(Timer);
+
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int i = 1;i<TimerSpAtk.Count;i++){
+			if(MultiplierSpAtk[i]>0){
+				Aux+=TimerSpAtk[i];
+			}
+			else{
+				AuxNeg+=TimerSpAtk[i];
+			}
+		}
+		StatModTimers[2].Text = $"[center]{Aux}[/center]";
+		StatModTimers[6].Text = $"[center]{AuxNeg}[/center]";
+		
+		StatMods.GetChild(2).GetChild<Control>(0).Visible = true;
+		StatMods.GetChild(7).GetChild<Control>(0).Visible = true;
 	}
 	public void AddSpDefMultiplier(float Multiplier, int Timer){
 		MultiplierSpDef.Add(Multiplier);
 		TimerSpDef.Add(Timer);
+
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int i = 1;i<TimerSpDef.Count;i++){
+			if(MultiplierSpDef[i]>0){
+				Aux+=TimerSpDef[i];
+			}
+			else{
+				AuxNeg+=TimerSpDef[i];
+			}
+		}
+		StatModTimers[3].Text = $"[center]{Aux}[/center]";
+		StatModTimers[7].Text = $"[center]{AuxNeg}[/center]";
+		
+		StatMods.GetChild(3).GetChild<Control>(0).Visible = true;
+		StatMods.GetChild(8).GetChild<Control>(0).Visible = true;
 	}
 	public void AddSpeedMultiplier(float Multiplier, int Timer){
 		MultiplierSpeed.Add(Multiplier);
 		TimerSpeed.Add(Timer);
+
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int i = 1;i<TimerSpeed.Count;i++){
+			if(MultiplierSpeed[i]>0){
+				Aux+=TimerSpeed[i];
+			}
+			else{
+				AuxNeg+=TimerSpeed[i];
+			}
+		}
+		StatModTimers[4].Text = $"[center]{Aux}[/center]";
+		StatModTimers[8].Text = $"[center]{AuxNeg}[/center]";
+		
+		StatMods.GetChild(4).GetChild<Control>(0).Visible = true;
+		StatMods.GetChild(9).GetChild<Control>(0).Visible = true;
 	}
 
 
@@ -409,30 +511,131 @@ public partial class BattleCharacter : CharacterBody2D
 				Atk.Add(i);
 			}
 		}
+		
+		int Aux = 0;
+		int AuxNeg = 0;
+		for(int j = 1;j<TimerAtk.Count;j++){
+			if(MultiplierAtk[j]>0){
+				Aux+=TimerAtk[j];
+			}
+			else{
+				AuxNeg+=TimerAtk[j];
+			}
+		}
+		StatModTimers[0].Text = $"[center]{Aux}[/center]";
+		StatModTimers[4].Text = $"[center]{AuxNeg}[/center]";
+		if(Aux == 0){
+			StatMods.GetChild(0).GetChild<Control>(0).Visible = false;
+		}
+		if(AuxNeg == 0){
+			StatMods.GetChild(5).GetChild<Control>(0).Visible = false;
+		}
+
+
 		for(int i=1;i<MultiplierDef.Count;i++){
 			TimerDef[i]--;
 			if(TimerDef[i]<=0){
 				Def.Add(i);
 			}
 		}
+
+		Aux = 0;
+		AuxNeg = 0;
+		for(int i = 1;i<TimerDef.Count;i++){
+			if(MultiplierDef[i]>0){
+				Aux+=TimerDef[i];
+			}
+			else{
+				AuxNeg+=TimerDef[i];
+			}
+		}
+		StatModTimers[1].Text = $"[center]{Aux}[/center]";
+		StatModTimers[5].Text = $"[center]{AuxNeg}[/center]";
+		if(Aux == 0){
+			StatMods.GetChild(1).GetChild<Control>(0).Visible = false;
+		}
+		if(AuxNeg == 0){
+			StatMods.GetChild(6).GetChild<Control>(0).Visible = false;
+		}
+
 		for(int i=1;i<MultiplierSpAtk.Count;i++){
 			TimerSpAtk[i]--;
 			if(TimerSpAtk[i]<=0){
 				SpAtk.Add(i);
 			}
 		}
+		
+		Aux = 0;
+		AuxNeg = 0;
+		for(int i = 1;i<TimerSpAtk.Count;i++){
+			if(MultiplierSpAtk[i]>0){
+				Aux+=TimerSpAtk[i];
+			}
+			else{
+				AuxNeg+=TimerSpAtk[i];
+			}
+		}
+		StatModTimers[2].Text = $"[center]{Aux}[/center]";
+		StatModTimers[6].Text = $"[center]{AuxNeg}[/center]";
+		if(Aux == 0){
+			StatMods.GetChild(2).GetChild<Control>(0).Visible = false;
+		}
+		if(AuxNeg == 0){
+			StatMods.GetChild(7).GetChild<Control>(0).Visible = false;
+		}
+
 		for(int i=1;i<MultiplierSpDef.Count;i++){
 			TimerSpDef[i]--;
 			if(TimerSpDef[i]<=0){
 				SpDef.Add(i);
 			}
 		}
+
+		Aux = 0;
+		AuxNeg = 0;
+		for(int i = 1;i<TimerSpDef.Count;i++){
+			if(MultiplierSpDef[i]>0){
+				Aux+=TimerSpDef[i];
+			}
+			else{
+				AuxNeg+=TimerSpDef[i];
+			}
+		}
+		StatModTimers[3].Text = $"[center]{Aux}[/center]";
+		StatModTimers[7].Text = $"[center]{AuxNeg}[/center]";
+		if(Aux == 0){
+			StatMods.GetChild(3).GetChild<Control>(0).Visible = false;
+		}
+		if(AuxNeg == 0){
+			StatMods.GetChild(8).GetChild<Control>(0).Visible = false;
+		}
+
 		for(int i=1;i<MultiplierSpeed.Count;i++){
 			TimerSpeed[i]--;
 			if(TimerSpeed[i]<=0){
 				Speed.Add(i);
 			}
 		}
+
+		Aux = 0;
+		AuxNeg = 0;
+		for(int i = 1;i<TimerSpeed.Count;i++){
+			if(MultiplierSpeed[i]>0){
+				Aux+=TimerSpeed[i];
+			}
+			else{
+				AuxNeg+=TimerSpeed[i];
+			}
+		}
+		StatModTimers[4].Text = $"[center]{Aux}[/center]";
+		StatModTimers[8].Text = $"[center]{AuxNeg}[/center]";
+		if(Aux == 0){
+			StatMods.GetChild(4).GetChild<Control>(0).Visible = false;
+		}
+		if(AuxNeg == 0){
+			StatMods.GetChild(9).GetChild<Control>(0).Visible = false;
+		}
+
 
 		for(int i=1;i<Atk.Count;i++){
 			TimerAtk.RemoveAt(Atk[i]);

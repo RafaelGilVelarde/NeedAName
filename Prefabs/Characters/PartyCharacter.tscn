@@ -1,4 +1,4 @@
-[gd_scene load_steps=142 format=3 uid="uid://ci40agixb3xuc"]
+[gd_scene load_steps=144 format=3 uid="uid://ci40agixb3xuc"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_kj4rx"]
@@ -9,7 +9,9 @@
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
 [ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="9_p6osb"]
 [ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="10_0c27x"]
+[ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="11_ng2px"]
 [ext_resource type="Texture2D" uid="uid://dnq7v2srfl0ii" path="res://Sprites/Battle/Party/Menu/_Run.png" id="11_tow1y"]
+[ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="12_ufa0r"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nva1"]
 radius = 12.0
@@ -1562,6 +1564,7 @@ shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 
 [node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
+visible = false
 script = ExtResource("1_yneer")
 InteractCollider = NodePath("InteractionCollider")
 tileTypes = null
@@ -1611,9 +1614,8 @@ shape = SubResource("RectangleShape2D_dwf8m")
 [node name="TileCollider" type="Node2D" parent="OverworldController"]
 position = Vector2(0, -16)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods")]
 process_mode = 4
-visible = false
 script = ExtResource("4_6l7n6")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
@@ -1653,6 +1655,7 @@ HPBar = NodePath("HPBarParent/HPBar")
 EXPBar = NodePath("EXPParent/Exp")
 WPBar = NodePath("WPParent/WP")
 WPAuxBar = NodePath("WPParent/WP/WP2")
+StatMods = NodePath("Node2D/HBoxContainer")
 battleState = 3
 actionState = 5
 
@@ -1698,7 +1701,7 @@ position = Vector2(0, -18)
 texture = SubResource("CompressedTexture2D_lpari")
 hframes = 9
 vframes = 8
-frame = 44
+frame = 12
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1716,6 +1719,7 @@ texture_filter = 1
 texture = SubResource("CompressedTexture2D_wm40p")
 hframes = 5
 vframes = 5
+frame = 9
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Arm",
@@ -2082,3 +2086,293 @@ theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
 text = "[center]50[/center]"
 scroll_active = false
+
+[node name="Node2D" type="Node2D" parent="BattleCharacter"]
+position = Vector2(-20, 0)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleCharacter/Node2D"]
+modulate = Color(1, 1, 1, 0)
+offset_left = -28.0
+offset_right = 68.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_ng2px")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Atk[/center]"
+
+[node name="TextureRect2" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_ng2px")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Def[/center]"
+
+[node name="TextureRect3" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_ng2px")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpA[/center]"
+
+[node name="TextureRect4" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_ng2px")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpD[/center]"
+
+[node name="TextureRect5" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("11_ng2px")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Spe[/center]"
+
+[node name="TextureRect6" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_ufa0r")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Atk[/center]"
+
+[node name="TextureRect7" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_ufa0r")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Def[/center]"
+
+[node name="TextureRect8" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_ufa0r")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpA[/center]"
+
+[node name="TextureRect9" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_ufa0r")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpD[/center]"
+
+[node name="TextureRect10" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("12_ufa0r")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Spe[/center]"

@@ -28,7 +28,7 @@ public partial class EnemyCharacterBase : CharacterBase
         }
         else{
             for(int i=0;i<move.Base.TargetAmount;i++){
-                BattleCharacter target=BattleCharacter.ThisParty[(int)RNG.RandiRange(0,BattleCharacter.ThisParty.Count-1)];
+                BattleCharacter target=BattleCharacter.ThisParty[RNG.RandiRange(0,BattleCharacter.ThisParty.Count-1)];
                 if(!BattleManager.instance.TargetCharacters.Contains(target)){
                     BattleManager.instance.TargetCharacters.Add(target);
                 }

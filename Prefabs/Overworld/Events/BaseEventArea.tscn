@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://0227y1s8gwy7"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Events/BaseEventCollision.cs" id="1_hdpsh"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="2_npv4p"]
+
+[sub_resource type="Resource" id="Resource_a1vbn"]
+script = ExtResource("2_npv4p")
+DialogueTimelines = Array[String](["Explanation"])
+
+[node name="Area2D" type="Area2D"]
+position = Vector2(8, -112)
+script = ExtResource("1_hdpsh")
+BoolIndex = 2
+Timelines = Array[Object]([SubResource("Resource_a1vbn")])
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(64, 72, 64, 160, -104, 160, -104, 176, 88, 176, 88, 48, -104, 48, -104, 72)

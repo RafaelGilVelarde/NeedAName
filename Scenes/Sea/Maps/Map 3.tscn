@@ -72,7 +72,6 @@ limit_bottom = 288
 [node name="Door" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(256, -232)
 Scene = null
-Area = null
 LoadPosition = Vector2(64, 230)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -82,7 +81,6 @@ shape = SubResource("RectangleShape2D_ib5bx")
 position = Vector2(456, -160)
 rotation = 1.5708
 Scene = 7
-Area = null
 LoadPosition = Vector2(-270, 64)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -91,14 +89,14 @@ shape = SubResource("RectangleShape2D_qxnxw")
 
 [node name="Door3" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(-80, 296)
+collision_layer = 2
 Scene = 6
-Area = null
+PlayerZIndex = 1
 LoadPosition = Vector2(-208, -170)
 
 [node name="Door4" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(176, 296)
 Scene = 6
-Area = null
 LoadPosition = Vector2(8, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
@@ -122,7 +120,6 @@ position = Vector2(-112, -80)
 scale = Vector2(0.66, 0.66)
 
 [node name="ItemInteract" parent="StaticBody2D" index="0"]
-GameID = 2
 ItemsToGive = Array[Object]([SubResource("Resource_yem0c")])
 TimelineGroup = Array[Object]([SubResource("Resource_2ayp2")])
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=3 uid="uid://diax6anske1aq"]
+[gd_scene load_steps=90 format=3 uid="uid://diax6anske1aq"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_1sxgf"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="2_5jb0c"]
@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="8_gcp8u"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="9_p6pto"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_a7ye7"]
+[ext_resource type="Texture2D" uid="uid://cdyxokug6bwun" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam3.png" id="11_0iesd"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="12_ergl3"]
 [ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="13_qtclx"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_sb8f5"]
@@ -251,7 +252,7 @@ Active = true
 Key = 0
 status = 0
 
-[sub_resource type="Resource" id="Resource_jipoy"]
+[sub_resource type="Resource" id="Resource_73e44"]
 script = ExtResource("14_tvs0c")
 Lv = 0
 MaxHP = 0
@@ -271,7 +272,7 @@ Base = ExtResource("18_8ut63")
 script = ExtResource("15_rohhr")
 Base = ExtResource("19_b0a5q")
 
-[sub_resource type="Resource" id="Resource_m514q"]
+[sub_resource type="Resource" id="Resource_giru3"]
 script = ExtResource("14_tvs0c")
 Lv = 0
 MaxHP = 0
@@ -283,7 +284,7 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_xiqsc"]
+[sub_resource type="Resource" id="Resource_w3u0g"]
 script = ExtResource("14_tvs0c")
 Lv = 5
 MaxHP = 20
@@ -302,9 +303,9 @@ Base = ExtResource("17_0vd2s")
 Moves = Array[Object]([SubResource("Resource_wexec"), SubResource("Resource_xpw4f")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_xiqsc")
-EquipStats = SubResource("Resource_jipoy")
-TotalStats = SubResource("Resource_m514q")
+stats = SubResource("Resource_w3u0g")
+EquipStats = SubResource("Resource_73e44")
+TotalStats = SubResource("Resource_giru3")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -326,7 +327,7 @@ size = Vector2(46.475, 59)
 offsets = PackedFloat32Array(0.338028, 1)
 colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
 
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0pj2p"]
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_u7722"]
 gradient = SubResource("Gradient_ea8j0")
 
 [sub_resource type="Curve" id="Curve_ww72p"]
@@ -335,14 +336,14 @@ max_value = 50.0
 _data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_uatdi"]
+[sub_resource type="CurveTexture" id="CurveTexture_gvv44"]
 curve = SubResource("Curve_ww72p")
 
 [sub_resource type="Curve" id="Curve_8h853"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984456, 0.326316), 0.0, 0.0, 0, 0]
 point_count = 2
 
-[sub_resource type="CurveTexture" id="CurveTexture_4u1mo"]
+[sub_resource type="CurveTexture" id="CurveTexture_msaur"]
 curve = SubResource("Curve_8h853")
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfo7d"]
@@ -355,10 +356,10 @@ initial_velocity_min = 10.0
 initial_velocity_max = 87.81
 gravity = Vector3(0, -98, 0)
 linear_accel_max = 11.21
-linear_accel_curve = SubResource("CurveTexture_uatdi")
+linear_accel_curve = SubResource("CurveTexture_gvv44")
 scale_max = 15.63
-scale_curve = SubResource("CurveTexture_4u1mo")
-color_ramp = SubResource("GradientTexture1D_0pj2p")
+scale_curve = SubResource("CurveTexture_msaur")
+color_ramp = SubResource("GradientTexture1D_u7722")
 
 [sub_resource type="Gradient" id="Gradient_p8sqr"]
 offsets = PackedFloat32Array(0, 0.673267, 1)
@@ -445,7 +446,7 @@ texture = ExtResource("8_e5agl")
 [node name="Borders" parent="." instance=ExtResource("8_gcp8u")]
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(328, 184, 40, 184, 40, 216, -40, 216, -40, 184, -328, 184, -328, -184, -40, -184, -40, -216, 40, -216, 40, -184, 328, -184, 328, 176, 320, 176, 320, -176, 32, -176, 32, -208, -32, -208, -32, -176, -320, -176, -320, 176, -32, 176, -32, 208, 32, 208, 32, 176, 328, 176)
+polygon = PackedVector2Array(328, 184, 40, 184, 40, 216, -40, 216, -40, 184, -328, 184, -328, -184, -40, -184, -24, -184, 24, -184, 40, -184, 328, -184, 328, 176, 320, 176, 320, -176, 32, -176, 24, -176, -24, -176, -32, -176, -320, -176, -320, 176, -32, 176, -32, 208, 32, 208, 32, 176, 328, 176)
 
 [node name="Door" parent="." instance=ExtResource("9_p6pto")]
 position = Vector2(0, -192)
@@ -471,6 +472,9 @@ Dialogue = ""
 CheckIntFlag = 0
 ChecksInt = false
 FlagIndex = 6
+
+[node name="Sprite2D" parent="Barrier" index="0"]
+texture = ExtResource("11_0iesd")
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_cpwlj")
@@ -515,7 +519,6 @@ OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = []
 PositionList = []
 AuxPositionList = []
-Axis = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="Character/OverworldController"]
