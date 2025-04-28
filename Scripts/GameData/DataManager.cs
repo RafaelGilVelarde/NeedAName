@@ -6,7 +6,7 @@ using System;
 public partial class DataManager : Resource
 {
 	[Export]public Array<PartyCharacters> Party;
-	[Export]public Array<Character> CurrentFollowers;
+	[Export]public Array<Character> CurrentFollowers, AllFollwers;
 	[Export]public Array<TypedItemList> items;
 	[Export]public Flags Flags;
 	[Export] public int Scene, AreaIndex;

@@ -10,6 +10,7 @@ public partial class ItemCheckInteract : ItemInteract
 
     Array<Items> Aux = new Array<Items>();
     Array<int> AuxAmount = new Array<int>();
+    [Export] Array<CheckValueTimeline> CheckValues;
     [Export]Array<Items> ItemsToTake = new Array<Items>();
 
     public override void interact(OverworldController Player)
@@ -19,7 +20,7 @@ public partial class ItemCheckInteract : ItemInteract
             bool Check = false;
             int aux = 0;
             Array<TypedItemList> ItemList = GameManager.Instance.Data.items;
-            Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
+            //Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
 
             for (int i = 0;i<ItemsToTake.Count;i++){
                 for(int j=0;j<ItemList.Count;j++){
@@ -36,7 +37,10 @@ public partial class ItemCheckInteract : ItemInteract
             if(aux==ItemsToTake.Count){
                 Check = true;
             }
-            if(Check || ItemGiven[GameID]){
+            for(int i = 0;i<CheckValues.Count;i++){
+                TimelineGroupIndex = CheckValues[i].GetTimeline(TimelineGroupIndex);
+            }
+            if(Check /*|| ItemGiven[GameID]*/){
                 TimelineGroupIndex = 1;
             }
 

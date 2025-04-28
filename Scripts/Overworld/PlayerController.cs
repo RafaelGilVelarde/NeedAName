@@ -57,10 +57,10 @@ public partial class PlayerController : OverworldController
     public override void _Process(double delta)
     {
 		PlayAnimations(Axis);
-		if(Controllable){
 			if(Axis!=Vector2.Zero){
 				FacingDirection=Axis;
 			}
+		if(Controllable){
 			AxisAux = Axis;
 			if(Axis.X*Axis.Y!=0){
 				AxisAux = new Vector2(Axis.X,0);

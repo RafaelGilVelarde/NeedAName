@@ -18,18 +18,21 @@ public partial class EnemyCharacterBase : CharacterBase
     }
     public virtual void TargetChoosing(Moves move, BattleCharacter BattleCharacter){
         RandomNumberGenerator RNG=new RandomNumberGenerator();
+        Array<BattleCharacter> TargetCharacters = BattleManager.instance.TargetCharacters;
         if(!move.Base.TargetsParty){
-            for(int i=0;i<move.Base.TargetAmount;i++){
+            while(TargetCharacters.Count<move.Base.TargetAmount){
                 BattleCharacter target=BattleCharacter.EnemyParty[RNG.RandiRange(0,BattleCharacter.EnemyParty.Count-1)];
-                if(!BattleManager.instance.TargetCharacters.Contains(target)){
+                if(!BattleManager.instance.TargetCharacters.Contains(target) && target.Character.status!=Character.Status.KO){
                     BattleManager.instance.TargetCharacters.Add(target);
                 }
             }
+           /* for(int i=0;i<move.Base.TargetAmount;i++){
+            }*/
         }
         else{
-            for(int i=0;i<move.Base.TargetAmount;i++){
+            while(TargetCharacters.Count<move.Base.TargetAmount){
                 BattleCharacter target=BattleCharacter.ThisParty[RNG.RandiRange(0,BattleCharacter.ThisParty.Count-1)];
-                if(!BattleManager.instance.TargetCharacters.Contains(target)){
+                if(!BattleManager.instance.TargetCharacters.Contains(target)&& target.Character.status!=Character.Status.KO){
                     BattleManager.instance.TargetCharacters.Add(target);
                 }
             }

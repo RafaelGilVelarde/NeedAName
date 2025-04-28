@@ -1,0 +1,350 @@
+[gd_scene load_steps=39 format=3 uid="uid://cmcaiorqvr7ek"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bsh3v4pgadc08" path="res://Animations/Battle/BlobFight.res" id="1_8nh74"]
+
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_o2cwk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shoot:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blockbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blockbox/CollisionShape2D:shape:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(46.475, 59)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Blockbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(20, 34)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("HitEffectParticles:amount")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HitEffectParticles:lifetime")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.75]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HitEffectParticles:scale_amount_curve")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Curve_0dopt")]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WPBox/CollisionShape2D:shape:size")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(25, 42.5)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("WPBox/CollisionShape2D:position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("MainSprite:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_crd1y"]
+_data = {
+"RESET": SubResource("Animation_o2cwk")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hasu4"]
+animation = &"BlobFight/Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fndr"]
+animation = &"BlobFight/AttackWindup"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pmkye"]
+animation = &"BlobFight/AttackWindup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_xgimh"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q5voo"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_sqxqq"]
+advance_mode = 2
+advance_condition = &"EndMove"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fnp2b"]
+states/BlobFight_Attack/node = SubResource("AnimationNodeAnimation_hasu4")
+states/BlobFight_Attack/position = Vector2(552, 78)
+states/BlobFight_AttackWindup/node = SubResource("AnimationNodeAnimation_pmkye")
+states/BlobFight_AttackWindup/position = Vector2(346, 78)
+"states/BlobFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_1fndr")
+"states/BlobFight_AttackWindup 2/position" = Vector2(552, 169)
+transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_xgimh"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_q5voo"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_sqxqq")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_80y1b"]
+animation = &"BlobFight/Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5st5m"]
+animation = &"BlobFight/AttackWindup"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oto1u"]
+animation = &"BlobFight/AttackWindup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i52sy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pt6su"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_w7a2d"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuqvs"]
+states/BlobFight_Attack/node = SubResource("AnimationNodeAnimation_80y1b")
+states/BlobFight_Attack/position = Vector2(573, 70)
+states/BlobFight_AttackWindup/node = SubResource("AnimationNodeAnimation_oto1u")
+states/BlobFight_AttackWindup/position = Vector2(363, 100)
+"states/BlobFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_5st5m")
+"states/BlobFight_AttackWindup 2/position" = Vector2(549, 187)
+transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_i52sy"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_pt6su"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_w7a2d")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hut1t"]
+animation = &"BlobFight/Shoot"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_iaswv"]
+blend_point_0/node = SubResource("AnimationNodeStateMachine_fnp2b")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeStateMachine_wuqvs")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeAnimation_hut1t")
+blend_point_2/pos = 2.0
+min_space = 0.0
+max_space = 3.0
+snap = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_dd0fj"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_iaswv")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+snap = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_d3vrq"]
+animation = &"BlobFight/Block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqw10"]
+animation = &"Dodge1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4myiu"]
+animation = &"Dodge2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttl3n"]
+animation = &"Dodge3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wlrad"]
+animation = &"Dodge4"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7rmp7"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cqw10")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_4myiu")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_ttl3n")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_wlrad")
+blend_point_3/pos = Vector2(1, 0)
+snap = Vector2(1, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ceeyf"]
+animation = &"BlobFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_20dim"]
+animation = &"BlobFight/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_smij0"]
+animation = &"BlobFight/Die"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71k4i"]
+animation = &"Shoot"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4uocv"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_dd0fj")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_d3vrq")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_7rmp7")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_ceeyf")
+blend_point_3/pos = 3.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_20dim")
+blend_point_4/pos = 5.0
+blend_point_5/node = SubResource("AnimationNodeAnimation_smij0")
+blend_point_5/pos = 6.0
+blend_point_6/node = SubResource("AnimationNodeAnimation_71k4i")
+blend_point_6/pos = 7.0
+min_space = 0.0
+max_space = 7.0
+snap = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cxesx"]
+animation = &"StartBattle"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_06pwq"]
+animation = &"StartBattle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6e16"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_pf51g"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3bkgp"]
+advance_mode = 2
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ldoyf"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_4uocv")
+states/ActionState/position = Vector2(460, 100)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_06pwq")
+states/StartBattle/position = Vector2(305, 100)
+"states/StartBattle 2/node" = SubResource("AnimationNodeAnimation_cxesx")
+"states/StartBattle 2/position" = Vector2(627, 100)
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_q6e16"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_pf51g"), "ActionState", "StartBattle 2", SubResource("AnimationNodeStateMachineTransition_3bkgp")]
+
+[node name="AnimationPlayer" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_crd1y"),
+"BlobFight": ExtResource("1_8nh74")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_crd1y"),
+"BlobFight": ExtResource("1_8nh74")
+}
+tree_root = SubResource("AnimationNodeStateMachine_ldoyf")
+anim_player = NodePath("..")
+parameters/conditions/Ended = false
+parameters/ActionState/blend_position = 2.76267
+parameters/ActionState/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/0/0/conditions/EndMove = false
+parameters/ActionState/0/0/1/conditions/MoveEnded = false
+parameters/ActionState/2/blend_position = Vector2(0, 0)

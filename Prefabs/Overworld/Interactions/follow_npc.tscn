@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=3 uid="uid://de7lr25jkcecs"]
+
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractFollowNPC.cs" id="1_41utu"]
+[ext_resource type="Texture2D" uid="uid://bbr4qwym8k58h" path="res://Sprites/Overworld/Hallucigenia.png" id="7_khm4k"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
+
+[node name="FollowNPC" type="StaticBody2D" groups=["Interactable"]]
+position = Vector2(0, -8)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Sprites")]
+shape = SubResource("RectangleShape2D_e7ixu")
+script = ExtResource("1_41utu")
+CheckDeleteCharacters = Array[Object]([])
+CheckEvents = Array[int]([0, 0])
+CheckValues = Array[Object]([])
+TimelineGroup = Array[Object]([null, null])
+PauseWhenDialogue = true
+Turn = true
+Sprites = Array[Object]([])
+
+[node name="MainSprite" type="Sprite2D" parent="CollisionShape2D"]
+texture_filter = 1
+texture = ExtResource("7_khm4k")
+hframes = 4
+vframes = 3
+frame = 8
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/NPCs",
+"o_name": "",
+"only_visible": false,
+"op_exp": false,
+"player": "CollisionShape2D/Sprite2D/AnimationPlayer",
+"source": "res://Aseprites/Characters/Overworld/NPCs/Isopod.aseprite"
+}

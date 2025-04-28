@@ -69,7 +69,6 @@ states/Walking/position = Vector2(512, 92)
 transitions = ["Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_d51tl"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_p8h5u"), "Start", "Idle", SubResource("AnimationNodeStateMachineTransition_e0cef")]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
-process_mode = 3
 libraries = {
 "": ExtResource("1_1avmq")
 }

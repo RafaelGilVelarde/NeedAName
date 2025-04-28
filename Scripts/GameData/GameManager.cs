@@ -52,7 +52,7 @@ public partial class GameManager : Node
 			if(aux.Active){
 				Characters.Add((PlayerController)AddCharacters(aux,0));
 				if(i>0){
-					Characters[i].AxisOffset=i*3;
+					Characters[Characters.Count-1].AxisOffset=i*3;
 				}
 			}
 		}
@@ -61,7 +61,7 @@ public partial class GameManager : Node
 			if(aux.Active){
 				Followers.Add((PlayerController)AddCharacters(aux,0));
 				if(i>0){
-					Followers[i].AxisOffset=i*3;
+					Followers[Followers.Count-1].AxisOffset=i*3;
 				}
 			}
 		}
@@ -73,14 +73,31 @@ public partial class GameManager : Node
 		Tween tween = CreateTween();
 		tween.TweenProperty(A.Parent,"position",controller.GlobalPosition,0.2f);
 		tween.Finished+=()=>{
-			if(NPC){
-				Followers.Add(A);
-				A.AxisOffset = (Followers.Count-1)*3;
-			}
-			else{
-				A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
+			Followers.Add(A);
+			A.AxisOffset = (Followers.Count-1)*3;
+			if(!NPC){
+				Characters.Add(A);
+				//A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
+				((PartyCharacters)A.BattleCharacter.Character).Active = true;
 			}
 			controller._Follow+=A.FollowLeader;
+		};
+		tween.Finished+=tween.Kill;
+		//A.Parent.Position = controller.GlobalPosition;
+	}
+	public void RemoveFollowingCharacter(PlayerController A, bool NPC){
+		A.OverworldCollider.Disabled = true;
+		Tween tween = CreateTween();
+		tween.TweenProperty(A.Parent,"modulate: a",1,0);
+		tween.Finished+=()=>{
+			Followers.Remove(A);
+			if(!NPC){
+				Characters.Remove(A);
+				//A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
+				((PartyCharacters)A.BattleCharacter.Character).Active = false;
+			}
+			controller._Follow-=A.FollowLeader;
+			A.Parent.QueueFree();
 		};
 		tween.Finished+=tween.Kill;
 		//A.Parent.Position = controller.GlobalPosition;

@@ -18,17 +18,16 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public OverworldController Overworld;
 	[Export]public Godot.Vector2 OriginPos;
 
-	[Export]public Array<float> MultiplierAtk,MultiplierDef,MultiplierSpAtk,MultiplierSpDef,MultiplierSpeed;
+	[Export]public Array<float> MultiplierAtk,MultiplierDef,MultiplierSpAtk,MultiplierSpDef,MultiplierSpeed, StatMultiplier;
 	[Export]public int Combo=1, HoldingMoveTimer=0;
-	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping;
-	[Export]public Array<int> TimerAtk,TimerDef,TimerSpAtk,TimerSpDef,TimerSpeed;
+	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping, Moving;
+	[Export]public Array<int> TimerAtk,TimerDef,TimerSpAtk,TimerSpDef,TimerSpeed, MultTimer;
 	[Export]public Array<CharacterButtons> PartyButtons, EnemyButtons;
 	[Export]SelectActions selectActions;
 	[Export]public Godot.Vector2 DodgeDir;
 	[Export]public Moves MoveUsed;
 	[Export]public Sprite2D MainSprite;
 	[Export]public Array<BattleCharacter> ThisParty,EnemyParty;
-	[Export] Key SelectKey;
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
 	[Export] public Node2D ShootNode;
@@ -105,14 +104,16 @@ public partial class BattleCharacter : CharacterBody2D
 				}
 				AnimatorTree.Set("parameters/ActionState/2/blend_position",DodgeDir);
 			}
-			if(Input.IsActionJustPressed("SelectedKey"+aux.PartyId)&&actionState==ActionState.isIdle){
+			if(Input.IsActionJustPressed("SelectedKey"+aux.PartyId)){
 				switch(battleState){
 					case BattleState.Attacking:
 						//changeAction(ActionState.isAttacking);
 						EmitSignal("_DoAction");
 					break;
 					case BattleState.Defending:
-						changeAction(ActionState.isDefending);
+						if(actionState==ActionState.isIdle){
+							changeAction(ActionState.isDefending);
+						}
 					break;
 					case BattleState.Dodging:
 						if(actionState!=ActionState.isDodging && DodgeDir!=Godot.Vector2.Zero &&(DodgeDir.X*DodgeDir.Y==0)){
@@ -139,10 +140,14 @@ public partial class BattleCharacter : CharacterBody2D
     public override void _Process(double delta)
 	{
 
-
-
-
 	}
+    public override void _PhysicsProcess(double delta)
+    {
+		if(Moving){
+			Overworld.Parent.MoveAndSlide();
+		}
+    }
+
 	public void changeAction(ActionState state){
 
 		AnimatorPlayer.Play("RESET");
@@ -153,7 +158,7 @@ public partial class BattleCharacter : CharacterBody2D
 		if(Character.isControlledByPlayer && (int)state<3){
 			BattleManager.instance.ChangeTutorialLabel((int)state,false, Character);
 		}
-		AnimatorPlayer.Play("RESET");
+		//AnimatorPlayer.Play("RESET");
 		StateParticles.EmitParticles(state);
 		battleState=state;
 	}
@@ -239,6 +244,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 	public void Reset(){
+		Moving = false;
 		CurrentItem = null;
 		changeState(BattleState.Idle);
 		changeAction(ActionState.isIdle);
@@ -361,6 +367,36 @@ public partial class BattleCharacter : CharacterBody2D
 		tween.Finished+=tween.Kill;
 	}
 	
+	public void AddStatMultiplier(float Multiplier, int Timer, int Stat){
+		StatMultiplier[Stat] += Multiplier;
+		StatMultiplier[Stat] = (float)Mathf.Clamp(StatMultiplier[Stat],0.5,3);
+		MultTimer[Stat] = Timer;
+		
+		StatModTimers[Stat].Text = $"[center]{Timer}[/center]";
+		
+		StatMods.GetChild(Stat).GetChild<Control>(0).Visible = true;
+	}
+	public void ReduceStatMultiplier(){
+		for(int i = 0;i<StatMultiplier.Count;i++){
+			MultTimer[i]--;
+			StatModTimers[i].Text = $"[center]{MultTimer[i]}[/center]";	
+			if(MultTimer[i]<=0){
+				StatMods.GetChild(i).GetChild<Control>(0).Visible = false;
+				MultTimer[i] = 0;
+				StatMultiplier[i] = 1;
+			}
+		}
+	}
+	public void ClearStatMultiplier(){
+		for(int i = 0;i<StatMultiplier.Count;i++){
+			MultTimer[i] = 0;
+			StatMultiplier[i] = 1;
+			StatModTimers[i].Text = $"[center]{MultTimer[i]}[/center]";	
+			StatMods.GetChild(i).GetChild<Control>(0).Visible = false;
+		}	
+	}
+
+
 	public void AddAtkMultiplier(float Multiplier, int Timer){
 		MultiplierAtk.Add(Multiplier);
 		TimerAtk.Add(Timer);

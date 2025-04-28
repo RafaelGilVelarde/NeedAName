@@ -4,12 +4,15 @@ using System;
 
 public enum FlagType{
     Puzzle, 
-    Event
+    Event,
+    Item,
+    Dialogue
 }
 [GlobalClass]
 public partial class Flags : Resource
 {
     [Export] public Array<bool> ItemGiven;
+    [Export] public Array<bool> DialogueFlags;
     [Export] public Array<bool> PuzzleFlags;
     [Export] public Array<bool> EventFlags;
     [Export] public Array<int> PuzzleIntFlags; 
@@ -23,6 +26,10 @@ public partial class Flags : Resource
     public delegate void _EventFlagsBoolChangedEventHandler(int Change, bool Changed);
     [Signal]
     public delegate void _EventFlagsIntChangedEventHandler(int Change, bool Changed);
+    [Signal]
+    public delegate void _ItemFlagsBoolChangedEventHandler(int Change, bool Changed);
+    [Signal]
+    public delegate void _DialogueFlagsBoolChangedEventHandler(int Change, bool Changed);
 
     public void ChangeBoolFlag(int index, bool change, FlagType type){
         bool changed = false;
@@ -36,6 +43,16 @@ public partial class Flags : Resource
                 changed = !EventFlags[index]==change;
                 EventFlags[index] = change;
                 EmitSignal("_EventFlagsBoolChanged",index, changed);
+            break;
+            case FlagType.Item:
+                changed = !ItemGiven[index]==change;
+                ItemGiven[index] = change;
+                EmitSignal("_ItemFlagsBoolChanged",index, changed);
+            break;
+            case FlagType.Dialogue:
+                changed = !DialogueFlags[index]==change;
+                DialogueFlags[index] = change;
+                EmitSignal("_DialogueFlagsBoolChanged",index, changed);
             break;
         }
     }

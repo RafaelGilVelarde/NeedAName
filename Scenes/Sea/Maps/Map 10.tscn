@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://c1ctnjer4e83g"]
+[gd_scene load_steps=27 format=3 uid="uid://c1ctnjer4e83g"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_wl176"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_xmny8"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://by4kl26agrfky" path="res://Sprites/Overworld/NPCs/Mollusk.png" id="9_8yric"]
 [ext_resource type="Resource" uid="uid://5ql8hfdj1knt" path="res://Resources/Items/Key/Soul Memory.tres" id="10_4bh6t"]
 [ext_resource type="PackedScene" uid="uid://ckwqsf11orow2" path="res://Prefabs/Animators/NPCs/Water/Mollusk.tscn" id="10_6wuln"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractionResources/CheckValueTimeline.cs" id="10_for0t"]
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="10_xpfnf"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_anry4"]
 [ext_resource type="Resource" uid="uid://b0u10v1376rb0" path="res://Resources/Items/Equipment/Loud Memory.tres" id="12_ds34p"]
@@ -32,6 +33,12 @@ size = Vector2(88, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_7njse"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
+
+[sub_resource type="Resource" id="Resource_666qw"]
+script = ExtResource("10_for0t")
+TimelineIndex = 1
+FlagIndexes = Array[int]([2])
+flagTypes = Array[int]([2])
 
 [sub_resource type="Resource" id="Resource_bc5r7"]
 script = ExtResource("10_xpfnf")
@@ -151,6 +158,7 @@ position = Vector2(160, -240)
 
 [node name="CollisionShape2D" parent="NPC" index="0"]
 ItemType = 2
+CheckValues = Array[Object]([SubResource("Resource_666qw")])
 ItemsToTake = [SubResource("Resource_bc5r7")]
 GameID = 2
 ItemID = Array[int]([])
@@ -159,16 +167,13 @@ ItemsToGive = Array[Object]([SubResource("Resource_ef2pa")])
 ItemType = 2
 TimelineGroup = Array[Object]([SubResource("Resource_ygo20"), SubResource("Resource_cug68")])
 TimelineGroupIndex = null
-TimelineIndex = null
 Timeline = null
 SpokenTo = null
-FacingRight = null
 FacingDirection = null
-visualType = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("9_8yric")
-frame = 9
+frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0"]
 process_mode = 4

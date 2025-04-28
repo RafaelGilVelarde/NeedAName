@@ -21,6 +21,7 @@ public partial class MoveBase : Resource
     [Export]public String Name;
 
     [Export] protected float MoveTime;
+    protected SceneTreeTimer MainTimer;
 
     public virtual void Effect(Array<BattleCharacter> Users, Array<BattleCharacter>Targets){
         for(int i=0;i<Users.Count;i++){
@@ -46,9 +47,9 @@ public partial class MoveBase : Resource
             TargetRotationAux.Add(Targets[i].Rotation);
         }
 
-		SceneTreeTimer timer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
+		MainTimer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
    		//timer.TweenInterval(MoveTime);
-		timer.Timeout+=End;
+		MainTimer.Timeout+=End;
 		//timer.Finished+=timer.Kill;
 
         void onHit(BattleCharacter Target){

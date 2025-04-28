@@ -1,4 +1,4 @@
-[gd_scene load_steps=100 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=122 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -20,15 +20,21 @@
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="13_t8ddd"]
 [ext_resource type="PackedScene" uid="uid://bkvh2oaps8v2p" path="res://Prefabs/TextEffects/BaseText.tscn" id="13_xpiea"]
 [ext_resource type="PackedScene" uid="uid://bbxpoq4krbxej" path="res://Scenes/Sea/Maps/Map 2.tscn" id="14_vfydq"]
+[ext_resource type="PackedScene" uid="uid://bff3wb101knnw" path="res://Prefabs/Animators/Party/Battle/HalluciBattleAnimator.tscn" id="15_cf7if"]
 [ext_resource type="PackedScene" uid="uid://b5o0cjrcuemsu" path="res://Scenes/Sea/Maps/Map 3.tscn" id="15_dn5o8"]
 [ext_resource type="Script" path="res://Scripts/GameData/TypedItemList.cs" id="15_i5m0s"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DummyItemMove.cs" id="15_vgrna"]
 [ext_resource type="PackedScene" uid="uid://dbsjjfg65q1gc" path="res://Scenes/Sea/Maps/Map 4.tscn" id="16_fcc8q"]
 [ext_resource type="Script" path="res://Scripts/Bases/Items/Consumables/Heal.cs" id="16_l3pik"]
+[ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="16_n8qgu"]
 [ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="17_307rp"]
+[ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="17_dq38r"]
 [ext_resource type="PackedScene" uid="uid://cidpvaj35nwkm" path="res://Scenes/Sea/Maps/Map 5.tscn" id="17_n77r6"]
+[ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="18_otk5e"]
 [ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
 [ext_resource type="PackedScene" uid="uid://dvfopsva3d6kc" path="res://Scenes/Sea/Maps/Map 7.tscn" id="19_36hit"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/SpinSpamMove.cs" id="19_nrko3"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/SuckMove.cs" id="20_ebntc"]
 [ext_resource type="PackedScene" uid="uid://3kixx2q8tusp" path="res://Scenes/Sea/Maps/Map 8.tscn" id="20_livod"]
 [ext_resource type="PackedScene" uid="uid://b4g462db2jmdj" path="res://Scenes/Sea/Maps/Map 9.tscn" id="21_7ndos"]
 [ext_resource type="PackedScene" uid="uid://c1ctnjer4e83g" path="res://Scenes/Sea/Maps/Map 10.tscn" id="22_kd36x"]
@@ -74,8 +80,9 @@
 resource_local_to_scene = true
 script = ExtResource("2_a7det")
 ItemGiven = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
+DialogueFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
 PuzzleFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
-EventFlags = Array[bool]([false, false, false, false, false, false, false, false])
+EventFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
 PuzzleIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 
@@ -276,6 +283,206 @@ Active = false
 Key = 88
 status = 0
 
+[sub_resource type="Resource" id="Resource_pxv6k"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 5
+HP = 2
+Atk = 3
+Def = 1
+SpAtk = 1
+SpDef = 1
+Speed = 3
+WP = 0
+
+[sub_resource type="Resource" id="Resource_0vipi"]
+script = ExtResource("5_wfrc5")
+PartyId = 2
+ExpSpeed = 5.0
+ExpDistance = 10.0
+BaseStats = SubResource("Resource_pxv6k")
+Name = ""
+OverworldAnimator = ExtResource("16_n8qgu")
+BattleAnimator = ExtResource("15_cf7if")
+TextEffectColor = Color(0, 1, 0, 1)
+Icon = ExtResource("5_8m0s2")
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_jeahq"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_8og32"]
+script = ExtResource("19_nrko3")
+offset = Vector2(75, 75)
+AtkMultiplier = 0.0
+Speed = 1.5
+Combo = 1
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+WP = 1
+Cost = 0
+TargetsParty = false
+Name = "Spin Attack"
+MoveTime = 10.0
+
+[sub_resource type="Resource" id="Resource_oqotk"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_8og32")
+
+[sub_resource type="Resource" id="Resource_mnm8f"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_n6jfa"]
+script = ExtResource("3_qc7bw")
+Lv = 5
+MaxHP = 0
+HP = 10
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_gsllo"]
+script = ExtResource("8_3wvmt")
+Exp = 0
+NextLevelExp = 0
+PastLevelExp = 0
+Base = SubResource("Resource_0vipi")
+Moves = Array[Object]([SubResource("Resource_oqotk")])
+items = Array[Object]([])
+Equipment = Array[Object]([null, null, null, null])
+stats = SubResource("Resource_n6jfa")
+EquipStats = SubResource("Resource_jeahq")
+TotalStats = SubResource("Resource_mnm8f")
+isControlledByPlayer = true
+Active = false
+Key = 67
+status = 0
+
+[sub_resource type="Resource" id="Resource_q32qo"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 3
+HP = 3
+Atk = 1
+Def = 3
+SpAtk = 1
+SpDef = 3
+Speed = 2
+WP = 0
+
+[sub_resource type="Resource" id="Resource_tjlxb"]
+script = ExtResource("5_wfrc5")
+PartyId = 3
+ExpSpeed = 5.0
+ExpDistance = 10.0
+BaseStats = SubResource("Resource_q32qo")
+Name = "Blobby"
+OverworldAnimator = ExtResource("18_otk5e")
+BattleAnimator = ExtResource("17_dq38r")
+TextEffectColor = Color(0, 1, 0, 1)
+Icon = ExtResource("5_8m0s2")
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+
+[sub_resource type="Resource" id="Resource_go2as"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_k1454"]
+script = ExtResource("20_ebntc")
+MinVel = 0.0
+MaxVel = 4.5
+SuckTimerMax = 4.0
+Speed = 2.0
+Combo = 1
+Combo2 = 2
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = false
+Name = "Suck"
+MoveTime = 10.0
+
+[sub_resource type="Resource" id="Resource_ngl2m"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_k1454")
+
+[sub_resource type="Resource" id="Resource_h61cx"]
+script = ExtResource("3_qc7bw")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_dsrgr"]
+script = ExtResource("3_qc7bw")
+Lv = 5
+MaxHP = 0
+HP = 20
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_db7dj"]
+script = ExtResource("8_3wvmt")
+Exp = 0
+NextLevelExp = 0
+PastLevelExp = 0
+Base = SubResource("Resource_tjlxb")
+Moves = Array[Object]([SubResource("Resource_ngl2m")])
+items = Array[Object]([])
+Equipment = Array[Object]([null, null, null, null])
+stats = SubResource("Resource_dsrgr")
+EquipStats = SubResource("Resource_go2as")
+TotalStats = SubResource("Resource_h61cx")
+isControlledByPlayer = true
+Active = true
+Key = 67
+status = 0
+
 [sub_resource type="Resource" id="Resource_k5wno"]
 script = ExtResource("15_vgrna")
 type = 0
@@ -322,8 +529,9 @@ items = Array[Object]([])
 resource_local_to_scene = true
 resource_name = "AAAA"
 script = ExtResource("2_1hul1")
-Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy")])
+Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy"), SubResource("Resource_gsllo"), SubResource("Resource_db7dj")])
 CurrentFollowers = Array[Object]([])
+AllFollwers = Array[Object]([null, null, null])
 items = Array[Object]([SubResource("Resource_0f1ho"), SubResource("Resource_wiso8"), SubResource("Resource_xtejg")])
 Flags = SubResource("Resource_pgs4m")
 Scene = 0
@@ -1237,3 +1445,5 @@ expand_mode = 1
 libraries = {
 "": SubResource("AnimationLibrary_yuimf")
 }
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -1,0 +1,423 @@
+[gd_scene load_steps=51 format=3 uid="uid://bff3wb101knnw"]
+
+[ext_resource type="AnimationLibrary" uid="uid://dolvp7vqsyah" path="res://Animations/Battle/HalluciFight.res" id="1_134fi"]
+
+[sub_resource type="Curve" id="Curve_1rl6r"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Animation" id="Animation_576bu"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Blockbox/CollisionShape2D:shape:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(46.475, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Blockbox/CollisionShape2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Blockbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Hitbox/CollisionShape2D:shape:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(22, 20)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Hitbox/CollisionShape2D:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, -18)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Hurtbox/CollisionShape2D:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Hurtbox/CollisionShape2D:shape:size")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(20, 34)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("WPBox/CollisionShape2D:shape:size")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(25, 42.5)]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("WPBox/CollisionShape2D:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2(0, 0)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("HitEffectParticles:amount")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [22]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("HitEffectParticles:lifetime")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0.75]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("HitEffectParticles:scale_amount_curve")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("Curve_1rl6r")]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MainSprite:centered")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4l4qk"]
+_data = {
+"RESET": SubResource("Animation_576bu")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iwds1"]
+animation = &"HalluciFight/Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_klx8p"]
+animation = &"HalluciFight/AttackIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y7xpk"]
+animation = &"HalluciFight/AttackEnd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_daxlk"]
+animation = &"HalluciFight/AttackPrep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_7cyr8"]
+animation = &"HalluciFight/AttackWindup"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1td4j"]
+animation = &"HalluciFight/AttackWindup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wdi7l"]
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cx7en"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0iqf"]
+advance_condition = &"Windup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybr8e"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12ec8"]
+advance_condition = &"Hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a56v5"]
+switch_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2roc5"]
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b3s2o"]
+states/Attack/node = SubResource("AnimationNodeAnimation_iwds1")
+states/Attack/position = Vector2(622, 179)
+states/AttackIdle/node = SubResource("AnimationNodeAnimation_klx8p")
+states/AttackIdle/position = Vector2(430, 81)
+states/AttackPrep/node = SubResource("AnimationNodeAnimation_daxlk")
+states/AttackPrep/position = Vector2(242, 81)
+"states/AttackPrep 2/node" = SubResource("AnimationNodeAnimation_y7xpk")
+"states/AttackPrep 2/position" = Vector2(602, 22)
+states/AttackWindup/node = SubResource("AnimationNodeAnimation_1td4j")
+states/AttackWindup/position = Vector2(622, 81)
+"states/AttackWindup 2/node" = SubResource("AnimationNodeAnimation_7cyr8")
+"states/AttackWindup 2/position" = Vector2(430, 179)
+states/Start/position = Vector2(73, 81)
+transitions = ["Start", "AttackPrep", SubResource("AnimationNodeStateMachineTransition_wdi7l"), "AttackPrep", "AttackIdle", SubResource("AnimationNodeStateMachineTransition_cx7en"), "AttackIdle", "AttackWindup", SubResource("AnimationNodeStateMachineTransition_n0iqf"), "AttackWindup", "Attack", SubResource("AnimationNodeStateMachineTransition_ybr8e"), "Attack", "AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_12ec8"), "AttackWindup 2", "AttackIdle", SubResource("AnimationNodeStateMachineTransition_a56v5"), "AttackIdle", "AttackPrep 2", SubResource("AnimationNodeStateMachineTransition_2roc5")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ywm2a"]
+animation = &"HalluciFight/Attack"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gt4dr"]
+animation = &"HalluciFight/AttackEnd"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_crjtd"]
+animation = &"HalluciFight/AttackIdle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_um4j1"]
+animation = &"HalluciFight/AttackPrep"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sgkce"]
+animation = &"HalluciFight/AttackWindup"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xrisb"]
+animation = &"HalluciFight/AttackWindup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wpf2x"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gcsh3"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_3yjuw"]
+advance_mode = 2
+advance_condition = &"Windup"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_gnuua"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_8hs6g"]
+advance_mode = 2
+advance_condition = &"Hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_lgedi"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_0k36k"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_owol1"]
+states/End/position = Vector2(1141, 100)
+states/HalluciFight_Attack/node = SubResource("AnimationNodeAnimation_ywm2a")
+states/HalluciFight_Attack/position = Vector2(802, 171)
+states/HalluciFight_AttackEnd/node = SubResource("AnimationNodeAnimation_gt4dr")
+states/HalluciFight_AttackEnd/position = Vector2(749, 30)
+states/HalluciFight_AttackIdle/node = SubResource("AnimationNodeAnimation_crjtd")
+states/HalluciFight_AttackIdle/position = Vector2(581, 100)
+states/HalluciFight_AttackPrep/node = SubResource("AnimationNodeAnimation_um4j1")
+states/HalluciFight_AttackPrep/position = Vector2(350, 100)
+states/HalluciFight_AttackWindup/node = SubResource("AnimationNodeAnimation_xrisb")
+states/HalluciFight_AttackWindup/position = Vector2(808, 100)
+"states/HalluciFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_sgkce")
+"states/HalluciFight_AttackWindup 2/position" = Vector2(562, 171)
+transitions = ["Start", "HalluciFight_AttackPrep", SubResource("AnimationNodeStateMachineTransition_wpf2x"), "HalluciFight_AttackPrep", "HalluciFight_AttackIdle", SubResource("AnimationNodeStateMachineTransition_gcsh3"), "HalluciFight_AttackIdle", "HalluciFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_3yjuw"), "HalluciFight_AttackWindup", "HalluciFight_Attack", SubResource("AnimationNodeStateMachineTransition_gnuua"), "HalluciFight_Attack", "HalluciFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_8hs6g"), "HalluciFight_AttackWindup 2", "HalluciFight_AttackIdle", SubResource("AnimationNodeStateMachineTransition_lgedi"), "HalluciFight_AttackIdle", "HalluciFight_AttackEnd", SubResource("AnimationNodeStateMachineTransition_0k36k")]
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_gq8d4"]
+blend_point_0/node = SubResource("AnimationNodeStateMachine_b3s2o")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeStateMachine_owol1")
+blend_point_1/pos = 1.0
+min_space = 0.0
+max_space = 3.0
+snap = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_0korw"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_gq8d4")
+blend_point_0/pos = 0.0
+min_space = 0.0
+max_space = 2.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jvbgm"]
+animation = &"HalluciFight/Block"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_m4yxs"]
+animation = &"HalluciFight/Dodge1"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hh640"]
+animation = &"HalluciFight/Dodge2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qg8se"]
+animation = &"HalluciFight/Dodge3"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1wyj2"]
+animation = &"HalluciFight/Dodge4"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_u84lh"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_m4yxs")
+blend_point_0/pos = Vector2(0, -1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_hh640")
+blend_point_1/pos = Vector2(0, 1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_qg8se")
+blend_point_2/pos = Vector2(-1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_1wyj2")
+blend_point_3/pos = Vector2(1, 0)
+snap = Vector2(1, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_y468g"]
+animation = &"HalluciFight/Hit"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1lsop"]
+animation = &"HalluciFight/Idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xq5g0"]
+animation = &"HalluciFight/Die"
+
+[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_uf4gx"]
+blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_0korw")
+blend_point_0/pos = 0.0
+blend_point_1/node = SubResource("AnimationNodeAnimation_jvbgm")
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeBlendSpace2D_u84lh")
+blend_point_2/pos = 2.0
+blend_point_3/node = SubResource("AnimationNodeAnimation_y468g")
+blend_point_3/pos = 3.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_1lsop")
+blend_point_4/pos = 5.0
+blend_point_5/node = SubResource("AnimationNodeAnimation_xq5g0")
+blend_point_5/pos = 6.0
+min_space = 0.0
+max_space = 7.0
+snap = 1.0
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_o3ew4"]
+animation = &"HalluciFight/StartBattle"
+play_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hjhr8"]
+animation = &"HalluciFight/StartBattle"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_fgcxj"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tycrm"]
+advance_condition = &"Ended"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p8cs7"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_atgoa"]
+states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_uf4gx")
+states/ActionState/position = Vector2(523, 100)
+states/StartBattle/node = SubResource("AnimationNodeAnimation_hjhr8")
+states/StartBattle/position = Vector2(324, 100)
+"states/StartBattle 2/node" = SubResource("AnimationNodeAnimation_o3ew4")
+"states/StartBattle 2/position" = Vector2(714, 100)
+transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_fgcxj"), "ActionState", "StartBattle 2", SubResource("AnimationNodeStateMachineTransition_tycrm"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_p8cs7")]
+
+[node name="AnimationPlayer2" type="AnimationPlayer"]
+libraries = {
+"": SubResource("AnimationLibrary_4l4qk"),
+"HalluciFight": ExtResource("1_134fi")
+}
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_4l4qk"),
+"HalluciFight": ExtResource("1_134fi")
+}
+tree_root = SubResource("AnimationNodeStateMachine_atgoa")
+anim_player = NodePath("..")
+parameters/conditions/Ended = false
+parameters/ActionState/blend_position = 2.98667
+parameters/ActionState/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/0/0/conditions/Hit = false
+parameters/ActionState/0/0/0/conditions/MoveEnded = false
+parameters/ActionState/0/0/0/conditions/Windup = false
+parameters/ActionState/0/0/1/conditions/Hit = false
+parameters/ActionState/0/0/1/conditions/MoveEnded = false
+parameters/ActionState/0/0/1/conditions/Windup = false
+parameters/ActionState/2/blend_position = Vector2(-0.0009588, 0.989418)

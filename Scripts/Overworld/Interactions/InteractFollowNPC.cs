@@ -1,20 +1,32 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Diagnostics;
 
-public partial class InteractFollowNPC : InteractText
+public partial class InteractFollowNPC : CheckValueInteract
 {
     Callable FollowNPC;
-    [Export] PlayerController Follower;
+    //[Export] PlayerController Follower;
+    [Export] CharacterType character;
+    [Export] Array<CharacterType> CheckDeleteCharacters;
+    [Export] Array<int> CheckEvents;
+    [Export] int CharacterPrefab, EventIndex;
     public override void _Ready()
     {
         base._Ready();
         FollowNPC = new Callable(this,MethodName.Follow);
-        Animator = Follower.Animator;
-        AnimatorTree = Follower.AnimatorTree;
-        if(GameManager.Instance.Data.CurrentFollowers.Contains(Follower.BattleCharacter.Character)){
-            GetParent().QueueFree();
+        //Animator = Follower.Animator;
+        //AnimatorTree = Follower.AnimatorTree;
+        Flags flags= GameManager.Instance.Data.Flags;
+        for(int i = 0;i<CheckEvents.Count;i++){
+            if(flags.EventFlags[CheckEvents[i]]){
+                GetParent().QueueFree();
+                break;
+            }
         }
+        /*if(GameManager.Instance.Data.Flags.EventFlags[EventIndex]){
+            GetParent().QueueFree();
+        }*/
     }
 
     public override void interact(OverworldController Player)
@@ -30,14 +42,57 @@ public partial class InteractFollowNPC : InteractText
         base.Disable();
     }
     void Follow(string argument){
-        Follower.ProcessMode = ProcessModeEnum.Inherit;
-        GameManager.Instance.AddFollowingCharacter(Follower,true);
+        GameManager Game = GameManager.Instance;
+        if(argument == "Follow"){
+            AddFollow();
+        }
+        if(argument == "Delete"){
+            for(int i = 0;i<CheckDeleteCharacters.Count;i++){
+                Character AuxChar = new Character();
+                CharacterType AuxType = CheckDeleteCharacters[i]; 
+                if(AuxType.Party){
+                    AuxChar = Game.Data.Party[AuxType.CharacterIndex];
+                    }
+                else{
+                    AuxChar = Game.Data.AllFollwers[AuxType.CharacterIndex];
+                }
+                for(int j = 0;j<Game.Followers.Count;j++){
+                    PlayerController Follower = Game.Followers[j];
+                    if(AuxChar == Follower.BattleCharacter.Character){
+                        if(AuxType.Party){
+                            Game.RemoveFollowingCharacter(Game.Followers[j],false);
+                        }
+                        else{
+                            Game.RemoveFollowingCharacter(Game.Followers[j],true);
+                        }
+                    }
+
+                }
+            }
+        }
     }
-    protected override void Flip()
-    {
-		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)>0!=FacingRight){
-			GetParent<Node2D>().Scale=new Vector2(GlobalScale.X*-1,GlobalScale.Y);
-            FacingRight=!FacingRight;
-	    }
+
+    void AddFollow(){
+            GameManager Game = GameManager.Instance;
+            PlayerController Aux;
+            Character AuxChar = new Character();
+            if(character.Party){
+                AuxChar = Game.Data.Party[character.CharacterIndex];
+            }
+            else{
+                AuxChar = Game.Data.AllFollwers[character.CharacterIndex];
+            }
+            Aux = (PlayerController)Game.AddCharacters(AuxChar,CharacterPrefab);
+            Aux.Parent.GlobalPosition = GlobalPosition;
+            switch (CharacterPrefab){
+                case 0:
+                    GameManager.Instance.AddFollowingCharacter(Aux,false);
+                break;
+                case 2:
+                    GameManager.Instance.AddFollowingCharacter(Aux,true);
+                break;
+            }
+            Game.Data.Flags.ChangeBoolFlag(EventIndex,true,FlagType.Event);
+            GetParent().QueueFree();
     }
 }
