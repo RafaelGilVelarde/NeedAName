@@ -15,7 +15,6 @@ public partial class SpinSpamMove : MoveBase
 
 
         int Spam = 0;
-        int MultIndex = Users[0].MultiplierAtk.Count;
         SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.05,true,true,true);
         float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 
@@ -39,12 +38,10 @@ public partial class SpinSpamMove : MoveBase
 		}
         //Users[0]._ReturnToIdle+=SpamInterval;
         void Check(){
-            Debug.WriteLine("Available: "+AttackAvailable);
-            Debug.WriteLine("Ended: "+MoveEnded);
+
             if(!MoveEnded){
 
                 if(AttackAvailable){
-                    Debug.WriteLine("Attacking");
                     Attack();
                 }
                 else{
@@ -67,7 +64,6 @@ public partial class SpinSpamMove : MoveBase
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             
             Tween.Finished+=()=>{
-                Debug.WriteLine("Failed: "+Failed);
                 if(!Failed && Timer.TimeLeft>((2/Speed)+0.5)){
                     AttackAvailable = true;
                     Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Hit",false);
@@ -105,6 +101,7 @@ public partial class SpinSpamMove : MoveBase
 
 		//Users[0]._ReturnToIdle+=End;
         void Attack(){
+            Users[0].Character.ChangeWP(WP);
             Users[0].changeState(BattleCharacter.BattleState.Idle);
             Spam++;
             Debug.WriteLine("Spam Increased: "+Spam);
@@ -143,10 +140,7 @@ public partial class SpinSpamMove : MoveBase
                 Users[0].Hitbox._Hit-=SpamInterval;
                 Timer.Timeout-=End;
                 Users[0]._DoAction-=Check;
-                if(MultIndex !=  Users[0].MultiplierAtk.Count){
-                    Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
-                    Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
-                }  
+
                 Users[0].changeState(BattleCharacter.BattleState.Idle);
                 if(MainTimer.TimeLeft>0.1){
                     SceneTreeTimer timer = Users[0].GetTree().CreateTimer(0.1,true,true,true);

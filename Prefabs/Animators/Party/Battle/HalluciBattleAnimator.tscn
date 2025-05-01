@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://bff3wb101knnw"]
+[gd_scene load_steps=52 format=3 uid="uid://bff3wb101knnw"]
 
 [ext_resource type="AnimationLibrary" uid="uid://dolvp7vqsyah" path="res://Animations/Battle/HalluciFight.res" id="1_134fi"]
 
@@ -333,9 +333,9 @@ animation = &"HalluciFight/Dodge4"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_u84lh"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_m4yxs")
-blend_point_0/pos = Vector2(0, -1)
+blend_point_0/pos = Vector2(0, 1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_hh640")
-blend_point_1/pos = Vector2(0, 1)
+blend_point_1/pos = Vector2(0, -1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_qg8se")
 blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_1wyj2")
@@ -352,6 +352,9 @@ animation = &"HalluciFight/Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_xq5g0"]
 animation = &"HalluciFight/Die"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_uag3h"]
+animation = &"HalluciFight/Item"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_uf4gx"]
 blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_0korw")
 blend_point_0/pos = 0.0
@@ -365,6 +368,8 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_1lsop")
 blend_point_4/pos = 5.0
 blend_point_5/node = SubResource("AnimationNodeAnimation_xq5g0")
 blend_point_5/pos = 6.0
+blend_point_6/node = SubResource("AnimationNodeAnimation_uag3h")
+blend_point_6/pos = 7.0
 min_space = 0.0
 max_space = 7.0
 snap = 1.0
@@ -420,4 +425,4 @@ parameters/ActionState/0/0/0/conditions/Windup = false
 parameters/ActionState/0/0/1/conditions/Hit = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false
 parameters/ActionState/0/0/1/conditions/Windup = false
-parameters/ActionState/2/blend_position = Vector2(-0.0009588, 0.989418)
+parameters/ActionState/2/blend_position = Vector2(0.00287628, 1)

@@ -53,7 +53,6 @@ public partial class MoveBase : Resource
 		//timer.Finished+=timer.Kill;
 
         void onHit(BattleCharacter Target){
-            Debug.WriteLine("Hit");
 			Hit(Users[0],Target);
 		}		
 		void blocked(BattleCharacter Target){
@@ -88,17 +87,17 @@ public partial class MoveBase : Resource
         if(!blocked){
             switch (type){
                 case Type.Physical:
-                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk*Power*Users.MultiplyAtk()-Targets.Character.TotalStats.Def*Targets.MultiplyDef())*-1;
+                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk*Power*Users.StatMultiplier[0]-Targets.Character.TotalStats.Def*Targets.StatMultiplier[1])*-1;
                     Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
                     Targets.Character.ChangeHP(Calc);
                 break;
                 case Type.Special:
-                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()-Targets.Character.TotalStats.SpDef*Targets.MultiplySpDef())*-1;
+                    Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.StatMultiplier[2]-Targets.Character.TotalStats.SpDef*Targets.StatMultiplier[3])*-1;
                     Calc = (int)Mathf.Clamp(Calc,-Mathf.Inf,0);
                     Targets.Character.ChangeHP(Calc);
                 break;
                 case Type.Recovery:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.MultiplySpAtk()));
+                    Targets.Character.ChangeHP(Mathf.RoundToInt(Users.Character.TotalStats.SpAtk*Power*Users.StatMultiplier[2]));
                 break;
             }
         }
@@ -138,7 +137,6 @@ public partial class MoveBase : Resource
 			Target.BlockedEnemy=true;
 	}
     public virtual void WPGraze(BattleCharacter Target){
-        Debug.WriteLine("Graze");
 			Target.Character.ChangeWP(WP);
 	}
 

@@ -42,7 +42,7 @@ public partial class bridgeMoveTest : MoveBase
             Users[0].changeCombo(2);
             Users[0].changeState(BattleCharacter.BattleState.Attacking);
             Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
-            Users[0].AddAtkMultiplier(1.5f,1);
+            Users[0].StatMultiplier[0]+=1.5f;
         }
         //Tween tween = Users[0].CreateTween();
         

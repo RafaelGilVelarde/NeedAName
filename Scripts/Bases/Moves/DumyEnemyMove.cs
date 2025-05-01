@@ -65,7 +65,6 @@ public partial class DumyEnemyMove : MoveBase
 			}
 		}
 
-		Debug.WriteLine("Name: "+Name);
 
 	}
 }

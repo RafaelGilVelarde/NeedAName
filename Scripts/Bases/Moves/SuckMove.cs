@@ -75,6 +75,7 @@ public partial class SuckMove : MoveBase
             Tween tween = Target.CreateTween();
             if(SuccesfulShoot){
                 tween.TweenProperty(Target,"position",Origin,1/Speed);
+                Users[0].Character.ChangeWP(WP);
             }
             else{
                 tween.TweenProperty(Target,"position",Origin,1/(Speed*2));

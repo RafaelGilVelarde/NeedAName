@@ -1,40 +1,47 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.IO;
 
 [GlobalClass]
 public partial class RaiseStatMove : MoveBase
 {
     [Export] int AtkTime, DefTime,SpAtkTime,SpDefTime, SpeedTime;
-    [Export] float AtkMult,DefMult,SpAtkMult,SpDefMult,SpeedMult;
-    [Export] bool Atk,Def,Spatk,Spdef,Speed;
+    [Export] float AtkMult,DefMult,SpAtkMult,SpDefMult,SpeedMult, HPIncrease, WPIncrease;
+    [Export] bool Atk,Def,Spatk,Spdef,Speed, HP, WPUp;
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
 		SceneTreeTimer timer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
         timer.Timeout+=End;
 
-        Targets[0].changeAction(BattleCharacter.ActionState.isStatus);
+        Users[0].changeAction(BattleCharacter.ActionState.isStatus);
         RaiseStat(Targets[0]);
 
         void End(){
 			BattleManager.instance.CallDeferred("EndMove");
 		}
     }
-    void RaiseStat(BattleCharacter Target){
+    protected void RaiseStat(BattleCharacter Target){
         if(Atk){
-            Target.AddAtkMultiplier(AtkMult,AtkTime);
+            Target.AddStatMultiplier(AtkMult,AtkTime,0);
         }
         if(Def){
-            Target.AddDefMultiplier(DefMult,DefTime);
+            Target.AddStatMultiplier(DefMult,DefTime,1);
         }
         if(Spatk){
-            Target.AddSpAtkMultiplier(SpAtkMult,SpAtkTime);
+            Target.AddStatMultiplier(SpAtkMult,SpAtkTime,2);
         }
         if(Spdef){
-            Target.AddSpDefMultiplier(SpDefMult,SpDefTime);
+            Target.AddStatMultiplier(SpDefMult,SpDefTime,3);
         }
         if(Speed){
-            Target.AddSpeedMultiplier(SpeedMult,SpeedTime);
+            Target.AddStatMultiplier(SpeedMult,SpeedTime,4);
+        }
+        if(HP){
+            Target.Character.ChangeHP((int)HPIncrease);
+        }
+        if(WPUp){
+            Target.Character.ChangeWP((int)WPIncrease);
         }
     }
 }

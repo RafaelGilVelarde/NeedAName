@@ -9,7 +9,7 @@ public partial class InteractFollowNPC : CheckValueInteract
     //[Export] PlayerController Follower;
     [Export] CharacterType character;
     [Export] Array<CharacterType> CheckDeleteCharacters;
-    [Export] Array<int> CheckEvents;
+    [Export] Array<int> CheckEvents, CheckUnflagEvents;
     [Export] int CharacterPrefab, EventIndex;
     public override void _Ready()
     {
@@ -47,6 +47,7 @@ public partial class InteractFollowNPC : CheckValueInteract
             AddFollow();
         }
         if(argument == "Delete"){
+            Flags Flag = GameManager.Instance.Data.Flags;
             for(int i = 0;i<CheckDeleteCharacters.Count;i++){
                 Character AuxChar = new Character();
                 CharacterType AuxType = CheckDeleteCharacters[i]; 
@@ -56,6 +57,7 @@ public partial class InteractFollowNPC : CheckValueInteract
                 else{
                     AuxChar = Game.Data.AllFollwers[AuxType.CharacterIndex];
                 }
+                Flag.ChangeBoolFlag(CheckUnflagEvents[i%CheckUnflagEvents.Count],true,FlagType.Event);
                 for(int j = 0;j<Game.Followers.Count;j++){
                     PlayerController Follower = Game.Followers[j];
                     if(AuxChar == Follower.BattleCharacter.Character){

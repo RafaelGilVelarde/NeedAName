@@ -18,10 +18,10 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public OverworldController Overworld;
 	[Export]public Godot.Vector2 OriginPos;
 
-	[Export]public Array<float> MultiplierAtk,MultiplierDef,MultiplierSpAtk,MultiplierSpDef,MultiplierSpeed, StatMultiplier;
+	[Export]public Array<float> StatMultiplier;
 	[Export]public int Combo=1, HoldingMoveTimer=0;
 	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping, Moving;
-	[Export]public Array<int> TimerAtk,TimerDef,TimerSpAtk,TimerSpDef,TimerSpeed, MultTimer;
+	[Export]public Array<int>  MultTimer;
 	[Export]public Array<CharacterButtons> PartyButtons, EnemyButtons;
 	[Export]SelectActions selectActions;
 	[Export]public Godot.Vector2 DodgeDir;
@@ -34,7 +34,8 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] RichTextLabel HPText, NameText, WPText;
 	[Export] public Consumables CurrentItem;
 	[Export] public ProgressBar HPBar, EXPBar, WPBar, WPAuxBar;
-	[Export] HBoxContainer StatMods;
+	[Export] public HBoxContainer StatMods;
+	[Export] Texture2D UpStat, DownStat;
 	[Export] Array<RichTextLabel> StatModTimers = new Array<RichTextLabel>();
 
 
@@ -74,11 +75,15 @@ public partial class BattleCharacter : CharacterBody2D
 		HPText = HPBar.GetChild<RichTextLabel>(0);
 		NameText = HPBar.GetChild<RichTextLabel>(1);
 		WPText = WPBar?.GetChild<RichTextLabel>(1);
-
+		StatMultiplier = new Array<float>();
+		MultTimer = new Array<int>();
+		for(int i = 0;i<6;i++){
+			StatMultiplier.Add(1);
+			MultTimer.Add(0);
+		}
 		for (int i = 0;i<StatMods.GetChildCount();i++){
 			Node Aux = StatMods.GetChild(i);
-			StatModTimers.Add((RichTextLabel)Aux.GetChild(1));
-
+			StatModTimers.Add((RichTextLabel)Aux.GetChild(0));
 		}
 	}
     public override void _Input(InputEvent @event)
@@ -373,18 +378,25 @@ public partial class BattleCharacter : CharacterBody2D
 		MultTimer[Stat] = Timer;
 		
 		StatModTimers[Stat].Text = $"[center]{Timer}[/center]";
-		
-		StatMods.GetChild(Stat).GetChild<Control>(0).Visible = true;
+		TextureRect Texture = (TextureRect)StatMods.GetChild(Stat);
+		if(StatMultiplier[Stat]>1){
+			Texture.Texture = UpStat;
+		}
+		else{
+			Texture.Texture = DownStat;
+		}
+		Texture.Visible = true;
 	}
 	public void ReduceStatMultiplier(){
 		for(int i = 0;i<StatMultiplier.Count;i++){
 			MultTimer[i]--;
 			StatModTimers[i].Text = $"[center]{MultTimer[i]}[/center]";	
 			if(MultTimer[i]<=0){
-				StatMods.GetChild(i).GetChild<Control>(0).Visible = false;
+				((Control)StatMods.GetChild(i)).Visible = false;
 				MultTimer[i] = 0;
 				StatMultiplier[i] = 1;
 			}
+				Debug.WriteLine("Stat: "+i+" Mult: "+StatMultiplier[i]+ " Timer: "+MultTimer[i]);
 		}
 	}
 	public void ClearStatMultiplier(){
@@ -392,330 +404,8 @@ public partial class BattleCharacter : CharacterBody2D
 			MultTimer[i] = 0;
 			StatMultiplier[i] = 1;
 			StatModTimers[i].Text = $"[center]{MultTimer[i]}[/center]";	
-			StatMods.GetChild(i).GetChild<Control>(0).Visible = false;
+			((Control)StatMods.GetChild(i)).Visible = false;
 		}	
-	}
-
-
-	public void AddAtkMultiplier(float Multiplier, int Timer){
-		MultiplierAtk.Add(Multiplier);
-		TimerAtk.Add(Timer);
-
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int i = 1;i<TimerAtk.Count;i++){
-			if(MultiplierAtk[i]>0){
-				Aux+=TimerAtk[i];
-			}
-			else{
-				AuxNeg+=TimerAtk[i];
-			}
-		}
-		StatModTimers[0].Text = $"[center]{Aux}[/center]";
-		StatModTimers[4].Text = $"[center]{AuxNeg}[/center]";
-
-		StatMods.GetChild(0).GetChild<Control>(0).Visible = true;
-		StatMods.GetChild(5).GetChild<Control>(0).Visible = true;
-	}
-	public void AddDefMultiplier(float Multiplier, int Timer){
-		MultiplierDef.Add(Multiplier);
-		TimerDef.Add(Timer);
-
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int i = 1;i<TimerDef.Count;i++){
-			if(MultiplierDef[i]>0){
-				Aux+=TimerDef[i];
-			}
-			else{
-				AuxNeg+=TimerDef[i];
-			}
-		}
-		StatModTimers[1].Text = $"[center]{Aux}[/center]";
-		StatModTimers[5].Text = $"[center]{AuxNeg}[/center]";
-		
-		StatMods.GetChild(1).GetChild<Control>(0).Visible = true;
-		StatMods.GetChild(6).GetChild<Control>(0).Visible = true;
-	}
-	public void AddSpAtkMultiplier(float Multiplier, int Timer){
-		MultiplierSpAtk.Add(Multiplier);
-		TimerSpAtk.Add(Timer);
-
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int i = 1;i<TimerSpAtk.Count;i++){
-			if(MultiplierSpAtk[i]>0){
-				Aux+=TimerSpAtk[i];
-			}
-			else{
-				AuxNeg+=TimerSpAtk[i];
-			}
-		}
-		StatModTimers[2].Text = $"[center]{Aux}[/center]";
-		StatModTimers[6].Text = $"[center]{AuxNeg}[/center]";
-		
-		StatMods.GetChild(2).GetChild<Control>(0).Visible = true;
-		StatMods.GetChild(7).GetChild<Control>(0).Visible = true;
-	}
-	public void AddSpDefMultiplier(float Multiplier, int Timer){
-		MultiplierSpDef.Add(Multiplier);
-		TimerSpDef.Add(Timer);
-
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int i = 1;i<TimerSpDef.Count;i++){
-			if(MultiplierSpDef[i]>0){
-				Aux+=TimerSpDef[i];
-			}
-			else{
-				AuxNeg+=TimerSpDef[i];
-			}
-		}
-		StatModTimers[3].Text = $"[center]{Aux}[/center]";
-		StatModTimers[7].Text = $"[center]{AuxNeg}[/center]";
-		
-		StatMods.GetChild(3).GetChild<Control>(0).Visible = true;
-		StatMods.GetChild(8).GetChild<Control>(0).Visible = true;
-	}
-	public void AddSpeedMultiplier(float Multiplier, int Timer){
-		MultiplierSpeed.Add(Multiplier);
-		TimerSpeed.Add(Timer);
-
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int i = 1;i<TimerSpeed.Count;i++){
-			if(MultiplierSpeed[i]>0){
-				Aux+=TimerSpeed[i];
-			}
-			else{
-				AuxNeg+=TimerSpeed[i];
-			}
-		}
-		StatModTimers[4].Text = $"[center]{Aux}[/center]";
-		StatModTimers[8].Text = $"[center]{AuxNeg}[/center]";
-		
-		StatMods.GetChild(4).GetChild<Control>(0).Visible = true;
-		StatMods.GetChild(9).GetChild<Control>(0).Visible = true;
-	}
-
-
-
-	public float MultiplyAtk(){
-		float aux=1;
-		for(int i=0;i<MultiplierAtk.Count;i++){
-			aux*=MultiplierAtk[i];
-		}
-		return aux;
-	}
-	public float MultiplyDef(){
-		float aux=1;
-		for(int i=0;i<MultiplierDef.Count;i++){
-			aux*=MultiplierDef[i];
-		}
-		return aux;
-	}
-		public float MultiplySpAtk(){
-		float aux=1;
-		for(int i=0;i<MultiplierSpAtk.Count;i++){
-			aux*=MultiplierSpAtk[i];
-		}
-		return aux;
-	}
-		public float MultiplySpDef(){
-		float aux=1;
-		for(int i=0;i<MultiplierSpDef.Count;i++){
-			aux*=MultiplierSpDef[i];
-		}
-		return aux;
-	}
-		public float MultiplySpeed(){
-		float aux=1;
-		for(int i=0;i<MultiplierSpeed.Count;i++){
-			aux*=MultiplierSpeed[i];
-		}
-		return aux;
-	}
-	public void ReduceMultiplyTimer(){
-		Array<int>Atk=new Array<int>();
-		Array<int>Def=new Array<int>();
-		Array<int>SpAtk=new Array<int>();
-		Array<int>SpDef=new Array<int>();
-		Array<int>Speed=new Array<int>();
-		for(int i=1;i<MultiplierAtk.Count;i++){
-			TimerAtk[i]--;
-			if(TimerAtk[i]<=0){
-				Atk.Add(i);
-			}
-		}
-		
-		int Aux = 0;
-		int AuxNeg = 0;
-		for(int j = 1;j<TimerAtk.Count;j++){
-			if(MultiplierAtk[j]>0){
-				Aux+=TimerAtk[j];
-			}
-			else{
-				AuxNeg+=TimerAtk[j];
-			}
-		}
-		StatModTimers[0].Text = $"[center]{Aux}[/center]";
-		StatModTimers[4].Text = $"[center]{AuxNeg}[/center]";
-		if(Aux == 0){
-			StatMods.GetChild(0).GetChild<Control>(0).Visible = false;
-		}
-		if(AuxNeg == 0){
-			StatMods.GetChild(5).GetChild<Control>(0).Visible = false;
-		}
-
-
-		for(int i=1;i<MultiplierDef.Count;i++){
-			TimerDef[i]--;
-			if(TimerDef[i]<=0){
-				Def.Add(i);
-			}
-		}
-
-		Aux = 0;
-		AuxNeg = 0;
-		for(int i = 1;i<TimerDef.Count;i++){
-			if(MultiplierDef[i]>0){
-				Aux+=TimerDef[i];
-			}
-			else{
-				AuxNeg+=TimerDef[i];
-			}
-		}
-		StatModTimers[1].Text = $"[center]{Aux}[/center]";
-		StatModTimers[5].Text = $"[center]{AuxNeg}[/center]";
-		if(Aux == 0){
-			StatMods.GetChild(1).GetChild<Control>(0).Visible = false;
-		}
-		if(AuxNeg == 0){
-			StatMods.GetChild(6).GetChild<Control>(0).Visible = false;
-		}
-
-		for(int i=1;i<MultiplierSpAtk.Count;i++){
-			TimerSpAtk[i]--;
-			if(TimerSpAtk[i]<=0){
-				SpAtk.Add(i);
-			}
-		}
-		
-		Aux = 0;
-		AuxNeg = 0;
-		for(int i = 1;i<TimerSpAtk.Count;i++){
-			if(MultiplierSpAtk[i]>0){
-				Aux+=TimerSpAtk[i];
-			}
-			else{
-				AuxNeg+=TimerSpAtk[i];
-			}
-		}
-		StatModTimers[2].Text = $"[center]{Aux}[/center]";
-		StatModTimers[6].Text = $"[center]{AuxNeg}[/center]";
-		if(Aux == 0){
-			StatMods.GetChild(2).GetChild<Control>(0).Visible = false;
-		}
-		if(AuxNeg == 0){
-			StatMods.GetChild(7).GetChild<Control>(0).Visible = false;
-		}
-
-		for(int i=1;i<MultiplierSpDef.Count;i++){
-			TimerSpDef[i]--;
-			if(TimerSpDef[i]<=0){
-				SpDef.Add(i);
-			}
-		}
-
-		Aux = 0;
-		AuxNeg = 0;
-		for(int i = 1;i<TimerSpDef.Count;i++){
-			if(MultiplierSpDef[i]>0){
-				Aux+=TimerSpDef[i];
-			}
-			else{
-				AuxNeg+=TimerSpDef[i];
-			}
-		}
-		StatModTimers[3].Text = $"[center]{Aux}[/center]";
-		StatModTimers[7].Text = $"[center]{AuxNeg}[/center]";
-		if(Aux == 0){
-			StatMods.GetChild(3).GetChild<Control>(0).Visible = false;
-		}
-		if(AuxNeg == 0){
-			StatMods.GetChild(8).GetChild<Control>(0).Visible = false;
-		}
-
-		for(int i=1;i<MultiplierSpeed.Count;i++){
-			TimerSpeed[i]--;
-			if(TimerSpeed[i]<=0){
-				Speed.Add(i);
-			}
-		}
-
-		Aux = 0;
-		AuxNeg = 0;
-		for(int i = 1;i<TimerSpeed.Count;i++){
-			if(MultiplierSpeed[i]>0){
-				Aux+=TimerSpeed[i];
-			}
-			else{
-				AuxNeg+=TimerSpeed[i];
-			}
-		}
-		StatModTimers[4].Text = $"[center]{Aux}[/center]";
-		StatModTimers[8].Text = $"[center]{AuxNeg}[/center]";
-		if(Aux == 0){
-			StatMods.GetChild(4).GetChild<Control>(0).Visible = false;
-		}
-		if(AuxNeg == 0){
-			StatMods.GetChild(9).GetChild<Control>(0).Visible = false;
-		}
-
-
-		for(int i=1;i<Atk.Count;i++){
-			TimerAtk.RemoveAt(Atk[i]);
-			MultiplierAtk.RemoveAt(Atk[i]);
-		}
-		for(int i=1;i<Def.Count;i++){
-			TimerSpAtk.RemoveAt(Def[i]);
-			MultiplierAtk.RemoveAt(Def[i]);
-		}
-		for(int i=1;i<SpAtk.Count;i++){
-			TimerSpAtk.RemoveAt(SpAtk[i]);
-			MultiplierSpAtk.RemoveAt(SpAtk[i]);
-		}
-		for(int i=1;i<SpDef.Count;i++){
-			TimerSpAtk.RemoveAt(SpDef[i]);
-			MultiplierSpAtk.RemoveAt(SpDef[i]);
-		}
-		for(int i=1;i<Speed.Count;i++){
-			TimerSpeed.RemoveAt(Atk[i]);
-			MultiplierSpeed.RemoveAt(Atk[i]);
-		}
-	}
-	public void ClearTimers(){
-		HoldingMoveTimer = 0;
-		for(int i=1;i<MultiplierAtk.Count;i++){
-			TimerAtk.RemoveAt(i);
-			MultiplierAtk.RemoveAt(i);
-		}
-		for(int i=1;i<MultiplierDef.Count;i++){
-			TimerSpAtk.RemoveAt(i);
-			MultiplierAtk.RemoveAt(i);
-		}
-		for(int i=1;i<MultiplierSpAtk.Count;i++){
-			TimerSpAtk.RemoveAt(i);
-			MultiplierSpAtk.RemoveAt(i);
-		}
-		for(int i=1;i<MultiplierSpDef.Count;i++){
-			TimerSpAtk.RemoveAt(i);
-			MultiplierSpAtk.RemoveAt(i);
-		}
-		for(int i=1;i<MultiplierSpeed.Count;i++){
-			TimerSpeed.RemoveAt(i);
-			MultiplierSpeed.RemoveAt(i);
-		}
 	}
 
 	public void Seek(string path, float offset){
@@ -740,7 +430,8 @@ public partial class BattleCharacter : CharacterBody2D
 	public virtual void TurnOffBattle(){
 		MoveUsed = null;
 		HoldingMove = false;
-		ClearTimers();
+		//ClearTimers();
+		ClearStatMultiplier();
 		selectActions.clearAll();
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
@@ -757,6 +448,8 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public void SetOffsets(){
 		HPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
+		StatMods.GetParent<Node2D>().Position += Character.Base.BattleOffset;
+		selectActions.Position += Character.Base.BattleOffset;
 		if(Character.isControlledByPlayer){
 			EXPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
 			WPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;

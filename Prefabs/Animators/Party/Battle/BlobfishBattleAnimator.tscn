@@ -245,22 +245,22 @@ blend_mode = 1
 animation = &"BlobFight/Block"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cqw10"]
-animation = &"Dodge1"
+animation = &"BlobFight/Dodge1"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4myiu"]
-animation = &"Dodge2"
+animation = &"BlobFight/Dodge2"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ttl3n"]
-animation = &"Dodge3"
+animation = &"BlobFight/Dodge3"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wlrad"]
-animation = &"Dodge4"
+animation = &"BlobFight/Dodge4"
 
 [sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_7rmp7"]
 blend_point_0/node = SubResource("AnimationNodeAnimation_cqw10")
-blend_point_0/pos = Vector2(0, 1)
+blend_point_0/pos = Vector2(0, -1)
 blend_point_1/node = SubResource("AnimationNodeAnimation_4myiu")
-blend_point_1/pos = Vector2(0, -1)
+blend_point_1/pos = Vector2(0, 1)
 blend_point_2/node = SubResource("AnimationNodeAnimation_ttl3n")
 blend_point_2/pos = Vector2(-1, 0)
 blend_point_3/node = SubResource("AnimationNodeAnimation_wlrad")
@@ -278,7 +278,7 @@ animation = &"BlobFight/Idle"
 animation = &"BlobFight/Die"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_71k4i"]
-animation = &"Shoot"
+animation = &"BlobFight/Item"
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_4uocv"]
 blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_dd0fj")
@@ -301,11 +301,11 @@ snap = 1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cxesx"]
-animation = &"StartBattle"
+animation = &"BlobFight/StartBattle"
 play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_06pwq"]
-animation = &"StartBattle"
+animation = &"BlobFight/StartBattle"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_q6e16"]
 advance_mode = 2
@@ -342,9 +342,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ldoyf")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
-parameters/ActionState/blend_position = 2.76267
+parameters/ActionState/blend_position = 0.989333
 parameters/ActionState/0/blend_position = 0
-parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = -0.00266667
 parameters/ActionState/0/0/0/conditions/EndMove = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false
-parameters/ActionState/2/blend_position = Vector2(0, 0)
+parameters/ActionState/2/blend_position = Vector2(-0.00287634, 0.00440526)

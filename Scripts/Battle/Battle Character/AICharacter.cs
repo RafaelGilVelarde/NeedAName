@@ -24,7 +24,7 @@ public partial class AICharacter : BattleCharacter
 	}
     public override void TurnOffBattle()
     {
-		ClearTimers();
+		ClearStatMultiplier();
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;
         Character._ChangeHP-=ShowChangeHPBar;

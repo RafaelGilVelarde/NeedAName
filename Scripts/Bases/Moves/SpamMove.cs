@@ -15,7 +15,7 @@ public partial class SpamMove : MoveBase
 
 
         int Spam = 0;
-        int MultIndex = Users[0].MultiplierAtk.Count;
+        float OriginMultiplier = Users[0].StatMultiplier[0];
         Users[0]._ReturnToIdle+=SpamInterval;
 
         void SpamInterval(BattleCharacter character){
@@ -38,15 +38,9 @@ public partial class SpamMove : MoveBase
         void IncreaseSpam(){
             Users[0]._DoAction-=IncreaseSpam;
             Users[0].changeCombo((Spam%MaxCombo)+1);
-            Debug.WriteLine("Spam: "+(Spam%MaxCombo)+1);
             Spam++;
             Users[0].changeState(BattleCharacter.BattleState.Idle);
-            if(MultIndex ==  Users[0].MultiplierAtk.Count){
-                Users[0].AddAtkMultiplier(AtkMultiplier,1);
-            }
-            else{
-                Users[0].MultiplierAtk[MultIndex]*=AtkMultiplier;
-            }
+            Users[0].StatMultiplier[0]*=AtkMultiplier;
         }   
 
 
@@ -73,12 +67,8 @@ public partial class SpamMove : MoveBase
 		tween.Finished+=tween.Kill;
 
         void End(){
-            Debug.WriteLine($"Endspam, Index: {MultIndex}, Users: {Users.Count}");
-            if(MultIndex !=  Users[0].MultiplierAtk.Count){
-			    Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
-                Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
-            }  
             Users[0].changeState(BattleCharacter.BattleState.Idle);
+            Users[0].StatMultiplier[0] = OriginMultiplier; 
             Users[0]._ReturnToIdle-=SpamInterval;
         }
     }

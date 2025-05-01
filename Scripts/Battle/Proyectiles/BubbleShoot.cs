@@ -101,7 +101,6 @@ public partial class BubbleShoot : BezierProyectile
         if(Ended){
             Acting = false;
             GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Hit",true);
-            Debug.WriteLine("Shoot Ended: "+Ended);
             for(int i = 0;i<Proyectiles.Count;i++){
                 Proyectiles[i].Ended = Ended;
                 Proyectiles[i].Hit();
@@ -111,10 +110,8 @@ public partial class BubbleShoot : BezierProyectile
     public override void EndSplash()
     {
         if(Ended){
-            Debug.WriteLine("EndedProyeectile, queuefree");
             QueueFree();
         }
-        Debug.WriteLine(IsQueuedForDeletion());
         
     }
 

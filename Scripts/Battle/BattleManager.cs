@@ -39,6 +39,7 @@ public partial class BattleManager : Node
 	public ItemButtons CurrentItemButton;
 
 	[Export]double PositionMoveSpeed;
+	[Export] public TextureRect MenuUI;
 	[Export]public ItemList itemList;
 	[Export]public MoveList moveList;
     // Called when the node enters the scene tree for the first time.
@@ -141,6 +142,8 @@ public partial class BattleManager : Node
 		for(int i=0;i<Party.Count;i++){
 			Node2D Parent=Party[i].GetParent<Node2D>();
 			ProgressBar HPBar = Party[i].HPBar;
+			ProgressBar WPBar = Party[i].WPBar;
+			HBoxContainer StatMods = Party[i].StatMods;
 			/*float AuxCenterView = (CenterView.X-partyPos[i].X)/Mathf.Abs(CenterView.X-partyPos[i].X);
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);*/
 			float aux=(CenterView-partyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
@@ -150,54 +153,29 @@ public partial class BattleManager : Node
 				//Debug.WriteLine("Flipped: "+AuxCenterView+","+AuxScale);
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
+			}
+			SetScale(HPBar,aux,Parent);
+			SetScale(WPBar,aux,Parent);
+			SetScale(StatMods,aux,Parent);
 
-			}
-			if(Parent.Rotation!=0){
-				HPBar.Rotation=Parent.GlobalRotation;
-				HPBar.Scale=Parent.GlobalScale;
-
-			}
-			else{
-				HPBar.Rotation = 0;
-				HPBar.Scale = new Vector2(1,1);
-				if(Parent.Rotation<0){
-					HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
-				}
-				else{
-					HPBar.Position = new Vector2(-Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
-				}
-			}
 			MoveCharacters(tween,Party[i],partyPos[i],(float)PositionMoveSpeed);
 		}
 
 		for(int i=0;i<EnemyParty.Count;i++){
 			Node2D Parent=EnemyParty[i].GetParent<Node2D>();
 			ProgressBar HPBar = EnemyParty[i].HPBar;
+			HBoxContainer StatMods = EnemyParty[i].StatMods;
 			//float aux=(CenterView-enemyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
 			float AuxCenterView = (CenterView.X-enemyPos[i].X)/Mathf.Abs(CenterView.X-enemyPos[i].X);
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 			float aux=AuxCenterView/AuxScale;
-			Debug.WriteLine("CenterViewFirst: "+CenterView.X+" Pos: "+enemyPos[i].X);
-			Debug.WriteLine("CenterView: "+AuxCenterView + "Scale: "+AuxScale);
+
 			if(aux<0){
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
 				}
-			if(Parent.Rotation!=0){
-				HPBar.Rotation=Parent.GlobalRotation;
-				HPBar.Scale=Parent.GlobalScale;
-				HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
-			}
-			else{
-				HPBar.Rotation = 0;
-				HPBar.Scale = new Vector2(1,1);
-				if(Parent.Rotation<0){
-					HPBar.Position = new Vector2(Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
-				}
-				else{
-					HPBar.Position = new Vector2(-Mathf.Abs(HPBar.Position.X),HPBar.Position.Y);
-				}
-			}
+			SetScale(HPBar,aux,Parent);
+			SetScale(StatMods,aux,Parent);
 			MoveCharacters(tween,EnemyParty[i],enemyPos[i],(float)PositionMoveSpeed);
 		}
 
@@ -205,6 +183,24 @@ public partial class BattleManager : Node
 		
 		tween.Finished += tween.Kill;
 		
+		void SetScale(Control Bar, float aux, Node2D Parent){
+			Node2D control = Bar.GetParent<Node2D>();
+			if(Parent.Rotation!=0){
+				control.Rotation=Parent.GlobalRotation;
+				control.Scale=Parent.GlobalScale;
+			}
+			else{
+				control.Rotation = 0;
+				control.Scale = new Vector2(1,1);
+				if(Parent.Rotation<0){
+					control.Position = new Vector2(Mathf.Abs(control.Position.X),control.Position.Y);
+				}
+				else{
+					control.Position = new Vector2(-Mathf.Abs(control.Position.X),control.Position.Y);
+				}
+				
+			}
+		}
 	}
 
 	void OrderTurns(){
@@ -238,9 +234,7 @@ public partial class BattleManager : Node
 				CurrentCharacter.ShowStatsMods();
 			}
 		}
-		Debug.WriteLine("Can Start Turn: "+CanStartTurn);
 		if(CanStartTurn){
-			Debug.WriteLine("Starting turn");
 			CurrentCharacter.StartChoosingMove();
 		}
 	}
@@ -271,6 +265,10 @@ public partial class BattleManager : Node
 		TargetCharacters.Clear();
 		UserCharacters.Clear();
 		ChangeTutorialLabel(0,true, TurnOrder[0].Character);
+		if(CurrentCharacter!=null){
+			Debug.WriteLine("Name: "+CurrentCharacter.Character.Base.Name);
+			CurrentCharacter.ReduceStatMultiplier();
+		}
 		if(!BattleEnded){
 				CurrentTurn++;
 				TurnCount++;
@@ -297,7 +295,6 @@ public partial class BattleManager : Node
 	public void EndRound(){
 		CurrentTurn=0;
 		for(int i=0;i<TurnOrder.Count;i++){
-			TurnOrder[i].ReduceMultiplyTimer();
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
 				TurnOrder[i].Character?.Equipment[j]?.TurnEndEffect(TurnOrder[i]);
 			}

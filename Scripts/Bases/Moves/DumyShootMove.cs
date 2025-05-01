@@ -7,7 +7,7 @@ using System.Linq;
 
 public partial class DumyShootMove : MoveBase
 {
-[Export] float Speed, Middle=2, Timer2, Height=50;
+[Export] float  Middle=2, Timer2, Height=50;
 [Export] int Combo = 1;
 [Export] string Tag;
 [Export] PackedScene Proyectile;

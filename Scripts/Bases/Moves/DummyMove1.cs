@@ -29,7 +29,7 @@ public partial class DummyMove1 : MoveBase
 
 		Users[0].changeCombo(Combo2);
 		Users[0]._ReturnToIdle+=idle;
-		Users[0].AddAtkMultiplier(AtkMultiplier,1);
+		Users[0].StatMultiplier[0]+=AtkMultiplier;
 
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
@@ -55,8 +55,9 @@ public partial class DummyMove1 : MoveBase
 		void idle(BattleCharacter character){
 			character.battleState=BattleCharacter.BattleState.Idle;
 			Users[0].changeCombo(Combo1);
-			Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
-			Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
+			Users[0].StatMultiplier[0]-=AtkMultiplier;
+			//Users[0].MultiplierAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
+			//Users[0].TimerAtk.RemoveAt(Users[0].MultiplierAtk.Count-1);
 			Users[0]._ReturnToIdle-=idle;
 		}
 		/*void End(){

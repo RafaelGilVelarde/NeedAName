@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=129 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -30,6 +30,7 @@
 [ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="17_307rp"]
 [ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="17_dq38r"]
 [ext_resource type="PackedScene" uid="uid://cidpvaj35nwkm" path="res://Scenes/Sea/Maps/Map 5.tscn" id="17_n77r6"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="18_miyx3"]
 [ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="18_otk5e"]
 [ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
 [ext_resource type="PackedScene" uid="uid://dvfopsva3d6kc" path="res://Scenes/Sea/Maps/Map 7.tscn" id="19_36hit"]
@@ -37,6 +38,8 @@
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/SuckMove.cs" id="20_ebntc"]
 [ext_resource type="PackedScene" uid="uid://3kixx2q8tusp" path="res://Scenes/Sea/Maps/Map 8.tscn" id="20_livod"]
 [ext_resource type="PackedScene" uid="uid://b4g462db2jmdj" path="res://Scenes/Sea/Maps/Map 9.tscn" id="21_7ndos"]
+[ext_resource type="PackedScene" uid="uid://b7yn0nhscvc8d" path="res://Prefabs/BattleProjectyles/WaterBubble.tscn" id="21_w2gw7"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatWithEffectMove.cs" id="22_iif3q"]
 [ext_resource type="PackedScene" uid="uid://c1ctnjer4e83g" path="res://Scenes/Sea/Maps/Map 10.tscn" id="22_kd36x"]
 [ext_resource type="PackedScene" uid="uid://25u8i0j5fpqw" path="res://Scenes/Sea/Maps/Map 11.tscn" id="23_8ie6e"]
 [ext_resource type="PackedScene" uid="uid://dqkjym3frsrsp" path="res://Scenes/Sea/Maps/Map 12.tscn" id="24_hw1ek"]
@@ -88,15 +91,15 @@ EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
@@ -141,27 +144,27 @@ Base = SubResource("Resource_xm7il")
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jdfak"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jsd81"]
 script = ExtResource("9_ncips")
@@ -188,7 +191,7 @@ Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 8
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_72ep1"]
 script = ExtResource("8_3wvmt")
@@ -209,7 +212,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 1
 HP = 1
 Atk = 1
@@ -217,7 +220,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
@@ -264,7 +267,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_q6csy"]
 script = ExtResource("8_3wvmt")
@@ -285,7 +288,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_pxv6k"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 5
 HP = 2
 Atk = 3
@@ -293,7 +296,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 3
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_0vipi"]
 script = ExtResource("5_wfrc5")
@@ -311,15 +314,15 @@ BattleOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_8og32"]
 script = ExtResource("19_nrko3")
@@ -341,29 +344,64 @@ MoveTime = 10.0
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_8og32")
 
+[sub_resource type="Resource" id="Resource_f4gq8"]
+script = ExtResource("18_miyx3")
+AtkTime = 0
+DefTime = 0
+SpAtkTime = 0
+SpDefTime = 0
+SpeedTime = 0
+AtkMult = 0.0
+DefMult = 0.0
+SpAtkMult = 0.0
+SpDefMult = 0.0
+SpeedMult = 0.0
+HPIncrease = 0.0
+WPIncrease = 8.0
+Atk = false
+Def = false
+Spatk = false
+Spdef = false
+Speed = false
+HP = false
+WPUp = true
+type = 0
+Power = 0
+UserAmount = 0
+TargetAmount = 0
+WP = 0
+Cost = 8
+TargetsParty = true
+Name = "Brave"
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_6x26t"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_f4gq8")
+
 [sub_resource type="Resource" id="Resource_mnm8f"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_n6jfa"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = 0
+MaxHP = null
 HP = 10
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_gsllo"]
 script = ExtResource("8_3wvmt")
@@ -371,7 +409,7 @@ Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
 Base = SubResource("Resource_0vipi")
-Moves = Array[Object]([SubResource("Resource_oqotk")])
+Moves = Array[Object]([SubResource("Resource_oqotk"), SubResource("Resource_6x26t")])
 items = Array[Object]([])
 Equipment = Array[Object]([null, null, null, null])
 stats = SubResource("Resource_n6jfa")
@@ -384,7 +422,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_q32qo"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 3
 HP = 3
 Atk = 1
@@ -392,7 +430,7 @@ Def = 3
 SpAtk = 1
 SpDef = 3
 Speed = 2
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_tjlxb"]
 script = ExtResource("5_wfrc5")
@@ -410,15 +448,15 @@ BattleOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_k1454"]
 script = ExtResource("20_ebntc")
@@ -442,29 +480,74 @@ MoveTime = 10.0
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_k1454")
 
+[sub_resource type="Resource" id="Resource_smiot"]
+script = ExtResource("22_iif3q")
+Middle = 2.0
+Timer2 = 3.0
+Height = 0.0
+Length = 50.0
+speed = 2.0
+Combo = 2
+Tag = "PlayerHitbox"
+Proyectile = ExtResource("21_w2gw7")
+offset = Vector2(0, 0)
+State = 0
+AtkTime = 0
+DefTime = 3
+SpAtkTime = 0
+SpDefTime = 0
+SpeedTime = 0
+AtkMult = 0.0
+DefMult = 1.5
+SpAtkMult = 0.0
+SpDefMult = 0.0
+SpeedMult = 0.0
+HPIncrease = 0.0
+WPIncrease = 0.0
+Atk = false
+Def = true
+Spatk = false
+Spdef = false
+Speed = false
+HP = false
+WPUp = false
+type = 0
+Power = 0
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = true
+Name = "Bubshield"
+MoveTime = 4.0
+
+[sub_resource type="Resource" id="Resource_1f36n"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_smiot")
+
 [sub_resource type="Resource" id="Resource_h61cx"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_dsrgr"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = 0
+MaxHP = null
 HP = 20
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_db7dj"]
 script = ExtResource("8_3wvmt")
@@ -472,7 +555,7 @@ Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
 Base = SubResource("Resource_tjlxb")
-Moves = Array[Object]([SubResource("Resource_ngl2m")])
+Moves = Array[Object]([SubResource("Resource_ngl2m"), SubResource("Resource_1f36n")])
 items = Array[Object]([])
 Equipment = Array[Object]([null, null, null, null])
 stats = SubResource("Resource_dsrgr")
@@ -585,6 +668,7 @@ _data = {
 script = ExtResource("1_mg7l2")
 SavePath = "C:/Users/nosoy/Documents/SavesTest"
 Saves = Array[Object]([null, null, null])
+CurrentSave = null
 Data = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
@@ -601,6 +685,8 @@ script = ExtResource("42_2n8ol")
 MainButtons = NodePath("Node2D/VBoxContainer")
 CurrentScreen = NodePath("Node2D/Stats")
 Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, null, NodePath("Node2D/Saves")]
+PointerIndex = null
+State = null
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
@@ -662,6 +748,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 script = ExtResource("43_h24bu")
+StatsScreenState = null
 Equipments = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2")
 EquipList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip")
 KeyButton = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton")
@@ -955,11 +1042,13 @@ alignment = 1
 script = ExtResource("48_cq2x1")
 Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3"), NodePath("RichTextLabel5")]
 ItemType = 1
+EquipType = null
 items = []
 
 [node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
 [node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
@@ -1112,6 +1201,7 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items"]
@@ -1210,6 +1300,7 @@ text = "Key
 layout_mode = 2
 script = ExtResource("48_8uklt")
 Buttons = [NodePath("VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer3/RichTextLabel"), NodePath("VBoxContainer3/RichTextLabel2"), NodePath("VBoxContainer3/RichTextLabel3"), NodePath("VBoxContainer3/RichTextLabel5")]
+ItemType = null
 items = []
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1301,6 +1392,7 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("../..")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1334,8 +1426,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("53_hb5i3")
 SavesList = NodePath("SaveScrolls")
+state = null
+action = null
+PreviousState = null
 ChooseAction = NodePath("ChooseAction")
 ConfirmAction = NodePath("Confirm")
+SavePointerIndex = null
 
 [node name="SaveScrolls" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" node_paths=PackedStringArray("Buttons")]
 layout_mode = 0

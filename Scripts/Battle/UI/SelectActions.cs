@@ -158,6 +158,7 @@ public partial class SelectActions : Node2D
 	void ActivateState(SelectState state){
 		currentState=state;
 		clearMost();
+		BattleManager.instance.MenuUI.Hide();
 			switch (currentState){
 			case SelectState.SelectAction:
 					WaitForAnimation();
@@ -166,11 +167,13 @@ public partial class SelectActions : Node2D
 			break;
 			case SelectState.SelectMove:
 				BattleManager.instance.moveList.GetParent<Control>().Show();
+				BattleManager.instance.MenuUI.Show();
 
 				BattleManager.instance.moveList.FillButtons(BattleManager.instance.moveList.pointerStart,ScrollList.StartEnd.Regular);
 
 			break;
 			case SelectState.SelectItem:
+				BattleManager.instance.MenuUI.Show();
 				BattleManager.instance.itemList.GetParent<Control>().Show();
 				BattleManager.instance.itemList.FillButtons(BattleManager.instance.moveList.pointerStart,ScrollList.StartEnd.Regular);
 			break;

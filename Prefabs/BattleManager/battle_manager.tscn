@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7iiupkqy5jmj"]
+[gd_scene load_steps=9 format=3 uid="uid://b7iiupkqy5jmj"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
+[ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="2_0iv6q"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ScrollList.cs" id="3_w87jg"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
@@ -8,7 +9,7 @@
 [ext_resource type="Script" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/LossScreen.cs" id="7_bat71"]
 
-[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "itemList", "moveList")]
+[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "MenuUI", "itemList", "moveList")]
 process_mode = 4
 script = ExtResource("1_6q2le")
 BattleCamera = NodePath("Camera2D")
@@ -16,10 +17,19 @@ TutorialLabels = NodePath("CanvasLayer/Controls")
 Loss = NodePath("CanvasLayer/LossScreen")
 CharacterButtonParent = NodePath("CharacterButtonParent")
 PositionMoveSpeed = 0.3
+MenuUI = NodePath("CanvasLayer/TextureRect")
 itemList = NodePath("CanvasLayer/Items/ItemList")
 moveList = NodePath("CanvasLayer/Moves/MoveList")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+visible = false
+modulate = Color(0.34902, 0.34902, 0.670588, 0.560784)
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(5, 3)
+texture = ExtResource("2_0iv6q")
 
 [node name="Moves" type="HBoxContainer" parent="CanvasLayer"]
 offset_right = 436.0
@@ -115,7 +125,6 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
-visible = false
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
