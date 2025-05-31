@@ -19,6 +19,7 @@ public partial class BattleScene : Resource
     protected TimelineType timelineType;
     public string WinTimeline = "Win";
     public bool DialogueFlag;
+    [Export] public float EscapeChance = 100;
     public virtual void StartBattleEffect(){
         Dialog=DialogicCSharp.instance;
         Battle=BattleManager.instance;
@@ -206,8 +207,10 @@ public partial class BattleScene : Resource
             }        
         }
         for(int i = 0;i<Battle.Party.Count;i++){
-            PartyCharacters PartyCharacter=(PartyCharacters)Battle.Party[i].Character;        
-            Battle.Party[i].ShowEXPBar(PartyCharacter.Exp,PartyCharacter.Exp+EXP[i],PartyCharacter.NextLevelExp-PartyCharacter.PastLevelExp);
+            PartyCharacters PartyCharacter=(PartyCharacters)Battle.Party[i].Character;   
+            PartyCharacterBase CharBase=(PartyCharacterBase)Battle.Party[i].Character.Base;
+            int Level = PartyCharacter.stats.Lv;      
+            Battle.Party[i].ShowEXPBar(PartyCharacter.Exp,PartyCharacter.Exp+EXP[i],CharBase.ExpForLevel[Level]-CharBase.ExpForLevel[Level-1],Level);
             PartyCharacter.GainExp(EXP[i]);
         }
     }

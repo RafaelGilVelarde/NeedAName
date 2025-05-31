@@ -19,6 +19,8 @@
 [sub_resource type="Resource" id="Resource_xlhq5"]
 script = ExtResource("13_ade6h")
 DialogueTimelines = Array[String](["NPC1"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gpu5j"]
 resource_local_to_scene = true
@@ -48,6 +50,8 @@ Amount = 1
 [sub_resource type="Resource" id="Resource_xmjlp"]
 script = ExtResource("13_ade6h")
 DialogueTimelines = Array[String](["ItemPick"])
+FlagIndexes = null
+flagTypes = null
 
 [node name="Map2" type="Node2D"]
 y_sort_enabled = true

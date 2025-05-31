@@ -8,6 +8,7 @@ public partial class DummyItemMove : MoveBase
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
         base.Effect(Users, Targets);
+        Users[0].changeAction(BattleCharacter.ActionState.isStatus);
         Array<Character> Aux = new Array<Character>();
         for(int i = 0;i<Targets.Count;i++){
             Aux.Add(Targets[i].Character);

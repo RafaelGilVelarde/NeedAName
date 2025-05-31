@@ -8,7 +8,7 @@ public partial class BossSpoutMove : MoveBase
 {
 	[Export] int Combo = 3;
     [Export] PackedScene Proyectile;
-	[Export] float XOffset;
+	[Export] Vector2 Offset;
 	[Export] string Tag;
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
@@ -49,7 +49,7 @@ public partial class BossSpoutMove : MoveBase
 
 		void shoot(BattleCharacter User){
 			CollisionShape2D Aux = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0);
-			proyectile.GlobalPosition = Aux.GlobalPosition-Users[0].Character.Base.BattleOffset+new Vector2(Dir*XOffset,((RectangleShape2D)Aux.Shape).Size.Y/2);
+			proyectile.GlobalPosition = Aux.GlobalPosition-Users[0].BattleOffset+new Vector2(Dir*Offset.X,(((RectangleShape2D)Aux.Shape).Size.Y/2)+Offset.Y);
 			User.GetTree().CurrentScene.AddChild(proyectile);
 		}
 		void End(){

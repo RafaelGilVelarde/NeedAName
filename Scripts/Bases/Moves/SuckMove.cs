@@ -15,6 +15,7 @@ public partial class SuckMove : MoveBase
         float VelocityMult = 0;
         Targets[0].Moving = true;
         CharacterBody2D Target = Targets[0].Overworld.Parent;
+        Vector2 Scale = Target.Scale;
         bool Sucked = false, CanShoot = false, SuccesfulShoot = false;
 
         Users[0]._DoAction+=Spam;
@@ -29,6 +30,7 @@ public partial class SuckMove : MoveBase
             VelocityMult+=0.2f;
             float ClampVelocity = Mathf.Clamp(VelocityMult,MinVel,MaxVel);
             Target.Velocity = Direction*VelocityMult;
+            Target.Scale *= 0.8f;
         }
         void CheckSuck(){
             if(!Sucked){
@@ -89,8 +91,10 @@ public partial class SuckMove : MoveBase
         }
 
         void End(){
-            Targets[0].Velocity = Vector2.Zero;
+            Target.Velocity = Vector2.Zero;
             Users[0].Hurtbox.AreaEntered-=ShootStart;
+            Tween tween = Target.CreateTween();
+            tween.TweenProperty(Target,"scale",Scale,0.2f).SetEase(Tween.EaseType.OutIn);
         }
     }
 

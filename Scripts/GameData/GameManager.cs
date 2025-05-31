@@ -35,12 +35,17 @@ public partial class GameManager : Node
 	}
 	public override void _EnterTree()
 	{
-		Instance=this;
+		Instance = this;
 		//InstantiateCharacters();
-		 ResourceLoader.Exists("user://"+"save"+0.ToString()+".tres");
-		 if(GetTree().CurrentScene.Name!="MainMenu"){
+		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
+		if (GetTree().CurrentScene.Name != "MainMenu")
+		{
 			InstantiateCharacters();
-		 }
+		}
+		for (int i = 0; i < Data.Party.Count; i++)
+		{
+			((PartyCharacterBase)Data.Party[i].Base).SetEXPLevels();
+		}
 	}
 	public void LoadFirstScene(){
 		InstantiateCharacters();
@@ -51,8 +56,9 @@ public partial class GameManager : Node
 			Character aux=Data.Party[i];
 			if(aux.Active){
 				Characters.Add((PlayerController)AddCharacters(aux,0));
+				Followers.Add(Characters[Characters.Count-1]);
 				if(i>0){
-					Characters[Characters.Count-1].AxisOffset=i*3;
+					Characters[Characters.Count-1].AxisOffset=i*8;
 				}
 			}
 		}
@@ -61,7 +67,7 @@ public partial class GameManager : Node
 			if(aux.Active){
 				Followers.Add((PlayerController)AddCharacters(aux,0));
 				if(i>0){
-					Followers[Followers.Count-1].AxisOffset=i*3;
+					Followers[Followers.Count-1].AxisOffset=i*8;
 				}
 			}
 		}
@@ -86,9 +92,10 @@ public partial class GameManager : Node
 		//A.Parent.Position = controller.GlobalPosition;
 	}
 	public void RemoveFollowingCharacter(PlayerController A, bool NPC){
+		Debug.WriteLine("Removing");
 		A.OverworldCollider.Disabled = true;
 		Tween tween = CreateTween();
-		tween.TweenProperty(A.Parent,"modulate: a",1,0);
+		tween.TweenProperty(A.Parent,"modulate:a",0,0.2f);
 		tween.Finished+=()=>{
 			Followers.Remove(A);
 			if(!NPC){
@@ -98,6 +105,7 @@ public partial class GameManager : Node
 			}
 			controller._Follow-=A.FollowLeader;
 			A.Parent.QueueFree();
+			Debug.WriteLine("Deleted");
 		};
 		tween.Finished+=tween.Kill;
 		//A.Parent.Position = controller.GlobalPosition;
@@ -171,6 +179,11 @@ public partial class GameManager : Node
 
 			Overworld.SetOffsets();
 			Overworld.BattleCharacter.SetOffsets();
+
+			if (character.GetType() == typeof(PartyCharacters))
+			{
+				Overworld.Parent.Name = $"Party {((PartyCharacterBase)character.Base).PartyId}";
+			}
 			GetTree().CurrentScene.AddChild(Prefab);
 			return Overworld;
 	}
@@ -232,19 +245,27 @@ public partial class GameManager : Node
 			Followers[i].DataMap=Map;
 		}	
 	}
-	public void MoveCharactersToScene(){
-		for(int i=0;i<Characters.Count;i++){
-			Node2D aux=Characters[i].Parent;
-			aux.GlobalPosition=PositionToMove;
+	public void MoveCharactersToScene()
+	{
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			Node2D aux = Characters[i].Parent;
+			aux.GlobalPosition = PositionToMove;
 			aux.GetParent().RemoveChild(aux);
 			GetTree().CurrentScene.AddChild(aux);
 		}
-		for(int i=0;i<Followers.Count;i++){
-			Node2D aux=Followers[i].Parent;
-			aux.GlobalPosition=PositionToMove;
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			Node2D aux = Followers[i].Parent;
+			aux.GlobalPosition = PositionToMove;
 			aux.GetParent().RemoveChild(aux);
 			GetTree().CurrentScene.AddChild(aux);
-		}	
+		}
+		Array<Vector2> Aux = controller.PositionList;
+		for (int i = 0; i < Aux.Count; i++)
+		{
+			Aux[i] = controller.GlobalPosition;
+		}
 	}
 	public void Save(int save){
 		CurrentSave = save;
@@ -310,13 +331,16 @@ public partial class GameManager : Node
 	public void SetLayers(int GraphicsLayer, uint PhysicsLayer){
 		Data.GraphicsLayer = GraphicsLayer;
 		Data.PhysicsLayer = PhysicsLayer;
-		for(int i=0;i<Characters.Count;i++){
+		//CHANGE THE MASKS IN THE GAME
+		for (int i = 0; i < Characters.Count; i++)
+		{
 			Characters[i].Parent.ZIndex = GraphicsLayer;
 			Characters[i].Parent.CollisionMask = PhysicsLayer;
+			Characters[i].Parent.CollisionLayer = PhysicsLayer;
 		}
 		for(int i=0;i<Followers.Count;i++){
 			Followers[i].Parent.ZIndex = GraphicsLayer;
-			Followers[i].Parent.CollisionMask = PhysicsLayer;			
+			Followers[i].Parent.CollisionLayer = PhysicsLayer;			
 		}	
 	}
 public override void _Notification(int what)

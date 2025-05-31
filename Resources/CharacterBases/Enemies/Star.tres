@@ -7,15 +7,15 @@
 
 [sub_resource type="Resource" id="Resource_467lk"]
 script = ExtResource("1_e2dfw")
-Lv = 0
+Lv = null
 MaxHP = 8
-HP = 0
+HP = null
 Atk = 3
 Def = 2
 SpAtk = 2
 SpDef = 1
 Speed = 6
-WP = 0
+WP = null
 
 [sub_resource type="Curve" id="Curve_0dopt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
@@ -333,3 +333,5 @@ BattleAnimator = SubResource("PackedScene_g0qt3")
 TextEffectColor = Color(1, 0, 0, 1)
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null

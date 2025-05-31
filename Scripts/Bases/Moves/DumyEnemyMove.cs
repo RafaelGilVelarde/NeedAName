@@ -43,7 +43,7 @@ public partial class DumyEnemyMove : MoveBase
 		//timer.TweenInterval(MoveTime);
 		Vector2 TargetPosition = Users[0].GlobalPosition;
 		if(Movement){
-			TargetPosition= Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+			TargetPosition= Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
 		}
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(State)));
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);

@@ -170,6 +170,8 @@ public partial class BattleManager : Node
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 			float aux=AuxCenterView/AuxScale;
 
+			Debug.WriteLine("Centerview: "+CenterView+" AuxView: "+AuxCenterView+" AuxScale: "+AuxScale+" Aux: "+aux);
+
 			if(aux<0){
 				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
@@ -235,13 +237,16 @@ public partial class BattleManager : Node
 			}
 		}
 		if(CanStartTurn){
+			CurrentCharacter.ReduceStatMultiplier();
 			CurrentCharacter.StartChoosingMove();
 		}
 	}
 	public void EndMove(){
 		ActiveMoves--;
 		if(ActiveMoves<=0){
-			for(int i=0;i<TurnOrder.Count;i++){
+			ActiveMoves = 0;
+			for (int i = 0; i < TurnOrder.Count; i++)
+			{
 				TurnOrder[i].Reset();
 			}
 			ResetPositions();
@@ -265,10 +270,6 @@ public partial class BattleManager : Node
 		TargetCharacters.Clear();
 		UserCharacters.Clear();
 		ChangeTutorialLabel(0,true, TurnOrder[0].Character);
-		if(CurrentCharacter!=null){
-			Debug.WriteLine("Name: "+CurrentCharacter.Character.Base.Name);
-			CurrentCharacter.ReduceStatMultiplier();
-		}
 		if(!BattleEnded){
 				CurrentTurn++;
 				TurnCount++;
@@ -312,8 +313,19 @@ public partial class BattleManager : Node
 		Scene.BattleEnd();
 	}
 	public void Run(){
-		State=BattleState.Run;
-		Scene.BattleEnd();
+		RandomNumberGenerator RNG = new RandomNumberGenerator();
+		int Random = RNG.RandiRange(0,99);
+		Debug.WriteLine("Run: " + Random);
+		CurrentCharacter.selectActions.ProcessMode=ProcessModeEnum.Disabled;
+		if (Scene.EscapeChance > Random)
+		{
+			State = BattleState.Run;
+			Scene.BattleEnd();
+		}
+		else
+		{
+			EndMove();
+		}
 	}
 
 	public void ReturnToOverworld(){

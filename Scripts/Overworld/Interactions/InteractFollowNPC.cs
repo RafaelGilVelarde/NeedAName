@@ -57,20 +57,23 @@ public partial class InteractFollowNPC : CheckValueInteract
                 else{
                     AuxChar = Game.Data.AllFollwers[AuxType.CharacterIndex];
                 }
-                Flag.ChangeBoolFlag(CheckUnflagEvents[i%CheckUnflagEvents.Count],true,FlagType.Event);
+                Flag.ChangeBoolFlag(CheckUnflagEvents[i%CheckUnflagEvents.Count],false,FlagType.Event);
                 for(int j = 0;j<Game.Followers.Count;j++){
                     PlayerController Follower = Game.Followers[j];
-                    if(AuxChar == Follower.BattleCharacter.Character){
+                    Character Chara = Follower.BattleCharacter.Character;
+                    if(AuxChar == Chara && Chara.Active){
+                        Debug.WriteLine("Equals");
                         if(AuxType.Party){
-                            Game.RemoveFollowingCharacter(Game.Followers[j],false);
+                            Game.RemoveFollowingCharacter(Follower,false);
                         }
                         else{
-                            Game.RemoveFollowingCharacter(Game.Followers[j],true);
+                            Game.RemoveFollowingCharacter(Follower,true);
                         }
                     }
 
                 }
             }
+            AddFollow();
         }
     }
 

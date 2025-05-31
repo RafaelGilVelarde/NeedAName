@@ -23,7 +23,7 @@ public partial class bridgeMoveTest : MoveBase
 
 		Targets[0].Controllable=true;                
 
-		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
         tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Dodging)));
 		tween.TweenInterval(0.1);
         tween.TweenCallback(Callable.From(Dialogue));

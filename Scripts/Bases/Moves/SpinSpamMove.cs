@@ -60,7 +60,7 @@ public partial class SpinSpamMove : MoveBase
             Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Windup",false);
             
             Tween Tween = Users[0].CreateTween();
-            Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset-AuxOffset;
+            Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset-AuxOffset;
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             
             Tween.Finished+=()=>{
@@ -112,7 +112,7 @@ public partial class SpinSpamMove : MoveBase
             
             Tween Tween = Users[0].CreateTween();
 
-            Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+            Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             /*Tween.Finished+=HitSignal;
             void HitSignal(){

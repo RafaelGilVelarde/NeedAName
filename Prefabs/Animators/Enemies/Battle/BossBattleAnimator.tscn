@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bmlxetebltuvw"]
+[gd_scene load_steps=15 format=3 uid="uid://bmlxetebltuvw"]
 
 [ext_resource type="AnimationLibrary" uid="uid://cvyxxjnn1wh11" path="res://Animations/Battle/Boss1.res" id="1_mtx4u"]
 
@@ -43,6 +43,9 @@ animation = &"Idle"
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83yyf"]
 animation = &"Die"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_j6h7t"]
+animation = &"Attack4"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hojxb"]
 blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_ptcog")
 blend_point_0/pos = 0.0
@@ -52,8 +55,11 @@ blend_point_2/node = SubResource("AnimationNodeAnimation_q0j88")
 blend_point_2/pos = 5.0
 blend_point_3/node = SubResource("AnimationNodeAnimation_83yyf")
 blend_point_3/pos = 6.0
+blend_point_4/node = SubResource("AnimationNodeAnimation_j6h7t")
+blend_point_4/pos = 7.0
 min_space = 0.0
-max_space = 6.0
+max_space = 7.0
+snap = 1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_126af"]

@@ -33,7 +33,7 @@ Party = true
 
 [sub_resource type="Resource" id="Resource_i0bwi"]
 script = ExtResource("15_fxiba")
-CharacterIndex = 2
+CharacterIndex = 3
 Party = true
 
 [sub_resource type="Resource" id="Resource_gjywv"]
@@ -62,19 +62,19 @@ flagTypes = Array[int]([3])
 
 [sub_resource type="Resource" id="Resource_8d7d2"]
 script = ExtResource("10_rdewt")
-DialogueTimelines = Array[String](["NPC1", "CompanionNPC1"])
+DialogueTimelines = Array[String](["CompanionNPC1-2"])
 FlagIndexes = Array[int]([])
 flagTypes = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_1qxtd"]
 script = ExtResource("10_rdewt")
-DialogueTimelines = Array[String]([""])
+DialogueTimelines = Array[String](["CompanionNPC1-3"])
 FlagIndexes = Array[int]([2])
 flagTypes = Array[int]([3])
 
 [sub_resource type="Resource" id="Resource_fswao"]
 script = ExtResource("10_rdewt")
-DialogueTimelines = Array[String]([""])
+DialogueTimelines = Array[String](["CompanionNPC1-4"])
 FlagIndexes = Array[int]([])
 flagTypes = Array[int]([])
 
@@ -91,8 +91,6 @@ layer_0/tile_data = PackedInt32Array(-1, 458752, 7, 65535, 458752, 7, -65536, 45
 layer_1/tile_data = PackedInt32Array(-196605, 0, 4, -196604, 262144, 3, -262141, 327680, 805306370, -262140, 196608, 1, 131075, 393216, 805306372, 196611, 65536, 1, 131076, 262144, 805306371, 196604, 393216, 0, 262140, 327680, 2, 131067, 327680, 2, 65531, 327680, 2, -5, 327680, 2, -65541, 327680, 2, -196612, 327680, 2, -131077, 327680, 3, -131076, 393216, 4, 196603, 327680, 1610612739, 262139, 196608, 1, 196612, 196608, 1, -196613, 196608, 1, 327676, 327680, 2, -262148, 327680, 2, -327677, 327680, 805306370, 262147, 327680, 805306370, 131077, 327680, 1610612738, 131078, 327680, 1610612738, 131079, 327680, 1610612738, 196615, 196608, 1, 131080, 327680, 1610612738, -196600, 327680, 1342177282, -196601, 327680, 1342177282, -196602, 327680, 1342177282, -196603, 327680, 1342177282, -327676, 196608, 1, -327675, 196608, 1, -262139, 196608, 1, -327674, 196608, 1, -262138, 196608, 1, -327673, 196608, 1, -262137, 196608, 1, -327672, 196608, 1, -262136, 196608, 1, 262148, 196608, 1, 196613, 196608, 1, 262149, 196608, 1, 196614, 196608, 1, 262150, 196608, 1, 262151, 196608, 1, 196616, 196608, 1, 262152, 196608, 1, -262153, 196608, 1, -196617, 196608, 1, -262152, 196608, 1, -196616, 196608, 1, -262151, 196608, 1, -196615, 196608, 1, -262150, 196608, 1, -196614, 196608, 1, -262149, 196608, 1, -131081, 196608, 1, -65545, 196608, 1, -9, 196608, 1, 65527, 196608, 1, 131063, 196608, 1, 196599, 196608, 1, 262135, 196608, 1, 327671, 196608, 1, -131080, 196608, 1, -65544, 196608, 1, -8, 196608, 1, 65528, 196608, 1, 131064, 196608, 1, 196600, 196608, 1, 262136, 196608, 1, 327672, 196608, 1, -131079, 196608, 1, -65543, 196608, 1, -7, 196608, 1, 65529, 196608, 1, 131065, 196608, 1, 196601, 196608, 1, 262137, 196608, 1, 327673, 196608, 1, -131078, 196608, 1, -65542, 196608, 1, -6, 196608, 1, 65530, 196608, 1, 131066, 196608, 1, 196602, 196608, 1, 262138, 196608, 1, 327674, 196608, 1, 327675, 196608, 1, -327684, 327680, 2, -393213, 327680, 805306370, -393220, 393216, 0, -458749, 393216, 1610612736, -196599, 393216, 1342177280, 131081, 393216, 0, 327683, 393216, 805306368, 393212, 393216, 1342177280, 393207, 196608, 1, 393208, 196608, 1, 393209, 196608, 1, 393210, 196608, 1, 393211, 196608, 1, 327684, 196608, 1, 327685, 196608, 1, 327686, 196608, 1, 327687, 196608, 1, 327688, 196608, 1, 196617, 196608, 1, 262153, 196608, 1, 327689, 196608, 1, -458748, 196608, 1, -393212, 196608, 1, -458747, 196608, 1, -393211, 196608, 1, -458746, 196608, 1, -393210, 196608, 1, -458745, 196608, 1, -393209, 196608, 1, -458744, 196608, 1, -393208, 196608, 1, -458743, 196608, 1, -393207, 196608, 1, -327671, 196608, 1, -262135, 196608, 1, -393225, 196608, 1, -327689, 196608, 1, -393224, 196608, 1, -327688, 196608, 1, -393223, 196608, 1, -327687, 196608, 1, -393222, 196608, 1, -327686, 196608, 1, -393221, 196608, 1, -327685, 196608, 1, -393226, 196608, 1, -327690, 196608, 1, -65546, 196608, 1, -131082, 196608, 1, -196618, 196608, 1, -262154, 196608, 1, -10, 196608, 1, 65526, 196608, 1, 131062, 196608, 1, 196598, 196608, 1, 262134, 196608, 1, 327670, 196608, 1, 393206, 196608, 1)
 
 [node name="Area2D" parent="." instance=ExtResource("3_qdq56")]
-CurrentTimeline = null
-TimelineIndex = null
 
 [node name="Cams" parent="." instance=ExtResource("2_1nb3s")]
 
@@ -118,8 +116,6 @@ script = ExtResource("4_ajnuj")
 [node name="Door" parent="." instance=ExtResource("5_jp614")]
 position = Vector2(0, 184)
 Scene = 11
-PlayerZIndex = null
-Area = null
 LoadPosition = Vector2(0, -180)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -128,8 +124,6 @@ shape = SubResource("RectangleShape2D_33xxx")
 [node name="Door2" parent="." instance=ExtResource("5_jp614")]
 position = Vector2(0, -192)
 Scene = 1
-PlayerZIndex = null
-Area = null
 LoadPosition = Vector2(-160, 585)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
@@ -139,8 +133,6 @@ shape = SubResource("RectangleShape2D_kfnjs")
 position = Vector2(328, 0)
 rotation = 1.5708
 Scene = 6
-PlayerZIndex = null
-Area = null
 LoadPosition = Vector2(-260, 0)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
@@ -149,37 +141,18 @@ shape = SubResource("RectangleShape2D_v7v4t")
 [node name="Heal" parent="." instance=ExtResource("7_7q820")]
 position = Vector2(-112, 0)
 
-[node name="CollisionShape2D" parent="Heal" index="0"]
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
-visualType = null
-
-[node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 10
-
 [node name="FollowNPC" parent="." instance=ExtResource("9_piu75")]
 
 [node name="CollisionShape2D" parent="FollowNPC" index="0" node_paths=PackedStringArray("Animator", "AnimatorTree")]
 character = SubResource("Resource_1jtul")
 CheckDeleteCharacters = Array[Object]([SubResource("Resource_i0bwi")])
 CheckEvents = Array[int]([9])
-CharacterPrefab = null
+CheckUnflagEvents = Array[int]([10])
 EventIndex = 9
 CheckValues = Array[Object]([SubResource("Resource_gjywv"), SubResource("Resource_ygcdq"), SubResource("Resource_raing")])
 TimelineGroup = Array[Object]([SubResource("Resource_2r7rt"), SubResource("Resource_8d7d2"), SubResource("Resource_1qxtd"), SubResource("Resource_fswao")])
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
 Animator = NodePath("AnimationPlayer")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
-visualType = null
 
 [node name="AnimationPlayer" parent="FollowNPC/CollisionShape2D" index="0" instance=ExtResource("12_6ncgw")]
 
@@ -187,7 +160,7 @@ visualType = null
 parameters/Idle/blend_position = Vector2(-0.00287634, 0.026455)
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1"]
-frame = 6
+frame = 4
 
 [editable path="Area2D"]
 [editable path="Cams"]

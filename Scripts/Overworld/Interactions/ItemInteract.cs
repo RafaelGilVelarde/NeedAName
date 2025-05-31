@@ -47,8 +47,9 @@ public partial class ItemInteract : InteractText
             }
         }*/
         for(int i = 0;i<ItemsToGive.Count;i++){
-            Array<Items> Items = ItemLists[(int)ItemsToGive[i].Base.type].items;
-            Items.Add(ItemsToGive[i]);
+            ItemLists[(int)ItemsToGive[i].Base.type].AddItem(ItemsToGive[i]);
+            /*Array<Items> Items = ItemLists[(int)ItemsToGive[i].Base.type].items;
+            Items.Add(ItemsToGive[i]);*/
         }
         AnimatorTree?.Set("parameters/conditions/Taking",true);
         GameManager.Instance.Data.Flags.ItemGiven[GameID] = true;

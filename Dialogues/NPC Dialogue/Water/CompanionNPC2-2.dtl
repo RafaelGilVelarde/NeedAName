@@ -1,0 +1,10 @@
+Hello
+Changed your mind?
+- Reject
+	Awww
+	Gooood luuck, I'll find my way!
+- Accept
+	Yaaay!
+	Let's find some good homes
+	MC (Happy): Sure!
+	[signal arg="Follow"]

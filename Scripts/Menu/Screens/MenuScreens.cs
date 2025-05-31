@@ -13,7 +13,7 @@ public partial class MenuScreens : Control
             }
     }
     public virtual void Select(){
-
+        InitialDisplay();
     }
     public virtual void Confirm(){
 
@@ -23,5 +23,8 @@ public partial class MenuScreens : Control
     }
     public virtual void Setup(){
         
+    }
+    public virtual void InitialDisplay(){
+
     }
 }

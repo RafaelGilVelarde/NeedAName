@@ -1,4 +1,4 @@
-[gd_scene load_steps=99 format=3 uid="uid://dbs7iqu5fr21p"]
+[gd_scene load_steps=101 format=3 uid="uid://dbs7iqu5fr21p"]
 
 [ext_resource type="Texture2D" uid="uid://cyd8rk3jjitin" path="res://Sprites/Background/Side View/Boss Arena 1 Ground.png" id="1_q1sx7"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t3ogn"]
@@ -34,6 +34,8 @@
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="29_1p83n"]
 [ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="29_6dhwp"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="29_63fyv"]
+[ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="31_ajt7s"]
+[ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="32_cs5se"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="34_wr8hh"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_k84y4"]
@@ -213,6 +215,8 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_sa4b1"]
 script = ExtResource("12_ccuw4")
 DialogueTimelines = Array[String](["Boss"])
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_barrw"]
 resource_local_to_scene = true
@@ -220,6 +224,7 @@ size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_cqcim"]
 script = ExtResource("15_bhcf2")
+EscapeChance = 0.0
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0guv5"]
 animation = &"Attack1"
@@ -287,7 +292,7 @@ Def = 3
 SpAtk = 2
 SpDef = 1
 Speed = 3
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_n0kjw"]
 script = ExtResource("19_04fsb")
@@ -302,15 +307,15 @@ BattleOffset = Vector2(0, 0)
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_7s2bh")
@@ -337,7 +342,7 @@ Base = SubResource("Resource_woo47")
 script = ExtResource("26_8x2fq")
 Combo = 3
 Proyectile = ExtResource("25_40e4m")
-XOffset = 0.0
+Offset = Vector2(0, -36)
 Tag = "EnemyHitbox"
 type = 0
 Power = 2
@@ -357,7 +362,7 @@ Base = SubResource("Resource_je7yg")
 script = ExtResource("26_8x2fq")
 Combo = 3
 Proyectile = ExtResource("25_40e4m")
-XOffset = -50.0
+Offset = Vector2(-50, -36)
 Tag = "EnemyHitbox"
 type = 0
 Power = 2
@@ -375,7 +380,6 @@ Base = SubResource("Resource_4jt63")
 
 [sub_resource type="Resource" id="Resource_mwkff"]
 script = ExtResource("27_om6rh")
-Speed = 2.0
 Middle = 2.0
 Timer2 = 7.0
 Height = 50.0
@@ -409,11 +413,15 @@ DefMult = 0.0
 SpAtkMult = 0.0
 SpDefMult = 0.0
 SpeedMult = 0.0
+HPIncrease = 0.0
+WPIncrease = 0.0
 Atk = true
 Def = false
 Spatk = false
 Spdef = false
 Speed = false
+HP = false
+WPUp = false
 type = 0
 Power = 0
 UserAmount = 1
@@ -430,15 +438,15 @@ Base = SubResource("Resource_72lul")
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("16_q3s3b")
@@ -450,7 +458,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_i0rrr"]
 resource_local_to_scene = true
@@ -562,7 +570,6 @@ resource_local_to_scene = true
 size = Vector2(38, 16)
 
 [node name="Node2D" type="Node2D"]
-position = Vector2(0, 3)
 script = ExtResource("1_t3ogn")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -588,8 +595,9 @@ limit_top = -30
 limit_right = 270
 limit_bottom = 210
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
+[node name="StaticBody2D" type="StaticBody2D" parent="." groups=["IgnoreOnStartBattle"]]
 visible = false
+position = Vector2(0, -2)
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
 z_index = 2
@@ -662,6 +670,7 @@ position = Vector2(0, 80)
 texture = ExtResource("2_dd8q1")
 hframes = 4
 vframes = 3
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -740,25 +749,39 @@ rotation = 3.14159
 scale = Vector2(1, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character" node_paths=PackedStringArray("battleStart", "Sprites")]
-position = Vector2(0, 38)
+position = Vector2(0, 36)
 shape = SubResource("RectangleShape2D_puscj")
 script = ExtResource("11_frgqn")
 battleStart = NodePath("../OverworldController/BattleStart")
 TimelineGroup = Array[Object]([SubResource("Resource_sa4b1")])
+TimelineGroupIndex = null
+TimelineIndex = null
+Timeline = null
 PauseWhenDialogue = true
+Turn = null
+SpokenTo = null
 FacingRight = false
+FacingDirection = null
+visualType = null
 Sprites = []
 
 [node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Animator", "AnimatorTree", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("7_4k8em")
 enemyCollision = NodePath("Area2D")
+CachedTargetPosition = null
+RandMin = null
+RandMax = null
+state = null
 IdleTargets = []
+CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
+DirectionIndex = null
 MainSprite = NodePath("MainSprite")
-Friction = 1000.0
-MaxSpeed = 50.0
+Speed = null
+Friction = null
+MaxSpeed = null
 Animator = NodePath("AnimationPlayer")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 Parent = NodePath("..")
@@ -766,7 +789,13 @@ OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = []
 PositionList = []
 AuxPositionList = []
+AxisOffset = null
+Axis = null
+AxisAux = null
 Controllable = false
+OffsetsSet = null
+FacingDirection = null
+Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="Character/OverworldController"]
@@ -774,7 +803,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 7
 vframes = 7
-frame = 6
+frame = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -797,12 +826,15 @@ shape = SubResource("RectangleShape2D_barrw")
 disabled = true
 
 [node name="BattleStart" type="Node2D" parent="Character/OverworldController"]
+position = Vector2(0, 36)
 script = ExtResource("14_yifkv")
 scene = SubResource("Resource_cqcim")
+Horizontal = true
 EnemyCharacters = []
 CharacterPrefab = 1
-PartyPos = Array[Vector2]([Vector2(-100, 20)])
-EnemyPos = Array[Vector2]([Vector2(0, 0)])
+BorderOffset = null
+PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-200, 0)])
+EnemyPos = Array[Vector2]([Vector2(0, -36)])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Character/OverworldController"]
 libraries = {
@@ -819,7 +851,7 @@ anim_player = NodePath("..")
 parameters/ActionState/blend_position = 5.0
 parameters/ActionState/0/blend_position = 0.173189
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "StatMods")]
 process_mode = 4
 visible = false
 script = ExtResource("23_1gxnh")
@@ -829,27 +861,33 @@ Character = SubResource("Resource_i0rrr")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
+Controllable = null
 Overworld = NodePath("../OverworldController")
-MultiplierAtk = Array[float]([1.0])
-MultiplierDef = Array[float]([1.0])
-MultiplierSpAtk = Array[float]([1.0])
-MultiplierSpDef = Array[float]([1.0])
-MultiplierSpeed = Array[float]([1.0])
-TimerAtk = Array[int]([1])
-TimerDef = Array[int]([1])
-TimerSpAtk = Array[int]([1])
-TimerSpDef = Array[int]([1])
-TimerSpeed = Array[int]([1])
+OriginPos = null
+StatMultiplier = [1.0, 1.0, 1.0, 1.0, 1.0]
+Combo = null
+HoldingMoveTimer = null
+HoldingMove = null
+UsedComboMove = null
+BlockedEnemy = null
+Looping = null
+Moving = null
+MultTimer = [null, null, null, null, null]
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
+DodgeDir = null
+BattleOffset = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
-HPBar = NodePath("HPBar")
+HPBar = NodePath("HPBarParent/HPBar")
+StatMods = NodePath("Node2D/HBoxContainer")
+UpStat = ExtResource("31_ajt7s")
+DownStat = ExtResource("32_cs5se")
 battleState = 3
 actionState = 5
 
@@ -862,7 +900,7 @@ shape = SubResource("RectangleShape2D_rd4dd")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyHurtbox"]]
-position = Vector2(-34, 20.0001)
+position = Vector2(-34, 33)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox"]
 shape = SubResource("RectangleShape2D_ft7k8")
@@ -880,7 +918,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 7
 vframes = 7
-frame = 5
+frame = 37
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -959,7 +997,9 @@ anim_offset_max = 0.9809
 
 [node name="Shoot" type="Node2D" parent="Character/BattleCharacter"]
 
-[node name="HPBar" type="ProgressBar" parent="Character/BattleCharacter"]
+[node name="HPBarParent" type="Node2D" parent="Character/BattleCharacter"]
+
+[node name="HPBar" type="ProgressBar" parent="Character/BattleCharacter/HPBarParent"]
 modulate = Color(1, 1, 1, 0)
 layout_direction = 2
 anchors_preset = 8
@@ -980,7 +1020,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_tosun")
 max_value = 50.0
 show_percentage = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/HPBar"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0
@@ -992,7 +1032,7 @@ bbcode_enabled = true
 text = "[center]50/50[/center]"
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/HPBar"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
 offset_left = -3.0
 offset_top = 4.0
@@ -1010,10 +1050,301 @@ process_mode = 3
 [node name="AnimationTree" parent="Character/BattleCharacter/AnimationPlayer" index="0"]
 parameters/ActionState/blend_position = 3.20733
 
+[node name="Node2D" type="Node2D" parent="Character/BattleCharacter"]
+position = Vector2(-19.9999, 32)
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Character/BattleCharacter/Node2D"]
+offset_left = -28.0
+offset_right = 68.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("31_ajt7s")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Atk[/center]"
+
+[node name="TextureRect2" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("31_ajt7s")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Def[/center]"
+
+[node name="TextureRect3" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("31_ajt7s")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpA[/center]"
+
+[node name="TextureRect4" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("31_ajt7s")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpD[/center]"
+
+[node name="TextureRect5" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("31_ajt7s")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Spe[/center]"
+
+[node name="TextureRect6" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("32_cs5se")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Atk[/center]"
+
+[node name="TextureRect7" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("32_cs5se")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Def[/center]"
+
+[node name="TextureRect8" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("32_cs5se")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpA[/center]"
+
+[node name="TextureRect9" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("32_cs5se")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]SpD[/center]"
+
+[node name="TextureRect10" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
+visible = false
+layout_mode = 2
+texture = ExtResource("32_cs5se")
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = 7.0
+offset_right = 41.0
+offset_bottom = 47.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]1[/center]"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+layout_mode = 0
+offset_left = 1.0
+offset_top = -1.0
+offset_right = 41.0
+offset_bottom = 39.0
+scale = Vector2(0.35, 0.35)
+theme_override_font_sizes/normal_font_size = 20
+bbcode_enabled = true
+text = "[center]Spe[/center]"
+
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(269, 170)
 script = ExtResource("34_wr8hh")
 Scene = 28
+Area = null
+LoadPosition = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(1, 0)

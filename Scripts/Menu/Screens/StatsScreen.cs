@@ -22,13 +22,14 @@ public partial class StatsScreen : MenuScreens
     [Export] Array<State> PreviousStates;
     public Character CurrentCharacter;
     public Items CurrentEquipment;
-    int CurrentEquipTypeIndex;
+    int CurrentEquipTypeIndex, CurrentCharacterIndex;
     public override void _Ready()
     {
         base._Ready();
     }
     void ChooseCharacter(Character chara){
         CurrentCharacter = chara;
+        CurrentCharacterIndex = GameManager.Instance.Data.Party.IndexOf((PartyCharacters)chara);
         DisplayStats();
     }
     void ChangeState(State state, bool AdvanceStage){
@@ -154,8 +155,7 @@ public partial class StatsScreen : MenuScreens
     }
     public override void Select()
     {
-        Character chara = GameManager.Instance.Data.Party[0];
-        ChooseCharacter(chara);
+        base.Select();
         CharacterList.FillButtons(CharacterList.pointerStart,ScrollList.StartEnd.Regular);
         CharacterList.Buttons[0].GrabFocus();
         ((Button)KeyButton).Text = CurrentCharacter.Key.ToString();
@@ -169,6 +169,25 @@ public partial class StatsScreen : MenuScreens
         SetupKeyButton();
         
     }
+    public override void InitialDisplay()
+    {
+        base.InitialDisplay();
+        bool active = false;
+        int aux = 0;
+        Character chara = new Character();
+        Array<PartyCharacters> characters = GameManager.Instance.Data.Party;
+        while(!active){
+            chara = characters[(CurrentCharacterIndex+aux)%characters.Count];
+            if(!chara.Active){
+                aux++;
+            }
+            else{
+                active = true;
+            }
+        }
+        ChooseCharacter(chara);
+    }
+
     void SetupCharacterbutton(){
         CharacterList._ChangeCharacter+=ChooseCharacter;
         CharacterList.Buttons[0].Pressed+=PickCharacter;

@@ -1,0 +1,11 @@
+*Yaaawn* Leaving this place?
+MC (Confused): I guess...not sure what's going on
+Ooooh well, I can come with you through these tides!
+- Reject
+	Awww
+	Gooood luuck, I'll find my way!
+- Accept
+	Yaaay!
+	Let's find some good homes
+	MC (Happy): Sure!
+	[signal arg="Follow"]

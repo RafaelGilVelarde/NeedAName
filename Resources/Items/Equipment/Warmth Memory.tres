@@ -5,15 +5,15 @@
 
 [sub_resource type="Resource" id="Resource_aijb6"]
 script = ExtResource("2_gl2wk")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
 Def = 2
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [resource]
 script = ExtResource("1_p21lu")

@@ -31,6 +31,12 @@ public partial class MainMenu : CanvasLayer
         }
         else{
             ProcessMode=ProcessModeEnum.Inherit;
+            for(int i = 0;i<Screens.Count;i++){
+                if(Screens[i]!=null){
+                    Screens[i].InitialDisplay();
+                    Debug.WriteLine("Screen: "+i);
+                }
+            }
         }
     }
     public void ChangeScreen(int Index){

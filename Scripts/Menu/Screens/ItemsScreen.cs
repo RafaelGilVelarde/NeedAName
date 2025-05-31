@@ -75,6 +75,12 @@ public partial class ItemsScreen : MenuScreens
         ItemList.FillButtons(0,ScrollList.StartEnd.Regular);
         ChangeState(0,true);
     }
+    public override void InitialDisplay()
+    {
+        base.InitialDisplay();
+        ItemList.Fill(0,ScrollList.StartEnd.Regular);
+    }
+
     void ChangeState(int state, bool AdvanceStage){
         if(AdvanceStage){
             PreviousState.Add(ItemScreenState);

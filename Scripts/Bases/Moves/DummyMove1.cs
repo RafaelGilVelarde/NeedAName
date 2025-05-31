@@ -33,7 +33,7 @@ public partial class DummyMove1 : MoveBase
 
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
-		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].Character.Base.BattleOffset;
+		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeState(BattleCharacter.BattleState.Attacking)));
 		tween.TweenCallback(Callable.From(()=>Users[0].Character.ShowTextLabel($"{Users[0].Character.Key}",Users[0].Character.Base.TextEffectColor)));

@@ -7,7 +7,8 @@ public partial class BattleStart : Node2D
 {
     
     [Export]BattleScene scene;
-    [Export]Array<Character> EnemyCharacters;
+    [Export] bool Horizontal;
+    [Export] Array<Character> EnemyCharacters;
     [Export] int CharacterPrefab;
     [Export] Vector2 BorderOffset;
     [Export]Array<Vector2>PartyPos,EnemyPos;
@@ -38,14 +39,40 @@ public partial class BattleStart : Node2D
             Array<BattleCharacter> EnemyBattle=new Array<BattleCharacter>(); 
             for(int i=0;i<Characters.Count;i++){
                 Character aux= Characters[i].BattleCharacter.Character;
-                if(aux.Active){
+                if (aux.Active)
+                {
                     Party.Add(Characters[i].BattleCharacter);
+                    if (Horizontal)
+                    {
+                        Party[Party.Count - 1].BattleOffset = Vector2.Zero;
+                    }
+                    else
+                    {
+                        Party[Party.Count - 1].BattleOffset = Party[Party.Count - 1].Character.Base.BattleOffset;
+                    }
                 }
             }
             EnemyBattle.Add(this.GetParent<OverworldController>().BattleCharacter);
-            for(int i=0;i<EnemyCharacters.Count;i++){
+            if (Horizontal)
+            {
+                EnemyBattle[0].BattleOffset = Vector2.Zero;
+            }
+            else
+            {
+                EnemyBattle[0].BattleOffset = EnemyBattle[0].Character.Base.BattleOffset;
+            }
+            for (int i = 0; i < EnemyCharacters.Count; i++)
+            {
                 EnemyBattle.Add(GameManager.Instance.AddCharacters((Character)EnemyCharacters[i].Duplicate(true), CharacterPrefab).BattleCharacter);
-                EnemyBattle[EnemyBattle.Count-1].GetParent<Node2D>().Position=GlobalPosition;
+                EnemyBattle[EnemyBattle.Count - 1].GetParent<Node2D>().Position = GlobalPosition;
+                if (Horizontal)
+                {
+                    EnemyBattle[EnemyBattle.Count - 1].BattleOffset = Vector2.Zero;
+                }
+                else
+                {
+                    EnemyBattle[EnemyBattle.Count - 1].BattleOffset = EnemyBattle[EnemyBattle.Count - 1].Character.Base.BattleOffset;
+                }
             }
             for(int i=0;i<EnemyBattle.Count;i++){
                 EnemyBattle[i].Character.SetStats();
@@ -55,11 +82,13 @@ public partial class BattleStart : Node2D
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();
             for (int i=0;i<Party.Count;i++){
-                Vector2 Aux=CheckPosition(GlobalPosition+PartyPos[i]-Party[i].Character.Base.BattleOffset);
+                Vector2 Aux=CheckPosition(GlobalPosition+PartyPos[i]-Party[i].BattleOffset);
                 PartyPosGlobal.Add(Aux);
             }
             for (int i=0;i<EnemyBattle.Count;i++){
-                Vector2 Aux=CheckPosition(GlobalPosition+EnemyPos[i]-EnemyBattle[i].Character.Base.BattleOffset);
+                Debug.WriteLine("ThisPos: "+GlobalPosition);
+                Vector2 Aux=CheckPosition(GlobalPosition+EnemyPos[i]-EnemyBattle[i].BattleOffset);
+                Debug.WriteLine("FinalPos: "+Aux);
                 EnemyPosGlobal.Add(Aux);
             }
             BattleManager.instance.ProcessMode=ProcessModeEnum.Inherit;
@@ -77,7 +106,8 @@ public partial class BattleStart : Node2D
             var result = spaceState.IntersectRay(query);
             if(result.Count>0){
                     Node2D aux=result["collider"].As<Node2D>();
-                    if(!aux.IsInGroup("EnemyOverworldController")&&!aux.IsInGroup("PlayerOverworldController")){
+                    if(!aux.IsInGroup("EnemyOverworldController")&&!aux.IsInGroup("PlayerOverworldController")&&!aux.IsInGroup("IgnoreOnStartBattle")){
+                        Debug.WriteLine("Collider: "+aux);
                         FinalPos=result["position"].As<Vector2>();
                         if(!aux.IsInGroup("Borders")){
                             Vector2 Normalized = new Vector2(FinalPos.X/Mathf.Abs(FinalPos.X),FinalPos.Y/Mathf.Abs(FinalPos.Y));

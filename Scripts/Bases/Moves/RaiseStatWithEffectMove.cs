@@ -14,6 +14,21 @@ public partial class RaiseStatWithEffectMove : RaiseStatMove
 
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
+		Array<Vector2> ScaleAux=new Array<Vector2>();
+		Array<float> RotationAux=new Array<float>();
+        for(int i=0;i<Users.Count;i++){
+            ScaleAux.Add(Users[i].GlobalScale);      
+            RotationAux.Add(Users[i].GlobalRotation);
+        }
+
+        
+        Array<Vector2> TargetScaleAux=new Array<Vector2>();
+		Array<float> TargetRotationAux=new Array<float>();
+        for(int i=0;i<Targets.Count;i++){
+                TargetScaleAux.Add(Targets[i].GlobalScale);     
+            TargetRotationAux.Add(Targets[i].GlobalRotation);
+        }
+
         float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 		if(Dir==1||Dir==-1){
 			Users[0].GetParent<Node2D>().Rotation=0;
@@ -70,8 +85,20 @@ public partial class RaiseStatWithEffectMove : RaiseStatMove
 		}		
 
         void End(){
-			Users[0]._Shoot-=shoot;
-			BattleManager.instance.CallDeferred("EndMove");
+			SceneTreeTimer sceneTreeTimer = Users[0].GetTree().CreateTimer(0.5,true,true,true);
+			sceneTreeTimer.Timeout+=()=>{
+				Users[0]._Shoot-=shoot;
+				for(int i=0;i<Users.Count;i++){
+					Users[i].GetParent<Node2D>().Rotation=RotationAux[i];
+					Users[i].GetParent<Node2D>().Scale=ScaleAux[i];
+				}
+				for(int i=0;i<Targets.Count;i++){
+					Targets[i].GetParent<Node2D>().Scale=TargetScaleAux[i];
+					Targets[i].GetParent<Node2D>().Rotation=TargetRotationAux[i];
+				}
+
+				BattleManager.instance.CallDeferred("EndMove");
+			};
 		}
     }
 

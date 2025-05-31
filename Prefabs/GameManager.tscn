@@ -1,4 +1,4 @@
-[gd_scene load_steps=129 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=125 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -23,9 +23,7 @@
 [ext_resource type="PackedScene" uid="uid://bff3wb101knnw" path="res://Prefabs/Animators/Party/Battle/HalluciBattleAnimator.tscn" id="15_cf7if"]
 [ext_resource type="PackedScene" uid="uid://b5o0cjrcuemsu" path="res://Scenes/Sea/Maps/Map 3.tscn" id="15_dn5o8"]
 [ext_resource type="Script" path="res://Scripts/GameData/TypedItemList.cs" id="15_i5m0s"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DummyItemMove.cs" id="15_vgrna"]
 [ext_resource type="PackedScene" uid="uid://dbsjjfg65q1gc" path="res://Scenes/Sea/Maps/Map 4.tscn" id="16_fcc8q"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/Consumables/Heal.cs" id="16_l3pik"]
 [ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="16_n8qgu"]
 [ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="17_307rp"]
 [ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="17_dq38r"]
@@ -43,6 +41,7 @@
 [ext_resource type="PackedScene" uid="uid://c1ctnjer4e83g" path="res://Scenes/Sea/Maps/Map 10.tscn" id="22_kd36x"]
 [ext_resource type="PackedScene" uid="uid://25u8i0j5fpqw" path="res://Scenes/Sea/Maps/Map 11.tscn" id="23_8ie6e"]
 [ext_resource type="PackedScene" uid="uid://dqkjym3frsrsp" path="res://Scenes/Sea/Maps/Map 12.tscn" id="24_hw1ek"]
+[ext_resource type="Resource" uid="uid://ccbpggt45xqro" path="res://Resources/Items/Consumable/Refresher.tres" id="24_ljuqi"]
 [ext_resource type="PackedScene" uid="uid://4jvi4almskcy" path="res://Scenes/Sea/Maps/Map 13.tscn" id="25_o7ox6"]
 [ext_resource type="PackedScene" uid="uid://1tlmx7skytd6" path="res://Scenes/Sea/Maps/Map 14.tscn" id="26_0jbi8"]
 [ext_resource type="PackedScene" uid="uid://cmjnqqak8m3wt" path="res://Scenes/Sea/Maps/Map 15.tscn" id="27_w55j7"]
@@ -91,15 +90,15 @@ EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
@@ -144,27 +143,27 @@ Base = SubResource("Resource_xm7il")
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_jdfak"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_jsd81"]
 script = ExtResource("9_ncips")
@@ -191,7 +190,7 @@ Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 8
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_72ep1"]
 script = ExtResource("8_3wvmt")
@@ -212,7 +211,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
-Lv = null
+Lv = 0
 MaxHP = 1
 HP = 1
 Atk = 1
@@ -220,13 +219,14 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
 PartyId = 1
 ExpSpeed = 2.0
 ExpDistance = 3.0
+ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 BaseStats = SubResource("Resource_wyd7f")
 Name = "fbvc"
 OverworldAnimator = ExtResource("11_b4glo")
@@ -235,6 +235,8 @@ TextEffectColor = Color(0, 0, 0.952941, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null
 
 [sub_resource type="Resource" id="Resource_gt6au"]
 script = ExtResource("3_mdbab")
@@ -267,7 +269,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_q6csy"]
 script = ExtResource("8_3wvmt")
@@ -288,7 +290,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_pxv6k"]
 script = ExtResource("3_qc7bw")
-Lv = null
+Lv = 0
 MaxHP = 5
 HP = 2
 Atk = 3
@@ -296,33 +298,36 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 3
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_0vipi"]
 script = ExtResource("5_wfrc5")
 PartyId = 2
 ExpSpeed = 5.0
 ExpDistance = 10.0
+ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 BaseStats = SubResource("Resource_pxv6k")
-Name = ""
+Name = "Halluci"
 OverworldAnimator = ExtResource("16_n8qgu")
 BattleAnimator = ExtResource("15_cf7if")
 TextEffectColor = Color(0, 1, 0, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null
 
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_8og32"]
 script = ExtResource("19_nrko3")
@@ -381,27 +386,27 @@ Base = SubResource("Resource_f4gq8")
 
 [sub_resource type="Resource" id="Resource_mnm8f"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_n6jfa"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = null
+MaxHP = 0
 HP = 10
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_gsllo"]
 script = ExtResource("8_3wvmt")
@@ -422,7 +427,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_q32qo"]
 script = ExtResource("3_qc7bw")
-Lv = null
+Lv = 0
 MaxHP = 3
 HP = 3
 Atk = 1
@@ -430,13 +435,14 @@ Def = 3
 SpAtk = 1
 SpDef = 3
 Speed = 2
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_tjlxb"]
 script = ExtResource("5_wfrc5")
 PartyId = 3
 ExpSpeed = 5.0
 ExpDistance = 10.0
+ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 BaseStats = SubResource("Resource_q32qo")
 Name = "Blobby"
 OverworldAnimator = ExtResource("18_otk5e")
@@ -445,18 +451,20 @@ TextEffectColor = Color(0, 1, 0, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_k1454"]
 script = ExtResource("20_ebntc")
@@ -527,27 +535,27 @@ Base = SubResource("Resource_smiot")
 
 [sub_resource type="Resource" id="Resource_h61cx"]
 script = ExtResource("3_qc7bw")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_dsrgr"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = null
+MaxHP = 0
 HP = 20
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_db7dj"]
 script = ExtResource("8_3wvmt")
@@ -566,34 +574,9 @@ Active = true
 Key = 67
 status = 0
 
-[sub_resource type="Resource" id="Resource_k5wno"]
-script = ExtResource("15_vgrna")
-type = 0
-Power = 1
-UserAmount = 1
-TargetAmount = 1
-WP = 0
-Cost = 0
-TargetsParty = true
-Name = "sdxfvx"
-MoveTime = 1.0
-
-[sub_resource type="Resource" id="Resource_nlgn2"]
-script = ExtResource("4_0i8ni")
-Base = SubResource("Resource_k5wno")
-
-[sub_resource type="Resource" id="Resource_uj3yc"]
-script = ExtResource("16_l3pik")
-HPHeal = 5
-ItemMove = SubResource("Resource_nlgn2")
-ID = 0
-Name = "Refresher"
-Description = "Vitalizes your soul! Heals 5 HP"
-type = 0
-
 [sub_resource type="Resource" id="Resource_llqed"]
 script = ExtResource("17_307rp")
-Base = SubResource("Resource_uj3yc")
+Base = ExtResource("24_ljuqi")
 Amount = 1
 
 [sub_resource type="Resource" id="Resource_0f1ho"]
@@ -668,7 +651,6 @@ _data = {
 script = ExtResource("1_mg7l2")
 SavePath = "C:/Users/nosoy/Documents/SavesTest"
 Saves = Array[Object]([null, null, null])
-CurrentSave = null
 Data = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
@@ -685,8 +667,6 @@ script = ExtResource("42_2n8ol")
 MainButtons = NodePath("Node2D/VBoxContainer")
 CurrentScreen = NodePath("Node2D/Stats")
 Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, null, NodePath("Node2D/Saves")]
-PointerIndex = null
-State = null
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
@@ -748,7 +728,6 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 script = ExtResource("43_h24bu")
-StatsScreenState = null
 Equipments = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2")
 EquipList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip")
 KeyButton = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton")
@@ -1042,13 +1021,11 @@ alignment = 1
 script = ExtResource("48_cq2x1")
 Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3"), NodePath("RichTextLabel5")]
 ItemType = 1
-EquipType = null
 items = []
 
 [node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("45_b1lfr")
-startEnd = null
 List = NodePath("..")
 
 [node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
@@ -1201,7 +1178,6 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
-startEnd = null
 List = NodePath("..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items"]
@@ -1300,7 +1276,6 @@ text = "Key
 layout_mode = 2
 script = ExtResource("48_8uklt")
 Buttons = [NodePath("VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer3/RichTextLabel"), NodePath("VBoxContainer3/RichTextLabel2"), NodePath("VBoxContainer3/RichTextLabel3"), NodePath("VBoxContainer3/RichTextLabel5")]
-ItemType = null
 items = []
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1392,7 +1367,6 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
-startEnd = null
 List = NodePath("../..")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1426,12 +1400,8 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("53_hb5i3")
 SavesList = NodePath("SaveScrolls")
-state = null
-action = null
-PreviousState = null
 ChooseAction = NodePath("ChooseAction")
 ConfirmAction = NodePath("Confirm")
-SavePointerIndex = null
 
 [node name="SaveScrolls" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" node_paths=PackedStringArray("Buttons")]
 layout_mode = 0

@@ -34,8 +34,8 @@ public partial class MoveBase : Resource
 		Array<Vector2> ScaleAux=new Array<Vector2>();
 		Array<float> RotationAux=new Array<float>();
         for(int i=0;i<Users.Count;i++){
-            ScaleAux.Add(Users[i].Scale);      
-            RotationAux.Add(Users[i].Rotation);
+            ScaleAux.Add(Users[i].GlobalScale);      
+            RotationAux.Add(Users[i].GlobalRotation);
             Users[i].AddAttack();
         }
 
@@ -43,8 +43,8 @@ public partial class MoveBase : Resource
         Array<Vector2> TargetScaleAux=new Array<Vector2>();
 		Array<float> TargetRotationAux=new Array<float>();
         for(int i=0;i<Targets.Count;i++){
-            TargetScaleAux.Add(Targets[i].Scale);     
-            TargetRotationAux.Add(Targets[i].Rotation);
+                TargetScaleAux.Add(Targets[i].GlobalScale);     
+            TargetRotationAux.Add(Targets[i].GlobalRotation);
         }
 
 		MainTimer=Users[0].GetTree().CreateTimer(MoveTime,true,true);

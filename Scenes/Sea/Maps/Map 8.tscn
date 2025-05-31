@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://3kixx2q8tusp"]
+[gd_scene load_steps=27 format=3 uid="uid://3kixx2q8tusp"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_4hdn2"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_jv7g5"]
@@ -11,13 +11,8 @@
 [ext_resource type="PackedScene" uid="uid://de7lr25jkcecs" path="res://Prefabs/Overworld/Interactions/follow_npc.tscn" id="9_sac61"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractionResources/CheckValueTimeline.cs" id="10_a4m07"]
 [ext_resource type="Texture2D" uid="uid://2jo6bpmuc3hl" path="res://Sprites/Overworld/Blobfish.png" id="10_e1nka"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="10_y1mak"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_d27ae"]
 [ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="11_jep7p"]
-[ext_resource type="PackedScene" uid="uid://bff3wb101knnw" path="res://Prefabs/Animators/Party/Battle/HalluciBattleAnimator.tscn" id="11_vu0j8"]
-[ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="12_7qae5"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="13_2ts1b"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/PartyCharacters.cs" id="14_cro3e"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractionResources/CharacterType.cs" id="15_2m1bq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4bo8k"]
@@ -32,87 +27,14 @@ size = Vector2(32, 32)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_pxv6k"]
-script = ExtResource("10_y1mak")
-Lv = 0
-MaxHP = 5
-HP = 2
-Atk = 3
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 3
-WP = 0
-
-[sub_resource type="Resource" id="Resource_0vipi"]
-script = ExtResource("13_2ts1b")
-PartyId = 2
-ExpSpeed = 5.0
-ExpDistance = 10.0
-BaseStats = SubResource("Resource_pxv6k")
-Name = ""
-OverworldAnimator = ExtResource("12_7qae5")
-BattleAnimator = ExtResource("11_vu0j8")
-TextEffectColor = Color(0, 1, 0, 1)
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
-
-[sub_resource type="Resource" id="Resource_jeahq"]
-script = ExtResource("10_y1mak")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
-
-[sub_resource type="Resource" id="Resource_mnm8f"]
-script = ExtResource("10_y1mak")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
-
-[sub_resource type="Resource" id="Resource_n6jfa"]
-script = ExtResource("10_y1mak")
-Lv = 5
-MaxHP = 0
-HP = 10
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
-
-[sub_resource type="Resource" id="Resource_ctcca"]
-script = ExtResource("14_cro3e")
-Exp = 0
-NextLevelExp = 0
-PastLevelExp = 0
-Base = SubResource("Resource_0vipi")
-Moves = Array[Object]([])
-items = Array[Object]([])
-Equipment = Array[Object]([null, null, null, null])
-stats = SubResource("Resource_n6jfa")
-EquipStats = SubResource("Resource_jeahq")
-TotalStats = SubResource("Resource_mnm8f")
-isControlledByPlayer = true
-Active = false
-Key = 67
-status = 0
+[sub_resource type="Resource" id="Resource_m8str"]
+script = ExtResource("15_2m1bq")
+CharacterIndex = 3
+Party = true
 
 [sub_resource type="Resource" id="Resource_p8x64"]
 script = ExtResource("15_2m1bq")
-CharacterIndex = 3
+CharacterIndex = 2
 Party = true
 
 [sub_resource type="Resource" id="Resource_mng3v"]
@@ -135,25 +57,25 @@ flagTypes = Array[int]([3, 1])
 
 [sub_resource type="Resource" id="Resource_bes47"]
 script = ExtResource("11_d27ae")
-DialogueTimelines = Array[String](["", ""])
+DialogueTimelines = Array[String](["CompanionNPC2"])
 FlagIndexes = Array[int]([1])
 flagTypes = Array[int]([3])
 
 [sub_resource type="Resource" id="Resource_3qja5"]
 script = ExtResource("11_d27ae")
-DialogueTimelines = Array[String]([""])
+DialogueTimelines = Array[String](["CompanionNPC2-2"])
 FlagIndexes = Array[int]([])
 flagTypes = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_d7mb2"]
 script = ExtResource("11_d27ae")
-DialogueTimelines = Array[String]([""])
+DialogueTimelines = Array[String](["CompanionNPC2-3"])
 FlagIndexes = Array[int]([3])
 flagTypes = Array[int]([3])
 
 [sub_resource type="Resource" id="Resource_vb2ug"]
 script = ExtResource("11_d27ae")
-DialogueTimelines = Array[String]([""])
+DialogueTimelines = Array[String](["CompanionNPC2-4"])
 FlagIndexes = Array[int]([])
 flagTypes = Array[int]([])
 
@@ -280,9 +202,10 @@ polygon = PackedVector2Array(-96, 16, -96, 224, -184, 224, -184, 240, -72, 240, 
 position = Vector2(-40, 64)
 
 [node name="CollisionShape2D" parent="FollowNPC" index="0"]
-character = SubResource("Resource_ctcca")
+character = SubResource("Resource_m8str")
 CheckDeleteCharacters = Array[Object]([SubResource("Resource_p8x64")])
 CheckEvents = Array[int]([10])
+CheckUnflagEvents = Array[int]([9])
 EventIndex = 10
 CheckValues = Array[Object]([SubResource("Resource_mng3v"), SubResource("Resource_xttqo"), SubResource("Resource_ed4ba")])
 TimelineGroup = Array[Object]([SubResource("Resource_bes47"), SubResource("Resource_3qja5"), SubResource("Resource_d7mb2"), SubResource("Resource_vb2ug")])
@@ -291,7 +214,7 @@ TimelineGroup = Array[Object]([SubResource("Resource_bes47"), SubResource("Resou
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1"]
 texture = ExtResource("10_e1nka")
-frame = 2
+frame = 1
 
 [editable path="Cams"]
 [editable path="Borders"]

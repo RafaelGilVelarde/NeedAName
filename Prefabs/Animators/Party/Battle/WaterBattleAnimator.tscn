@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://w4uy187ejgjn"]
+[gd_scene load_steps=32 format=3 uid="uid://w4uy187ejgjn"]
 
 [ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="1_1wfpp"]
 
@@ -270,6 +270,9 @@ states/WaterFight_DieLoop/node = SubResource("AnimationNodeAnimation_q67gl")
 states/WaterFight_DieLoop/position = Vector2(699, 94)
 transitions = ["Start", "WaterFight_Die", SubResource("AnimationNodeStateMachineTransition_mcs87"), "WaterFight_Die", "WaterFight_DieLoop", SubResource("AnimationNodeStateMachineTransition_x3kam")]
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bjaha"]
+animation = &"WaterFight/Item"
+
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_vtlmn"]
 blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_yfjc8")
 blend_point_0/pos = 0.0
@@ -283,9 +286,11 @@ blend_point_4/node = SubResource("AnimationNodeAnimation_7176c")
 blend_point_4/pos = 3.0
 blend_point_5/node = SubResource("AnimationNodeStateMachine_dkfo3")
 blend_point_5/pos = 6.0
+blend_point_6/node = SubResource("AnimationNodeAnimation_bjaha")
+blend_point_6/pos = 7.0
 min_space = 0.0
-max_space = 6.0
-snap = 0.01
+max_space = 7.0
+snap = 1.0
 blend_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ah0no"]

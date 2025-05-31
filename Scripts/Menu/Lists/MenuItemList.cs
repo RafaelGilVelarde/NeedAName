@@ -42,7 +42,7 @@ public partial class MenuItemList : StuffList
 			}
 			activeButtons=0;
     }
-	void Fill(int Start,ScrollList.StartEnd StartEnd){
+	public void Fill(int Start,ScrollList.StartEnd StartEnd){
 		activeButtons=0;
 		for(int i=0;i<Buttons.Count;i++){
 					if(i+Start<items.Count){

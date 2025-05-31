@@ -1,4 +1,7 @@
-"No Box": No idea what's going on here
-But you must fight this thing
-MC (Confused): o......k?
+MC (Confused): This is.......What is it?
+"No Box": A bad omen, that's what
+MC (Confused): What do you mean?
+Sorry, there's no time, you'll have to fight
+"No Box": It's the only way, good luck
+MC (Normal): Fine then, seems we have no choice
 [signal arg="Fight"]
