@@ -70,11 +70,15 @@ size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_cqcim"]
 script = ExtResource("4_7sqs1")
+EscapeChance = 100.0
+Horizontal = false
+PartyFloorY = null
+EnemyFloorY = null
 
 [sub_resource type="Resource" id="Resource_2lpbm"]
 resource_local_to_scene = true
 script = ExtResource("4_1bhow")
-Lv = null
+Lv = 0
 MaxHP = 2
 HP = 2
 Atk = 2
@@ -82,7 +86,7 @@ Def = 2
 SpAtk = 2
 SpDef = 2
 Speed = 2
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_bvhfa"]
 resource_local_to_scene = true
@@ -95,18 +99,21 @@ BattleAnimator = ExtResource("9_s6u5p")
 TextEffectColor = Color(1, 0, 0, 1)
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("4_1bhow")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_44g3j"]
 script = ExtResource("9_voesq")
@@ -132,19 +139,19 @@ Base = SubResource("Resource_44g3j")
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("4_1bhow")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_0t4aj"]
 script = ExtResource("4_1bhow")
-Lv = null
+Lv = 0
 MaxHP = 10
 HP = 10
 Atk = 1
@@ -152,7 +159,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_3kofi"]
 script = ExtResource("8_r8twf")
@@ -170,7 +177,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_qlj5e"]
 script = ExtResource("4_1bhow")
-Lv = null
+Lv = 0
 MaxHP = 5
 HP = 5
 Atk = 5
@@ -178,7 +185,7 @@ Def = 5
 SpAtk = 5
 SpDef = 5
 Speed = 5
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_m1uvd"]
 script = ExtResource("15_sd2km")
@@ -190,6 +197,9 @@ BattleAnimator = ExtResource("19_e3f8d")
 TextEffectColor = Color(1, 0, 0, 1)
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 0)
+MoveSFX = null
+HitSFX = null
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("9_voesq")
@@ -214,7 +224,7 @@ Base = SubResource("Resource_woo47")
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("4_1bhow")
-Lv = null
+Lv = 0
 MaxHP = 20
 HP = 20
 Atk = 2
@@ -222,7 +232,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_p2e0b"]
 resource_local_to_scene = true
@@ -397,7 +407,7 @@ BorderOffset = null
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 100)])
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "StatMods")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers")]
 process_mode = 4
 visible = false
 script = ExtResource("3_xeb2i")
@@ -427,10 +437,12 @@ EnemyParty = []
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
+FloorNode = NodePath("Floor")
 HPBar = NodePath("HPBarParent/HPBar")
 StatMods = NodePath("Node2D/HBoxContainer")
 UpStat = ExtResource("25_qpbpu")
 DownStat = ExtResource("26_22n0a")
+SFXPlayers = []
 battleState = 3
 actionState = 5
 
@@ -539,7 +551,10 @@ anim_offset_max = 0.9809
 
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
 
+[node name="Floor" type="Node2D" parent="BattleCharacter"]
+
 [node name="HPBarParent" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(0, -60)
 
 [node name="HPBar" type="ProgressBar" parent="BattleCharacter/HPBarParent"]
@@ -588,6 +603,7 @@ text = "[center]50[/center]"
 scroll_active = false
 
 [node name="Node2D" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(-20, 0)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleCharacter/Node2D"]

@@ -17,13 +17,15 @@ public partial class PartyCharacters : Character
 	}
 	public void GainExp(int GainedExp)
 	{
-		Exp += GainedExp;
-		Debug.WriteLine(Base.Name+":"+"EXP Gained: " + GainedExp + " NextLVEXP: " + NextLevelExp);
-		Debug.WriteLine(Base.Name+":"+"Current EXP: " + Exp);
-		if (Exp > NextLevelExp)
-		{
-			LevelUp();
-			SetTotalStats();
+		if(stats.Lv<100){
+			Exp += GainedExp;
+			Debug.WriteLine(Base.Name+":"+"EXP Gained: " + GainedExp + " NextLVEXP: " + NextLevelExp);
+			Debug.WriteLine(Base.Name+":"+"Current EXP: " + Exp);
+			if (Exp > NextLevelExp)
+			{
+				LevelUp();
+				SetTotalStats();
+			}
 		}
 	}
 

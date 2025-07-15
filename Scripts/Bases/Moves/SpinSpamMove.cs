@@ -12,6 +12,7 @@ public partial class SpinSpamMove : MoveBase
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
         base.Effect(Users, Targets);
+		BattleScene CurrentScene = BattleManager.instance.Scene;
 
 
         int Spam = 0;
@@ -113,6 +114,12 @@ public partial class SpinSpamMove : MoveBase
             Tween Tween = Users[0].CreateTween();
 
             Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
+
+            if (CurrentScene.Horizontal)
+			{
+				float FloorOffset = CurrentScene.EnemyFloorY[Targets[0].PosIndex] - CurrentScene.PartyFloorY[Users[0].PosIndex];
+				TargetPosition = new Vector2(TargetPosition.X, Users[0].GlobalPosition.Y + FloorOffset);
+			}
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             /*Tween.Finished+=HitSignal;
             void HitSignal(){

@@ -23,103 +23,130 @@ public partial class EnemyOverworldController : OverworldController
 	[Export] public int CurrentIdleTarget;
 	[Export] public Array<Node2D> Obstacles;
 	[Export] public uint LayerMask;
-	[Export] public DetectArea detectArea{get;private set;}
+	[Export] public DetectArea detectArea { get; private set; }
 	[Export] public BattleStart Battle;
-	public Vector2[] RaycastPos=new Vector2[8];
+	public Vector2[] RaycastPos = new Vector2[8];
 	public Vector2 RaycastTarget;
-	[Export]public int DirectionIndex;
-    public override void _Ready()
-    {
-		characterBase=(EnemyCharacterBase)BattleCharacter.Character.Base;
-		CurrentTarget=GameManager.Instance.controller.Parent;
-		if(detectArea!=null){
+	[Export] public int DirectionIndex;
+	public override void _Ready()
+	{
+		characterBase = (EnemyCharacterBase)BattleCharacter.Character.Base;
+		CurrentTarget = GameManager.Instance.controller.Parent;
+		if (detectArea != null)
+		{
 			(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
 		}
 		CachedTargetPosition = GlobalPosition;
 
 
-		if(AnimatorTree == null){
+		if (AnimatorTree == null)
+		{
 			SetAnimators();
 		}
-    }
-    public override void _Process(double delta)
+	}
+	public override void _Process(double delta)
 	{
 		PlayAnimations(Axis);
-		if(Axis!=Vector2.Zero){
-			FacingDirection=Axis;
+		if (Axis != Vector2.Zero)
+		{
+			FacingDirection = Axis;
 		}
 	}
 	public override void _PhysicsProcess(double delta)
 	{
-		if(movementController!=null){
-			Vector2 Moving;				
-			(Moving,Axis,DirectionIndex)=movementController.Moving(this);
-			Vector2 Vel=Moving*(float)delta;
-			Parent.Velocity+=Vel;
-			Parent.Velocity=Parent.Velocity.LimitLength(MaxSpeed);
+		if (movementController != null)
+		{
+			Vector2 Moving;
+			(Moving, Axis, DirectionIndex) = movementController.Moving(this);
+			Vector2 Vel = Moving * (float)delta;
+			Parent.Velocity += Vel;
+			Parent.Velocity = Parent.Velocity.LimitLength(MaxSpeed);
 			Parent.MoveAndSlide();
 		}
 	}
 
-	void PlayAnimations(Vector2 Axis){
-		string Direction="Back";
-		AnimatorTree.Set("parameters/Idle/blend_position",new Vector2(FacingDirection.X,-FacingDirection.Y));
-		AnimatorTree.Set("parameters/Walking/blend_position",new Vector2(FacingDirection.X,-FacingDirection.Y));
-		if(FacingDirection.X!=0){
-			Direction="Side";
+	void PlayAnimations(Vector2 Axis)
+	{
+		string Direction = "Back";
+		AnimatorTree.Set("parameters/Idle/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
+		AnimatorTree.Set("parameters/Walking/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
+		if (FacingDirection.X != 0)
+		{
+			Direction = "Side";
 			Flip();
 		}
-		else if(FacingDirection.Y>0){
-			Direction="Front";
+		else if (FacingDirection.Y > 0)
+		{
+			Direction = "Front";
 		}
-		else{
-			Direction="Back";
+		else
+		{
+			Direction = "Back";
 		}
-		if(Axis==Vector2.Zero){
-			AnimatorTree.Set("parameters/conditions/Idle",true);
-			AnimatorTree.Set("parameters/conditions/Walking",false);
+		if (Axis == Vector2.Zero)
+		{
+			AnimatorTree.Set("parameters/conditions/Idle", true);
+			AnimatorTree.Set("parameters/conditions/Walking", false);
 			//Animator.Play("idle"+Direction);
 		}
-		else{
-			AnimatorTree.Set("parameters/conditions/Idle",false);
-			AnimatorTree.Set("parameters/conditions/Walking",true);
+		else
+		{
+			AnimatorTree.Set("parameters/conditions/Idle", false);
+			AnimatorTree.Set("parameters/conditions/Walking", true);
 			//Animator.Play(Direction);
 		}
 	}
-	void Flip(){
-		if(FacingDirection.X/Mathf.Abs(FacingDirection.X)!=Parent.Scale.Y){
-			Parent.Scale=new Vector2(Parent.Scale.X*-1,Parent.Scale.Y);
+	void Flip()
+	{
+		if (FacingDirection.X / Mathf.Abs(FacingDirection.X) != Parent.Scale.Y)
+		{
+			Parent.Scale = new Vector2(Parent.Scale.X * -1, Parent.Scale.Y);
 		}
 	}
 
-    (Vector2 Min, Vector2 Max) MinMaxArray(Vector2[] Array){
-        Array<float> AuxX = new Array<float>(),AuxY = new Array<float>();
-        for (int i = 0;i<Array.Length;i++){
-            AuxX.Add(Array[i].X);
-            AuxY.Add(Array[i].Y);
-        }
-        return (new Vector2(AuxX.Min(),AuxY.Min()),new Vector2(AuxX.Max(),AuxY.Max()));
-        
-    }
+	(Vector2 Min, Vector2 Max) MinMaxArray(Vector2[] Array)
+	{
+		Array<float> AuxX = new Array<float>(), AuxY = new Array<float>();
+		for (int i = 0; i < Array.Length; i++)
+		{
+			AuxX.Add(Array[i].X);
+			AuxY.Add(Array[i].Y);
+		}
+		return (new Vector2(AuxX.Min(), AuxY.Min()), new Vector2(AuxX.Max(), AuxY.Max()));
 
-	public void SetArea(DetectArea area){
+	}
+
+	public void SetArea(DetectArea area)
+	{
 		detectArea = area;
 		(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
 	}
 
-	public override void BattleStart(){
-		enemyCollision.ProcessMode=ProcessModeEnum.Disabled;
+	public override void BattleStart()
+	{
+		enemyCollision.ProcessMode = ProcessModeEnum.Disabled;
 		base.BattleStart();
 	}
-    public override void BattleEnd()
-    {
-		ProcessMode=ProcessModeEnum.Inherit;
-		OverworldCollider.Disabled=false;
+	public override void BattleEnd()
+	{
+		base.BattleEnd();
+		ProcessMode = ProcessModeEnum.Inherit;
+		OverworldCollider.Disabled = false;
 		Show();
-		enemyCollision.ProcessMode=ProcessModeEnum.Inherit;
-    }
-    public override void _Draw()
-    {
-					DrawLine(Transform.Origin,RaycastTarget,new Color(1,0,0));
-    }
+		enemyCollision.ProcessMode = ProcessModeEnum.Inherit;
+	}
+	public override void _Draw()
+	{
+		DrawLine(Transform.Origin, RaycastTarget, new Color(1, 0, 0));
+	}
+	public override void SetLayers(int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask)
+	{
+		base.SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
+		for (int j = 1; j <= 32; j++)
+		{
+			enemyCollision.SetCollisionLayerValue(j, CollisionLayer.Contains(j));
+			enemyCollision.SetCollisionMaskValue(j, CollisionMask.Contains(j));
+		}  
+  }
+
 }

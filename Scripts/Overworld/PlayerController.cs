@@ -72,20 +72,22 @@ public partial class PlayerController : OverworldController
 				PreviousTileType = tileTypes;
 				tileTypes = (TileTypes)(int)Data.GetCustomData("TileType");
 			}
-			if(Leader){
-				switch (tileTypes){
+			if (Leader)
+			{
+				switch (tileTypes)
+				{
 					case TileTypes.Normal:
-						Axis=GetInput();
-						
-							RecordAxis();
-					break;
+						Axis = GetInput();
+						break;
 					case TileTypes.Water:
-						if(tileTypes != PreviousTileType){
+						if (tileTypes != PreviousTileType)
+						{
 							Parent.Position = SceneCoords;
 						}
-						Axis=(Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");
-					break;
-				}			
+						Axis = (Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");
+						break;
+				}		
+				RecordAxis();	
 			}
 			//Coords = DataMap.LocalToMap(TileDetector.GlobalPosition);
 		}
@@ -222,8 +224,10 @@ public partial class PlayerController : OverworldController
 
 
 	public void EnterExitDialogue(bool Enter){
-
-		SetControllable(!Enter);
+		if (!inBattle)
+		{
+			SetControllable(!Enter);			
+		}
 	}
 
 

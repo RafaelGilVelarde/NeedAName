@@ -24,6 +24,8 @@
 [sub_resource type="Resource" id="Resource_m2l0g"]
 script = ExtResource("7_cgkd5")
 DialogueTimelines = Array[String](["NPC3", "NPC4"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exkr6"]
 size = Vector2(32, 8)
@@ -178,6 +180,7 @@ status = 0
 [sub_resource type="Resource" id="Resource_pn2gs"]
 script = ExtResource("17_6hkvh")
 Timeline = "FirstBattle"
+EscapeChance = 100.0
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_th5io"]
 resource_local_to_scene = true
@@ -239,7 +242,7 @@ TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
 Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 10
+frame = 9
 
 [node name="ChangeLayer" parent="." instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
@@ -297,6 +300,8 @@ collision_layer = 2
 Scene = 18
 PlayerZIndex = 1
 LoadPosition = Vector2(-208, -170)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_swxsg")

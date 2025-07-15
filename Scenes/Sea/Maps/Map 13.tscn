@@ -83,6 +83,7 @@ size = Vector2(25, 25)
 script = ExtResource("13_22wqw")
 Order = 2
 FlagIndex = 0
+EscapeChance = 100.0
 
 [sub_resource type="Resource" id="Resource_o6qk4"]
 script = ExtResource("16_6qvww")
@@ -170,6 +171,7 @@ size = Vector2(25, 25)
 script = ExtResource("13_22wqw")
 Order = 1
 FlagIndex = 0
+EscapeChance = 100.0
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_cstwq")
@@ -254,6 +256,7 @@ size = Vector2(25, 25)
 script = ExtResource("13_22wqw")
 Order = 0
 FlagIndex = 0
+EscapeChance = 100.0
 
 [sub_resource type="Resource" id="Resource_gvuxb"]
 script = ExtResource("16_6qvww")
@@ -334,7 +337,6 @@ layer_0/tile_data = PackedInt32Array(-327692, 131073, 0, -262156, 131073, 0, -19
 script = ExtResource("4_a2bp1")
 
 [node name="ChangeLayer" parent="." instance=ExtResource("5_uqgae")]
-visible = false
 position = Vector2(-176, -16)
 rotation = 3.14159
 scale = Vector2(3, 1)
@@ -354,6 +356,8 @@ collision_layer = 2
 Scene = 6
 PlayerZIndex = 1
 LoadPosition = Vector2(-208, 176)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 shape = SubResource("RectangleShape2D_mpb63")
@@ -409,8 +413,9 @@ scene = SubResource("Resource_gvn2q")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-50, 100), Vector2(0, 0)])
 
-[node name="BattleCharacter" parent="Character" index="2"]
+[node name="BattleCharacter" parent="Character" index="2" node_paths=PackedStringArray("SFXPlayers")]
 Character = SubResource("Resource_aul0c")
+SFXPlayers = Array[Object]([])
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_yluil")
@@ -420,10 +425,6 @@ shape = SubResource("RectangleShape2D_vypfs")
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" index="0"]
 shape = SubResource("RectangleShape2D_qbykw")
-
-[node name="RichTextLabel" parent="Character/BattleCharacter/HPBar" index="0"]
-offset_top = 13.0
-offset_bottom = 103.0
 
 [node name="Character2" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(-152, 8)
@@ -443,8 +444,9 @@ scene = SubResource("Resource_2602s")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-100, 100), Vector2(0, 0)])
 
-[node name="BattleCharacter" parent="Character2" index="2"]
+[node name="BattleCharacter" parent="Character2" index="2" node_paths=PackedStringArray("SFXPlayers")]
 Character = SubResource("Resource_wfa70")
+SFXPlayers = Array[Object]([])
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_tisk5")
@@ -454,10 +456,6 @@ shape = SubResource("RectangleShape2D_pwg37")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" index="0"]
 shape = SubResource("RectangleShape2D_2ddaq")
-
-[node name="RichTextLabel" parent="Character2/BattleCharacter/HPBar" index="0"]
-offset_top = 13.0
-offset_bottom = 103.0
 
 [node name="Character3" parent="." instance=ExtResource("8_t47ti")]
 position = Vector2(0, 168)
@@ -477,9 +475,10 @@ scene = SubResource("Resource_rxaul")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-100, 100), Vector2(0, 0)])
 
-[node name="BattleCharacter" parent="Character3" index="2"]
+[node name="BattleCharacter" parent="Character3" index="2" node_paths=PackedStringArray("SFXPlayers")]
 process_mode = 3
 Character = SubResource("Resource_uvwry")
+SFXPlayers = Array[Object]([])
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_rxtpi")
@@ -496,10 +495,6 @@ frame = 29
 
 [node name="HitEffectParticles" parent="Character3/BattleCharacter" index="7"]
 scale_amount_curve = SubResource("Curve_0dopt")
-
-[node name="RichTextLabel" parent="Character3/BattleCharacter/HPBar" index="0"]
-offset_top = 13.0
-offset_bottom = 103.0
 
 [node name="Area2D" parent="." instance=ExtResource("21_30s4q")]
 visible = false

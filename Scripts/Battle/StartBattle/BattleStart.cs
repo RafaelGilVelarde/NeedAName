@@ -7,7 +7,6 @@ public partial class BattleStart : Node2D
 {
     
     [Export]BattleScene scene;
-    [Export] bool Horizontal;
     [Export] Array<Character> EnemyCharacters;
     [Export] int CharacterPrefab;
     [Export] Vector2 BorderOffset;
@@ -42,7 +41,7 @@ public partial class BattleStart : Node2D
                 if (aux.Active)
                 {
                     Party.Add(Characters[i].BattleCharacter);
-                    if (Horizontal)
+                    if (scene.Horizontal)
                     {
                         Party[Party.Count - 1].BattleOffset = Vector2.Zero;
                     }
@@ -53,7 +52,7 @@ public partial class BattleStart : Node2D
                 }
             }
             EnemyBattle.Add(this.GetParent<OverworldController>().BattleCharacter);
-            if (Horizontal)
+            if (scene.Horizontal)
             {
                 EnemyBattle[0].BattleOffset = Vector2.Zero;
             }
@@ -65,7 +64,7 @@ public partial class BattleStart : Node2D
             {
                 EnemyBattle.Add(GameManager.Instance.AddCharacters((Character)EnemyCharacters[i].Duplicate(true), CharacterPrefab).BattleCharacter);
                 EnemyBattle[EnemyBattle.Count - 1].GetParent<Node2D>().Position = GlobalPosition;
-                if (Horizontal)
+                if (scene.Horizontal)
                 {
                     EnemyBattle[EnemyBattle.Count - 1].BattleOffset = Vector2.Zero;
                 }
@@ -82,12 +81,22 @@ public partial class BattleStart : Node2D
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();
             for (int i=0;i<Party.Count;i++){
-                Vector2 Aux=CheckPosition(GlobalPosition+PartyPos[i]-Party[i].BattleOffset);
+                Vector2 AuxPos = GlobalPosition + PartyPos[i] - Party[i].BattleOffset;
+                if (scene.Horizontal)
+                {
+                    AuxPos = new Vector2(AuxPos.X, scene.PartyFloorY[i] - Party[i].FloorNode.Position.Y);
+                }
+                Vector2 Aux=CheckPosition(AuxPos);
                 PartyPosGlobal.Add(Aux);
             }
             for (int i=0;i<EnemyBattle.Count;i++){
                 Debug.WriteLine("ThisPos: "+GlobalPosition);
-                Vector2 Aux=CheckPosition(GlobalPosition+EnemyPos[i]-EnemyBattle[i].BattleOffset);
+                Vector2 AuxPos = GlobalPosition + EnemyPos[i] - EnemyBattle[i].BattleOffset;
+                if (scene.Horizontal)
+                {
+                    AuxPos = new Vector2(AuxPos.X, scene.EnemyFloorY[i] - EnemyBattle[i].FloorNode.Position.Y);
+                }
+                Vector2 Aux=CheckPosition(AuxPos);
                 Debug.WriteLine("FinalPos: "+Aux);
                 EnemyPosGlobal.Add(Aux);
             }

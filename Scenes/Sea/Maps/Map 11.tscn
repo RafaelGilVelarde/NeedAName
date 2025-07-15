@@ -69,7 +69,9 @@ position = Vector2(240, -208)
 collision_layer = 2
 Scene = 9
 PlayerZIndex = 1
-LoadPosition = Vector2(-16.04, 160)
+LoadPosition = Vector2(128, 160)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_ygbyy")
@@ -80,6 +82,8 @@ collision_layer = 2
 Scene = 15
 PlayerZIndex = 1
 LoadPosition = Vector2(176, -108)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_ygbyy")

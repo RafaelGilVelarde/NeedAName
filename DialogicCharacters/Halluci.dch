@@ -1,0 +1,67 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "Base"
+},
+"default_portrait": "Happiness",
+"description": "",
+"display_name": "Halluci",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 32),
+"portraits": {
+"Anger": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Angry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": "",
+"sound_mood": ""
+},
+"Happiness": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Happy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Normal": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Normal.png\""
+},
+"ignore_char_scale": false,
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Sad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Wondering": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Wondering.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+"scale": 1.0
+}

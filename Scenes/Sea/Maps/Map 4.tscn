@@ -27,6 +27,7 @@ size = Vector2(64, 32)
 [sub_resource type="Resource" id="Resource_5jaq3"]
 script = ExtResource("10_ccohu")
 Timeline = "FirstBattle"
+EscapeChance = 100.0
 
 [node name="Map4" type="Node2D"]
 script = ExtResource("1_14rm4")
@@ -95,6 +96,8 @@ collision_layer = 2
 Scene = 4
 PlayerZIndex = 1
 LoadPosition = Vector2(-240, -230)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 position = Vector2(-8, 0)
@@ -120,6 +123,8 @@ shape = SubResource("RectangleShape2D_uy4s2")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_i4lib")]
 position = Vector2(-216, 72)
+CollisionLayer = Array[int]([2])
+CollisionMask = Array[int]([2])
 Scene = SubResource("Resource_5jaq3")
 detectArea = NodePath("../Area2D3")
 
@@ -164,6 +169,7 @@ polygon = PackedVector2Array(-104, -32, -104, 64, 48, 64, 48, -32)
 [editable path="Door"]
 [editable path="Door2"]
 [editable path="Door3"]
+[editable path="Enemy Spawner"]
 [editable path="Area2D"]
 [editable path="Area2D2"]
 [editable path="Area2D3"]

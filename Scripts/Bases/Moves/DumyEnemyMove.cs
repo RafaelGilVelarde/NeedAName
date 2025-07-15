@@ -15,6 +15,7 @@ public partial class DumyEnemyMove : MoveBase
 	{
 		base.Effect(Users,Targets);
 		Tween tween = Users[0].CreateTween();
+		BattleScene CurrentScene = BattleManager.instance.Scene;
 		
 		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 		if(Dir==1||Dir==-1){
@@ -43,7 +44,12 @@ public partial class DumyEnemyMove : MoveBase
 		//timer.TweenInterval(MoveTime);
 		Vector2 TargetPosition = Users[0].GlobalPosition;
 		if(Movement){
-			TargetPosition= Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
+			TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
+			if (CurrentScene.Horizontal)
+			{
+				float FloorOffset = CurrentScene.PartyFloorY[Targets[0].PosIndex] - CurrentScene.EnemyFloorY[Users[0].PosIndex];
+				TargetPosition = new Vector2(TargetPosition.X, Users[0].GlobalPosition.Y + FloorOffset);
+			}
 		}
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(State)));
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);

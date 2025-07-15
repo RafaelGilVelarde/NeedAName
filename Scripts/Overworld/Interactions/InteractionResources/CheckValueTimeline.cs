@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 [GlobalClass]
 public partial class CheckValueTimeline : Resource
@@ -38,10 +39,13 @@ public partial class CheckValueTimeline : Resource
                 break;
             }
         }
-        if(aux >= FlagIndexes.Count){
+        Debug.WriteLine("CheckTimeline: "+this +": "+ aux);
+        if (aux >= FlagIndexes.Count)
+        {
             return TimelineIndex;
         }
-        else{
+        else
+        {
             return Index;
         }
     }

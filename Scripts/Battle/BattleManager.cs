@@ -77,6 +77,7 @@ public partial class BattleManager : Node
 
 		for(int i=0;i<party.Count;i++){
 			Party.Add(party[i]);
+			Party[i].PosIndex = i;
 			partyPos.Add(PartyPos[i]);
 			Party[i].OriginPos=partyPos[i];
 			Party[i].ThisParty=Party;
@@ -100,6 +101,7 @@ public partial class BattleManager : Node
 		for(int i=0;i<enemy.Count;i++){
 			EnemyParty.Add(enemy[i]);
 			enemyPos.Add(EnemyPos[i]);
+			EnemyParty[i].PosIndex = i;
 			EnemyParty[i].OriginPos=enemyPos[i];
 			EnemyParty[i].ThisParty=EnemyParty;
 			EnemyParty[i].EnemyParty=Party;

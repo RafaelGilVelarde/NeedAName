@@ -18,6 +18,8 @@
 [sub_resource type="Resource" id="Resource_t5uuj"]
 script = ExtResource("7_huyn7")
 DialogueTimelines = Array[String](["NPC2", "NPC2-2"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt1oy"]
 resource_local_to_scene = true
@@ -38,6 +40,7 @@ size = Vector2(268, 16)
 [sub_resource type="Resource" id="Resource_7ni3l"]
 script = ExtResource("13_iurx6")
 Timeline = "FirstBattle"
+EscapeChance = 100.0
 
 [node name="Map7" type="Node2D"]
 script = ExtResource("1_7mnrv")
@@ -82,7 +85,7 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
-frame = 9
+frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
 
@@ -101,6 +104,8 @@ collision_layer = 2
 Scene = 2
 PlayerZIndex = 1
 LoadPosition = Vector2(-80, 270)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 position = Vector2(0, 4)
@@ -112,6 +117,8 @@ collision_layer = 2
 Scene = 12
 PlayerZIndex = 1
 LoadPosition = Vector2(-176, -190)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_btlge")

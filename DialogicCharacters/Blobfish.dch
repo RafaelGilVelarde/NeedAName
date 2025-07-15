@@ -1,0 +1,65 @@
+{
+"@path": "res://addons/dialogic/Resources/character.gd",
+"@subpath": NodePath(""),
+"_translation_id": "",
+"color": Color(1, 1, 1, 1),
+"custom_info": {
+"sound_mood_default": "",
+"sound_moods": {},
+"style": "Base"
+},
+"default_portrait": "Normal",
+"description": "",
+"display_name": "Blobfish",
+"mirror": false,
+"nicknames": [""],
+"offset": Vector2(0, 32),
+"portraits": {
+"Angry": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Blob/Angry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Happy": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Blob/Happy.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Normal": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Blob/Normal.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Sad": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Blob/Sad.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
+"Wondering": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Blob/Wondering.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+}
+},
+"scale": 1.0
+}

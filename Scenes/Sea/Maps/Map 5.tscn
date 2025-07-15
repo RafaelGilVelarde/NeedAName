@@ -46,10 +46,14 @@ Amount = 1
 [sub_resource type="Resource" id="Resource_ca6w2"]
 script = ExtResource("12_86o1t")
 DialogueTimelines = Array[String](["FirstItemNPC1", "FirstItemNPC1-1"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="Resource" id="Resource_u4dea"]
 script = ExtResource("12_86o1t")
 DialogueTimelines = Array[String](["FirstItemNPC2", "FirstItemNPC3"])
+FlagIndexes = null
+flagTypes = null
 
 [node name="Map5" type="Node2D"]
 script = ExtResource("1_aqvd6")
@@ -97,6 +101,8 @@ collision_layer = 2
 Scene = 3
 PlayerZIndex = 1
 LoadPosition = Vector2(-168, 360)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 shape = SubResource("RectangleShape2D_cd6xa")
@@ -145,7 +151,7 @@ texture_filter = 1
 texture = ExtResource("10_gfqhf")
 hframes = 4
 vframes = 3
-frame = 9
+frame = 10
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

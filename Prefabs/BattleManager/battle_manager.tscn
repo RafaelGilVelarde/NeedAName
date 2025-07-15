@@ -22,6 +22,8 @@ itemList = NodePath("CanvasLayer/Items/ItemList")
 moveList = NodePath("CanvasLayer/Moves/MoveList")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+offset = Vector2(10, 10)
+transform = Transform2D(1, 0, 0, 1, 10, 10)
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
 visible = false

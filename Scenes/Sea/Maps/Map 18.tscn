@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://bci8vpk81qdgb"]
+[gd_scene load_steps=28 format=3 uid="uid://bci8vpk81qdgb"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_bug3q"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_vupof"]
@@ -11,6 +11,10 @@
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_dqr3d"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_dgrkx"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="11_yftxn"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Events/BaseEventCollision.cs" id="12_ab1dd"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_6i38a"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractionResources/CheckValueTimeline.cs" id="14_und22"]
+[ext_resource type="Script" path="res://Scripts/DialogueVariables.cs" id="15_s1yuu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xry3l"]
 resource_local_to_scene = true
@@ -23,9 +27,64 @@ size = Vector2(192, 64)
 [sub_resource type="Resource" id="Resource_alojh"]
 script = ExtResource("11_yftxn")
 Timeline = "FirstBattle"
+WinTimeline = "Win"
+EscapeChance = 100.0
+Horizontal = false
+Cutscene = false
+PartyFloorY = null
+EnemyFloorY = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4a34h"]
 size = Vector2(190, 16)
+
+[sub_resource type="Resource" id="Resource_7j361"]
+script = ExtResource("13_6i38a")
+DialogueTimelines = Array[String](["WaterExit1"])
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_0btuc"]
+script = ExtResource("14_und22")
+TimelineIndex = 0
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
+
+[sub_resource type="Resource" id="Resource_rr0af"]
+script = ExtResource("14_und22")
+TimelineIndex = 1
+FlagIndexes = Array[int]([9])
+flagTypes = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_qhna2"]
+script = ExtResource("14_und22")
+TimelineIndex = 2
+FlagIndexes = Array[int]([10])
+flagTypes = Array[int]([0])
+
+[sub_resource type="Resource" id="Resource_cq54x"]
+script = ExtResource("14_und22")
+TimelineIndex = 1
+FlagIndexes = Array[int]([3])
+flagTypes = Array[int]([1])
+
+[sub_resource type="Resource" id="Resource_medv5"]
+script = ExtResource("15_s1yuu")
+Flagtype = 1
+index = 9
+BoolFlag = true
+Category = ""
+VariableName = "Comp1"
+
+[sub_resource type="Resource" id="Resource_bony5"]
+script = ExtResource("15_s1yuu")
+Flagtype = 0
+index = 10
+BoolFlag = true
+Category = ""
+VariableName = "Comp2"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_a2t7x"]
+size = Vector2(176, 4)
 
 [node name="Map18" type="Node2D"]
 script = ExtResource("1_vupof")
@@ -69,6 +128,8 @@ polygon = PackedVector2Array(376, 112, 128, 112, 128, 144, -112, 144, -112, 112,
 [node name="Door" parent="." instance=ExtResource("6_wm385")]
 position = Vector2(-80, 208)
 Scene = 16
+PlayerZIndex = null
+Area = null
 LoadPosition = Vector2(32, -165)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
@@ -78,10 +139,12 @@ shape = SubResource("RectangleShape2D_xry3l")
 position = Vector2(320, 0)
 rotation = 1.5708
 Scene = 24
+PlayerZIndex = null
+Area = null
 LoadPosition = Vector2(-632, 0)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
-position = Vector2(2.38419e-07, 0)
+position = Vector2(4.60149e-05, 0)
 shape = SubResource("RectangleShape2D_bjupt")
 
 [node name="Area2D" parent="." instance=ExtResource("7_ll8yt")]
@@ -104,6 +167,28 @@ DisableAnimation = "WaterBarrier/Disable"
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_4a34h")
+Cutscene = null
+
+[node name="CheckPartner" type="Area2D" parent="."]
+position = Vector2(288, 2.91038e-11)
+rotation = 1.5708
+script = ExtResource("12_ab1dd")
+BoolIndex = 3
+CurrentTimeline = null
+TimelineIndex = null
+Timelines = Array[Object]([SubResource("Resource_7j361")])
+Cutscene = null
+ManualBoolUpdate = true
+PushOffset = Array[Vector2]([Vector2(-30, 0)])
+PushTimes = Array[float]([0.5])
+CheckValues = Array[Object]([SubResource("Resource_0btuc"), SubResource("Resource_rr0af"), SubResource("Resource_qhna2")])
+CheckManualDisableValues = SubResource("Resource_cq54x")
+TweenTimes = Array[float]([0.2])
+Variables = Array[Object]([SubResource("Resource_medv5"), SubResource("Resource_bony5")])
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPartner"]
+position = Vector2(1.33517e-05, 4.00031)
+shape = SubResource("RectangleShape2D_a2t7x")
 
 [editable path="Cams"]
 [editable path="Borders"]

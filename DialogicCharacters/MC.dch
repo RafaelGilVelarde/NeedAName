@@ -15,6 +15,15 @@
 "nicknames": [""],
 "offset": Vector2(0, 32),
 "portraits": {
+"Angry": {
+"export_overrides": {
+"image": "\"res://Sprites/DialogueBoxes/Hallu/Angry.png\""
+},
+"mirror": false,
+"offset": Vector2(0, 0),
+"scale": 1,
+"scene": ""
+},
 "Confused": {
 "export_overrides": {
 "image": "\"res://Sprites/DialogueBoxes/1/Confused.png\""

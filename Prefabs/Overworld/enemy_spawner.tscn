@@ -27,6 +27,7 @@ WP = 0
 [sub_resource type="Resource" id="Resource_3evyq"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("3_qg6b1")
+Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_uyt0w"]
 script = ExtResource("5_r6ykn")
@@ -48,6 +49,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_3fo3c"]
 script = ExtResource("4_wgbhn")
 Base = SubResource("Resource_uyt0w")
+Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_kn4l5"]
 script = ExtResource("5_r6ykn")
@@ -69,6 +71,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_it35d"]
 script = ExtResource("4_wgbhn")
 Base = SubResource("Resource_kn4l5")
+Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("7_diplw")
@@ -112,10 +115,12 @@ status = 0
 [sub_resource type="Resource" id="Resource_rclts"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("9_8iedv")
+Chance = 60.0
 
 [sub_resource type="Resource" id="Resource_drh28"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("10_xxm37")
+Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_4n0cw"]
 script = ExtResource("7_diplw")
@@ -147,10 +152,12 @@ status = 0
 [sub_resource type="Resource" id="Resource_77fsh"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("10_xxm37")
+Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_y11rp"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("9_8iedv")
+Chance = 60.0
 
 [sub_resource type="Resource" id="Resource_j6vx5"]
 script = ExtResource("7_diplw")
@@ -181,6 +188,7 @@ status = 0
 [sub_resource type="Resource" id="Resource_tq82i"]
 script = ExtResource("4_wgbhn")
 Base = ExtResource("3_qg6b1")
+Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_a8w2k"]
 script = ExtResource("5_r6ykn")
@@ -202,6 +210,7 @@ MoveTime = 3.0
 [sub_resource type="Resource" id="Resource_pydyk"]
 script = ExtResource("4_wgbhn")
 Base = SubResource("Resource_a8w2k")
+Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_uvgkn"]
 script = ExtResource("5_r6ykn")
@@ -223,6 +232,7 @@ MoveTime = 3.0
 [sub_resource type="Resource" id="Resource_i1pg5"]
 script = ExtResource("4_wgbhn")
 Base = SubResource("Resource_uvgkn")
+Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_07oem"]
 script = ExtResource("7_diplw")
@@ -253,6 +263,10 @@ status = 0
 [sub_resource type="Resource" id="Resource_7bef2"]
 resource_local_to_scene = true
 script = ExtResource("11_gl3md")
+EscapeChance = 100.0
+Horizontal = false
+PartyFloorY = null
+EnemyFloorY = null
 
 [node name="Enemy Spawner" type="Node2D"]
 position = Vector2(-104, -32)
@@ -262,4 +276,7 @@ SideEnemies = Array[Object]([SubResource("Resource_itvlk"), SubResource("Resourc
 Prefab = 1
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, -100)])
 EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, -100)])
+GraphicsLayer = 1
+CollisionLayer = Array[int]([1])
+CollisionMask = Array[int]([1])
 Scene = SubResource("Resource_7bef2")

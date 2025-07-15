@@ -34,6 +34,8 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_7jscj"]
 script = ExtResource("10_gjexl")
 DialogueTimelines = Array[String](["PuzzleComplete"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="Animation" id="Animation_i4bmx"]
 resource_name = "Win"
@@ -111,6 +113,8 @@ collision_layer = 2
 Scene = 10
 PlayerZIndex = 1
 LoadPosition = Vector2(240, 168)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_wwdn1")
@@ -122,6 +126,8 @@ collision_layer = 2
 Scene = 16
 PlayerZIndex = 1
 LoadPosition = Vector2(-260, 16)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_tlnlp")

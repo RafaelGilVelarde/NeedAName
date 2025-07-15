@@ -1,13 +1,13 @@
-Only two can pass at once
+Blobfish (Wondering): Only two can pass at once
 MC (Confused): ...
 - Reject
 	MC (Normal): Sorry, already made a promise
-	Awww
-	Gooood luuck, I'll find my way!
+	Blobfish (Sad): Awww
+	Blobfish (Wondering): Gooood luuck, I'll find my way!
 - Accept
 	MC (Normal): Will you be fine on your own?
-	I....can try....
-	Yaaay!
-	Let's find some good homes
+	Halluci (Sad): I....can try....
+	Blobfish (Happy): Yaaay!
+	Blobfish (Happy): Let's find some good homes
 	MC (Happy): Sure!
 	[signal arg="Delete"]

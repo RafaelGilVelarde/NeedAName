@@ -49,7 +49,7 @@ public partial class BossSpoutMove : MoveBase
 
 		void shoot(BattleCharacter User){
 			CollisionShape2D Aux = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0);
-			proyectile.GlobalPosition = Aux.GlobalPosition-Users[0].BattleOffset+new Vector2(Dir*Offset.X,(((RectangleShape2D)Aux.Shape).Size.Y/2)+Offset.Y);
+			proyectile.GlobalPosition = new Vector2(Aux.GlobalPosition.X+Dir*Offset.X,Targets[0].FloorNode.GlobalPosition.Y+Offset.Y);
 			User.GetTree().CurrentScene.AddChild(proyectile);
 		}
 		void End(){

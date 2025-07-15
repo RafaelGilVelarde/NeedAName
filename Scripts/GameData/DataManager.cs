@@ -13,26 +13,31 @@ public partial class DataManager : Resource
 	[Export] public Vector2 Position;
 	[Export] public int GraphicsLayer;
 	[Export] public uint PhysicsLayer;
+	[Export] public Array<int> CollisionLayer, CollisionMask;
 
-	public DataManager DuplicateData(){
+	public DataManager DuplicateData()
+	{
 		DataManager data = (DataManager)Duplicate(true);
-		for(int i = 0;i<Party.Count;i++){
+		for (int i = 0; i < Party.Count; i++)
+		{
 			data.Party[i] = (PartyCharacters)Party[i].Duplicate(true);
-			data.Party[i].stats= (Stats)Party[i].stats.Duplicate(true);
-			data.Party[i].Equipment=Party[i].Equipment.Duplicate(true);
-			data.Party[i].EquipStats= (Stats)Party[i].EquipStats.Duplicate(true);
-			data.Party[i].TotalStats= (Stats)Party[i].TotalStats.Duplicate(true);
-		}		
-		for(int i = 0;i<CurrentFollowers.Count;i++){
-			data.CurrentFollowers[i] = (Character)CurrentFollowers[i].Duplicate(true);
-			data.CurrentFollowers[i].stats= (Stats)CurrentFollowers[i].stats.Duplicate(true);
-			data.CurrentFollowers[i].Equipment=CurrentFollowers[i].Equipment.Duplicate(true);
-			data.CurrentFollowers[i].EquipStats= (Stats)CurrentFollowers[i].EquipStats.Duplicate(true);
-			data.CurrentFollowers[i].TotalStats= (Stats)CurrentFollowers[i].TotalStats.Duplicate(true);
+			data.Party[i].stats = (Stats)Party[i].stats.Duplicate(true);
+			data.Party[i].Equipment = Party[i].Equipment.Duplicate(true);
+			data.Party[i].EquipStats = (Stats)Party[i].EquipStats.Duplicate(true);
+			data.Party[i].TotalStats = (Stats)Party[i].TotalStats.Duplicate(true);
 		}
-		for(int i =0;i<items.Count;i++){
-			data.items[i]= (TypedItemList)items[i].Duplicate(true);
-			data.items[i]= (TypedItemList)items[i].Duplicate(true);
+		for (int i = 0; i < CurrentFollowers.Count; i++)
+		{
+			data.CurrentFollowers[i] = (Character)CurrentFollowers[i].Duplicate(true);
+			data.CurrentFollowers[i].stats = (Stats)CurrentFollowers[i].stats.Duplicate(true);
+			data.CurrentFollowers[i].Equipment = CurrentFollowers[i].Equipment.Duplicate(true);
+			data.CurrentFollowers[i].EquipStats = (Stats)CurrentFollowers[i].EquipStats.Duplicate(true);
+			data.CurrentFollowers[i].TotalStats = (Stats)CurrentFollowers[i].TotalStats.Duplicate(true);
+		}
+		for (int i = 0; i < items.Count; i++)
+		{
+			data.items[i] = (TypedItemList)items[i].Duplicate(true);
+			data.items[i] = (TypedItemList)items[i].Duplicate(true);
 		}
 		return data;
 

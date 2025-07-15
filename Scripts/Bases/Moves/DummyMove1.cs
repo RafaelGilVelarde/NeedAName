@@ -14,7 +14,8 @@ public partial class DummyMove1 : MoveBase
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
 	{
 		base.Effect(Users,Targets);
-		
+		BattleScene CurrentScene = BattleManager.instance.Scene;
+
 		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 		if(Dir==1||Dir==-1){
 			Users[0].GetParent<Node2D>().Rotation=0;
@@ -34,6 +35,11 @@ public partial class DummyMove1 : MoveBase
 		Tween tween = Users[0].CreateTween();
 		//Users[0]._ReturnToIdle+=End;
 		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
+		if (CurrentScene.Horizontal)
+			{
+				float FloorOffset = CurrentScene.EnemyFloorY[Targets[0].PosIndex] - CurrentScene.PartyFloorY[Users[0].PosIndex];
+				TargetPosition = new Vector2(TargetPosition.X, Users[0].GlobalPosition.Y + FloorOffset);
+			}
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*Dir,1/Speed);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeState(BattleCharacter.BattleState.Attacking)));
 		tween.TweenCallback(Callable.From(()=>Users[0].Character.ShowTextLabel($"{Users[0].Character.Key}",Users[0].Character.Base.TextEffectColor)));

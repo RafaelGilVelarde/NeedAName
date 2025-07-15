@@ -1,10 +1,10 @@
-Hello
-Changed your mind?
+Halluci (Normal): Hello
+Halluci (Wondering): Changed your mind?
 - Reject
-	Awww
-	Gooood luuck, I'll find my way!
+	Halluci (Sad): Awww
+	Halluci (Wondering): Gooood luuck, I'll find my way!
 - Accept
-	Yaaay!
-	Let's find some good homes
+	Halluci (Happiness): Yaaay!
+	Halluci (Happiness): Let's find some good homes
 	MC (Happy): Sure!
 	[signal arg="Follow"]

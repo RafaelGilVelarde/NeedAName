@@ -19,7 +19,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Godot.Vector2 OriginPos;
 
 	[Export] public Array<float> StatMultiplier;
-	[Export] public int Combo = 1, HoldingMoveTimer = 0;
+	[Export] public int Combo = 1, HoldingMoveTimer = 0, PosIndex;
 	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping, Moving;
 	[Export] public Array<int> MultTimer;
 	[Export] public Array<CharacterButtons> PartyButtons, EnemyButtons;
@@ -30,7 +30,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Array<BattleCharacter> ThisParty, EnemyParty;
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
-	[Export] public Node2D ShootNode;
+	[Export] public Node2D ShootNode, FloorNode;
 	[Export] RichTextLabel HPText, NameText, WPText;
 	[Export] public Consumables CurrentItem;
 	[Export] public ProgressBar HPBar, EXPBar, WPBar, WPAuxBar;
@@ -89,6 +89,10 @@ public partial class BattleCharacter : CharacterBody2D
 		{
 			Node Aux = StatMods.GetChild(i);
 			StatModTimers.Add((RichTextLabel)Aux.GetChild(0));
+		}
+		if (Character != null)
+		{
+			FloorNode.Position = Character.Base.Floor;
 		}
 	}
 	public override void _Input(InputEvent @event)
@@ -268,7 +272,7 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	void ChangeToAttack()
 	{
-		changeAction(ActionState.isAttacking);
+		changeAction(ActionState.isAttacking);			
 	}
 	void ReturnToIdle()
 	{
@@ -401,19 +405,22 @@ public partial class BattleCharacter : CharacterBody2D
 
 	public void ShowEXPBar(int ExpStart, int ExpEnd, int NextLvl,int Level)
 	{
-		PartyCharacters Aux = (PartyCharacters)Character;
-		PartyCharacterBase AuxBase = (PartyCharacterBase)Aux.Base;
-		EXPBar.MaxValue = NextLvl;
-		EXPBar.Value = ExpStart - AuxBase.ExpForLevel[Level-1];
-		Tween tween = CreateTween();
-		tween.TweenProperty(EXPBar, "modulate:a", 1, 0.1f);
-		tween.TweenProperty(EXPBar, "value", ExpEnd - AuxBase.ExpForLevel[Level-1], 0.3f).SetEase(Tween.EaseType.InOut);
-		if (ExpEnd > AuxBase.ExpForLevel[Level-1])
+		if (Character.stats.Lv < 100)
 		{
-			tween.Finished += () =>
+			PartyCharacters Aux = (PartyCharacters)Character;
+			PartyCharacterBase AuxBase = (PartyCharacterBase)Aux.Base;
+			EXPBar.MaxValue = NextLvl;
+			EXPBar.Value = ExpStart - AuxBase.ExpForLevel[Level-1];
+			Tween tween = CreateTween();
+			tween.TweenProperty(EXPBar, "modulate:a", 1, 0.1f);
+			tween.TweenProperty(EXPBar, "value", ExpEnd - AuxBase.ExpForLevel[Level-1], 0.3f).SetEase(Tween.EaseType.InOut);
+			if (ExpEnd > AuxBase.ExpForLevel[Level-1])
 			{
-				ShowEXPBar(NextLvl, ExpEnd, AuxBase.ExpForLevel[Level],Level+1);
-			};
+				tween.Finished += () =>
+				{
+					ShowEXPBar(NextLvl, ExpEnd, AuxBase.ExpForLevel[Level],Level+1);
+				};
+			}			
 		}
 	}
 	public void HideEXPBar()

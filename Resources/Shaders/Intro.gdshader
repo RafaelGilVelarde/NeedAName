@@ -21,6 +21,6 @@ void fragment() {
 	COLOR = screen_col*tone_color;
 }
 
-void light() {
+//void light() {
 	// Called for every pixel for every light affecting the CanvasItem.
-}
+//}

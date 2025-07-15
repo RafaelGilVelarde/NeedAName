@@ -17,8 +17,10 @@ size = Vector2(32, 4)
 [node name="ChangeLayer" type="Node2D"]
 
 [node name="Out" type="Area2D" parent="."]
+collision_mask = 3
 script = ExtResource("1_a577d")
-Out = true
+LayerOn = Array[int]([1])
+MaskOn = Array[int]([1])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Out"]
 position = Vector2(0, -12)
@@ -26,9 +28,10 @@ shape = SubResource("RectangleShape2D_7x4c8")
 
 [node name="In" type="Area2D" parent="."]
 position = Vector2(0, 32)
-collision_layer = 2
 script = ExtResource("1_a577d")
 Z = 1
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="In"]
 position = Vector2(0, 12)

@@ -25,7 +25,7 @@ size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
 resource_local_to_scene = true
-size = Vector2(20, 34)
+size = Vector2(21.375, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
@@ -1612,7 +1612,7 @@ shape = SubResource("RectangleShape2D_dwf8m")
 [node name="TileCollider" type="Node2D" parent="OverworldController"]
 position = Vector2(-16, 0)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
@@ -1642,6 +1642,7 @@ EnemyParty = Array[Vector2]([])
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
+FloorNode = NodePath("Floor")
 HPBar = NodePath("HPBarParent/HPBar")
 EXPBar = NodePath("EXPParent/Exp")
 WPBar = NodePath("WPParent/WP")
@@ -1649,6 +1650,7 @@ WPAuxBar = NodePath("WPParent/WP/WP2")
 StatMods = NodePath("Node2D/HBoxContainer")
 UpStat = ExtResource("11_ng2px")
 DownStat = ExtResource("12_ufa0r")
+SFXPlayers = Array[Vector2]([])
 battleState = 3
 actionState = 5
 
@@ -1658,12 +1660,15 @@ script = ExtResource("5_5pejn")
 Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHurtbox"]]
+z_index = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
+position = Vector2(14.625, 0)
 shape = SubResource("RectangleShape2D_6c1hy")
 
 [node name="Blockbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerBlockbox"]]
@@ -1724,6 +1729,7 @@ visible = false
 [node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter"]
 process_mode = 3
 position = Vector2(0, -18)
+emitting = false
 amount = 22
 lifetime = 0.75
 one_shot = true
@@ -1937,9 +1943,11 @@ scroll_active = false
 visible_characters = 1
 
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
-position = Vector2(15, 0)
+
+[node name="Floor" type="Node2D" parent="BattleCharacter"]
 
 [node name="HPBarParent" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(-15, -60)
 
 [node name="HPBar" type="ProgressBar" parent="BattleCharacter/HPBarParent"]
@@ -1990,6 +1998,7 @@ text = "[center]50[/center]"
 scroll_active = false
 
 [node name="EXPParent" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(-15, -68)
 
 [node name="Exp" type="ProgressBar" parent="BattleCharacter/EXPParent"]
@@ -2016,6 +2025,7 @@ show_percentage = false
 metadata/_edit_use_anchors_ = true
 
 [node name="WPParent" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(-15, -60)
 
 [node name="WP" type="ProgressBar" parent="BattleCharacter/WPParent"]
@@ -2075,6 +2085,7 @@ text = "[center]50[/center]"
 scroll_active = false
 
 [node name="Node2D" type="Node2D" parent="BattleCharacter"]
+z_index = 5
 position = Vector2(-20, 34)
 
 [node name="HBoxContainer" type="HBoxContainer" parent="BattleCharacter/Node2D"]

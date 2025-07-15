@@ -15,8 +15,10 @@ public partial class GameManager : Node
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
 	[Export] public Array<PlayerController> Characters, Followers = new Array<PlayerController>();
+	[Export] public PlayerController Leader;
 	[Export] public Camera2D OverworldCam, BattleCam;
 	[Export] PackedScene StartScene;
+	[Export] public Scene CurrentScene;
 	[Export] AnimationPlayer TransitionAnimator;
 	[Export] TextureRect TransitionOverlay;
 	[Export] Color TransitionColor;
@@ -57,8 +59,10 @@ public partial class GameManager : Node
 			if(aux.Active){
 				Characters.Add((PlayerController)AddCharacters(aux,0));
 				Followers.Add(Characters[Characters.Count-1]);
-				if(i>0){
-					Characters[Characters.Count-1].AxisOffset=i*8;
+				Characters[Characters.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
+				if (i > 0)
+				{
+					Characters[Characters.Count - 1].AxisOffset = i * 8;
 				}
 			}
 		}
@@ -66,12 +70,14 @@ public partial class GameManager : Node
 			Character aux=Data.CurrentFollowers[i];
 			if(aux.Active){
 				Followers.Add((PlayerController)AddCharacters(aux,0));
-				if(i>0){
-					Followers[Followers.Count-1].AxisOffset=i*8;
+				Followers[Followers.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
+				if (i > 0)
+				{
+					Followers[Followers.Count - 1].AxisOffset = i * 8;
 				}
 			}
 		}
-		SetLayers(Data.GraphicsLayer,Data.PhysicsLayer);
+		SetLayers(Data.GraphicsLayer,Data.CollisionLayer, Data.CollisionMask);
 		ChangeLeader(Characters[0],Characters[0]);
 	}
 	public void AddFollowingCharacter(PlayerController A, bool NPC){
@@ -113,14 +119,19 @@ public partial class GameManager : Node
 	public void ChangeLeader(PlayerController A, PlayerController B){
 		A.Leader=false;
 		B.Leader=true;
+		Leader = B;
 		A.OverworldCollider.Disabled=false;
 		controller=B;
-		for(int i=0;i<Characters.Count;i++){
-			if(Characters[i]!=A){
-				A._Follow-=Characters[i].FollowLeader;
+		B.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = false;
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			if (Characters[i] != A)
+			{
+				A._Follow -= Characters[i].FollowLeader;
 			}
-			if(Characters[i]!=B){
-				B._Follow+=Characters[i].FollowLeader;
+			if (Characters[i] != B)
+			{
+				B._Follow += Characters[i].FollowLeader;
 			}
 		}
 		for(int i=0;i<Followers.Count;i++){
@@ -245,8 +256,9 @@ public partial class GameManager : Node
 			Followers[i].DataMap=Map;
 		}	
 	}
-	public void MoveCharactersToScene()
+	public void MoveCharactersToScene(Scene scene)
 	{
+		CurrentScene = scene;
 		for (int i = 0; i < Characters.Count; i++)
 		{
 			Node2D aux = Characters[i].Parent;
@@ -292,19 +304,23 @@ public partial class GameManager : Node
 		}
 	}
 	public void Load(int Save){
-		for(int i = 0;i<Characters.Count;i++){
-			Characters[i].Parent.QueueFree();
-		}
-		Data = null;
-		Data= Saves[Save].DuplicateData();
-		CurrentSave=Save;
-		OverworldCam?.QueueFree();
-		BattleCam?.QueueFree();
-		Characters.Clear();
-		Followers.Clear();
+		if (Saves[Save] != null)
+		{
+			for (int i = 0; i < Characters.Count; i++)
+			{
+				Characters[i].Parent.QueueFree();
+			}
+			Data = null;
+			Data= Saves[Save].DuplicateData();
+			CurrentSave=Save;
+			OverworldCam?.QueueFree();
+			BattleCam?.QueueFree();
+			Characters.Clear();
+			Followers.Clear();
 
-		InstantiateCharacters();
-		CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position);
+			InstantiateCharacters();
+			CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position);			
+		}
 	}
 	
 	public void DeleteSave(int Save){
@@ -328,7 +344,7 @@ public partial class GameManager : Node
 		}
 		TransitionAnimator.Play("Transition");*/
 	}
-	public void SetLayers(int GraphicsLayer, uint PhysicsLayer){
+	/*public void SetLayers(int GraphicsLayer, uint PhysicsLayer){
 		Data.GraphicsLayer = GraphicsLayer;
 		Data.PhysicsLayer = PhysicsLayer;
 		//CHANGE THE MASKS IN THE GAME
@@ -342,11 +358,27 @@ public partial class GameManager : Node
 			Followers[i].Parent.ZIndex = GraphicsLayer;
 			Followers[i].Parent.CollisionLayer = PhysicsLayer;			
 		}	
+	}*/
+	public void SetLayers(int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask){
+		Data.GraphicsLayer = GraphicsLayer;
+		//Data.PhysicsLayer = PhysicsLayer;
+		Data.CollisionLayer = CollisionLayer.Duplicate();
+		Data.CollisionMask = CollisionMask.Duplicate();
+		//CHANGE THE MASKS IN THE GAME
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			Characters[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
+		}
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			Characters[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
+
+		}	
 	}
 public override void _Notification(int what)
-{
-    if (what == NotificationWMCloseRequest)
-		Debug.WriteLine("Disposing");
-		
-		}
+	{
+		if (what == NotificationWMCloseRequest)
+			Debug.WriteLine("Disposing");
+
+	}
 }

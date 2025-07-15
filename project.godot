@@ -55,9 +55,18 @@ variables={
 "Characters": {
 "CharName": ""
 },
+"Dialogue": {},
+"Event": {
+"Comp1": false,
+"Comp2": false
+},
+"EventInt": {},
+"ItemGiven": {},
 "Items": {
 "ItemName": "aaa"
-}
+},
+"Puzzle": {},
+"PuzzleInt": {}
 }
 translation/enabled=true
 translation/original_locale="en"
@@ -68,6 +77,8 @@ text/autocolor_names=true
 text/autoadvance_fixed_delay=1.0
 text/input_action="Confirm"
 directories/dch_directory={
+"Blobfish": "res://DialogicCharacters/Blobfish.dch",
+"Halluci": "res://DialogicCharacters/Halluci.dch",
 "MC": "res://DialogicCharacters/MC.dch",
 "No Box": "res://DialogicCharacters/No Box.dch"
 }
@@ -110,6 +121,9 @@ directories/dtl_directory={
 "SecondItemNPC4": "res://Dialogues/NPC Dialogue/Water/SecondItemNPC4.dtl",
 "SwitchHint": "res://Dialogues/NPC Dialogue/Water/SwitchHint.dtl",
 "Test": "res://Dialogues/Test.dtl",
+"WaterExit1": "res://Dialogues/Scene Dialogue/Water/WaterExit1.dtl",
+"WaterExit2": "res://Dialogues/Scene Dialogue/Water/WaterExit2.dtl",
+"WaterExitSolo": "res://Dialogues/Scene Dialogue/Water/WaterExitSolo.dtl",
 "Win": "res://Dialogues/Win.dtl",
 "bridgeBattleStartTest": "res://Dialogues/bridgeBattleStartTest.dtl",
 "bridgejoke1": "res://Dialogues/bridgejoke1.dtl"

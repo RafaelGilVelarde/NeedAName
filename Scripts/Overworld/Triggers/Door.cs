@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Diagnostics;
 
@@ -7,9 +8,11 @@ public partial class Door : Area2D
     [Export] int Scene, PlayerZIndex;
     [Export] Areas Area;
     [Export] Vector2 LoadPosition;
+    [Export] Array<int> LayerOn, MaskOn;
+
     public override void _Ready()
     {
-        Callable.From(ActorSetup).CallDeferred();	
+        Callable.From(ActorSetup).CallDeferred();
     }
     private void OnCollisionEntered(Node2D body)
     {
@@ -27,7 +30,7 @@ public partial class Door : Area2D
     }
 	void GoThroughDoor(){
         Monitoring = false;
-        GameManager.Instance.SetLayers(PlayerZIndex,CollisionLayer);
+        GameManager.Instance.SetLayers(PlayerZIndex,LayerOn, MaskOn);
         GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition);
 
     }

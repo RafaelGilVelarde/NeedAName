@@ -63,7 +63,12 @@ public partial class SelectActions : Node2D
 						Animator.Set("parameters/conditions/Start",false);
 						Animator.Set("parameters/conditions/Choice",true);
 						Animator.Set("parameters/Choice/blend_position",2);
-						BattleManager.instance.Run();
+						SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
+						Timer.Timeout += () =>
+						{
+							Hide();
+							BattleManager.instance.Run();
+						};
 					}
 				}
 			break;
@@ -278,10 +283,15 @@ public partial class SelectActions : Node2D
 		void SetAnimationFalse(){
 			animating=false;
 		}
-		Tween tween=CreateTween();
+		SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
+		Timer.Timeout += () =>
+		{
+			SetAnimationFalse();
+		};
+		/*Tween tween=CreateTween();
 		tween.TweenInterval(0.5);
 		tween.TweenCallback(Callable.From(SetAnimationFalse));
-		tween.Finished+=tween.Kill;
+		tween.Finished+=tween.Kill;*/
 	}
 	void FlipText(){
 		Array<Node>Labels=GetChildren();

@@ -120,6 +120,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_fcftr"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_rgtf8")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_xm7il"]
 script = ExtResource("10_dck7k")
@@ -140,6 +141,7 @@ MoveTime = 4.0
 [sub_resource type="Resource" id="Resource_m80ms"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_xm7il")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("3_qc7bw")
@@ -235,6 +237,7 @@ TextEffectColor = Color(0, 0, 0.952941, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 0)
 MoveSFX = null
 HitSFX = null
 
@@ -258,6 +261,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_0nxwl"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_gt6au")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_0dvvf"]
 script = ExtResource("3_qc7bw")
@@ -314,6 +318,7 @@ TextEffectColor = Color(0, 1, 0, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 15)
 MoveSFX = null
 HitSFX = null
 
@@ -348,6 +353,7 @@ MoveTime = 10.0
 [sub_resource type="Resource" id="Resource_oqotk"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_8og32")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_f4gq8"]
 script = ExtResource("18_miyx3")
@@ -383,6 +389,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_6x26t"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_f4gq8")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_mnm8f"]
 script = ExtResource("3_qc7bw")
@@ -451,6 +458,7 @@ TextEffectColor = Color(0, 1, 0, 1)
 Icon = ExtResource("5_8m0s2")
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 17)
 MoveSFX = null
 HitSFX = null
 
@@ -474,11 +482,11 @@ SuckTimerMax = 4.0
 Speed = 2.0
 Combo = 1
 Combo2 = 2
-type = 0
-Power = 1
+type = 1
+Power = 2
 UserAmount = 1
 TargetAmount = 1
-WP = 0
+WP = 3
 Cost = 0
 TargetsParty = false
 Name = "Suck"
@@ -487,6 +495,7 @@ MoveTime = 10.0
 [sub_resource type="Resource" id="Resource_ngl2m"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_k1454")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_smiot"]
 script = ExtResource("22_iif3q")
@@ -532,6 +541,7 @@ MoveTime = 4.0
 [sub_resource type="Resource" id="Resource_1f36n"]
 script = ExtResource("4_0i8ni")
 Base = SubResource("Resource_smiot")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_h61cx"]
 script = ExtResource("3_qc7bw")
@@ -605,6 +615,8 @@ AreaIndex = 0
 Position = Vector2(0, 0)
 GraphicsLayer = 0
 PhysicsLayer = 1
+CollisionLayer = Array[int]([1])
+CollisionMask = Array[int]([1])
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
@@ -650,7 +662,7 @@ _data = {
 [node name="GameManager" type="Node" node_paths=PackedStringArray("Characters", "TransitionAnimator", "TransitionOverlay")]
 script = ExtResource("1_mg7l2")
 SavePath = "C:/Users/nosoy/Documents/SavesTest"
-Saves = Array[Object]([null, null, null])
+Saves = Array[Object]([null, null, null, null, null, null])
 Data = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])

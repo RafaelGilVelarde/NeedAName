@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmlxetebltuvw"]
+[gd_scene load_steps=17 format=3 uid="uid://bmlxetebltuvw"]
 
 [ext_resource type="AnimationLibrary" uid="uid://cvyxxjnn1wh11" path="res://Animations/Battle/Boss1.res" id="1_mtx4u"]
 
@@ -62,14 +62,23 @@ max_space = 7.0
 snap = 1.0
 blend_mode = 1
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_126af"]
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ga7px"]
+animation = &"Battle_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tukis"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_jytjb"]
+switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vnr2o"]
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_hojxb")
 states/ActionState/position = Vector2(593, 103)
+states/Battle_Start/node = SubResource("AnimationNodeAnimation_ga7px")
+states/Battle_Start/position = Vector2(357, 103)
 states/Start/position = Vector2(201, 103)
-transitions = ["Start", "ActionState", SubResource("AnimationNodeStateMachineTransition_126af")]
+transitions = ["Start", "Battle_Start", SubResource("AnimationNodeStateMachineTransition_tukis"), "Battle_Start", "ActionState", SubResource("AnimationNodeStateMachineTransition_jytjb")]
 
 [node name="AnimationPlayer" type="AnimationPlayer"]
 libraries = {

@@ -7,6 +7,8 @@ public partial class EnemySpawner : Node2D
     [Export] Array<Character> MainEnemies, SideEnemies; 
     [Export] int Prefab;
     [Export] Array<Vector2> PartyPos, EnemyPos;
+    [Export] int GraphicsLayer;
+    [Export] Array<int> CollisionLayer, CollisionMask;
     [Export] BattleScene Scene;
     [Export] DetectArea detectArea;
     public override void _Ready()
@@ -15,18 +17,19 @@ public partial class EnemySpawner : Node2D
 
 
     }
-    
-	private async void ActorSetup()
+
+    private async void ActorSetup()
     {
         await ToSignal(GetTree(), SceneTree.SignalName.PhysicsFrame);
 
         RandomNumberGenerator RNG = new RandomNumberGenerator();
-        int Index=RNG.RandiRange(0,MainEnemies.Count-1);        
+        int Index = RNG.RandiRange(0, MainEnemies.Count - 1);
         EnemyOverworldController Overworld = (EnemyOverworldController)GameManager.Instance.AddCharacters((Character)MainEnemies[Index].Duplicate(true), 1);
-        Overworld.Parent.Position=GlobalPosition;
-        Overworld.CachedTargetPosition=GlobalPosition;
+        Overworld.Parent.Position = GlobalPosition;
+        Overworld.CachedTargetPosition = GlobalPosition;
         Overworld.SetArea(detectArea);
-        Overworld.Battle.Constructor(PartyPos,EnemyPos,Prefab,SideEnemies,Scene);
+        Overworld.Battle.Constructor(PartyPos, EnemyPos, Prefab, SideEnemies, Scene);
+        Overworld.SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
     }
 
 }

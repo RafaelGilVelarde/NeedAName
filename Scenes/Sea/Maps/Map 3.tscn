@@ -32,6 +32,8 @@ Amount = 1
 [sub_resource type="Resource" id="Resource_2ayp2"]
 script = ExtResource("11_whugb")
 DialogueTimelines = Array[String](["Item1"])
+FlagIndexes = null
+flagTypes = null
 
 [node name="Map3" type="Node2D"]
 script = ExtResource("1_4yjad")
@@ -93,6 +95,8 @@ collision_layer = 2
 Scene = 6
 PlayerZIndex = 1
 LoadPosition = Vector2(-208, -170)
+LayerOn = Array[int]([2])
+MaskOn = Array[int]([2])
 
 [node name="Door4" parent="." instance=ExtResource("5_t85o1")]
 position = Vector2(176, 296)
