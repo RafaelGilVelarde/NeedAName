@@ -10,6 +10,40 @@ public partial class DialogueVariables : Resource
     [Export] public bool BoolFlag;
     [Export] public string Category, VariableName;
 
+    void GetCategory()
+    {
+        if (BoolFlag)
+        {
+
+            switch (Flagtype)
+            {
+                case FlagType.Puzzle:
+                    Category = "Puzzle";
+                    break;
+                case FlagType.Event:
+                    Category = "Event";
+                    break;
+                case FlagType.Item:
+                    Category = "ItemGiven";
+                    break;
+                case FlagType.Dialogue:
+                    Category = "Dialogue";
+                    break;
+            }
+        }
+        else
+        {
+            switch (Flagtype)
+            {
+                case FlagType.Puzzle:
+                    Category = "PuzzleInt";
+                    break;
+                case FlagType.Event:
+                    Category = "EventInt";
+                    break;
+            }
+        }
+    }
     public Array<bool> ArrayBool()
     {
         Flags flags = GameManager.Instance.Data.Flags;
@@ -47,6 +81,7 @@ public partial class DialogueVariables : Resource
     public void SetVariable()
     {
         DialogicCSharp Dialogic = DialogicCSharp.instance;
+        GetCategory();
         if (BoolFlag)
         {
             Dialogic.SetVariable(VariableName, Category, ArrayBool()[index]);

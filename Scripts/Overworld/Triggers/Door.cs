@@ -9,7 +9,7 @@ public partial class Door : Area2D
     [Export] Areas Area;
     [Export] Vector2 LoadPosition;
     [Export] Array<int> LayerOn, MaskOn;
-
+    [Export] Color TransitionColor = Color.FromHsv(0,0,0,1);
     public override void _Ready()
     {
         Callable.From(ActorSetup).CallDeferred();
@@ -31,7 +31,7 @@ public partial class Door : Area2D
 	void GoThroughDoor(){
         Monitoring = false;
         GameManager.Instance.SetLayers(PlayerZIndex,LayerOn, MaskOn);
-        GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition);
+        GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition,TransitionColor);
 
     }
 }

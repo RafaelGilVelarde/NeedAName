@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=3 format=3 uid="uid://bjaqxur4jb7i8"]
+
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="1_hw3cf"]
+[ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://DialogicStyles/Layout Scenes/CustomNoBox/custom_no_box.tscn" id="1_ig2jq"]
+
+[resource]
+script = ExtResource("1_hw3cf")
+name = "No-Box"
+base_scene = ExtResource("1_ig2jq")
+base_overrides = {
+"canvas_layer": "3.0",
+"global_bg_color": "Color(0, 0, 0, 0)",
+"global_font_size": "30.0"
+}
+layers = Array[Resource("res://addons/dialogic/Resources/dialogic_style_layer.gd")]([])
+metadata/_latest_layer = -1

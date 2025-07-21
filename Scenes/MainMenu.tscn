@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://brf1kg03d66t7"]
+[gd_scene load_steps=20 format=3 uid="uid://brf1kg03d66t7"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/StartMenu.cs" id="1_5qb0c"]
 [ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="1_b7sp6"]
@@ -143,46 +143,32 @@ tracks/7/keys = {
 "values": [5.0, 12.0, 4.0]
 }
 
-[sub_resource type="Animation" id="Animation_avdnp"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("PointLight2D:color")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0.905882, 1, 1, 1)]
-}
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_baj2i"]
 _data = {
-"RESET": SubResource("Animation_avdnp"),
 "default": SubResource("Animation_kn7i5")
 }
 
-[sub_resource type="Gradient" id="Gradient_se7pq"]
+[sub_resource type="Gradient" id="Gradient_etpth"]
 interpolation_mode = 2
 offsets = PackedFloat32Array(0, 0.732394)
 colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 0)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_3caax"]
-gradient = SubResource("Gradient_se7pq")
+gradient = SubResource("Gradient_etpth")
 width = 192
 height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList", "MainSprite")]
 script = ExtResource("1_5qb0c")
 Start = NodePath("VBoxContainer/Button")
 Continue = NodePath("VBoxContainer/Button2")
 SavesList = NodePath("SaveScrolls")
 NewGameScene = ExtResource("2_8k5ur")
 TransitionColor = null
+MainSprite = NodePath("Sprite2D")
+State = null
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_eg5ua")
@@ -209,9 +195,9 @@ text = "Continue"
 [node name="SaveScrolls" type="VBoxContainer" parent="." node_paths=PackedStringArray("Buttons")]
 visible = false
 offset_left = 608.0
-offset_top = 464.0
+offset_top = 392.0
 offset_right = 687.0
-offset_bottom = 700.0
+offset_bottom = 628.0
 theme_override_constants/separation = 10
 script = ExtResource("1_b7sp6")
 Buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4"), NodePath("Button5"), NodePath("Button6")]
@@ -247,12 +233,12 @@ text = "Save1"
 script = ExtResource("2_0epxr")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 texture_filter = 1
 position = Vector2(648, 312)
 texture = SubResource("CanvasTexture_m8jxp")
 hframes = 4
 vframes = 4
-frame = 10
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "Layer 4",
@@ -273,14 +259,14 @@ autoplay = "default"
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 z_index = 3
-color = Color(0.905882, 1, 1, 1)
-energy = 4.0
+color = Color(0.5748, 0.987756, 0.977641, 1)
+energy = 5.95026
 range_layer_min = -4
 range_layer_max = 4
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.65098)
 texture = SubResource("GradientTexture2D_3caax")
-texture_scale = 1.2
+texture_scale = 1.01204
 height = 10.0
 
 [node name="TileMap" type="TileMap" parent="."]

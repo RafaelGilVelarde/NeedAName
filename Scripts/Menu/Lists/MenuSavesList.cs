@@ -10,7 +10,7 @@ public partial class MenuSavesList : StuffList
 
     public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
     {
-		GameManager.Instance.DisplaySaves();
+		//GameManager.Instance.DisplaySaves();
         Saves = GameManager.Instance.Saves;
 		pointerStart=Start;
 		if(StartEnd!=ScrollList.StartEnd.Regular){

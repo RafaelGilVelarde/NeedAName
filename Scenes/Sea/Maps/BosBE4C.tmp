@@ -313,7 +313,7 @@ Def = 3
 SpAtk = 2
 SpDef = 1
 Speed = 3
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_n0kjw"]
 script = ExtResource("19_04fsb")
@@ -331,15 +331,15 @@ HitSFX = null
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_7s2bh")
@@ -467,15 +467,15 @@ Chance = 20.0
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("16_q3s3b")
@@ -487,7 +487,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_i0rrr"]
 resource_local_to_scene = true
@@ -661,9 +661,12 @@ _data = {
 "Cutscene2": SubResource("Animation_3708d")
 }
 
-[node name="Node2D" type="Node2D" node_paths=PackedStringArray("CutsceneAnimator")]
+[node name="Node2D" type="Node2D"]
 script = ExtResource("1_t3ogn")
-CutsceneAnimator = NodePath("Cutscenes")
+CutsceneAnimator = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
+"": SubResource("AnimationLibrary_kwfww")
+},"autoplay":"","playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":ExtResource("38_5jbol"),"InitialPositions":Array[Vector2]([Vector2(116, 164), Vector2(68, 164)]),"InitialPositionStartIndex":Array[int]([0, 0]),"CutsceneDurations":Array[float]([1.5]),"CutsceneNames":Array[String](["Cutscene1", "Cutscene2"]))
+
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -842,42 +845,30 @@ position = Vector2(145, 129)
 rotation = 3.14159
 scale = Vector2(1, -1)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss" node_paths=PackedStringArray("battleStart", "Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss"]
 position = Vector2(0, 36)
 shape = SubResource("RectangleShape2D_puscj")
 script = ExtResource("11_frgqn")
-battleStart = NodePath("../OverworldController/BattleStart")
 TimelineGroup = Array[Object]([SubResource("Resource_sa4b1")])
 PauseWhenDialogue = true
 FacingRight = false
 Cutscene = true
-Sprites = []
+battleStart = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 36),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_tusfu"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)]),"EnemyPos":Array[Vector2]([Vector2(0, -36)]))
 
-[node name="OverworldController" type="Node2D" parent="Boss" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Animator", "AnimatorTree", "Parent", "OverworldCollider", "BattleCharacter")]
+
+[node name="OverworldController" type="Node2D" parent="Boss"]
 script = ExtResource("7_4k8em")
-enemyCollision = NodePath("Area2D")
-IdleTargets = []
-Obstacles = []
 LayerMask = 2
-Battle = NodePath("BattleStart")
-MainSprite = NodePath("MainSprite")
-Animator = NodePath("AnimationPlayer")
-AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
-Parent = NodePath("..")
-OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = []
 PositionList = []
 AuxPositionList = []
 Controllable = false
-BattleCharacter = NodePath("../BattleCharacter")
+enemyCollision = Object(Area2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":4,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":true,"monitoring":true,"monitorable":true,"priority":0,"gravity_space_override":0,"gravity_point":false,"gravity_point_unit_distance":0.0,"gravity_point_center":Vector2(0, 1),"gravity_direction":Vector2(0, 1),"gravity":980.0,"linear_damp_space_override":0,"linear_damp":0.1,"angular_damp_space_override":0,"angular_damp":1.0,"audio_bus_override":false,"audio_bus_name":&"Master","script":ExtResource("13_vbou1"),"battleStart":Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 36),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_tusfu"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)]),"EnemyPos":Array[Vector2]([Vector2(0, -36)]))
+)
 
-[node name="MainSprite" type="Sprite2D" parent="Boss/OverworldController"]
-texture_filter = 1
-texture = ExtResource("12_c83it")
-hframes = 8
-vframes = 8
-frame = 44
-metadata/_aseprite_wizard_config_ = {
+Battle = Object(Node2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 36),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"script":ExtResource("14_yifkv"),"scene":SubResource("Resource_tusfu"),"EnemyCharacters":[],"CharacterPrefab":1,"PartyPos":Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)]),"EnemyPos":Array[Vector2]([Vector2(0, -36)]))
+
+MainSprite = Object(Sprite2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"clip_children":0,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":false,"texture_filter":1,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(0, 0),"rotation":0.0,"scale":Vector2(1, 1),"skew":0.0,"texture":ExtResource("12_c83it"),"centered":true,"offset":Vector2(0, 0),"flip_h":false,"flip_v":false,"hframes":8,"vframes":8,"frame":44,"region_enabled":false,"region_rect":Rect2(0, 0, 0, 0),"region_filter_clip_enabled":false,"script":null,"metadata/_aseprite_wizard_config_":{
 "keep_anim_length": false,
 "layer": "",
 "o_ex_p": "",
@@ -887,558 +878,16 @@ metadata/_aseprite_wizard_config_ = {
 "op_exp": true,
 "player": "OverworldController/AnimationPlayer",
 "source": "res://Aseprites/Characters/Battle/Enemies/starfish.aseprite"
-}
+})
 
-[node name="Area2D" type="Area2D" parent="Boss/OverworldController" node_paths=PackedStringArray("battleStart")]
-process_mode = 4
-script = ExtResource("13_vbou1")
-battleStart = NodePath("../BattleStart")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/OverworldController/Area2D"]
-shape = SubResource("RectangleShape2D_barrw")
-disabled = true
-
-[node name="BattleStart" type="Node2D" parent="Boss/OverworldController"]
-position = Vector2(0, 36)
-script = ExtResource("14_yifkv")
-scene = SubResource("Resource_tusfu")
-EnemyCharacters = []
-CharacterPrefab = 1
-PartyPos = Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)])
-EnemyPos = Array[Vector2]([Vector2(0, -36)])
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Boss/OverworldController"]
-libraries = {
+Animator = Object(AnimationPlayer,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":true,"deterministic":false,"reset_on_save":true,"root_node":NodePath(".."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
 "": ExtResource("19_rbcig")
-}
-autoplay = "Overworld"
+},"autoplay":"Overworld","playback_default_blend_time":0.0,"speed_scale":1.0,"movie_quit_on_finish":false,"blend_times":[],"script":null)
 
-[node name="AnimationTree" type="AnimationTree" parent="Boss/OverworldController/AnimationPlayer"]
-active = false
-root_node = NodePath("../..")
-libraries = {
+AnimatorTree = Object(AnimationTree,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","active":false,"deterministic":true,"reset_on_save":true,"root_node":NodePath("../.."),"root_motion_track":NodePath(""),"audio_max_polyphony":32,"callback_mode_process":1,"callback_mode_method":0,"libraries":{
 "": ExtResource("19_rbcig")
-}
-tree_root = SubResource("AnimationNodeStateMachine_vnr2o")
-anim_player = NodePath("..")
-parameters/ActionState/blend_position = 0.989796
-parameters/ActionState/0/blend_position = 0.173189
+},"tree_root":SubResource("AnimationNodeStateMachine_vnr2o"),"advance_expression_base_node":NodePath("."),"anim_player":NodePath(".."),"parameters/ActionState/blend_position":0.989796,"parameters/ActionState/0/blend_position":0.173189,"script":null)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="Boss" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers")]
-process_mode = 4
-visible = false
-script = ExtResource("23_1gxnh")
-AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
-AnimatorPlayer = NodePath("AnimationPlayer")
-Character = SubResource("Resource_i0rrr")
-Hitbox = NodePath("Hitbox")
-Hurtbox = NodePath("Hurtbox")
-Blockbox = NodePath("Blockbox")
-Overworld = NodePath("../OverworldController")
-StatMultiplier = [1.0, 1.0, 1.0, 1.0, 1.0]
-MultTimer = [null, null, null, null, null]
-PartyButtons = []
-EnemyButtons = []
-selectActions = NodePath("ActionMenu")
-MainSprite = NodePath("MainSprite")
-ThisParty = []
-EnemyParty = []
-StateParticles = NodePath("StateParticles")
-HitParticles = NodePath("HitEffectParticles")
-ShootNode = NodePath("Shoot")
-FloorNode = NodePath("Floor")
-HPBar = NodePath("HPBarParent/HPBar")
-StatMods = NodePath("Node2D/HBoxContainer")
-UpStat = ExtResource("31_ajt7s")
-DownStat = ExtResource("32_cs5se")
-SFXPlayers = []
-battleState = 3
-actionState = 5
+Parent = Object(CharacterBody2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":Color(1, 1, 1, 1),"show_behind_parent":false,"top_level":false,"light_mask":1,"visibility_layer":1,"z_index":0,"z_as_relative":true,"y_sort_enabled":true,"texture_filter":0,"texture_repeat":0,"material":null,"use_parent_material":false,"position":Vector2(145, 129),"rotation":3.14159,"scale":Vector2(1, -1),"skew":0.0,"disable_mode":0,"collision_layer":1,"collision_mask":1,"collision_priority":1.0,"input_pickable":false,"motion_mode":0,"up_direction":Vector2(0, -1),"velocity":Vector2(0, 0),"slide_on_ceiling":true,"max_slides":4,"wall_min_slide_angle":0.261799,"floor_stop_on_slope":true,"floor_constant_speed":false,"floor_block_on_wall":true,"floor_max_angle":0.785398,"floor_snap_length":1.0,"platform_on_leave":0,"platform_floor_layers":4294967295,"platform_wall_layers":0,"safe_margin":0.08,"script":null)
 
-[node name="Hitbox" type="Area2D" parent="Boss/BattleCharacter" node_paths=PackedStringArray("Character") groups=["EnemyHitbox"]]
-script = ExtResource("26_n61em")
-Character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BattleCharacter/Hitbox"]
-shape = SubResource("RectangleShape2D_rd4dd")
-disabled = true
-
-[node name="Hurtbox" type="Area2D" parent="Boss/BattleCharacter" groups=["EnemyHurtbox"]]
-position = Vector2(-34, 33)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BattleCharacter/Hurtbox"]
-shape = SubResource("RectangleShape2D_ft7k8")
-disabled = true
-
-[node name="Blockbox" type="Area2D" parent="Boss/BattleCharacter" groups=["EnemyBlockbox"]]
-script = ExtResource("27_hafdj")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Boss/BattleCharacter/Blockbox"]
-shape = SubResource("RectangleShape2D_mrp36")
-disabled = true
-
-[node name="MainSprite" type="Sprite2D" parent="Boss/BattleCharacter"]
-texture_filter = 1
-texture = ExtResource("12_c83it")
-hframes = 8
-vframes = 8
-frame = 43
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "_",
-"o_folder": "res://Sprites/Battle/Enemies",
-"o_name": "Boss1",
-"only_visible": false,
-"op_exp": true,
-"player": "Boss/BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/Enemies/Boss1.aseprite"
-}
-
-[node name="Arms" type="Sprite2D" parent="Boss/BattleCharacter/MainSprite"]
-texture_filter = 1
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_arm",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Enemies",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/Enemies/shripmyang.aseprite"
-}
-
-[node name="Weapon" type="Sprite2D" parent="Boss/BattleCharacter/MainSprite"]
-visible = false
-
-[node name="Effects" type="AnimationPlayer" parent="Boss/BattleCharacter"]
-
-[node name="ActionMenu" type="Node2D" parent="Boss/BattleCharacter"]
-process_mode = 4
-visible = false
-script = ExtResource("28_t57oh")
-
-[node name="Move" type="Sprite2D" parent="Boss/BattleCharacter/ActionMenu"]
-
-[node name="Item" type="Sprite2D" parent="Boss/BattleCharacter/ActionMenu"]
-
-[node name="Run" type="Sprite2D" parent="Boss/BattleCharacter/ActionMenu"]
-
-[node name="StateParticles" type="GPUParticles2D" parent="Boss/BattleCharacter"]
-process_mode = 3
-position = Vector2(0, -8)
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_wfo7d")
-lifetime = 0.5
-one_shot = true
-script = ExtResource("29_63fyv")
-ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
-processMaterial = SubResource("ParticleProcessMaterial_wfo7d")
-
-[node name="HitEffectParticles" type="CPUParticles2D" parent="Boss/BattleCharacter"]
-process_mode = 3
-position = Vector2(0, -18)
-emitting = false
-amount = 22
-lifetime = 0.75
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 14.7
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 205.74
-scale_amount_min = 0.0
-scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_0dopt")
-color = Color(0.580392, 0.968627, 0.937255, 1)
-anim_speed_max = 200.15
-anim_speed_curve = SubResource("Curve_s3x72")
-anim_offset_max = 0.9809
-
-[node name="Shoot" type="Node2D" parent="Boss/BattleCharacter"]
-
-[node name="Floor" type="Node2D" parent="Boss/BattleCharacter"]
-
-[node name="HPBarParent" type="Node2D" parent="Boss/BattleCharacter"]
-
-[node name="HPBar" type="ProgressBar" parent="Boss/BattleCharacter/HPBarParent"]
-modulate = Color(1, 1, 1, 0)
-layout_direction = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -60.0
-offset_right = 15.0
-offset_bottom = -55.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_86cc5")
-theme_override_styles/fill = SubResource("StyleBoxFlat_tosun")
-max_value = 50.0
-show_percentage = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/HPBarParent/HPBar"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = -13.0
-offset_right = 177.0
-offset_bottom = 77.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "[center]50/50[/center]"
-scroll_active = false
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/HPBarParent/HPBar"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = 177.0
-offset_bottom = 94.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "[center]50[/center]"
-scroll_active = false
-
-[node name="AnimationPlayer" parent="Boss/BattleCharacter" instance=ExtResource("29_6dhwp")]
-process_mode = 3
-
-[node name="AnimationTree" parent="Boss/BattleCharacter/AnimationPlayer" index="0"]
-parameters/ActionState/blend_position = 6.0
-
-[node name="Node2D" type="Node2D" parent="Boss/BattleCharacter"]
-z_index = 5
-position = Vector2(-19.9999, 32)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Boss/BattleCharacter/Node2D"]
-offset_left = -28.0
-offset_right = 68.0
-offset_bottom = 40.0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("31_ajt7s")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Atk[/center]"
-
-[node name="TextureRect2" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("31_ajt7s")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Def[/center]"
-
-[node name="TextureRect3" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("31_ajt7s")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpA[/center]"
-
-[node name="TextureRect4" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("31_ajt7s")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpD[/center]"
-
-[node name="TextureRect5" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("31_ajt7s")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Spe[/center]"
-
-[node name="TextureRect6" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_cs5se")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Atk[/center]"
-
-[node name="TextureRect7" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_cs5se")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Def[/center]"
-
-[node name="TextureRect8" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_cs5se")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpA[/center]"
-
-[node name="TextureRect9" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_cs5se")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpD[/center]"
-
-[node name="TextureRect10" type="TextureRect" parent="Boss/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_cs5se")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Boss/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Spe[/center]"
-
-[node name="Door" type="Area2D" parent="."]
-position = Vector2(269, 170)
-script = ExtResource("34_wr8hh")
-Scene = 28
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
-position = Vector2(1, 0)
-shape = SubResource("RectangleShape2D_airv7")
-
-[node name="Cutscenes" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_kwfww")
-}
-script = ExtResource("38_5jbol")
-InitialPositions = Array[Vector2]([Vector2(116, 164), Vector2(68, 164)])
-InitialPositionStartIndex = Array[int]([0, 0])
-CutsceneDurations = Array[float]([1.5])
-CutsceneNames = Array[String](["Cutscene1", "Cutscene2"])
-
-[node name="CanvasLayer2" type="CanvasLayer" parent="."]
-layer = 0
-
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer2"]
-modulate = Color(1, 1, 1, 0)
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 825.0
-offset_bottom = 525.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("39_tdnfc")
-expand_mode = 1
-
-[editable path="Cams"]
-[editable path="Boss/BattleCharacter/AnimationPlayer"]
+OverworldCollider = Object(CollisionShape2D,"_import_path":NodePath(""),"unique_name_in_owner":false,"process_mode":0,"process_priority":0,"process_physics_priority":0,"process_thread_group":0,"editor_description":"","visible":true,"modulate":Color(1, 1, 1, 1),"self_modulate":C

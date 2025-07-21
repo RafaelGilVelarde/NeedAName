@@ -1,0 +1,11 @@
+"No Box-Dark": AAaaaa
+[signal arg="Cutscene2"]
+[wait time="1.0"]
+"No Box-Dark": Congratulations!
+"No Box-Dark": You made it through!
+"No Box-Dark": I am curious though, what might your name be?
+[clear time="0.0" step="false" style="false"]
+[text_input text="What is your name?" var="Characters.CharName"]
+"No Box-Dark": {Characters.CharName}....an interesting name to be sure
+"No Box-Dark": Well then, {Characters.CharName}, may you have
+"No Box-Dark": A wonderful life!

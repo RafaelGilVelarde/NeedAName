@@ -53,14 +53,14 @@ Amount = 1
 [sub_resource type="Resource" id="Resource_ygo20"]
 script = ExtResource("11_anry4")
 DialogueTimelines = Array[String](["SecondItemNPC1", "SecondItemNPC2"])
-FlagIndexes = null
-flagTypes = null
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
 
 [sub_resource type="Resource" id="Resource_cug68"]
 script = ExtResource("11_anry4")
 DialogueTimelines = Array[String](["SecondItemNPC3", "SecondItemNPC4"])
-FlagIndexes = null
-flagTypes = null
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
 
 [node name="Map10" type="Node2D"]
 script = ExtResource("1_wl176")
@@ -117,7 +117,7 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door2" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 48)
 Scene = 8
-LoadPosition = Vector2(260, 48)
+LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
 shape = SubResource("RectangleShape2D_pixk1")
@@ -125,7 +125,7 @@ shape = SubResource("RectangleShape2D_pixk1")
 [node name="Door3" parent="." instance=ExtResource("7_pq43u")]
 position = Vector2(-304, -16)
 Scene = 8
-LoadPosition = null
+LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door3" index="0"]
 shape = SubResource("RectangleShape2D_pixk1")
@@ -163,7 +163,6 @@ shape = SubResource("RectangleShape2D_7njse")
 position = Vector2(160, -240)
 
 [node name="CollisionShape2D" parent="NPC" index="0"]
-ItemType = 2
 CheckValues = Array[Object]([SubResource("Resource_666qw")])
 ItemsToTake = [SubResource("Resource_bc5r7")]
 GameID = 2
@@ -179,7 +178,7 @@ FacingDirection = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("9_8yric")
-frame = 11
+frame = 10
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0"]
 process_mode = 4

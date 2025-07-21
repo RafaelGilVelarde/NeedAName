@@ -80,11 +80,13 @@ directories/dch_directory={
 "Blobfish": "res://DialogicCharacters/Blobfish.dch",
 "Halluci": "res://DialogicCharacters/Halluci.dch",
 "MC": "res://DialogicCharacters/MC.dch",
-"No Box": "res://DialogicCharacters/No Box.dch"
+"No Box": "res://DialogicCharacters/No Box.dch",
+"No Box-Dark": "res://DialogicCharacters/No Box-Dark.dch"
 }
 directories/dtl_directory={
 "BattleTest": "res://Dialogues/BattleTest.dtl",
 "Boss": "res://Dialogues/NPC Dialogue/Water/Boss.dtl",
+"BossWin": "res://Dialogues/NPC Dialogue/Water/BossWin.dtl",
 "CompanionNPC1": "res://Dialogues/NPC Dialogue/Water/CompanionNPC1.dtl",
 "CompanionNPC1-2": "res://Dialogues/NPC Dialogue/Water/CompanionNPC1-2.dtl",
 "CompanionNPC1-3": "res://Dialogues/NPC Dialogue/Water/CompanionNPC1-3.dtl",
@@ -94,6 +96,7 @@ directories/dtl_directory={
 "CompanionNPC2-3": "res://Dialogues/NPC Dialogue/Water/CompanionNPC2-3.dtl",
 "CompanionNPC2-4": "res://Dialogues/NPC Dialogue/Water/CompanionNPC2-4.dtl",
 "Dialogues/NPC1": "res://Dialogues/NPC1.dtl",
+"End": "res://Dialogues/Scene Dialogue/Water/End.dtl",
 "Explanation": "res://Dialogues/Scene Dialogue/Water/Explanation.dtl",
 "FirstBattle": "res://Dialogues/Scene Dialogue/FirstBattle.dtl",
 "FirstItemNPC1": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC1.dtl",
@@ -138,12 +141,13 @@ text/split_at_new_lines=false
 translation/id_counter=95
 translation/locales=[]
 save/autosave=false
-layout/style_list=["res://DialogicStyles/Base.tres", "res://DialogicStyles/NoBox.tres"]
-layout/default_style="res://DialogicStyles/Basse.tres"
+layout/style_list=["res://DialogicStyles/Base.tres", "res://DialogicStyles/No-Box.tres", "res://DialogicStyles/No-Box-Dark.tres"]
+layout/default_style=""
 portraits/default_portrait=""
 translation/intern/save_mode=0
 translation/intern/file_mode=1
 translation/intern/translation_folder="res://Dialogues/Español"
+extensions_folder="res://addons/dialogic_additions"
 
 [display]
 

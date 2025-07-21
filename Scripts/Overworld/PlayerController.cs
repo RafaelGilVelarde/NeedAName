@@ -154,7 +154,7 @@ public partial class PlayerController : OverworldController
 		ClearAxis();
 		ProcessMode=ProcessModeEnum.Inherit;
 		if(Leader){
-			OverworldCollider.Disabled=false;
+			SetControllable(true);
 		}
 		Show();
 	}

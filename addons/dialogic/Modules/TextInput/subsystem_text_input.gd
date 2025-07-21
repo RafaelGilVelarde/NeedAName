@@ -20,6 +20,8 @@ func clear_game_state(clear_flag:=DialogicGameHandler.ClearFlags.FULL_CLEAR) -> 
 ####################################################################################################
 
 func show_text_input(text:= "", default:= "", placeholder:= "", allow_empty:= false) -> void:
+	print("Showing input")
+	print(get_tree().get_nodes_in_group('dialogic_text_input'))
 	for node in get_tree().get_nodes_in_group('dialogic_text_input'):
 		node.show()
 		if node.has_method('set_allow_empty'): node.set_allow_empty(allow_empty)

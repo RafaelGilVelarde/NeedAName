@@ -1,0 +1,35 @@
+[gd_resource type="Resource" script_class="DialogicStyle" load_steps=4 format=3 uid="uid://co3aynet66adb"]
+
+[ext_resource type="Resource" uid="uid://bjaqxur4jb7i8" path="res://DialogicStyles/No-Box.tres" id="1_8nss6"]
+[ext_resource type="PackedScene" uid="uid://cqpb3ie51rwl5" path="res://DialogicStyles/Layout Scenes/CustomNoBox/custom_no_box.tscn" id="1_bkxy6"]
+[ext_resource type="Script" path="res://addons/dialogic/Resources/dialogic_style.gd" id="2_w88ur"]
+
+[resource]
+script = ExtResource("2_w88ur")
+name = "No-Box-Dark"
+inherits = ExtResource("1_8nss6")
+base_scene = ExtResource("1_bkxy6")
+base_overrides = {
+"global_font_color": "Color(0, 0, 0, 1)",
+"overrides": {
+"overrides": {
+"overrides": {
+"overrides": {
+"overrides": {
+"canvas_layer": "3.0",
+"global_bg_color": "Color(0, 0, 0, 0)",
+"global_font_color": "Color(0, 0, 0, 1)",
+"global_font_size": "30.0"
+},
+"path": "res://DialogicStyles/Layout Scenes/CustomNoBox/custom_no_box.tscn"
+},
+"path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn"
+},
+"path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn"
+},
+"path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn"
+},
+"path": "res://addons/dialogic/Modules/DefaultLayoutParts/Base_Default/default_layout_base.tscn"
+}
+layers = Array[Resource("res://addons/dialogic/Resources/dialogic_style_layer.gd")]([])
+metadata/_latest_layer = -1

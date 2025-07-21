@@ -38,7 +38,7 @@ public partial class BattleStart : Node2D
             Array<BattleCharacter> EnemyBattle=new Array<BattleCharacter>(); 
             for(int i=0;i<Characters.Count;i++){
                 Character aux= Characters[i].BattleCharacter.Character;
-                if (aux.Active)
+                if (aux.Active && aux.status!=Character.Status.KO)
                 {
                     Party.Add(Characters[i].BattleCharacter);
                     if (scene.Horizontal)

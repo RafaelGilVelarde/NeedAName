@@ -14,6 +14,7 @@ public partial class DataManager : Resource
 	[Export] public int GraphicsLayer;
 	[Export] public uint PhysicsLayer;
 	[Export] public Array<int> CollisionLayer, CollisionMask;
+	[Export] public bool Latest;
 
 	public DataManager DuplicateData()
 	{

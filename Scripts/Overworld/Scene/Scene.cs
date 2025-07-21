@@ -20,7 +20,9 @@ public partial class Scene : Node2D
         //timer.Timeout+=()=>Setup();
 
     }
-    public virtual void Setup(){
+    public virtual void Setup()
+    {
         GameManager.Instance.controller.SetControllable(true);
+        GameManager.Instance.OverworldCam.PositionSmoothingEnabled=true;			
     }
 }

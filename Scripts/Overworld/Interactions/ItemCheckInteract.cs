@@ -6,8 +6,6 @@ using System.Diagnostics;
 public partial class ItemCheckInteract : ItemInteract
 {
     [Export] bool TakeItems;
-    [Export] ItemBase.Type ItemType;
-
     Array<Items> Aux = new Array<Items>();
     Array<int> AuxAmount = new Array<int>();
     [Export] Array<CheckValueTimeline> CheckValues;
@@ -25,7 +23,7 @@ public partial class ItemCheckInteract : ItemInteract
             for (int i = 0;i<ItemsToTake.Count;i++){
                 for(int j=0;j<ItemList.Count;j++){
                     Array<Items> Items = GameManager.Instance.Data.items[j].items;
-                    for(int k = 0;k<Items.Count;i++){
+                    for(int k = 0;k<Items.Count;k++){
                         if(Items[k].Base.ID == ItemsToTake[i].Base.ID && Items[k].Amount>=ItemsToTake[i].Amount){
                             Aux.Add(Items[k]);
                             AuxAmount.Add(ItemsToTake[i].Amount);

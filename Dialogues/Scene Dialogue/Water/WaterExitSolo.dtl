@@ -10,9 +10,9 @@ if {Event.Comp1} == true:
 		[signal arg="Push_0"]
 		[wait time="0.5"]
 	- Go on
+		[signal arg="Bool_3_1_1"]
 		MC (Happy): Ok then, guess we're going
 		Halluci (Happiness): ....Thanks
-		[signal arg="Bool_3_1_1"]
 elif {Event.Comp2} == true:
 	Blobfish (Wondering): We are soooo clooose
 	MC (Wondering): Shall we?
@@ -23,9 +23,9 @@ elif {Event.Comp2} == true:
 		[signal arg="Push_0"]
 		[wait time="0.5"]
 	- Go on
+		[signal arg="Bool_3_1_1"]
 		MC (Happy): Ok then, guess we're going
 		Blobfish (Happy): Yaaaay
-		[signal arg="Bool_3_1_1"]
 else:
 	"No Box": You would be facing this place alone. Are you sure?
 	[clear time="0.0"]

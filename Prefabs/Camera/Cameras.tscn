@@ -13,7 +13,6 @@ limit_top = -500
 limit_right = 670
 limit_bottom = 385
 limit_smoothed = true
-position_smoothing_enabled = true
 editor_draw_limits = true
 editor_draw_drag_margin = true
 script = ExtResource("1_j2r7u")

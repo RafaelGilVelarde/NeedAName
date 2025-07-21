@@ -10,7 +10,8 @@ public partial class GameManager : Node
 	[Export] public string SavePath;
 	[Export]public Array<DataManager> Saves;
 	[Export] public int CurrentSave = 0;
-	[Export]public DataManager Data;
+	[Export] public DataManager Data;
+	DataManager InitialData;
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
@@ -40,6 +41,18 @@ public partial class GameManager : Node
 		Instance = this;
 		//InstantiateCharacters();
 		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
+		DisplaySaves();
+		Debug.WriteLine(Saves.Count);
+		for (int i = 0; i < Saves.Count; i++)
+		{
+			if (Saves[i] != null)
+			{
+				if (Saves[i].Latest)
+				{
+					CurrentSave = i;
+				}
+			}
+		}
 		if (GetTree().CurrentScene.Name != "MainMenu")
 		{
 			InstantiateCharacters();
@@ -51,7 +64,7 @@ public partial class GameManager : Node
 	}
 	public void LoadFirstScene(){
 		InstantiateCharacters();
-		CallDeferred("SwitchScene",0,0, 0);
+		CallDeferred("SwitchScene",0,0, 0,TransitionColor);
 	}
 	void InstantiateCharacters(){
 		for(int i=0;i<Data.Party.Count;i++){
@@ -206,9 +219,8 @@ public partial class GameManager : Node
 		BattleCam=cam;
 		AssignBattleCamera(GetTree().CurrentScene);                
 	}
-	public void SwitchScene(int scene, int Area, Vector2 Position){
-
-		PlayTransition(TransitionColor);
+	public void SwitchScene(int scene, int Area, Vector2 Position,Color color){
+		PlayTransition(color);
 		//SceneTreeTimer timer = GetTree().CreateTimer(0.6f,true,true,true);
 		/*timer.Timeout+=()=>*/
 		TransitionTween.Finished+=()=>
@@ -227,8 +239,10 @@ public partial class GameManager : Node
 	public void RootCharacters(){
 		//controller.RemoveChild(OverworldCam);
 		//GetTree().CurrentScene.AddChild(OverworldCam);
-		if(IsInstanceValid(OverworldCam)){
+		if (IsInstanceValid(OverworldCam))
+		{
 			OverworldCam?.QueueFree();
+			OverworldCam.PositionSmoothingEnabled=true;
 		}
 		if(IsInstanceValid(BattleCam)){
 			BattleCam?.QueueFree();
@@ -279,17 +293,22 @@ public partial class GameManager : Node
 			Aux[i] = controller.GlobalPosition;
 		}
 	}
-	public void Save(int save){
+	public void Save(int save)
+	{
 		CurrentSave = save;
-		string Path = "user://"+"save"+CurrentSave.ToString()+".tres";
+		string Path = "user://" + "save" + CurrentSave.ToString() + ".tres";
 
 		Data.Position = controller.GlobalPosition;
-		Saves[CurrentSave]= Data.DuplicateData();
-		if(!Godot.FileAccess.FileExists(Path)){
-			Godot.FileAccess file = Godot.FileAccess.Open(Path,Godot.FileAccess.ModeFlags.WriteRead);
+		Saves[CurrentSave].Latest = false;
+		Data.Latest = true;
+		Saves[CurrentSave] = Data.DuplicateData();
+		if (!Godot.FileAccess.FileExists(Path))
+		{
+			Godot.FileAccess file = Godot.FileAccess.Open(Path, Godot.FileAccess.ModeFlags.WriteRead);
 		}
-		ResourceSaver.Save(Saves[CurrentSave],Path);
+		ResourceSaver.Save(Saves[CurrentSave], Path);
 		Saves[CurrentSave].TakeOverPath(Path);
+		DisplaySaves();
 	}
 	public void DisplaySaves(){
 		for(int i=0;i<Saves.Count;i++){
@@ -319,7 +338,7 @@ public partial class GameManager : Node
 			Followers.Clear();
 
 			InstantiateCharacters();
-			CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position);			
+			CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position,TransitionColor);			
 		}
 	}
 	

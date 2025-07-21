@@ -1,23 +1,23 @@
-[gd_scene load_steps=24 format=3 uid="uid://cqpb3ie51rwl5"]
+[gd_scene load_steps=24 format=3 uid="uid://q3woaowqtf4h"]
 
-[ext_resource type="Script" path="res://DialogicStyles/Layout Scenes/CustomNoBox/default_layout_base.gd" id="1_ifsho"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.gd" id="3_erbf6"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Background/node_background_holder.gd" id="3_fgcw7"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="5_n38hp"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/speaker_portrait_textbox_layer.gd" id="5_snnh5"]
-[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="6_083fa"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="6_tkch4"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="7_exvq7"]
-[ext_resource type="PackedScene" uid="uid://dsbwnp5hegnu3" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.tscn" id="8_80udo"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.gd" id="11_ayll3"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_choice_button.gd" id="11_y218g"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_button_sound.gd" id="12_bc1ak"]
-[ext_resource type="AudioStream" uid="uid://b6c1p14bc20p1" path="res://addons/dialogic/Example Assets/sound-effects/typing1.wav" id="13_06moe"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.gd" id="13_25kej"]
-[ext_resource type="AudioStream" uid="uid://c2viukvbub6v6" path="res://addons/dialogic/Example Assets/sound-effects/typing4.wav" id="14_m22ah"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.gd" id="15_06fj1"]
-[ext_resource type="Script" path="res://addons/dialogic/Modules/TextInput/node_text_input.gd" id="16_56d3c"]
-[ext_resource type="PackedScene" uid="uid://cuoywrmvda1yg" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/example_history_item.tscn" id="16_blkym"]
+[ext_resource type="Script" path="res://DialogicStyles/Layout Scenes/CustomNoBox/default_layout_base.gd" id="1_hl0kr"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_FullBackground/full_background_layer.gd" id="2_ei8py"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Background/node_background_holder.gd" id="3_qcv0r"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/speaker_portrait_textbox_layer.gd" id="4_w66ni"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Character/node_portrait_container.gd" id="5_0lgut"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_name_label.gd" id="6_tu4mt"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Text/node_dialog_text.gd" id="7_s0pun"]
+[ext_resource type="PackedScene" uid="uid://cn674foxwedqu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Input/full_advance_input_layer.tscn" id="8_qjn37"]
+[ext_resource type="PackedScene" uid="uid://dsbwnp5hegnu3" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.tscn" id="9_gdd8f"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.gd" id="10_gmop8"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_choice_button.gd" id="11_61knp"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/Choice/node_button_sound.gd" id="12_h2ouv"]
+[ext_resource type="AudioStream" uid="uid://b6c1p14bc20p1" path="res://addons/dialogic/Example Assets/sound-effects/typing1.wav" id="13_cmqn2"]
+[ext_resource type="AudioStream" uid="uid://c2viukvbub6v6" path="res://addons/dialogic/Example Assets/sound-effects/typing4.wav" id="14_tyf48"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.gd" id="15_iwtni"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/TextInput/node_text_input.gd" id="16_sceos"]
+[ext_resource type="Script" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.gd" id="17_0if6l"]
+[ext_resource type="PackedScene" uid="uid://cuoywrmvda1yg" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/example_history_item.tscn" id="18_4rmto"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmg1w"]
 bg_color = Color(0.254902, 0.254902, 0.254902, 0)
@@ -54,7 +54,7 @@ corner_radius_bottom_right = 20
 corner_radius_bottom_left = 20
 
 [node name="Custom" type="CanvasLayer"]
-script = ExtResource("1_ifsho")
+script = ExtResource("1_hl0kr")
 
 [node name="BackgroundLayer" type="Control" parent="."]
 layout_mode = 3
@@ -63,7 +63,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("3_erbf6")
+script = ExtResource("2_ei8py")
 apply_overrides_on_ready = true
 
 [node name="DialogicNode_BackgroundHolder" type="ColorRect" parent="BackgroundLayer"]
@@ -75,7 +75,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0.713726, 1, 1, 0.329412)
-script = ExtResource("3_fgcw7")
+script = ExtResource("3_qcv0r")
 
 [node name="TextboxWithSpeakerPortrait" type="Control" parent="."]
 layout_mode = 3
@@ -84,7 +84,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("5_snnh5")
+script = ExtResource("4_w66ni")
 text_alignment = 1
 text_custom_size = 30
 name_label_alignment = 1
@@ -156,7 +156,7 @@ offset_bottom = -154.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2, 2)
-script = ExtResource("5_n38hp")
+script = ExtResource("5_0lgut")
 mode = 1
 size_mode = 0
 debug_character_portrait = "speaker"
@@ -170,7 +170,7 @@ unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 8
 text = "Name"
-script = ExtResource("6_tkch4")
+script = ExtResource("6_tu4mt")
 
 [node name="DialogicNode_DialogText" type="RichTextLabel" parent="TextboxWithSpeakerPortrait/Anchor/Panel/HBox/VBoxContainer"]
 unique_name_in_owner = true
@@ -180,14 +180,14 @@ theme_override_font_sizes/normal_font_size = 6
 bbcode_enabled = true
 text = "[center]Some text[/center]"
 scroll_following = true
-script = ExtResource("7_exvq7")
+script = ExtResource("7_s0pun")
 alignment = 1
 
-[node name="FullAdvanceInputLayer" parent="." instance=ExtResource("6_083fa")]
+[node name="FullAdvanceInputLayer" parent="." instance=ExtResource("8_qjn37")]
 visible = false
 apply_overrides_on_ready = true
 
-[node name="Glossary" parent="." instance=ExtResource("8_80udo")]
+[node name="Glossary" parent="." instance=ExtResource("9_gdd8f")]
 visible = false
 apply_overrides_on_ready = true
 
@@ -200,7 +200,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("11_ayll3")
+script = ExtResource("10_gmop8")
 apply_overrides_on_ready = true
 
 [node name="Choices" type="VBoxContainer" parent="VN_ChoiceLayer"]
@@ -223,66 +223,67 @@ metadata/_edit_layout_mode = 1
 [node name="DialogicNode_ChoiceButton1" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton2" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton3" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton4" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton5" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton6" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton7" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton8" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton9" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton10" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ChoiceButton11" type="Button" parent="VN_ChoiceLayer/Choices"]
 layout_mode = 2
 text = "Some text"
-script = ExtResource("11_y218g")
+script = ExtResource("11_61knp")
 
 [node name="DialogicNode_ButtonSound" type="AudioStreamPlayer" parent="VN_ChoiceLayer/Choices"]
 unique_name_in_owner = true
-script = ExtResource("12_bc1ak")
-sound_pressed = ExtResource("13_06moe")
-sound_hover = ExtResource("14_m22ah")
+script = ExtResource("12_h2ouv")
+sound_pressed = ExtResource("13_cmqn2")
+sound_hover = ExtResource("14_tyf48")
 sound_focus = SubResource("AudioStream_pe27w")
 
 [node name="TextInputLayer" type="Control" parent="."]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -290,7 +291,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("13_25kej")
+script = ExtResource("15_iwtni")
 apply_overrides_on_ready = true
 
 [node name="DialogicNode_TextInput" type="Control" parent="TextInputLayer"]
@@ -307,7 +308,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("16_56d3c")
+script = ExtResource("16_sceos")
 input_line_edit = NodePath("TextInputPanel/VBoxContainer/InputField")
 text_label = NodePath("TextInputPanel/VBoxContainer/TextLabel")
 confirmation_button = NodePath("TextInputPanel/VBoxContainer/ConfirmationButton")
@@ -361,8 +362,8 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_filter = 2
-script = ExtResource("15_06fj1")
-HistoryItem = ExtResource("16_blkym")
+script = ExtResource("17_0if6l")
+HistoryItem = ExtResource("18_4rmto")
 apply_overrides_on_ready = true
 
 [node name="HistoryBox" type="ScrollContainer" parent="ExampleHistoryScene"]

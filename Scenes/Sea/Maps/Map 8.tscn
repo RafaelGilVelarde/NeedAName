@@ -194,6 +194,11 @@ shape = SubResource("RectangleShape2D_svfa1")
 
 [node name="Area2D" parent="." instance=ExtResource("8_ajh4c")]
 position = Vector2(-104, -56)
+PushOffset = Array[Vector2]([])
+PushTimes = Array[Vector2]([])
+CheckValues = Array[Vector2]([])
+TweenTimes = Array[Vector2]([])
+Variables = Array[Vector2]([])
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(-96, 16, -96, 224, -184, 224, -184, 240, -72, 240, -72, 0, -184, 0, -184, 16)

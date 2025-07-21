@@ -1,12 +1,12 @@
-Halluci (Wondering): *Yaaawn* Oh?
-Halluci (Sad): Ooh well, you brought someone else
-MC (Happy): Well, I can take you with me too!
-Halluci (Wondering): Naah, only two can pass at once
+Blobfish (Wondering): *Yaaawn* Oh?
+Blobfish (Sad): Ooh well, you brought someone else
+Blobfish (Happy): Well, I can take you with me too!
+Blobfish (Wondering): Naah, only two can pass at once
 MC (Confused): ...
 - Reject
 	MC (Normal): Sorry, already made a promise
-	Halluci (Sad): Awww
-	Halluci (Wondering): Gooood luuck, I'll find my way!
+	Blobfish (Sad): Awww
+	Blobfish (Wondering): Gooood luuck, I'll find my way!
 - Accept
 	MC (Normal): Will you be fine on your own?
 	Halluci (Sad): I....can try....

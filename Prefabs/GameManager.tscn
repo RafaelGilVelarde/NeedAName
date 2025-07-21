@@ -90,15 +90,15 @@ EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_rgtf8"]
 script = ExtResource("3_mdbab")
@@ -124,8 +124,8 @@ Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_xm7il"]
 script = ExtResource("10_dck7k")
-offset = Vector2(-15, 0)
-AtkMultiplier = 1.1
+offset = Vector2(-18, 0)
+AtkMultiplier = 1.2
 Speed = 2.0
 MaxCombo = 2
 type = 0
@@ -136,7 +136,7 @@ WP = 0
 Cost = 10
 TargetsParty = false
 Name = "Spam"
-MoveTime = 4.0
+MoveTime = 5.0
 
 [sub_resource type="Resource" id="Resource_m80ms"]
 script = ExtResource("4_0i8ni")
@@ -145,27 +145,27 @@ Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jdfak"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jsd81"]
 script = ExtResource("9_ncips")
@@ -192,13 +192,14 @@ Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 8
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_72ep1"]
 script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 30
 PastLevelExp = 0
+Name = ""
 Base = ExtResource("3_iqci3")
 Moves = Array[Object]([SubResource("Resource_fcftr"), SubResource("Resource_m80ms")])
 items = Array[Object]([SubResource("Resource_2i4fn")])
@@ -213,7 +214,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 1
 HP = 1
 Atk = 1
@@ -221,7 +222,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
@@ -273,13 +274,14 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_q6csy"]
 script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 30
 PastLevelExp = 0
+Name = ""
 Base = SubResource("Resource_lu2dh")
 Moves = Array[Object]([SubResource("Resource_0nxwl")])
 items = Array[Object]([])
@@ -294,7 +296,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_pxv6k"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 5
 HP = 2
 Atk = 3
@@ -302,7 +304,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 3
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_0vipi"]
 script = ExtResource("5_wfrc5")
@@ -324,15 +326,15 @@ HitSFX = null
 
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_8og32"]
 script = ExtResource("19_nrko3")
@@ -393,33 +395,34 @@ Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_mnm8f"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_n6jfa"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = 0
+MaxHP = null
 HP = 10
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_gsllo"]
 script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
+Name = ""
 Base = SubResource("Resource_0vipi")
 Moves = Array[Object]([SubResource("Resource_oqotk"), SubResource("Resource_6x26t")])
 items = Array[Object]([])
@@ -434,7 +437,7 @@ status = 0
 
 [sub_resource type="Resource" id="Resource_q32qo"]
 script = ExtResource("3_qc7bw")
-Lv = 0
+Lv = null
 MaxHP = 3
 HP = 3
 Atk = 1
@@ -442,7 +445,7 @@ Def = 3
 SpAtk = 1
 SpDef = 3
 Speed = 2
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_tjlxb"]
 script = ExtResource("5_wfrc5")
@@ -464,15 +467,15 @@ HitSFX = null
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_k1454"]
 script = ExtResource("20_ebntc")
@@ -533,7 +536,7 @@ Power = 0
 UserAmount = 1
 TargetAmount = 1
 WP = 0
-Cost = 0
+Cost = 5
 TargetsParty = true
 Name = "Bubshield"
 MoveTime = 4.0
@@ -545,33 +548,34 @@ Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_h61cx"]
 script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_dsrgr"]
 script = ExtResource("3_qc7bw")
 Lv = 5
-MaxHP = 0
+MaxHP = null
 HP = 20
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_db7dj"]
 script = ExtResource("8_3wvmt")
 Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
+Name = ""
 Base = SubResource("Resource_tjlxb")
 Moves = Array[Object]([SubResource("Resource_ngl2m"), SubResource("Resource_1f36n")])
 items = Array[Object]([])
@@ -580,7 +584,7 @@ stats = SubResource("Resource_dsrgr")
 EquipStats = SubResource("Resource_go2as")
 TotalStats = SubResource("Resource_h61cx")
 isControlledByPlayer = true
-Active = true
+Active = false
 Key = 67
 status = 0
 
@@ -617,6 +621,7 @@ GraphicsLayer = 0
 PhysicsLayer = 1
 CollisionLayer = Array[int]([1])
 CollisionMask = Array[int]([1])
+Latest = false
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
@@ -663,6 +668,7 @@ _data = {
 script = ExtResource("1_mg7l2")
 SavePath = "C:/Users/nosoy/Documents/SavesTest"
 Saves = Array[Object]([null, null, null, null, null, null])
+CurrentSave = null
 Data = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
@@ -679,6 +685,8 @@ script = ExtResource("42_2n8ol")
 MainButtons = NodePath("Node2D/VBoxContainer")
 CurrentScreen = NodePath("Node2D/Stats")
 Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, null, NodePath("Node2D/Saves")]
+PointerIndex = null
+State = null
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
@@ -740,6 +748,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 script = ExtResource("43_h24bu")
+StatsScreenState = null
 Equipments = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2")
 EquipList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip")
 KeyButton = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton")
@@ -1033,11 +1042,13 @@ alignment = 1
 script = ExtResource("48_cq2x1")
 Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3"), NodePath("RichTextLabel5")]
 ItemType = 1
+EquipType = null
 items = []
 
 [node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
 [node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip"]
@@ -1190,6 +1201,7 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items"]
@@ -1288,6 +1300,7 @@ text = "Key
 layout_mode = 2
 script = ExtResource("48_8uklt")
 Buttons = [NodePath("VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer3/RichTextLabel"), NodePath("VBoxContainer3/RichTextLabel2"), NodePath("VBoxContainer3/RichTextLabel3"), NodePath("VBoxContainer3/RichTextLabel5")]
+ItemType = null
 items = []
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1379,6 +1392,7 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("../..")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3"]
@@ -1412,8 +1426,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("53_hb5i3")
 SavesList = NodePath("SaveScrolls")
+state = null
+action = null
+PreviousState = null
 ChooseAction = NodePath("ChooseAction")
 ConfirmAction = NodePath("Confirm")
+SavePointerIndex = null
 
 [node name="SaveScrolls" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" node_paths=PackedStringArray("Buttons")]
 layout_mode = 0

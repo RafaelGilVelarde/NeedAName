@@ -1,10 +1,10 @@
-Halluci (Normal): Hello
-Halluci (Wondering): Changed your mind?
+Blobfish (Normal): Hello
+Blobfish (Wondering): Changed your mind?
 - Reject
-	Halluci (Sad): Awww
-	Halluci (Wondering): Gooood luuck, I'll find my way!
+	Blobfish (Sad): Awww
+	Blobfish (Wondering): Gooood luuck, I'll find my way!
 - Accept
-	Halluci (Happiness): Yaaay!
-	Halluci (Happiness): Let's find some good homes
+	Blobfish (Happiness): Yaaay!
+	Blobfish (Happiness): Let's find some good homes
 	MC (Happy): Sure!
 	[signal arg="Follow"]

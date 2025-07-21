@@ -18,8 +18,8 @@
 [sub_resource type="Resource" id="Resource_t5uuj"]
 script = ExtResource("7_huyn7")
 DialogueTimelines = Array[String](["NPC2", "NPC2-2"])
-FlagIndexes = null
-flagTypes = null
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt1oy"]
 resource_local_to_scene = true
@@ -40,7 +40,13 @@ size = Vector2(268, 16)
 [sub_resource type="Resource" id="Resource_7ni3l"]
 script = ExtResource("13_iurx6")
 Timeline = "FirstBattle"
+WinTimeline = "Win"
+PostBattleTimeline = ""
 EscapeChance = 100.0
+Horizontal = false
+Cutscene = false
+PartyFloorY = null
+EnemyFloorY = null
 
 [node name="Map7" type="Node2D"]
 script = ExtResource("1_7mnrv")
@@ -85,7 +91,6 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
-frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
 
@@ -169,31 +174,26 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 position = Vector2(48, -168)
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PackedVector2Array(112, 24, -184, 24, -184, 152, 112, 152)
+polygon = PackedVector2Array(136, 48, -184, 48, -184, 152, 136, 152)
 
 [node name="Area2D2" parent="." instance=ExtResource("10_5sil6")]
 position = Vector2(24, 88)
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
-polygon = PackedVector2Array(136, -72, -168, -72, -168, 72, 136, 72)
-
-[node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
-position = Vector2(96, -96)
-Scene = SubResource("Resource_7ni3l")
-detectArea = NodePath("../Area2D")
+polygon = PackedVector2Array(160, -72, -152, -72, -152, 40, 160, 40)
 
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
-position = Vector2(-88, -96)
+position = Vector2(48, -56)
 Scene = SubResource("Resource_7ni3l")
 detectArea = NodePath("../Area2D")
 
 [node name="Enemy Spawner3" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
-position = Vector2(-96, 80)
+position = Vector2(-56, 112)
 Scene = SubResource("Resource_7ni3l")
 detectArea = NodePath("../Area2D2")
 
 [node name="Enemy Spawner4" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
-position = Vector2(112, 112)
+position = Vector2(104, 80)
 Scene = SubResource("Resource_7ni3l")
 detectArea = NodePath("../Area2D2")
 

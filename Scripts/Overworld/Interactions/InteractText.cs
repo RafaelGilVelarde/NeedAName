@@ -48,6 +48,32 @@ public partial class InteractText : Interact
             TimelineIndex++;
         }
         SpokenTo = true;
+
+        Timelines timeline = TimelineGroup[TimelineGroupIndex];
+        Array<FlagType> flagTypes = timeline.flagTypes;
+        Flags flags = GameManager.Instance.Data.Flags;
+        if (flagTypes != null)
+        {
+            for (int i = 0; i < flagTypes.Count; i++)
+            {
+                switch (flagTypes[i])
+                {
+                    case FlagType.Puzzle:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Puzzle);
+                        break;
+                    case FlagType.Event:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Event);
+                        break;
+                    case FlagType.Item:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Item);
+                        break;
+                    case FlagType.Dialogue:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Dialogue);
+                        break;
+                }
+                Debug.WriteLine("AAAA");
+            }            
+        }
         Enable(TimelineIndex);
     }
 

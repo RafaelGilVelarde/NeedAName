@@ -7,7 +7,8 @@ using System.Diagnostics;
 public partial class Character : Resource
 {
     public Node2D NodeCharacter;
-    [Export]public CharacterBase Base {get; private set;}
+    [Export] public string Name;
+    [Export] public CharacterBase Base {get; private set;}
     [Export]public Array<Moves> Moves;
     [Export]public Array<Items> items;
     [Export]public Array<EquipmentBase> Equipment;

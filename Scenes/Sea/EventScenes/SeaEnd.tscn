@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://daceou6fwwbr1"]
+
+[ext_resource type="Script" path="res://Scripts/Events/Maps/Water/WaterEnd.cs" id="1_gpe3k"]
+[ext_resource type="PackedScene" uid="uid://brf1kg03d66t7" path="res://Scenes/MainMenu.tscn" id="2_uusw5"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_gpe3k")
+Timeline = "End"
+VariableName = "CharName"
+VariableFolder = "Characters"
+PackedScene = ExtResource("2_uusw5")

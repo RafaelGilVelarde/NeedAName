@@ -118,7 +118,7 @@ public partial class SpinSpamMove : MoveBase
             if (CurrentScene.Horizontal)
 			{
 				float FloorOffset = CurrentScene.EnemyFloorY[Targets[0].PosIndex] - CurrentScene.PartyFloorY[Users[0].PosIndex];
-				TargetPosition = new Vector2(TargetPosition.X, Users[0].GlobalPosition.Y + FloorOffset);
+				TargetPosition = new Vector2(TargetPosition.X, TargetPosition.Y + FloorOffset);
 			}
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             /*Tween.Finished+=HitSignal;

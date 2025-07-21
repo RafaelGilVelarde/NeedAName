@@ -48,8 +48,11 @@ public partial class BaseEventCollision : Area2D
             if (!Data.Flags.EventFlags[BoolIndex])
             {
                 DialogicCSharp Dialogic = DialogicCSharp.instance;
+                
+                Dialogic.DialogicRoot.Connect("timeline_ended", disable);
 
-                for(int i = 0;i<CheckValues.Count;i++){
+                for (int i = 0; i < CheckValues.Count; i++)
+                {
                     CurrentTimeline = CheckValues[i].GetTimeline(CurrentTimeline);
                 }
 
@@ -173,5 +176,6 @@ public partial class BaseEventCollision : Area2D
             SetDeferred("monitoring", false);
         }
         Dialogic.DialogicRoot.Disconnect("signal_event", push);
+        Dialogic.DialogicRoot.Disconnect("timeline_ended", disable);
     }
 }
