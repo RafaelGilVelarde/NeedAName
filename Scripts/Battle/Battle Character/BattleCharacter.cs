@@ -200,8 +200,12 @@ public partial class BattleCharacter : CharacterBody2D
 			Character?.Equipment[i]?.ActivateMoveEffect(this, move.Base);
 		}
 		MoveUsed = move;
-		move.Base.Effect(BattleManager.instance.UserCharacters, BattleManager.instance.TargetCharacters);
 		Controllable = true;
+		for (int i = 0; i < BattleManager.instance.UserCharacters.Count; i++)
+		{
+			BattleManager.instance.UserCharacters[i].ZIndex += 1;
+		}
+
 		for (int i = 0; i < BattleManager.instance.TargetCharacters.Count; i++)
 		{
 			BattleManager.instance.TargetCharacters[i].Hurtbox.GetChild<CollisionShape2D>(0).Disabled = false;
@@ -218,8 +222,34 @@ public partial class BattleCharacter : CharacterBody2D
 		if (Character.isControlledByPlayer)
 		{
 			Character.ChangeWP(-move.Base.Cost);
+			move.Base.Effect(BattleManager.instance.UserCharacters, BattleManager.instance.TargetCharacters);
+		}
+		else
+		{
+			Tween tween = CreateTween();
+			tween.SetParallel(true);
+			for (int i = 0; i < BattleManager.instance.TargetCharacters.Count; i++)
+			{
+				tween.TweenProperty(BattleManager.instance.TargetCharacters[i], "modulate", Colors.IndianRed, 0.15);
+			}
+			tween.Finished += () =>
+			{
+				tween.Kill();
+				Tween aux = CreateTween();
+				aux.SetParallel(true);
+				for (int i = 0; i < BattleManager.instance.TargetCharacters.Count; i++)
+				{
+					aux.TweenProperty(BattleManager.instance.TargetCharacters[i], "modulate", Colors.White, 0.15);
+				}
+				aux.Finished += () =>
+				{
+					move.Base.Effect(BattleManager.instance.UserCharacters, BattleManager.instance.TargetCharacters);
+					aux.Kill();
+				};
+			};
 		}
 		selectActions.ProcessMode = ProcessModeEnum.Disabled;
+		
 	}
 
 	public void UseItem(Items item)
@@ -290,6 +320,7 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public void Reset()
 	{
+		ZIndex = 0;
 		Moving = false;
 		CurrentItem = null;
 		changeState(BattleState.Idle);

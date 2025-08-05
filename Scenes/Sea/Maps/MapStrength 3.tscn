@@ -1,4 +1,4 @@
-[gd_scene load_steps=78 format=3 uid="uid://i1r7w4xb7dqs"]
+[gd_scene load_steps=83 format=3 uid="uid://i1r7w4xb7dqs"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_0o4wx"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="2_w38a5"]
@@ -33,6 +33,9 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="28_u4ov7"]
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="32_dlon5"]
 [ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="33_x5djp"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerGive.cs" id="34_c55hl"]
+[ext_resource type="Resource" uid="uid://n6qtkvuadyar" path="res://Resources/Moves/Player/1/PlayerShoot.tres" id="35_mlme7"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerResources/ObjectToGive.cs" id="36_7bud0"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g4heo"]
 frequency = 0.016
@@ -105,7 +108,7 @@ EnemyFloorY = null
 
 [sub_resource type="Resource" id="Resource_grl5b"]
 script = ExtResource("19_q1g3i")
-Lv = null
+Lv = 0
 MaxHP = 8
 HP = 5
 Atk = 2
@@ -113,7 +116,7 @@ Def = 2
 SpAtk = 2
 SpDef = 2
 Speed = 2
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_8qa3i"]
 script = ExtResource("23_82qwr")
@@ -131,15 +134,15 @@ HitSFX = null
 
 [sub_resource type="Resource" id="Resource_fnwcy"]
 script = ExtResource("19_q1g3i")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_ip3xr"]
 script = ExtResource("24_axpqi")
@@ -187,15 +190,15 @@ Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_8mnj7"]
 script = ExtResource("19_q1g3i")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_akhas"]
 script = ExtResource("19_q1g3i")
@@ -207,7 +210,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_pht0s"]
 resource_local_to_scene = true
@@ -315,6 +318,20 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hod4p"]
 bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 
+[sub_resource type="Resource" id="Resource_wpgkk"]
+script = ExtResource("21_g2s7r")
+Base = ExtResource("35_mlme7")
+Chance = 0.0
+
+[sub_resource type="Resource" id="Resource_43w2v"]
+script = ExtResource("36_7bud0")
+Move = SubResource("Resource_wpgkk")
+objectType = 0
+flagType = 0
+index = 8
+PartyIndex = 0
+Timeline = "MoveLearned"
+
 [node name="MapStrength1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0o4wx")
@@ -382,26 +399,31 @@ shape = SubResource("RectangleShape2D_dr5kj")
 [node name="Barrier" parent="." instance=ExtResource("10_l3025")]
 position = Vector2(0, 144)
 DisableAnimation = "WaterBarrier/Disable"
+Dialogue = ""
+CheckIntFlag = 0
+ChecksInt = false
 FlagIndex = 8
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_jqjrs")
-Type = null
+Toggleable = false
+HasDialogue = false
+SwitchState = 0
+TimelineGroupIndex = 0
+TimelineIndex = 0
+Timeline = "Test"
+PauseWhenDialogue = false
+Turn = false
+SpokenTo = false
+FacingRight = true
+FacingDirection = Vector2(0, 0)
+visualType = 0
 
 [node name="Heal" parent="." instance=ExtResource("11_8dgb5")]
 position = Vector2(-32, 216)
 
-[node name="CollisionShape2D" parent="Heal" index="0"]
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
-visualType = null
-
 [node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 10
+frame = 11
 
 [node name="Character" type="CharacterBody2D" parent="." groups=["EnemyOverworldController", "Interactable"]]
 y_sort_enabled = true
@@ -412,42 +434,23 @@ shape = SubResource("RectangleShape2D_61dev")
 script = ExtResource("12_r466s")
 battleStart = NodePath("../OverworldController/BattleStart")
 TimelineGroup = Array[Object]([SubResource("Resource_i3pne")])
-TimelineGroupIndex = null
-TimelineIndex = null
-Timeline = null
 PauseWhenDialogue = true
-Turn = null
-SpokenTo = null
-FacingRight = null
-FacingDirection = null
-visualType = null
 Sprites = []
 Colors = []
 
 [node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("12_4l7oy")
 enemyCollision = NodePath("Area2D")
-CachedTargetPosition = null
-RandMin = null
-RandMax = null
-state = null
 IdleTargets = []
-CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
-DirectionIndex = null
 MainSprite = NodePath("MainSprite")
 Speed = 25.0
 Friction = 1000.0
 MaxSpeed = 50.0
 Parent = NodePath("..")
 OverworldCollider = NodePath("../CollisionShape2D")
-AxisOffset = null
-Axis = null
-AxisAux = null
-Controllable = null
-Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="Character/OverworldController"]
@@ -480,7 +483,6 @@ script = ExtResource("15_kd85v")
 scene = SubResource("Resource_2kfp5")
 EnemyCharacters = []
 CharacterPrefab = 1
-BorderOffset = null
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(75, 0)])
 
@@ -492,19 +494,10 @@ Character = SubResource("Resource_pht0s")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
-Controllable = null
 Overworld = NodePath("../OverworldController")
-OriginPos = null
-Combo = null
-HoldingMoveTimer = null
-HoldingMove = null
-UsedComboMove = null
-BlockedEnemy = null
-Looping = null
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
-DodgeDir = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
@@ -960,6 +953,10 @@ scale = Vector2(0.35, 0.35)
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
+
+[node name="GiveMoves" type="Node" parent="."]
+script = ExtResource("34_c55hl")
+Objects = Array[Object]([SubResource("Resource_43w2v")])
 
 [editable path="Cams"]
 [editable path="Borders"]

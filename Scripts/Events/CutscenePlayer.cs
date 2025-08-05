@@ -15,13 +15,15 @@ public partial class CutscenePlayer : AnimationPlayer
         int Index = CutsceneNames.IndexOf(Animation);
         GameManager Game = GameManager.Instance;
         Game.Leader.OverworldCollider.Disabled = true;
+        Game.OverworldCam.Reparent(Game.OverworldCam.CameraParent);
+        Game.BattleCam.Reparent(Game.OverworldCam.CameraParent);
 
         Tween tween = CreateTween();
         tween.SetParallel(true);
 
         for (int i = 0; i < Game.Followers.Count; i++)
         {
-            tween.TweenProperty(Game.Followers[i].Parent, "position", InitialPositions[i + InitialPositionStartIndex[Index]], 0.2);
+            tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index]], 0.2);
         }
         tween.Finished += () =>
         {
@@ -32,5 +34,11 @@ public partial class CutscenePlayer : AnimationPlayer
     public virtual void EndAnimation()
     {
         Stop();
+        GameManager Game = GameManager.Instance;
+        Game.SetCamera(Game.OverworldCam);
+        Game.SetBattleCamera(Game.BattleCam);
+        Tween CamTween = CreateTween();
+        CamTween.SetParallel(true);
+        CamTween.TweenProperty(Game.OverworldCam, "position", Vector2.Zero, 0.2);
     }
 }

@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DummyMove1" load_steps=2 format=3 uid="uid://c01uja1joct8x"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DummyMove1.cs" id="1_byd7m"]
+
+[resource]
+script = ExtResource("1_byd7m")
+Speed = 3.0
+AtkMultiplier = 1.5
+offset = Vector2(-15, 0)
+Combo1 = 1
+Combo2 = 2
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = false
+Name = "att"
+MoveTime = 2.0

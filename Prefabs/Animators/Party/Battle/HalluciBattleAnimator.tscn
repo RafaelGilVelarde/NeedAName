@@ -202,23 +202,30 @@ play_mode = 1
 animation = &"HalluciFight/AttackWindup"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_wdi7l"]
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cx7en"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_n0iqf"]
+advance_mode = 2
 advance_condition = &"Windup"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_ybr8e"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_12ec8"]
+advance_mode = 2
 advance_condition = &"Hit"
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_a56v5"]
 switch_mode = 2
+advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_2roc5"]
+advance_mode = 2
 advance_condition = &"MoveEnded"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_b3s2o"]

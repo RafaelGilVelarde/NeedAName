@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://vpungvornwrb"]
+[gd_scene load_steps=40 format=3 uid="uid://vpungvornwrb"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_c2k7o"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_yu24q"]
@@ -19,6 +19,10 @@
 [ext_resource type="AnimationLibrary" uid="uid://ct4msnymvrdyx" path="res://Animations/Overworld/Objects/SwitchInteract.res" id="17_magym"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="18_iagnx"]
 [ext_resource type="PackedScene" uid="uid://dvlo4mqckq5x4" path="res://Prefabs/Overworld/Puzzles/Switches/Water/current_switch.tscn" id="19_yi770"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerGive.cs" id="20_7p8qi"]
+[ext_resource type="Resource" uid="uid://c8sli2udx617g" path="res://Resources/Moves/Player/1/PlayerStatUp.tres" id="21_7i8yx"]
+[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="22_31q2b"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerResources/ObjectToGive.cs" id="23_8k1ps"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kj6p5"]
 frequency = 0.016
@@ -76,6 +80,8 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_7jscj"]
 script = ExtResource("18_iagnx")
 DialogueTimelines = Array[String](["PuzzleComplete"])
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="Animation" id="Animation_i4bmx"]
 resource_name = "Win"
@@ -96,6 +102,20 @@ tracks/0/keys = {
 _data = {
 "Switch": SubResource("Animation_i4bmx")
 }
+
+[sub_resource type="Resource" id="Resource_wnbjk"]
+script = ExtResource("22_31q2b")
+Base = ExtResource("21_7i8yx")
+Chance = 0.0
+
+[sub_resource type="Resource" id="Resource_3rul6"]
+script = ExtResource("23_8k1ps")
+Move = SubResource("Resource_wnbjk")
+objectType = 0
+flagType = 0
+index = 3
+PartyIndex = 0
+Timeline = "MoveLearned"
 
 [node name="MapMind1" type="Node2D"]
 y_sort_enabled = true
@@ -229,7 +249,7 @@ Currents = [NodePath("../../TileMap4"), NodePath("../../TileMap5")]
 [node name="Borders" parent="." instance=ExtResource("10_an2f4")]
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(496, 424, 416, 424, 416, 392, 200, 392, 200, 424, 120, 424, 120, 392, -248, 392, -248, 424, -328, 424, -328, 392, -440, 392, -440, 424, -520, 424, -520, 392, -664, 392, -664, 96, -712, 96, -712, -96, -664, -96, -664, -488, 496, -488, 496, 384, 488, 384, 488, -480, -656, -480, -656, -88, -704, -88, -704, 88, -656, 88, -656, 384, -520.032, 384, -512, 384, -512, 416, -448, 416, -448, 384, -440, 384, -328, 384, -320, 384, -320, 416, -256, 416, -256, 384, -248, 384, 120, 384, 128, 384, 128, 416, 192, 416, 192, 384, 200, 384, 424, 384, 424, 416, 488, 416, 488, 384, 496, 384)
+polygon = PackedVector2Array(496, 424, 416, 424, 416, 392, 200, 392, 200, 424, 120, 424, 120, 392, -248, 392, -248, 424, -328, 424, -328, 392, -440, 392, -440, 424, -520, 424, -520, 392, -664, 392, -664, 96, -712, 96, -712, -96, -664, -96, -664, -488, 496, -488, 496, 384, 488, 384, 488, -480, -656, -480, -656, -88, -656, -56, -656, 64, -656, 88, -656, 384, -520.032, 384, -512, 384, -512, 416, -448, 416, -448, 384, -440, 384, -328, 384, -320, 384, -320, 416, -256, 416, -256, 384, -248, 384, 120, 384, 128, 384, 128, 416, 192, 416, 192, 384, 200, 384, 424, 384, 424, 416, 488, 416, 488, 384, 496, 384)
 
 [node name="Door" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(-480, 400)
@@ -262,6 +282,7 @@ LoadPosition = Vector2(264, 0)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
 shape = SubResource("RectangleShape2D_288q8")
+disabled = true
 
 [node name="Door5" parent="." instance=ExtResource("11_g35g0")]
 position = Vector2(-288, 400)
@@ -366,12 +387,14 @@ hframes = 2
 texture = ExtResource("15_1dykf")
 hframes = 4
 vframes = 3
+frame = 7
 
 [node name="Water" type="Sprite2D" parent="Barrier4/Sprite2D"]
 modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("16_4i2g4")
 hframes = 5
 vframes = 4
+frame = 7
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier4"]
 libraries = {
@@ -417,6 +440,10 @@ Check = NodePath("../../Puzzle2")
 CheckAtStart = true
 Type = 0
 visualType = null
+
+[node name="GiveMoves" type="Node" parent="."]
+script = ExtResource("20_7p8qi")
+Objects = Array[Object]([SubResource("Resource_3rul6")])
 
 [editable path="Cams"]
 [editable path="Borders"]

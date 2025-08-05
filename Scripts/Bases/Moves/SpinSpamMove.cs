@@ -26,17 +26,20 @@ public partial class SpinSpamMove : MoveBase
         Users[0].Hitbox._Hit+=SpamInterval;
         Timer.Timeout+=End;
         Users[0]._DoAction+=Check;
+        Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
 
-		if(Dir==1||Dir==-1){
-			Users[0].GetParent<Node2D>().Rotation=0;
-			Users[0].GetParent<Node2D>().Scale=new Vector2(Dir,1);
-			
-			Targets[0].GetParent<Node2D>().Rotation=0;
-			Targets[0].GetParent<Node2D>().Scale=new Vector2(-Dir,1);
-		}		
-		else{
-			Dir=Users[0].GetParent<Node2D>().Scale.Y;
-		}
+		if (Dir == 1 || Dir == -1)
+        {
+            Users[0].GetParent<Node2D>().Rotation = 0;
+            Users[0].GetParent<Node2D>().Scale = new Vector2(Dir, 1);
+
+            Targets[0].GetParent<Node2D>().Rotation = 0;
+            Targets[0].GetParent<Node2D>().Scale = new Vector2(-Dir, 1);
+        }
+        else
+        {
+            Dir = Users[0].GetParent<Node2D>().Scale.Y;
+        }
         //Users[0]._ReturnToIdle+=SpamInterval;
         void Check(){
 

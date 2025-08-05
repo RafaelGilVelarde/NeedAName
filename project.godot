@@ -65,6 +65,12 @@ variables={
 "Items": {
 "ItemName": "aaa"
 },
+"Moves": {
+"MoveName": ""
+},
+"Number": {
+"ItemAmount": 0
+},
 "Puzzle": {},
 "PuzzleInt": {}
 }
@@ -110,6 +116,7 @@ directories/dtl_directory={
 "ItemPick": "res://Dialogues/ItemPick.dtl",
 "Miniboss1": "res://Dialogues/NPC Dialogue/Water/Miniboss1.dtl",
 "MoveBattleTest": "res://Dialogues/MoveBattleTest.dtl",
+"MoveLearned": "res://Dialogues/MoveLearned/MoveLearned.dtl",
 "NPC1": "res://Dialogues/NPC Dialogue/Water/NPC1.dtl",
 "NPC2": "res://Dialogues/NPC Dialogue/Water/NPC2.dtl",
 "NPC2-2": "res://Dialogues/NPC Dialogue/Water/NPC2-2.dtl",

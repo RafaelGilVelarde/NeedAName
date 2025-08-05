@@ -1,2 +1,5 @@
-You got a {Items.ItemName}!
+if {Number.ItemAmount} > 1:
+	You got {Items.ItemName} x{Number.ItemAmount}!
+else:
+	You got a {Items.ItemName}!
 [signal arg="argument"]

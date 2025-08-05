@@ -80,7 +80,7 @@ public partial class BaseEventCollision : Area2D
                         Variables[i].SetVariable();
                     }            
                 }
-                Dialogic.CallDeferred("StartDialogue", Timelines[CurrentTimeline].DialogueTimelines[TimelineIndex], true, false);
+                Dialogic.StartDialogue(Timelines[CurrentTimeline].DialogueTimelines[TimelineIndex], true, false);
             }
         }
     }

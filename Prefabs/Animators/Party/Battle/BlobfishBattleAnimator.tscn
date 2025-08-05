@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://cmcaiorqvr7ek"]
+[gd_scene load_steps=41 format=3 uid="uid://cmcaiorqvr7ek"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bsh3v4pgadc08" path="res://Animations/Battle/BlobFight.res" id="1_8nh74"]
 
@@ -198,6 +198,9 @@ play_mode = 1
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oto1u"]
 animation = &"BlobFight/AttackWindup"
 
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_l7sej"]
+animation = &"BlobFight/Shoot"
+
 [sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_i52sy"]
 advance_mode = 2
 
@@ -209,14 +212,20 @@ advance_condition = &"MoveEnded"
 switch_mode = 2
 advance_mode = 2
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_qjqjn"]
+switch_mode = 2
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuqvs"]
 states/BlobFight_Attack/node = SubResource("AnimationNodeAnimation_80y1b")
-states/BlobFight_Attack/position = Vector2(573, 70)
+states/BlobFight_Attack/position = Vector2(592, 100)
 states/BlobFight_AttackWindup/node = SubResource("AnimationNodeAnimation_oto1u")
-states/BlobFight_AttackWindup/position = Vector2(363, 100)
+states/BlobFight_AttackWindup/position = Vector2(362, 100)
 "states/BlobFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_5st5m")
-"states/BlobFight_AttackWindup 2/position" = Vector2(549, 187)
-transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_i52sy"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_pt6su"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_w7a2d")]
+"states/BlobFight_AttackWindup 2/position" = Vector2(479, 207)
+states/BlobFight_Shoot/node = SubResource("AnimationNodeAnimation_l7sej")
+states/BlobFight_Shoot/position = Vector2(740, 207)
+transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_i52sy"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_pt6su"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_w7a2d"), "BlobFight_AttackWindup 2", "BlobFight_Shoot", SubResource("AnimationNodeStateMachineTransition_qjqjn")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hut1t"]
 animation = &"BlobFight/Shoot"
@@ -342,9 +351,9 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_ldoyf")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
-parameters/ActionState/blend_position = 0.989333
+parameters/ActionState/blend_position = 0.0
 parameters/ActionState/0/blend_position = 0
-parameters/ActionState/0/0/blend_position = -0.00266667
+parameters/ActionState/0/0/blend_position = 1.0
 parameters/ActionState/0/0/0/conditions/EndMove = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false
 parameters/ActionState/2/blend_position = Vector2(-0.00287634, 0.00440526)

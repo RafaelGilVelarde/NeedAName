@@ -313,7 +313,7 @@ Def = 3
 SpAtk = 2
 SpDef = 1
 Speed = 3
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_n0kjw"]
 script = ExtResource("19_04fsb")
@@ -331,15 +331,15 @@ HitSFX = null
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_7s2bh")
@@ -467,15 +467,15 @@ Chance = 20.0
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("16_q3s3b")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("16_q3s3b")
@@ -487,7 +487,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = 0
+WP = null
 
 [sub_resource type="Resource" id="Resource_i0rrr"]
 resource_local_to_scene = true
@@ -612,7 +612,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1.41421, 1),
 "update": 0,
-"values": [Vector2(116, 168), Vector2(24, 168), Vector2(0, 168), Vector2(0, 168)]
+"values": [Vector2(116, 168), Vector2(24, 168), Vector2(10, 168), Vector2(8, 168)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -635,7 +635,7 @@ tracks/2/path = NodePath("Boss/OverworldController/AnimationPlayer/AnimationTree
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 1.9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
@@ -663,6 +663,7 @@ _data = {
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("CutsceneAnimator")]
 script = ExtResource("1_t3ogn")
+TransitionColor = null
 CutsceneAnimator = NodePath("Cutscenes")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -848,19 +849,35 @@ shape = SubResource("RectangleShape2D_puscj")
 script = ExtResource("11_frgqn")
 battleStart = NodePath("../OverworldController/BattleStart")
 TimelineGroup = Array[Object]([SubResource("Resource_sa4b1")])
+TimelineGroupIndex = null
+TimelineIndex = null
+Timeline = null
 PauseWhenDialogue = true
+Turn = null
+SpokenTo = null
 FacingRight = false
 Cutscene = true
+FacingDirection = null
+visualType = null
 Sprites = []
 
 [node name="OverworldController" type="Node2D" parent="Boss" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Animator", "AnimatorTree", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("7_4k8em")
 enemyCollision = NodePath("Area2D")
+CachedTargetPosition = null
+RandMin = null
+RandMax = null
+state = null
 IdleTargets = []
+CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
+DirectionIndex = null
 MainSprite = NodePath("MainSprite")
+Speed = null
+Friction = null
+MaxSpeed = null
 Animator = NodePath("AnimationPlayer")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 Parent = NodePath("..")
@@ -868,7 +885,14 @@ OverworldCollider = NodePath("../CollisionShape2D")
 AxisList = []
 PositionList = []
 AuxPositionList = []
+AxisOffset = null
+Axis = null
+AxisAux = null
 Controllable = false
+OffsetsSet = null
+inBattle = null
+FacingDirection = null
+Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="Boss/OverworldController"]
@@ -904,6 +928,7 @@ script = ExtResource("14_yifkv")
 scene = SubResource("Resource_tusfu")
 EnemyCharacters = []
 CharacterPrefab = 1
+BorderOffset = null
 PartyPos = Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)])
 EnemyPos = Array[Vector2]([Vector2(0, -36)])
 
@@ -934,12 +959,24 @@ Character = SubResource("Resource_i0rrr")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
+Controllable = null
 Overworld = NodePath("../OverworldController")
+OriginPos = null
 StatMultiplier = [1.0, 1.0, 1.0, 1.0, 1.0]
+Combo = null
+HoldingMoveTimer = null
+PosIndex = null
+HoldingMove = null
+UsedComboMove = null
+BlockedEnemy = null
+Looping = null
+Moving = null
 MultTimer = [null, null, null, null, null]
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
+DodgeDir = null
+BattleOffset = null
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
@@ -1410,6 +1447,8 @@ text = "[center]Spe[/center]"
 position = Vector2(269, 170)
 script = ExtResource("34_wr8hh")
 Scene = 28
+Area = null
+LoadPosition = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
 position = Vector2(1, 0)

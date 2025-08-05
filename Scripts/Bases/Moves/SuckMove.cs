@@ -23,12 +23,19 @@ public partial class SuckMove : MoveBase
         Target.Velocity = Vector2.Zero;
         bool Sucked = false, CanShoot = false, SuccesfulShoot = false;
 
-        Users[0]._DoAction+=Spam;
-        Users[0].Hurtbox.AreaEntered+=ShootStart;
-        SceneTreeTimer SuckTimer = Users[0].GetTree().CreateTimer(SuckTimerMax,true,true);
-        SuckTimer.Timeout+=CheckSuck;
+        Tween Rotate = Users[0].CreateTween();
+        float Angle = Users[0].ShootNode.GlobalPosition.AngleToPoint(Targets[0].Hurtbox.GlobalPosition);
+        Rotate.TweenProperty(Users[0].GetParent(),"global_rotation", Angle,0.1f);
+        Rotate.Finished += () =>
+        {
+            Users[0]._DoAction += Spam;
+            Users[0].Hurtbox.AreaEntered += ShootStart;
+            SceneTreeTimer SuckTimer = Users[0].GetTree().CreateTimer(SuckTimerMax, true, true);
+            SuckTimer.Timeout += CheckSuck;
 
-        Users[0].changeState(BattleCharacter.BattleState.Attacking);
+            Users[0].changeState(BattleCharacter.BattleState.Attacking);
+            Rotate.Kill();
+        };
 
 
         void Spam(){
@@ -74,26 +81,18 @@ public partial class SuckMove : MoveBase
                 Users[0]._DoAction -= Spam;
                 Users[0]._DoAction += ShootInput;
                 Targets[0].Moving = false;
-                Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", true);
-                Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", false);
-
-                SceneTreeTimer WindupTimer = Users[0].GetTree().CreateTimer(0.2, true, true);
-                WindupTimer.Timeout += () =>
-                {
                     CanShoot = true;
                     Users[0].Character.ShowTextLabel($"{Users[0].Character.Key}", Users[0].Character.Base.TextEffectColor);
-                    SceneTreeTimer ShootTimer = Users[0].GetTree().CreateTimer(0.5, true, true);
+                    SceneTreeTimer ShootTimer = Users[0].GetTree().CreateTimer(0.3, true, true);
                     ShootTimer.Timeout += () =>
                     {
+                        Users[0]._DoAction -= ShootInput;
                         if (CanShoot)
                         {
+                            Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", true);
                             CanShoot = false;
-                            Users[0].changeCombo(2);
-                            Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
                         }
-                        Users[0]._DoAction -= ShootInput;
                     };
-                };
             HurtBox.AreaEntered-=ShootStart;
             }
         }
@@ -101,18 +100,17 @@ public partial class SuckMove : MoveBase
             if(CanShoot){
                 CanShoot = false;
                 SuccesfulShoot = true;
-                Users[0].changeCombo(2);
-                Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
+                Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", true);
             }
         }
         void Shoot(BattleCharacter UserCharacter){
             Tween tween = Target.CreateTween();
             if(SuccesfulShoot){
-                tween.TweenProperty(Target,"position",Origin,1/Speed);
+                tween.TweenProperty(Target,"position",Origin,1/(Speed*2));
                 Users[0].Character.ChangeWP(WP);
             }
             else{
-                tween.TweenProperty(Target,"position",Origin,1/(Speed*2));
+                tween.TweenProperty(Target,"position",Origin,1/Speed);
             }
             tween.Finished+=()=>{
                 Hit(UserCharacter,Targets[0]);
@@ -124,6 +122,7 @@ public partial class SuckMove : MoveBase
 
         void End()
         {
+            Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", false);
             Target.Velocity = Vector2.Zero;
             Targets[0].Hurtbox.Position = TargetHurtboxPosition;
             if (!Sucked)

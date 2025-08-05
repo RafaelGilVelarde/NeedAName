@@ -160,15 +160,14 @@ height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList", "MainSprite")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList", "MainSprite", "PlayerName")]
 script = ExtResource("1_5qb0c")
 Start = NodePath("VBoxContainer/Button")
 Continue = NodePath("VBoxContainer/Button2")
 SavesList = NodePath("SaveScrolls")
 NewGameScene = ExtResource("2_8k5ur")
-TransitionColor = null
 MainSprite = NodePath("Sprite2D")
-State = null
+PlayerName = NodePath("Sprite2D/RichTextLabel")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_eg5ua")
@@ -251,6 +250,23 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Menus/TitleScreen/Main.aseprite"
 }
 
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -176.0
+offset_top = -168.0
+offset_right = 48.0
+offset_bottom = -128.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+text = "[center][/center]"
+fit_content = true
+scroll_active = false
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
 libraries = {
 "": SubResource("AnimationLibrary_baj2i")
@@ -259,14 +275,14 @@ autoplay = "default"
 
 [node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
 z_index = 3
-color = Color(0.5748, 0.987756, 0.977641, 1)
-energy = 5.95026
+color = Color(0.639216, 1, 1, 1)
+energy = 5.0
 range_layer_min = -4
 range_layer_max = 4
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.65098)
 texture = SubResource("GradientTexture2D_3caax")
-texture_scale = 1.01204
+texture_scale = 1.05
 height = 10.0
 
 [node name="TileMap" type="TileMap" parent="."]

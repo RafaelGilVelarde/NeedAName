@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpamMove" load_steps=2 format=3 uid="uid://6vvuj4hjy1pk"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/SpamMove.cs" id="1_vlo55"]
+
+[resource]
+script = ExtResource("1_vlo55")
+offset = Vector2(-18, 0)
+AtkMultiplier = 1.2
+Speed = 2.0
+MaxCombo = 2
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 10
+TargetsParty = false
+Name = "Spam"
+MoveTime = 5.0

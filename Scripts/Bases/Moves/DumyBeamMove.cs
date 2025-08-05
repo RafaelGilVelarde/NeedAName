@@ -8,14 +8,16 @@ using System.Linq;
 public partial class DumyBeamMove : MoveBase
 {
 [Export] float Speed;
-[Export] int Combo = 1;
+[Export] int Combo = 1,AtkMultiplier;
 [Export] String Tag;
 [Export] PackedScene LineShoot;
 	[Export] Vector2 offset;
 	public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
 	{
 		base.Effect(Users,Targets);
-		Targets[0].Controllable=true;                
+		Targets[0].Controllable=true;
+		float Mult = Users[0].StatMultiplier[2];
+		bool Success = false;
 
 
 		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
@@ -34,9 +36,13 @@ public partial class DumyBeamMove : MoveBase
 		
 		Line2D Line=LineShoot.Instantiate<Line2D>();
 		RayHitbox Ray= (RayHitbox)Line.GetChild(0);
-		Ray.AddExceptions(new Array<CollisionObject2D>{Users[0].Hurtbox,Users[0].Hitbox,Users[0].Blockbox,Targets[0].Hitbox,Targets[0].WPbox});
+		Ray.AddExceptions(new Array<CollisionObject2D>{Users[0].Hurtbox,Users[0].Hitbox,Users[0].Blockbox,Targets[0].Hitbox});
+		if (Targets[0].WPbox != null)
+		{
+			Ray.AddException(Targets[0].WPbox);
+		}
 		Ray.AddToGroup(Tag);
-		Users[0]._Shoot+=shoot;
+		Users[0]._Shoot+=ShootSetup;
 		Ray._Hit+=onHit;
         Ray._Block+=blocked;
 		Ray.Attacking=Users[0];
@@ -48,13 +54,45 @@ public partial class DumyBeamMove : MoveBase
 		void blocked(BattleCharacter Target){
 			Block(Target);
 		}
-		void shoot(BattleCharacter User){
+		void ShootSetup(BattleCharacter User)
+		{
+			User._Shoot -= ShootSetup;
+			if (User.Character.isControlledByPlayer)
+			{
+				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.1, true, true, true);
+				User.Character.ShowTextLabel($"{User.Character.Key}", User.Character.Base.TextEffectColor);
+				User._DoAction += ManualShoot;
+				Timer.Timeout += () =>
+				{
+					if (Success)
+					{
+						User.StatMultiplier[2] += AtkMultiplier;
+						User.Character.ChangeWP(WP);
+					}
+					else
+					{
+						User._DoAction -= ManualShoot;
+					}
+					shoot(User);
+				};
+			}
+			else
+			{
+				shoot(User);
+			}
+		}
+		void ManualShoot()
+		{
+			Success = true;
+			Users[0]._DoAction -= ManualShoot;
+		}
+		void shoot(BattleCharacter User)
+		{
 			Line.GlobalPosition=User.ShootNode.GlobalPosition;
 			Line.ClearPoints();
 			Line.AddPoint(Vector2.Zero);
 			Line.AddPoint(new Vector2(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X+Dir*20,0));
-			User.GetTree().CurrentScene.AddChild(Line);
-			User._Shoot-=shoot;
+			User.GetTree().CurrentScene.AddChild(Line);			
 		}
 
 		//timer.TweenInterval(MoveTime);
@@ -63,10 +101,12 @@ public partial class DumyBeamMove : MoveBase
 		Tween tween = Users[0].CreateTween();
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Defending)));
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);
+		tween.TweenInterval(0.5);
 		tween.TweenCallback(Callable.From(()=>Users[0].changeAction(BattleCharacter.ActionState.isAttacking)));
 
 
 		tween.Finished+=tween.Kill;
+        MainTimer.Timeout += ()=>{Users[0].StatMultiplier[2] = Mult;};
 
 		//timer.Finished+=End;
 		//timer.Finished+=timer.Kill;

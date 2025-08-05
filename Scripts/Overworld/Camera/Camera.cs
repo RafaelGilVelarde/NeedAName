@@ -3,9 +3,11 @@ using System;
 
 public partial class Camera : Camera2D
 {
+    public Node CameraParent;
     public override void _EnterTree()
-	{
-	}
+    {
+        CameraParent = GetParent();
+    }
     public override void _Ready()
     {
         if(GameManager.Instance.OverworldCam==null){

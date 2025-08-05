@@ -15,22 +15,22 @@ public partial class StartMenu : Node
     [Export] Color TransitionColor = Colors.Black;
     [Export] Node2D MainSprite;
     [Export] StartMenuState State;
-
+    [Export] RichTextLabel PlayerName; 
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
         switch (State)
-            {
-                case StartMenuState.Start:
-                    break;
-                case StartMenuState.SavesList:
-                    if (Input.IsActionJustPressed("Deny"))
-                    {
-                        MainMenu();
-                    }
-                    
-                    break;
-            }
+        {
+            case StartMenuState.Start:
+                break;
+            case StartMenuState.SavesList:
+                if (Input.IsActionJustPressed("Deny"))
+                {
+                    MainMenu();
+                }
+
+                break;
+        }
     }
 
     public override void _Ready()
@@ -45,6 +45,7 @@ public partial class StartMenu : Node
             {
                 MainSprite.Show();
             }
+            PlayerName.Text = $"[center]{Game.Saves[Game.CurrentSave].Party[0].Name}[/center]";
             Game.PlayTransition( Color.Color8(0,0,0,0));
             Game.TransitionTween.Finished+=Setup;
         };

@@ -3,47 +3,66 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 using System.Runtime.Serialization;
+using System.Threading.Tasks;
 
 public partial class DialogicCSharp : Node
 {
     public static DialogicCSharp instance;
     public Node DialogicRoot;
     Node Styles;
-    bool Paused, autoAdvance;
+    [Export] bool Paused, autoAdvance;
     Callable Check;
-    [Export] Array<string> DialogueStyles;
+    [Export] Array<string> DialogueStyles, Timelines = new Array<string>();
 
 
     Array<InputEvent> EventAux = new Array<InputEvent>();
     Callable endAutoAdvance;
-    public override void _EnterTree()
-    {
 
-    }
+    [Signal]
+    public delegate void _NextTimelineEventHandler(string Timeline);
+
+
     public override void _Ready()
     {
         Callable.From(Setup).CallDeferred();
     }
-    public void StartDialogue(string Timeline, bool Pause, bool auto)
+    public async Task StartDialogue(string Timeline, bool Pause, bool auto)
     {
-        if (auto)
+        Timelines.Add(Timeline);
+        if (Timelines.Count == 1)
         {
-            autoAdvance = true;
+            Start();
+        }
+        else
+        {
+            string Aux = (await ToSignal(this, "_NextTimeline"))[0].ToString();
+            if (Aux == Timelines[0])
+            {
+                Start();
+            }          
         }
 
-        DialogicRoot.Call("start", Timeline);
-        //Node aux= (Node)Styles.Call("get_layout_node");
-        //aux.ProcessMode=ProcessModeEnum.Always;
-        if (Pause)
+        void Start()
         {
-            Array<PlayerController> party = GameManager.Instance.Characters;
-            for (int i = 0; i < party.Count; i++)
+            if (auto)
             {
-                if (party[i].Leader)
-                {
-                    party[i].EnterExitDialogue(Pause);
-                }
+                autoAdvance = true;
             }
+
+            DialogicRoot.Call("start", Timelines[0]);
+            //Node aux= (Node)Styles.Call("get_layout_node");
+            //aux.ProcessMode=ProcessModeEnum.Always;
+            if (Pause)
+            {
+                Array<PlayerController> party = GameManager.Instance.Characters;
+                for (int i = 0; i < party.Count; i++)
+                {
+                    if (party[i].Leader)
+                    {
+                        party[i].EnterExitDialogue(Pause);
+                    }
+                }
+            }            
         }
     }
     public void AutoAdvance(bool On, bool UntilNextInput)
@@ -84,15 +103,23 @@ public partial class DialogicCSharp : Node
     }
     void UnPause()
     {
-        Resource CurrentTimeline = (Resource)DialogicRoot.Get("current_timeline");
-        AutoAdvance(false, false);
-        Array<PlayerController> party = GameManager.Instance.Characters;
-        for (int i = 0; i < party.Count; i++)
+        Timelines.RemoveAt(0);
+        if (Timelines.Count > 0)
         {
-            if (party[i].Leader)
+            EmitSignal("_NextTimeline", Timelines[0]);
+        }
+        else
+        {
+            Resource CurrentTimeline = (Resource)DialogicRoot.Get("current_timeline");
+            AutoAdvance(false, false);
+            Array<PlayerController> party = GameManager.Instance.Characters;
+            for (int i = 0; i < party.Count; i++)
             {
-                party[i].EnterExitDialogue(false);
-            }
+                if (party[i].Leader)
+                {
+                    party[i].EnterExitDialogue(false);
+                }
+            }            
         }
     }
     void ManualAdvanceOff()

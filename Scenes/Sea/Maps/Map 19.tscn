@@ -29,6 +29,7 @@ size = Vector2(256, 56)
 script = ExtResource("12_qkwwk")
 Timeline = "FirstBattle"
 WinTimeline = "Win"
+PostBattleTimeline = ""
 EscapeChance = 100.0
 Horizontal = false
 Cutscene = false
@@ -225,9 +226,6 @@ FacingDirection = null
 visualType = null
 Sprites = []
 
-[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 11
-
 [node name="Barrier" parent="." instance=ExtResource("12_6hj8d")]
 position = Vector2(80, 184)
 collision_layer = 2
@@ -250,7 +248,7 @@ TimelineIndex = null
 Timelines = Array[Object]([SubResource("Resource_7j361"), SubResource("Resource_jigeu"), SubResource("Resource_dtwsi")])
 Cutscene = null
 ManualBoolUpdate = true
-PushOffset = Array[Vector2]([Vector2(-30, 0)])
+PushOffset = Array[Vector2]([Vector2(0, -40)])
 PushTimes = Array[float]([0.5])
 CheckValues = Array[Object]([SubResource("Resource_0btuc"), SubResource("Resource_rr0af"), SubResource("Resource_qhna2")])
 CheckManualDisableValues = SubResource("Resource_88e1r")

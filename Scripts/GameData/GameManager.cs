@@ -11,13 +11,13 @@ public partial class GameManager : Node
 	[Export]public Array<DataManager> Saves;
 	[Export] public int CurrentSave = 0;
 	[Export] public DataManager Data;
-	DataManager InitialData;
+	[Export] DataManager InitialData;
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
 	[Export] public Array<PlayerController> Characters, Followers = new Array<PlayerController>();
 	[Export] public PlayerController Leader;
-	[Export] public Camera2D OverworldCam, BattleCam;
+	[Export] public Camera OverworldCam, BattleCam;
 	[Export] PackedScene StartScene;
 	[Export] public Scene CurrentScene;
 	[Export] AnimationPlayer TransitionAnimator;
@@ -39,6 +39,7 @@ public partial class GameManager : Node
 	public override void _EnterTree()
 	{
 		Instance = this;
+		//InitialData = (DataManager)Data.Duplicate();
 		//InstantiateCharacters();
 		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
 		DisplaySaves();
@@ -64,18 +65,21 @@ public partial class GameManager : Node
 	}
 	public void LoadFirstScene(){
 		InstantiateCharacters();
+		Data = (DataManager) InitialData.Duplicate();
 		CallDeferred("SwitchScene",0,0, 0,TransitionColor);
 	}
 	void InstantiateCharacters(){
 		for(int i=0;i<Data.Party.Count;i++){
-			Character aux=Data.Party[i];
+			PartyCharacters aux=Data.Party[i];
 			if(aux.Active){
 				Characters.Add((PlayerController)AddCharacters(aux,0));
 				Followers.Add(Characters[Characters.Count-1]);
+				int FollowerCount = Followers.Count - 1;
+				Characters[Characters.Count - 1].Parent.Name = $"Party {((PartyCharacterBase)aux.Base).PartyId}";
 				Characters[Characters.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
 				if (i > 0)
 				{
-					Characters[Characters.Count - 1].AxisOffset = i * 8;
+					Characters[Characters.Count - 1].AxisOffset = FollowerCount * 8;
 				}
 			}
 		}
@@ -83,10 +87,12 @@ public partial class GameManager : Node
 			Character aux=Data.CurrentFollowers[i];
 			if(aux.Active){
 				Followers.Add((PlayerController)AddCharacters(aux,0));
+				Followers[Followers.Count-1].Parent.Name = $"Follower {i}";
 				Followers[Followers.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
+				int FollowerCount = Followers.Count - 1;
 				if (i > 0)
 				{
-					Followers[Followers.Count - 1].AxisOffset = i * 8;
+					Followers[Followers.Count - 1].AxisOffset = FollowerCount * 8;
 				}
 			}
 		}
@@ -204,18 +210,14 @@ public partial class GameManager : Node
 			Overworld.SetOffsets();
 			Overworld.BattleCharacter.SetOffsets();
 
-			if (character.GetType() == typeof(PartyCharacters))
-			{
-				Overworld.Parent.Name = $"Party {((PartyCharacterBase)character.Base).PartyId}";
-			}
 			GetTree().CurrentScene.AddChild(Prefab);
 			return Overworld;
 	}
-	public void SetCamera(Camera2D cam){
+	public void SetCamera(Camera cam){
 		OverworldCam=cam;
 		AssignCharacterCamera(controller);                
 	}
-	public void SetBattleCamera(Camera2D cam){
+	public void SetBattleCamera(Camera cam){
 		BattleCam=cam;
 		AssignBattleCamera(GetTree().CurrentScene);                
 	}
@@ -295,12 +297,20 @@ public partial class GameManager : Node
 	}
 	public void Save(int save)
 	{
+		Saves[CurrentSave].Latest = false;
 		CurrentSave = save;
 		string Path = "user://" + "save" + CurrentSave.ToString() + ".tres";
 
-		Data.Position = controller.GlobalPosition;
-		Saves[CurrentSave].Latest = false;
+		if (controller != null)
+		{
+			Data.Position = controller.GlobalPosition;
+		}
+		else
+		{
+			Data.Position = Vector2.Zero;
+		}
 		Data.Latest = true;
+		Debug.WriteLine("Scene: " + Data.Scene);
 		Saves[CurrentSave] = Data.DuplicateData();
 		if (!Godot.FileAccess.FileExists(Path))
 		{
@@ -308,6 +318,7 @@ public partial class GameManager : Node
 		}
 		ResourceSaver.Save(Saves[CurrentSave], Path);
 		Saves[CurrentSave].TakeOverPath(Path);
+		Debug.WriteLine(Path);
 		DisplaySaves();
 	}
 	public void DisplaySaves(){
@@ -336,6 +347,9 @@ public partial class GameManager : Node
 			BattleCam?.QueueFree();
 			Characters.Clear();
 			Followers.Clear();
+
+			Debug.WriteLine("SaveScene :" + Saves[Save].Scene);
+			Debug.WriteLine("DataScene :" + Data.Scene);
 
 			InstantiateCharacters();
 			CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position,TransitionColor);			
@@ -390,7 +404,7 @@ public partial class GameManager : Node
 		}
 		for (int i = 0; i < Followers.Count; i++)
 		{
-			Characters[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
+			Followers[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
 
 		}	
 	}
