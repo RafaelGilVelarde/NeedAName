@@ -1,4 +1,4 @@
-[gd_scene load_steps=108 format=3 uid="uid://dbs7iqu5fr21p"]
+[gd_scene load_steps=97 format=3 uid="uid://dbs7iqu5fr21p"]
 
 [ext_resource type="Texture2D" uid="uid://cyd8rk3jjitin" path="res://Sprites/Background/Side View/Boss Arena 1 Ground.png" id="1_q1sx7"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t3ogn"]
@@ -19,9 +19,8 @@
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="16_q3s3b"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/Boss1.cs" id="17_lkv6f"]
 [ext_resource type="PackedScene" uid="uid://brf1kg03d66t7" path="res://Scenes/MainMenu.tscn" id="17_wjl1s"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="19_04fsb"]
-[ext_resource type="AnimationLibrary" uid="uid://cvyxxjnn1wh11" path="res://Animations/Battle/Boss1.res" id="19_rbcig"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="20_7s2bh"]
+[ext_resource type="Resource" uid="uid://bj4l2qn2leh4c" path="res://Resources/CharacterBases/Enemies/Boss1.tres" id="20_yycnn"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="21_8a1uq"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="22_dy6wk"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="23_1gxnh"]
@@ -241,105 +240,168 @@ Cutscene = true
 PartyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
 EnemyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_0guv5"]
-animation = &"Attack1"
+[sub_resource type="Animation" id="Animation_r1hrf"]
+resource_name = "Battle_Cutscene"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_c83it")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [49, 50, 51, 52, 53, 54, 55]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("AnimationPlayer")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0.3, false, false],
+"method": &"seek"
+}]
+}
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_sr70r"]
-animation = &"Attack2"
+[sub_resource type="Animation" id="Animation_imr2n"]
+resource_name = "Overworld"
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MainSprite:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("12_c83it")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MainSprite:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MainSprite:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("MainSprite:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MainSprite:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [44, 45, 46, 47, 48]
+}
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_6w0ti"]
-animation = &"Attack3"
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0pth0"]
+_data = {
+"Battle_Cutscene": SubResource("Animation_r1hrf"),
+"Overworld": SubResource("Animation_imr2n")
+}
 
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_ptcog"]
-blend_point_0/node = SubResource("AnimationNodeAnimation_0guv5")
-blend_point_0/pos = 1.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_sr70r")
-blend_point_1/pos = 2.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_6w0ti")
-blend_point_2/pos = 3.0
-min_space = 0.0
-max_space = 3.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_t3ab7"]
-animation = &"Hit"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_q0j88"]
-animation = &"Idle"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_83yyf"]
-animation = &"Die"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mpdyy"]
-animation = &"Attack4"
-
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4tre8"]
-animation = &"Overworld"
-
-[sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_hojxb"]
-blend_point_0/node = SubResource("AnimationNodeBlendSpace1D_ptcog")
-blend_point_0/pos = 0.0
-blend_point_1/node = SubResource("AnimationNodeAnimation_t3ab7")
-blend_point_1/pos = 3.0
-blend_point_2/node = SubResource("AnimationNodeAnimation_q0j88")
-blend_point_2/pos = 5.0
-blend_point_3/node = SubResource("AnimationNodeAnimation_83yyf")
-blend_point_3/pos = 6.0
-blend_point_4/node = SubResource("AnimationNodeAnimation_mpdyy")
-blend_point_4/pos = 7.0
-blend_point_5/node = SubResource("AnimationNodeAnimation_4tre8")
-blend_point_5/pos = 1.0
-min_space = 0.0
-max_space = 7.0
-snap = 1.0
-blend_mode = 1
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_126af"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vnr2o"]
-states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_hojxb")
-states/ActionState/position = Vector2(593, 103)
-states/Start/position = Vector2(201, 103)
-transitions = ["Start", "ActionState", SubResource("AnimationNodeStateMachineTransition_126af")]
-
-[sub_resource type="Resource" id="Resource_l1thn"]
-script = ExtResource("16_q3s3b")
-Lv = 1
-MaxHP = 40
-HP = 10
-Atk = 2
-Def = 3
-SpAtk = 2
-SpDef = 1
-Speed = 3
-WP = null
-
-[sub_resource type="Resource" id="Resource_n0kjw"]
-script = ExtResource("19_04fsb")
-ExpYield = 100.0
-BaseStats = SubResource("Resource_l1thn")
-Name = "Edicary"
-OverworldAnimator = ExtResource("29_6dhwp")
-BattleAnimator = ExtResource("29_6dhwp")
-TextEffectColor = Color(0, 0.741176, 0, 1)
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
-Floor = Vector2(0, 48)
-MoveSFX = null
-HitSFX = null
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7nbvj"]
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("16_q3s3b")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_woo47"]
 script = ExtResource("20_7s2bh")
@@ -467,19 +529,19 @@ Chance = 20.0
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("16_q3s3b")
-Lv = null
-MaxHP = null
-HP = null
-Atk = null
-Def = null
-SpAtk = null
-SpDef = null
-Speed = null
-WP = null
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("16_q3s3b")
-Lv = 5
+Lv = 7
 MaxHP = 1000
 HP = 1000
 Atk = 2
@@ -487,13 +549,13 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 5
-WP = null
+WP = 0
 
 [sub_resource type="Resource" id="Resource_i0rrr"]
 resource_local_to_scene = true
 script = ExtResource("22_dy6wk")
 Name = ""
-Base = SubResource("Resource_n0kjw")
+Base = ExtResource("20_yycnn")
 Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_xvxfu"), SubResource("Resource_a4tlc"), SubResource("Resource_cu4sm"), SubResource("Resource_q5c5c")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
@@ -621,24 +683,12 @@ tracks/1/path = NodePath("Boss/OverworldController/AnimationPlayer")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.1),
+"times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": ["Battle_Cutscene", -1, 1.0, false],
 "method": &"play"
 }]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/path = NodePath("Boss/OverworldController/AnimationPlayer/AnimationTree:active")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 1.9),
-"transitions": PackedFloat32Array(1, 1),
-"update": 1,
-"values": [false, true]
 }
 
 [sub_resource type="Animation" id="Animation_3708d"]
@@ -663,7 +713,6 @@ _data = {
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("CutsceneAnimator")]
 script = ExtResource("1_t3ogn")
-TransitionColor = null
 CutsceneAnimator = NodePath("Cutscenes")
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -900,7 +949,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 8
 vframes = 8
-frame = 44
+frame = 53
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -934,20 +983,17 @@ EnemyPos = Array[Vector2]([Vector2(0, -36)])
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Boss/OverworldController"]
 libraries = {
-"": ExtResource("19_rbcig")
+"": SubResource("AnimationLibrary_0pth0")
 }
 autoplay = "Overworld"
 
 [node name="AnimationTree" type="AnimationTree" parent="Boss/OverworldController/AnimationPlayer"]
+process_mode = 4
 active = false
-root_node = NodePath("../..")
-libraries = {
-"": ExtResource("19_rbcig")
-}
-tree_root = SubResource("AnimationNodeStateMachine_vnr2o")
-anim_player = NodePath("..")
-parameters/ActionState/blend_position = 0.989796
-parameters/ActionState/0/blend_position = 0.173189
+deterministic = false
+reset_on_save = false
+root_node = NodePath("../../../..")
+tree_root = SubResource("AnimationNodeStateMachine_7nbvj")
 
 [node name="BattleCharacter" type="CharacterBody2D" parent="Boss" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers")]
 process_mode = 4
@@ -1124,6 +1170,7 @@ max_value = 50.0
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Boss/BattleCharacter/HPBarParent/HPBar"]
+visible = false
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0

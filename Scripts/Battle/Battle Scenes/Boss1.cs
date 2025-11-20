@@ -19,11 +19,13 @@ public partial class Boss1 : BattleScene
         Game.Data.Party[0].Name = Dialogic.GetVariable(VariableName, VariableFolder);
         Dialogic.SetVariable(VariableName, VariableFolder, "");
         Game.GetTree().ChangeSceneToPacked(PackedScene);
-        
+
+        Game.Characters.Clear();
+        Game.controller = null;
         Game.Data.Position = Vector2.Zero;
         Game.Data.AreaIndex = (int)Area;
         Game.Data.Scene = Scene;
-        Game.Save(Game.CurrentSave);
+        Game.Save(Game.Settings.CurrentSave);
         //GameManager.Instance.GetTree().ChangeSceneToPacked(PackedScene);
 
     }

@@ -1,12 +1,19 @@
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Wondering): This...thing...
+elif {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Wondering): Hooow straaangeee
 MC (Confused): This is.......What is it?
 "No Box": A bad omen, that's what
 MC (Confused): What do you mean?
 "No Box": Sorry, there's no time, you'll have to fight
 "No Box": It's the only way, good luck
-MC (Normal): Fine then, seems we really have no choice
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Anger): In.......my way.....
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Angry): Ooone moore enemyyy
+MC (Angry): Fine then, guess there's no choice
 [clear time="0.0" step="false"]
 [signal arg="Cutscene1"]
 [wait time="2.1"]
-[signal arg="EndCutscene"]
-[wait time="0.3"]
 [signal arg="Fight"]
+[signal arg="EndCutscene"]

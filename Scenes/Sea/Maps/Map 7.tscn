@@ -91,6 +91,7 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
+frame = 11
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
 
@@ -174,16 +175,18 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 position = Vector2(48, -168)
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PackedVector2Array(136, 48, -184, 48, -184, 152, 136, 152)
+polygon = PackedVector2Array(136, 48, -112, 48, -112, 152, 136, 152)
 
 [node name="Area2D2" parent="." instance=ExtResource("10_5sil6")]
 position = Vector2(24, 88)
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
-polygon = PackedVector2Array(160, -72, -152, -72, -152, 40, 160, 40)
+polygon = PackedVector2Array(160, -72, -88, -72, -88, 40, 160, 40)
 
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
 position = Vector2(48, -56)
+PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 100)])
+EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, 100)])
 Scene = SubResource("Resource_7ni3l")
 detectArea = NodePath("../Area2D")
 

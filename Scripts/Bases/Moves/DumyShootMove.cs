@@ -83,7 +83,11 @@ public partial class DumyShootMove : MoveBase
 		void End(){
 			proyectile.Ended=true;
 			Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",true);
-			Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);
+			SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,false);
+            AnimEndTimer.Timeout += () =>
+            {
+				Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);                
+            };
 			Users[0]._Shoot-=shoot;
 			proyectile.Hit();				
 			timer.QueueFree();

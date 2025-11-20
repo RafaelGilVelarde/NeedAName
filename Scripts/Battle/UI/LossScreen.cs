@@ -22,7 +22,7 @@ public partial class LossScreen : Control
     }
     void SetupReload(){
         Battle.Clear();
-        Game.Load(Game.CurrentSave);
+        Game.Load(Game.Settings.CurrentSave);
         Battle.Scene = null;
         Visible = false;
     }

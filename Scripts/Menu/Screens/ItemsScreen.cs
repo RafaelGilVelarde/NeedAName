@@ -230,7 +230,14 @@ public partial class ItemsScreen : MenuScreens
     }
     void UseItem(){
         Array<Items> Aux = GameManager.Instance.Data.items[CurrentType].items;
-        CurrentItem.Use(new Array<Character>{CurrentCharacter});
+        if (CurrentItem.Base.type != ItemBase.Type.Equipment)
+        {
+            CurrentItem.Use(new Array<Character> { CurrentCharacter });
+        }
+        else
+        {
+            CurrentCharacter.Equip((Equipment)CurrentItem);
+        }
         ItemList.FillButtons(ItemList.pointerStart,ScrollList.StartEnd.Regular);   
         if(CurrentItem.Amount == 0){
             CurrentItem = null;

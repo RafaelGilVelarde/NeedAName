@@ -16,5 +16,5 @@ TargetAmount = 1
 WP = 0
 Cost = 0
 TargetsParty = false
-Name = "att"
+Name = "attack"
 MoveTime = 2.0

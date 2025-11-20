@@ -406,7 +406,7 @@ public partial class BattleCharacter : CharacterBody2D
 	public void HideChangeHPBar()
 	{
 		Tween tween = CreateTween();
-		tween.TweenProperty(HPBar, "modulate:a", 0, 0.2f);
+		tween.TweenProperty(HPBar, "modulate:a", 0, 0.1f);
 	}
 	public void ShowChangeWPBar(int WP, bool Hide)
 	{
@@ -438,17 +438,27 @@ public partial class BattleCharacter : CharacterBody2D
 	{
 		if (Character.stats.Lv < 100)
 		{
+			Debug.WriteLine("Final Exp: " + ExpEnd + " Next Lv: " + NextLvl);
 			PartyCharacters Aux = (PartyCharacters)Character;
 			PartyCharacterBase AuxBase = (PartyCharacterBase)Aux.Base;
+			if (Level > 1)
+			{
+				EXPBar.MinValue = AuxBase.ExpForLevel[Level - 2];
+			}
+			else
+			{
+				EXPBar.MinValue = 0;
+			}
 			EXPBar.MaxValue = NextLvl;
-			EXPBar.Value = ExpStart - AuxBase.ExpForLevel[Level-1];
+			EXPBar.Value = ExpStart;
 			Tween tween = CreateTween();
 			tween.TweenProperty(EXPBar, "modulate:a", 1, 0.1f);
-			tween.TweenProperty(EXPBar, "value", ExpEnd - AuxBase.ExpForLevel[Level-1], 0.3f).SetEase(Tween.EaseType.InOut);
-			if (ExpEnd > AuxBase.ExpForLevel[Level-1])
+			tween.TweenProperty(EXPBar, "value", Mathf.Clamp(ExpEnd,0,NextLvl), 0.3f).SetEase(Tween.EaseType.InOut);
+			if (ExpEnd >= NextLvl)
 			{
 				tween.Finished += () =>
 				{
+					Debug.WriteLine("Level Up Bar");
 					ShowEXPBar(NextLvl, ExpEnd, AuxBase.ExpForLevel[Level],Level+1);
 				};
 			}			
@@ -569,6 +579,11 @@ public partial class BattleCharacter : CharacterBody2D
 		//ClearTimers();
 		ClearStatMultiplier();
 		selectActions.clearAll();
+		if (Character.status == Character.Status.KO)
+		{
+			Character.status = Character.Status.Normal;
+			Character.stats.HP = 1;
+		}
 		Character._GetHit -= GetHit;
 		Character._Die -= Die;
 		Character._ChangeHP -= ShowChangeHPBar;

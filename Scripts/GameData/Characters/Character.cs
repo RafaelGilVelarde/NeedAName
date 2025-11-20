@@ -17,6 +17,7 @@ public partial class Character : Resource
     [Export] public bool isControlledByPlayer;
     [Export] public bool Active = true;
     [Export] public Key Key { get; private set; }
+    [Export] public InputEventKey EventKey { get; private set; }
 
 
     [Signal]
@@ -109,25 +110,31 @@ public partial class Character : Resource
     }
     public void ChangeKey(InputEventKey newKey)
     {
-        PartyCharacterBase aux = (PartyCharacterBase)Base;
-        if (InputMap.HasAction("SelectedKey" + aux.PartyId))
+        if (newKey != null)
         {
-            InputMap.ActionEraseEvents("SelectedKey" + aux.PartyId);
-            InputMap.ActionAddEvent("SelectedKey" + aux.PartyId, newKey);
+            PartyCharacterBase aux = (PartyCharacterBase)Base;
+            if (InputMap.HasAction("SelectedKey" + aux.PartyId))
+            {
+                InputMap.ActionEraseEvents("SelectedKey" + aux.PartyId);
+                InputMap.ActionAddEvent("SelectedKey" + aux.PartyId, newKey);
+            }
+            else
+            {
+                InputMap.AddAction("SelectedKey" + aux.PartyId);
+                InputMap.ActionAddEvent("SelectedKey" + aux.PartyId, newKey);
+            }
+            EventKey = newKey;
+            Key = newKey.Keycode;            
         }
-        else
-        {
-            InputMap.AddAction("SelectedKey" + aux.PartyId);
-            InputMap.ActionAddEvent("SelectedKey" + aux.PartyId, newKey);
-        }
-        Key = newKey.Keycode;
     }
 
     public virtual void Equip(Equipment equipment)
     {
         EquipmentBase equipmentBase = (EquipmentBase)equipment.Base;
+        UnEquip(equipmentBase.EquipType);
         Equipment[(int)equipmentBase.EquipType] = equipmentBase;
-        equipment.Base.Effect(new Array<Character> { this });
+        //equipment.Base.Effect(new Array<Character> { this });
+        equipment.Use(new Array<Character> { this });
         SetTotalStats();
     }
     public virtual void UnEquip(EquipmentType type)
@@ -163,12 +170,17 @@ public partial class Character : Resource
     public void ShowTextLabel(string Text, Color color)
     {
         Node2D HPLabelParent = GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        HPLabelParent.Scale = NodeCharacter.GlobalScale;
-        HPLabelParent.Rotation = NodeCharacter.GlobalRotation;
-        RichTextLabel HPLabel = HPLabelParent.GetChild<RichTextLabel>(0);
+        //HPLabelParent.Scale = NodeCharacter.GlobalScale.Abs();
+        //HPLabelParent.Rotation = NodeCharacter.GlobalRotation;
+        RichTextLabel HPLabel = HPLabelParent.GetChild(0).GetChild<RichTextLabel>(0);
         HPLabel.Text = "[center]" + Text + "[/center]";
         HPLabel.AddThemeColorOverride("default_color", color);
-        NodeCharacter.AddChild(HPLabelParent);
+        NodeCharacter.GetTree().CurrentScene.AddChild(HPLabelParent);
+        HPLabelParent.Position = NodeCharacter.GlobalPosition;
+        HPLabelParent.ZIndex = 20;
+        Debug.WriteLine(NodeCharacter);
+        Debug.WriteLine("Position: " + NodeCharacter.Position);
+        Debug.WriteLine("LabelPosition: " + HPLabelParent.Position);
     }
 
     public void ResetCharacter()

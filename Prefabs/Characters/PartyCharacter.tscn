@@ -6,7 +6,6 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
-[ext_resource type="Texture2D" uid="uid://dpjjot5h63ywt" path="res://Sprites/Battle/Party/waterBattle.png" id="8_nrqug"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
 [ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="9_p6osb"]
 [ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="10_0c27x"]
@@ -36,8 +35,11 @@ size = Vector2(46.475, 59)
 resource_local_to_scene = true
 size = Vector2(25, 42.5)
 
-[sub_resource type="Curve" id="Curve_0dopt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5l7bv"]
+load_path = "res://.godot/imported/HalluciBattle.png-961e73d9989a7f19a861d3eeed8a81d4.ctex"
+
+[sub_resource type="Curve" id="Curve_xerna"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.953052, 0.368421), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3g4di"]
@@ -902,7 +904,7 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/10/type = "value"
 tracks/10/imported = false
@@ -914,7 +916,7 @@ tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
@@ -938,7 +940,7 @@ tracks/12/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [Color(1, 1, 1, 0)]
 }
 tracks/13/type = "value"
 tracks/13/imported = false
@@ -1468,6 +1470,42 @@ tracks/14/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1)]
 }
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("BattleCharacter/ActionMenu/Fight/Node2D/Button:modulate")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("BattleCharacter/ActionMenu/Item/Node2D/Button:modulate")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("BattleCharacter/ActionMenu/Run/Node2D/Button:modulate")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0.2, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pdon8"]
 _data = {
@@ -1570,6 +1608,9 @@ Friction = 1000.0
 MaxSpeed = 6000.0
 Parent = NodePath("..")
 OverworldCollider = NodePath("../CollisionShape2D")
+ZIndexList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+CLayerList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+CMaskList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 AuxPositionList = Array[Vector2]([])
@@ -1658,6 +1699,7 @@ script = ExtResource("5_5pejn")
 Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
@@ -1686,10 +1728,10 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
 texture_filter = 1
-texture = ExtResource("8_nrqug")
-hframes = 9
+texture = SubResource("CompressedTexture2D_5l7bv")
+hframes = 8
 vframes = 8
-frame = 67
+frame = 46
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1726,7 +1768,7 @@ visible = false
 process_mode = 3
 emitting = false
 amount = 22
-lifetime = 0.75
+lifetime = 3.0
 one_shot = true
 explosiveness = 1.0
 local_coords = true
@@ -1737,7 +1779,7 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 205.74
 scale_amount_min = 0.0
 scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_0dopt")
+scale_amount_curve = SubResource("Curve_xerna")
 color = Color(0.580392, 0.968627, 0.937255, 1)
 anim_speed_max = 200.15
 anim_speed_curve = SubResource("Curve_3g4di")
@@ -1767,12 +1809,15 @@ character = NodePath("..")
 Animator = NodePath("AnimationPlayer/AnimationTree")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu"]
+reset_on_save = false
 root_node = NodePath("../../..")
 libraries = {
 "": SubResource("AnimationLibrary_pdon8")
 }
 
 [node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer"]
+deterministic = false
+reset_on_save = false
 root_node = NodePath("../../../..")
 libraries = {
 "": SubResource("AnimationLibrary_pdon8")
@@ -1807,6 +1852,7 @@ metadata/_aseprite_wizard_config_ = {
 position = Vector2(34, 21)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+visible = false
 layout_direction = 2
 anchors_preset = -1
 anchor_right = 0.4
@@ -1860,6 +1906,7 @@ metadata/_aseprite_wizard_config_ = {
 position = Vector2(34, 32)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.4
 anchor_bottom = 0.1
@@ -1869,7 +1916,7 @@ offset_right = 16.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.63, 0.63)
+scale = Vector2(1, 0.25)
 pivot_offset = Vector2(16, 9)
 theme_override_font_sizes/normal_font_size = 13
 text = "Item"
@@ -1912,6 +1959,7 @@ metadata/_aseprite_wizard_config_ = {
 position = Vector2(34, 43)
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+visible = false
 anchors_preset = -1
 anchor_right = 0.4
 anchor_bottom = 0.1
@@ -1919,7 +1967,7 @@ offset_left = -16.0
 offset_top = -9.0
 offset_right = 16.0
 offset_bottom = 9.0
-scale = Vector2(0.63, 0.63)
+scale = Vector2(1, 0.25)
 pivot_offset = Vector2(16, 9)
 theme_override_font_sizes/normal_font_size = 13
 text = "Run"
@@ -1938,7 +1986,6 @@ scroll_active = false
 visible_characters = 1
 
 [node name="Shoot" type="Node2D" parent="BattleCharacter"]
-position = Vector2(31, -17)
 
 [node name="Floor" type="Node2D" parent="BattleCharacter"]
 

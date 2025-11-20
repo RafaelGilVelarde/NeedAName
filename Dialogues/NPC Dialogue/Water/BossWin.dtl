@@ -1,5 +1,14 @@
+MC (Wondering): *pant* pant*
+MC (Happy): We won!
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Normal): At last....
+	Halluci (Happiness): Going......home!
+	Halluci (Happiness): I will see you....one day...
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Happy): Weeeeeeeeeeeeeee did it
+	Blobfish (Happy): Seeeee yaaaa
 [signal arg="Cutscene2"]
-[wait time="1.0"]
+[wait time="1.3"]
 "No Box-Dark": Congratulations!
 "No Box-Dark": You made it through!
 "No Box-Dark": I am curious though, what might your name be?

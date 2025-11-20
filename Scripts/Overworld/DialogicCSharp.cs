@@ -59,7 +59,7 @@ public partial class DialogicCSharp : Node
                 {
                     if (party[i].Leader)
                     {
-                        party[i].EnterExitDialogue(Pause);
+                        party[i].CallDeferred("EnterExitDialogue", Pause);
                     }
                 }
             }            

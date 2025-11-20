@@ -37,10 +37,26 @@ size = Vector2(32, 32)
 [sub_resource type="Resource" id="Resource_7kqbm"]
 script = ExtResource("10_46xwg")
 Timeline = "FirstBattle"
+WinTimeline = "Win"
+PostBattleTimeline = ""
+EscapeChance = 100.0
+Horizontal = false
+Cutscene = false
+PartyFloorY = null
+EnemyFloorY = null
+BattleMusic = 1
 
 [sub_resource type="Resource" id="Resource_uxay2"]
 script = ExtResource("10_46xwg")
 Timeline = "FirstBattle"
+WinTimeline = "Win"
+PostBattleTimeline = ""
+EscapeChance = 100.0
+Horizontal = false
+Cutscene = false
+PartyFloorY = null
+EnemyFloorY = null
+BattleMusic = 1
 
 [sub_resource type="Resource" id="Resource_c4sed"]
 script = ExtResource("15_8voyv")

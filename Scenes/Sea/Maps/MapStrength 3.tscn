@@ -423,7 +423,7 @@ visualType = 0
 position = Vector2(-32, 216)
 
 [node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 11
+frame = 9
 
 [node name="Character" type="CharacterBody2D" parent="." groups=["EnemyOverworldController", "Interactable"]]
 y_sort_enabled = true
@@ -641,6 +641,7 @@ max_value = 50.0
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
+visible = false
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0

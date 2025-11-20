@@ -65,6 +65,7 @@ public partial class StatsScreen : MenuScreens
             EquipList.FillButtons(0,ScrollList.StartEnd.Regular);
 
             KeyButton.GetChild<Node>(0).ProcessMode = ProcessModeEnum.Disabled;
+            EquipList.GetChild<BaseButton>(1).GrabFocus();
             EquipList.Visible = true;
             break;      
 
@@ -197,9 +198,13 @@ public partial class StatsScreen : MenuScreens
             Button.Pressed+=()=>ChooseEquipment(Button);
         }
     }
-    void SetupEquipButton(){
-        foreach(MenuItemButtons Button in EquipList.Buttons){
-            Button.Pressed+=()=>Equip(Button);
+    void SetupEquipButton()
+    {
+        BaseButton Un = EquipList.GetChild<BaseButton>(1);
+        Un.Pressed += Unequip;
+        foreach (MenuItemButtons Button in EquipList.Buttons)
+        {
+            Button.Pressed += () => Equip(Button);
         }
     }
     void SetupKeyButton(){
@@ -215,22 +220,36 @@ public partial class StatsScreen : MenuScreens
     }
     void Equip(MenuItemButtons Button){
         CurrentEquipment = Button.item;
-        CurrentEquipment.Use(new Array<Character>{CurrentCharacter});
+        //CurrentEquipment.Use(new Array<Character>{CurrentCharacter});
+        CurrentCharacter.Equip((Equipment)CurrentEquipment);
         DisplayStats();
         PreviousStates.Clear();
         PreviousStates.Add(State.CharacterSelect);
         ChangeState(State.PartSelect,false);
     }
-    public void ChangeKey(InputEvent @event){
+    void Unequip()
+    {
+        if (CurrentCharacter.Equipment[CurrentEquipTypeIndex] != null)
+        {
+            CurrentCharacter.UnEquip((EquipmentType)CurrentEquipTypeIndex);
+        }
+        DisplayStats();
+        PreviousStates.Clear();
+        PreviousStates.Add(State.CharacterSelect);
+        ChangeState(State.PartSelect,false);      
+    }
+    public void ChangeKey(InputEvent @event)
+    {
         CurrentCharacter.ChangeKey((InputEventKey)@event);
         ((Button)KeyButton).Text = CurrentCharacter.Key.ToString();
 
-		SceneTreeTimer timer = GetTree().CreateTimer(0.2f,true,true,true);
-		timer.Timeout+=end;        
+        SceneTreeTimer timer = GetTree().CreateTimer(0.2f, true, true, true);
+        timer.Timeout += end;
 
-        void end(){
-            ChangeState(State.PartSelect,false);
-            PreviousStates.RemoveAt(PreviousStates.Count-1);
+        void end()
+        {
+            ChangeState(State.PartSelect, false);
+            PreviousStates.RemoveAt(PreviousStates.Count - 1);
         }
     }
 }

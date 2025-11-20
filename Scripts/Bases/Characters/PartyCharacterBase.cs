@@ -13,7 +13,7 @@ public partial class PartyCharacterBase : CharacterBase
     {
         for (int i = 0; i < 100; i++)
         {
-            ExpForLevel[i] = (int)Mathf.Pow(i / ExpSpeed, ExpDistance);
+            ExpForLevel[i] = (int)Mathf.Clamp((int)Mathf.Pow(i / ExpSpeed, ExpDistance)*2,1,Mathf.Inf);
         }
         for (int i = 0; i < 10; i++)
         {

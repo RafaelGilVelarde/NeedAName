@@ -3,6 +3,7 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 using System.Linq;
+using System.Xml.Serialization;
 
 public enum BattleState{
 	Neutral,
@@ -90,12 +91,14 @@ public partial class BattleManager : Node
 			}
 			TurnOrder.Add(Party[i]);
 			AliveParty++;
+
 			CharacterButtons New=new CharacterButtons();
 			New.SetBattleCharacter(Party[i]);
 			CharacterButtonParent.AddChild(New);
 			PartyButtons.Add(New);
 			PartyButtons[i].Hide();
 			PartyButtons[i].FocusMode=Control.FocusModeEnum.All;
+
 			Party[i].ProcessMode=ProcessModeEnum.Inherit;
 		}
 		for(int i=0;i<enemy.Count;i++){
@@ -132,77 +135,133 @@ public partial class BattleManager : Node
 		scene.StartBattleEffect();
 		ResetPositions();
 	}
-	public void ResetPositions(){
-			if(CurrentTurn==-1){
-				//GameManager.Instance.ChangeCam(Scene.GetCenterView(partyPos,enemyPos),true,(float)PositionMoveSpeed);
-				GameManager.Instance.ChangeCam(CenterView,true,(float)PositionMoveSpeed);
-			}
+
+	void SetCharacterButtonNav()
+	{
+		IOrderedEnumerable<Vector2> PartyHOrder = partyPos.OrderBy(x => x.X);
+		IOrderedEnumerable<Vector2> PartyVOrder = partyPos.OrderByDescending(y => y.Y);
+
+		IOrderedEnumerable<Vector2> EnemyHOrder = enemyPos.OrderBy(x => x.X);
+		IOrderedEnumerable<Vector2> EnemyVOrder = enemyPos.OrderByDescending(y => y.Y);
+
+		Array<int> PartyH = new Array<int>(), PartyV = new Array<int>(), EnemyH = new Array<int>(), EnemyV = new Array<int>();
+
+		for (int i = 0; i < PartyHOrder.Count(); i++)
+		{
+			PartyH.Add(partyPos.IndexOf(PartyHOrder.ElementAt(i)));
+			PartyV.Add(partyPos.IndexOf(PartyVOrder.ElementAt(i)));
+		}
+
+		for (int i = 0; i < EnemyHOrder.Count(); i++)
+		{
+			EnemyH.Add(enemyPos.IndexOf(EnemyHOrder.ElementAt(i)));
+			EnemyV.Add(enemyPos.IndexOf(EnemyVOrder.ElementAt(i)));
+		}
+
+		for (int i = 0; i < PartyButtons.Count; i++)
+		{
+			int AuxH = PartyH.IndexOf(i);
+			int AuxV = PartyV.IndexOf(i);
+
+			PartyButtons[i].FocusNeighborLeft = PartyButtons[PartyH[GameManager.nfmod(AuxH - 1,PartyButtons.Count)]].GetPath();
+			PartyButtons[i].FocusNeighborRight = PartyButtons[PartyH[GameManager.nfmod(AuxH + 1, PartyButtons.Count)]].GetPath();
+			PartyButtons[i].FocusNeighborTop = PartyButtons[PartyV[GameManager.nfmod(AuxV + 1, PartyButtons.Count)]].GetPath();
+			PartyButtons[i].FocusNeighborBottom = PartyButtons[PartyV[GameManager.nfmod(AuxV - 1, PartyButtons.Count)]].GetPath();
+		}
+
+		for (int i = 0; i < EnemyButtons.Count; i++)
+		{
+			int AuxH = EnemyH.IndexOf(i);
+			int AuxV = EnemyV.IndexOf(i);
+			EnemyButtons[i].FocusNeighborLeft = EnemyButtons[EnemyH[GameManager.nfmod(AuxH - 1, EnemyButtons.Count)]].GetPath();
+			EnemyButtons[i].FocusNeighborRight = EnemyButtons[EnemyH[GameManager.nfmod(AuxH + 1, EnemyButtons.Count)]].GetPath();
+			EnemyButtons[i].FocusNeighborTop = EnemyButtons[EnemyV[GameManager.nfmod(AuxV + 1, EnemyButtons.Count)]].GetPath();
+			EnemyButtons[i].FocusNeighborBottom = EnemyButtons[EnemyV[GameManager.nfmod(AuxV - 1, EnemyButtons.Count)]].GetPath();
+		}
+	}
+
+	public void ResetPositions()
+	{
+		if (CurrentTurn == -1)
+		{
+			//GameManager.Instance.ChangeCam(Scene.GetCenterView(partyPos,enemyPos),true,(float)PositionMoveSpeed);
+			GameManager.Instance.ChangeCam(CenterView, true, (float)PositionMoveSpeed);
+		}
 		Tween tween = CreateTween();
 		tween.SetParallel(true);
-		
 
-		for(int i=0;i<Party.Count;i++){
-			Node2D Parent=Party[i].GetParent<Node2D>();
+
+		for (int i = 0; i < Party.Count; i++)
+		{
+			Node2D Parent = Party[i].GetParent<Node2D>();
 			ProgressBar HPBar = Party[i].HPBar;
 			ProgressBar WPBar = Party[i].WPBar;
 			HBoxContainer StatMods = Party[i].StatMods;
 			/*float AuxCenterView = (CenterView.X-partyPos[i].X)/Mathf.Abs(CenterView.X-partyPos[i].X);
 			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);*/
-			float aux=(CenterView-partyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
+			float aux = (CenterView - partyPos[i]).Normalized().X / Parent.Scale.Normalized().Y;
 
 			//float aux=AuxCenterView/AuxScale;
-			if(aux<0){
+			if (aux < 0)
+			{
 				//Debug.WriteLine("Flipped: "+AuxCenterView+","+AuxScale);
-				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
-				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
+				Parent.Rotation += Mathf.Pi * Parent.Scale.Y / Mathf.Abs(Parent.Scale.Y);
+				Parent.Scale = new Vector2(Parent.Scale.X, Parent.Scale.Y * -1);
 			}
-			SetScale(HPBar,aux,Parent);
-			SetScale(WPBar,aux,Parent);
-			SetScale(StatMods,aux,Parent);
+			SetScale(HPBar, aux, Parent);
+			SetScale(WPBar, aux, Parent);
+			SetScale(StatMods, aux, Parent);
 
-			MoveCharacters(tween,Party[i],partyPos[i],(float)PositionMoveSpeed);
+			MoveCharacters(tween, Party[i], partyPos[i], (float)PositionMoveSpeed);
 		}
 
-		for(int i=0;i<EnemyParty.Count;i++){
-			Node2D Parent=EnemyParty[i].GetParent<Node2D>();
+		for (int i = 0; i < EnemyParty.Count; i++)
+		{
+			Node2D Parent = EnemyParty[i].GetParent<Node2D>();
 			ProgressBar HPBar = EnemyParty[i].HPBar;
 			HBoxContainer StatMods = EnemyParty[i].StatMods;
 			//float aux=(CenterView-enemyPos[i]).Normalized().X/Parent.Scale.Normalized().Y;
-			float AuxCenterView = (CenterView.X-enemyPos[i].X)/Mathf.Abs(CenterView.X-enemyPos[i].X);
-			float AuxScale = Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
-			float aux=AuxCenterView/AuxScale;
+			float AuxCenterView = (CenterView.X - enemyPos[i].X) / Mathf.Abs(CenterView.X - enemyPos[i].X);
+			float AuxScale = Parent.Scale.Y / Mathf.Abs(Parent.Scale.Y);
+			float aux = AuxCenterView / AuxScale;
 
-			Debug.WriteLine("Centerview: "+CenterView+" AuxView: "+AuxCenterView+" AuxScale: "+AuxScale+" Aux: "+aux);
+			Debug.WriteLine("Centerview: " + CenterView + " AuxView: " + AuxCenterView + " AuxScale: " + AuxScale + " Aux: " + aux);
 
-			if(aux<0){
-				Parent.Rotation+=Mathf.Pi*Parent.Scale.Y/Mathf.Abs(Parent.Scale.Y);
-				Parent.Scale=new Vector2(Parent.Scale.X,Parent.Scale.Y*-1);
-				}
-			SetScale(HPBar,aux,Parent);
-			SetScale(StatMods,aux,Parent);
-			MoveCharacters(tween,EnemyParty[i],enemyPos[i],(float)PositionMoveSpeed);
+			if (aux < 0)
+			{
+				Parent.Rotation += Mathf.Pi * Parent.Scale.Y / Mathf.Abs(Parent.Scale.Y);
+				Parent.Scale = new Vector2(Parent.Scale.X, Parent.Scale.Y * -1);
+			}
+			SetScale(HPBar, aux, Parent);
+			SetScale(StatMods, aux, Parent);
+			MoveCharacters(tween, EnemyParty[i], enemyPos[i], (float)PositionMoveSpeed);
 		}
 
-		tween.Finished+=EndTurn;
-		
+		tween.Finished += EndTurn;
+
 		tween.Finished += tween.Kill;
-		
-		void SetScale(Control Bar, float aux, Node2D Parent){
+
+		void SetScale(Control Bar, float aux, Node2D Parent)
+		{
 			Node2D control = Bar.GetParent<Node2D>();
-			if(Parent.Rotation!=0){
-				control.Rotation=Parent.GlobalRotation;
-				control.Scale=Parent.GlobalScale;
+			if (Parent.Rotation != 0)
+			{
+				control.Rotation = Parent.GlobalRotation;
+				control.Scale = Parent.GlobalScale;
 			}
-			else{
+			else
+			{
 				control.Rotation = 0;
-				control.Scale = new Vector2(1,1);
-				if(Parent.Rotation<0){
-					control.Position = new Vector2(Mathf.Abs(control.Position.X),control.Position.Y);
+				control.Scale = new Vector2(1, 1);
+				if (Parent.Rotation < 0)
+				{
+					control.Position = new Vector2(Mathf.Abs(control.Position.X), control.Position.Y);
 				}
-				else{
-					control.Position = new Vector2(-Mathf.Abs(control.Position.X),control.Position.Y);
+				else
+				{
+					control.Position = new Vector2(-Mathf.Abs(control.Position.X), control.Position.Y);
 				}
-				
+
 			}
 		}
 	}
@@ -214,6 +273,7 @@ public partial class BattleManager : Node
 		for(int i =0;i<Order.Count();i++){
 			TurnOrder.Add(Order.ElementAt(i));
 		}
+		SetCharacterButtonNav();
 		StartRound();
 	}
 	void StartRound(){

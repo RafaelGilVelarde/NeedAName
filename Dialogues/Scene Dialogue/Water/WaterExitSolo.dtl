@@ -1,6 +1,6 @@
-"No Box": I sense a rumbling past this area
-"No Box": You won't be able to come back once you enter
-if {Event.Comp1} == true:
+"No Box-Dark": I sense a rumbling past this area
+"No Box-Dark": You won't be able to come back once you enter
+if {GameManager.Data.Flags.EventFlags[9]} == true:
 	Halluci (Normal): Home approaches
 	MC (Wondering): So this is where you want to go?
 	[clear time="0.0"]
@@ -13,7 +13,7 @@ if {Event.Comp1} == true:
 		[signal arg="Bool_3_1_1"]
 		MC (Happy): Ok then, guess we're going
 		Halluci (Happiness): ....Thanks
-elif {Event.Comp2} == true:
+elif {GameManager.Data.Flags.EventFlags[10]} == true:
 	Blobfish (Wondering): We are soooo clooose
 	MC (Wondering): Shall we?
 	[clear time="0.0"]

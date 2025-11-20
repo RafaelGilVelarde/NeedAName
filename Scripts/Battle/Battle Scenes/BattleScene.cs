@@ -22,6 +22,7 @@ public partial class BattleScene : Resource
     [Export] public float EscapeChance = 100;
     [Export] public bool Horizontal, Cutscene;
     [Export] public Array<float> PartyFloorY, EnemyFloorY;
+    [Export] protected int BattleMusic = -1;
     protected CutscenePlayer CutsceneAnimator;
     public virtual void StartBattleEffect()
     {
@@ -39,6 +40,10 @@ public partial class BattleScene : Resource
             endPostBattle = new Callable(this, MethodName.EndPostBattle);
             Dialog?.DialogicRoot?.Connect("signal_event", beginCutscene);
             Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);
+        }
+        if (BattleMusic> -1)
+        {
+            GameManager.Instance.PlayAudio(BattleMusic);
         }
     }
     public virtual void StartRoundEffect()
@@ -111,6 +116,7 @@ public partial class BattleScene : Resource
             Enemy.Character.stats.HP = Enemy.Character.TotalStats.MaxHP;
             Enemy.Character.status = Character.Status.Normal;
         }
+        GameManager.Instance.PlayAudio(Scene.CurrentScene.BGMIndex);
         switch (State)
         {
             case BattleState.Win:
@@ -216,7 +222,6 @@ public partial class BattleScene : Resource
             }
         }
         Vector2 Result = new Vector2((xMin + xMax) / 2, (yMin + yMax) / 2);
-        Debug.WriteLine("View: " + Result);
         return Result;
     }
 
@@ -262,8 +267,8 @@ public partial class BattleScene : Resource
             for (int j = 0; j < Battle.Party.Count; j++)
             {
                 PartyCharacters PartyCharacter = (PartyCharacters)Battle.Party[j].Character;
-                int EXPAwarded = (int)(EnemyCharacter.stats.Lv * ExpYield * Mathf.Pow(2, EnemyCharacter.stats.Lv / PartyCharacter.stats.Lv) / Battle.Party.Count);
-                EXP[j] += EXPAwarded;
+                int EXPAwarded = (int)(EnemyCharacter.stats.Lv * ExpYield * Mathf.Pow(2, Mathf.Clamp(EnemyCharacter.stats.Lv / PartyCharacter.stats.Lv,1,Mathf.Inf)));
+                EXP[j] += (int)Mathf.Clamp(EXPAwarded,1,Mathf.Inf);
             }
         }
         for (int i = 0; i < Battle.Party.Count; i++)
@@ -271,7 +276,7 @@ public partial class BattleScene : Resource
             PartyCharacters PartyCharacter = (PartyCharacters)Battle.Party[i].Character;
             PartyCharacterBase CharBase = (PartyCharacterBase)Battle.Party[i].Character.Base;
             int Level = PartyCharacter.stats.Lv;
-            Battle.Party[i].ShowEXPBar(PartyCharacter.Exp, PartyCharacter.Exp + EXP[i], CharBase.ExpForLevel[Level] - CharBase.ExpForLevel[Level - 1], Level);
+            Battle.Party[i].ShowEXPBar(PartyCharacter.Exp, PartyCharacter.Exp + EXP[i], CharBase.ExpForLevel[Level - 1], Level);
             PartyCharacter.GainExp(EXP[i]);
         }
     }

@@ -42,7 +42,7 @@ public partial class DumyBeamMove : MoveBase
 			Ray.AddException(Targets[0].WPbox);
 		}
 		Ray.AddToGroup(Tag);
-		Users[0]._Shoot+=ShootSetup;
+		Users[0]._Shoot+=shoot;
 		Ray._Hit+=onHit;
         Ray._Block+=blocked;
 		Ray.Attacking=Users[0];
@@ -56,29 +56,30 @@ public partial class DumyBeamMove : MoveBase
 		}
 		void ShootSetup(BattleCharacter User)
 		{
-			User._Shoot -= ShootSetup;
+			Debug.WriteLine($"Controlled: {User.Character.isControlledByPlayer}");
 			if (User.Character.isControlledByPlayer)
 			{
-				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.1, true, true, true);
+				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.3, true, true, true);
 				User.Character.ShowTextLabel($"{User.Character.Key}", User.Character.Base.TextEffectColor);
 				User._DoAction += ManualShoot;
+				User.changeState(BattleCharacter.BattleState.Attacking);
 				Timer.Timeout += () =>
 				{
+					Debug.WriteLine("Shoot");
+					User.changeState(BattleCharacter.BattleState.Idle);
 					if (Success)
 					{
 						User.StatMultiplier[2] += AtkMultiplier;
 						User.Character.ChangeWP(WP);
+						User.changeCombo(2);
 					}
 					else
 					{
 						User._DoAction -= ManualShoot;
+						User.changeAction(BattleCharacter.ActionState.isAttacking);
 					}
-					shoot(User);
+					//shoot(User);
 				};
-			}
-			else
-			{
-				shoot(User);
 			}
 		}
 		void ManualShoot()
@@ -88,6 +89,7 @@ public partial class DumyBeamMove : MoveBase
 		}
 		void shoot(BattleCharacter User)
 		{
+			Users[0]._Shoot-=shoot;
 			Line.GlobalPosition=User.ShootNode.GlobalPosition;
 			Line.ClearPoints();
 			Line.AddPoint(Vector2.Zero);
@@ -96,16 +98,34 @@ public partial class DumyBeamMove : MoveBase
 		}
 
 		//timer.TweenInterval(MoveTime);
+				BattleScene CurrentScene = BattleManager.instance.Scene;
+
 		Vector2 TargetPosition = Targets[0].Hurtbox.GetChild<CollisionShape2D>(0).GlobalPosition-Users[0].BattleOffset;
+		if (CurrentScene.Horizontal)
+		{
+			float FloorOffset = CurrentScene.EnemyFloorY[Targets[0].PosIndex] - CurrentScene.PartyFloorY[Users[0].PosIndex];
+			TargetPosition = new Vector2(TargetPosition.X, Users[0].GlobalPosition.Y + FloorOffset);
+		}
 
 		Tween tween = Users[0].CreateTween();
 		tween.TweenCallback(Callable.From(()=>Targets[0].changeState(BattleCharacter.BattleState.Defending)));
 		tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition+offset*-Dir,1/Speed);
 		tween.TweenInterval(0.5);
-		tween.TweenCallback(Callable.From(()=>Users[0].changeAction(BattleCharacter.ActionState.isAttacking)));
+		if(!Users[0].Character.isControlledByPlayer)
+		{
+			tween.TweenCallback(Callable.From(()=>Users[0].changeAction(BattleCharacter.ActionState.isAttacking)));			
+		}
 
 
-		tween.Finished+=tween.Kill;
+		tween.Finished += () =>
+		{
+			if (Users[0].Character.isControlledByPlayer)
+			{
+				Debug.WriteLine("EARSDgzvcx");
+				ShootSetup(Users[0]);
+			}
+			tween.Kill();
+		};
         MainTimer.Timeout += ()=>{Users[0].StatMultiplier[2] = Mult;};
 
 		//timer.Finished+=End;

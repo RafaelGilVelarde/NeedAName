@@ -7,28 +7,22 @@ using System.Diagnostics;
 public partial class PartyCharacters : Character
 {
 	[Export] public int Exp { get; private set; }
-	[Export] public int NextLevelExp { get; private set; }
+	[Export] public int NextLevelExp;
 	[Export] public int PastLevelExp { get; private set; }
 
-	public void ChangeKey(String Action, InputEvent Event)
-	{
-		InputMap.EraseAction(Action);
-		InputMap.ActionAddEvent(Action, Event);
-	}
 	public void GainExp(int GainedExp)
 	{
 		if(stats.Lv<100){
 			Exp += GainedExp;
 			Debug.WriteLine(Base.Name+":"+"EXP Gained: " + GainedExp + " NextLVEXP: " + NextLevelExp);
 			Debug.WriteLine(Base.Name+":"+"Current EXP: " + Exp);
-			if (Exp > NextLevelExp)
+			if (Exp >= NextLevelExp)
 			{
 				LevelUp();
 				SetTotalStats();
 			}
 		}
 	}
-
 	public void LevelUp()
 	{
 		PastLevelExp = NextLevelExp;

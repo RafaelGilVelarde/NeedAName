@@ -143,7 +143,13 @@ public partial class SpinSpamMove : MoveBase
                 MoveEnded = true;
                 AttackAvailable = false;
                 Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",true);
-                Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);
+                
+                SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,false);
+                AnimEndTimer.Timeout += () =>
+                {
+                    Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);                
+                };
+
                 Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Windup",false);
                 Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Hit",false);
 

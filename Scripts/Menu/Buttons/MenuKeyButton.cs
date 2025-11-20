@@ -7,7 +7,8 @@ public partial class MenuKeyButton : Node
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
-        if (@event.IsPressed()){
+        if (@event.IsPressed())
+        {
             Screen.ChangeKey(@event);
         }
     }

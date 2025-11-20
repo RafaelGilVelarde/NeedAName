@@ -70,10 +70,14 @@ size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_cqcim"]
 script = ExtResource("4_7sqs1")
+WinTimeline = "Win"
+PostBattleTimeline = ""
 EscapeChance = 100.0
 Horizontal = false
+Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
+BattleMusic = 1
 
 [sub_resource type="Resource" id="Resource_2lpbm"]
 resource_local_to_scene = true
@@ -136,6 +140,7 @@ MoveTime = 3.0
 resource_local_to_scene = true
 script = ExtResource("9_ltwbp")
 Base = SubResource("Resource_44g3j")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_m514q"]
 script = ExtResource("4_1bhow")
@@ -163,6 +168,7 @@ WP = 0
 
 [sub_resource type="Resource" id="Resource_3kofi"]
 script = ExtResource("8_r8twf")
+Name = ""
 Base = SubResource("Resource_bvhfa")
 Moves = Array[Object]([SubResource("Resource_01p4i")])
 items = Array[Object]([])
@@ -221,6 +227,7 @@ MoveTime = 2.0
 [sub_resource type="Resource" id="Resource_7ebqa"]
 script = ExtResource("9_ltwbp")
 Base = SubResource("Resource_woo47")
+Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_0ckdn"]
 script = ExtResource("4_1bhow")
@@ -237,6 +244,7 @@ WP = 0
 [sub_resource type="Resource" id="Resource_p2e0b"]
 resource_local_to_scene = true
 script = ExtResource("8_r8twf")
+Name = ""
 Base = SubResource("Resource_m1uvd")
 Moves = Array[Object]([SubResource("Resource_7ebqa")])
 items = Array[Object]([])
@@ -579,6 +587,7 @@ max_value = 50.0
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
+visible = false
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0

@@ -64,10 +64,15 @@ public partial class PlayerController : OverworldController
 			AxisAux = Axis;
 			if(Axis.X*Axis.Y!=0){
 				AxisAux = new Vector2(Axis.X,0);
-			}	
-			Coords = (Vector2I)(DataMap?.LocalToMap(Parent.GlobalPosition-(AxisAux*TileOffset)));
-			TileData Data= DataMap?.GetCellTileData(0, Coords);
-			Vector2 SceneCoords = DataMap.MapToLocal(Coords);
+			}
+			TileData Data = null;
+			Vector2 SceneCoords = new Vector2();
+			if (DataMap != null)
+			{
+				Coords = (Vector2I)(DataMap?.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset)));
+				Data = DataMap?.GetCellTileData(0, Coords);
+				SceneCoords = DataMap.MapToLocal(Coords);
+			}
 			if(Data!=null){
 				PreviousTileType = tileTypes;
 				tileTypes = (TileTypes)(int)Data.GetCustomData("TileType");
@@ -84,7 +89,10 @@ public partial class PlayerController : OverworldController
 						{
 							Parent.Position = SceneCoords;
 						}
-						Axis = (Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");
+						if (DataMap != null)
+						{
+							Axis = (Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");							
+						}
 						break;
 				}		
 				RecordAxis();	
@@ -183,12 +191,17 @@ public partial class PlayerController : OverworldController
 	public void FollowLeader(bool follow){
 		AnimatorTree.Set("parameters/conditions/Idle",!follow);
 		AnimatorTree.Set("parameters/conditions/Walking",follow);
-		if(follow){
-			Axis=Controller.AxisList[AxisOffset];
-			Parent.Position=Controller.PositionList[AxisOffset];
+		if (follow)
+		{
+			Axis = Controller.AxisList[AxisOffset];
+			Parent.Position = Controller.PositionList[AxisOffset];
+			Parent.ZIndex = Controller.ZIndexList[AxisOffset];
+			Parent.CollisionLayer = Controller.CLayerList[AxisOffset];
+			Parent.CollisionMask = Controller.CMaskList[AxisOffset];
 		}
-		else{
-			Axis=Vector2.Zero;
+		else
+		{
+			Axis = Vector2.Zero;
 		}
 		/*if(Controller.PositionList[PositionList.Count-2]==Controller.PositionList[PositionList.Count-1]){
 			Axis=Vector2.Zero;
@@ -204,13 +217,22 @@ public partial class PlayerController : OverworldController
 			PositionList.Add(GlobalPosition);
 			//AuxPositionList=PositionList;
 			AxisList.RemoveAt(0);
-			AxisList.Add(Axis);		
+			AxisList.Add(Axis);
+			RecordLayers();
 			EmitSignal("_Follow",true);
 		}
 		else{
 			EmitSignal("_Follow",false);
 		}
-		
+	}
+	void RecordLayers()
+	{
+		CLayerList.RemoveAt(0);
+		CLayerList.Add(Parent.CollisionLayer);
+		CMaskList.RemoveAt(0);
+		CMaskList.Add(Parent.CollisionMask);
+		ZIndexList.RemoveAt(0);
+		ZIndexList.Add(Parent.ZIndex);
 	}
 	void ClearAxis(){
 		if(Controller!=null){

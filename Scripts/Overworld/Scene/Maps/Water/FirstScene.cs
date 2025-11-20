@@ -22,6 +22,7 @@ public partial class FirstScene : Scene
         DialogicCSharp DialogicInstance = DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended",EndDialogueCall);
         GameManager.Instance.Data.Flags.EventFlags[EventFlag] = true;
+        GameManager.Instance.PlayAudio(BGMIndex);
         GameManager.Instance.controller.SetControllable(true);
     }
 }

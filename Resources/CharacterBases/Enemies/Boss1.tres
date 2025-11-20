@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EnemyCharacterBase" load_steps=5 format=3 uid="uid://bj4l2qn2leh4c"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_xeqld"]
+[ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="2_h1ioe"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="3_6kelj"]
+
+[sub_resource type="Resource" id="Resource_l1thn"]
+script = ExtResource("1_xeqld")
+Lv = 1
+MaxHP = 40
+HP = 10
+Atk = 2
+Def = 3
+SpAtk = 2
+SpDef = 1
+Speed = 3
+WP = 0
+
+[resource]
+script = ExtResource("3_6kelj")
+ExpYield = 5.0
+BaseStats = SubResource("Resource_l1thn")
+Name = "Edicary"
+OverworldAnimator = ExtResource("2_h1ioe")
+BattleAnimator = ExtResource("2_h1ioe")
+TextEffectColor = Color(1, 0.0509804, 0, 1)
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 48)
+MoveSFX = null
+HitSFX = null

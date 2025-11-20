@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 enum StartMenuState
 {
@@ -40,12 +41,13 @@ public partial class StartMenu : Node
         Timer.Timeout += () =>
         {
             Game = GameManager.Instance;
-            Flags flags = Game.Saves[Game.CurrentSave].Flags;
+            Flags flags = Game.Data.Flags;
+            Debug.WriteLine(Game.Data.Party[0].Name);
             if (flags.EventFlags[0])
             {
                 MainSprite.Show();
             }
-            PlayerName.Text = $"[center]{Game.Saves[Game.CurrentSave].Party[0].Name}[/center]";
+            PlayerName.Text = $"[center]{Game.Data.Party[0].Name}[/center]";
             Game.PlayTransition( Color.Color8(0,0,0,0));
             Game.TransitionTween.Finished+=Setup;
         };
@@ -95,6 +97,7 @@ public partial class StartMenu : Node
         SavesList.Hide();
         Start.Show();
         Continue.Show();
+        Continue.GrabFocus();
     }
 
 }

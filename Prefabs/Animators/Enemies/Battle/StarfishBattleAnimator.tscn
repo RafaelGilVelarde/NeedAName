@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://cp3deo572pc5j"]
+[gd_scene load_steps=38 format=3 uid="uid://cp3deo572pc5j"]
 
 [ext_resource type="AnimationLibrary" uid="uid://w7gynme7xycl" path="res://Animations/Battle/StarfishFight.res" id="1_q3tsi"]
 
@@ -129,41 +129,73 @@ states/StarfishFight_Attack1_Start/position = Vector2(293, 100)
 states/Start/position = Vector2(95, 100)
 transitions = ["Start", "StarfishFight_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_8dsd1"), "StarfishFight_Attack1", "StarfishFight_Attack1_End", SubResource("AnimationNodeStateMachineTransition_n3olu"), "StarfishFight_Attack1_Start", "StarfishFight_Attack1", SubResource("AnimationNodeStateMachineTransition_j5ekg")]
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_egk0c"]
-animation = &"StarfishFight/Attack2"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mt58q"]
+animation = &"StarfishFight/Attack1"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2pbw1"]
-animation = &"StarfishFight/Attack2_End"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1e84y"]
+animation = &"StarfishFight/Attack1_End"
 
-[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hv7gh"]
-animation = &"StarfishFight/Attack2_Start"
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_nnnah"]
+animation = &"StarfishFight/Attack1_Start"
 
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_7acgh"]
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_s7p4l"]
-switch_mode = 2
-advance_mode = 2
-
-[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_33w4f"]
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g46xn"]
 advance_mode = 2
 advance_condition = &"MoveEnded"
 
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_tcxrt"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_nnnpc"]
+advance_mode = 2
+
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_mwwpb"]
 states/End/position = Vector2(1091, 93)
-states/StarfishFight_Attack2/node = SubResource("AnimationNodeAnimation_egk0c")
-states/StarfishFight_Attack2/position = Vector2(589, 93)
-states/StarfishFight_Attack2_End/node = SubResource("AnimationNodeAnimation_2pbw1")
-states/StarfishFight_Attack2_End/position = Vector2(849, 93)
-states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_hv7gh")
-states/StarfishFight_Attack2_Start/position = Vector2(360, 93)
-transitions = ["Start", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_7acgh"), "StarfishFight_Attack2_Start", "StarfishFight_Attack2", SubResource("AnimationNodeStateMachineTransition_s7p4l"), "StarfishFight_Attack2", "StarfishFight_Attack2_End", SubResource("AnimationNodeStateMachineTransition_33w4f")]
+states/StarfishFight_Attack1/node = SubResource("AnimationNodeAnimation_mt58q")
+states/StarfishFight_Attack1/position = Vector2(594, 106)
+states/StarfishFight_Attack1_End/node = SubResource("AnimationNodeAnimation_1e84y")
+states/StarfishFight_Attack1_End/position = Vector2(802, 106)
+states/StarfishFight_Attack1_Start/node = SubResource("AnimationNodeAnimation_nnnah")
+states/StarfishFight_Attack1_Start/position = Vector2(374, 98)
+transitions = ["StarfishFight_Attack1", "StarfishFight_Attack1_End", SubResource("AnimationNodeStateMachineTransition_g46xn"), "StarfishFight_Attack1_Start", "StarfishFight_Attack1", SubResource("AnimationNodeStateMachineTransition_tcxrt"), "Start", "StarfishFight_Attack1_Start", SubResource("AnimationNodeStateMachineTransition_nnnpc")]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_bl83c"]
+animation = &"StarfishFight/Attack2"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_jqd1x"]
+animation = &"StarfishFight/Attack2_End"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_lrdxm"]
+animation = &"StarfishFight/Attack2_Start"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_x63ik"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_6p33v"]
+switch_mode = 2
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_g66dy"]
+advance_mode = 2
+advance_condition = &"MoveEnded"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_n4mar"]
+states/StarfishFight_Attack2/node = SubResource("AnimationNodeAnimation_bl83c")
+states/StarfishFight_Attack2/position = Vector2(522, 100)
+states/StarfishFight_Attack2_End/node = SubResource("AnimationNodeAnimation_jqd1x")
+states/StarfishFight_Attack2_End/position = Vector2(743, 100)
+states/StarfishFight_Attack2_Start/node = SubResource("AnimationNodeAnimation_lrdxm")
+states/StarfishFight_Attack2_Start/position = Vector2(300, 100)
+states/Start/position = Vector2(86, 100)
+transitions = ["Start", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_x63ik"), "StarfishFight_Attack2_Start", "StarfishFight_Attack2", SubResource("AnimationNodeStateMachineTransition_6p33v"), "StarfishFight_Attack2", "StarfishFight_Attack2_End", SubResource("AnimationNodeStateMachineTransition_g66dy")]
 
 [sub_resource type="AnimationNodeBlendSpace1D" id="AnimationNodeBlendSpace1D_snlp8"]
 blend_point_0/node = SubResource("AnimationNodeStateMachine_4vyu5")
-blend_point_0/pos = 1.0
+blend_point_0/pos = 0.0
 blend_point_1/node = SubResource("AnimationNodeStateMachine_mwwpb")
-blend_point_1/pos = 2.0
+blend_point_1/pos = 1.0
+blend_point_2/node = SubResource("AnimationNodeStateMachine_n4mar")
+blend_point_2/pos = 2.0
 min_space = 0.0
 max_space = 3.0
 blend_mode = 1
@@ -247,3 +279,4 @@ parameters/ActionState/0/blend_position = 0
 parameters/ActionState/0/0/blend_position = 0
 parameters/ActionState/0/0/0/conditions/MoveEnded = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false
+parameters/ActionState/0/0/2/conditions/MoveEnded = false

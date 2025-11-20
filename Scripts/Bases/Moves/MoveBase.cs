@@ -103,12 +103,12 @@ public partial class MoveBase : Resource
             {
                 case Type.Physical:
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk * Power * Users.StatMultiplier[0] - Targets.Character.TotalStats.Def * Targets.StatMultiplier[1]) * -1;
-                    Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, 0);
+                    Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, -1);
                     Targets.Character.ChangeHP(Calc);
                     break;
                 case Type.Special:
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk * Power * Users.StatMultiplier[2] - Targets.Character.TotalStats.SpDef * Targets.StatMultiplier[3]) * -1;
-                    Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, 0);
+                    Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, -1);
                     Targets.Character.ChangeHP(Calc);
                     break;
                 case Type.Recovery:
@@ -127,7 +127,7 @@ public partial class MoveBase : Resource
                     Targets.Character.ChangeHP(0);
                     break;
                 case Type.Recovery:
-                    Targets.Character.ChangeHP(Mathf.RoundToInt(0));
+                    Targets.Character.ChangeHP(0);
                     break;
             }
             Targets.Character.ChangeWP(WP);

@@ -1,6 +1,9 @@
 using Godot;
 using Godot.Collections;
+using GodotPlugins.Game;
+using MonoCustomResourceRegistry;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Threading;
@@ -8,9 +11,9 @@ using System.Threading;
 public partial class GameManager : Node
 {
 	[Export] public string SavePath;
-	[Export]public Array<DataManager> Saves;
-	[Export] public int CurrentSave = 0;
+	[Export] public Array<DataManager> Saves;
 	[Export] public DataManager Data;
+	[Export] public MainSettings Settings;
 	[Export] DataManager InitialData;
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
@@ -24,13 +27,17 @@ public partial class GameManager : Node
 	[Export] TextureRect TransitionOverlay;
 	[Export] Color TransitionColor;
 	[Export] float TransitionTime = 0.4f;
+	[Export] public AudioStreamPlayer MainAudio;
+	[Export] public Array<AudioStream> BGMs;
+
+	[Export] int CurrentBGM = -1;
 	public static GameManager Instance;
 
 	[Export] public PlayerController controller;
 
 	Vector2 PositionToMove;
 	public Tween TransitionTween;
-	
+
 
 
 	public override void _Ready()
@@ -44,36 +51,32 @@ public partial class GameManager : Node
 		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
 		DisplaySaves();
 		Debug.WriteLine(Saves.Count);
-		for (int i = 0; i < Saves.Count; i++)
+
+		for (int i = 0; i < InitialData.Party.Count; i++)
 		{
-			if (Saves[i] != null)
-			{
-				if (Saves[i].Latest)
-				{
-					CurrentSave = i;
-				}
-			}
+			((PartyCharacterBase)InitialData.Party[i].Base).SetEXPLevels();
+			InitialData.Party[i].NextLevelExp = ((PartyCharacterBase)InitialData.Party[i].Base).ExpForLevel[InitialData.Party[i].stats.Lv - 1];
 		}
 		if (GetTree().CurrentScene.Name != "MainMenu")
 		{
 			InstantiateCharacters();
 		}
+	}
+	public void LoadFirstScene()
+	{
+		Data = (DataManager)InitialData.Duplicate();
+		InstantiateCharacters();
+		CallDeferred("SwitchScene", 0, 0, 0, TransitionColor);
+	}
+	void InstantiateCharacters()
+	{
 		for (int i = 0; i < Data.Party.Count; i++)
 		{
-			((PartyCharacterBase)Data.Party[i].Base).SetEXPLevels();
-		}
-	}
-	public void LoadFirstScene(){
-		InstantiateCharacters();
-		Data = (DataManager) InitialData.Duplicate();
-		CallDeferred("SwitchScene",0,0, 0,TransitionColor);
-	}
-	void InstantiateCharacters(){
-		for(int i=0;i<Data.Party.Count;i++){
-			PartyCharacters aux=Data.Party[i];
-			if(aux.Active){
-				Characters.Add((PlayerController)AddCharacters(aux,0));
-				Followers.Add(Characters[Characters.Count-1]);
+			PartyCharacters aux = Data.Party[i];
+			if (aux.Active)
+			{
+				Characters.Add((PlayerController)AddCharacters(aux, 0));
+				Followers.Add(Characters[Characters.Count - 1]);
 				int FollowerCount = Followers.Count - 1;
 				Characters[Characters.Count - 1].Parent.Name = $"Party {((PartyCharacterBase)aux.Base).PartyId}";
 				Characters[Characters.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
@@ -83,11 +86,13 @@ public partial class GameManager : Node
 				}
 			}
 		}
-		for(int i=0;i<Data.CurrentFollowers.Count;i++){
-			Character aux=Data.CurrentFollowers[i];
-			if(aux.Active){
-				Followers.Add((PlayerController)AddCharacters(aux,0));
-				Followers[Followers.Count-1].Parent.Name = $"Follower {i}";
+		for (int i = 0; i < Data.CurrentFollowers.Count; i++)
+		{
+			Character aux = Data.CurrentFollowers[i];
+			if (aux.Active)
+			{
+				Followers.Add((PlayerController)AddCharacters(aux, 0));
+				Followers[Followers.Count - 1].Parent.Name = $"Follower {i}";
 				Followers[Followers.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
 				int FollowerCount = Followers.Count - 1;
 				if (i > 0)
@@ -96,51 +101,66 @@ public partial class GameManager : Node
 				}
 			}
 		}
-		SetLayers(Data.GraphicsLayer,Data.CollisionLayer, Data.CollisionMask);
-		ChangeLeader(Characters[0],Characters[0]);
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			Characters[i].SetLayers(Data.GraphicsLayer, Data.CollisionLayer, Data.CollisionMask);
+		}
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			Followers[i].SetLayers(Data.GraphicsLayer, Data.CollisionLayer, Data.CollisionMask);
+
+		}
+		ChangeLeader(Characters[0], Characters[0]);
 	}
-	public void AddFollowingCharacter(PlayerController A, bool NPC){
+	public void AddFollowingCharacter(PlayerController A, bool NPC)
+	{
 		A.OverworldCollider.Disabled = true;
 		Tween tween = CreateTween();
-		tween.TweenProperty(A.Parent,"position",controller.GlobalPosition,0.2f);
-		tween.Finished+=()=>{
+		tween.TweenProperty(A.Parent, "position", controller.GlobalPosition, 0.2f);
+		tween.Finished += () =>
+		{
 			Followers.Add(A);
-			A.AxisOffset = (Followers.Count-1)*3;
-			if(!NPC){
+			A.AxisOffset = (Followers.Count - 1) * 3;
+			if (!NPC)
+			{
 				Characters.Add(A);
 				//A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
 				((PartyCharacters)A.BattleCharacter.Character).Active = true;
 			}
-			controller._Follow+=A.FollowLeader;
+			controller._Follow += A.FollowLeader;
 		};
-		tween.Finished+=tween.Kill;
+		tween.Finished += tween.Kill;
 		//A.Parent.Position = controller.GlobalPosition;
 	}
-	public void RemoveFollowingCharacter(PlayerController A, bool NPC){
+	public void RemoveFollowingCharacter(PlayerController A, bool NPC)
+	{
 		Debug.WriteLine("Removing");
 		A.OverworldCollider.Disabled = true;
 		Tween tween = CreateTween();
-		tween.TweenProperty(A.Parent,"modulate:a",0,0.2f);
-		tween.Finished+=()=>{
+		tween.TweenProperty(A.Parent, "modulate:a", 0, 0.2f);
+		tween.Finished += () =>
+		{
 			Followers.Remove(A);
-			if(!NPC){
+			if (!NPC)
+			{
 				Characters.Remove(A);
 				//A.AxisOffset = (Data.Party.IndexOf((PartyCharacters)A.BattleCharacter.Character)-1)*3;
 				((PartyCharacters)A.BattleCharacter.Character).Active = false;
 			}
-			controller._Follow-=A.FollowLeader;
+			controller._Follow -= A.FollowLeader;
 			A.Parent.QueueFree();
 			Debug.WriteLine("Deleted");
 		};
-		tween.Finished+=tween.Kill;
+		tween.Finished += tween.Kill;
 		//A.Parent.Position = controller.GlobalPosition;
 	}
-	public void ChangeLeader(PlayerController A, PlayerController B){
-		A.Leader=false;
-		B.Leader=true;
+	public void ChangeLeader(PlayerController A, PlayerController B)
+	{
+		A.Leader = false;
+		B.Leader = true;
 		Leader = B;
-		A.OverworldCollider.Disabled=false;
-		controller=B;
+		A.OverworldCollider.Disabled = false;
+		controller = B;
 		B.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = false;
 		for (int i = 0; i < Characters.Count; i++)
 		{
@@ -153,124 +173,146 @@ public partial class GameManager : Node
 				B._Follow += Characters[i].FollowLeader;
 			}
 		}
-		for(int i=0;i<Followers.Count;i++){
-			if(Followers[i]!=A){
-				A._Follow-=Followers[i].FollowLeader;
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			if (Followers[i] != A)
+			{
+				A._Follow -= Followers[i].FollowLeader;
 			}
-			if(Characters[i]!=B){
-				B._Follow+=Followers[i].FollowLeader;
+			if (Characters[i] != B)
+			{
+				B._Follow += Followers[i].FollowLeader;
 			}
 		}
 	}
 
-	public void BattleStart(){
-		for(int i=0;i<Characters.Count;i++){
+	public void BattleStart()
+	{
+		for (int i = 0; i < Characters.Count; i++)
+		{
 			Characters[i].BattleStart();
 		}
 	}
-	public void ChangeCam(Vector2 CamPosition, bool BattleStart,float duration){
-		Tween tween=CreateTween();
+	public void ChangeCam(Vector2 CamPosition, bool BattleStart, float duration)
+	{
+		Tween tween = CreateTween();
 		Camera2D cam;
-		if(BattleStart){
-			BattleCam.PositionSmoothingEnabled=false;
-			BattleCam.Position=OverworldCam.GetScreenCenterPosition();
-			cam=BattleCam;
-			OverworldCam.Enabled=false;
-			BattleCam.Enabled=true;			
-			BattleCam.PositionSmoothingEnabled=true;
+		if (BattleStart)
+		{
+			BattleCam.PositionSmoothingEnabled = false;
+			BattleCam.Position = OverworldCam.GetScreenCenterPosition();
+			cam = BattleCam;
+			OverworldCam.Enabled = false;
+			BattleCam.Enabled = true;
+			BattleCam.PositionSmoothingEnabled = true;
 		}
-		else{
-			OverworldCam.PositionSmoothingEnabled=false;
-			OverworldCam.GlobalPosition=BattleCam.GetScreenCenterPosition();
-			cam=OverworldCam;
-			BattleCam.Enabled=false;
-			OverworldCam.Enabled=true;	
-			OverworldCam.PositionSmoothingEnabled=true;
+		else
+		{
+			OverworldCam.PositionSmoothingEnabled = false;
+			OverworldCam.GlobalPosition = BattleCam.GetScreenCenterPosition();
+			cam = OverworldCam;
+			BattleCam.Enabled = false;
+			OverworldCam.Enabled = true;
+			OverworldCam.PositionSmoothingEnabled = true;
 		}
-		tween.TweenProperty(cam,"position",CamPosition,duration);
-		tween.Finished+=tween.Kill;
-		
+		tween.TweenProperty(cam, "position", CamPosition, duration);
+		tween.Finished += tween.Kill;
+
 	}
-	void AssignCharacterCamera(Node2D Character){
+	void AssignCharacterCamera(Node2D Character)
+	{
 		OverworldCam.GetParent().RemoveChild(OverworldCam);
 		Character.AddChild(OverworldCam);
 	}
-	void AssignBattleCamera(Node Scene){
+	void AssignBattleCamera(Node Scene)
+	{
 		BattleCam.GetParent().RemoveChild(BattleCam);
 		Scene.AddChild(BattleCam);
 	}
-	public OverworldController AddCharacters(Character character, int  prefab){
-			OverworldController Overworld=new OverworldController();
-			Node Prefab=CharacterPrefabs[prefab].Instantiate<Node>();
-			Overworld=Prefab.GetNode<OverworldController>("./OverworldController");
-			Overworld.BattleCharacter.Character= character;
-			character.SetStats();
-			Overworld.SetAnimators();
+	public OverworldController AddCharacters(Character character, int prefab)
+	{
+		OverworldController Overworld = new OverworldController();
+		Node Prefab = CharacterPrefabs[prefab].Instantiate<Node>();
+		Overworld = Prefab.GetNode<OverworldController>("./OverworldController");
+		Overworld.BattleCharacter.Character = character;
+		character.SetStats();
+		Overworld.SetAnimators();
 
-			Overworld.SetOffsets();
-			Overworld.BattleCharacter.SetOffsets();
+		Overworld.SetOffsets();
+		Overworld.BattleCharacter.SetOffsets();
 
-			GetTree().CurrentScene.AddChild(Prefab);
-			return Overworld;
+		GetTree().CurrentScene.AddChild(Prefab);
+		return Overworld;
 	}
-	public void SetCamera(Camera cam){
-		OverworldCam=cam;
-		AssignCharacterCamera(controller);                
+	public void SetCamera(Camera cam)
+	{
+		OverworldCam = cam;
+		AssignCharacterCamera(controller);
 	}
-	public void SetBattleCamera(Camera cam){
-		BattleCam=cam;
-		AssignBattleCamera(GetTree().CurrentScene);                
+	public void SetBattleCamera(Camera cam)
+	{
+		BattleCam = cam;
+		AssignBattleCamera(GetTree().CurrentScene);
 	}
-	public void SwitchScene(int scene, int Area, Vector2 Position,Color color){
+	public void SwitchScene(int scene, int Area, Vector2 Position, Color color)
+	{
 		PlayTransition(color);
 		//SceneTreeTimer timer = GetTree().CreateTimer(0.6f,true,true,true);
 		/*timer.Timeout+=()=>*/
-		TransitionTween.Finished+=()=>
+		TransitionTween.Finished += () =>
 		{
 			Data.Scene = scene;
 			Data.AreaIndex = Area;
 			RootCharacters();
-			OverworldCam=null;
-			BattleCam=null;
+			OverworldCam = null;
+			BattleCam = null;
 			controller?.SetControllable(false);
 			PositionToMove = Position;
-			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);};
+			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
+		};
 		/*SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
 		timer.Timeout+=()=>MoveCharactersToScene(Position);*/
 	}
-	public void RootCharacters(){
+	public void RootCharacters()
+	{
 		//controller.RemoveChild(OverworldCam);
 		//GetTree().CurrentScene.AddChild(OverworldCam);
 		if (IsInstanceValid(OverworldCam))
 		{
 			OverworldCam?.QueueFree();
-			OverworldCam.PositionSmoothingEnabled=true;
+			OverworldCam.PositionSmoothingEnabled = true;
 		}
-		if(IsInstanceValid(BattleCam)){
+		if (IsInstanceValid(BattleCam))
+		{
 			BattleCam?.QueueFree();
 		}
-		for(int i=0;i<Characters.Count;i++){
-			Node2D aux=Characters[i].Parent;
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			Node2D aux = Characters[i].Parent;
 			aux.Reparent(GetTree().Root);
 			//aux.GetParent().RemoveChild(aux);
-			aux.Position = new Vector2(int.MinValue,int.MinValue);
-			
+			aux.Position = new Vector2(int.MinValue, int.MinValue);
+
 			//GetTree().Root.AddChild(aux);
 		}
-		for(int i=0;i<Followers.Count;i++){
-			Node2D aux=Followers[i].Parent;
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			Node2D aux = Followers[i].Parent;
 			aux.GetParent().RemoveChild(aux);
-			aux.Position = new Vector2(int.MinValue,int.MinValue);
+			aux.Position = new Vector2(int.MinValue, int.MinValue);
 			GetTree().Root.AddChild(aux);
 		}
 	}
-	public void SetDataTileMap(TileMap Map){
-		for(int i=0;i<Characters.Count;i++){
-			Characters[i].DataMap=Map;
-		}		
-		for(int i=0;i<Followers.Count;i++){
-			Followers[i].DataMap=Map;
-		}	
+	public void SetDataTileMap(TileMap Map)
+	{
+		for (int i = 0; i < Characters.Count; i++)
+		{
+			Characters[i].DataMap = Map;
+		}
+		for (int i = 0; i < Followers.Count; i++)
+		{
+			Followers[i].DataMap = Map;
+		}
 	}
 	public void MoveCharactersToScene(Scene scene)
 	{
@@ -297,9 +339,9 @@ public partial class GameManager : Node
 	}
 	public void Save(int save)
 	{
-		Saves[CurrentSave].Latest = false;
-		CurrentSave = save;
-		string Path = "user://" + "save" + CurrentSave.ToString() + ".tres";
+		Settings.CurrentSave = save;
+		string Path = "user://" + "save" + Settings.CurrentSave.ToString() + ".tres";
+		string SettingsPath = "user://" + "settings" + ".tres";
 
 		if (controller != null)
 		{
@@ -309,31 +351,46 @@ public partial class GameManager : Node
 		{
 			Data.Position = Vector2.Zero;
 		}
-		Data.Latest = true;
 		Debug.WriteLine("Scene: " + Data.Scene);
-		Saves[CurrentSave] = Data.DuplicateData();
+		Saves[Settings.CurrentSave] = Data.DuplicateData();
 		if (!Godot.FileAccess.FileExists(Path))
 		{
 			Godot.FileAccess file = Godot.FileAccess.Open(Path, Godot.FileAccess.ModeFlags.WriteRead);
 		}
-		ResourceSaver.Save(Saves[CurrentSave], Path);
-		Saves[CurrentSave].TakeOverPath(Path);
+		ResourceSaver.Save(Settings, SettingsPath);
+		ResourceSaver.Save(Saves[Settings.CurrentSave], Path);
+		Saves[Settings.CurrentSave].TakeOverPath(Path);
 		Debug.WriteLine(Path);
 		DisplaySaves();
 	}
-	public void DisplaySaves(){
-		for(int i=0;i<Saves.Count;i++){
-		string Path = "user://"+"save"+i.ToString()+".tres";
-		Saves[i] = null;
-		if(ResourceLoader.Exists(Path)){
-			Saves[i]= (DataManager)ResourceLoader.Load<DataManager>(Path,null,ResourceLoader.CacheMode.Replace).Duplicate(true);
-		}
-		else{
+	public void DisplaySaves()
+	{
+		for (int i = 0; i < Saves.Count; i++)
+		{
+			string Path = "user://" + "save" + i.ToString() + ".tres";
 			Saves[i] = null;
+			if (ResourceLoader.Exists(Path))
+			{
+				Saves[i] = (DataManager)ResourceLoader.Load<DataManager>(Path, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
+			}
+			else
+			{
+				Saves[i] = null;
+			}
 		}
-		}
+		string SettingsPath = "user://" + "settings" + ".tres";
+        if (ResourceLoader.Exists(SettingsPath))
+        {
+			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
+            if (Saves[Settings.CurrentSave] != null)
+			{
+				Debug.WriteLine("Exists");
+				Data = Saves[Settings.CurrentSave];
+            }
+        }
 	}
-	public void Load(int Save){
+	public void Load(int Save)
+	{
 		if (Saves[Save] != null)
 		{
 			for (int i = 0; i < Characters.Count; i++)
@@ -341,25 +398,33 @@ public partial class GameManager : Node
 				Characters[i].Parent.QueueFree();
 			}
 			Data = null;
-			Data= Saves[Save].DuplicateData();
-			CurrentSave=Save;
+			Data = Saves[Save].DuplicateData();
+			Settings.CurrentSave = Save;
 			OverworldCam?.QueueFree();
 			BattleCam?.QueueFree();
 			Characters.Clear();
 			Followers.Clear();
 
+			for (int i = 0; i < Data.Party.Count; i++)
+			{
+				Character Aux = Data.Party[i];
+				Aux.ChangeKey(Aux.EventKey);
+			}
+
 			Debug.WriteLine("SaveScene :" + Saves[Save].Scene);
 			Debug.WriteLine("DataScene :" + Data.Scene);
 
 			InstantiateCharacters();
-			CallDeferred("SwitchScene",Data.Scene, Data.AreaIndex, Data.Position,TransitionColor);			
+			CallDeferred("SwitchScene", Data.Scene, Data.AreaIndex, Data.Position, TransitionColor);
 		}
 	}
-	
-	public void DeleteSave(int Save){
+
+	public void DeleteSave(int Save)
+	{
 		Saves.RemoveAt(Save);
 	}
-	public void Restart(){
+	public void Restart()
+	{
 		Characters.Clear();
 		Followers.Clear();
 		Data = null;
@@ -367,10 +432,11 @@ public partial class GameManager : Node
 		BattleCam = null;
 		GetTree().ChangeSceneToPacked(StartScene);
 	}
-	public void PlayTransition(Color color){
+	public void PlayTransition(Color color)
+	{
 		TransitionTween = CreateTween();
-		TransitionTween.TweenProperty(TransitionAnimator.GetParent<Control>(),"modulate",color,TransitionTime);
-		TransitionTween.Finished+=TransitionTween.Kill;
+		TransitionTween.TweenProperty(TransitionAnimator.GetParent<Control>(), "modulate", color, TransitionTime);
+		TransitionTween.Finished += TransitionTween.Kill;
 		/*TransitionAnimator.Stop();
 		if(TransitionAnimator.AssignedAnimation!=null){
 			TransitionAnimator.AssignedAnimation = null;
@@ -392,26 +458,54 @@ public partial class GameManager : Node
 			Followers[i].Parent.CollisionLayer = PhysicsLayer;			
 		}	
 	}*/
-	public void SetLayers(int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask){
+	public void SetLayers(int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask)
+	{
 		Data.GraphicsLayer = GraphicsLayer;
 		//Data.PhysicsLayer = PhysicsLayer;
 		Data.CollisionLayer = CollisionLayer.Duplicate();
 		Data.CollisionMask = CollisionMask.Duplicate();
-		//CHANGE THE MASKS IN THE GAME
-		for (int i = 0; i < Characters.Count; i++)
-		{
-			Characters[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
-		}
-		for (int i = 0; i < Followers.Count; i++)
-		{
-			Followers[i].SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
 
-		}	
+		controller.SetLayers(GraphicsLayer, CollisionLayer, CollisionMask);
+		//CHANGE THE MASKS IN THE GAME
+		/*	*/
 	}
-public override void _Notification(int what)
+
+	Tween AudioTween;
+	public void PlayAudio(int Stream)
+	{
+		if (Stream != CurrentBGM)
+		{
+			StopAudio();
+			CurrentBGM = Stream;
+			MainAudio.Stream = BGMs[Stream % BGMs.Count];
+			AudioTween.Finished+=()=>
+            {
+				MainAudio.Play();      
+				MainAudio.VolumeDb = 0;          
+				/*AudioTween = CreateTween();
+				AudioTween.TweenProperty(MainAudio,"volume_db",0,0.2);*/
+            };
+		}
+	}
+	public void StopAudio()
+    {
+        if (AudioTween != null)
+        {
+			AudioTween.Stop();            
+        }
+		AudioTween = CreateTween();
+		AudioTween.TweenProperty(MainAudio,"volume_db",-80,0.3);
+		AudioTween.Finished += MainAudio.Stop;
+    }
+	public override void _Notification(int what)
 	{
 		if (what == NotificationWMCloseRequest)
 			Debug.WriteLine("Disposing");
 
 	}
+	public static int nfmod(float a,float b)
+	{
+		return (int)(a - b * Mathf.FloorToInt(a / b));
+	}
 }
+

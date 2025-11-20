@@ -146,7 +146,7 @@ shape = SubResource("RectangleShape2D_v7v4t")
 position = Vector2(-112, 0)
 
 [node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 9
+frame = 10
 
 [node name="FollowNPC" parent="." instance=ExtResource("9_piu75")]
 
@@ -167,7 +167,7 @@ AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 parameters/Idle/blend_position = Vector2(-0.00287634, 0.026455)
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1"]
-frame = 5
+frame = 6
 
 [editable path="Area2D"]
 [editable path="Cams"]

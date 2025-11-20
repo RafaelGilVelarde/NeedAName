@@ -32,7 +32,7 @@ public partial class ItemInteract : InteractText
         {
             DialogicCSharp.instance.SetVariable("ItemName", "Items", ItemsToGive[0].Base.Name);
             int aux = ItemsToGive[0].Amount;
-            DialogicCSharp.instance.SetVariable("Number","ItemAmount",aux);                
+            DialogicCSharp.instance.SetVariable("ItemAmount","Number",aux);                
         }
         base.interact(Player);
     }

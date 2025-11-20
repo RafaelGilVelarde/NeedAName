@@ -14,6 +14,8 @@ public partial class OverworldController : Node2D
 	[Export] public AnimationTree AnimatorTree;
 	[Export] public CharacterBody2D Parent;
 	[Export] public CollisionShape2D OverworldCollider;
+	[Export] public Array<int> ZIndexList;
+	[Export] public Array<uint> CLayerList, CMaskList;
 	[Export] public Array<Vector2> AxisList;
 	[Export] public Array<Vector2> PositionList, AuxPositionList;
 	[Export] public int AxisOffset;

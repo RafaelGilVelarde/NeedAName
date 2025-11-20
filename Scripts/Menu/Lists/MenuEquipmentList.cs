@@ -8,29 +8,43 @@ public partial class MenuEquipmentList : StuffList
     [Export] public ItemBase.Type ItemType;
     [Export] public EquipmentType EquipType;
     [Export] Array<Items> items;
-    public override void FillButtons(int Start,ScrollList.StartEnd StartEnd)
-    {
-        MakeItemList();
-		pointerStart=Start;
-		if(StartEnd!=ScrollList.StartEnd.Regular){
-			if(pointerStart>=0 &&pointerStart+Buttons.Count<=items.Count){
-				Fill(Start,StartEnd);
+	public override void FillButtons(int Start, ScrollList.StartEnd StartEnd)
+	{
+		MakeItemList();
+		pointerStart = Start;
+		if (StartEnd != ScrollList.StartEnd.Regular)
+		{
+			if (pointerStart >= 0 && pointerStart + Buttons.Count <= items.Count)
+			{
+				Fill(Start, StartEnd);
 			}
 		}
-		else{
-			Fill(Start,StartEnd);
+		else
+		{
+			Fill(Start, StartEnd);
 		}
-		if(pointerStart+activeButtons>items.Count){
-			pointerStart-=1;
-			Buttons[activeButtons-1].GrabFocus();
-		}
-		if(pointerStart<0){
-			pointerStart=0;
-		}
-			if(StartEnd==ScrollList.StartEnd.Start||StartEnd==ScrollList.StartEnd.Regular){
+		if (activeButtons != 0)
+		{
+			if (pointerStart + activeButtons > items.Count)
+			{
+				pointerStart -= 1;
+				Buttons[activeButtons - 1].GrabFocus();
+			}
+			if (pointerStart < 0)
+			{
+				pointerStart = 0;
+			}
+			if (StartEnd == ScrollList.StartEnd.Start || StartEnd == ScrollList.StartEnd.Regular)
+			{
 				Buttons[0].GrabFocus();
 			}
-    }
+		}
+		else
+		{
+			GetChild<BaseButton>(1).GrabFocus();
+		}
+			
+		}
     public override void ClearAll()
     {
 		for(int i=0;i<Buttons.Count;i++){

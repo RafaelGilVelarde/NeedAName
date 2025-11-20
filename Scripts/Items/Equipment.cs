@@ -17,12 +17,7 @@ public partial class Equipment : Items
     }
 
 
-    public override void Use(Array<Character> Targets)
-    {
-        Targets[0].UnEquip(((EquipmentBase)Base).EquipType);
-        Targets[0].Equip(this);
-        base.Use(Targets);
-    }
+
     /*protected virtual void Equip(Character character){
         character.Equipment[(int)Base.EquipType] = Base;
         character.SetTotalStats();

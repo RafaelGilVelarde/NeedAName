@@ -85,6 +85,7 @@ public partial class SelectActions : Node2D
 							}
 							else{
 								previousState.Add(currentState);
+								Debug.WriteLine("SelectingTarget");
 								ActivateState(SelectState.SelectTarget);
 							}
 						}
@@ -119,10 +120,11 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectUser:
 					if(Input.IsActionJustPressed("Confirm")){
 						AddCharacter(BattleManager.instance.UserCharacters,BattleManager.instance.CurrentCharacterButton);
-						if(charactersSelected==move.Base.UserAmount-1||charactersSelected==possibleAmount){
-							previousState.Add(currentState);
-							ActivateState(SelectState.SelectTarget);
-						}			
+						if (charactersSelected == move.Base.UserAmount - 1 || charactersSelected == possibleAmount)
+					{
+						previousState.Add(currentState);
+						ActivateState(SelectState.SelectTarget);
+					}			
 
 					}
 					if(Input.IsActionJustPressed("Deny")){
@@ -137,6 +139,7 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectTarget:
 					if(Input.IsActionJustPressed("Confirm")){
 						AddCharacter(BattleManager.instance.TargetCharacters,BattleManager.instance.CurrentCharacterButton);
+					Debug.WriteLine("Characters: " + charactersSelected + " TargetAmount: " + move.Base.TargetAmount);
 						if(charactersSelected==move.Base.TargetAmount||charactersSelected==possibleAmount){
 							character.UseMove(move);
 							clearAll();

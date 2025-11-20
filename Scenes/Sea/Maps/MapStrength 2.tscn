@@ -729,6 +729,7 @@ max_value = 50.0
 show_percentage = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
+visible = false
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0
