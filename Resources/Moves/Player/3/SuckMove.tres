@@ -1,0 +1,21 @@
+[gd_resource type="Resource" script_class="SuckMove" load_steps=2 format=3 uid="uid://b2cy8wlwo62vb"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/SuckMove.cs" id="1_qvbq7"]
+
+[resource]
+script = ExtResource("1_qvbq7")
+MinVel = 0.0
+MaxVel = 4.5
+SuckTimerMax = 4.0
+Speed = 2.0
+Combo = 1
+Combo2 = 2
+type = 1
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 3
+Cost = 0
+TargetsParty = false
+Name = "Suck"
+MoveTime = 10.0

@@ -1,16 +1,16 @@
-Blobfish (Wondering): *Yaaawn* Oh?
-Blobfish (Sad): Ooh well, you brought someone else
-MC (Happy): Well, I can take you with me too!
-Blobfish (Wondering): Naah, only two can pass at once
-MC (Confused): ...
-- Reject
-	MC (Normal): Sorry, already made a promise
-	Blobfish (Sad): Awww
-	Blobfish (Wondering): Gooood luuck, I'll find my way!
-- Accept
-	MC (Normal): Will you be fine on your own?
-	Halluci (Sad): I....can try....
-	Blobfish (Happy): Yaaay!
-	Blobfish (Happiness): Let's find some good homes
-	MC (Happy): Sure!
+Blobfish (Wondering): *Yaaawn* Oh? #id:6f
+Blobfish (Sad): Ooh well, you brought someone else #id:70
+MC (Happy): Well, I can take you with me too! #id:71
+Blobfish (Wondering): Naah, only two can pass at once #id:72
+MC (Confused): ... #id:73
+- Reject #id:74
+	MC (Normal): Sorry, already made a promise #id:75
+	Blobfish (Sad): Awww #id:76
+	Blobfish (Wondering): Gooood luuck, I'll find my way! #id:77
+- Accept #id:78
+	MC (Normal): Will you be fine on your own? #id:79
+	Halluci (Sad): I....can try.... #id:7a
+	Blobfish (Happy): Yaaay! #id:7b
+	Blobfish (Happiness): Let's find some good homes #id:7c
+	MC (Happy): Sure! #id:7d
 	[signal arg="Delete"]

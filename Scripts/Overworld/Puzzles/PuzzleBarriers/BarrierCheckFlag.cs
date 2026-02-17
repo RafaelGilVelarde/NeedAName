@@ -9,6 +9,7 @@ public partial class BarrierCheckFlag : PuzzleCheck
     [Export] string DisableAnimation, Dialogue = "";
     [Export] int CheckIntFlag;
     public override void Check(int Index, bool Changed){
+        Debug.WriteLine("Checking: "+Index +" Changed: "+Changed);
         if(FlagIndex == Index){
             if(GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex]){
                 Debug.WriteLine("Activating");

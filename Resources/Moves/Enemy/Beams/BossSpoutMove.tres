@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BossSpoutMove" load_steps=3 format=3 uid="uid://dm3vm6tit72tg"]
+
+[ext_resource type="PackedScene" uid="uid://dflycr41il8v0" path="res://Prefabs/BattleProjectyles/WaterSpout.tscn" id="1_56mjt"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/BossSpoutMove.cs" id="2_j2e37"]
+
+[resource]
+script = ExtResource("2_j2e37")
+Combo = 3
+Proyectile = ExtResource("1_56mjt")
+Offset = Vector2(0, -36)
+Tag = "EnemyHitbox"
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 2
+Cost = 0
+TargetsParty = false
+Name = "spout1"
+MoveTime = 2.5

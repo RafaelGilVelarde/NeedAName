@@ -1,36 +1,36 @@
-"No Box-Dark": I sense a rumbling past this area
-"No Box-Dark": You won't be able to come back once you enter
+"No Box-Dark": I sense a rumbling past this area #id:11a
+"No Box-Dark": You won't be able to come back once you enter #id:11b
 if {GameManager.Data.Flags.EventFlags[9]} == true:
-	Halluci (Normal): Home approaches
-	MC (Wondering): So this is where you want to go?
+	Halluci (Normal): Home approaches #id:11c
+	MC (Wondering): So this is where you want to go? #id:11d
 	[clear time="0.0"]
-	- Step back
-		MC (Normal): Not yet
-		Halluci (Sad): ...
+	- Step back #id:11e
+		MC (Normal): Not yet #id:11f
+		Halluci (Sad): ... #id:120
 		[signal arg="Push_0"]
 		[wait time="0.5"]
-	- Go on
+	- Go on #id:121
 		[signal arg="Bool_3_1_1"]
-		MC (Happy): Ok then, guess we're going
-		Halluci (Happiness): ....Thanks
+		MC (Happy): Ok then, guess we're going #id:122
+		Halluci (Happiness): ....Thanks #id:123
 elif {GameManager.Data.Flags.EventFlags[10]} == true:
-	Blobfish (Wondering): We are soooo clooose
-	MC (Wondering): Shall we?
+	Blobfish (Wondering): We are soooo clooose #id:124
+	MC (Wondering): Shall we? #id:125
 	[clear time="0.0"]
-	- Step back
-		MC (Normal): Not yet
-		Blobfish (Sad): Oooh well
+	- Step back #id:126
+		MC (Normal): Not yet #id:127
+		Blobfish (Sad): Oooh well #id:128
 		[signal arg="Push_0"]
 		[wait time="0.5"]
-	- Go on
+	- Go on #id:129
 		[signal arg="Bool_3_1_1"]
-		MC (Happy): Ok then, guess we're going
-		Blobfish (Happy): Yaaaay
+		MC (Happy): Ok then, guess we're going #id:12a
+		Blobfish (Happy): Yaaaay #id:12b
 else:
-	"No Box": You would be facing this place alone. Are you sure?
+	"No Box": You would be facing this place alone. Are you sure? #id:12c
 	[clear time="0.0"]
-	- Step back
+	- Step back #id:12d
 		[signal arg="Push_0"]
 		[wait time="0.5"]
-	- Go alone
+	- Go alone #id:12e
 		[signal arg="Bool_3_1_1"]

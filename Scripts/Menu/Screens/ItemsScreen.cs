@@ -224,8 +224,8 @@ public partial class ItemsScreen : MenuScreens
     void UpdateDescription(MenuItemButtons Button){
         if(Button?.item?.Base!=null){
             ItemBase item = Button.item.Base;
-            ItemTitle.Text = item.Name;
-            ItemDesc.Text = item.Description;
+            ItemTitle.Text = Tr(item.Name);
+            ItemDesc.Text = Tr(item.Description);
         }
     }
     void UseItem(){

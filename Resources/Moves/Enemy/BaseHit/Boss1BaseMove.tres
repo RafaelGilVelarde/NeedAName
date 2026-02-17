@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="DumyEnemyMove" load_steps=2 format=3 uid="uid://bgagykpbh0qsh"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="1_xsqwt"]
+
+[resource]
+script = ExtResource("1_xsqwt")
+State = 1
+Speed = 3.0
+Combo = 1
+offset = Vector2(100, 0)
+Movement = true
+type = 0
+Power = 3
+UserAmount = 1
+TargetAmount = 1
+WP = 3
+Cost = 0
+TargetsParty = false
+Name = "Punch"
+MoveTime = 2.0

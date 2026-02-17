@@ -9,6 +9,7 @@ public partial class FirstScene : Scene
     public override void Setup()
     {
         if(!GameManager.Instance.Data.Flags.EventFlags[EventFlag]){
+            GameManager.Instance.StopAudio();
             EndDialogueCall = new Callable(this,MethodName.EndDialogue);
             DialogicCSharp DialogicInstance = DialogicCSharp.instance;
             DialogicInstance.StartDialogue(Timeline,true,false);

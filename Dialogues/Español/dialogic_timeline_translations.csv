@@ -1,0 +1,372 @@
+keys,en,es
+Text/11/text,OWOWOOWWWWWWWWWWWWWWWW THAT HURTS,
+,,
+Text/12/text,When we fought the cyclops you were quick to hatch a plan,
+Text/13/text,"And when we fought with Circe, it was YOU who left behind no man!",
+Text/14/text,"But when we fought this monster, we didn't take a stand",
+Text/15/text,We just ran,
+Text/16/text,SAY SOMETHING,
+Text/17/text,I CANT!,
+Text/18/text,...,
+Text/19/text,Then you have forced my hand,
+,,
+Text/1a/text,Lower your weapon,
+Text/1b/text,No can do,
+Text/1c/text,You miss your wife so bad you'd trade the lives of your own crew,
+Text/1d/text,"Don't make me fight you brother, you know you'd have done the same",
+Text/1e/text,If you want all the power you must carry all the BLAME,
+,,
+Text/1f/text,HP Healed,Salud recuperada
+Text/20/text,....Refreshing!,.....¡Refrescante!
+,,
+Text/21/text,You got a...........Soul Memory?......,Obtuviste un.......¿Recuerdo de Alma?
+Text/22/text,Noot sure what that is but I'm sure you can find a use for it,"Lo que sea que sea, creo que le encontrarás un uso"
+,,
+Text/23/text,You got {Items.ItemName} x{Number.ItemAmount}!,
+Text/24/text,You got a {Items.ItemName}!,¡Obtuviste {Items.ItemName}!
+,,
+Text/25/text,(choirs),
+Text/26/text,There is no price he wont pay...,
+Text/27/text,I AM NOT LETTING YOU GET IN MY WAY,
+,,
+Text/28/text,"Learned {Moves.MoveName}, use it well!",Aprendiste {Moves.MoveName} ¡Úsalo bien!
+,,
+Text/29/text,This...thing...,Esta cosa....
+Text/2a/text,Hooow straaangeee,Ooooh vayaaaaa
+Text/2b/text,This is.......What is it?,Pero qué es......
+Text/2c/text,"A bad omen, that's what","Una mala señal, eso es"
+Text/2d/text,What do you mean?,¿A qué te refieres?
+Text/2e/text,"Sorry, there's no time, you'll have to fight","No hay tiempo, deben luchar. Lo siento."
+Text/2f/text,"It's the only way, good luck",Es la única manera. Buena suerte
+Text/30/text,In.......my way.....,En..mi.....camino
+Text/31/text,Ooone moore enemyyy,Uuuuuuun enemigo máaaaaaaas
+Text/32/text,"Fine then, guess there's no choice","Bueno, supongo que no hay otra opción"
+,,
+Text/33/text,*pant* pant*,*Agh* *agh*
+Text/34/text,We won!,¡Ganamos!
+Text/35/text,At last....,Al fin.....
+Text/36/text,Going......home!,¡Vamos.....a casa!
+Text/37/text,I will see you....one day...,Algún día.....nos volveremos a ver...
+Text/38/text,Weeeeeeeeeeeeeee did it,¡Loooooo hicimos!
+Text/39/text,Seeeee yaaaa,Adiooooos
+Text/3a/text,Congratulations!,¡Felicidades!
+Text/3b/text,You made it through!,¡Lo lograste!
+Text/3c/text,"I am curious though, what might your name be?",Aunque quisiera saber...¿Cómo te llamas?
+Text/3d/text,{Characters.CharName}....an interesting name to be sure,{Characters.CharName}......vaya que interesante....
+Text/3e/text,"Well then, {Characters.CharName}, may you have","Entonces, {Characters.CharName}. Que tengas"
+Text/3f/text,A wonderful life!,¡Una maravillosa vida!
+,,
+Text/40/text,You return...,Con que regresas.....
+Choice/41/text,Reject,Rechazar
+Choice/41/disabled_text,,
+Text/42/text,But I need to...,Pero...yo necesito....
+Choice/43/text,Accept,Aceptar
+Choice/43/disabled_text,,
+Text/44/text,Thanks...friend,Gracias...pata
+Text/45/text,We shall reach....our homes,Llegaremos....a nuestros hogares
+Text/46/text,Al...right?,¿O.......k?
+,,
+Text/47/text,You return...with another...,Regresas.....con alguien más...
+Text/48/text,"Well, I can take you with me too!",Hmm...¡Puedes venir con nosotros!
+Text/49/text,I can't...,No puedo...
+Text/4a/text,It can only be one..,Solo uno más puede pasar...
+Text/4b/text,...,...
+Choice/4c/text,Reject,Rechazar
+Choice/4c/disabled_text,,
+Text/4d/text,I'm sorry,Lo siento
+Text/4e/text,But I.......need to...,Pero...yo necesito....
+Choice/4f/text,Accept,Aceptar
+Choice/4f/disabled_text,,
+Text/50/text,Will you be okay?,¿Estarás bien?
+Text/51/text,I will try,Lo intentaré
+Text/52/text,Thanks...friend,Gracias...pata
+,,
+Text/53/text,It can only be one..,Solo uno más puede pasar...
+Text/54/text,...,...
+Choice/55/text,Reject,Rechazar
+Choice/55/disabled_text,,
+Text/56/text,I'm sorry,Lo siento
+Text/57/text,But I.......need to...,Pero...yo necesito....
+Choice/58/text,Accept,Aceptar
+Choice/58/disabled_text,,
+Text/59/text,Will you be okay?,¿Estarás bien?
+Text/5a/text,I will try,Lo intentaré
+Text/5b/text,Thanks...friend,Gracias...pata
+,,
+Text/5c/text,It's calling me....,Me llaman....
+Text/5d/text,?,?
+Text/5e/text,The tides....,Las mareas....
+Text/5f/text,I must.....reach home...,Debo llegar...a mi hogar....
+Choice/60/text,Reject,Rechazar
+Choice/60/disabled_text,,
+Text/61/text,But I need to...,Pero...yo necesito....
+Choice/62/text,Accept,Aceptar
+Choice/62/disabled_text,,
+Text/63/text,Thanks...friend,Gracias...pata
+Text/64/text,We shall reach....our homes,Llegaremos....a nuestros hogares
+Text/65/text,Al...right?,¿O...k?
+,,
+Text/66/text,Hello,Hola
+Text/67/text,Changed your mind?,¿Cambiaste de parecer?
+Choice/68/text,Reject,Rechazar
+Choice/68/disabled_text,,
+Text/69/text,Awww,Oohhh
+Text/6a/text,"Gooood luuck, I'll find my way!",Sueeerte ¡Encontraré mi propio camino!
+Choice/6b/text,Accept,Aceptar
+Choice/6b/disabled_text,,
+Text/6c/text,Yaaay!,¡Yaaay!
+Text/6d/text,Let's find some good homes,Encontremos un buen hogar
+Text/6e/text,Sure!,¡Sip!
+,,
+Text/6f/text,*Yaaawn* Oh?,*Oaaaaaaaaaaaaaahh* Oh?
+Text/70/text,"Ooh well, you brought someone else","Oo bueno, tragiste a alguien maaas*"
+Text/71/text,"Well, I can take you with me too!",Hmm...¡Puedes venir con nosotros!
+Text/72/text,"Naah, only two can pass at once","Naaaa, sólo dos pueden pasar"
+Text/73/text,...,...
+Choice/74/text,Reject,Rechazar
+Choice/74/disabled_text,,
+Text/75/text,"Sorry, already made a promise","Perdón, hice una promesa"
+Text/76/text,Awww,Awww
+Text/77/text,"Gooood luuck, I'll find my way!",Sueeerte ¡Encontraré mi propio camino!
+Choice/78/text,Accept,Aceptar
+Choice/78/disabled_text,,
+Text/79/text,Will you be fine on your own?,¿Estarás bien por tu cuenta?
+Text/7a/text,I....can try....,Lo......intentaré
+Text/7b/text,Yaaay!,¡Yaaay!
+Text/7c/text,Let's find some good homes,Encontremos un buen hogar
+Text/7d/text,Sure!,¡Sip!
+,,
+Text/7e/text,Only two can pass at once,Sóoolo dos pueden pasar
+Text/7f/text,...,...
+Choice/80/text,Reject,Rechazar
+Choice/80/disabled_text,,
+Text/81/text,"Sorry, already made a promise","Perdón, hice una promesa"
+Text/82/text,Awww,Awww
+Text/83/text,"Gooood luuck, I'll find my way!",Sueeerte ¡Encontraré mi propio camino!
+Choice/84/text,Accept,
+Choice/84/disabled_text,,
+Text/85/text,Will you be fine on your own?,¿Estarás bien por tu cuenta?
+Text/86/text,I....can try....,Lo......intentaré
+Text/87/text,Yaaay!,¡Yaaay!
+Text/88/text,Let's find some good homes,Encontremos un buen hogar
+Text/89/text,Sure!,¡Sip!
+,,
+Text/8a/text,*Yaaawn* Leaving this place?,*Uaaaaaaahh* ¿Ya te vas?
+Text/8b/text,I guess...not sure what's going on,Eso creo...no sé qué está pasando
+Text/8c/text,"Ooooh well, I can come with you through these tides!","Oooh bueno, ¡Te puedo acompañar a través de estas mareas!"
+Choice/8d/text,Reject,Rechazar
+Choice/8d/disabled_text,,
+Text/8e/text,Awww,Awww
+Text/8f/text,"Gooood luuck, I'll find my way!",Sueeerte ¡Encontraré mi propio camino!
+Choice/90/text,Accept,Aceptar
+Choice/90/disabled_text,,
+Text/91/text,Yaaay!,¡Yaaay!
+Text/92/text,Let's find some good homes,Encontremos un buen hogar
+Text/93/text,Sure!,¡Sip!
+,,
+Text/94/text,Oh wanna remember the name? It's a Soul Memory. Not sure where it is though but it can't be too far from here,"¿Oh, el nombre? Es un Recuerdo de Alma. No sé donde está pero no debe ser tan lejos"
+Text/95/text,Got it,Entendido
+,,
+Text/96/text,Hello? Have I...seen you before?,¿Hola?....¿Nos conocemos?
+Text/97/text,I...can't remember,No....lo recuerdo
+Text/98/text,Let's leave,Vámonos
+Text/99/text,Need to jog up your memory huh,Con que quieres recordar ¿eh?
+Text/9a/text,I MAY be able help you!,CREO que puedo ayudar
+Text/9b/text,You can?,...¿Puedes?
+Text/9c/text,Uuuuuuuuuuuuuughhhhhhhh,Aaaaaaaaaaaghhhhhhhhhhhhhhh
+Text/9d/text,It'll be fine,Saldrá bien
+Text/9e/text,It's just...something I feel,Sólo....siento algo extraño
+Text/9f/text,Yaaaaaaaay.....Memories!,"Yaaaaaaay, ¡Memorias!"
+Text/a0/text,Yep!,¡Yep!
+Text/a1/text,"Well......juust a bit, but the memory may help protect you from damage!","Bueno, sóoolo un poquito, pero el recuerdo te ayudará a protegerte del daño"
+Text/a2/text,So if you find one feel free to come here,"Así que si encuentras uno, no dudes en venir"
+Text/a3/text,Thanks!,¡Gracias!
+Text/a4/text,Let's get to it,Hagámoslo rápido
+Text/a5/text,See you!,¡Nooos vemos!
+,,
+Text/a6/text,Oh you have it! Do you want me to jog up your memory?,Ooh ¡Lo obtuviste! ¿Quieres que te haga recordar?
+Choice/a7/text,Give the Soul Memory ,Dar Recuerdo de Alma
+Choice/a7/disabled_text,,
+Text/a8/text,Here you go!,¡Aquí está!
+Text/a9/text,Thanks! Just give me......one...secooooond....aaaand,¡Gracias! Sólo.......dame un segundito....yaaaaaaa
+Text/aa/text,Ok there it is! Take it!,¡Yap! ¡Ya está!
+Text/ab/text,I can remember.....warmth...it feels strange...,Hmmm...se siente....¿Cálido?....es algo raro...
+Text/ac/text,But thanks!,Bueno...¡Gracias!
+Text/ad/text,This feeling...,Esto se siente....
+Text/ae/text,Even I feel calm,Hasta a mí me calma
+Text/af/text,Your face is...happy!,Te ves....¡Feliz!
+Text/b0/text,Glad to be of help. Put it on your heart if you wanna feel the effects, Que bien que ayudó. Ponlo en tu corazón para sentir los efectos
+Text/b1/text,[You got the Warmth Memory],[Obtuviste la Memoria Cálida]
+Choice/b2/text,I'd rather not,Creo que mejor no
+Choice/b2/disabled_text,,
+Text/b3/text,"It's ok, but if you change your mind I am here!","Está bien, pero estoy aquí si cambias de parecer"
+,,
+Text/b4/text,Glad it helped!,¡Siempre feliz de ayudar!
+Text/b5/text,Thanks!,¡Gracias!
+,,
+Text/b6/text,Must....be an enemy,Debe ser...un enemigo
+Text/b7/text,...,...
+Text/b8/text,Hellooooo!,¡Hooolaaaa!
+Text/b9/text,...,...
+Text/ba/text,?,?
+Text/bb/text,Do i have to........fight you?,Debería....¿Pelear contra ti?
+Text/bc/text,...,...
+Text/bd/text,...,...
+,,
+Text/be/text,...,...
+Text/bf/text,...,...
+Text/c0/text,Yet another...,Uno más....
+Text/c1/text,Aww...mooooore fighting...,Awww...más peleas.....
+Text/c2/text,You don't talk....?,¿No puedes hablar....?
+Text/c3/text,"Ok then, let's do this again","Está bien, hagámoslo otra vez"
+,,
+Text/c4/text,T-Two of you?,¿H-Hay dos de tí?
+Text/c5/text,Heeeeelloooo pal!,¡Hooola!
+Text/c6/text,Why do you look like-,¿Por qué te pareces a-
+,,
+Text/c7/text,...Welcome...,...Buenos días...
+Text/c8/text,Enjoy..this...place,Disfruta....este lugar
+Text/c9/text,Thanks!,¡Gracias!
+,,
+Text/ca/text,If tomorrow has gone past then we shall meet again in the present yesterday,"Si el mañana pasó, nos volveremos a ver en el ayer del presente"
+Text/cb/text,Keep dancing little ones!,"¡Sigan bailando, pequeños!"
+,,
+Text/cc/text,The joyful dance of souls....everflowing...everlasting,Las almas alegres....fluyendo por siempre....bailando para siempre
+,,
+Text/cd/text,You are close to an ending. Or shall I say a beginning?,Te acercas a un final ¿O será un comienzo?
+Text/ce/text,This is a road filled with strength,Este camino está lleno de poder
+Text/cf/text,Make sure to choose wisely what sort of start you want,Asegúrate de escoger tu inicio sabiamente
+,,
+Text/d0/text,"Where to be, where to go","A dónde ir, dónde estar"
+Text/d1/text,"Aaah, decisions...decisions. I'll just go with my heart","Aaahh..decisiones, decisiones. Seguiré a mi corazón"
+,,
+Text/d2/text,A new start is approaching,Un inicio se acerca
+Text/d3/text,Your body may not grow as strong,Puede que no obtengas tanta fuerza
+Text/d4/text,But this path shall fulfill your mind,Pero este camino alumbrará tu mente
+Text/d5/text,Is this the road you want to take?,¿Será este el camino que quieres tomar?
+,,
+Text/d6/text,"Strike the middle path first, then you shall end at the stars","Comienza acabando al camino del medio, y terminarás con la estrella"
+,,
+Text/d7/text,Lost soul drifting around eh?,¿Con que un alma perdida y sin rumbo eh?
+Text/d8/text,I.......guess?,Eso......¿Creo?
+Text/d9/text,Well I feel some strength in your past.,Puedo sentir una fuerza en tu pasado
+Text/da/text,...,...
+Text/db/text,Oooooh?,¿Oooooh?
+Text/dc/text,"If ya find a Soul Memory, give it to good ole me and I can help ya remember some of that power","Bueno chiquitín, si ecuentras un Recuerdo de Alma, te daré un apoyito para recordar ese poder"
+,,
+Text/dd/text,"Soul Memory, 'tis what ya need. Got it?","No lo olvides chiquitín, un Recuerdo de Alma"
+Text/de/text,Got it,Entendido
+,,
+Text/df/text,"So, wanna remember your power?","¿Ya quieres recordar tu fuerza, chiquitin?"
+Choice/e0/text,Sure! [Give Soul Memory],¡Sip! [Dar Recuerdo de Alma]
+Choice/e0/disabled_text,,
+Text/e1/text,Let's do this then!,¡Entonces hagámoslo!
+Text/e2/text,C'mon....c'mooooooooooooooooooon,Vamoos......ya casiiiiii
+Text/e3/text,Finally! Here ya go,¡Al Fin! Aquí lo tienes
+Text/e4/text,It feels.............loud?,Se siente algo......¿Ruidoso?
+Text/e5/text,I dunno that's for you to find out,"¡Yo qué se, eso es para que tú lo descubras!"
+Text/e6/text,"Heh, this is invigorating","Heh, qué emocionante"
+Text/e7/text,My head huuuurts,Me dueeeeele la cabezaaaaaa
+Text/e8/text,[Received the Loud Memory],[Obtuviste la Memoria Ruidosa]
+Choice/e9/text,I'd......rather not,.....Mejor no
+Choice/e9/disabled_text,,
+Text/ea/text,Come back if ya change your mind,Regresa si cambias de parecer
+Text/eb/text,Or don't,O no lo hagas. Es tu decisión
+,,
+Text/ec/text,I still don't get it but....,Sigo sin entenderlo bien pero....
+Text/ed/text,Thanks!,¡Gracias!
+Text/ee/text,"Don't sweat it, love seeing these things","No hay problema, me encantan estas cosas"
+,,
+Text/ef/text,At the cold currents of life you will find the way forward,En las corrientes frías de la vida encontrarás tu camino adelante
+,,
+Text/f0/text,...,...
+,,
+Text/f1/text,Puzzle Complete! Door opened,¡Lo hiciste! Abriste la puerta
+,,
+Text/f2/text,...What..is this?,¿...Pero qué.....?
+Text/f3/text,"You're in a battle. Strange, that should not be possible here......","Estás en una batalla. Que raro, esto no debería pasar aquí..."
+Text/f4/text,"That's a strange form you've taken, but nevermind that for now","Has tomado una forma muy extraña también, pero eso no es asunto de hoy"
+Text/f5/text,"Welp, let's go through the basics!","Oh bueno, veamos las bases"
+Text/f6/text,That green bar above you is your health,Esa barra verde es tu salud
+Text/f7/text,Try to keep it up or else.....bad things happen,Trata de que no se te acabe o malas cosas sucederán
+Text/f8/text,That purple bar is your Will Points,Esa barra morada son tus Puntos de Voluntad
+Text/f9/text,You will need them to be able to use some of your moves,Necesitarás estos puntos para utilizar algunos de tus movimientos
+Text/fa/text,You can gain them through doing special actions during your moves,Puedes obtener Puntos de Voluntad durante acciones especiales en tus movimientos
+Text/fb/text,"Also through blocking, or good timing when dodging enemy attacks","También los puedes obtener bloqueando ataques de enemigos, o esquivando en el momento correcto"
+Text/fc/text,"Welp imma go try see what is going on here, have fun!","Oh bueno, iré a ver qué está ocurriendo aquí ¡Nos vemos!"
+,,
+Text/fd/text,...,...
+Text/fe/text,....what......is..this?....................,........¿Qué...es..esto?
+Text/ff/text,.........everything....spinning......,....todo me revuelve......
+Text/100/text,"Well well well. Greetings, little one!","Vaya vaya vaya. ¡Saludos pequeñín!""
+Text/101/text,Who's......this?,¿Quién....eres?
+Text/102/text,Who am I indeed! Juuust see me as a viewer for now,Ooooh pero quién soy ¿eh? Pooor ahora tan sólo soy tu audiencia
+Text/103/text,You should be asking who you are!,¡Deberías preguntarte quien eres tú!
+Text/104/text,I.....don't know,No...lo sé
+Text/105/text,"I see. In that case, just play around and get used to yourself!",Ya veo. Hmmmm. Por ahora ve andando para acostumbrarte a tu ser
+Text/106/text,I shall be contacting you soon!,Y bueno ¡Pronto nos veremos!
+Text/107/text,......Myself?,Mi....¿Ser?
+,,
+Text/108/text,Hmm? How strange,¿Hmm? Oh vaya
+Text/109/text,"My my, so this is what happens...",Con que esto es lo que sucede.....
+Text/10a/text,"Very well then, show me what you have in store!","Vamos, demuéstrame todo lo que tienes"
+Text/10b/text,Huh?,¿Eh?
+,,
+Text/10c/text,Congratulations!,¡Felicidades!
+Text/10d/text,You made it through!,¡Lo lograste!
+Text/10e/text,"I am curious though, what might your name be?",Aunque me pregunto ¿Cómo te llamas?
+Text/10f/text,{Characters.CharName}....an interesting name to be sure,{Characters.CharName}......vaya vaya....
+Text/110/text,"Well then, {Characters.CharName}, may you have","Entonces, {Characters.CharName}. Que tengas"
+Text/111/text,A wonderful life!,¡Una maravillosa vida!
+,,
+Text/112/text,Yeah so......things are messed up here,Ahhh.....todo aquí va mal
+Text/113/text,WAY more than I thought,MUCHO peor de lo que me esperaba
+Text/114/text,Don't have much time to explain but,"No tengo much tiempo para explicar, pero"
+Text/115/text,The two exits' failsafes have activated in response,Se activaron dos salidas como respaldo
+Text/116/text,"Find one, get through its trial, and leave","Encuentra una, completa su prueba, y escapa"
+Text/117/text,I believe in you,Confío en tí
+,,
+Text/118/text,You are walking a path that will test your mind,Cruzar este camino pondrá tu mente a prueba
+,,
+Text/119/text,This path will test your strength,Cruzar este camino pondrá tu fuerza a prueba
+,,
+Text/11a/text,I sense a rumbling past this area,Siento un retumbar a través de esta área
+Text/11b/text,You won't be able to come back once you enter,No podrás regresar depués de entrar
+Text/11c/text,Home approaches,Casi en casa
+Text/11d/text,So this is where you want to go?,"Entonces ¿Quieres ir por aquí?"
+Choice/11e/text,Step back,Retroceder
+Choice/11e/disabled_text,,
+Text/11f/text,Not yet,Aún no
+Text/120/text,...,...
+Choice/121/text,Go on,Seguir
+Choice/121/disabled_text,,
+Text/122/text,"Ok then, guess we're going",Está bien. Iremos
+Text/123/text,....Thanks,....Gracias
+Text/124/text,We are soooo clooose,Taaaaaaan ceeeerca
+Text/125/text,Shall we?,¿Quieres hacerlo?
+Choice/126/text,Step back,Retroceder
+Choice/126/disabled_text,,
+Text/127/text,Not yet,Aún no
+Text/128/text,Oooh well,Oooh bueno
+Choice/129/text,Go on,Seguir
+Choice/129/disabled_text,,
+Text/12a/text,"Ok then, guess we're going",Está bien. Iremos
+Text/12b/text,Yaaaay,Yaaaay
+Text/12c/text,You would be facing this place alone. Are you sure?,Estarás enfrentando este lugar por tu cuenta. ¿De verdad quieres seguir?
+Choice/12d/text,Step back,Aún no
+Choice/12d/disabled_text,,
+Choice/12e/text,Go alone,Continuar
+Choice/12e/disabled_text,,
+,,
+Text/12f/text,Helo {GameManager.Data.Party[0].Base.Name},
+Text/130/text,Wanna fight?,
+Choice/131/text,Yes,
+Choice/131/disabled_text,,
+Text/132/text,Let's fight,
+Text/133/text,Farewell {GameManager.Data.Party[0].Base.Name},
+Choice/134/text,No,
+Choice/134/disabled_text,,
+Text/135/text,Let's not,
+,,
+Text/136/text,You win!,¡Ganaste!
+,,

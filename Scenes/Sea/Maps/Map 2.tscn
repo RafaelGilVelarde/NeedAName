@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bbxpoq4krbxej"]
+[gd_scene load_steps=63 format=3 uid="uid://bbxpoq4krbxej"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_fxe1b"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_nepjs"]
@@ -10,11 +10,20 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="7_hw13a"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_aago7"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="10_2hwlt"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="10_46xwg"]
+[ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="11_equaa"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="12_j2tl5"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_ade6h"]
 [ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="13_asbdw"]
+[ext_resource type="Resource" uid="uid://cqi3tmr64djan" path="res://Resources/Moves/Enemy/Beams/Bubblebeam.tres" id="13_nwwwh"]
+[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="14_d3pen"]
 [ext_resource type="Resource" uid="uid://ccbpggt45xqro" path="res://Resources/Items/Consumable/Refresher.tres" id="14_r3kmk"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="15_1oj1h"]
 [ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="15_8voyv"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="17_0bbe3"]
+[ext_resource type="Resource" uid="uid://oinvkf7tklql" path="res://Resources/CharacterBases/Enemies/Star.tres" id="17_rgooc"]
+[ext_resource type="Resource" uid="uid://bvtcpl6qec87k" path="res://Resources/Moves/Enemy/Spinning/Spin1.tres" id="18_ayio8"]
+[ext_resource type="Resource" uid="uid://ctdvr3y2a0x6g" path="res://Resources/Moves/Enemy/Projectyles/Bubble.tres" id="19_2pge0"]
+[ext_resource type="Resource" uid="uid://cxqb868icnqmh" path="res://Resources/BattleScenes/FirstBattle.tres" id="20_p5oso"]
 
 [sub_resource type="Resource" id="Resource_xlhq5"]
 script = ExtResource("13_ade6h")
@@ -34,29 +43,363 @@ size = Vector2(80, 16)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
-[sub_resource type="Resource" id="Resource_7kqbm"]
-script = ExtResource("10_46xwg")
-Timeline = "FirstBattle"
-WinTimeline = "Win"
-PostBattleTimeline = ""
-EscapeChance = 100.0
-Horizontal = false
-Cutscene = false
-PartyFloorY = null
-EnemyFloorY = null
-BattleMusic = 1
+[sub_resource type="Resource" id="Resource_f4quo"]
+script = ExtResource("12_j2tl5")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
 
-[sub_resource type="Resource" id="Resource_uxay2"]
-script = ExtResource("10_46xwg")
-Timeline = "FirstBattle"
-WinTimeline = "Win"
-PostBattleTimeline = ""
-EscapeChance = 100.0
-Horizontal = false
-Cutscene = false
-PartyFloorY = null
-EnemyFloorY = null
-BattleMusic = 1
+[sub_resource type="Resource" id="Resource_ul7as"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("13_nwwwh")
+Chance = 0.0
+
+[sub_resource type="Resource" id="Resource_uyt0w"]
+script = ExtResource("15_1oj1h")
+State = 2
+Speed = 2.0
+Combo = 2
+offset = Vector2(30, 0)
+Movement = true
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = false
+Name = "Punchy"
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_jubj6"]
+script = ExtResource("14_d3pen")
+Base = SubResource("Resource_uyt0w")
+Chance = 30.0
+
+[sub_resource type="Resource" id="Resource_kn4l5"]
+script = ExtResource("15_1oj1h")
+State = 2
+Speed = 2.0
+Combo = 3
+offset = Vector2(30, 0)
+Movement = true
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 0
+Cost = 0
+TargetsParty = false
+Name = "Punch2"
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_7vs3k"]
+script = ExtResource("14_d3pen")
+Base = SubResource("Resource_kn4l5")
+Chance = 30.0
+
+[sub_resource type="Resource" id="Resource_jv4yb"]
+script = ExtResource("12_j2tl5")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_eoglh"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 15
+HP = 15
+Atk = 2
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 1
+WP = 0
+
+[sub_resource type="Resource" id="Resource_hu2hb"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("11_equaa")
+Moves = Array[Object]([SubResource("Resource_ul7as"), SubResource("Resource_jubj6"), SubResource("Resource_7vs3k")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_eoglh")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_onv4d"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("18_ayio8")
+Chance = 60.0
+
+[sub_resource type="Resource" id="Resource_e1ncd"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("19_2pge0")
+Chance = 40.0
+
+[sub_resource type="Resource" id="Resource_u40t8"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 10
+HP = 10
+Atk = 3
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 2
+WP = 0
+
+[sub_resource type="Resource" id="Resource_gqgvd"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("17_rgooc")
+Moves = Array[Object]([SubResource("Resource_onv4d"), SubResource("Resource_e1ncd")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_u40t8")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_65thx"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("19_2pge0")
+Chance = 40.0
+
+[sub_resource type="Resource" id="Resource_512aa"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("18_ayio8")
+Chance = 60.0
+
+[sub_resource type="Resource" id="Resource_j30xi"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 5
+HP = 5
+Atk = 3
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 1
+WP = 0
+
+[sub_resource type="Resource" id="Resource_gy3rb"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("17_rgooc")
+Moves = Array[Object]([SubResource("Resource_65thx"), SubResource("Resource_512aa")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_j30xi")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_eef0d"]
+script = ExtResource("14_d3pen")
+Base = ExtResource("13_nwwwh")
+Chance = 40.0
+
+[sub_resource type="Resource" id="Resource_a8w2k"]
+script = ExtResource("15_1oj1h")
+State = 2
+Speed = 3.0
+Combo = 2
+offset = Vector2(30, 0)
+Movement = true
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 2
+Cost = 0
+TargetsParty = false
+Name = ""
+MoveTime = 3.0
+
+[sub_resource type="Resource" id="Resource_0kq6h"]
+script = ExtResource("14_d3pen")
+Base = SubResource("Resource_a8w2k")
+Chance = 30.0
+
+[sub_resource type="Resource" id="Resource_uvgkn"]
+script = ExtResource("15_1oj1h")
+State = 2
+Speed = 3.0
+Combo = 3
+offset = Vector2(30, 0)
+Movement = true
+type = 0
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 2
+Cost = 0
+TargetsParty = false
+Name = ""
+MoveTime = 3.0
+
+[sub_resource type="Resource" id="Resource_olqrn"]
+script = ExtResource("14_d3pen")
+Base = SubResource("Resource_uvgkn")
+Chance = 30.0
+
+[sub_resource type="Resource" id="Resource_t1jd3"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_7v1b4"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("11_equaa")
+Moves = Array[Object]([SubResource("Resource_eef0d"), SubResource("Resource_0kq6h"), SubResource("Resource_olqrn")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_t1jd3")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_kboy7"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 15
+HP = 15
+Atk = 2
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 1
+WP = 0
+
+[sub_resource type="Resource" id="Resource_m64r4"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("11_equaa")
+Moves = Array[Object]([SubResource("Resource_ul7as"), SubResource("Resource_jubj6"), SubResource("Resource_7vs3k")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_kboy7")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_b0upw"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 10
+HP = 10
+Atk = 3
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 2
+WP = 0
+
+[sub_resource type="Resource" id="Resource_e1xa5"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("17_rgooc")
+Moves = Array[Object]([SubResource("Resource_onv4d"), SubResource("Resource_e1ncd")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_b0upw")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_cv0ky"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 5
+HP = 5
+Atk = 3
+Def = 2
+SpAtk = 1
+SpDef = 1
+Speed = 1
+WP = 0
+
+[sub_resource type="Resource" id="Resource_eyok5"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("17_rgooc")
+Moves = Array[Object]([SubResource("Resource_65thx"), SubResource("Resource_512aa")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_cv0ky")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
+
+[sub_resource type="Resource" id="Resource_k4ae6"]
+script = ExtResource("12_j2tl5")
+Lv = 2
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_nelm3"]
+script = ExtResource("17_0bbe3")
+Name = ""
+Base = ExtResource("11_equaa")
+Moves = Array[Object]([SubResource("Resource_eef0d"), SubResource("Resource_0kq6h"), SubResource("Resource_olqrn")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_k4ae6")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+isControlledByPlayer = false
+Active = true
+Key = 0
+status = 0
 
 [sub_resource type="Resource" id="Resource_c4sed"]
 script = ExtResource("15_8voyv")
@@ -117,7 +460,7 @@ FacingDirection = null
 Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 10
+frame = 9
 
 [node name="Door" parent="." instance=ExtResource("6_222lk")]
 position = Vector2(392, -104)
@@ -152,9 +495,18 @@ LoadPosition = Vector2(32, -592)
 shape = SubResource("RectangleShape2D_muyrc")
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
-position = Vector2(80, 160)
-Scene = SubResource("Resource_7kqbm")
+position = Vector2(112, 96)
+MainEnemies = Array[Object]([SubResource("Resource_hu2hb"), SubResource("Resource_gqgvd")])
+SideEnemies = Array[Object]([SubResource("Resource_gy3rb"), SubResource("Resource_7v1b4")])
+Scene = ExtResource("20_p5oso")
 detectArea = NodePath("../Area2D")
+
+[node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
+position = Vector2(-72, 472)
+MainEnemies = Array[Object]([SubResource("Resource_m64r4"), SubResource("Resource_e1xa5")])
+SideEnemies = Array[Object]([SubResource("Resource_eyok5"), SubResource("Resource_nelm3")])
+Scene = ExtResource("20_p5oso")
+detectArea = NodePath("../Area2D2")
 
 [node name="Area2D" parent="." instance=ExtResource("10_2hwlt")]
 position = Vector2(152, 112)
@@ -167,11 +519,6 @@ position = Vector2(-8, 424)
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
 polygon = PackedVector2Array(-88, -112, -96, 24, -176, 24, -176, 136, 8, 136, 8, -112)
-
-[node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
-position = Vector2(-56, 416)
-Scene = SubResource("Resource_uxay2")
-detectArea = NodePath("../Area2D2")
 
 [node name="ItemPickup" parent="." instance=ExtResource("13_asbdw")]
 position = Vector2(288, 496)
@@ -187,7 +534,6 @@ TimelineGroup = Array[Object]([SubResource("Resource_xmjlp")])
 [editable path="Door2"]
 [editable path="Borders"]
 [editable path="Door3"]
-[editable path="Enemy Spawner"]
 [editable path="Area2D"]
 [editable path="Area2D2"]
 [editable path="ItemPickup"]

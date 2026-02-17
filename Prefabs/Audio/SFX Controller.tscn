@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://dcbu84xm8wcl3"]
+
+[ext_resource type="Script" path="res://Scripts/Audio/SFXController.cs" id="1_w15na"]
+
+[node name="SFXController" type="Node" node_paths=PackedStringArray("SFXPlayers")]
+script = ExtResource("1_w15na")
+SFXPlayers = [NodePath("AttackSFX"), NodePath("GetHitSFX"), NodePath("MiscSFX")]
+Lists = []
+
+[node name="AttackSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="GetHitSFX" type="AudioStreamPlayer2D" parent="."]
+
+[node name="MiscSFX" type="AudioStreamPlayer2D" parent="."]

@@ -1,5 +1,5 @@
 if {Number.ItemAmount} > 1:
-	You got {Items.ItemName} x{Number.ItemAmount}!
+	You got {Items.ItemName} x{Number.ItemAmount}! #id:23
 else:
-	You got a {Items.ItemName}!
+	You got a {Items.ItemName}! #id:24
 [signal arg="argument"]

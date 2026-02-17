@@ -47,7 +47,7 @@ public partial class MenuSavesList : StuffList
 					if(i+Start<Saves.Count){
 						if(Saves[i+Start]!=null){
 							Buttons[i].Save=Saves[i+Start];
-							Buttons[i].Text=$"Save: {i+Start}";							
+							Buttons[i].Text=Tr("Save: ")+(i+Start);							
 						}
 						else{
 							Buttons[i].Save=null;

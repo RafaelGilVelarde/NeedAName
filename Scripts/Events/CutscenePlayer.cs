@@ -10,8 +10,9 @@ public partial class CutscenePlayer : AnimationPlayer
     [Export] public Array<float> PositioningDurations, CutsceneDurations;
     [Export] public Array<string> CutsceneNames;
 
-    public virtual void PlayAnimation(string Animation)
+    public virtual void PlayAnimation(string Animation, bool ChangePos = true)
     {
+        Debug.WriteLine("Cutscene: "+Animation);
 
         int Index = CutsceneNames.IndexOf(Animation);
         GameManager Game = GameManager.Instance;
@@ -26,7 +27,14 @@ public partial class CutscenePlayer : AnimationPlayer
 
         for (int i = 0; i < Game.Followers.Count; i++)
         {
-            tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index]], 0.2);
+            if (ChangePos)
+            {
+                tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index]], 0.2);                
+            }
+            else
+            {
+                tween.TweenProperty(Game.Followers[i].Parent, "global_position", Game.Followers[i].Parent.GlobalPosition, 0.2);
+            }
         }
         tween.Finished += () =>
         {
@@ -55,5 +63,9 @@ public partial class CutscenePlayer : AnimationPlayer
             Game.BattleCam.PositionSmoothingEnabled = true;
             CamTween.Kill();
         };
+    }
+    public void PlayAudio(int AudioIndex)
+    {
+        GameManager.Instance.PlayAudio(AudioIndex);
     }
 }

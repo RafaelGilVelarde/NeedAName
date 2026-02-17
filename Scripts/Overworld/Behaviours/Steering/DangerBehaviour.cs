@@ -19,7 +19,11 @@ public partial class DangerBehaviour : SteeringBehaviours
         {
             var spaceState = enemy.GetWorld2D().DirectSpaceState;
             var query = PhysicsRayQueryParameters2D.Create(enemy.GlobalPosition, enemy.GlobalPosition+Directions.directions[j]*radius, enemy.Parent.CollisionMask);
-            query.Exclude=new Godot.Collections.Array<Rid> {enemy.Parent.GetRid(),enemy.CurrentTarget.GetNode<CollisionObject2D>(".").GetRid()};
+            query.Exclude=new Godot.Collections.Array<Rid> {enemy.Parent.GetRid()};
+            if (enemy.CurrentTarget != null)
+            {
+                query.Exclude.Add(enemy.CurrentTarget.GetNode<CollisionObject2D>(".").GetRid());
+            }
             var result = spaceState.IntersectRay(query);
             enemy.RaycastPos[j]=enemy.GlobalPosition+Directions.directions[j]*radius;
             if(result.Count>0){

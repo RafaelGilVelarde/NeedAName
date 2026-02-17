@@ -1,19 +1,24 @@
 if {GameManager.Data.Flags.EventFlags[9]} == true:
-	Halluci (Wondering): This...thing...
+	Halluci (Wondering): This...thing... #id:29
 elif {GameManager.Data.Flags.EventFlags[10]} == true:
-	Blobfish (Wondering): Hooow straaangeee
-MC (Confused): This is.......What is it?
-"No Box": A bad omen, that's what
-MC (Confused): What do you mean?
-"No Box": Sorry, there's no time, you'll have to fight
-"No Box": It's the only way, good luck
+	Blobfish (Wondering): Hooow straaangeee #id:2a
+MC (Confused): This is.......What is it? #id:2b
+"No Box": A bad omen, that's what #id:2c
+MC (Confused): What do you mean? #id:2d
+"No Box": Sorry, there's no time, you'll have to fight #id:2e
+"No Box": It's the only way, good luck #id:2f
 if {GameManager.Data.Flags.EventFlags[9]} == true:
-	Halluci (Anger): In.......my way.....
+	Halluci (Anger): In.......my way..... #id:30
 if {GameManager.Data.Flags.EventFlags[10]} == true:
-	Blobfish (Angry): Ooone moore enemyyy
-MC (Angry): Fine then, guess there's no choice
+	Blobfish (Angry): Ooone moore enemyyy #id:31
+MC (Angry): Fine then, guess there's no choice #id:32
 [clear time="0.0" step="false"]
-[signal arg="Cutscene1"]
-[wait time="2.1"]
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	[signal arg="Cutscene1"]
+elif {GameManager.Data.Flags.EventFlags[10]} == true:
+	[signal arg="Cutscene3"]
+else:
+	[signal arg="Cutscene4"]
+[wait time="3.0"]
 [signal arg="Fight"]
 [signal arg="EndCutscene"]

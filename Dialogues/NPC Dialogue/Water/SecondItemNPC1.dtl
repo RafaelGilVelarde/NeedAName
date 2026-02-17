@@ -1,4 +1,8 @@
-Lost soul drifting around eh? #id:42
-MC (Confused): I.......guess? #id:43
-Well I feel some strength in your past. #id:44
-If ya find a Soul Memory, give it to good ole me and I can help ya remember some of that power #id:45
+Lost soul drifting around eh? #id:d7
+MC (Confused): I.......guess? #id:d8
+Well I feel some strength in your past. #id:d9
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Wondering): ... #id:da
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Wondering): Oooooh? #id:db
+If ya find a Soul Memory, give it to good ole me and I can help ya remember some of that power #id:dc

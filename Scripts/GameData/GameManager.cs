@@ -14,6 +14,7 @@ public partial class GameManager : Node
 	[Export] public Array<DataManager> Saves;
 	[Export] public DataManager Data;
 	[Export] public MainSettings Settings;
+	[Export] public bool SavesExist, CurrentSaveExists;
 	[Export] DataManager InitialData;
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
@@ -26,14 +27,19 @@ public partial class GameManager : Node
 	[Export] AnimationPlayer TransitionAnimator;
 	[Export] TextureRect TransitionOverlay;
 	[Export] Color TransitionColor;
-	[Export] float TransitionTime = 0.4f;
+	[Export] float TransitionTime = 0.4f, ExpSpeed, ExpDistance;
 	[Export] public AudioStreamPlayer MainAudio;
 	[Export] public Array<AudioStream> BGMs;
 
 	[Export] int CurrentBGM = -1;
+
+
 	public static GameManager Instance;
 
 	[Export] public PlayerController controller;
+
+
+	[Signal] public delegate void _LoadEventHandler();
 
 	Vector2 PositionToMove;
 	public Tween TransitionTween;
@@ -50,11 +56,25 @@ public partial class GameManager : Node
 		//InstantiateCharacters();
 		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
 		DisplaySaves();
+		
+		
+		string SettingsPath = "user://" + "settings" + ".tres";
+		if (ResourceLoader.Exists(SettingsPath))
+        {
+			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
+            if (Saves[Settings.CurrentSave] != null)
+			{
+				Debug.WriteLine("Exists");
+				Data = Saves[Settings.CurrentSave];
+            }
+        }
+
+		TranslationServer.SetLocale(Settings.Language);
 		Debug.WriteLine(Saves.Count);
 
 		for (int i = 0; i < InitialData.Party.Count; i++)
 		{
-			((PartyCharacterBase)InitialData.Party[i].Base).SetEXPLevels();
+			SetEXPLevels((PartyCharacterBase)InitialData.Party[i].Base);
 			InitialData.Party[i].NextLevelExp = ((PartyCharacterBase)InitialData.Party[i].Base).ExpForLevel[InitialData.Party[i].stats.Lv - 1];
 		}
 		if (GetTree().CurrentScene.Name != "MainMenu")
@@ -66,7 +86,12 @@ public partial class GameManager : Node
 	{
 		Data = (DataManager)InitialData.Duplicate();
 		InstantiateCharacters();
-		CallDeferred("SwitchScene", 0, 0, 0, TransitionColor);
+		Array<int> InitColLayerArray = new Array<int>();
+		Array<int> InitColMaskArray = new Array<int>();
+
+		InitColLayerArray.Add(1);
+		InitColMaskArray.Add(1); 
+		CallDeferred("SwitchScene", 0, 0, Vector2.Zero, TransitionColor, 0,InitColLayerArray,InitColMaskArray);
 	}
 	void InstantiateCharacters()
 	{
@@ -78,8 +103,12 @@ public partial class GameManager : Node
 				Characters.Add((PlayerController)AddCharacters(aux, 0));
 				Followers.Add(Characters[Characters.Count - 1]);
 				int FollowerCount = Followers.Count - 1;
+
+				Debug.WriteLine($"{i}: Party {((PartyCharacterBase)aux.Base).PartyId}");
+				Debug.WriteLine(aux.Active);
 				Characters[Characters.Count - 1].Parent.Name = $"Party {((PartyCharacterBase)aux.Base).PartyId}";
 				Characters[Characters.Count - 1].InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
+				Debug.WriteLine($"Name {i}: {Characters[Characters.Count-1].Parent.Name}");
 				if (i > 0)
 				{
 					Characters[Characters.Count - 1].AxisOffset = FollowerCount * 8;
@@ -235,6 +264,17 @@ public partial class GameManager : Node
 		Node Prefab = CharacterPrefabs[prefab].Instantiate<Node>();
 		Overworld = Prefab.GetNode<OverworldController>("./OverworldController");
 		Overworld.BattleCharacter.Character = character;
+		Overworld.BattleCharacter.Character.NodeCharacter = Overworld.Parent;
+		Overworld.BattleCharacter.Character.ResourceLocalToScene = true;
+		if(character.GetType() == typeof(PartyCharacters))
+		{
+			if (Data.Party.Contains((PartyCharacters)character))
+			{
+				Overworld.Parent.Name = $"Party {((PartyCharacterBase)character.Base).PartyId}";				
+			}			
+		}
+		//Overworld.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
+
 		character.SetStats();
 		Overworld.SetAnimators();
 
@@ -254,11 +294,9 @@ public partial class GameManager : Node
 		BattleCam = cam;
 		AssignBattleCamera(GetTree().CurrentScene);
 	}
-	public void SwitchScene(int scene, int Area, Vector2 Position, Color color)
+	public void SwitchScene(int scene, int Area, Vector2 Position, Color color, int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask)
 	{
 		PlayTransition(color);
-		//SceneTreeTimer timer = GetTree().CreateTimer(0.6f,true,true,true);
-		/*timer.Timeout+=()=>*/
 		TransitionTween.Finished += () =>
 		{
 			Data.Scene = scene;
@@ -269,14 +307,21 @@ public partial class GameManager : Node
 			controller?.SetControllable(false);
 			PositionToMove = Position;
 			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
+			SetLayers(GraphicsLayer,CollisionLayer, CollisionMask);
+
+			for(int i = 0; i < Characters.Count; i++)
+			{
+				for(int j = 0; j < Characters[i].ZIndexList.Count; j++)
+				{
+					Characters[i].ZIndexList[j] = GraphicsLayer;					
+				}
+			}
 		};
 		/*SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
 		timer.Timeout+=()=>MoveCharactersToScene(Position);*/
 	}
 	public void RootCharacters()
 	{
-		//controller.RemoveChild(OverworldCam);
-		//GetTree().CurrentScene.AddChild(OverworldCam);
 		if (IsInstanceValid(OverworldCam))
 		{
 			OverworldCam?.QueueFree();
@@ -340,8 +385,8 @@ public partial class GameManager : Node
 	public void Save(int save)
 	{
 		Settings.CurrentSave = save;
+		CurrentSaveExists = true;
 		string Path = "user://" + "save" + Settings.CurrentSave.ToString() + ".tres";
-		string SettingsPath = "user://" + "settings" + ".tres";
 
 		if (controller != null)
 		{
@@ -357,11 +402,18 @@ public partial class GameManager : Node
 		{
 			Godot.FileAccess file = Godot.FileAccess.Open(Path, Godot.FileAccess.ModeFlags.WriteRead);
 		}
-		ResourceSaver.Save(Settings, SettingsPath);
 		ResourceSaver.Save(Saves[Settings.CurrentSave], Path);
+		SaveSettings();
 		Saves[Settings.CurrentSave].TakeOverPath(Path);
 		Debug.WriteLine(Path);
 		DisplaySaves();
+	}
+
+	public void SaveSettings()
+	{
+		string SettingsPath = "user://" + "settings" + ".tres";
+		ResourceSaver.Save(Settings, SettingsPath);
+
 	}
 	public void DisplaySaves()
 	{
@@ -371,6 +423,7 @@ public partial class GameManager : Node
 			Saves[i] = null;
 			if (ResourceLoader.Exists(Path))
 			{
+				SavesExist = true;
 				Saves[i] = (DataManager)ResourceLoader.Load<DataManager>(Path, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
 			}
 			else
@@ -378,7 +431,7 @@ public partial class GameManager : Node
 				Saves[i] = null;
 			}
 		}
-		string SettingsPath = "user://" + "settings" + ".tres";
+		/*string SettingsPath = "user://" + "settings" + ".tres";
         if (ResourceLoader.Exists(SettingsPath))
         {
 			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
@@ -387,7 +440,7 @@ public partial class GameManager : Node
 				Debug.WriteLine("Exists");
 				Data = Saves[Settings.CurrentSave];
             }
-        }
+        }*/
 	}
 	public void Load(int Save)
 	{
@@ -395,27 +448,38 @@ public partial class GameManager : Node
 		{
 			for (int i = 0; i < Characters.Count; i++)
 			{
-				Characters[i].Parent.QueueFree();
+				Characters[i].Parent.Name = "deleting";
 			}
-			Data = null;
-			Data = Saves[Save].DuplicateData();
-			Settings.CurrentSave = Save;
-			OverworldCam?.QueueFree();
-			BattleCam?.QueueFree();
-			Characters.Clear();
-			Followers.Clear();
-
-			for (int i = 0; i < Data.Party.Count; i++)
+			PlayTransition(TransitionColor);
+			TransitionTween.Finished += () =>
 			{
-				Character Aux = Data.Party[i];
-				Aux.ChangeKey(Aux.EventKey);
-			}
+				EmitSignal("_Load");
+				OverworldCam?.GetParent().RemoveChild(OverworldCam);
+				CurrentScene?.AddChild(OverworldCam);
+				for (int i = 0; i < Characters.Count; i++)
+				{
+					Characters[i].Parent.QueueFree();
+				}
+				Data = null;
+				Data = Saves[Save].DuplicateData();
+				Settings.CurrentSave = Save;
+				Characters.Clear();
+				Followers.Clear();
 
-			Debug.WriteLine("SaveScene :" + Saves[Save].Scene);
-			Debug.WriteLine("DataScene :" + Data.Scene);
+				for (int i = 0; i < Data.Party.Count; i++)
+				{
+					Character Aux = Data.Party[i];
+					Aux.ChangeKey(Aux.EventKey);
+				}
 
-			InstantiateCharacters();
-			CallDeferred("SwitchScene", Data.Scene, Data.AreaIndex, Data.Position, TransitionColor);
+				Debug.WriteLine("SaveScene :" + Saves[Save].Scene);
+				Debug.WriteLine("DataScene :" + Data.Scene);
+				Debug.WriteLine("Cam :" + OverworldCam);
+
+				InstantiateCharacters();
+				CallDeferred("SwitchScene", Data.Scene, Data.AreaIndex, Data.Position, TransitionColor, Data.GraphicsLayer, Data.CollisionLayer, Data.CollisionMask);				
+			};
+
 		}
 	}
 
@@ -427,37 +491,34 @@ public partial class GameManager : Node
 	{
 		Characters.Clear();
 		Followers.Clear();
-		Data = null;
+		//Data = null;
+
+		OverworldCam?.QueueFree();
+		BattleCam?.QueueFree();
+		CurrentScene = null;
 		OverworldCam = null;
 		BattleCam = null;
 		GetTree().ChangeSceneToPacked(StartScene);
+	}
+	public void SetEXPLevels(PartyCharacterBase CharBase)
+    {
+        for (int i = 0; i < 100; i++)
+        {
+            CharBase.ExpForLevel[i] = (int)Mathf.Clamp((int)Mathf.Pow(i / ExpSpeed, ExpDistance)*2,1,Mathf.Inf);
+        }
+        for (int i = 0; i < 10; i++)
+        {
+            Debug.WriteLine("Needed EXP: "+CharBase.ExpForLevel[i]);
+        }
 	}
 	public void PlayTransition(Color color)
 	{
 		TransitionTween = CreateTween();
 		TransitionTween.TweenProperty(TransitionAnimator.GetParent<Control>(), "modulate", color, TransitionTime);
 		TransitionTween.Finished += TransitionTween.Kill;
-		/*TransitionAnimator.Stop();
-		if(TransitionAnimator.AssignedAnimation!=null){
-			TransitionAnimator.AssignedAnimation = null;
-		}
-		TransitionAnimator.Play("Transition");*/
+		
 	}
-	/*public void SetLayers(int GraphicsLayer, uint PhysicsLayer){
-		Data.GraphicsLayer = GraphicsLayer;
-		Data.PhysicsLayer = PhysicsLayer;
-		//CHANGE THE MASKS IN THE GAME
-		for (int i = 0; i < Characters.Count; i++)
-		{
-			Characters[i].Parent.ZIndex = GraphicsLayer;
-			Characters[i].Parent.CollisionMask = PhysicsLayer;
-			Characters[i].Parent.CollisionLayer = PhysicsLayer;
-		}
-		for(int i=0;i<Followers.Count;i++){
-			Followers[i].Parent.ZIndex = GraphicsLayer;
-			Followers[i].Parent.CollisionLayer = PhysicsLayer;			
-		}	
-	}*/
+	
 	public void SetLayers(int GraphicsLayer, Array<int> CollisionLayer, Array<int> CollisionMask)
 	{
 		Data.GraphicsLayer = GraphicsLayer;
@@ -473,7 +534,7 @@ public partial class GameManager : Node
 	Tween AudioTween;
 	public void PlayAudio(int Stream)
 	{
-		if (Stream != CurrentBGM)
+		if (Stream != CurrentBGM && Stream>=0)
 		{
 			StopAudio();
 			CurrentBGM = Stream;

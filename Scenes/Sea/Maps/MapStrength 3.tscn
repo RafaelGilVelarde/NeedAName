@@ -1,4 +1,4 @@
-[gd_scene load_steps=83 format=3 uid="uid://i1r7w4xb7dqs"]
+[gd_scene load_steps=84 format=3 uid="uid://i1r7w4xb7dqs"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_0o4wx"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="2_w38a5"]
@@ -20,20 +20,21 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/ChangeFlagSimple.cs" id="16_3e53f"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="17_t6yi5"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="19_q1g3i"]
+[ext_resource type="Resource" uid="uid://be3pitacytxwu" path="res://Resources/CharacterBases/Enemies/WaterEnemy.tres" id="20_grvxg"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="21_g2s7r"]
-[ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="21_uomgk"]
-[ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="22_t1sn8"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="23_82qwr"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="23_antn4"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="24_axpqi"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="24_bj40n"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="24_ebpyt"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="25_spjyk"]
 [ext_resource type="Texture2D" uid="uid://bxol8k2rcwxa2" path="res://Sprites/Overworld/Enemies/starfish.png" id="26_0pjsp"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="27_wx7vk"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="28_u4ov7"]
+[ext_resource type="Script" path="res://Scripts/Overworld/Setup/CheckFlagDelete.cs" id="32_48yg7"]
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="32_dlon5"]
+[ext_resource type="Script" path="res://Scripts/GameData/CheckFlags.cs" id="33_imqdf"]
 [ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="33_x5djp"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerGive.cs" id="34_c55hl"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="34_xh40e"]
 [ext_resource type="Resource" uid="uid://n6qtkvuadyar" path="res://Resources/Moves/Player/1/PlayerShoot.tres" id="35_mlme7"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerResources/ObjectToGive.cs" id="36_7bud0"]
 
@@ -83,7 +84,7 @@ size = Vector2(24, 24)
 
 [sub_resource type="Resource" id="Resource_i3pne"]
 script = ExtResource("13_s1wf7")
-DialogueTimelines = Array[String](["Miniboss1"])
+DialogueTimelines = Array[String](["Miniboss3"])
 FlagIndexes = null
 flagTypes = null
 
@@ -105,34 +106,14 @@ Horizontal = false
 Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
+BattleMusic = 1
+WinMusic = -1
+LoseMusic = 2
 
-[sub_resource type="Resource" id="Resource_grl5b"]
-script = ExtResource("19_q1g3i")
-Lv = 0
-MaxHP = 8
-HP = 5
-Atk = 2
-Def = 2
-SpAtk = 2
-SpDef = 2
-Speed = 2
-WP = 0
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3aaa"]
+size = Vector2(8, 8)
 
-[sub_resource type="Resource" id="Resource_8qa3i"]
-script = ExtResource("23_82qwr")
-ExpYield = 10.0
-BaseStats = SubResource("Resource_grl5b")
-Name = "Water"
-OverworldAnimator = ExtResource("22_t1sn8")
-BattleAnimator = ExtResource("21_uomgk")
-TextEffectColor = Color(1, 0, 0, 1)
-OverworldOffset = Vector2(0, -18)
-BattleOffset = Vector2(0, -18)
-Floor = Vector2(0, 0)
-MoveSFX = null
-HitSFX = null
-
-[sub_resource type="Resource" id="Resource_fnwcy"]
+[sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("19_q1g3i")
 Lv = 0
 MaxHP = 0
@@ -144,7 +125,7 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_ip3xr"]
+[sub_resource type="Resource" id="Resource_n5dm3"]
 script = ExtResource("24_axpqi")
 State = 2
 Speed = 3.0
@@ -155,26 +136,26 @@ type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
-WP = 2
+WP = 4
 Cost = 0
 TargetsParty = false
 Name = ""
 MoveTime = 3.0
 
-[sub_resource type="Resource" id="Resource_slmna"]
+[sub_resource type="Resource" id="Resource_s3e00"]
 script = ExtResource("21_g2s7r")
-Base = SubResource("Resource_ip3xr")
-Chance = 0.0
+Base = SubResource("Resource_n5dm3")
+Chance = 40.0
 
-[sub_resource type="Resource" id="Resource_cdsau"]
+[sub_resource type="Resource" id="Resource_daa83"]
 script = ExtResource("24_axpqi")
 State = 2
-Speed = 3.0
-Combo = 3
+Speed = 2.0
+Combo = 1
 offset = Vector2(30, 0)
 Movement = true
 type = 0
-Power = 2
+Power = 1
 UserAmount = 1
 TargetAmount = 1
 WP = 2
@@ -183,12 +164,12 @@ TargetsParty = false
 Name = ""
 MoveTime = 3.0
 
-[sub_resource type="Resource" id="Resource_a42v0"]
+[sub_resource type="Resource" id="Resource_gm4we"]
 script = ExtResource("21_g2s7r")
-Base = SubResource("Resource_cdsau")
-Chance = 0.0
+Base = SubResource("Resource_daa83")
+Chance = 60.0
 
-[sub_resource type="Resource" id="Resource_8mnj7"]
+[sub_resource type="Resource" id="Resource_jv4yb"]
 script = ExtResource("19_q1g3i")
 Lv = 0
 MaxHP = 0
@@ -200,29 +181,29 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_akhas"]
+[sub_resource type="Resource" id="Resource_66r5k"]
 script = ExtResource("19_q1g3i")
-Lv = 5
-MaxHP = 20
-HP = 20
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+Lv = 8
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_pht0s"]
+[sub_resource type="Resource" id="Resource_xltsy"]
 resource_local_to_scene = true
-script = ExtResource("23_antn4")
+script = ExtResource("24_bj40n")
 Name = ""
-Base = SubResource("Resource_8qa3i")
-Moves = Array[Object]([SubResource("Resource_slmna"), SubResource("Resource_a42v0")])
+Base = ExtResource("20_grvxg")
+Moves = Array[Object]([SubResource("Resource_s3e00"), SubResource("Resource_gm4we")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_akhas")
-EquipStats = SubResource("Resource_fnwcy")
-TotalStats = SubResource("Resource_8mnj7")
+stats = SubResource("Resource_66r5k")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -318,6 +299,14 @@ point_count = 2
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hod4p"]
 bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 
+[sub_resource type="Resource" id="Resource_fuqpy"]
+script = ExtResource("33_imqdf")
+flagType = 0
+index = 8
+intResult = 0
+boolResult = true
+ValueType = 1
+
 [sub_resource type="Resource" id="Resource_wpgkk"]
 script = ExtResource("21_g2s7r")
 Base = ExtResource("35_mlme7")
@@ -332,19 +321,23 @@ index = 8
 PartyIndex = 0
 Timeline = "MoveLearned"
 
-[node name="MapStrength1" type="Node2D"]
+[node name="MapStrength3" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_0o4wx")
+BGMIndex = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
 z_index = -1
 z_as_relative = false
 tile_set = ExtResource("2_w38a5")
+collision_animatable = true
+collision_visibility_mode = 1
+navigation_visibility_mode = 1
 format = 2
 layer_0/z_index = -1
 layer_0/tile_data = PackedInt32Array(9, 1245185, 4, 196616, 1310721, 11, 327688, 1310721, 11, 327671, 1114113, 4, 327672, 1310721, 11, 327673, 1310721, 11, 262137, 1310721, 11, 262138, 1310721, 11, 262139, 1310721, 11, 196603, 1310721, 11, 196604, 1310721, 11, 196605, 1310721, 11, 196606, 1310721, 11, 131070, 1310721, 11, 65534, 1310721, 11, 65533, 1310721, 11, -3, 1310721, 11, -4, 1310721, 11, -5, 1310721, 11, -6, 1114113, 4, -7, 1310721, 11, 65529, 1114113, 4, 131065, 1310721, 11, 196601, 1310721, 11, 196602, 1310721, 11, 262140, 1310721, 11, 262141, 1310721, 11, -262135, 1245185, 4, -262136, 1245185, 4, -327672, 1245185, 4, -327673, 1310721, 11, -327674, 1310721, 11, -327675, 1310721, 11, -327676, 1310721, 11, -327677, 1310721, 11, -327678, 1310721, 11, -393214, 1310721, 11, -393215, 1310721, 11, -393216, 1310721, 11, -327681, 1310721, 11, -327682, 1310721, 11, -327683, 1310721, 11, -327684, 1310721, 11, -262148, 1310721, 11, -262149, 1310721, 11, -262150, 1114113, 4, -196614, 1114113, 4, -196615, 1114113, 4, -131079, 1114113, 4, -65543, 1310721, 11, 393210, 1114113, 4, 65544, 1245185, 4, 262153, 1245185, 3, -131064, 1245185, 3, -131063, 1245185, 3, -65527, 1245185, 3, 65545, 1245185, 4, 131081, 1245185, 3, 196617, 1245185, 3, 262149, 1245185, 4, 262150, 1245185, 4, 196614, 1245185, 4, 196615, 1245185, 4, 131080, 1245185, 4, 393212, 1114113, 4, 393211, 1114113, 4, 393209, 1114113, 4, 393208, 1114113, 4, 393207, 1114113, 4, 327670, 1114113, 4, 262134, 1114113, 4, 196598, 1114113, 4, 131063, 1114113, 4, 65527, 1114113, 4, 65528, 1114113, 4, 65530, 1114113, 4, -131078, 1114113, 4, -262154, 1114113, 4, -196616, 1114113, 4, -327690, 1114113, 4, -327689, 1114113, 4, -327688, 1114113, 4, -65546, 1114113, 4, 524295, 0, 9, 524296, 0, 9, 589831, 2162689, 7, 393224, 2162689, 7, 524280, 0, 9, 589820, 0, 9, 655359, 0, 9, 524285, 0, 9, 458749, 0, 9, 393213, 0, 9, 524284, 0, 9, 655356, 0, 9, 655355, 0, 9, 655354, 0, 9, 655353, 0, 9, 655352, 0, 9, 655351, 0, 9, 393218, 0, 9, 458754, 0, 9, 458755, 0, 9, 524291, 0, 9, 524292, 0, 9, 524293, 0, 9, 524294, 0, 9, 589832, 0, 9, 393225, 0, 9, 458761, 0, 9, 524297, 0, 9, 589829, 0, 9, 589828, 0, 9, 393219, 0, 9, 393220, 0, 9, 393221, 0, 9, 393222, 0, 9)
-layer_1/tile_data = PackedInt32Array(-262150, 1179649, 8, -196614, 1179649, 9, -131078, 1179649, 9, -65542, 1179649, 9, -6, 1179649, 9, 65530, 1179649, 9, 131066, 1179649, 9, 196602, 1179649, 9, 262138, 1179649, 9, 327674, 1179649, 10, -262149, 1245185, 8, -196613, 1245184, 9, -131077, 1245184, 9, -65541, 1245184, 9, -5, 1245184, 9, 65531, 1245184, 9, 131067, 1245184, 9, 196603, 1245184, 9, 262139, 1245184, 9, 327675, 1245185, 10, -262148, 1245185, 8, -196612, 1245184, 9, -131076, 1245184, 9, -65540, 1245184, 9, -4, 1245184, 9, 65532, 1245184, 9, 131068, 1245184, 9, 196604, 1245184, 9, 262140, 1245184, 9, 327676, 1245185, 10, -262147, 1245185, 8, -196611, 1245184, 9, -131075, 1245184, 9, -65539, 1245184, 9, -3, 1245184, 9, 65533, 1245184, 9, 131069, 1245184, 9, 196605, 1245184, 9, 262141, 1245184, 9, 327677, 1245185, 10, -262146, 1245185, 8, -196610, 1245184, 9, -131074, 1245184, 9, -65538, 1245184, 9, -2, 1245184, 9, 65534, 1245184, 9, 131070, 1245184, 9, 196606, 1245184, 9, 262142, 1245184, 9, 327678, 1179649, 536870923, -327681, 1179649, 9, -262145, 1179649, 11, -196609, 1245184, 9, -131073, 1245184, 9, -65537, 1245184, 9, -1, 1245184, 9, 65535, 1245184, 9, 131071, 1245184, 9, 196607, 1245184, 9, 262143, 1245184, 9, 327679, 1245185, 9, 393215, 1245185, 9, -393216, 1310721, 9, -327680, 1179649, 268435467, -262144, 1245184, 9, -196608, 1245184, 9, -131072, 1245184, 9, -65536, 1245184, 9, 0, 1245184, 9, 65536, 1245184, 9, 131072, 1245184, 9, 196608, 1245184, 9, 262144, 1245185, 9, 327680, 1245185, 9, -327679, 1245185, 8, -262143, 1245184, 9, -196607, 1245184, 9, -131071, 1245184, 9, -65535, 1245184, 9, 1, 1245184, 9, 65537, 1245184, 9, 131073, 1245184, 9, 196609, 1245184, 9, 262145, 1179649, 805306379, -327678, 1245185, 8, -262142, 1245184, 9, -196606, 1245184, 9, -131070, 1245184, 9, -65534, 1245184, 9, 2, 1245184, 9, 65538, 1245184, 9, 131074, 1245184, 9, 196610, 1245184, 9, 262146, 1245185, 10, -327677, 1245185, 8, -262141, 1245184, 9, -196605, 1245184, 9, -131069, 1245184, 9, -65533, 1245184, 9, 3, 1245184, 9, 65539, 1245184, 9, 131075, 1245184, 9, 196611, 1245184, 9, 262147, 1245185, 10, -327676, 1245185, 8, -262140, 1245184, 9, -196604, 1245184, 9, -131068, 1245184, 9, -65532, 1245184, 9, 4, 1245184, 9, 65540, 1245184, 9, 131076, 1245184, 9, 196612, 1245184, 9, 262148, 1245185, 10, -327675, 1310721, 8, -262139, 1310721, 9, -196603, 1310721, 9, -131067, 1310721, 9, -65531, 1310721, 9, 5, 1310721, 9, 65541, 1310721, 9, 131077, 1310721, 9, 196613, 1310721, 9, 262149, 1310721, 10, 458751, 1245185, 9, 524287, 1245185, 9, 393216, 1245185, 9, 458752, 1245185, 9, 524288, 1245185, 9, 589823, 1245185, 9, 327681, 1310721, 9, 393217, 1310721, 9, 458753, 1310721, 9, 524289, 1310721, 9, 393214, 1179649, 9, 458750, 1179649, 9, 524286, 1179649, 9, 589822, 1179649, 9)
+layer_1/tile_data = PackedInt32Array(-262150, 1179648, 8, -196614, 1179648, 9, -131078, 1179648, 9, -65542, 1179648, 9, -6, 1179648, 9, 65530, 1179648, 9, 131066, 1179648, 9, 196602, 1179648, 9, 262138, 1179648, 9, 327674, 1179648, 10, -262149, 1245184, 8, -196613, 1245184, 9, -131077, 1245184, 9, -65541, 1245184, 9, -5, 1245184, 9, 65531, 1245184, 9, 131067, 1245184, 9, 196603, 1245184, 9, 262139, 1245184, 9, 327675, 1245184, 10, -262148, 1245184, 8, -196612, 1245184, 9, -131076, 1245184, 9, -65540, 1245184, 9, -4, 1245184, 9, 65532, 1245184, 9, 131068, 1245184, 9, 196604, 1245184, 9, 262140, 1245184, 9, 327676, 1245184, 10, -262147, 1245184, 8, -196611, 1245184, 9, -131075, 1245184, 9, -65539, 1245184, 9, -3, 1245184, 9, 65533, 1245184, 9, 131069, 1245184, 9, 196605, 1245184, 9, 262141, 1245184, 9, 327677, 1245184, 10, -262146, 1245184, 8, -196610, 1245184, 9, -131074, 1245184, 9, -65538, 1245184, 9, -2, 1245184, 9, 65534, 1245184, 9, 131070, 1245184, 9, 196606, 1245184, 9, 262142, 1245184, 9, 327678, 1179648, 1610612747, -327681, 1179648, 9, -262145, 1179648, 11, -196609, 1245184, 9, -131073, 1245184, 9, -65537, 1245184, 9, -1, 1245184, 9, 65535, 1245184, 9, 131071, 1245184, 9, 196607, 1245184, 9, 262143, 1245184, 9, 327679, 1245185, 9, 393215, 1245185, 9, -393216, 1310720, 9, -327680, 1179648, 268435467, -262144, 1245184, 9, -196608, 1245184, 9, -131072, 1245184, 9, -65536, 1245184, 9, 0, 1245184, 9, 65536, 1245184, 9, 131072, 1245184, 9, 196608, 1245184, 9, 262144, 1245185, 9, 327680, 1245185, 9, -327679, 1245184, 8, -262143, 1245184, 9, -196607, 1245184, 9, -131071, 1245184, 9, -65535, 1245184, 9, 1, 1245184, 9, 65537, 1245184, 9, 131073, 1245184, 9, 196609, 1245184, 9, 262145, 1179648, 1879048203, -327678, 1245184, 8, -262142, 1245184, 9, -196606, 1245184, 9, -131070, 1245184, 9, -65534, 1245184, 9, 2, 1245184, 9, 65538, 1245184, 9, 131074, 1245184, 9, 196610, 1245184, 9, 262146, 1245184, 10, -327677, 1245184, 8, -262141, 1245184, 9, -196605, 1245184, 9, -131069, 1245184, 9, -65533, 1245184, 9, 3, 1245184, 9, 65539, 1245184, 9, 131075, 1245184, 9, 196611, 1245184, 9, 262147, 1245184, 10, -327676, 1245184, 8, -262140, 1245184, 9, -196604, 1245184, 9, -131068, 1245184, 9, -65532, 1245184, 9, 4, 1245184, 9, 65540, 1245184, 9, 131076, 1245184, 9, 196612, 1245184, 9, 262148, 1245184, 10, -327675, 1310720, 8, -262139, 1310720, 9, -196603, 1310720, 9, -131067, 1310720, 9, -65531, 1310720, 9, 5, 1310720, 9, 65541, 1310720, 9, 131077, 1310720, 9, 196613, 1310720, 9, 262149, 1310720, 10, 458751, 1245185, 9, 524287, 1245185, 9, 393216, 1245185, 9, 458752, 1245185, 9, 524288, 1245185, 9, 589823, 1245185, 9, 327681, 1310720, 9, 393217, 1310720, 9, 458753, 1310720, 9, 524289, 1310720, 9, 393214, 1179648, 9, 458750, 1179648, 9, 524286, 1179648, 9, 589822, 1179648, 9)
 
 [node name="DataTileMap" type="TileMap" parent="."]
 visible = false
@@ -398,11 +391,6 @@ shape = SubResource("RectangleShape2D_dr5kj")
 
 [node name="Barrier" parent="." instance=ExtResource("10_l3025")]
 position = Vector2(0, 144)
-DisableAnimation = "WaterBarrier/Disable"
-Dialogue = ""
-CheckIntFlag = 0
-ChecksInt = false
-FlagIndex = 8
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_jqjrs")
@@ -419,11 +407,16 @@ FacingRight = true
 FacingDirection = Vector2(0, 0)
 visualType = 0
 
+[node name="Check" parent="Barrier" index="2"]
+HasDialogue = false
+ChecksBool = true
+FlagIndex = 8
+
 [node name="Heal" parent="." instance=ExtResource("11_8dgb5")]
 position = Vector2(-32, 216)
 
 [node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 9
+frame = 11
 
 [node name="Character" type="CharacterBody2D" parent="." groups=["EnemyOverworldController", "Interactable"]]
 y_sort_enabled = true
@@ -438,10 +431,9 @@ PauseWhenDialogue = true
 Sprites = []
 Colors = []
 
-[node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
+[node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("12_4l7oy")
 enemyCollision = NodePath("Area2D")
-IdleTargets = []
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
@@ -486,15 +478,27 @@ CharacterPrefab = 1
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(75, 0)])
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "StatMods", "SFXPlayers")]
+[node name="InteractionCollider" type="Area2D" parent="Character/OverworldController"]
+position = Vector2(15, 0)
+disable_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/OverworldController/InteractionCollider"]
+shape = SubResource("RectangleShape2D_t3aaa")
+
+[node name="TileCollider" type="Node2D" parent="Character/OverworldController"]
+position = Vector2(-16, 0)
+
+[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4
 visible = false
 script = ExtResource("17_t6yi5")
-Character = SubResource("Resource_pht0s")
+Character = SubResource("Resource_xltsy")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
 Overworld = NodePath("../OverworldController")
+StatMultiplier = []
+MultTimer = []
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
@@ -506,7 +510,8 @@ HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
 HPBar = NodePath("HPBarParent/HPBar")
 StatMods = NodePath("Node2D/HBoxContainer")
-SFXPlayers = []
+SFXPlayers = [null, null]
+SoundEffectController = NodePath("../SFXController")
 battleState = 3
 actionState = 5
 
@@ -529,6 +534,13 @@ disabled = true
 script = ExtResource("25_spjyk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Blockbox"]
+shape = SubResource("RectangleShape2D_wpn1b")
+disabled = true
+
+[node name="WPBox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyBlockbox"]]
+script = ExtResource("25_spjyk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/WPBox"]
 shape = SubResource("RectangleShape2D_wpn1b")
 disabled = true
 
@@ -954,6 +966,13 @@ scale = Vector2(0.35, 0.35)
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
+
+[node name="CheckDelete" type="Node" parent="Character" node_paths=PackedStringArray("MainNode")]
+script = ExtResource("32_48yg7")
+CheckFlags = Array[Object]([SubResource("Resource_fuqpy")])
+MainNode = NodePath("..")
+
+[node name="SFXController" parent="Character" instance=ExtResource("34_xh40e")]
 
 [node name="GiveMoves" type="Node" parent="."]
 script = ExtResource("34_c55hl")

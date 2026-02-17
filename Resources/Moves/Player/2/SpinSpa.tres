@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="SpinSpamMove" load_steps=2 format=3 uid="uid://dpnb66wkqy7xf"]
+
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/SpinSpamMove.cs" id="1_nvu8q"]
+
+[resource]
+script = ExtResource("1_nvu8q")
+offset = Vector2(75, 75)
+AtkMultiplier = 0.0
+Speed = 1.5
+Combo = 1
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+WP = 1
+Cost = 0
+TargetsParty = false
+Name = "Spinner"
+MoveTime = 6.0

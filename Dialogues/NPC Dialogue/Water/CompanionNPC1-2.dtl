@@ -1,8 +1,8 @@
-Halluci (Wondering): You return...
-- Reject
-	Halluci (Sad): But I need to...
-- Accept
-	Halluci (Happiness): Thanks...friend
-	Halluci (Normal): We shall reach....our homes
-	MC (Confused): Al...right?
+Halluci (Wondering): You return... #id:40
+- Reject #id:41
+	Halluci (Sad): But I need to... #id:42
+- Accept #id:43
+	Halluci (Happiness): Thanks...friend #id:44
+	Halluci (Normal): We shall reach....our homes #id:45
+	MC (Confused): Al...right? #id:46
 	[signal arg="Follow"]

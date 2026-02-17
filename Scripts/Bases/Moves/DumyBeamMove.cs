@@ -90,6 +90,7 @@ public partial class DumyBeamMove : MoveBase
 		void shoot(BattleCharacter User)
 		{
 			Users[0]._Shoot-=shoot;
+			//Users[0].SoundEffectController.PlaySFX(0,SFX);
 			Line.GlobalPosition=User.ShootNode.GlobalPosition;
 			Line.ClearPoints();
 			Line.AddPoint(Vector2.Zero);

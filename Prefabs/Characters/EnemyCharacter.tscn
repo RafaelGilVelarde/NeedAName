@@ -19,13 +19,14 @@
 [ext_resource type="PackedScene" uid="uid://ddro5vmdjl2si" path="res://Prefabs/Animators/Party/Overworld/BirbOverworldAnimator.tscn" id="10_ih616"]
 [ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="15_sd2km"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="17_0tx57"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/CharacterBase.cs" id="18_jyiej"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="18_ol0yk"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="18_t1xvf"]
-[ext_resource type="PackedScene" uid="uid://b6cj47rw55blg" path="res://Prefabs/Animators/Enemies/Battle/ShrimpBattleAnimator.tscn" id="19_e3f8d"]
-[ext_resource type="PackedScene" uid="uid://qv65iak5mgqv" path="res://Prefabs/Animators/Enemies/Overworld/ShrimpOverworldAnimator.tscn" id="20_l6eef"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="19_lpf2c"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="21_4wbol"]
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="25_qpbpu"]
 [ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="26_22n0a"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="27_13hq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5yups"]
 resource_local_to_scene = true
@@ -78,6 +79,8 @@ Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
 BattleMusic = 1
+WinMusic = -1
+LoseMusic = -1
 
 [sub_resource type="Resource" id="Resource_2lpbm"]
 resource_local_to_scene = true
@@ -106,6 +109,7 @@ BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 0)
 MoveSFX = null
 HitSFX = null
+EffectLists = null
 
 [sub_resource type="Resource" id="Resource_jipoy"]
 script = ExtResource("4_1bhow")
@@ -181,77 +185,64 @@ Active = true
 Key = 0
 status = 0
 
-[sub_resource type="Resource" id="Resource_qlj5e"]
-script = ExtResource("4_1bhow")
-Lv = 0
-MaxHP = 5
-HP = 5
-Atk = 5
-Def = 5
-SpAtk = 5
-SpDef = 5
-Speed = 5
-WP = 0
-
-[sub_resource type="Resource" id="Resource_m1uvd"]
-script = ExtResource("15_sd2km")
-ExpYield = 0.0
-BaseStats = SubResource("Resource_qlj5e")
-Name = "mmm"
-OverworldAnimator = ExtResource("20_l6eef")
-BattleAnimator = ExtResource("19_e3f8d")
-TextEffectColor = Color(1, 0, 0, 1)
+[sub_resource type="Resource" id="Resource_xvol2"]
+script = ExtResource("18_jyiej")
+Name = ""
+TextEffectColor = Color(0, 0, 0, 0)
 OverworldOffset = Vector2(0, 0)
 BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 0)
 MoveSFX = null
 HitSFX = null
+EffectLists = null
 
-[sub_resource type="Resource" id="Resource_woo47"]
-script = ExtResource("9_voesq")
-State = 2
-Speed = 3.0
-Combo = 1
-offset = Vector2(30, 0)
-Movement = true
-type = 0
-Power = 3
-UserAmount = 1
-TargetAmount = 1
-WP = 0
-Cost = 0
-TargetsParty = false
-Name = "b"
-MoveTime = 2.0
-
-[sub_resource type="Resource" id="Resource_7ebqa"]
-script = ExtResource("9_ltwbp")
-Base = SubResource("Resource_woo47")
-Chance = 0.0
-
-[sub_resource type="Resource" id="Resource_0ckdn"]
+[sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("4_1bhow")
 Lv = 0
-MaxHP = 20
-HP = 20
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_p2e0b"]
+[sub_resource type="Resource" id="Resource_jv4yb"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_q0c02"]
+script = ExtResource("4_1bhow")
+Lv = 0
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
+WP = 0
+
+[sub_resource type="Resource" id="Resource_7sgs5"]
 resource_local_to_scene = true
-script = ExtResource("8_r8twf")
+script = ExtResource("19_lpf2c")
 Name = ""
-Base = SubResource("Resource_m1uvd")
-Moves = Array[Object]([SubResource("Resource_7ebqa")])
+Base = SubResource("Resource_xvol2")
+Moves = Array[Object]([])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_0ckdn")
-EquipStats = SubResource("Resource_jipoy")
-TotalStats = SubResource("Resource_m514q")
+stats = SubResource("Resource_q0c02")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -353,7 +344,7 @@ y_sort_enabled = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_5yups")
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
+[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("enemyCollision", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("1_d5p4d")
 enemyCollision = NodePath("Area2D")
 movementController = SubResource("Resource_3r5w5")
@@ -361,8 +352,6 @@ CachedTargetPosition = null
 RandMin = null
 RandMax = null
 state = 1
-IdleTargets = []
-CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
@@ -415,11 +404,11 @@ BorderOffset = null
 PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, 100)])
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4
 visible = false
 script = ExtResource("3_xeb2i")
-Character = SubResource("Resource_p2e0b")
+Character = SubResource("Resource_7sgs5")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
@@ -450,7 +439,8 @@ HPBar = NodePath("HPBarParent/HPBar")
 StatMods = NodePath("Node2D/HBoxContainer")
 UpStat = ExtResource("25_qpbpu")
 DownStat = ExtResource("26_22n0a")
-SFXPlayers = []
+SFXPlayers = [null, null]
+SoundEffectController = NodePath("../SFXController")
 battleState = 3
 actionState = 5
 
@@ -601,10 +591,9 @@ scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = 177.0
-offset_bottom = 94.0
+offset_left = -35.0
+offset_right = 465.0
+offset_bottom = 90.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
@@ -900,3 +889,5 @@ scale = Vector2(0.35, 0.35)
 theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
+
+[node name="SFXController" parent="." instance=ExtResource("27_13hq6")]

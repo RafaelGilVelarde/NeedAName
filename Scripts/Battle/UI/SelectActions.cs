@@ -60,6 +60,7 @@ public partial class SelectActions : Node2D
 						WaitForAnimation();
 					}
 					if(Input.IsActionJustPressed("Run")){
+						animating = true;
 						Animator.Set("parameters/conditions/Start",false);
 						Animator.Set("parameters/conditions/Choice",true);
 						Animator.Set("parameters/Choice/blend_position",2);
@@ -67,6 +68,7 @@ public partial class SelectActions : Node2D
 						Timer.Timeout += () =>
 						{
 							Hide();
+							animating = false;
 							BattleManager.instance.Run();
 						};
 					}

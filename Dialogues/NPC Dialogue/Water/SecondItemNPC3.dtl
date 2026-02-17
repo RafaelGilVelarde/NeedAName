@@ -1,13 +1,17 @@
-So, wanna remember your power?
-- Sure! [Give Soul Memory]
-	Let's do this then!
-	C'mon....c'mooooooooooooooooooon
-	Finally! Here ya go
+So, wanna remember your power? #id:df
+- Sure! [Give Soul Memory] #id:e0
+	Let's do this then! #id:e1
+	C'mon....c'mooooooooooooooooooon #id:e2
+	Finally! Here ya go #id:e3
 	[signal arg="GiveItem"]
-	MC (Wondering): It feels.............loud?
-	I dunno that's for you to find out
-	[Received the Loud Memory]
-- I'd......rather not
-	Come back if ya change your mind
-	Or don't
+	MC (Wondering): It feels.............loud? #id:e4
+	I dunno that's for you to find out #id:e5
+	if {GameManager.Data.Flags.EventFlags[9]} == true:
+		Halluci (Happiness): Heh, this is invigorating #id:e6
+	if {GameManager.Data.Flags.EventFlags[10]} == true:
+		Blobfish (Sad): My head huuuurts #id:e7
+	[Received the Loud Memory] #id:e8
+- I'd......rather not #id:e9
+	Come back if ya change your mind #id:ea
+	Or don't #id:eb
 	[signal arg="RefuseItem"]

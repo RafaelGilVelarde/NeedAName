@@ -57,19 +57,11 @@ public partial class Character : Resource
     {
 
     }
-    public virtual void ChangeHP(int hp)
+    public virtual void ChangeHP(int hp, bool ShowText = true)
     {
         stats.HP += hp;
         stats.HP = Mathf.Clamp(stats.HP, 0, TotalStats.MaxHP);
 
-        if (hp != 0)
-        {
-            ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor);
-        }
-        else
-        {
-            ShowTextLabel("[center]BLOCKED[/center]", Base.TextEffectColor);
-        }
         EmitSignal("_ChangeHP", hp);
         if (hp < 0)
         {
@@ -81,6 +73,17 @@ public partial class Character : Resource
             stats.HP = 0;
             status = Status.KO;
             EmitSignal("_Die");
+        }
+        if (ShowText)
+        {
+            if (hp != 0)
+            {
+                ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor);
+            }
+            else
+            {
+                ShowTextLabel("[center]BLOCKED[/center]", Base.TextEffectColor);
+            }            
         }
     }
     public virtual void SetStats()
@@ -170,26 +173,25 @@ public partial class Character : Resource
     public void ShowTextLabel(string Text, Color color)
     {
         Node2D HPLabelParent = GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        //HPLabelParent.Scale = NodeCharacter.GlobalScale.Abs();
-        //HPLabelParent.Rotation = NodeCharacter.GlobalRotation;
+        Debug.WriteLine("Name: "+Base.Name);
+        Debug.WriteLine("Text: "+Text);
+        Debug.WriteLine("Node: "+NodeCharacter);
         RichTextLabel HPLabel = HPLabelParent.GetChild(0).GetChild<RichTextLabel>(0);
         HPLabel.Text = "[center]" + Text + "[/center]";
         HPLabel.AddThemeColorOverride("default_color", color);
         NodeCharacter.GetTree().CurrentScene.AddChild(HPLabelParent);
         HPLabelParent.Position = NodeCharacter.GlobalPosition;
         HPLabelParent.ZIndex = 20;
-        Debug.WriteLine(NodeCharacter);
-        Debug.WriteLine("Position: " + NodeCharacter.Position);
-        Debug.WriteLine("LabelPosition: " + HPLabelParent.Position);
     }
 
-    public void ResetCharacter()
+    public virtual void ResetCharacter()
     {
         stats.HP = TotalStats.MaxHP;
         stats.WP = 0;
     }
     public void LearnMove(Moves Move)
     {
+        Debug.WriteLine("Move Learned: "+Move.Base.Name);
         Moves.Add((Moves)Move.Duplicate());
     }
 }

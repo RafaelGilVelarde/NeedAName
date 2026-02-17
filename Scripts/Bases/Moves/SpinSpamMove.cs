@@ -68,7 +68,7 @@ public partial class SpinSpamMove : MoveBase
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             
             Tween.Finished+=()=>{
-                if(!Failed && Timer.TimeLeft>((2/Speed)+0.5)){
+                if(!Failed && Timer.TimeLeft>((2/Speed)+0.5)&& Targets[0].Character.status != Character.Status.KO){
                     AttackAvailable = true;
                     Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Hit",false);
 
@@ -124,16 +124,10 @@ public partial class SpinSpamMove : MoveBase
 				TargetPosition = new Vector2(TargetPosition.X, TargetPosition.Y + FloorOffset);
 			}
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
-            /*Tween.Finished+=HitSignal;
-            void HitSignal(){
-                SpamInterval();
-                Tween.Kill();
-            }*/
-            //tween.TweenCallback(Callable.From(()=>SpamInterval(Users[0])));
+
         }
         
 
-        //Attack();
         Users[0].changeState(BattleCharacter.BattleState.Attacking);
 		
 
@@ -158,6 +152,7 @@ public partial class SpinSpamMove : MoveBase
                 Users[0]._DoAction-=Check;
 
                 Users[0].changeState(BattleCharacter.BattleState.Idle);
+                Users[0].SoundEffectController.StopSFX();
                 if(MainTimer.TimeLeft>0.1){
                     SceneTreeTimer timer = Users[0].GetTree().CreateTimer(0.1,true,true,true);
                     timer.Timeout+=()=>{

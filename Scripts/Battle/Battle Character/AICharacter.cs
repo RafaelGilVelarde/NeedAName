@@ -4,8 +4,12 @@ using System.Diagnostics;
 
 public partial class AICharacter : BattleCharacter
 {
+    public override void _Ready()
+    {
+        base._Ready();
+    }
     public override void StartChoosingMove(){
-        Moves move=((EnemyCharacterBase)Character.Base).MoveChoosing(this);
+        Moves move=((EnemyCharacterBase)Character.Base).AI.MoveChoosing(this);
         MoveUsed=move;
         if(move.Base.UserAmount>1){
             StartChoosingUsers(move);
@@ -19,11 +23,17 @@ public partial class AICharacter : BattleCharacter
 	}
 
 	public override void StartChoosingTarget(Moves move){
-        ((EnemyCharacterBase)Character.Base).TargetChoosing(move,this);
+        ((EnemyCharacterBase)Character.Base).AI.TargetChoosing(move,this);
         UseMove(MoveUsed);
 	}
+    public override void TurnOnBattle()
+    {
+        ((EnemyCharacter)Character).AI.Clear();
+        base.TurnOnBattle();
+    }
     public override void TurnOffBattle()
     {
+        ((EnemyCharacter)Character).AI.Clear();
 		ClearStatMultiplier();
 		Character._GetHit-=GetHit;
 		Character._Die-=Die;

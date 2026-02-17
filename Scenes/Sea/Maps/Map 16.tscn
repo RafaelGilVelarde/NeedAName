@@ -166,12 +166,13 @@ modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("11_jle6m")
 hframes = 5
 vframes = 4
-frame = 9
+frame = 4
 
 [node name="Shine" type="Sprite2D" parent="Barrier/Sprite2D"]
 texture = ExtResource("12_8opig")
 hframes = 4
 vframes = 3
+frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier"]
 libraries = {
@@ -186,11 +187,8 @@ Animator = NodePath("../AnimationPlayer")
 Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
-CheckIntFlag = null
 HasDialogue = false
 ChecksBool = true
-ChecksInt = null
-FlagIndex = null
 
 [editable path="Cams"]
 [editable path="Borders"]

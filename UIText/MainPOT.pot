@@ -1,0 +1,291 @@
+# LANGUAGE translation for Godot for the following files:
+# res://Prefabs/GameManager.tscn
+# res://Prefabs/Characters/PartyCharacter.tscn
+# res://Scenes/MainMenu.tscn
+# res://Prefabs/BattleManager/battle_manager.tscn
+#
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: Godot\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8-bit\n"
+
+#: Prefabs/GameManager.tscn
+msgid "Stats"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Items"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "???"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Settings"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Save & Load"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "[center]Name[/center]"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "LV"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "HP"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Atk"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Def"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "SpAtk"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "SpDef"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Speed"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Key"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Head"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Body"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Legs"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Weapon"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Legs\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Unequip"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Item1"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Item2"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Item3\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Item4"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Equip1"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Equip2\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Equip3\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Equip4"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Use\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Toss\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "0"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "[center]Desc[/center]"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Items\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Equip"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Key\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+#: Scenes/MainMenu.tscn
+msgid "Save1"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Save\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Load\n"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Delete"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "Yes"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+msgid "No"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+#: Scenes/MainMenu.tscn
+msgid "Language"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+#: Scenes/MainMenu.tscn
+msgid "English"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+#: Scenes/MainMenu.tscn
+msgid "Español"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "Fight"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]Z[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "Item"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]X[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "Run"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]C[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]50[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]1[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]Atk[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]Def[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]SpA[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]SpD[/center]"
+msgstr ""
+
+#: Prefabs/Characters/PartyCharacter.tscn
+msgid "[center]Spe[/center]"
+msgstr ""
+
+#: Scenes/MainMenu.tscn
+msgid "Start"
+msgstr ""
+
+#: Scenes/MainMenu.tscn
+msgid "Continue"
+msgstr ""
+
+#: Scenes/MainMenu.tscn
+msgid "[center][/center]"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "uyhjbknlkml"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "5555srf"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Attack: Z"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Block: Z"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Dodge: Arrows+Z"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Retry"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Return to Last Save"
+msgstr ""
+
+#: Prefabs/BattleManager/battle_manager.tscn
+msgid "Return to Title Screen"
+msgstr ""

@@ -8,19 +8,9 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ypy8"]
 size = Vector2(64, 20)
 
-[node name="Barrier" type="StaticBody2D" node_paths=PackedStringArray("Animator", "Shape")]
+[node name="Barrier" type="StaticBody2D"]
 z_index = 1
 position = Vector2(80, 176)
-script = ExtResource("1_tddyv")
-Animator = NodePath("Sprite2D/AnimationPlayer")
-Shape = NodePath("CollisionShape2D")
-DisableAnimation = null
-Dialogue = null
-CheckIntFlag = null
-HasDialogue = false
-ChecksBool = true
-ChecksInt = null
-FlagIndex = null
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_8s3xc")
@@ -35,7 +25,7 @@ autoplay = "WaterBarrier/Barrier"
 shape = SubResource("RectangleShape2D_3ypy8")
 script = ExtResource("4_y35jc")
 Toggleable = null
-Check = NodePath("..")
+Check = NodePath("../Check")
 HasDialogue = null
 SwitchState = null
 MaxStates = 2
@@ -50,3 +40,9 @@ FacingRight = null
 FacingDirection = null
 visualType = null
 Sprites = Array[Object]([])
+
+[node name="Check" type="Node" parent="." node_paths=PackedStringArray("Animator", "Shape")]
+script = ExtResource("1_tddyv")
+Animator = NodePath("../Sprite2D/AnimationPlayer")
+Shape = NodePath("../CollisionShape2D")
+DisableAnimation = "WaterBarrier/Disable"

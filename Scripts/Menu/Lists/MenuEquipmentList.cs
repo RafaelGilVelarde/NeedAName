@@ -60,7 +60,7 @@ public partial class MenuEquipmentList : StuffList
 					if(i+Start<items.Count){
 						Buttons[i].item=items[i+Start];
 						Buttons[i].Show();
-						Buttons[i].Text=$"{items[i+Start].Base.Name} x{items[i+Start].Amount}";
+						Buttons[i].Text=$"{Tr(items[i+Start].Base.Name)} x{items[i+Start].Amount}";
 						activeButtons++;
 						if(StartEnd==ScrollList.StartEnd.End){
 							Buttons[i].GrabFocus();

@@ -1,8 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://b7yn0nhscvc8d"]
+[gd_scene load_steps=18 format=3 uid="uid://b7yn0nhscvc8d"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="1_e40s7"]
 [ext_resource type="Script" path="res://Scripts/Battle/Proyectiles/BezierProyectile.cs" id="1_sn2hw"]
 [ext_resource type="Texture2D" uid="uid://dmyuxrk1ti83" path="res://Sprites/Battle/Effects/WaterBubble/WaterBubble.png" id="2_vc8ng"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="4_8k51l"]
+[ext_resource type="AudioStream" uid="uid://dnvo5bmf4mjlq" path="res://Music/SFX/Moves/WaterPunch.mp3" id="5_2ca21"]
+[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="6_72isy"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_owmsc"]
 
@@ -146,6 +149,20 @@ tracks/5/keys = {
 "method": &"EndSplash"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SFXController")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0, 0],
+"method": &"PlaySFX"
+}]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_0rm7r"]
 _data = {
@@ -177,6 +194,10 @@ states/splash/node = SubResource("AnimationNodeAnimation_qcyna")
 states/splash/position = Vector2(642, 109)
 transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_f7t04"), "idle", "splash", SubResource("AnimationNodeStateMachineTransition_o1khq"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_btul0")]
 
+[sub_resource type="Resource" id="Resource_lfdeg"]
+script = ExtResource("6_72isy")
+SoundEffects = Array[AudioStream]([ExtResource("5_2ca21")])
+
 [node name="Bubble" type="Node2D"]
 script = ExtResource("1_sn2hw")
 
@@ -192,7 +213,7 @@ scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_vc8ng")
 hframes = 3
 vframes = 3
-frame = 2
+frame = 1
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -220,3 +241,6 @@ tree_root = SubResource("AnimationNodeStateMachine_4okq6")
 anim_player = NodePath("..")
 parameters/conditions/Hit = false
 parameters/conditions/Start = false
+
+[node name="SFXController" parent="." instance=ExtResource("4_8k51l")]
+Lists = [SubResource("Resource_lfdeg")]

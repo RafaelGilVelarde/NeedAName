@@ -1,11 +1,11 @@
-Halluci (Normal): It's calling me....
-MC (Confused): ?
-Halluci (Normal): The tides....
-I must.....reach home...
-- Reject
-	Halluci (Sad): But I need to...
-- Accept
-	Halluci (Happiness): Thanks...friend
-	Halluci (Normal): We shall reach....our homes
-	MC (Confused): Al...right?
+Halluci (Normal): It's calling me.... #id:5c
+MC (Confused): ? #id:5d
+Halluci (Normal): The tides.... #id:5e
+I must.....reach home... #id:5f
+- Reject #id:60
+	Halluci (Sad): But I need to... #id:61
+- Accept #id:62
+	Halluci (Happiness): Thanks...friend #id:63
+	Halluci (Normal): We shall reach....our homes #id:64
+	MC (Confused): Al...right? #id:65
 	[signal arg="Follow"]

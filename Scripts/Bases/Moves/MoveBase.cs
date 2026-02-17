@@ -163,7 +163,7 @@ public partial class MoveBase : Resource
         Target.Character.ChangeWP(WP);
     }
 
-    public virtual float MultiplyChance(float Chance)
+    public virtual float MultiplyChance(float Chance, BattleCharacter User)
     {
         return Chance;
     }

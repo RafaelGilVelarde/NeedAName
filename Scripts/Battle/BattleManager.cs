@@ -132,7 +132,7 @@ public partial class BattleManager : Node
 				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
 		}
-		scene.StartBattleEffect();
+		scene.SetupBattleEffect();
 		ResetPositions();
 	}
 
@@ -204,7 +204,6 @@ public partial class BattleManager : Node
 			//float aux=AuxCenterView/AuxScale;
 			if (aux < 0)
 			{
-				//Debug.WriteLine("Flipped: "+AuxCenterView+","+AuxScale);
 				Parent.Rotation += Mathf.Pi * Parent.Scale.Y / Mathf.Abs(Parent.Scale.Y);
 				Parent.Scale = new Vector2(Parent.Scale.X, Parent.Scale.Y * -1);
 			}
@@ -225,7 +224,6 @@ public partial class BattleManager : Node
 			float AuxScale = Parent.Scale.Y / Mathf.Abs(Parent.Scale.Y);
 			float aux = AuxCenterView / AuxScale;
 
-			Debug.WriteLine("Centerview: " + CenterView + " AuxView: " + AuxCenterView + " AuxScale: " + AuxScale + " Aux: " + aux);
 
 			if (aux < 0)
 			{
@@ -336,11 +334,9 @@ public partial class BattleManager : Node
 				CurrentTurn++;
 				TurnCount++;
 			if(CurrentTurn>=TurnOrder.Count || CurrentTurn ==0){
-			Debug.WriteLine("EndRound \n");
 				EndRound();
 			}
 			else{
-				Debug.WriteLine("Turn: "+CurrentTurn+"\n");
 				CurrentCharacter=TurnOrder[CurrentTurn%TurnOrder.Count];
 				if(CurrentCharacter.UsedComboMove){
 					CurrentCharacter.UsedComboMove=false;
@@ -377,7 +373,6 @@ public partial class BattleManager : Node
 	public void Run(){
 		RandomNumberGenerator RNG = new RandomNumberGenerator();
 		int Random = RNG.RandiRange(0,99);
-		Debug.WriteLine("Run: " + Random);
 		CurrentCharacter.selectActions.ProcessMode=ProcessModeEnum.Disabled;
 		if (Scene.EscapeChance > Random)
 		{
@@ -485,13 +480,13 @@ public partial class BattleManager : Node
 			CurrentLabel.Visible=true;
 			switch (Label){
 				case 0:
-					CurrentLabel.Text = $"Attack: {character.Key}";
+					CurrentLabel.Text = Tr("Attack: ")+character.Key;
 				break;
 				case 1:
-					CurrentLabel.Text = $"Block: {character.Key}";
+					CurrentLabel.Text = Tr("Block: ")+character.Key;
 				break;
 				case 2:
-					CurrentLabel.Text = $"Dodge: Arrows + {character.Key}";
+					CurrentLabel.Text = Tr("Dodge: Arrows + ")+character.Key;
 				break;
 			}
 		}
@@ -522,6 +517,7 @@ public partial class BattleManager : Node
 			TurnOrder.Add(EnemyParty[i]);
 		}
 		ResetPositions();
+		Scene.StartBattleEffect();
 		//Clear();
 		//battleStart.StartBattle();
 	}

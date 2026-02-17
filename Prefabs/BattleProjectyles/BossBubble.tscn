@@ -1,9 +1,12 @@
-[gd_scene load_steps=17 format=3 uid="uid://3ddt586nxsc3"]
+[gd_scene load_steps=21 format=3 uid="uid://3ddt586nxsc3"]
 
 [ext_resource type="Script" path="res://Scripts/Battle/Proyectiles/BubbleShoot.cs" id="1_fmlqs"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="2_4dyhw"]
 [ext_resource type="PackedScene" uid="uid://b7yn0nhscvc8d" path="res://Prefabs/BattleProjectyles/WaterBubble.tscn" id="2_imbc3"]
 [ext_resource type="Texture2D" uid="uid://wta78lcxngqq" path="res://Sprites/Battle/Effects/WaterBubble/WaterBubble1.png" id="3_dyhxw"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="5_7mme1"]
+[ext_resource type="AudioStream" uid="uid://g85ao7k4a70a" path="res://Music/SFX/Deaths/Water.mp3" id="6_bsway"]
+[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="7_ub0ia"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_72wyw"]
 
@@ -147,6 +150,20 @@ tracks/5/keys = {
 "method": &"EndSplash"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SFXController")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0, 0],
+"method": &"PlaySFX"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_s54xs"]
 length = 0.4
@@ -248,6 +265,10 @@ states/Start/position = Vector2(186, 83)
 "states/Start 2/position" = Vector2(298, 73)
 transitions = ["Start", "Start 2", SubResource("AnimationNodeStateMachineTransition_vxsun"), "Idle", "Splash", SubResource("AnimationNodeStateMachineTransition_srpoi"), "Start 2", "Idle", SubResource("AnimationNodeStateMachineTransition_qysnk")]
 
+[sub_resource type="Resource" id="Resource_t7jg8"]
+script = ExtResource("7_ub0ia")
+SoundEffects = Array[AudioStream]([ExtResource("6_bsway")])
+
 [node name="Bubble" type="Node2D" node_paths=PackedStringArray("Proyectiles")]
 script = ExtResource("1_fmlqs")
 MiniProyectile = ExtResource("2_imbc3")
@@ -294,3 +315,6 @@ libraries = {
 tree_root = SubResource("AnimationNodeStateMachine_d0343")
 anim_player = NodePath("..")
 parameters/conditions/Hit = false
+
+[node name="SFXController" parent="." instance=ExtResource("5_7mme1")]
+Lists = [SubResource("Resource_t7jg8")]

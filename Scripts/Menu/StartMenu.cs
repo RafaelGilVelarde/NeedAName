@@ -5,12 +5,15 @@ using System.Diagnostics;
 
 enum StartMenuState
 {
+    LanguageSelect,
     Start,
     SavesList
 }
 public partial class StartMenu : Node
 {
-    [Export] BaseButton Start, Continue;
+    [Export] BaseButton Start, Continue, Language;
+    [Export] Control Menu, LanguageMenu;
+    [Export] Array<LanguageButtons> Languages;
     [Export] MenuSavesList SavesList;
     [Export] PackedScene NewGameScene;
     [Export] Color TransitionColor = Colors.Black;
@@ -29,7 +32,12 @@ public partial class StartMenu : Node
                 {
                     MainMenu();
                 }
-
+                break;
+            case StartMenuState.LanguageSelect:
+                if (Input.IsActionJustPressed("Deny"))
+                {
+                    MainMenu();
+                }
                 break;
         }
     }
@@ -42,23 +50,33 @@ public partial class StartMenu : Node
         {
             Game = GameManager.Instance;
             Flags flags = Game.Data.Flags;
-            Debug.WriteLine(Game.Data.Party[0].Name);
             if (flags.EventFlags[0])
             {
                 MainSprite.Show();
             }
-            PlayerName.Text = $"[center]{Game.Data.Party[0].Name}[/center]";
+            PlayerName.Text = $"[center]{Game.Settings.DisplayName}[/center]";
             Game.PlayTransition( Color.Color8(0,0,0,0));
             Game.TransitionTween.Finished+=Setup;
+            Game.StopAudio();
         };
     }
     void Setup()
     {
         Start.Pressed += StartNewGame;
         Continue.Pressed += LoadSavesList;
+        Language.Pressed += ShowLanguageList;
         GameManager.Instance.TransitionTween.Finished -= Setup;
         SetupSavesButtons();
-        Start.GrabFocus();
+        SetupLanguageButtons();
+        if (GameManager.Instance.SavesExist)
+        {
+            MainMenu();
+            Start.GrabFocus();
+        }
+        else
+        {
+            ShowLanguageList();
+        }
     }
 
     void StartNewGame()
@@ -74,8 +92,17 @@ public partial class StartMenu : Node
         SavesList.Show();
         SavesList.FillButtons(0, ScrollList.StartEnd.Regular);
         SavesList.Buttons[0].GrabFocus();
-        Start.Hide();
-        Continue.Hide();
+        LanguageMenu.Hide();
+        Menu.Hide();
+    }
+    void ShowLanguageList()
+    {
+        State = StartMenuState.LanguageSelect;
+        LanguageMenu.Show();
+        SavesList.Hide();
+        Menu.Hide();
+        Languages[0].GrabFocus();
+
     }
     void SetupSavesButtons()
     {
@@ -85,18 +112,28 @@ public partial class StartMenu : Node
             button.Pressed += () => LoadGame(button);
         }
     }
+    void SetupLanguageButtons()
+    {
+        foreach (LanguageButtons button in Languages)
+        {
+            button.Setup();
+            button.Pressed+=MainMenu;
+        }       
+    }
+    
     void LoadGame(MenuSaveButtons button)
     {
         GameManager Game = GameManager.Instance;
         int Index = Game.Saves.IndexOf(button.Save);
-        GameManager.Instance.Load(Index);
+        Game.Load(Index);
+        SavesList.Hide();
     }
     void MainMenu()
     {
         State = StartMenuState.Start;
+        LanguageMenu.Hide();
         SavesList.Hide();
-        Start.Show();
-        Continue.Show();
+        Menu.Show();
         Continue.GrabFocus();
     }
 

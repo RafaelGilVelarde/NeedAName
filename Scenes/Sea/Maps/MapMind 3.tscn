@@ -64,6 +64,7 @@ size = Vector2(215.717, 20)
 [node name="MapMind1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_2vuhw")
+BGMIndex = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true
@@ -258,6 +259,11 @@ FlagIndex = 3
 shape = SubResource("RectangleShape2D_xx6da")
 Type = null
 
+[node name="Check" parent="Barrier" index="2"]
+HasDialogue = false
+ChecksBool = true
+FlagIndex = 3
+
 [node name="Barrier2" parent="." instance=ExtResource("12_7dtei")]
 position = Vector2(80, 256)
 rotation = 1.5708
@@ -268,6 +274,11 @@ FlagIndex = 2
 
 [node name="CollisionShape2D" parent="Barrier2" index="1"]
 shape = SubResource("RectangleShape2D_w5p2i")
+
+[node name="Check" parent="Barrier2" index="2"]
+HasDialogue = false
+ChecksBool = true
+FlagIndex = 2
 
 [editable path="Cams"]
 [editable path="CurrentSwitch"]

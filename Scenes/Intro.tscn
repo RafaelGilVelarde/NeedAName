@@ -184,6 +184,7 @@ fill_from = Vector2(0.5, 0.5)
 [node name="IntroScene" type="Node2D"]
 script = ExtResource("1_symd5")
 IntroDialogue = "IntroCutscene"
+AudioIndex = 5
 
 [node name="Sprite2D2" type="TextureRect" parent="."]
 z_index = -1

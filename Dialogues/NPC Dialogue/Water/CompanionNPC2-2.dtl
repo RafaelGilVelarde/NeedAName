@@ -1,10 +1,10 @@
-Blobfish (Normal): Hello
-Blobfish (Wondering): Changed your mind?
-- Reject
-	Blobfish (Sad): Awww
-	Blobfish (Wondering): Gooood luuck, I'll find my way!
-- Accept
-	Blobfish (Happiness): Yaaay!
-	Blobfish (Happiness): Let's find some good homes
-	MC (Happy): Sure!
+Blobfish (Normal): Hello #id:66
+Blobfish (Wondering): Changed your mind? #id:67
+- Reject #id:68
+	Blobfish (Sad): Awww #id:69
+	Blobfish (Wondering): Gooood luuck, I'll find my way! #id:6a
+- Accept #id:6b
+	Blobfish (Happiness): Yaaay! #id:6c
+	Blobfish (Happiness): Let's find some good homes #id:6d
+	MC (Happy): Sure! #id:6e
 	[signal arg="Follow"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=3 uid="uid://4jvi4almskcy"]
+[gd_scene load_steps=69 format=3 uid="uid://4jvi4almskcy"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_ca3h3"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t2ra3"]
@@ -16,9 +16,9 @@
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/BattleSceneOrderPuzzle.cs" id="13_22wqw"]
 [ext_resource type="Resource" uid="uid://oinvkf7tklql" path="res://Resources/CharacterBases/Enemies/Star.tres" id="13_wowv4"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="14_ap50m"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="15_e7uw8"]
 [ext_resource type="Resource" uid="uid://bvtcpl6qec87k" path="res://Resources/Moves/Enemy/Spinning/Spin1.tres" id="15_ly0rg"]
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="16_6qvww"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="19_3pf0u"]
 [ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="19_7rswv"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="20_cstwq"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="21_30s4q"]
@@ -90,8 +90,11 @@ Horizontal = false
 Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
+BattleMusic = 1
+WinMusic = -1
+LoseMusic = 2
 
-[sub_resource type="Resource" id="Resource_o6qk4"]
+[sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("16_6qvww")
 Lv = 0
 MaxHP = 0
@@ -103,12 +106,12 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_mgcfi"]
+[sub_resource type="Resource" id="Resource_vi83y"]
 script = ExtResource("14_ap50m")
 Base = ExtResource("15_ly0rg")
 Chance = 0.0
 
-[sub_resource type="Resource" id="Resource_7bdca"]
+[sub_resource type="Resource" id="Resource_jv4yb"]
 script = ExtResource("16_6qvww")
 Lv = 0
 MaxHP = 0
@@ -120,29 +123,29 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_tpy07"]
+[sub_resource type="Resource" id="Resource_8oauy"]
 script = ExtResource("16_6qvww")
 Lv = 5
-MaxHP = 10
-HP = 10
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_aul0c"]
+[sub_resource type="Resource" id="Resource_fr3j8"]
 resource_local_to_scene = true
-script = ExtResource("15_e7uw8")
+script = ExtResource("19_3pf0u")
 Name = ""
 Base = ExtResource("13_wowv4")
-Moves = Array[Object]([SubResource("Resource_mgcfi")])
+Moves = Array[Object]([SubResource("Resource_vi83y")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_tpy07")
-EquipStats = SubResource("Resource_o6qk4")
-TotalStats = SubResource("Resource_7bdca")
+stats = SubResource("Resource_8oauy")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -186,8 +189,16 @@ Horizontal = false
 Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
+BattleMusic = 1
+WinMusic = -1
+LoseMusic = 2
 
-[sub_resource type="Resource" id="Resource_woo47"]
+[sub_resource type="Resource" id="Resource_guoam"]
+script = ExtResource("14_ap50m")
+Base = ExtResource("21_ta71s")
+Chance = 0.0
+
+[sub_resource type="Resource" id="Resource_1vth6"]
 script = ExtResource("20_cstwq")
 State = 2
 Speed = 3.0
@@ -198,45 +209,40 @@ type = 0
 Power = 3
 UserAmount = 1
 TargetAmount = 1
-WP = 0
+WP = 2
 Cost = 0
 TargetsParty = false
-Name = "b"
+Name = ""
 MoveTime = 2.0
 
-[sub_resource type="Resource" id="Resource_7ebqa"]
+[sub_resource type="Resource" id="Resource_ab3r8"]
 script = ExtResource("14_ap50m")
-Base = SubResource("Resource_woo47")
+Base = SubResource("Resource_1vth6")
 Chance = 0.0
 
-[sub_resource type="Resource" id="Resource_0een7"]
-script = ExtResource("14_ap50m")
-Base = ExtResource("21_ta71s")
-Chance = 0.0
-
-[sub_resource type="Resource" id="Resource_lhqm8"]
+[sub_resource type="Resource" id="Resource_gxg8w"]
 script = ExtResource("16_6qvww")
 Lv = 6
-MaxHP = 10
-HP = 10
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_wfa70"]
+[sub_resource type="Resource" id="Resource_8f5rl"]
 resource_local_to_scene = true
-script = ExtResource("15_e7uw8")
+script = ExtResource("19_3pf0u")
 Name = ""
 Base = ExtResource("19_7rswv")
-Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_0een7")])
+Moves = Array[Object]([SubResource("Resource_guoam"), SubResource("Resource_ab3r8")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_lhqm8")
-EquipStats = SubResource("Resource_o6qk4")
-TotalStats = SubResource("Resource_7bdca")
+stats = SubResource("Resource_gxg8w")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -280,30 +286,55 @@ Horizontal = false
 Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
+BattleMusic = 1
+WinMusic = -1
+LoseMusic = 2
 
-[sub_resource type="Resource" id="Resource_gvuxb"]
+[sub_resource type="Resource" id="Resource_tktx7"]
+script = ExtResource("20_cstwq")
+State = 2
+Speed = 3.0
+Combo = 3
+offset = Vector2(20, 0)
+Movement = true
+type = 0
+Power = 3
+UserAmount = 1
+TargetAmount = 1
+WP = 2
+Cost = 0
+TargetsParty = false
+Name = ""
+MoveTime = 2.0
+
+[sub_resource type="Resource" id="Resource_ytwbo"]
+script = ExtResource("14_ap50m")
+Base = SubResource("Resource_tktx7")
+Chance = 0.0
+
+[sub_resource type="Resource" id="Resource_awroy"]
 script = ExtResource("16_6qvww")
 Lv = 6
-MaxHP = 10
-HP = 10
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_uvwry"]
+[sub_resource type="Resource" id="Resource_2y7yq"]
 resource_local_to_scene = true
-script = ExtResource("15_e7uw8")
+script = ExtResource("19_3pf0u")
 Name = ""
 Base = ExtResource("19_7rswv")
-Moves = Array[Object]([SubResource("Resource_7ebqa")])
+Moves = Array[Object]([SubResource("Resource_ytwbo")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_gvuxb")
-EquipStats = SubResource("Resource_o6qk4")
-TotalStats = SubResource("Resource_7bdca")
+stats = SubResource("Resource_awroy")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -438,7 +469,7 @@ EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 50), Vector2(0, 0)])
 
 [node name="BattleCharacter" parent="Character" index="2"]
-Character = SubResource("Resource_aul0c")
+Character = SubResource("Resource_fr3j8")
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_yluil")
@@ -468,7 +499,7 @@ EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 50), Vector2(0, 0)])
 
 [node name="BattleCharacter" parent="Character2" index="2"]
-Character = SubResource("Resource_wfa70")
+Character = SubResource("Resource_8f5rl")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_tisk5")
@@ -500,7 +531,7 @@ EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, -100)])
 
 [node name="BattleCharacter" parent="Character3" index="2"]
 process_mode = 3
-Character = SubResource("Resource_uvwry")
+Character = SubResource("Resource_2y7yq")
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Hitbox" index="0"]
 shape = SubResource("RectangleShape2D_rxtpi")

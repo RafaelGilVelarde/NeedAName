@@ -1,13 +1,13 @@
-Halluci (Sad): You return...with another...
-MC (Happy): Well, I can take you with me too!
-Halluci (Sad): I can't...
-Halluci (Normal): It can only be one..
-MC (Confused): ...
-- Reject
-	MC (Normal): I'm sorry
-	Halluci (Sad): But I.......need to...
-- Accept
-	MC (Normal): Will you be okay?
-	Blobfish (Sad): I will try
-	Halluci (Happiness): Thanks...friend
+Halluci (Sad): You return...with another... #id:47
+MC (Happy): Well, I can take you with me too! #id:48
+Halluci (Sad): I can't... #id:49
+Halluci (Normal): It can only be one.. #id:4a
+MC (Confused): ... #id:4b
+- Reject #id:4c
+	MC (Normal): I'm sorry #id:4d
+	Halluci (Sad): But I.......need to... #id:4e
+- Accept #id:4f
+	MC (Normal): Will you be okay? #id:50
+	Blobfish (Sad): I will try #id:51
+	Halluci (Happiness): Thanks...friend #id:52
 	[signal arg="Delete"]

@@ -91,7 +91,11 @@ public partial class PlayerController : OverworldController
 						}
 						if (DataMap != null)
 						{
-							Axis = (Vector2)DataMap.GetCellTileData(0, Coords).GetCustomData("Direction");							
+							TileData TileAux = DataMap.GetCellTileData(0, Coords);
+							if (TileAux != null)
+							{
+								Axis = (Vector2)TileAux.GetCustomData("Direction");															
+							}
 						}
 						break;
 				}		

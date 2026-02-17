@@ -1,10 +1,10 @@
-Halluci (Normal): It can only be one..
-MC (Confused): ...
-- Reject
-	MC (Normal): I'm sorry
-	Halluci (Sad): But I.......need to...
-- Accept
-	MC (Normal): Will you be okay?
-	Blobfish (Sad): I will try
-	Halluci (Happiness): Thanks...friend
+Halluci (Normal): It can only be one.. #id:53
+MC (Confused): ... #id:54
+- Reject #id:55
+	MC (Normal): I'm sorry #id:56
+	Halluci (Sad): But I.......need to... #id:57
+- Accept #id:58
+	MC (Normal): Will you be okay? #id:59
+	Blobfish (Sad): I will try #id:5a
+	Halluci (Happiness): Thanks...friend #id:5b
 	[signal arg="Delete"]

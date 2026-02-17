@@ -18,14 +18,14 @@ public partial class BattleStart : Node2D
         CharacterPrefab = Prefab;
         EnemyCharacters.Clear();
         int Index = 0;
-        if(EnemyPos.Count>0){
+        if(EnemyPos.Count>1){
             while(EnemyCharacters.Count<EnemyPos.Count-1){
-                int Aux=Index%Characters.Count;
+                //int Aux=Index%Characters.Count;
                 RandomNumberGenerator RNG = new RandomNumberGenerator();
                 int chance=RNG.RandiRange(0,Characters.Count-1);
-                if(chance == Index%Characters.Count){
-                    EnemyCharacters.Add((Character)Characters[Aux].Duplicate(true));
-                }
+                //if(chance == Index%Characters.Count){
+                    EnemyCharacters.Add((Character)Characters[chance].Duplicate(true));
+                //}
                 Index++;
             }
         }
@@ -51,6 +51,7 @@ public partial class BattleStart : Node2D
                     }
                 }
             }
+
             EnemyBattle.Add(this.GetParent<OverworldController>().BattleCharacter);
             if (scene.Horizontal)
             {
@@ -74,10 +75,13 @@ public partial class BattleStart : Node2D
                 }
             }
             for(int i=0;i<EnemyBattle.Count;i++){
+                ((EnemyCharacter)EnemyBattle[i].Character).AI = (AISettings)((EnemyCharacterBase)EnemyBattle[i].Character.Base).AI.Duplicate();
                 EnemyBattle[i].Character.SetStats();
                 EnemyBattle[i].Character.ResetCharacter();
                 EnemyBattle[i].Overworld.BattleStart();
             }
+
+
             Array<Vector2> PartyPosGlobal=new Array<Vector2>();
             Array<Vector2> EnemyPosGlobal=new Array<Vector2>();
             for (int i=0;i<Party.Count;i++){

@@ -162,7 +162,7 @@ _data = {
 animation = &"BlobFight/Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_1fndr"]
-animation = &"BlobFight/AttackWindup"
+animation = &"BlobFight/AttackWinddown"
 play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_pmkye"]
@@ -181,18 +181,18 @@ advance_condition = &"EndMove"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_fnp2b"]
 states/BlobFight_Attack/node = SubResource("AnimationNodeAnimation_hasu4")
-states/BlobFight_Attack/position = Vector2(552, 78)
+states/BlobFight_Attack/position = Vector2(608, 73)
+states/BlobFight_AttackWinddown/node = SubResource("AnimationNodeAnimation_1fndr")
+states/BlobFight_AttackWinddown/position = Vector2(552, 169)
 states/BlobFight_AttackWindup/node = SubResource("AnimationNodeAnimation_pmkye")
-states/BlobFight_AttackWindup/position = Vector2(346, 78)
-"states/BlobFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_1fndr")
-"states/BlobFight_AttackWindup 2/position" = Vector2(552, 169)
-transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_xgimh"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_q5voo"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_sqxqq")]
+states/BlobFight_AttackWindup/position = Vector2(376, 81)
+transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_xgimh"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_q5voo"), "BlobFight_Attack", "BlobFight_AttackWinddown", SubResource("AnimationNodeStateMachineTransition_sqxqq")]
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_80y1b"]
 animation = &"BlobFight/Attack"
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5st5m"]
-animation = &"BlobFight/AttackWindup"
+animation = &"BlobFight/AttackWinddown"
 play_mode = 1
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_oto1u"]
@@ -219,13 +219,14 @@ advance_mode = 2
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_wuqvs"]
 states/BlobFight_Attack/node = SubResource("AnimationNodeAnimation_80y1b")
 states/BlobFight_Attack/position = Vector2(592, 100)
+states/BlobFight_AttackWinddown/node = SubResource("AnimationNodeAnimation_5st5m")
+states/BlobFight_AttackWinddown/position = Vector2(479, 207)
 states/BlobFight_AttackWindup/node = SubResource("AnimationNodeAnimation_oto1u")
 states/BlobFight_AttackWindup/position = Vector2(362, 100)
-"states/BlobFight_AttackWindup 2/node" = SubResource("AnimationNodeAnimation_5st5m")
-"states/BlobFight_AttackWindup 2/position" = Vector2(479, 207)
 states/BlobFight_Shoot/node = SubResource("AnimationNodeAnimation_l7sej")
 states/BlobFight_Shoot/position = Vector2(740, 207)
-transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_i52sy"), "BlobFight_Attack", "BlobFight_AttackWindup 2", SubResource("AnimationNodeStateMachineTransition_pt6su"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_w7a2d"), "BlobFight_AttackWindup 2", "BlobFight_Shoot", SubResource("AnimationNodeStateMachineTransition_qjqjn")]
+transitions = ["Start", "BlobFight_AttackWindup", SubResource("AnimationNodeStateMachineTransition_i52sy"), "BlobFight_Attack", "BlobFight_AttackWinddown", SubResource("AnimationNodeStateMachineTransition_pt6su"), "BlobFight_AttackWindup", "BlobFight_Attack", SubResource("AnimationNodeStateMachineTransition_w7a2d"), "BlobFight_AttackWinddown", "BlobFight_Shoot", SubResource("AnimationNodeStateMachineTransition_qjqjn")]
+graph_offset = Vector2(-8, 8)
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hut1t"]
 animation = &"BlobFight/Shoot"

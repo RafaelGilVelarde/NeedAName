@@ -53,7 +53,7 @@ public partial class ItemList : StuffList
 			if(i+Start<items.Count){
 					if(items[i+Start].Base.type==ItemBase.Type.Consumable){
 						Buttons[i].item= (Consumables)items[i+Start];
-						Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Buttons[i].item.Base.Name;
+						Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Tr(Buttons[i].item.Base.Name);
 						AmountList.GetChild<RichTextLabel>(i+1).Show();
 						AmountList.GetChild<RichTextLabel>(i+1).Text = $"x{Buttons[i].item.Amount}";
 						Buttons[i].Show();

@@ -1,0 +1,53 @@
+[gd_resource type="Resource" script_class="PartyCharacterBase" load_steps=16 format=3 uid="uid://cxq6rcldsrgk0"]
+
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_mmhyr"]
+[ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="2_slfhf"]
+[ext_resource type="Texture2D" uid="uid://benr528xq6tin" path="res://Sprites/DialogueBoxes/Blob/Normal.png" id="3_dtglb"]
+[ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="3_qiek6"]
+[ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="4_f4k0e"]
+[ext_resource type="AudioStream" uid="uid://g85ao7k4a70a" path="res://Music/SFX/Deaths/Water.mp3" id="4_yjvub"]
+[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_eo202"]
+[ext_resource type="AudioStream" uid="uid://ds5kylfgn0td1" path="res://Music/SFX/Effect/Block.wav" id="5_k4udb"]
+[ext_resource type="AudioStream" uid="uid://bbf21ocr3rjph" path="res://Music/SFX/Moves/Suck.wav" id="6_t7xnx"]
+[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="6_wcrdj"]
+[ext_resource type="AudioStream" uid="uid://cplumui58ely" path="res://Music/SFX/Effect/ItemUse.wav" id="7_agmrb"]
+[ext_resource type="AudioStream" uid="uid://bghi2ejpivgln" path="res://Music/SFX/Moves/WaterBeam.mp3" id="9_d61jm"]
+
+[sub_resource type="Resource" id="Resource_q32qo"]
+script = ExtResource("1_mmhyr")
+Lv = 0
+MaxHP = 6
+HP = 3
+Atk = 1
+Def = 3
+SpAtk = 2
+SpDef = 3
+Speed = 2
+WP = 0
+
+[sub_resource type="Resource" id="Resource_p4f0e"]
+script = ExtResource("6_wcrdj")
+SoundEffects = Array[AudioStream]([ExtResource("6_t7xnx"), ExtResource("7_agmrb"), ExtResource("9_d61jm")])
+
+[sub_resource type="Resource" id="Resource_fg1fo"]
+script = ExtResource("6_wcrdj")
+SoundEffects = Array[AudioStream]([ExtResource("3_qiek6"), ExtResource("4_yjvub"), ExtResource("5_k4udb")])
+
+[resource]
+script = ExtResource("5_eo202")
+PartyId = 3
+ExpSpeed = 5.0
+ExpDistance = 10.0
+ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+BaseStats = SubResource("Resource_q32qo")
+Name = "Blobby"
+OverworldAnimator = ExtResource("4_f4k0e")
+BattleAnimator = ExtResource("2_slfhf")
+TextEffectColor = Color(1, 0, 0, 1)
+Icon = ExtResource("3_dtglb")
+OverworldOffset = Vector2(0, 0)
+BattleOffset = Vector2(0, 0)
+Floor = Vector2(0, 17)
+MoveSFX = Array[AudioStream]([])
+HitSFX = Array[AudioStream]([])
+EffectLists = Array[Object]([SubResource("Resource_p4f0e"), SubResource("Resource_fg1fo")])

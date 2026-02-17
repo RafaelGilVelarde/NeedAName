@@ -11,15 +11,16 @@ public partial class Scene : Node2D
 
     public static Scene CurrentScene;
 
+
     public override void _Ready()
     {
-        base._Ready();
-        EmitSignal("_SceneLoaded");
         CurrentScene = this;
+        base._Ready();
         GameManager.Instance.MoveCharactersToScene(this);
         GameManager.Instance.PlayTransition(TransitionColor);
         GameManager.Instance.TransitionTween.Finished += Setup;
         YSortEnabled = true;
+        EmitSignal("_SceneLoaded");
 
         //SceneTreeTimer timer = GetTree().CreateTimer(0.8f,true,true,true);
         //timer.Timeout+=()=>Setup();

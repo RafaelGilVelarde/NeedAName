@@ -30,8 +30,7 @@ public partial class Door : Area2D
     }
 	void GoThroughDoor(){
         Monitoring = false;
-        GameManager.Instance.SetLayers(PlayerZIndex,LayerOn, MaskOn);
-        GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition,TransitionColor);
+        GameManager.Instance.SwitchScene(Scene, (int)Area, LoadPosition,TransitionColor, PlayerZIndex,LayerOn, MaskOn);
 
     }
 }

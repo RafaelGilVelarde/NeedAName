@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cs53p3oec1d58"]
+[gd_scene load_steps=15 format=3 uid="uid://cs53p3oec1d58"]
 
 [ext_resource type="Texture2D" uid="uid://bfhcsehlr1yo" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam5.png" id="1_fokbb"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/RayHitbox.cs" id="2_7jega"]
@@ -6,10 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://c3p8lnyml8jbe" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam2.png" id="3_6osqb"]
 [ext_resource type="Texture2D" uid="uid://cdyxokug6bwun" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam3.png" id="4_5cr7h"]
 [ext_resource type="Texture2D" uid="uid://dygfwsnn3xcnp" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam4.png" id="5_7fgp7"]
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_cb3ci"]
-diffuse_texture = ExtResource("4_5cr7h")
-texture_repeat = 2
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="7_hm3s8"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4nfn6"]
 diffuse_texture = ExtResource("2_cnyta")
@@ -17,6 +14,10 @@ texture_repeat = 2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4ns76"]
 diffuse_texture = ExtResource("3_6osqb")
+texture_repeat = 2
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_cb3ci"]
+diffuse_texture = ExtResource("4_5cr7h")
 texture_repeat = 2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2mbrb"]
@@ -79,12 +80,11 @@ _data = {
 process_mode = 3
 points = PackedVector2Array(-10, 0, 304, 0)
 width = 40.0
-texture = SubResource("CanvasTexture_cb3ci")
+texture = SubResource("CanvasTexture_4nfn6")
 texture_mode = 2
 
 [node name="RayCast2D" type="RayCast2D" parent="."]
 visible = false
-enabled = false
 target_position = Vector2(100, 0)
 collide_with_areas = true
 collide_with_bodies = false
@@ -95,3 +95,5 @@ libraries = {
 "": SubResource("AnimationLibrary_6s6es")
 }
 autoplay = "WaterBeam"
+
+[node name="SFXController" parent="." instance=ExtResource("7_hm3s8")]

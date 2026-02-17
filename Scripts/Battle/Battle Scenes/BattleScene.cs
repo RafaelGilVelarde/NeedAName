@@ -22,9 +22,9 @@ public partial class BattleScene : Resource
     [Export] public float EscapeChance = 100;
     [Export] public bool Horizontal, Cutscene;
     [Export] public Array<float> PartyFloorY, EnemyFloorY;
-    [Export] protected int BattleMusic = -1;
+    [Export] protected int BattleMusic = -1, WinMusic = -1, LoseMusic = -1;
     protected CutscenePlayer CutsceneAnimator;
-    public virtual void StartBattleEffect()
+    public virtual void SetupBattleEffect()
     {
 
         Dialog = DialogicCSharp.instance;
@@ -41,10 +41,11 @@ public partial class BattleScene : Resource
             Dialog?.DialogicRoot?.Connect("signal_event", beginCutscene);
             Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);
         }
-        if (BattleMusic> -1)
-        {
-            GameManager.Instance.PlayAudio(BattleMusic);
-        }
+        StartBattleEffect();
+    }
+    public virtual void StartBattleEffect()
+    {
+        GameManager.Instance.PlayAudio(BattleMusic);        
     }
     public virtual void StartRoundEffect()
     {
@@ -65,32 +66,21 @@ public partial class BattleScene : Resource
         {
             case BattleState.Win:
                 AwardExp();
+                GameManager.Instance.PlayAudio(WinMusic);
                 StartDialogue(WinTimeline, true, false, TimelineType.EndBattle);
                 //BattleManager.instance.ReturnToOverworld();
                 break;
             case BattleState.Lose:
                 BattleManager.instance.OpenLossScreen();
+                GameManager.Instance.PlayAudio(LoseMusic);
                 for (int i = 0; i < Battle.Party.Count; i++)
                 {
-                    //Battle.Party[i].Character.stats.HP=Battle.Party[i].Character.TotalStats.MaxHP;
-                    Battle.Party[i].Character.status = Character.Status.Normal;
                     Battle.Party[i].TurnOffBattle();
 
                 }
-                /*if(Battle.EnemyParty.Count>1){
-                    Battle.EnemyParty[0].Reset();
-                    for(int i=1;i<Battle.EnemyParty.Count;i++){
-                        Tween End=Battle.CreateTween();
-                        CharacterBody2D Enemy=Battle.EnemyParty[i].GetParent<CharacterBody2D>();
-                        End.TweenProperty(Enemy,"modulate:a",0,0.5f);
-                        End.Finished+=Enemy.QueueFree;
-                        End.Finished+=End.Kill;
-                    }
-                }*/
                 for (int i = 0; i < Battle.EnemyParty.Count; i++)
                 {
                     Battle.EnemyParty[i].Character.stats.HP = Battle.EnemyParty[i].Character.TotalStats.MaxHP;
-                    Battle.EnemyParty[i].Character.status = Character.Status.Normal;
                     Battle.EnemyParty[i].TurnOffBattle();
                 }
                 break;
@@ -114,7 +104,6 @@ public partial class BattleScene : Resource
         {
             BattleCharacter Enemy = Battle.EnemyParty[i];
             Enemy.Character.stats.HP = Enemy.Character.TotalStats.MaxHP;
-            Enemy.Character.status = Character.Status.Normal;
         }
         GameManager.Instance.PlayAudio(Scene.CurrentScene.BGMIndex);
         switch (State)
@@ -122,7 +111,6 @@ public partial class BattleScene : Resource
             case BattleState.Win:
                 for (int i = 0; i < Battle.Party.Count; i++)
                 {
-                    Battle.Party[i].Character.status = Character.Status.Normal;
                     Battle.Party[i].Reset();
                     Battle.Party[i].OriginPos = Vector2.Zero;
                     Battle.Party[i].HideEXPBar();
@@ -135,6 +123,7 @@ public partial class BattleScene : Resource
                     CharacterBody2D Enemy = Battle.EnemyParty[i].GetParent<CharacterBody2D>();
                     Tween End = Battle.CreateTween();
                     End.TweenProperty(Enemy, "modulate:a", 0, 0.5f);
+                    End.Finished += Battle.EnemyParty[i].TurnOffBattle;
                     End.Finished += Enemy.QueueFree;
                     End.Finished += End.Kill;
                 }
@@ -152,7 +141,6 @@ public partial class BattleScene : Resource
             case BattleState.Run:
                 for (int i = 0; i < Battle.Party.Count; i++)
                 {
-                    Battle.Party[i].Character.status = Character.Status.Normal;
                     Battle.Party[i].Reset();
                     Battle.Party[i].OriginPos = Vector2.Zero;
                     Battle.Party[i].ReturnToOverworld();

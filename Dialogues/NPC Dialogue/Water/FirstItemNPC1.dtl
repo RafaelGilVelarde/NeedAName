@@ -1,10 +1,21 @@
-Hello? Have I...seen you before? #id:1b
-MC (Confused): I...can't remember #id:1c
-Need to jog up your memory huh #id:1d
-I MAY be able help you! #id:1e
-MC (Wondering): You can? #id:1f
-Well......juust a bit, but the memory may help protect you from damage! #id:20
-MC (Wondering): Well...that could be nice...I'll do it! #id:21
-I just need a Soul Memory. They are rare but there should be at least one nearby #id:22
-So if you find one feel free to come here #id:23
-MC (Happy): Thanks! #id:24
+Hello? Have I...seen you before? #id:96
+MC (Confused): I...can't remember #id:97
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Normal): Let's leave #id:98
+Need to jog up your memory huh #id:99
+I MAY be able help you! #id:9a
+MC (Wondering): You can? #id:9b
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Sad): Uuuuuuuuuuuuuughhhhhhhh #id:9c
+	MC (Normal): It'll be fine #id:9d
+	MC (Wondering): It's just...something I feel #id:9e
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Happy): Yaaaaaaaay.....Memories! #id:9f
+	MC (Happy): Yep! #id:a0
+Well......juust a bit, but the memory may help protect you from damage! #id:a1
+So if you find one feel free to come here #id:a2
+MC (Happy): Thanks! #id:a3
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Normal): Let's get to it #id:a4
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Happy): See you! #id:a5

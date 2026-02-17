@@ -11,6 +11,7 @@ public partial class RayHitbox : RayCast2D
 	public delegate void _HitEventHandler(BattleCharacter Target);
 	[Signal]
 	public delegate void _BlockEventHandler(BattleCharacter Target);
+    [Export] public SFXController SoundEffectController;
 
     public BattleCharacter Attacking;
     public override void _PhysicsProcess(double delta)

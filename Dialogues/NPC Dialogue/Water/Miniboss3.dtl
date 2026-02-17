@@ -1,0 +1,6 @@
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	Halluci (Wondering): T-Two of you? #id:c4
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	Blobfish (Happy): Heeeeelloooo pal! #id:c5
+MC (Confused): Why do you look like- #id:c6
+[signal arg="Fight"]

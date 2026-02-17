@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://cmjnqqak8m3wt"]
+[gd_scene load_steps=17 format=3 uid="uid://cmjnqqak8m3wt"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_4nxge"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_k1u6e"]
@@ -9,17 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="6_75qik"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="7_giy8a"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="7_icgwb"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="9_a2of4"]
+[ext_resource type="Resource" uid="uid://cxqb868icnqmh" path="res://Resources/BattleScenes/FirstBattle.tres" id="10_n35ng"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="16_l606f"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="17_8n5jr"]
 
 [sub_resource type="Resource" id="Resource_674l3"]
 script = ExtResource("7_giy8a")
 DialogueTimelines = Array[String](["SwitchHint"])
-
-[sub_resource type="Resource" id="Resource_br5uf"]
-script = ExtResource("9_a2of4")
-Timeline = "FirstBattle"
+FlagIndexes = null
+flagTypes = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_imptm"]
 resource_local_to_scene = true
@@ -81,6 +79,9 @@ FacingDirection = null
 visualType = null
 Sprites = []
 
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 9
+
 [node name="Borders" parent="." instance=ExtResource("6_75qik")]
 position = Vector2(-32, 56)
 
@@ -88,7 +89,7 @@ position = Vector2(-32, 56)
 polygon = PackedVector2Array(360, 144, 264, 144, 264, 184, -200, 184, -200, 144, -296, 144, -296, -256, 360, -256, 360, -94.5842, 384, -96, 384, 80, 360, 80, 360, 136, 352, 136, 352, 72, 376, 72, 376, -88, 352, -88, 352, -248, -288, -248, -288, 136, -192, 136, -192, 176, 256, 176, 256, 136, 360, 136)
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("7_icgwb")]
-Scene = SubResource("Resource_br5uf")
+Scene = ExtResource("10_n35ng")
 detectArea = NodePath("../Area2D")
 
 [node name="Area2D" parent="." instance=ExtResource("16_l606f")]

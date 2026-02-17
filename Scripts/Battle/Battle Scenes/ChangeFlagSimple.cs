@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 [GlobalClass]
 public partial class ChangeFlagSimple : BattleScene
@@ -15,6 +16,7 @@ public partial class ChangeFlagSimple : BattleScene
         BattleState State=Battle.State;
         switch (State){
             case BattleState.Win:
+                Debug.WriteLine("Changing Flag");
                 Flags Aux = GameManager.Instance.Data.Flags;
                 switch (switchType){
                     case SwitchType.Bool:

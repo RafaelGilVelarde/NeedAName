@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=3 uid="uid://ci40agixb3xuc"]
+[gd_scene load_steps=144 format=3 uid="uid://ci40agixb3xuc"]
 
 [ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
 [ext_resource type="Texture2D" uid="uid://2jo6bpmuc3hl" path="res://Sprites/Overworld/Blobfish.png" id="2_08kpg"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="11_ng2px"]
 [ext_resource type="Texture2D" uid="uid://dnq7v2srfl0ii" path="res://Sprites/Battle/Party/Menu/_Run.png" id="11_tow1y"]
 [ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="12_ufa0r"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="14_odx4e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nva1"]
 radius = 12.0
@@ -25,7 +26,7 @@ size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
 resource_local_to_scene = true
-size = Vector2(20, 34)
+size = Vector2(21.375, 50)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
@@ -35,11 +36,11 @@ size = Vector2(46.475, 59)
 resource_local_to_scene = true
 size = Vector2(25, 42.5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5l7bv"]
-load_path = "res://.godot/imported/HalluciBattle.png-961e73d9989a7f19a861d3eeed8a81d4.ctex"
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_trioo"]
+load_path = "res://.godot/imported/BlobfishBattle.png-c4bc44f5c9a6eb8f4ec25f030ca96691.ctex"
 
-[sub_resource type="Curve" id="Curve_xerna"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.953052, 0.368421), 0.0, 0.0, 0, 0]
+[sub_resource type="Curve" id="Curve_0dopt"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3g4di"]
@@ -796,7 +797,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -808,7 +809,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
@@ -820,7 +821,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [true]
+"values": [false]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -1651,7 +1652,7 @@ shape = SubResource("RectangleShape2D_dwf8m")
 [node name="TileCollider" type="Node2D" parent="OverworldController"]
 position = Vector2(-16, 0)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
@@ -1689,7 +1690,8 @@ WPAuxBar = NodePath("WPParent/WP/WP2")
 StatMods = NodePath("Node2D/HBoxContainer")
 UpStat = ExtResource("11_ng2px")
 DownStat = ExtResource("12_ufa0r")
-SFXPlayers = Array[Vector2]([])
+SFXPlayers = [null, null]
+SoundEffectController = NodePath("../SFXController")
 battleState = 3
 actionState = 5
 
@@ -1728,10 +1730,10 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
 texture_filter = 1
-texture = SubResource("CompressedTexture2D_5l7bv")
+texture = SubResource("CompressedTexture2D_trioo")
 hframes = 8
 vframes = 8
-frame = 46
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1746,9 +1748,6 @@ metadata/_aseprite_wizard_config_ = {
 
 [node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
 texture_filter = 1
-hframes = 6
-vframes = 5
-frame = 25
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Arm",
@@ -1768,7 +1767,7 @@ visible = false
 process_mode = 3
 emitting = false
 amount = 22
-lifetime = 3.0
+lifetime = 0.75
 one_shot = true
 explosiveness = 1.0
 local_coords = true
@@ -1779,7 +1778,7 @@ gravity = Vector2(0, 0)
 initial_velocity_max = 205.74
 scale_amount_min = 0.0
 scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_xerna")
+scale_amount_curve = SubResource("Curve_0dopt")
 color = Color(0.580392, 0.968627, 0.937255, 1)
 anim_speed_max = 200.15
 anim_speed_curve = SubResource("Curve_3g4di")
@@ -1835,7 +1834,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_mctvn")
+texture = SubResource("AtlasTexture_7cjed")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Fight",
@@ -1859,7 +1858,7 @@ anchor_right = 0.4
 anchor_bottom = 0.1
 offset_left = -16.0
 offset_top = -9.0
-offset_right = 16.0
+offset_right = 32.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -1871,6 +1870,7 @@ text = "Fight"
 scroll_active = false
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1889,7 +1889,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_kskeb")
+texture = SubResource("AtlasTexture_vgxlo")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Item",
@@ -1912,11 +1912,11 @@ anchor_right = 0.4
 anchor_bottom = 0.1
 offset_left = -16.0
 offset_top = -9.0
-offset_right = 16.0
+offset_right = 32.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(1, 0.25)
+scale = Vector2(0.63, 0.63)
 pivot_offset = Vector2(16, 9)
 theme_override_font_sizes/normal_font_size = 13
 text = "Item"
@@ -1924,6 +1924,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1942,7 +1943,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_t077f")
+texture = SubResource("AtlasTexture_k6qqc")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Run",
@@ -1965,15 +1966,16 @@ anchor_right = 0.4
 anchor_bottom = 0.1
 offset_left = -16.0
 offset_top = -9.0
-offset_right = 16.0
+offset_right = 32.0
 offset_bottom = 9.0
-scale = Vector2(1, 0.25)
+scale = Vector2(0.63, 0.63)
 pivot_offset = Vector2(16, 9)
 theme_override_font_sizes/normal_font_size = 13
 text = "Run"
 fit_content = true
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -2030,10 +2032,9 @@ scroll_active = false
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = 177.0
-offset_bottom = 94.0
+offset_left = -35.0
+offset_right = 465.0
+offset_bottom = 90.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true
@@ -2418,6 +2419,6 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
 
-[node name="AttackSFX" type="AudioStreamPlayer2D" parent="BattleCharacter"]
+[node name="SFXController" parent="." instance=ExtResource("14_odx4e")]
 
-[node name="HitSFX" type="AudioStreamPlayer2D" parent="BattleCharacter"]
+[editable path="SFXController"]

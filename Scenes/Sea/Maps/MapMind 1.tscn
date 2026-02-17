@@ -120,6 +120,7 @@ Timeline = "MoveLearned"
 [node name="MapMind1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_c2k7o")
+BGMIndex = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 top_level = true

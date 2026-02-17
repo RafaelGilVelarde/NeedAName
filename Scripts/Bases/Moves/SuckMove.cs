@@ -72,12 +72,10 @@ public partial class SuckMove : MoveBase
         }
         void ShootStart(Area2D Area){
             Area2D HurtBox = Users[0].Hurtbox;
-            Debug.WriteLine("Touched: " + Area+": "+Area.Name);
             if ((HurtBox.IsInGroup("PlayerHurtbox") && Area.IsInGroup("EnemyHurtbox")) || (HurtBox.IsInGroup("EnemyHurtbox") && Area.IsInGroup("PlayerHurtbox")))
             {
                 Sucked = true;
                 Users[0]._Shoot+=Shoot;
-                Debug.WriteLine("Ate: " + Area+": "+Area.Name);
                 Users[0]._DoAction -= Spam;
                 Users[0]._DoAction += ShootInput;
                 Targets[0].Moving = false;
@@ -86,9 +84,11 @@ public partial class SuckMove : MoveBase
                     SceneTreeTimer ShootTimer = Users[0].GetTree().CreateTimer(0.3, true, true);
                     ShootTimer.Timeout += () =>
                     {
+                        Targets[0].Visible = false;
                         Users[0]._DoAction -= ShootInput;
                         if (CanShoot)
                         {
+                            Debug.WriteLine("Changing Animation");
                             Users[0].AnimatorTree.Set("parameters/ActionState/0/0/" + Combo + "/conditions/MoveEnded", true);
                             CanShoot = false;
                         }
@@ -104,6 +104,7 @@ public partial class SuckMove : MoveBase
             }
         }
         void Shoot(BattleCharacter UserCharacter){
+            Targets[0].Visible = true;
             Tween tween = Target.CreateTween();
             if(SuccesfulShoot){
                 tween.TweenProperty(Target,"position",Origin,1/(Speed*2));

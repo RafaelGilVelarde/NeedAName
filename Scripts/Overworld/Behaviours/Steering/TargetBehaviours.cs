@@ -54,6 +54,8 @@ public partial class TargetBehaviours : SteeringBehaviours
             return (danger, interest);
     }
     public void FindOpponent(EnemyOverworldController enemy){
+        if (enemy.CurrentTarget != null)
+        {
             var spaceState = enemy.GetWorld2D().DirectSpaceState;
             var query = PhysicsRayQueryParameters2D.Create(enemy.GlobalPosition, enemy.CurrentTarget.GlobalPosition, enemy.Parent.CollisionMask);
             query.Exclude=new Godot.Collections.Array<Rid> {enemy.Parent.GetRid()};
@@ -63,7 +65,8 @@ public partial class TargetBehaviours : SteeringBehaviours
                     enemy.CachedTargetPosition=enemy.CurrentTarget.GlobalPosition;
                     enemy.state=MoveState.Seek;
                 }
-            }
+            }            
+        }
     }
 
 }

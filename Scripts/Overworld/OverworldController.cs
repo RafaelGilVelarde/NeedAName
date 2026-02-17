@@ -27,7 +27,10 @@ public partial class OverworldController : Node2D
 	[Export] public BattleCharacter BattleCharacter;
 	public override void _EnterTree()
 	{
-		BattleCharacter.Character.NodeCharacter = Parent;
+		if(BattleCharacter.Character.NodeCharacter == null){
+			BattleCharacter.Character.ResourceLocalToScene = true;
+			BattleCharacter.Character.NodeCharacter = Parent;
+		}
 		if (AnimatorTree == null)
 		{
 			SetAnimators();

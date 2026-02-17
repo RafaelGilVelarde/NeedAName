@@ -9,7 +9,7 @@ public partial class PartyCharacterBase : CharacterBase
     [Export] public int PartyId;
     [Export] public float ExpSpeed, ExpDistance;
     [Export] public Array<int> ExpForLevel;
-    public void SetEXPLevels()
+    /*public void SetEXPLevels()
     {
         for (int i = 0; i < 100; i++)
         {
@@ -19,5 +19,5 @@ public partial class PartyCharacterBase : CharacterBase
         {
             Debug.WriteLine("Needed EXP: "+ExpForLevel[i]);
         }
-    }
+    }*/
 }

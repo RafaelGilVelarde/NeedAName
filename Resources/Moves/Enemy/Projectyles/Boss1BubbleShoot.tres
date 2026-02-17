@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DumyShootMove" load_steps=3 format=3 uid="uid://bknxneddic7v0"]
+
+[ext_resource type="PackedScene" uid="uid://3ddt586nxsc3" path="res://Prefabs/BattleProjectyles/BossBubble.tscn" id="1_5k75p"]
+[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyShootMove.cs" id="2_ikhjn"]
+
+[resource]
+script = ExtResource("2_ikhjn")
+Middle = 2.0
+Timer2 = 7.0
+Height = 50.0
+Combo = 2
+Tag = "EnemyHitbox"
+Proyectile = ExtResource("1_5k75p")
+offset = Vector2(-30, -150)
+type = 0
+Power = 1
+UserAmount = 1
+TargetAmount = 1
+WP = 1
+Cost = 0
+TargetsParty = false
+Name = "aaa"
+MoveTime = 7.0

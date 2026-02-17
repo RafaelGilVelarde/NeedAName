@@ -1,4 +1,4 @@
-[gd_scene load_steps=132 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=130 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -21,21 +21,19 @@
 [ext_resource type="Script" path="res://Scripts/Items/Items.cs" id="13_t8ddd"]
 [ext_resource type="PackedScene" uid="uid://bkvh2oaps8v2p" path="res://Prefabs/TextEffects/BaseText.tscn" id="13_xpiea"]
 [ext_resource type="PackedScene" uid="uid://bbxpoq4krbxej" path="res://Scenes/Sea/Maps/Map 2.tscn" id="14_vfydq"]
-[ext_resource type="PackedScene" uid="uid://bff3wb101knnw" path="res://Prefabs/Animators/Party/Battle/HalluciBattleAnimator.tscn" id="15_cf7if"]
 [ext_resource type="PackedScene" uid="uid://b5o0cjrcuemsu" path="res://Scenes/Sea/Maps/Map 3.tscn" id="15_dn5o8"]
 [ext_resource type="Script" path="res://Scripts/GameData/TypedItemList.cs" id="15_i5m0s"]
 [ext_resource type="PackedScene" uid="uid://dbsjjfg65q1gc" path="res://Scenes/Sea/Maps/Map 4.tscn" id="16_fcc8q"]
-[ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="16_n8qgu"]
+[ext_resource type="Resource" uid="uid://bjxb7nq1u1oeb" path="res://Resources/CharacterBases/Party Members/Hallucitres.tres" id="16_g0fiq"]
 [ext_resource type="Script" path="res://Scripts/Items/Consumables.cs" id="17_307rp"]
-[ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="17_dq38r"]
 [ext_resource type="PackedScene" uid="uid://cidpvaj35nwkm" path="res://Scenes/Sea/Maps/Map 5.tscn" id="17_n77r6"]
+[ext_resource type="Resource" uid="uid://dpnb66wkqy7xf" path="res://Resources/Moves/Player/2/SpinSpa.tres" id="17_sav1b"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="18_miyx3"]
-[ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="18_otk5e"]
 [ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
 [ext_resource type="PackedScene" uid="uid://dvfopsva3d6kc" path="res://Scenes/Sea/Maps/Map 7.tscn" id="19_36hit"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/SpinSpamMove.cs" id="19_nrko3"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/SuckMove.cs" id="20_ebntc"]
+[ext_resource type="Resource" uid="uid://cxq6rcldsrgk0" path="res://Resources/CharacterBases/Party Members/Blobfish.tres" id="19_qecjo"]
 [ext_resource type="PackedScene" uid="uid://3kixx2q8tusp" path="res://Scenes/Sea/Maps/Map 8.tscn" id="20_livod"]
+[ext_resource type="Resource" uid="uid://b2cy8wlwo62vb" path="res://Resources/Moves/Player/3/SuckMove.tres" id="20_orhe1"]
 [ext_resource type="PackedScene" uid="uid://b4g462db2jmdj" path="res://Scenes/Sea/Maps/Map 9.tscn" id="21_7ndos"]
 [ext_resource type="PackedScene" uid="uid://b7yn0nhscvc8d" path="res://Prefabs/BattleProjectyles/WaterBubble.tscn" id="21_w2gw7"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatWithEffectMove.cs" id="22_iif3q"]
@@ -81,6 +79,12 @@
 [ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="60_46ljw"]
 [ext_resource type="AudioStream" uid="uid://cy3khebcvt1b3" path="res://Music/BGM/Water/Main-fixed.mp3" id="64_ax4vy"]
 [ext_resource type="AudioStream" uid="uid://dwurfty8j35yr" path="res://Music/BGM/Water/Battle.mp3" id="65_t85lt"]
+[ext_resource type="AudioStream" uid="uid://c4hdsod63wtl5" path="res://Music/BGM/Battle/defeat.mp3" id="66_1o21s"]
+[ext_resource type="AudioStream" uid="uid://c8ya3jiodh37u" path="res://Music/BGM/Water/Area2.mp3" id="67_bbmdv"]
+[ext_resource type="AudioStream" uid="uid://dwvfqfgigy57x" path="res://Music/BGM/Start/start.mp3" id="67_vhbxj"]
+[ext_resource type="AudioStream" uid="uid://wlw6ki2ts3ag" path="res://Music/BGM/Battle/Boss1.wav.mp3" id="68_if2d4"]
+[ext_resource type="Script" path="res://Scripts/Menu/Screens/SettingsScreen.cs" id="83_dsr41"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="84_vc7uq"]
 
 [sub_resource type="Resource" id="Resource_pgs4m"]
 resource_local_to_scene = true
@@ -216,6 +220,7 @@ BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 0)
 MoveSFX = null
 HitSFX = null
+EffectLists = null
 
 [sub_resource type="InputEventKey" id="InputEventKey_3xffd"]
 device = -1
@@ -275,36 +280,6 @@ Key = 88
 EventKey = SubResource("InputEventKey_3xffd")
 status = 0
 
-[sub_resource type="Resource" id="Resource_pxv6k"]
-script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 5
-HP = 2
-Atk = 3
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 3
-WP = 0
-
-[sub_resource type="Resource" id="Resource_0vipi"]
-script = ExtResource("5_wfrc5")
-PartyId = 2
-ExpSpeed = 5.0
-ExpDistance = 10.0
-ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-BaseStats = SubResource("Resource_pxv6k")
-Name = "Halluci"
-OverworldAnimator = ExtResource("16_n8qgu")
-BattleAnimator = ExtResource("15_cf7if")
-TextEffectColor = Color(1, 0, 0, 1)
-Icon = ExtResource("5_8m0s2")
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
-Floor = Vector2(0, 15)
-MoveSFX = null
-HitSFX = null
-
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
 Lv = 0
@@ -322,25 +297,9 @@ device = -1
 keycode = 67
 unicode = 99
 
-[sub_resource type="Resource" id="Resource_8og32"]
-script = ExtResource("19_nrko3")
-offset = Vector2(75, 75)
-AtkMultiplier = 0.0
-Speed = 1.5
-Combo = 1
-type = 0
-Power = 1
-UserAmount = 1
-TargetAmount = 1
-WP = 1
-Cost = 0
-TargetsParty = false
-Name = "Spin Attack"
-MoveTime = 10.0
-
 [sub_resource type="Resource" id="Resource_oqotk"]
 script = ExtResource("4_0i8ni")
-Base = SubResource("Resource_8og32")
+Base = ExtResource("17_sav1b")
 Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_f4gq8"]
@@ -409,7 +368,7 @@ Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
 Name = ""
-Base = SubResource("Resource_0vipi")
+Base = ExtResource("16_g0fiq")
 Moves = Array[Object]([SubResource("Resource_oqotk"), SubResource("Resource_6x26t")])
 items = Array[Object]([])
 Equipment = Array[Object]([null, null, null, null])
@@ -421,36 +380,6 @@ Active = false
 Key = 67
 EventKey = SubResource("InputEventKey_45kqj")
 status = 0
-
-[sub_resource type="Resource" id="Resource_q32qo"]
-script = ExtResource("3_qc7bw")
-Lv = 0
-MaxHP = 3
-HP = 3
-Atk = 1
-Def = 3
-SpAtk = 1
-SpDef = 3
-Speed = 2
-WP = 0
-
-[sub_resource type="Resource" id="Resource_tjlxb"]
-script = ExtResource("5_wfrc5")
-PartyId = 3
-ExpSpeed = 5.0
-ExpDistance = 10.0
-ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-BaseStats = SubResource("Resource_q32qo")
-Name = "Blobby"
-OverworldAnimator = ExtResource("18_otk5e")
-BattleAnimator = ExtResource("17_dq38r")
-TextEffectColor = Color(1, 0, 0, 1)
-Icon = ExtResource("5_8m0s2")
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
-Floor = Vector2(0, 17)
-MoveSFX = null
-HitSFX = null
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
@@ -469,27 +398,9 @@ device = -1
 keycode = 67
 unicode = 99
 
-[sub_resource type="Resource" id="Resource_k1454"]
-script = ExtResource("20_ebntc")
-MinVel = 0.0
-MaxVel = 4.5
-SuckTimerMax = 4.0
-Speed = 2.0
-Combo = 1
-Combo2 = 2
-type = 1
-Power = 2
-UserAmount = 1
-TargetAmount = 1
-WP = 3
-Cost = 0
-TargetsParty = false
-Name = "Suck"
-MoveTime = 10.0
-
 [sub_resource type="Resource" id="Resource_ngl2m"]
 script = ExtResource("4_0i8ni")
-Base = SubResource("Resource_k1454")
+Base = ExtResource("20_orhe1")
 Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_smiot"]
@@ -568,7 +479,7 @@ Exp = 0
 NextLevelExp = 0
 PastLevelExp = 0
 Name = ""
-Base = SubResource("Resource_tjlxb")
+Base = ExtResource("19_qecjo")
 Moves = Array[Object]([SubResource("Resource_ngl2m"), SubResource("Resource_1f36n")])
 items = Array[Object]([])
 Equipment = Array[Object]([null, null, null, null])
@@ -611,7 +522,6 @@ Scene = 0
 AreaIndex = 0
 Position = Vector2(0, 0)
 GraphicsLayer = 0
-PhysicsLayer = 1
 CollisionLayer = Array[int]([1])
 CollisionMask = Array[int]([1])
 Latest = false
@@ -619,6 +529,8 @@ Latest = false
 [sub_resource type="Resource" id="Resource_g78ca"]
 script = ExtResource("29_pofe2")
 CurrentSave = 0
+DisplayName = ""
+Language = "en"
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
@@ -676,15 +588,17 @@ StartScene = ExtResource("44_nc1im")
 TransitionAnimator = NodePath("CanvasLayer2/TextureRect/AnimationPlayer")
 TransitionOverlay = NodePath("CanvasLayer2/TextureRect")
 TransitionColor = Color(0, 0, 0, 1)
+ExpSpeed = 2.0
+ExpDistance = 5.0
 MainAudio = NodePath("AudioStreamPlayer")
-BGMs = [ExtResource("64_ax4vy"), ExtResource("65_t85lt")]
+BGMs = [ExtResource("64_ax4vy"), ExtResource("65_t85lt"), ExtResource("66_1o21s"), ExtResource("67_bbmdv"), ExtResource("68_if2d4"), ExtResource("67_vhbxj")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
 visible = false
 script = ExtResource("42_2n8ol")
 MainButtons = NodePath("Node2D/VBoxContainer")
 CurrentScreen = NodePath("Node2D/Stats")
-Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, null, NodePath("Node2D/Saves")]
+Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, NodePath("Node2D/Settings"), NodePath("Node2D/Saves")]
 
 [node name="Node2D" type="Node2D" parent="CanvasLayer"]
 
@@ -717,7 +631,6 @@ text = "???"
 [node name="Button4" type="Button" parent="CanvasLayer/Node2D/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
-disabled = true
 action_mode = 0
 button_mask = 0
 text = "Settings"
@@ -1514,6 +1427,65 @@ layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "No"
+
+[node name="Settings" type="Control" parent="CanvasLayer/Node2D" node_paths=PackedStringArray("Main", "Languages", "languageButtons")]
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 273.0
+offset_top = 2.0
+offset_right = 313.0
+offset_bottom = 42.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("83_dsr41")
+Main = NodePath("MainSettings")
+Languages = NodePath("Languages")
+languageButtons = [NodePath("Languages/Button"), NodePath("Languages/Button2")]
+
+[node name="MainSettings" type="VBoxContainer" parent="CanvasLayer/Node2D/Settings"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/Settings/MainSettings"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
+action_mode = 0
+button_mask = 0
+text = "Language"
+
+[node name="Languages" type="VBoxContainer" parent="CanvasLayer/Node2D/Settings"]
+visible = false
+layout_mode = 0
+offset_left = 190.0
+offset_top = 50.0
+offset_right = 273.0
+offset_bottom = 116.0
+alignment = 1
+
+[node name="Button" type="Button" parent="CanvasLayer/Node2D/Settings/Languages"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
+action_mode = 0
+button_mask = 0
+text = "English"
+script = ExtResource("84_vc7uq")
+Language = "en"
+
+[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Settings/Languages"]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
+action_mode = 0
+button_mask = 0
+text = "Español"
+script = ExtResource("84_vc7uq")
+Language = "es"
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 

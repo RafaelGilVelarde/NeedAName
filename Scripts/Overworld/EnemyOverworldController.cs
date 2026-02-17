@@ -19,8 +19,6 @@ public partial class EnemyOverworldController : OverworldController
 	EnemyCharacterBase characterBase;
 	[Export] public MoveState state;
 	[Export] public Node2D CurrentTarget;
-	[Export] public Array<Node2D> IdleTargets;
-	[Export] public int CurrentIdleTarget;
 	[Export] public Array<Node2D> Obstacles;
 	[Export] public uint LayerMask;
 	[Export] public DetectArea detectArea { get; private set; }
@@ -32,6 +30,8 @@ public partial class EnemyOverworldController : OverworldController
 	{
 		characterBase = (EnemyCharacterBase)BattleCharacter.Character.Base;
 		CurrentTarget = GameManager.Instance.controller.Parent;
+
+		GameManager.Instance._Load+=ClearTarget;
 		if (detectArea != null)
 		{
 			(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
@@ -148,5 +148,14 @@ public partial class EnemyOverworldController : OverworldController
 			enemyCollision.SetCollisionMaskValue(j, CollisionMask.Contains(j));
 		}  
   }
+  	public void ClearTarget()
+	{
+		CurrentTarget = null;	
+	}
+    public override void _ExitTree()
+    {
+        base._ExitTree();
+		GameManager.Instance._Load-=ClearTarget;
+    }
 
 }

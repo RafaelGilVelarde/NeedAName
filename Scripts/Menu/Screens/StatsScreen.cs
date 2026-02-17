@@ -104,7 +104,7 @@ public partial class StatsScreen : MenuScreens
     void DisplayStats(){
         Stats stats = CurrentCharacter.stats;
         Stats EquipStats = CurrentCharacter.EquipStats;
-        CharacterName.Text = CurrentCharacter.Base.Name;
+        CharacterName.Text = Tr(CurrentCharacter.Base.Name);
         StatList[0].Text = $"{stats.Lv}";
         StatList[1].Text = $"{stats.HP}/{stats.MaxHP} ({EquipStats.MaxHP})";
         StatList[2].Text = $"{stats.Atk} ({EquipStats.Atk})";

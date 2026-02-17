@@ -1,11 +1,11 @@
-Blobfish (Wondering): *Yaaawn* Leaving this place?
-MC (Confused): I guess...not sure what's going on
-Blobfish (Happy): Ooooh well, I can come with you through these tides!
-- Reject
-	Blobfish (Sad): Awww
-	Blobfish (Wondering): Gooood luuck, I'll find my way!
-- Accept
-	Blobfish (Happy): Yaaay!
-	Blobfish (Happy): Let's find some good homes
-	MC (Happy): Sure!
+Blobfish (Wondering): *Yaaawn* Leaving this place? #id:8a
+MC (Confused): I guess...not sure what's going on #id:8b
+Blobfish (Happy): Ooooh well, I can come with you through these tides! #id:8c
+- Reject #id:8d
+	Blobfish (Sad): Awww #id:8e
+	Blobfish (Wondering): Gooood luuck, I'll find my way! #id:8f
+- Accept #id:90
+	Blobfish (Happy): Yaaay! #id:91
+	Blobfish (Happy): Let's find some good homes #id:92
+	MC (Happy): Sure! #id:93
 	[signal arg="Follow"]

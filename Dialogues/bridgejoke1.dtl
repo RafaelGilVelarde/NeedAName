@@ -1,6 +1,6 @@
-MC (Normal): Lower your weapon
-No can do
-You miss your wife so bad you'd trade the lives of your own crew
-MC (Normal): Don't make me fight you brother, you know you'd have done the same
-If you want all the power you must carry all the BLAME
+MC (Normal): Lower your weapon #id:1a
+No can do #id:1b
+You miss your wife so bad you'd trade the lives of your own crew #id:1c
+MC (Normal): Don't make me fight you brother, you know you'd have done the same #id:1d
+If you want all the power you must carry all the BLAME #id:1e
 [signal arg="End"]

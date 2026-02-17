@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="FirstBattle" load_steps=2 format=3 uid="uid://cxqb868icnqmh"]
+
+[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="1_lmxdx"]
+
+[resource]
+script = ExtResource("1_lmxdx")
+Timeline = "FirstBattle"
+WinTimeline = "Win"
+PostBattleTimeline = ""
+EscapeChance = 100.0
+Horizontal = false
+Cutscene = false
+PartyFloorY = null
+EnemyFloorY = null
+BattleMusic = 1
+WinMusic = -1
+LoseMusic = 2

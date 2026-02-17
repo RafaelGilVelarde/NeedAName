@@ -28,7 +28,11 @@ public partial class DialogicCSharp : Node
     }
     public async Task StartDialogue(string Timeline, bool Pause, bool auto)
     {
-        Timelines.Add(Timeline);
+        if (!Timelines.Contains(Timeline))
+        {
+            Timelines.Add(Timeline);
+            
+        }
         if (Timelines.Count == 1)
         {
             Start();

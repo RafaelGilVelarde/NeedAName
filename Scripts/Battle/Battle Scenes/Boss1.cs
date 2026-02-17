@@ -22,10 +22,13 @@ public partial class Boss1 : BattleScene
 
         Game.Characters.Clear();
         Game.controller = null;
+        Game.OverworldCam = null;
+        Game.BattleCam = null;
         Game.Data.Position = Vector2.Zero;
         Game.Data.AreaIndex = (int)Area;
         Game.Data.Scene = Scene;
-        Game.Save(Game.Settings.CurrentSave);
+        Game.Settings.DisplayName = Game.Data.Party[0].Name;
+        //Game.Save(Game.Settings.CurrentSave);
         //GameManager.Instance.GetTree().ChangeSceneToPacked(PackedScene);
 
     }

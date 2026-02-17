@@ -1,15 +1,20 @@
-Oh you have it! Do you want me to jog up your memory? #id:25
-- Give the Soul Memory [if "" == ""] #id:26
-	MC (Happy): Here you go! #id:27
-	Thanks! Just give me......one...secooooond....aaaand #id:28
-	Ok there it is! Take it! #id:29
-	MC (Wondering): I can remember.....warmth...it feels strange... #id:2a
-	MC (Happy): But thanks! #id:2b
-	Glad to be of help. Put it on your heart if you wanna feel the effects #id:2c
+Oh you have it! Do you want me to jog up your memory? #id:a6
+- Give the Soul Memory [if "" == ""] #id:a7
+	MC (Happy): Here you go! #id:a8
+	Thanks! Just give me......one...secooooond....aaaand #id:a9
+	Ok there it is! Take it! #id:aa
+	MC (Wondering): I can remember.....warmth...it feels strange... #id:ab
+	MC (Happy): But thanks! #id:ac
+	if {GameManager.Data.Flags.EventFlags[9]} == true:
+		Halluci (Wondering): This feeling... #id:ad
+		Halluci (Happiness): Even I feel calm #id:ae
+	if {GameManager.Data.Flags.EventFlags[10]} == true:
+		Blobfish (Happy): Your face is...happy! #id:af
+	Glad to be of help. Put it on your heart if you wanna feel the effects #id:b0
 	[signal arg="GiveItem"]
-	[You got the Warmth Memory] #id:2d
+	[You got the Warmth Memory] #id:b1
 	[end_timeline]
-- I'd rather not #id:2e
-	It's ok, but if you change your mind I am here! #id:2f
+- I'd rather not #id:b2
+	It's ok, but if you change your mind I am here! #id:b3
 	[signal arg="RefuseItem"]
 	[end_timeline]

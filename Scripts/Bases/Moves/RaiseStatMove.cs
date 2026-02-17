@@ -50,4 +50,48 @@ public partial class RaiseStatMove : MoveBase
             Target.Character.ChangeWP((int)WPIncrease);
         }
     }
+
+    public override float MultiplyChance(float Chance, BattleCharacter character)
+    {
+        bool active = false;
+        if(Atk){
+            if(character.MultTimer[0] != 0)
+            {
+                active = true;
+            }
+        }
+        if(Def){
+            if(character.MultTimer[1] != 0)
+            {
+                active = true;
+            }        
+        }
+        if(Spatk){
+            if(character.MultTimer[2] != 0)
+            {
+                active = true;
+            }        
+        }
+        if(Spdef){
+            if(character.MultTimer[3] != 0)
+            {
+                active = true;
+            }        
+        }
+        if(Speed){
+            if(character.MultTimer[4] != 0)
+            {
+                active = true;
+            }        
+        }
+
+        if (active)
+        {
+            return 0;
+        }
+        else
+        {
+            return Chance;            
+        }
+    }
 }

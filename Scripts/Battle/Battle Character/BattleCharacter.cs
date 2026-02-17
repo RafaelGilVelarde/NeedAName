@@ -38,6 +38,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] Texture2D UpStat, DownStat;
 	[Export] Array<RichTextLabel> StatModTimers = new Array<RichTextLabel>();
 	[Export] Array<AudioStreamPlayer2D> SFXPlayers;
+	[Export] public SFXController SoundEffectController;
 
 
 	[Signal]
@@ -80,6 +81,8 @@ public partial class BattleCharacter : CharacterBody2D
 		WPText = WPBar?.GetChild<RichTextLabel>(1);
 		StatMultiplier = new Array<float>();
 		MultTimer = new Array<int>();
+
+		SoundEffectController.Lists = Character.Base.EffectLists;
 		for (int i = 0; i < 6; i++)
 		{
 			StatMultiplier.Add(1);
@@ -90,7 +93,7 @@ public partial class BattleCharacter : CharacterBody2D
 			Node Aux = StatMods.GetChild(i);
 			StatModTimers.Add((RichTextLabel)Aux.GetChild(0));
 		}
-		if (Character != null)
+		if (Character != null && FloorNode != null)
 		{
 			FloorNode.Position = Character.Base.Floor;
 		}
@@ -354,6 +357,7 @@ public partial class BattleCharacter : CharacterBody2D
 		Hurtbox.GetChild<CollisionShape2D>(0).SetDeferred("disabled", true);
 		changeAction(ActionState.isDead);
 		//HitParticles.Emitting=true;
+		SoundEffectController.PlaySFX(1,1);
 		BattleManager.instance.CheckDeath(this);
 	}
 
@@ -380,6 +384,7 @@ public partial class BattleCharacter : CharacterBody2D
 			}
 			ReturnLocalPos();
 		}
+		SoundEffectController.PlaySFX(1,0);
 	}
 	void ReturnLocalPos()
 	{
@@ -392,7 +397,7 @@ public partial class BattleCharacter : CharacterBody2D
 	{
 		Tween tween = CreateTween();
 		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
-		NameText.Text = $"[center]{Character.Base.Name}[/center]";
+		NameText.Text = "[center]"+Tr(Character.Base.Name)+"[/center]";
 
 		tween.TweenProperty(HPBar, "modulate:a", 1, 0.1f);
 		tween.TweenProperty(HPBar, "value", Character.stats.HP, 0.3f).SetEase(Tween.EaseType.InOut);
@@ -558,7 +563,7 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 
-	public void TurnOnBattle()
+	public virtual void TurnOnBattle()
 	{
 		ProcessMode = ProcessModeEnum.Inherit;
 		HPText.Text = $"[center]{Character.stats.HP}/{Character.TotalStats.MaxHP}[/center]";
@@ -582,7 +587,7 @@ public partial class BattleCharacter : CharacterBody2D
 		if (Character.status == Character.Status.KO)
 		{
 			Character.status = Character.Status.Normal;
-			Character.stats.HP = 1;
+			Character.ChangeHP(1,false);
 		}
 		Character._GetHit -= GetHit;
 		Character._Die -= Die;
@@ -610,18 +615,48 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 
-	public void PlaySFX(int SFXPlayer, int SFX)
+	/*public void PlaySFX(int SFXPlayer, int SFX)
 	{
-		switch (SFXPlayer)
+		SoundEffectController.SFXPlayers[SFXPlayer].Stream = SoundEffectController.Lists[SFXPlayer].SoundEffects[SFX];					
+		/*switch (SFXPlayer)
 		{
 			case 0:
-				SFXPlayers[SFXPlayer].Stream = Character.Base.MoveSFX[SFX];
+				if (Character.Base.MoveSFX.Count > SFX && SFXPlayers.Count> SFXPlayer)
+				{
+					SFXPlayers[SFXPlayer].Stream = Character.Base.MoveSFX[SFX];					
+				}
 				break;
 			case 1:
-				SFXPlayers[SFXPlayer].Stream = Character.Base.HitSFX[SFX];
+				if (Character.Base.HitSFX.Count > SFX && SFXPlayers.Count> SFXPlayer)
+				{
+					SFXPlayers[SFXPlayer].Stream = Character.Base.HitSFX[SFX];					
+				}
 				break;
-		}
+		}	
 		SFXPlayers[SFXPlayer].Play();
+		SoundEffectController.SFXPlayers[SFXPlayer].Play();
 		
 	}
+	public void StopSFX()
+	{
+		Tween AudioTween  = CreateTween();
+		if (AudioTween != null)
+        {
+			AudioTween.Stop();            
+        }
+		AudioTween.SetParallel(true);
+		for(int i = 0; i < SoundEffectController.SFXPlayers.Count; i++)
+		{
+			AudioTween.TweenProperty(SoundEffectController.SFXPlayers[i],"volume_db",-80,0.3);
+		}
+		AudioTween.Finished += () =>
+		{
+			for(int i = 0; i < SoundEffectController.SFXPlayers.Count; i++)
+			{
+				SoundEffectController.SFXPlayers[i].Stop();			
+			}
+			AudioTween.Kill();			
+		};
+		
+	}*/
 }

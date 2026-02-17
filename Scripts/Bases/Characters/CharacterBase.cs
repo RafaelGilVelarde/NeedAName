@@ -12,4 +12,5 @@ public partial class CharacterBase : Resource
     [Export] public Texture Icon;
     [Export] public Vector2 OverworldOffset, BattleOffset, Floor;
     [Export] public Array<AudioStream> MoveSFX, HitSFX;
+    [Export] public Array<SFXList> EffectLists;
 }

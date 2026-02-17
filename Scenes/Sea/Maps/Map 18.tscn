@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://bci8vpk81qdgb"]
+[gd_scene load_steps=27 format=3 uid="uid://bci8vpk81qdgb"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_bug3q"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_vupof"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="7_ll8yt"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="8_dqr3d"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_dgrkx"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/FirstBattle.cs" id="11_yftxn"]
+[ext_resource type="Resource" uid="uid://cxqb868icnqmh" path="res://Resources/BattleScenes/FirstBattle.tres" id="10_gow4f"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Events/BaseEventCollision.cs" id="12_ab1dd"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_6i38a"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractionResources/CheckValueTimeline.cs" id="14_und22"]
@@ -23,16 +23,6 @@ size = Vector2(224, 32)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bjupt"]
 resource_local_to_scene = true
 size = Vector2(192, 64)
-
-[sub_resource type="Resource" id="Resource_alojh"]
-script = ExtResource("11_yftxn")
-Timeline = "FirstBattle"
-WinTimeline = "Win"
-EscapeChance = 100.0
-Horizontal = false
-Cutscene = false
-PartyFloorY = null
-EnemyFloorY = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4a34h"]
 size = Vector2(190, 16)
@@ -152,12 +142,12 @@ position = Vector2(16, -16)
 
 [node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_dqr3d")]
 position = Vector2(-136, -72)
-Scene = SubResource("Resource_alojh")
+Scene = ExtResource("10_gow4f")
 detectArea = NodePath("../Area2D")
 
 [node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("8_dqr3d")]
 position = Vector2(-56, 64)
-Scene = SubResource("Resource_alojh")
+Scene = ExtResource("10_gow4f")
 detectArea = NodePath("../Area2D")
 
 [node name="Barrier" parent="." instance=ExtResource("10_dgrkx")]
@@ -168,6 +158,10 @@ DisableAnimation = "WaterBarrier/Disable"
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_4a34h")
 Cutscene = null
+
+[node name="Check" parent="Barrier" index="2"]
+HasDialogue = false
+ChecksBool = true
 
 [node name="CheckPartner" type="Area2D" parent="."]
 position = Vector2(288, 2.91038e-11)

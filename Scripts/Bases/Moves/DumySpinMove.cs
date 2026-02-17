@@ -54,6 +54,7 @@ public partial class DumySpinMove : MoveBase
             {
 				Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);                
             };
+			Users[0].SoundEffectController.StopSFX();
 		}
 		void Rotate2(float w, Vector2 center,float radius,Node2D obj){
     		obj.Position = center + Spin*( -Vector2.FromAngle(w*Mathf.Tau) * radius);

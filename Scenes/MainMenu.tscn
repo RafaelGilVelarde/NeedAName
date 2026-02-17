@@ -1,10 +1,11 @@
-[gd_scene load_steps=20 format=3 uid="uid://brf1kg03d66t7"]
+[gd_scene load_steps=21 format=3 uid="uid://brf1kg03d66t7"]
 
 [ext_resource type="Script" path="res://Scripts/Menu/StartMenu.cs" id="1_5qb0c"]
 [ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="1_b7sp6"]
 [ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuSaveButtons.cs" id="2_0epxr"]
 [ext_resource type="PackedScene" uid="uid://cuu3vd0olnl16" path="res://Scenes/Intro.tscn" id="2_8k5ur"]
 [ext_resource type="Texture2D" uid="uid://btge2dadh5otk" path="res://Sprites/TitleScreen/Main.png" id="5_j6075"]
+[ext_resource type="Script" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="5_mhffw"]
 [ext_resource type="Shader" path="res://Resources/Shaders/Intro.gdshader" id="6_4s03k"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="7_4vx3i"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="8_308al"]
@@ -148,10 +149,14 @@ height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "SavesList", "MainSprite", "PlayerName")]
+[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "Language", "Menu", "LanguageMenu", "Languages", "SavesList", "MainSprite", "PlayerName")]
 script = ExtResource("1_5qb0c")
-Start = NodePath("VBoxContainer/Button")
-Continue = NodePath("VBoxContainer/Button2")
+Start = NodePath("MainMenu/Button")
+Continue = NodePath("MainMenu/Button2")
+Language = NodePath("MainMenu/Button3")
+Menu = NodePath("MainMenu")
+LanguageMenu = NodePath("LanguageMenu")
+Languages = [NodePath("LanguageMenu/Button"), NodePath("LanguageMenu/Button2")]
 SavesList = NodePath("SaveScrolls")
 NewGameScene = ExtResource("2_8k5ur")
 MainSprite = NodePath("Sprite2D")
@@ -163,21 +168,48 @@ position = Vector2(576, 416)
 scale = Vector2(11.7425, 6.75)
 texture = ExtResource("7_4vx3i")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="."]
+visible = false
 offset_left = 608.0
 offset_top = 392.0
 offset_right = 687.0
 offset_bottom = 458.0
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="Button" type="Button" parent="MainMenu"]
 light_mask = 0
 layout_mode = 2
 text = "Start"
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Button2" type="Button" parent="MainMenu"]
 light_mask = 0
 layout_mode = 2
 text = "Continue"
+
+[node name="Button3" type="Button" parent="MainMenu"]
+light_mask = 0
+layout_mode = 2
+text = "Language"
+
+[node name="LanguageMenu" type="VBoxContainer" parent="."]
+visible = false
+offset_left = 608.0
+offset_top = 392.0
+offset_right = 687.0
+offset_bottom = 458.0
+
+[node name="Button" type="Button" parent="LanguageMenu"]
+light_mask = 0
+layout_mode = 2
+text = "English"
+script = ExtResource("5_mhffw")
+Language = "en"
+
+[node name="Button2" type="Button" parent="LanguageMenu"]
+light_mask = 0
+layout_mode = 2
+text = "Español"
+script = ExtResource("5_mhffw")
+Language = "es"
 
 [node name="SaveScrolls" type="VBoxContainer" parent="." node_paths=PackedStringArray("Buttons")]
 visible = false

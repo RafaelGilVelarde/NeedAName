@@ -1,4 +1,4 @@
-[gd_scene load_steps=97 format=3 uid="uid://dbs7iqu5fr21p"]
+[gd_scene load_steps=96 format=3 uid="uid://dbs7iqu5fr21p"]
 
 [ext_resource type="Texture2D" uid="uid://cyd8rk3jjitin" path="res://Sprites/Background/Side View/Boss Arena 1 Ground.png" id="1_q1sx7"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_t3ogn"]
@@ -19,24 +19,25 @@
 [ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="16_q3s3b"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/Boss1.cs" id="17_lkv6f"]
 [ext_resource type="PackedScene" uid="uid://brf1kg03d66t7" path="res://Scenes/MainMenu.tscn" id="17_wjl1s"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="20_7s2bh"]
 [ext_resource type="Resource" uid="uid://bj4l2qn2leh4c" path="res://Resources/CharacterBases/Enemies/Boss1.tres" id="20_yycnn"]
 [ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="21_8a1uq"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Character.cs" id="22_dy6wk"]
+[ext_resource type="Resource" uid="uid://bgagykpbh0qsh" path="res://Resources/Moves/Enemy/BaseHit/Boss1BaseMove.tres" id="22_f8onq"]
 [ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="23_1gxnh"]
+[ext_resource type="Resource" uid="uid://dm3vm6tit72tg" path="res://Resources/Moves/Enemy/Beams/BossSpoutMove.tres" id="24_8urmb"]
 [ext_resource type="PackedScene" uid="uid://dflycr41il8v0" path="res://Prefabs/BattleProjectyles/WaterSpout.tscn" id="25_40e4m"]
 [ext_resource type="Script" path="res://Scripts/Bases/Moves/BossSpoutMove.cs" id="26_8x2fq"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="26_n61em"]
-[ext_resource type="PackedScene" uid="uid://3ddt586nxsc3" path="res://Prefabs/BattleProjectyles/BossBubble.tscn" id="27_4j18o"]
 [ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="27_hafdj"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyShootMove.cs" id="27_om6rh"]
+[ext_resource type="Resource" uid="uid://bknxneddic7v0" path="res://Resources/Moves/Enemy/Projectyles/Boss1BubbleShoot.tres" id="27_xlo50"]
+[ext_resource type="Resource" uid="uid://dcaudxjbqu7i7" path="res://Resources/Moves/Generic/RaiseStatMove.tres" id="28_fwl4v"]
 [ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="28_t57oh"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="29_1p83n"]
 [ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="29_6dhwp"]
 [ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="29_63fyv"]
+[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="29_nhp5g"]
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="31_ajt7s"]
 [ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="32_cs5se"]
 [ext_resource type="Script" path="res://Scripts/Overworld/Triggers/DoorProtoEnd.cs" id="34_wr8hh"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="37_ly4yu"]
 [ext_resource type="Script" path="res://Scripts/Events/CutscenePlayer.cs" id="38_5jbol"]
 [ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="39_tdnfc"]
 
@@ -239,6 +240,9 @@ Horizontal = true
 Cutscene = true
 PartyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
 EnemyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
+BattleMusic = 4
+WinMusic = -1
+LoseMusic = 2
 
 [sub_resource type="Animation" id="Animation_r1hrf"]
 resource_name = "Battle_Cutscene"
@@ -317,6 +321,20 @@ tracks/5/keys = {
 "method": &"seek"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("../SFXController")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0.2),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [2, 0],
+"method": &"PlaySFX"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_imr2n"]
 resource_name = "Overworld"
@@ -391,7 +409,7 @@ _data = {
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_7nbvj"]
 
-[sub_resource type="Resource" id="Resource_jipoy"]
+[sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("16_q3s3b")
 Lv = 0
 MaxHP = 0
@@ -403,50 +421,17 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_woo47"]
-script = ExtResource("20_7s2bh")
-State = 1
-Speed = 3.0
-Combo = 1
-offset = Vector2(100, 0)
-Movement = true
-type = 0
-Power = 3
-UserAmount = 1
-TargetAmount = 1
-WP = 3
-Cost = 0
-TargetsParty = false
-Name = "Punch"
-MoveTime = 2.0
-
-[sub_resource type="Resource" id="Resource_7ebqa"]
+[sub_resource type="Resource" id="Resource_0sf58"]
 script = ExtResource("21_8a1uq")
-Base = SubResource("Resource_woo47")
+Base = ExtResource("22_f8onq")
 Chance = 30.0
 
-[sub_resource type="Resource" id="Resource_je7yg"]
-script = ExtResource("26_8x2fq")
-Combo = 3
-Proyectile = ExtResource("25_40e4m")
-Offset = Vector2(0, -36)
-Tag = "EnemyHitbox"
-type = 0
-Power = 2
-UserAmount = 1
-TargetAmount = 1
-WP = 2
-Cost = 0
-TargetsParty = false
-Name = "spout1"
-MoveTime = 3.5
-
-[sub_resource type="Resource" id="Resource_xvxfu"]
+[sub_resource type="Resource" id="Resource_u6anr"]
 script = ExtResource("21_8a1uq")
-Base = SubResource("Resource_je7yg")
+Base = ExtResource("24_8urmb")
 Chance = 15.0
 
-[sub_resource type="Resource" id="Resource_4jt63"]
+[sub_resource type="Resource" id="Resource_i8y7y"]
 script = ExtResource("26_8x2fq")
 Combo = 3
 Proyectile = ExtResource("25_40e4m")
@@ -459,75 +444,25 @@ TargetAmount = 1
 WP = 2
 Cost = 0
 TargetsParty = false
-Name = "Spout2"
+Name = "spout1"
 MoveTime = 2.5
 
-[sub_resource type="Resource" id="Resource_a4tlc"]
+[sub_resource type="Resource" id="Resource_dw1fw"]
 script = ExtResource("21_8a1uq")
-Base = SubResource("Resource_4jt63")
+Base = SubResource("Resource_i8y7y")
 Chance = 15.0
 
-[sub_resource type="Resource" id="Resource_mwkff"]
-script = ExtResource("27_om6rh")
-Middle = 2.0
-Timer2 = 7.0
-Height = 50.0
-Combo = 2
-Tag = "EnemyHitbox"
-Proyectile = ExtResource("27_4j18o")
-offset = Vector2(-30, -150)
-type = 0
-Power = 1
-UserAmount = 1
-TargetAmount = 1
-WP = 1
-Cost = 0
-TargetsParty = false
-Name = "aaa"
-MoveTime = 7.0
-
-[sub_resource type="Resource" id="Resource_cu4sm"]
+[sub_resource type="Resource" id="Resource_pewh0"]
 script = ExtResource("21_8a1uq")
-Base = SubResource("Resource_mwkff")
+Base = ExtResource("27_xlo50")
 Chance = 20.0
 
-[sub_resource type="Resource" id="Resource_72lul"]
-script = ExtResource("29_1p83n")
-AtkTime = 3
-DefTime = 0
-SpAtkTime = 0
-SpDefTime = 0
-SpeedTime = 0
-AtkMult = 1.5
-DefMult = 0.0
-SpAtkMult = 0.0
-SpDefMult = 0.0
-SpeedMult = 0.0
-HPIncrease = 0.0
-WPIncrease = 0.0
-Atk = true
-Def = false
-Spatk = false
-Spdef = false
-Speed = false
-HP = false
-WPUp = false
-type = 0
-Power = 0
-UserAmount = 1
-TargetAmount = 1
-WP = 0
-Cost = 0
-TargetsParty = true
-Name = "Ed"
-MoveTime = 2.5
-
-[sub_resource type="Resource" id="Resource_q5c5c"]
+[sub_resource type="Resource" id="Resource_724a3"]
 script = ExtResource("21_8a1uq")
-Base = SubResource("Resource_72lul")
+Base = ExtResource("28_fwl4v")
 Chance = 20.0
 
-[sub_resource type="Resource" id="Resource_m514q"]
+[sub_resource type="Resource" id="Resource_jv4yb"]
 script = ExtResource("16_q3s3b")
 Lv = 0
 MaxHP = 0
@@ -539,29 +474,28 @@ SpDef = 0
 Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_0ckdn"]
+[sub_resource type="Resource" id="Resource_dit6j"]
 script = ExtResource("16_q3s3b")
-Lv = 7
-MaxHP = 1000
-HP = 1000
-Atk = 2
-Def = 1
-SpAtk = 1
-SpDef = 1
-Speed = 5
+Lv = 9
+MaxHP = 0
+HP = 0
+Atk = 0
+Def = 0
+SpAtk = 0
+SpDef = 0
+Speed = 0
 WP = 0
 
-[sub_resource type="Resource" id="Resource_i0rrr"]
-resource_local_to_scene = true
-script = ExtResource("22_dy6wk")
+[sub_resource type="Resource" id="Resource_srxgq"]
+script = ExtResource("29_nhp5g")
 Name = ""
 Base = ExtResource("20_yycnn")
-Moves = Array[Object]([SubResource("Resource_7ebqa"), SubResource("Resource_xvxfu"), SubResource("Resource_a4tlc"), SubResource("Resource_cu4sm"), SubResource("Resource_q5c5c")])
+Moves = Array[Object]([SubResource("Resource_0sf58"), SubResource("Resource_u6anr"), SubResource("Resource_dw1fw"), SubResource("Resource_pewh0"), SubResource("Resource_724a3")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_0ckdn")
-EquipStats = SubResource("Resource_jipoy")
-TotalStats = SubResource("Resource_m514q")
+stats = SubResource("Resource_dit6j")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
 isControlledByPlayer = false
 Active = true
 Key = 0
@@ -663,7 +597,7 @@ size = Vector2(38, 16)
 
 [sub_resource type="Animation" id="Animation_vv0w8"]
 resource_name = "Cutscene1"
-length = 2.0
+length = 3.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -674,7 +608,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
 "transitions": PackedFloat32Array(1, 1, 1.41421, 1),
 "update": 0,
-"values": [Vector2(116, 168), Vector2(24, 168), Vector2(10, 168), Vector2(8, 168)]
+"values": [Vector2(116, 168), Vector2(10, 168), Vector2(0, 168), Vector2(-5, 168)]
 }
 tracks/1/type = "method"
 tracks/1/imported = false
@@ -689,6 +623,56 @@ tracks/1/keys = {
 "args": ["Battle_Cutscene", -1, 1.0, false],
 "method": &"play"
 }]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscenes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [4],
+"method": &"PlayAudio"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Party 2:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1.41421, 1),
+"update": 0,
+"values": [Vector2(68, 164), Vector2(-80, 164), Vector2(-90, 164), Vector2(-105, 164)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Party 0/OverworldController:Axis")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Party 2/OverworldController:Axis")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
 }
 
 [sub_resource type="Animation" id="Animation_3708d"]
@@ -705,15 +689,152 @@ tracks/0/keys = {
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_xqnr8"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Party 0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1.41421, 1),
+"update": 0,
+"values": [Vector2(116, 168), Vector2(10, 168), Vector2(0, 168), Vector2(-5, 168)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss/OverworldController/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Battle_Cutscene", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscenes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [4],
+"method": &"PlayAudio"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Party 3:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1.42, 1),
+"update": 0,
+"values": [Vector2(68, 164), Vector2(-80, 164), Vector2(-90, 164), Vector2(-105, 164)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Party 0/OverworldController:Axis")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Party 3/OverworldController:Axis")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_wal5m"]
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Party 0:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1.41421, 1),
+"update": 0,
+"values": [Vector2(116, 168), Vector2(10, 168), Vector2(0, 168), Vector2(-5, 168)]
+}
+tracks/1/type = "method"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Boss/OverworldController/AnimationPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": ["Battle_Cutscene", -1, 1.0, false],
+"method": &"play"
+}]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cutscenes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [4],
+"method": &"PlayAudio"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Party 0/OverworldController:Axis")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_kwfww"]
 _data = {
 "Cutscene1": SubResource("Animation_vv0w8"),
-"Cutscene2": SubResource("Animation_3708d")
+"Cutscene2": SubResource("Animation_3708d"),
+"Cutscene3": SubResource("Animation_xqnr8"),
+"Cutscene4": SubResource("Animation_wal5m")
 }
 
 [node name="Node2D" type="Node2D" node_paths=PackedStringArray("CutsceneAnimator")]
 script = ExtResource("1_t3ogn")
 CutsceneAnimator = NodePath("Cutscenes")
+BGMIndex = 3
 
 [node name="TileMap" type="TileMap" parent="."]
 visible = false
@@ -749,7 +870,7 @@ shape = SubResource("RectangleShape2D_k84y4")
 
 [node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
 z_index = 2
-position = Vector2(46, 129)
+position = Vector2(46, 130.8)
 shape = SubResource("RectangleShape2D_wjpro")
 
 [node name="Ground" type="Node2D" parent="."]
@@ -910,15 +1031,13 @@ FacingDirection = null
 visualType = null
 Sprites = []
 
-[node name="OverworldController" type="Node2D" parent="Boss" node_paths=PackedStringArray("enemyCollision", "IdleTargets", "Obstacles", "Battle", "MainSprite", "Animator", "AnimatorTree", "Parent", "OverworldCollider", "BattleCharacter")]
+[node name="OverworldController" type="Node2D" parent="Boss" node_paths=PackedStringArray("enemyCollision", "Obstacles", "Battle", "MainSprite", "Animator", "AnimatorTree", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("7_4k8em")
 enemyCollision = NodePath("Area2D")
 CachedTargetPosition = null
 RandMin = null
 RandMax = null
 state = null
-IdleTargets = []
-CurrentIdleTarget = null
 Obstacles = []
 LayerMask = 2
 Battle = NodePath("BattleStart")
@@ -949,7 +1068,7 @@ texture_filter = 1
 texture = ExtResource("12_c83it")
 hframes = 8
 vframes = 8
-frame = 53
+frame = 49
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -995,13 +1114,13 @@ reset_on_save = false
 root_node = NodePath("../../../..")
 tree_root = SubResource("AnimationNodeStateMachine_7nbvj")
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="Boss" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="Boss" node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4
 visible = false
 script = ExtResource("23_1gxnh")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 AnimatorPlayer = NodePath("AnimationPlayer")
-Character = SubResource("Resource_i0rrr")
+Character = SubResource("Resource_srxgq")
 Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
@@ -1034,7 +1153,8 @@ HPBar = NodePath("HPBarParent/HPBar")
 StatMods = NodePath("Node2D/HBoxContainer")
 UpStat = ExtResource("31_ajt7s")
 DownStat = ExtResource("32_cs5se")
-SFXPlayers = []
+SFXPlayers = [null, null]
+SoundEffectController = NodePath("../SFXController")
 battleState = 3
 actionState = 5
 
@@ -1490,11 +1610,12 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
 
+[node name="SFXController" parent="Boss" instance=ExtResource("37_ly4yu")]
+
 [node name="Door" type="Area2D" parent="."]
 position = Vector2(269, 170)
 script = ExtResource("34_wr8hh")
 Scene = 28
-Area = null
 LoadPosition = null
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Door"]
@@ -1509,7 +1630,7 @@ script = ExtResource("38_5jbol")
 InitialPositions = Array[Vector2]([Vector2(116, 164), Vector2(68, 164)])
 InitialPositionStartIndex = Array[int]([0, 0])
 CutsceneDurations = Array[float]([1.5])
-CutsceneNames = Array[String](["Cutscene1", "Cutscene2"])
+CutsceneNames = Array[String](["Cutscene1", "Cutscene2", "Cutscene3", "Cutscene4"])
 
 [node name="CanvasLayer2" type="CanvasLayer" parent="."]
 layer = 0
