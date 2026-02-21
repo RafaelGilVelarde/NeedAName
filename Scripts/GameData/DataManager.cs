@@ -37,7 +37,10 @@ public partial class DataManager : Resource
 		for (int i = 0; i < items.Count; i++)
 		{
 			data.items[i] = (TypedItemList)items[i].Duplicate();
-			data.items[i] = (TypedItemList)items[i].Duplicate();
+			for(int j = 0; j < items[i].items.Count; j++)
+				{
+					data.items[i].items[j] = (Items)items[i].items[j].Duplicate();
+				}
 		}
 		return data;
 

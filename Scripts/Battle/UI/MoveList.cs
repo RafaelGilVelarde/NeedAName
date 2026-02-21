@@ -57,7 +57,7 @@ public partial class MoveList : StuffList
 				Buttons[i].Show();
 				Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Tr(Buttons[i].move.Base.Name);
 				AmountList.GetChild<RichTextLabel>(i+1).Show();
-				AmountList.GetChild<RichTextLabel>(i+1).Text = "WP: "+Buttons[i].move.Base.Cost;
+				AmountList.GetChild<RichTextLabel>(i+1).Text = Tr("WP: ")+Buttons[i].move.Base.Cost;
 				activeButtons++;
 				if(StartEnd==ScrollList.StartEnd.End){
 					Buttons[i].GrabFocus();

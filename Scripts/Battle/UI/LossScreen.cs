@@ -21,10 +21,13 @@ public partial class LossScreen : Control
         Retry.GrabFocus();
     }
     void SetupReload(){
-        Battle.Clear();
-        Game.Load(Game.Settings.CurrentSave);
-        Battle.Scene = null;
-        Visible = false;
+        if (Game.CurrentSaveExists)
+        {
+            Battle.Clear();
+            Game.Load(Game.Settings.CurrentSave);
+            Battle.Scene = null;
+            Visible = false;            
+        }
     }
     void SetupReturnTitleScreen(){
         Battle.Clear();

@@ -571,6 +571,7 @@ public partial class BattleCharacter : CharacterBody2D
 		AnimatorTree.Active = false;
 		AnimatorTree.Active = true;
 		HPBar.MaxValue = Character.TotalStats.MaxHP;
+		HPBar.Value = Character.stats.HP;
 		Reset();
 		Character._GetHit += GetHit;
 		Character._ChangeHP += ShowChangeHPBar;

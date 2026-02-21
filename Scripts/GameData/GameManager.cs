@@ -84,7 +84,8 @@ public partial class GameManager : Node
 	}
 	public void LoadFirstScene()
 	{
-		Data = (DataManager)InitialData.Duplicate();
+		Data = InitialData.DuplicateData();
+		CurrentSaveExists = false;
 		InstantiateCharacters();
 		Array<int> InitColLayerArray = new Array<int>();
 		Array<int> InitColMaskArray = new Array<int>();

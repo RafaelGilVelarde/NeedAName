@@ -20,6 +20,7 @@ public partial class StartMenu : Node
     [Export] Node2D MainSprite;
     [Export] StartMenuState State;
     [Export] RichTextLabel PlayerName; 
+    [Export] Array<int> AudioIndex;
     public override void _Input(InputEvent @event)
     {
         base._Input(@event);
@@ -72,10 +73,12 @@ public partial class StartMenu : Node
         {
             MainMenu();
             Start.GrabFocus();
+            GameManager.Instance.PlayAudio(AudioIndex[1%AudioIndex.Count]);
         }
         else
         {
             ShowLanguageList();
+            GameManager.Instance.PlayAudio(AudioIndex[0%AudioIndex.Count]);
         }
     }
 

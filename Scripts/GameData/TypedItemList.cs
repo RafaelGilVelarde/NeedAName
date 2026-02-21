@@ -24,4 +24,5 @@ public partial class TypedItemList : Resource
             items.Add(item);
         }
     }
+
 }

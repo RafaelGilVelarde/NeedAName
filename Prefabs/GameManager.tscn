@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=3 uid="uid://bb47bv321gedv"]
+[gd_scene load_steps=131 format=3 uid="uid://bb47bv321gedv"]
 
 [ext_resource type="Script" path="res://Scripts/GameData/GameManager.cs" id="1_mg7l2"]
 [ext_resource type="Script" path="res://Scripts/GameData/DataManager.cs" id="2_1hul1"]
@@ -82,6 +82,7 @@
 [ext_resource type="AudioStream" uid="uid://c4hdsod63wtl5" path="res://Music/BGM/Battle/defeat.mp3" id="66_1o21s"]
 [ext_resource type="AudioStream" uid="uid://c8ya3jiodh37u" path="res://Music/BGM/Water/Area2.mp3" id="67_bbmdv"]
 [ext_resource type="AudioStream" uid="uid://dwvfqfgigy57x" path="res://Music/BGM/Start/start.mp3" id="67_vhbxj"]
+[ext_resource type="AudioStream" uid="uid://bflp06geki460" path="res://Music/BGM/Start/waves.mp3" id="68_0vpbf"]
 [ext_resource type="AudioStream" uid="uid://wlw6ki2ts3ag" path="res://Music/BGM/Battle/Boss1.wav.mp3" id="68_if2d4"]
 [ext_resource type="Script" path="res://Scripts/Menu/Screens/SettingsScreen.cs" id="83_dsr41"]
 [ext_resource type="Script" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="84_vc7uq"]
@@ -591,7 +592,7 @@ TransitionColor = Color(0, 0, 0, 1)
 ExpSpeed = 2.0
 ExpDistance = 5.0
 MainAudio = NodePath("AudioStreamPlayer")
-BGMs = [ExtResource("64_ax4vy"), ExtResource("65_t85lt"), ExtResource("66_1o21s"), ExtResource("67_bbmdv"), ExtResource("68_if2d4"), ExtResource("67_vhbxj")]
+BGMs = [ExtResource("64_ax4vy"), ExtResource("65_t85lt"), ExtResource("66_1o21s"), ExtResource("67_bbmdv"), ExtResource("68_if2d4"), ExtResource("67_vhbxj"), ExtResource("68_0vpbf")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
 visible = false

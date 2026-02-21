@@ -592,8 +592,9 @@ scroll_active = false
 [node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
 offset_left = -35.0
+offset_top = 4.0
 offset_right = 465.0
-offset_bottom = 90.0
+offset_bottom = 94.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true

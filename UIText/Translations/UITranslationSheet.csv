@@ -2,9 +2,22 @@ keys,en,es
 Attack: ,Attack: ,Atacar: 
 Block: ,Block: ,Bloquear: 
 Dodge: Arrows + ,Dodge: Arrows + ,Esquivar: Flechas + 
+BLOCKED,BLOCKED,BLOQUEADO
+WP: ,WP: ,PV: 
 Blobby,Blobsoul,Gotalma
 Halluci,Hallusoul,Halma
 Shrimpy,Shrimpyang,Langostinyang
 Starfish,Spinstar,Estrella Fugaz
 Save: ,Save: ,Partida: 
 Refresher,Mindfresh,Refremente
+Soul Memory,Soul Memory,Recuerdo de Alma
+Loud Memory,Loud Memory,Memoria Ruidosa
+Warmth Memory,Warmth Memory,Recuerdo Cálido
+attack,Splunch,Chapunchón
+Beam,Hydroray,Hidrorayo
+Spam,Splunches,Chapunchones
+SpDefUp,Hydroshield,Hidroescudo
+Spinner,Revspin,A rodar
+Brave,¡Will!,¡Voluntad!
+Suck,Vaaccuuum,Aaaspiraar
+Bubshield,Buuble,Buuurbuja

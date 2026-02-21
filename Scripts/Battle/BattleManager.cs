@@ -15,7 +15,7 @@ public partial class BattleManager : Node
 {
 	[Export] public BattleScene Scene;
 	[Export] BattleStart battleStart;
-	[Export] public TypedItemList AuxItems;
+	[Export] public TypedItemList AuxItems = new TypedItemList();
 	[Export] Array<int> AuxHP = new Array<int>(), EnemyAuxHP = new Array<int>();
 
 	[Export] public BattleState State;
@@ -40,7 +40,7 @@ public partial class BattleManager : Node
 	public ItemButtons CurrentItemButton;
 
 	[Export]double PositionMoveSpeed;
-	[Export] public TextureRect MenuUI;
+	[Export] public TextureRect MenuUI,TutorialUI;
 	[Export]public ItemList itemList;
 	[Export]public MoveList moveList;
     // Called when the node enters the scene tree for the first time.
@@ -48,6 +48,7 @@ public partial class BattleManager : Node
     {
         base._EnterTree();
 		instance=this; 
+		AuxItems.items = new Array<Items>();
     }
     public override void _Ready()
 	{
@@ -59,8 +60,12 @@ public partial class BattleManager : Node
 	{
 	}
 	public void StartBattle(BattleScene scene,Array<BattleCharacter> party, Array<BattleCharacter> enemy, Array<Vector2>PartyPos, Array<Vector2> EnemyPos, Vector2 centerViewCam, Vector2 centerViewChar, BattleStart start){
-		AuxItems = (TypedItemList)GameManager.Instance.Data.items[0].Duplicate();
 		GameManager Game = GameManager.Instance;
+		for(int i = 0; i < Game.Data.items[0].items.Count; i++)
+		{
+			AuxItems.AddItem((Items)Game.Data.items[0].items[i].Duplicate());
+		}
+		
 		battleStart = start;
 		BattleEnded=false;
 		//CenterView=centerViewChar;
@@ -413,7 +418,7 @@ public partial class BattleManager : Node
 		tween.Finished+=tween.Kill;
 	}
 	public void Clear(){
-		AuxItems = null;
+		AuxItems.items.Clear();
 		for(int i=0;i<CharacterButtonParent.GetChildCount();i++){
 			CharacterButtonParent.GetChild(i).QueueFree();
 		}
@@ -429,6 +434,7 @@ public partial class BattleManager : Node
 		AliveEnemy=0;
 		CurrentTurn=-1;
 		AliveParty=0;
+		TurnCount = 0;
 		/*for(int i=0;i<Party.Count;i++){
 			Party[i].OriginPos=Vector2.Zero;
 			Party[i].ReturnToOverworld();
@@ -475,9 +481,11 @@ public partial class BattleManager : Node
 		for(int i=0;i<TutorialLabels.GetChildCount();i++){
 			TutorialLabels.GetChild<RichTextLabel>(i).Visible=false;
 		}
+		TutorialUI.Hide();
 		if(!All){
 			RichTextLabel CurrentLabel = TutorialLabels.GetChild<RichTextLabel>(Label);
 			CurrentLabel.Visible=true;
+			TutorialUI.Show();
 			switch (Label){
 				case 0:
 					CurrentLabel.Text = Tr("Attack: ")+character.Key;
@@ -495,7 +503,11 @@ public partial class BattleManager : Node
 		Loss.OpenScreen();
 	}
 	public void RetryBattle(){
-		GameManager.Instance.Data.items[0] = AuxItems;
+		GameManager.Instance.Data.items[0].items.Clear();
+		for(int i = 0; i < AuxItems.items.Count; i++)
+		{
+			GameManager.Instance.Data.items[0].AddItem((Items)AuxItems.items[i].Duplicate());
+		}
 		State=BattleState.Neutral;
 		AliveEnemy=EnemyParty.Count;
 		BattleEnded = false;

@@ -61,8 +61,19 @@ public partial class Character : Resource
     {
         stats.HP += hp;
         stats.HP = Mathf.Clamp(stats.HP, 0, TotalStats.MaxHP);
-
-        EmitSignal("_ChangeHP", hp);
+        if (ShowText)
+        {
+            EmitSignal("_ChangeHP", hp);
+            if (hp != 0)
+            {
+                ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor);
+            }
+            else
+            {
+                ShowTextLabel("[center]"+Tr("BLOCKED")+"[/center]", Base.TextEffectColor);
+            }            
+        }
+        
         if (hp < 0)
         {
             EmitSignal("_GetHit");
@@ -73,17 +84,6 @@ public partial class Character : Resource
             stats.HP = 0;
             status = Status.KO;
             EmitSignal("_Die");
-        }
-        if (ShowText)
-        {
-            if (hp != 0)
-            {
-                ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor);
-            }
-            else
-            {
-                ShowTextLabel("[center]BLOCKED[/center]", Base.TextEffectColor);
-            }            
         }
     }
     public virtual void SetStats()

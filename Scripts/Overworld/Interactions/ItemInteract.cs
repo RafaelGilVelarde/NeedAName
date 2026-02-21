@@ -30,7 +30,7 @@ public partial class ItemInteract : InteractText
         DialogicRoot.Connect("signal_event",DoAction);
         if (ItemsToGive.Count == 1)
         {
-            DialogicCSharp.instance.SetVariable("ItemName", "Items", ItemsToGive[0].Base.Name);
+            DialogicCSharp.instance.SetVariable("ItemName", "Items", Tr(ItemsToGive[0].Base.Name));
             int aux = ItemsToGive[0].Amount;
             DialogicCSharp.instance.SetVariable("ItemAmount","Number",aux);                
         }

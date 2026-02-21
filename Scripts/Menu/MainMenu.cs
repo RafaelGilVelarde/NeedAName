@@ -34,23 +34,25 @@ public partial class MainMenu : CanvasLayer
             for(int i = 0;i<Screens.Count;i++){
                 if(Screens[i]!=null){
                     Screens[i].InitialDisplay();
-                    Debug.WriteLine("Screen: "+i);
                 }
             }
         }
     }
     public void ChangeScreen(int Index){
-        ChangeState(1);
-        if(CurrentScreen != null){
-            CurrentScreen.Visible = false;
-            CurrentScreen.ProcessMode = ProcessModeEnum.Disabled;
+        if (Screens[Index] != null)
+        {
+            ChangeState(1);
+            if(CurrentScreen != null){
+                CurrentScreen.Visible = false;
+                CurrentScreen.ProcessMode = ProcessModeEnum.Disabled;
+            }
+            PointerIndex = Index;
+            CurrentScreen = Screens[Index];
+            CurrentScreen.Visible = true;
+            CurrentScreen.ProcessMode = ProcessModeEnum.Inherit;
+            CurrentScreen.Select();
+            EnableMainButtons(false,0);            
         }
-        PointerIndex = Index;
-        CurrentScreen = Screens[Index];
-        CurrentScreen.Visible = true;
-        CurrentScreen.ProcessMode = ProcessModeEnum.Inherit;
-        CurrentScreen.Select();
-        EnableMainButtons(false,0);
     }
 
     void ReadyMainButtons(){

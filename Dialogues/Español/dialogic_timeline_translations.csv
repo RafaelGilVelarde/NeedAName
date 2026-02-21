@@ -196,7 +196,7 @@ Text/ad/text,This feeling...,Esto se siente....
 Text/ae/text,Even I feel calm,Hasta a mí me calma
 Text/af/text,Your face is...happy!,Te ves....¡Feliz!
 Text/b0/text,Glad to be of help. Put it on your heart if you wanna feel the effects, Que bien que ayudó. Ponlo en tu corazón para sentir los efectos
-Text/b1/text,[You got the Warmth Memory],[Obtuviste la Memoria Cálida]
+Text/b1/text,[You got the Warmth Memory],[Obtuviste el Recuerdo Cálido]
 Choice/b2/text,I'd rather not,Creo que mejor no
 Choice/b2/disabled_text,,
 Text/b3/text,"It's ok, but if you change your mind I am here!","Está bien, pero estoy aquí si cambias de parecer"
@@ -267,7 +267,7 @@ Text/e4/text,It feels.............loud?,Se siente algo......¿Ruidoso?
 Text/e5/text,I dunno that's for you to find out,"¡Yo qué se, eso es para que tú lo descubras!"
 Text/e6/text,"Heh, this is invigorating","Heh, qué emocionante"
 Text/e7/text,My head huuuurts,Me dueeeeele la cabezaaaaaa
-Text/e8/text,[Received the Loud Memory],[Obtuviste la Memoria Ruidosa]
+Text/e8/text,[Received the Loud Memory],[Obtuviste el Recuerdo Ruidoso]
 Choice/e9/text,I'd......rather not,.....Mejor no
 Choice/e9/disabled_text,,
 Text/ea/text,Come back if ya change your mind,Regresa si cambias de parecer
@@ -291,20 +291,20 @@ Text/f6/text,That green bar above you is your health,Esa barra verde es tu salud
 Text/f7/text,Try to keep it up or else.....bad things happen,Trata de que no se te acabe o malas cosas sucederán
 Text/f8/text,That purple bar is your Will Points,Esa barra morada son tus Puntos de Voluntad
 Text/f9/text,You will need them to be able to use some of your moves,Necesitarás estos puntos para utilizar algunos de tus movimientos
-Text/fa/text,You can gain them through doing special actions during your moves,Puedes obtener Puntos de Voluntad durante acciones especiales en tus movimientos
-Text/fb/text,"Also through blocking, or good timing when dodging enemy attacks","También los puedes obtener bloqueando ataques de enemigos, o esquivando en el momento correcto"
-Text/fc/text,"Welp imma go try see what is going on here, have fun!","Oh bueno, iré a ver qué está ocurriendo aquí ¡Nos vemos!"
+Text/fa/text,You can gain them through doing special actions during your moves,Puedes obtenerlos durante acciones especiales en tus movimientos
+Text/fb/text,"Also through blocking, or good timing when dodging enemy attacks",Al igual que al bloquear o esquivar en el momento correcto
+Text/fc/text,"Welp imma go try see what is going on here, have fun!","Bueno, me voy a ver qué está ocurriendo aquí ¡Nos vemos!"
 ,,
 Text/fd/text,...,...
 Text/fe/text,....what......is..this?....................,........¿Qué...es..esto?
 Text/ff/text,.........everything....spinning......,....todo me revuelve......
-Text/100/text,"Well well well. Greetings, little one!","Vaya vaya vaya. ¡Saludos pequeñín!""
+Text/100/text,"Well well well. Greetings, little one!",Vaya vaya vaya. ¡Saludos pequeñín!
 Text/101/text,Who's......this?,¿Quién....eres?
 Text/102/text,Who am I indeed! Juuust see me as a viewer for now,Ooooh pero quién soy ¿eh? Pooor ahora tan sólo soy tu audiencia
 Text/103/text,You should be asking who you are!,¡Deberías preguntarte quien eres tú!
 Text/104/text,I.....don't know,No...lo sé
-Text/105/text,"I see. In that case, just play around and get used to yourself!",Ya veo. Hmmmm. Por ahora ve andando para acostumbrarte a tu ser
-Text/106/text,I shall be contacting you soon!,Y bueno ¡Pronto nos veremos!
+Text/105/text,"I see. In that case, just play around and get used to yourself!","Ya veo. Hmmmm. Bueno, por ahora sólo ve acostumbrándote a tu ser"
+Text/106/text,I shall be contacting you soon!,¡Nos vemos luego!
 Text/107/text,......Myself?,Mi....¿Ser?
 ,,
 Text/108/text,Hmm? How strange,¿Hmm? Oh vaya
@@ -333,7 +333,7 @@ Text/119/text,This path will test your strength,Cruzar este camino pondrá tu fu
 Text/11a/text,I sense a rumbling past this area,Siento un retumbar a través de esta área
 Text/11b/text,You won't be able to come back once you enter,No podrás regresar depués de entrar
 Text/11c/text,Home approaches,Casi en casa
-Text/11d/text,So this is where you want to go?,"Entonces ¿Quieres ir por aquí?"
+Text/11d/text,So this is where you want to go?,Entonces ¿Quieres ir por aquí?
 Choice/11e/text,Step back,Retroceder
 Choice/11e/disabled_text,,
 Text/11f/text,Not yet,Aún no

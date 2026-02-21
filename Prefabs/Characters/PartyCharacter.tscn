@@ -26,7 +26,7 @@ size = Vector2(22, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6c1hy"]
 resource_local_to_scene = true
-size = Vector2(21.375, 50)
+size = Vector2(20, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
@@ -1733,7 +1733,7 @@ texture_filter = 1
 texture = SubResource("CompressedTexture2D_trioo")
 hframes = 8
 vframes = 8
-frame = 11
+frame = 44
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1864,6 +1864,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.63, 0.63)
 pivot_offset = Vector2(16, 9)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
 bbcode_enabled = true
 text = "Fight"
@@ -1918,6 +1919,7 @@ grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.63, 0.63)
 pivot_offset = Vector2(16, 9)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
 text = "Item"
 fit_content = true
@@ -1970,6 +1972,7 @@ offset_right = 32.0
 offset_bottom = 9.0
 scale = Vector2(0.63, 0.63)
 pivot_offset = Vector2(16, 9)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
 text = "Run"
 fit_content = true
@@ -2033,8 +2036,9 @@ scroll_active = false
 [node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
 layout_mode = 0
 offset_left = -35.0
+offset_top = 4.0
 offset_right = 465.0
-offset_bottom = 90.0
+offset_bottom = 94.0
 scale = Vector2(0.2, 0.2)
 theme_override_font_sizes/normal_font_size = 30
 bbcode_enabled = true

@@ -161,6 +161,7 @@ SavesList = NodePath("SaveScrolls")
 NewGameScene = ExtResource("2_8k5ur")
 MainSprite = NodePath("Sprite2D")
 PlayerName = NodePath("Sprite2D/RichTextLabel")
+AudioIndex = Array[int]([6, 5])
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 material = SubResource("ShaderMaterial_eg5ua")

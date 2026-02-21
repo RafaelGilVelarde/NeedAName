@@ -29,13 +29,13 @@ public partial class TriggerGive : Node
                         case ObjectType.Move:
                             int aux = Objects[i].PartyIndex;
                             Data.Party[aux].LearnMove(Objects[i].Move);
-                            DialogicCSharp.instance.SetVariable("MoveName","Moves",Objects[i].Move.Base.Name);                
+                            DialogicCSharp.instance.SetVariable("MoveName","Moves",Tr(Objects[i].Move.Base.Name));                
                             break;
                         case ObjectType.Item:
                             Array<TypedItemList> ItemLists = Data.items;
                             int auxItemIndex = (int)Objects[i].Item.Base.type;
                             ItemLists[auxItemIndex].AddItem(Objects[i].Item);
-                            DialogicCSharp.instance.SetVariable("ItemName", "Items",Objects[i].Item.Base.Name);                
+                            DialogicCSharp.instance.SetVariable("ItemName", "Items",Tr(Objects[i].Item.Base.Name));                
                             DialogicCSharp.instance.SetVariable("Number","ItemAmount",Objects[i].Item.Amount);                
                             break;
                     }
