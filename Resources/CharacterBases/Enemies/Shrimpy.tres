@@ -1,13 +1,13 @@
-[gd_resource type="Resource" script_class="EnemyCharacterBase" load_steps=15 format=3 uid="uid://6iy5icea64kl"]
+[gd_resource type="Resource" script_class="EnemyCharacterBase" format=3 uid="uid://6iy5icea64kl"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_mxy30"]
-[ext_resource type="Script" path="res://Scripts/Battle/AISettings/AISettings.cs" id="1_sr5m0"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_mxy30"]
+[ext_resource type="Script" uid="uid://d3cwauvtfr0d1" path="res://Scripts/Battle/AISettings/AISettings.cs" id="1_sr5m0"]
 [ext_resource type="PackedScene" uid="uid://b6cj47rw55blg" path="res://Prefabs/Animators/Enemies/Battle/ShrimpBattleAnimator.tscn" id="2_rmyqo"]
 [ext_resource type="PackedScene" uid="uid://qv65iak5mgqv" path="res://Prefabs/Animators/Enemies/Overworld/ShrimpOverworldAnimator.tscn" id="3_agffr"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_exoht"]
+[ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_exoht"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="4_rva7y"]
 [ext_resource type="AudioStream" uid="uid://g85ao7k4a70a" path="res://Music/SFX/Deaths/Water.mp3" id="5_sxa5x"]
-[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="6_tptnn"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_tptnn"]
 [ext_resource type="AudioStream" uid="uid://chb1i3tevub42" path="res://Music/SFX/Moves/Punch.wav" id="6_v238l"]
 [ext_resource type="AudioStream" uid="uid://bghi2ejpivgln" path="res://Music/SFX/Moves/WaterBeam.mp3" id="7_6qq5k"]
 
@@ -16,7 +16,6 @@ script = ExtResource("1_sr5m0")
 
 [sub_resource type="Resource" id="Resource_ubpnd"]
 script = ExtResource("1_mxy30")
-Lv = 0
 MaxHP = 7
 HP = 7
 Atk = 2
@@ -24,7 +23,6 @@ Def = 2
 SpAtk = 3
 SpDef = 3
 Speed = 2
-WP = 0
 
 [sub_resource type="Resource" id="Resource_8pnnc"]
 script = ExtResource("6_tptnn")
@@ -43,8 +41,6 @@ Name = "Shrimpy"
 OverworldAnimator = ExtResource("3_agffr")
 BattleAnimator = ExtResource("2_rmyqo")
 TextEffectColor = Color(1, 0, 0, 1)
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 23)
 MoveSFX = Array[AudioStream]([])
 HitSFX = Array[AudioStream]([])

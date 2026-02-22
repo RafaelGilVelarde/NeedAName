@@ -106,13 +106,16 @@ public partial class PlayerController : OverworldController
     }
     public override void _PhysicsProcess(double delta)
 	{
-		if(Leader){
-			Move(Speed * Axis * (float)delta);
+		if (Controllable)
+		{
+			if(Leader){
+				Move(Speed * Axis * (float)delta);
+			}
+			if(Controller?.Axis==Vector2.Zero){
+					ApplyFriction((float)(Friction * delta));
+			}
 		}
-		if(Controller?.Axis==Vector2.Zero){
-				ApplyFriction((float)(Friction * delta));
-		}
-			Parent.MoveAndSlide();
+		Parent.MoveAndSlide();			
 	}
 	public Vector2 GetInput(){
 		Vector2 Axis;
@@ -132,8 +135,20 @@ public partial class PlayerController : OverworldController
 		}
 	}
 	void PlayAnimations(Vector2 Axis){
-		AnimatorTree.Set("parameters/Idle/blend_position",new Vector2(FacingDirection.X,-FacingDirection.Y));
-		AnimatorTree.Set("parameters/Walking/blend_position",new Vector2(FacingDirection.X,-FacingDirection.Y));
+		Vector2 Direction = new Vector2(FacingDirection.X,-FacingDirection.Y);
+		bool AuxDir = false;
+		if ((Vector2)AnimatorTree.Get("parameters/Idle/blend_position") != Direction)
+		{
+			AuxDir = true;
+		}
+		AnimatorTree.Set("parameters/Idle/blend_position",Direction);
+		AnimatorTree.Set("parameters/Walking/blend_position",Direction);
+
+		if (AuxDir){
+			AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+			Playback.Travel(Playback.GetCurrentNode());
+		}
+		
 		if(FacingDirection.X!=0){
 			Flip();
 		}

@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=3 uid="uid://w4uy187ejgjn"]
+[gd_scene format=3 uid="uid://w4uy187ejgjn"]
 
 [ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="1_1wfpp"]
 
@@ -180,7 +180,7 @@ tracks/13/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cldp0"]
 _data = {
-"RESET": SubResource("Animation_l6drn")
+&"RESET": SubResource("Animation_l6drn")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
@@ -313,6 +313,7 @@ advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_3c0al"]
 resource_local_to_scene = true
+allow_transition_to_self = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
 states/ActionState/position = Vector2(566, 10.8326)
 states/Start/position = Vector2(77, 38)
@@ -323,20 +324,16 @@ states/WaterFight_StartBattle/position = Vector2(878, 10.8326)
 transitions = ["ActionState", "WaterFight_StartBattle", SubResource("AnimationNodeStateMachineTransition_patbp"), "Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_dyb26"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_t2vxd")]
 graph_offset = Vector2(0, -54.1674)
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
-libraries = {
-"": SubResource("AnimationLibrary_cldp0"),
-"WaterFight": ExtResource("1_1wfpp")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=831728939]
+callback_mode_discrete = 2
+libraries/ = SubResource("AnimationLibrary_cldp0")
+libraries/WaterFight = ExtResource("1_1wfpp")
+playback_auto_capture = false
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=2102782390]
 active = false
 root_node = NodePath("../..")
 callback_mode_process = 0
-libraries = {
-"": SubResource("AnimationLibrary_cldp0"),
-"WaterFight": ExtResource("1_1wfpp")
-}
 tree_root = SubResource("AnimationNodeStateMachine_3c0al")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
@@ -344,4 +341,4 @@ parameters/ActionState/blend_position = 3.28
 parameters/ActionState/0/blend_position = 0.0
 parameters/ActionState/0/0/blend_position = 1.84634
 parameters/ActionState/2/blend_position = Vector2(-0.009009, 1)
-parameters/ActionState/3/blend_position = 0
+parameters/ActionState/3/blend_position = 0.0

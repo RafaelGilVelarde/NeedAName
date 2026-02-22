@@ -1,12 +1,12 @@
-[gd_scene load_steps=21 format=3 uid="uid://brf1kg03d66t7"]
+[gd_scene format=3 uid="uid://brf1kg03d66t7"]
 
-[ext_resource type="Script" path="res://Scripts/Menu/StartMenu.cs" id="1_5qb0c"]
-[ext_resource type="Script" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="1_b7sp6"]
-[ext_resource type="Script" path="res://Scripts/Menu/Buttons/MenuSaveButtons.cs" id="2_0epxr"]
+[ext_resource type="Script" uid="uid://b18myv68ct0wc" path="res://Scripts/Menu/StartMenu.cs" id="1_5qb0c"]
+[ext_resource type="Script" uid="uid://bmlmimk5egeyb" path="res://Scripts/Menu/Lists/MenuSavesList.cs" id="1_b7sp6"]
+[ext_resource type="Script" uid="uid://cp2iwp4uxvo5a" path="res://Scripts/Menu/Buttons/MenuSaveButtons.cs" id="2_0epxr"]
 [ext_resource type="PackedScene" uid="uid://cuu3vd0olnl16" path="res://Scenes/Intro.tscn" id="2_8k5ur"]
 [ext_resource type="Texture2D" uid="uid://btge2dadh5otk" path="res://Sprites/TitleScreen/Main.png" id="5_j6075"]
-[ext_resource type="Script" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="5_mhffw"]
-[ext_resource type="Shader" path="res://Resources/Shaders/Intro.gdshader" id="6_4s03k"]
+[ext_resource type="Script" uid="uid://bim17s3v71adb" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="5_mhffw"]
+[ext_resource type="Shader" uid="uid://cmiuft3kr01v" path="res://Resources/Shaders/Intro.gdshader" id="6_4s03k"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="7_4vx3i"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="8_308al"]
 [ext_resource type="Texture2D" uid="uid://bviuj5r6i2yxe" path="res://Sprites/TitleScreen/MainNormalMapLayer 4.png" id="9_jioku"]
@@ -17,9 +17,9 @@ domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_8imxp"]
 generate_mipmaps = false
+noise = SubResource("FastNoiseLite_5ua31")
 seamless = true
 normalize = false
-noise = SubResource("FastNoiseLite_5ua31")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_dmhh3"]
 frequency = 0.016
@@ -27,18 +27,18 @@ domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_j52nl"]
 generate_mipmaps = false
+noise = SubResource("FastNoiseLite_dmhh3")
 seamless = true
 normalize = false
-noise = SubResource("FastNoiseLite_dmhh3")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_eg5ua"]
 shader = ExtResource("6_4s03k")
+shader_parameter/noise = SubResource("NoiseTexture2D_8imxp")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_j52nl")
 shader_parameter/scroll = Vector2(0.05, 0.05)
 shader_parameter/scroll1 = Vector2(-0.05, -0.05)
 shader_parameter/distortion_strength = 0.305
 shader_parameter/tone_color = Color(0.517647, 0.486275, 0.831373, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_8imxp")
-shader_parameter/noise1 = SubResource("NoiseTexture2D_j52nl")
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_m8jxp"]
 diffuse_texture = ExtResource("5_j6075")
@@ -134,7 +134,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_baj2i"]
 _data = {
-"default": SubResource("Animation_kn7i5")
+&"default": SubResource("Animation_kn7i5")
 }
 
 [sub_resource type="Gradient" id="Gradient_etpth"]
@@ -149,7 +149,7 @@ height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="MainMenu" type="Node2D" node_paths=PackedStringArray("Start", "Continue", "Language", "Menu", "LanguageMenu", "Languages", "SavesList", "MainSprite", "PlayerName")]
+[node name="MainMenu" type="Node2D" unique_id=1030249181 node_paths=PackedStringArray("Start", "Continue", "Language", "Menu", "LanguageMenu", "Languages", "SavesList", "MainSprite", "PlayerName")]
 script = ExtResource("1_5qb0c")
 Start = NodePath("MainMenu/Button")
 Continue = NodePath("MainMenu/Button2")
@@ -163,56 +163,56 @@ MainSprite = NodePath("Sprite2D")
 PlayerName = NodePath("Sprite2D/RichTextLabel")
 AudioIndex = Array[int]([6, 5])
 
-[node name="Sprite2D2" type="Sprite2D" parent="."]
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=430373278]
 material = SubResource("ShaderMaterial_eg5ua")
 position = Vector2(576, 416)
 scale = Vector2(11.7425, 6.75)
 texture = ExtResource("7_4vx3i")
 
-[node name="MainMenu" type="VBoxContainer" parent="."]
+[node name="MainMenu" type="VBoxContainer" parent="." unique_id=1830335540]
 visible = false
 offset_left = 608.0
 offset_top = 392.0
 offset_right = 687.0
 offset_bottom = 458.0
 
-[node name="Button" type="Button" parent="MainMenu"]
+[node name="Button" type="Button" parent="MainMenu" unique_id=699109885]
 light_mask = 0
 layout_mode = 2
 text = "Start"
 
-[node name="Button2" type="Button" parent="MainMenu"]
+[node name="Button2" type="Button" parent="MainMenu" unique_id=952451358]
 light_mask = 0
 layout_mode = 2
 text = "Continue"
 
-[node name="Button3" type="Button" parent="MainMenu"]
+[node name="Button3" type="Button" parent="MainMenu" unique_id=1847929790]
 light_mask = 0
 layout_mode = 2
 text = "Language"
 
-[node name="LanguageMenu" type="VBoxContainer" parent="."]
+[node name="LanguageMenu" type="VBoxContainer" parent="." unique_id=1515856083]
 visible = false
 offset_left = 608.0
 offset_top = 392.0
 offset_right = 687.0
 offset_bottom = 458.0
 
-[node name="Button" type="Button" parent="LanguageMenu"]
+[node name="Button" type="Button" parent="LanguageMenu" unique_id=1901652052]
 light_mask = 0
 layout_mode = 2
 text = "English"
 script = ExtResource("5_mhffw")
 Language = "en"
 
-[node name="Button2" type="Button" parent="LanguageMenu"]
+[node name="Button2" type="Button" parent="LanguageMenu" unique_id=811545038]
 light_mask = 0
 layout_mode = 2
 text = "Español"
 script = ExtResource("5_mhffw")
 Language = "es"
 
-[node name="SaveScrolls" type="VBoxContainer" parent="." node_paths=PackedStringArray("Buttons")]
+[node name="SaveScrolls" type="VBoxContainer" parent="." unique_id=1114195624 node_paths=PackedStringArray("Buttons")]
 visible = false
 offset_left = 608.0
 offset_top = 392.0
@@ -222,37 +222,37 @@ theme_override_constants/separation = 10
 script = ExtResource("1_b7sp6")
 Buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4"), NodePath("Button5"), NodePath("Button6")]
 
-[node name="Button" type="Button" parent="SaveScrolls"]
+[node name="Button" type="Button" parent="SaveScrolls" unique_id=33883359]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Button2" type="Button" parent="SaveScrolls"]
+[node name="Button2" type="Button" parent="SaveScrolls" unique_id=567140777]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Button3" type="Button" parent="SaveScrolls"]
+[node name="Button3" type="Button" parent="SaveScrolls" unique_id=495796579]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Button4" type="Button" parent="SaveScrolls"]
+[node name="Button4" type="Button" parent="SaveScrolls" unique_id=77545036]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Button5" type="Button" parent="SaveScrolls"]
+[node name="Button5" type="Button" parent="SaveScrolls" unique_id=461406947]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Button6" type="Button" parent="SaveScrolls"]
+[node name="Button6" type="Button" parent="SaveScrolls" unique_id=896907574]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=889459487]
 visible = false
 texture_filter = 1
 position = Vector2(648, 312)
@@ -271,7 +271,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Menus/TitleScreen/Main.aseprite"
 }
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="Sprite2D" unique_id=505489205]
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -288,13 +288,11 @@ text = "[center][/center]"
 fit_content = true
 scroll_active = false
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-"": SubResource("AnimationLibrary_baj2i")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=540669270]
+libraries/ = SubResource("AnimationLibrary_baj2i")
+autoplay = &"default"
 
-[node name="PointLight2D" type="PointLight2D" parent="Sprite2D"]
+[node name="PointLight2D" type="PointLight2D" parent="Sprite2D" unique_id=559433572]
 z_index = 3
 color = Color(0.639216, 1, 1, 1)
 energy = 5.0
@@ -306,7 +304,7 @@ texture = SubResource("GradientTexture2D_3caax")
 texture_scale = 1.05
 height = 10.0
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=2099685644]
 top_level = true
 light_mask = 0
 z_index = -1

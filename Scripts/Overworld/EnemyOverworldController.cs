@@ -67,21 +67,23 @@ public partial class EnemyOverworldController : OverworldController
 
 	void PlayAnimations(Vector2 Axis)
 	{
-		string Direction = "Back";
-		AnimatorTree.Set("parameters/Idle/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
-		AnimatorTree.Set("parameters/Walking/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
+		Vector2 Direction = new Vector2(FacingDirection.X,-FacingDirection.Y);
+		bool AuxDir = false;
+		if ((Vector2)AnimatorTree.Get("parameters/Idle/blend_position") != Direction)
+		{
+			AuxDir = true;
+		}
+		AnimatorTree.Set("parameters/Idle/blend_position",Direction);
+		AnimatorTree.Set("parameters/Walking/blend_position",Direction);
+
+		if (AuxDir){
+			AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+			Playback.Travel(Playback.GetCurrentNode());
+		}
+
 		if (FacingDirection.X != 0)
 		{
-			Direction = "Side";
 			Flip();
-		}
-		else if (FacingDirection.Y > 0)
-		{
-			Direction = "Front";
-		}
-		else
-		{
-			Direction = "Back";
 		}
 		if (Axis == Vector2.Zero)
 		{

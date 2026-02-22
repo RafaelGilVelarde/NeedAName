@@ -1,20 +1,19 @@
-[gd_resource type="Resource" script_class="PartyCharacterBase" load_steps=15 format=3 uid="uid://bjxb7nq1u1oeb"]
+[gd_resource type="Resource" script_class="PartyCharacterBase" format=3 uid="uid://bjxb7nq1u1oeb"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_55dcy"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_55dcy"]
 [ext_resource type="PackedScene" uid="uid://bff3wb101knnw" path="res://Prefabs/Animators/Party/Battle/HalluciBattleAnimator.tscn" id="2_dfsvi"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="3_8eftr"]
 [ext_resource type="Texture2D" uid="uid://bssi4af1p64d1" path="res://Sprites/DialogueBoxes/Hallu/Normal.png" id="3_785rn"]
 [ext_resource type="AudioStream" uid="uid://g85ao7k4a70a" path="res://Music/SFX/Deaths/Water.mp3" id="4_ogc6c"]
 [ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="4_p1edg"]
-[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="5_crsau"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_mo35b"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="5_crsau"]
+[ext_resource type="Script" uid="uid://ct8077s5axxko" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_mo35b"]
 [ext_resource type="AudioStream" uid="uid://ds5kylfgn0td1" path="res://Music/SFX/Effect/Block.wav" id="5_nwcbr"]
 [ext_resource type="AudioStream" uid="uid://bkdrsqacrbp31" path="res://Music/SFX/Moves/Spin.mp3" id="6_5mcjp"]
 [ext_resource type="AudioStream" uid="uid://cplumui58ely" path="res://Music/SFX/Effect/ItemUse.wav" id="7_dxpod"]
 
 [sub_resource type="Resource" id="Resource_pxv6k"]
 script = ExtResource("1_55dcy")
-Lv = 0
 MaxHP = 5
 HP = 2
 Atk = 3
@@ -22,7 +21,6 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 3
-WP = 0
 
 [sub_resource type="Resource" id="Resource_hev5q"]
 script = ExtResource("5_crsau")
@@ -44,8 +42,6 @@ OverworldAnimator = ExtResource("4_p1edg")
 BattleAnimator = ExtResource("2_dfsvi")
 TextEffectColor = Color(1, 0, 0, 1)
 Icon = ExtResource("3_785rn")
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 15)
 MoveSFX = Array[AudioStream]([])
 HitSFX = Array[AudioStream]([])

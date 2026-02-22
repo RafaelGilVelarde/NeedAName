@@ -1,4 +1,4 @@
-[gd_scene load_steps=41 format=3 uid="uid://cmcaiorqvr7ek"]
+[gd_scene format=3 uid="uid://cmcaiorqvr7ek"]
 
 [ext_resource type="AnimationLibrary" uid="uid://bsh3v4pgadc08" path="res://Animations/Battle/BlobFight.res" id="1_8nh74"]
 
@@ -155,7 +155,7 @@ tracks/11/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_crd1y"]
 _data = {
-"RESET": SubResource("Animation_o2cwk")
+&"RESET": SubResource("Animation_o2cwk")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_hasu4"]
@@ -329,6 +329,7 @@ advance_mode = 2
 advance_condition = &"Ended"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ldoyf"]
+allow_transition_to_self = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_4uocv")
 states/ActionState/position = Vector2(460, 100)
 states/StartBattle/node = SubResource("AnimationNodeAnimation_06pwq")
@@ -337,23 +338,17 @@ states/StartBattle/position = Vector2(305, 100)
 "states/StartBattle 2/position" = Vector2(627, 100)
 transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_q6e16"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_pf51g"), "ActionState", "StartBattle 2", SubResource("AnimationNodeStateMachineTransition_3bkgp")]
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
-libraries = {
-"": SubResource("AnimationLibrary_crd1y"),
-"BlobFight": ExtResource("1_8nh74")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=1560659549]
+libraries/ = SubResource("AnimationLibrary_crd1y")
+libraries/BlobFight = ExtResource("1_8nh74")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1015534449]
 root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_crd1y"),
-"BlobFight": ExtResource("1_8nh74")
-}
 tree_root = SubResource("AnimationNodeStateMachine_ldoyf")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 0.0
-parameters/ActionState/0/blend_position = 0
+parameters/ActionState/0/blend_position = 0.0
 parameters/ActionState/0/0/blend_position = 1.0
 parameters/ActionState/0/0/0/conditions/EndMove = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false

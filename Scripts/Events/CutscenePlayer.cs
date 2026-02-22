@@ -29,7 +29,7 @@ public partial class CutscenePlayer : AnimationPlayer
         {
             if (ChangePos)
             {
-                tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index]], 0.2);                
+                tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index%InitialPositionStartIndex.Count]], 0.2);                
             }
             else
             {
@@ -67,5 +67,9 @@ public partial class CutscenePlayer : AnimationPlayer
     public void PlayAudio(int AudioIndex)
     {
         GameManager.Instance.PlayAudio(AudioIndex);
+    }
+    public void StopAudio()
+    {
+        GameManager.Instance.StopAudio();
     }
 }

@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://cp3deo572pc5j"]
+[gd_scene format=3 uid="uid://cp3deo572pc5j"]
 
 [ext_resource type="AnimationLibrary" uid="uid://w7gynme7xycl" path="res://Animations/Battle/StarfishFight.res" id="1_q3tsi"]
 
@@ -95,7 +95,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_r8nev"]
 _data = {
-"RESET": SubResource("Animation_gn5gt")
+&"RESET": SubResource("Animation_gn5gt")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4ltit"]
@@ -248,6 +248,7 @@ advance_condition = &"Ended"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_u8n6x"]
 resource_local_to_scene = true
+allow_transition_to_self = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_70jgx")
 states/ActionState/position = Vector2(566, 100)
 states/End/position = Vector2(1009, 100)
@@ -259,24 +260,18 @@ states/StartBattle/position = Vector2(285, 100)
 transitions = ["Start", "StartBattle", SubResource("AnimationNodeStateMachineTransition_bprue"), "StartBattle", "ActionState", SubResource("AnimationNodeStateMachineTransition_2e11c"), "ActionState", "StarfishFight_Attack2_Start", SubResource("AnimationNodeStateMachineTransition_sa5gj")]
 graph_offset = Vector2(0, -54.1674)
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
-libraries = {
-"": SubResource("AnimationLibrary_r8nev"),
-"StarfishFight": ExtResource("1_q3tsi")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=2127116551]
+libraries/ = SubResource("AnimationLibrary_r8nev")
+libraries/StarfishFight = ExtResource("1_q3tsi")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1209161925]
 root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_r8nev"),
-"StarfishFight": ExtResource("1_q3tsi")
-}
 tree_root = SubResource("AnimationNodeStateMachine_u8n6x")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 3.11735
-parameters/ActionState/0/blend_position = 0
-parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/blend_position = 0.0
+parameters/ActionState/0/0/blend_position = 0.0
 parameters/ActionState/0/0/0/conditions/MoveEnded = false
 parameters/ActionState/0/0/1/conditions/MoveEnded = false
 parameters/ActionState/0/0/2/conditions/MoveEnded = false

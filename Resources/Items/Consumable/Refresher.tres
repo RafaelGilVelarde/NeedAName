@@ -1,17 +1,14 @@
-[gd_resource type="Resource" script_class="Heal" load_steps=6 format=3 uid="uid://ccbpggt45xqro"]
+[gd_resource type="Resource" script_class="Heal" format=3 uid="uid://ccbpggt45xqro"]
 
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DummyItemMove.cs" id="1_w6kuj"]
-[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="2_8m7yd"]
-[ext_resource type="Script" path="res://Scripts/Bases/Items/Consumables/Heal.cs" id="3_c8ub8"]
+[ext_resource type="Script" uid="uid://b5ow0mb6yvi07" path="res://Scripts/Bases/Moves/DummyItemMove.cs" id="1_w6kuj"]
+[ext_resource type="Script" uid="uid://cnghiawsylwhg" path="res://Scripts/GameData/Moves/Moves.cs" id="2_8m7yd"]
+[ext_resource type="Script" uid="uid://crvrdfe2wkt8v" path="res://Scripts/Bases/Items/Consumables/Heal.cs" id="3_c8ub8"]
 
 [sub_resource type="Resource" id="Resource_k5wno"]
 script = ExtResource("1_w6kuj")
-type = 0
 Power = 1
 UserAmount = 1
 TargetAmount = 1
-WP = 0
-Cost = 0
 TargetsParty = true
 Name = "sdxfvx"
 MoveTime = 1.0
@@ -19,7 +16,6 @@ MoveTime = 1.0
 [sub_resource type="Resource" id="Resource_nlgn2"]
 script = ExtResource("2_8m7yd")
 Base = SubResource("Resource_k5wno")
-Chance = 0.0
 
 [resource]
 script = ExtResource("3_c8ub8")
@@ -28,4 +24,3 @@ ItemMove = SubResource("Resource_nlgn2")
 ID = 1
 Name = "Refresher"
 Description = "Vitalizes your soul! Heals 5 HP"
-type = 0

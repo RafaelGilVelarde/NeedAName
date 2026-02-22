@@ -1,12 +1,12 @@
-[gd_resource type="Resource" script_class="EnemyCharacterBase" load_steps=18 format=3 uid="uid://bj4l2qn2leh4c"]
+[gd_resource type="Resource" script_class="EnemyCharacterBase" format=3 uid="uid://bj4l2qn2leh4c"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/AISettings/Boss1Settings.cs" id="1_bydv7"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_xeqld"]
+[ext_resource type="Script" uid="uid://xgokytq5akjt" path="res://Scripts/Battle/AISettings/Boss1Settings.cs" id="1_bydv7"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_xeqld"]
 [ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="2_h1ioe"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="3_6kelj"]
+[ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="3_6kelj"]
 [ext_resource type="AudioStream" uid="uid://dnvo5bmf4mjlq" path="res://Music/SFX/Moves/WaterPunch.mp3" id="4_uxku7"]
 [ext_resource type="AudioStream" uid="uid://bghi2ejpivgln" path="res://Music/SFX/Moves/WaterBeam.mp3" id="5_bj8i1"]
-[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="6_exog1"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_exog1"]
 [ext_resource type="AudioStream" uid="uid://chb1i3tevub42" path="res://Music/SFX/Moves/Punch.wav" id="6_ruima"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="7_dkwnd"]
 [ext_resource type="AudioStream" uid="uid://cplumui58ely" path="res://Music/SFX/Effect/ItemUse.wav" id="7_rv08x"]
@@ -27,7 +27,6 @@ Def = 2
 SpAtk = 3
 SpDef = 2
 Speed = 3
-WP = 0
 
 [sub_resource type="Resource" id="Resource_cumgu"]
 script = ExtResource("6_exog1")
@@ -50,8 +49,6 @@ Name = "???"
 OverworldAnimator = ExtResource("2_h1ioe")
 BattleAnimator = ExtResource("2_h1ioe")
 TextEffectColor = Color(1, 0.0509804, 0, 1)
-OverworldOffset = Vector2(0, 0)
-BattleOffset = Vector2(0, 0)
 Floor = Vector2(0, 48)
 MoveSFX = Array[AudioStream]([])
 HitSFX = Array[AudioStream]([])

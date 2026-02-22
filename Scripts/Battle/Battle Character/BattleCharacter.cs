@@ -124,6 +124,8 @@ public partial class BattleCharacter : CharacterBody2D
 					DodgeDir.X = Mathf.Clamp(DodgeDir.X, 0, 1);
 				}
 				AnimatorTree.Set("parameters/ActionState/2/blend_position", DodgeDir);
+				AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+				Playback.Travel(Playback.GetCurrentNode());
 			}
 			if (Input.IsActionJustPressed("SelectedKey" + aux.PartyId))
 			{
@@ -178,8 +180,13 @@ public partial class BattleCharacter : CharacterBody2D
 	{
 
 		AnimatorPlayer.Play("RESET");
+		AnimatorTree.Set("parameters/ActionState/blend_position", (int)state);
+		if(actionState != state)
+		{
+			AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+			Playback.Travel(Playback.GetCurrentNode());			
+		}
 		actionState = state;
-		AnimatorTree.Set("parameters/ActionState/blend_position", (int)actionState);
 	}
 	public void changeState(BattleState state)
 	{
@@ -193,8 +200,13 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public void changeCombo(int combo)
 	{
+		AnimatorTree.Set("parameters/ActionState/0/0/blend_position", combo);
+		if(Combo != combo)
+		{
+			AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+			Playback.Travel(Playback.GetCurrentNode());			
+		}
 		Combo = combo;
-		AnimatorTree.Set("parameters/ActionState/0/0/blend_position", Combo);
 	}
 	public void UseMove(Moves move)
 	{

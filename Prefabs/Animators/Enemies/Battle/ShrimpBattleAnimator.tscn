@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://b6cj47rw55blg"]
+[gd_scene format=3 uid="uid://b6cj47rw55blg"]
 
 [ext_resource type="AnimationLibrary" uid="uid://dhsd5etrx30pt" path="res://Animations/Battle/ShrimpFight.res" id="1_3mc76"]
 
@@ -95,7 +95,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j61uc"]
 _data = {
-"RESET": SubResource("Animation_u5is8")
+&"RESET": SubResource("Animation_u5is8")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_4v72w"]
@@ -167,6 +167,7 @@ advance_condition = &"Ended"
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_32flu"]
 resource_local_to_scene = true
+allow_transition_to_self = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_a23km")
 states/ActionState/position = Vector2(565, 38)
 states/End/position = Vector2(1110, 60)
@@ -178,21 +179,15 @@ states/Start/position = Vector2(77, 38)
 transitions = ["Start", "ShrimpFight_battleStart", SubResource("AnimationNodeStateMachineTransition_pxsxw"), "ShrimpFight_battleStart", "ActionState", SubResource("AnimationNodeStateMachineTransition_uva63"), "ActionState", "ShrimpFight_battleStart 2", SubResource("AnimationNodeStateMachineTransition_6sx8t")]
 graph_offset = Vector2(0, -54.1674)
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
-libraries = {
-"": SubResource("AnimationLibrary_j61uc"),
-"ShrimpFight": ExtResource("1_3mc76")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=1217539814]
+libraries/ = SubResource("AnimationLibrary_j61uc")
+libraries/ShrimpFight = ExtResource("1_3mc76")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1960745469]
 root_node = NodePath("../..")
-libraries = {
-"": SubResource("AnimationLibrary_j61uc"),
-"ShrimpFight": ExtResource("1_3mc76")
-}
 tree_root = SubResource("AnimationNodeStateMachine_32flu")
 anim_player = NodePath("..")
 parameters/conditions/Ended = false
 parameters/ActionState/blend_position = 2.62781
-parameters/ActionState/0/blend_position = 0
-parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/blend_position = 0.0
+parameters/ActionState/0/0/blend_position = 0.0

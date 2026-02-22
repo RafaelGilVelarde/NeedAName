@@ -1,12 +1,14 @@
-[gd_scene load_steps=144 format=3 uid="uid://ci40agixb3xuc"]
+[gd_scene format=3 uid="uid://ci40agixb3xuc"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
-[ext_resource type="Texture2D" uid="uid://2jo6bpmuc3hl" path="res://Sprites/Overworld/Blobfish.png" id="2_08kpg"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="4_6l7n6"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
-[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
+[ext_resource type="Script" uid="uid://cc10yckuwpg6g" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
+[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_epm0v"]
+[ext_resource type="Script" uid="uid://cvwfftsd5ebgu" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="4_6l7n6"]
+[ext_resource type="Script" uid="uid://dryu6ju55pgoq" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
+[ext_resource type="Script" uid="uid://lckenq50ahit" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
+[ext_resource type="Script" uid="uid://c6xmgyhy7yjx" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
+[ext_resource type="Texture2D" uid="uid://ciffay7i8raaf" path="res://Sprites/Battle/Party/birbBattle.png" id="8_iaacx"]
+[ext_resource type="Texture2D" uid="uid://d1j8dpmyjctse" path="res://Sprites/Battle/Party/birbArm_Arm.png" id="9_cnmp1"]
+[ext_resource type="Script" uid="uid://di3f7wcp6vslf" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
 [ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="9_p6osb"]
 [ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="10_0c27x"]
 [ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="11_ng2px"]
@@ -36,15 +38,12 @@ size = Vector2(46.475, 59)
 resource_local_to_scene = true
 size = Vector2(25, 42.5)
 
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_trioo"]
-load_path = "res://.godot/imported/BlobfishBattle.png-c4bc44f5c9a6eb8f4ec25f030ca96691.ctex"
-
 [sub_resource type="Curve" id="Curve_0dopt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3g4di"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -56,8 +55,7 @@ colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_gkvkl")
 
 [sub_resource type="Curve" id="Curve_d1v2y"]
-min_value = -50.0
-max_value = 50.0
+_limits = [-50.0, 50.0, 0.0, 1.0]
 _data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -1510,12 +1508,12 @@ tracks/17/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pdon8"]
 _data = {
-"Fight": SubResource("Animation_cyg6k"),
-"Idle": SubResource("Animation_wo0lk"),
-"Item": SubResource("Animation_l8num"),
-"RESET": SubResource("Animation_iwxqx"),
-"Run": SubResource("Animation_j61mk"),
-"Start": SubResource("Animation_vojd5")
+&"Fight": SubResource("Animation_cyg6k"),
+&"Idle": SubResource("Animation_wo0lk"),
+&"Item": SubResource("Animation_l8num"),
+&"RESET": SubResource("Animation_iwxqx"),
+&"Run": SubResource("Animation_j61mk"),
+&"Start": SubResource("Animation_vojd5")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_16cwp"]
@@ -1590,15 +1588,15 @@ bg_color = Color(0.4, 0.607843, 0.905882, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xkh5t"]
 bg_color = Color(0.4, 0.607843, 0.905882, 1)
 
-[node name="Character" type="CharacterBody2D" groups=["PlayerOverworldController"]]
+[node name="Character" type="CharacterBody2D" unique_id=120256918 groups=["PlayerOverworldController"]]
 y_sort_enabled = true
 floor_block_on_wall = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=578600613]
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
+[node name="OverworldController" type="Node2D" parent="." unique_id=2025196906 node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
 script = ExtResource("1_yneer")
 InteractCollider = NodePath("InteractionCollider")
 TileDetector = NodePath("TileCollider")
@@ -1624,12 +1622,12 @@ FacingDirection = null
 Coords = null
 BattleCharacter = NodePath("../BattleCharacter")
 
-[node name="MainSprite" type="Sprite2D" parent="OverworldController"]
+[node name="MainSprite" type="Sprite2D" parent="OverworldController" unique_id=1165165640]
 texture_filter = 1
-texture = ExtResource("2_08kpg")
-hframes = 4
-vframes = 3
-frame = 2
+texture = ExtResource("2_epm0v")
+hframes = 7
+vframes = 6
+frame = 14
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1642,17 +1640,17 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Overworld/NPCs/Blobfish.aseprite"
 }
 
-[node name="InteractionCollider" type="Area2D" parent="OverworldController"]
-position = Vector2(15, 0)
+[node name="InteractionCollider" type="Area2D" parent="OverworldController" unique_id=217945487]
+position = Vector2(0, 15)
 disable_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider" unique_id=871120746]
 shape = SubResource("RectangleShape2D_dwf8m")
 
-[node name="TileCollider" type="Node2D" parent="OverworldController"]
-position = Vector2(-16, 0)
+[node name="TileCollider" type="Node2D" parent="OverworldController" unique_id=113169248]
+position = Vector2(0, -16)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers", "SoundEffectController")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." unique_id=749694235 node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4
 visible = false
 script = ExtResource("4_6l7n6")
@@ -1695,45 +1693,48 @@ SoundEffectController = NodePath("../SFXController")
 battleState = 3
 actionState = 5
 
-[node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
+[node name="Hitbox" type="Area2D" parent="BattleCharacter" unique_id=391382626 node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
 visible = false
 script = ExtResource("5_5pejn")
 Character = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
-position = Vector2(0, -18)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox" unique_id=1012823761]
+position = Vector2(0.06, 0)
 shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
-[node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHurtbox"]]
+[node name="Hurtbox" type="Area2D" parent="BattleCharacter" unique_id=614108300 groups=["PlayerHurtbox"]]
 z_index = 2
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox" unique_id=594037919]
 shape = SubResource("RectangleShape2D_6c1hy")
 
-[node name="Blockbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerBlockbox"]]
+[node name="Blockbox" type="Area2D" parent="BattleCharacter" unique_id=807161263 node_paths=PackedStringArray("Character") groups=["PlayerBlockbox"]]
 script = ExtResource("6_7n8og")
 Character = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox" unique_id=1435969016]
+position = Vector2(25.75, -15)
 shape = SubResource("RectangleShape2D_kowf3")
 disabled = true
 
-[node name="WPBox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerWPBox"]]
+[node name="WPBox" type="Area2D" parent="BattleCharacter" unique_id=1267857956 node_paths=PackedStringArray("Character") groups=["PlayerWPBox"]]
 visible = false
 script = ExtResource("6_7n8og")
 Character = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/WPBox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/WPBox" unique_id=1935184920]
+position = Vector2(0, -18)
 shape = SubResource("RectangleShape2D_m0rr7")
 disabled = true
 
-[node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
+[node name="MainSprite" type="Sprite2D" parent="BattleCharacter" unique_id=1507358825]
 texture_filter = 1
-texture = SubResource("CompressedTexture2D_trioo")
+position = Vector2(0, -18)
+texture = ExtResource("8_iaacx")
 hframes = 8
 vframes = 8
-frame = 44
+frame = 51
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -1746,8 +1747,12 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
 }
 
-[node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
+[node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite" unique_id=901393745]
 texture_filter = 1
+texture = ExtResource("9_cnmp1")
+hframes = 3
+vframes = 3
+frame = 4
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Arm",
@@ -1760,10 +1765,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
 }
 
-[node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite"]
+[node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite" unique_id=1460694958]
 visible = false
 
-[node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter"]
+[node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter" unique_id=142218812]
 process_mode = 3
 emitting = false
 amount = 22
@@ -1784,21 +1789,21 @@ anim_speed_max = 200.15
 anim_speed_curve = SubResource("Curve_3g4di")
 anim_offset_max = 0.9809
 
-[node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter"]
+[node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter" unique_id=266487958]
 process_mode = 3
 position = Vector2(0, 10)
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_3dsfc")
 lifetime = 0.5
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_3dsfc")
 script = ExtResource("8_h25v4")
 ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
 processMaterial = SubResource("ParticleProcessMaterial_3dsfc")
 
-[node name="Effects" type="AnimationPlayer" parent="BattleCharacter"]
+[node name="Effects" type="AnimationPlayer" parent="BattleCharacter" unique_id=1314231140]
 
-[node name="ActionMenu" type="Node2D" parent="BattleCharacter" node_paths=PackedStringArray("character", "Animator")]
+[node name="ActionMenu" type="Node2D" parent="BattleCharacter" unique_id=476491213 node_paths=PackedStringArray("character", "Animator")]
 process_mode = 4
 visible = false
 z_index = 2
@@ -1807,34 +1812,29 @@ script = ExtResource("9_jx0hg")
 character = NodePath("..")
 Animator = NodePath("AnimationPlayer/AnimationTree")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu" unique_id=800039074]
 reset_on_save = false
 root_node = NodePath("../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
+libraries/ = SubResource("AnimationLibrary_pdon8")
 
-[node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer" unique_id=95338472]
 deterministic = false
 reset_on_save = false
 root_node = NodePath("../../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
 tree_root = SubResource("AnimationNodeStateMachine_ygbtl")
 anim_player = NodePath("..")
 parameters/conditions/Choice = false
 parameters/conditions/Start = false
 parameters/Choice/blend_position = 0.998211
 
-[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=1959046607]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_7cjed")
+texture = SubResource("AtlasTexture_mctvn")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Fight",
@@ -1847,10 +1847,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight" unique_id=289032419]
 position = Vector2(34, 21)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D" unique_id=1050642937]
 visible = false
 layout_direction = 2
 anchors_preset = -1
@@ -1870,8 +1870,7 @@ bbcode_enabled = true
 text = "Fight"
 scroll_active = false
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
-modulate = Color(1, 1, 1, 0)
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D" unique_id=1164079459]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1883,14 +1882,14 @@ text = "[center]Z[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=45833808]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_vgxlo")
+texture = SubResource("AtlasTexture_kskeb")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Item",
@@ -1903,10 +1902,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Item"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Item" unique_id=457177415]
 position = Vector2(34, 32)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D" unique_id=263061457]
 visible = false
 anchors_preset = -1
 anchor_right = 0.4
@@ -1925,8 +1924,7 @@ text = "Item"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
-modulate = Color(1, 1, 1, 0)
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D" unique_id=1639749877]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1938,14 +1936,14 @@ text = "[center]X[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=517459740]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_k6qqc")
+texture = SubResource("AtlasTexture_t077f")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Run",
@@ -1958,10 +1956,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Run"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Run" unique_id=338795723]
 position = Vector2(34, 43)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D" unique_id=1001495038]
 visible = false
 anchors_preset = -1
 anchor_right = 0.4
@@ -1977,8 +1975,7 @@ theme_override_font_sizes/normal_font_size = 13
 text = "Run"
 fit_content = true
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
-modulate = Color(1, 1, 1, 0)
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D" unique_id=1113576670]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1990,15 +1987,16 @@ text = "[center]C[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="Shoot" type="Node2D" parent="BattleCharacter"]
+[node name="Shoot" type="Node2D" parent="BattleCharacter" unique_id=349551278]
+position = Vector2(30, -19)
 
-[node name="Floor" type="Node2D" parent="BattleCharacter"]
+[node name="Floor" type="Node2D" parent="BattleCharacter" unique_id=734393619]
 
-[node name="HPBarParent" type="Node2D" parent="BattleCharacter"]
+[node name="HPBarParent" type="Node2D" parent="BattleCharacter" unique_id=1765922580]
 z_index = 5
 position = Vector2(-15, -60)
 
-[node name="HPBar" type="ProgressBar" parent="BattleCharacter/HPBarParent"]
+[node name="HPBar" type="ProgressBar" parent="BattleCharacter/HPBarParent" unique_id=156525287]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_direction = 2
@@ -2021,7 +2019,7 @@ max_value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar" unique_id=881975607]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0
@@ -2033,7 +2031,7 @@ bbcode_enabled = true
 text = "[center]50[/center]"
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/HPBarParent/HPBar" unique_id=789419755]
 layout_mode = 0
 offset_left = -35.0
 offset_top = 4.0
@@ -2045,11 +2043,11 @@ bbcode_enabled = true
 text = "[center]50[/center]"
 scroll_active = false
 
-[node name="EXPParent" type="Node2D" parent="BattleCharacter"]
+[node name="EXPParent" type="Node2D" parent="BattleCharacter" unique_id=1465402073]
 z_index = 5
 position = Vector2(-15, -68)
 
-[node name="Exp" type="ProgressBar" parent="BattleCharacter/EXPParent"]
+[node name="Exp" type="ProgressBar" parent="BattleCharacter/EXPParent" unique_id=696176162]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_direction = 2
@@ -2072,11 +2070,11 @@ max_value = 50.0
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="WPParent" type="Node2D" parent="BattleCharacter"]
+[node name="WPParent" type="Node2D" parent="BattleCharacter" unique_id=77033607]
 z_index = 5
 position = Vector2(-15, -60)
 
-[node name="WP" type="ProgressBar" parent="BattleCharacter/WPParent"]
+[node name="WP" type="ProgressBar" parent="BattleCharacter/WPParent" unique_id=118007824]
 modulate = Color(1, 1, 1, 0)
 z_index = 2
 layout_direction = 1
@@ -2098,7 +2096,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_1pc0y")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="WP2" type="ProgressBar" parent="BattleCharacter/WPParent/WP"]
+[node name="WP2" type="ProgressBar" parent="BattleCharacter/WPParent/WP" unique_id=1372959037]
 modulate = Color(1, 1, 1, 0.772549)
 layout_direction = 2
 layout_mode = 1
@@ -2120,7 +2118,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_xkh5t")
 show_percentage = false
 metadata/_edit_use_anchors_ = true
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/WPParent/WP"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/WPParent/WP" unique_id=690118252]
 layout_mode = 0
 offset_left = -3.0
 offset_top = 4.0
@@ -2132,24 +2130,24 @@ bbcode_enabled = true
 text = "[center]50[/center]"
 scroll_active = false
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter" unique_id=116704366]
 z_index = 5
 position = Vector2(-20, 34)
 
-[node name="HBoxContainer" type="HBoxContainer" parent="BattleCharacter/Node2D"]
+[node name="HBoxContainer" type="HBoxContainer" parent="BattleCharacter/Node2D" unique_id=1068238985]
 modulate = Color(1, 1, 1, 0)
 offset_left = -28.0
 offset_right = 68.0
 offset_bottom = 40.0
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=1388846536]
 visible = false
 layout_mode = 2
 texture = ExtResource("11_ng2px")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect" unique_id=1419595098]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2160,7 +2158,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect" unique_id=469804503]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2171,13 +2169,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Atk[/center]"
 
-[node name="TextureRect2" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect2" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=180705799]
 visible = false
 layout_mode = 2
 texture = ExtResource("11_ng2px")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2" unique_id=790748528]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2188,7 +2186,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect2" unique_id=1004931237]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2199,13 +2197,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Def[/center]"
 
-[node name="TextureRect3" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect3" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=1013331206]
 visible = false
 layout_mode = 2
 texture = ExtResource("11_ng2px")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3" unique_id=5086432]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2216,7 +2214,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect3" unique_id=2025381030]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2227,13 +2225,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]SpA[/center]"
 
-[node name="TextureRect4" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect4" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=213463831]
 visible = false
 layout_mode = 2
 texture = ExtResource("11_ng2px")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4" unique_id=750067154]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2244,7 +2242,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect4" unique_id=481402128]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2255,13 +2253,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]SpD[/center]"
 
-[node name="TextureRect5" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect5" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=172498201]
 visible = false
 layout_mode = 2
 texture = ExtResource("11_ng2px")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5" unique_id=1366047249]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2272,7 +2270,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect5" unique_id=2135420219]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2283,13 +2281,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
 
-[node name="TextureRect6" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect6" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=2112266437]
 visible = false
 layout_mode = 2
 texture = ExtResource("12_ufa0r")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6" unique_id=2016765296]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2300,7 +2298,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect6" unique_id=1820457937]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2311,13 +2309,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Atk[/center]"
 
-[node name="TextureRect7" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect7" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=1708214739]
 visible = false
 layout_mode = 2
 texture = ExtResource("12_ufa0r")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7" unique_id=1890128134]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2328,7 +2326,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect7" unique_id=998316779]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2339,13 +2337,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Def[/center]"
 
-[node name="TextureRect8" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect8" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=1267737243]
 visible = false
 layout_mode = 2
 texture = ExtResource("12_ufa0r")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8" unique_id=566766217]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2356,7 +2354,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect8" unique_id=1137420085]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2367,13 +2365,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]SpA[/center]"
 
-[node name="TextureRect9" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect9" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=1175577300]
 visible = false
 layout_mode = 2
 texture = ExtResource("12_ufa0r")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9" unique_id=1416544586]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2384,7 +2382,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect9" unique_id=1267777159]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2395,13 +2393,13 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]SpD[/center]"
 
-[node name="TextureRect10" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer"]
+[node name="TextureRect10" type="TextureRect" parent="BattleCharacter/Node2D/HBoxContainer" unique_id=455929970]
 visible = false
 layout_mode = 2
 texture = ExtResource("12_ufa0r")
 stretch_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10" unique_id=650896973]
 layout_mode = 0
 offset_left = 1.0
 offset_top = 7.0
@@ -2412,7 +2410,7 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]1[/center]"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="BattleCharacter/Node2D/HBoxContainer/TextureRect10" unique_id=1030111014]
 layout_mode = 0
 offset_left = 1.0
 offset_top = -1.0
@@ -2423,6 +2421,6 @@ theme_override_font_sizes/normal_font_size = 20
 bbcode_enabled = true
 text = "[center]Spe[/center]"
 
-[node name="SFXController" parent="." instance=ExtResource("14_odx4e")]
+[node name="SFXController" parent="." unique_id=1153276150 instance=ExtResource("14_odx4e")]
 
 [editable path="SFXController"]

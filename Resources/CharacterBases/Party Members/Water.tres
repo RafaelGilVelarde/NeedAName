@@ -1,21 +1,20 @@
-[gd_resource type="Resource" script_class="PartyCharacterBase" load_steps=16 format=3 uid="uid://bdntehna6nida"]
+[gd_resource type="Resource" script_class="PartyCharacterBase" format=3 uid="uid://bdntehna6nida"]
 
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="1_8u7yd"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_8u7yd"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="2_pglog"]
 [ext_resource type="Texture2D" uid="uid://dv0ulu1chfiiy" path="res://Sprites/DialogueBoxes/1/Normal.png" id="3_10hb0"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="3_hss7w"]
 [ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="4_42con"]
 [ext_resource type="AudioStream" uid="uid://g85ao7k4a70a" path="res://Music/SFX/Deaths/Water.mp3" id="4_kioib"]
 [ext_resource type="AudioStream" uid="uid://ds5kylfgn0td1" path="res://Music/SFX/Effect/Block.wav" id="5_p14mu"]
-[ext_resource type="Script" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_pi5yp"]
+[ext_resource type="Script" uid="uid://ct8077s5axxko" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="5_pi5yp"]
 [ext_resource type="AudioStream" uid="uid://dnvo5bmf4mjlq" path="res://Music/SFX/Moves/WaterPunch.mp3" id="6_41cx5"]
-[ext_resource type="Script" path="res://Scripts/Audio/SFXList.cs" id="6_ofipe"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_ofipe"]
 [ext_resource type="AudioStream" uid="uid://bghi2ejpivgln" path="res://Music/SFX/Moves/WaterBeam.mp3" id="7_c3got"]
 [ext_resource type="AudioStream" uid="uid://cplumui58ely" path="res://Music/SFX/Effect/ItemUse.wav" id="8_ej6hr"]
 
 [sub_resource type="Resource" id="Resource_2dgrd"]
 script = ExtResource("1_8u7yd")
-Lv = 0
 MaxHP = 8
 HP = 5
 Atk = 2
@@ -23,7 +22,6 @@ Def = 2
 SpAtk = 2
 SpDef = 3
 Speed = 3
-WP = 0
 
 [sub_resource type="Resource" id="Resource_dbvaa"]
 script = ExtResource("6_ofipe")
@@ -35,12 +33,10 @@ SoundEffects = Array[AudioStream]([ExtResource("3_hss7w"), ExtResource("4_kioib"
 
 [resource]
 script = ExtResource("5_pi5yp")
-PartyId = 0
 ExpSpeed = 2.0
 ExpDistance = 5.0
 ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
 BaseStats = SubResource("Resource_2dgrd")
-Name = ""
 OverworldAnimator = ExtResource("4_42con")
 BattleAnimator = ExtResource("2_pglog")
 TextEffectColor = Color(0.976471, 0, 0, 1)

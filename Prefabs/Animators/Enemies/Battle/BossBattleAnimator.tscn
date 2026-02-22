@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmlxetebltuvw"]
+[gd_scene format=3 uid="uid://bmlxetebltuvw"]
 
 [ext_resource type="AnimationLibrary" uid="uid://cvyxxjnn1wh11" path="res://Animations/Battle/Boss1.res" id="1_mtx4u"]
 
@@ -73,6 +73,7 @@ switch_mode = 2
 advance_mode = 2
 
 [sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_vnr2o"]
+allow_transition_to_self = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_hojxb")
 states/ActionState/position = Vector2(593, 103)
 states/Battle_Start/node = SubResource("AnimationNodeAnimation_ga7px")
@@ -80,18 +81,13 @@ states/Battle_Start/position = Vector2(357, 103)
 states/Start/position = Vector2(201, 103)
 transitions = ["Start", "Battle_Start", SubResource("AnimationNodeStateMachineTransition_tukis"), "Battle_Start", "ActionState", SubResource("AnimationNodeStateMachineTransition_jytjb")]
 
-[node name="AnimationPlayer" type="AnimationPlayer"]
-libraries = {
-"": ExtResource("1_mtx4u")
-}
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=215842950]
+libraries/ = ExtResource("1_mtx4u")
 
-[node name="AnimationTree" type="AnimationTree" parent="."]
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=1119668007]
 root_node = NodePath("../..")
-libraries = {
-"": ExtResource("1_mtx4u")
-}
 tree_root = SubResource("AnimationNodeStateMachine_vnr2o")
 anim_player = NodePath("..")
 parameters/ActionState/blend_position = 0.1199
 parameters/ActionState/0/blend_position = 0.00333056
-parameters/ActionState/0/0/blend_position = 0
+parameters/ActionState/0/0/blend_position = 0.0
