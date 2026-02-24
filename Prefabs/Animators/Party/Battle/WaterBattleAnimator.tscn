@@ -2,6 +2,18 @@
 
 [ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="1_1wfpp"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lpari"]
+load_path = "res://.godot/imported/waterBattle.png-9dbb0c97f89b3af4700a787f2184a034.ctex"
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_yftxj"]
+diffuse_texture = SubResource("CompressedTexture2D_lpari")
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_3umrn"]
+load_path = "res://.godot/imported/waterBattle.png-9dbb0c97f89b3af4700a787f2184a034.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_wm40p"]
+load_path = "res://.godot/imported/_Arm.png-632bdcf33829a14be9f617b9394fd216.ctex"
+
 [sub_resource type="Curve" id="Curve_0dopt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
@@ -176,6 +188,42 @@ tracks/13/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0, -18)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("MainSprite:texture")
+tracks/14/interp = 1
+tracks/14/loop_wrap = false
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CanvasTexture_yftxj")]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("MainSprite:texture")
+tracks/15/interp = 1
+tracks/15/loop_wrap = false
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_3umrn")]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("MainSprite/Arms:texture")
+tracks/16/interp = 1
+tracks/16/loop_wrap = false
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [SubResource("CompressedTexture2D_wm40p")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_cldp0"]

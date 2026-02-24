@@ -52,8 +52,9 @@ public partial class DialogicCSharp : Node
             {
                 autoAdvance = true;
             }
-
+            Debug.WriteLine("Starting Timeline: "+Timelines[0]);
             DialogicRoot.Call("start", Timelines[0]);
+            Debug.WriteLine("TimelineStarted, Root:"+DialogicRoot);
             //Node aux= (Node)Styles.Call("get_layout_node");
             //aux.ProcessMode=ProcessModeEnum.Always;
             if (Pause)
@@ -156,7 +157,6 @@ public partial class DialogicCSharp : Node
         Node Var = (Node)DialogicRoot.Get("VAR");
         GodotObject Aux = (GodotObject)Var.Get(Folder);
         Aux.Set(VariableName, Value);
-        Debug.WriteLine("Var: " + Aux.Get(VariableName));
     }
     public string GetVariable(string VariableName,string Folder){
         Node Var = (Node)DialogicRoot.Get("VAR");

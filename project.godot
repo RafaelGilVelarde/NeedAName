@@ -33,7 +33,7 @@ config/icon="res://Icon.png"
 GameManager="*res://Prefabs/GameManager.tscn"
 BattleManager="*res://Prefabs/BattleManager/battle_manager.tscn"
 DialogicNode="*res://Prefabs/dialogic_node.tscn"
-Dialogic="*uid://doohrgy71p7no"
+Dialogic="*uid://ds2q0uclmolvu"
 
 [dialogic]
 
@@ -43,10 +43,10 @@ text/initial_text_reveal_skippable=true
 text/text_reveal_skip_delay=0.1
 text/autoadvance_per_character_delay=0
 text/autoadvance_ignored_characters_enabled=true
-animations/join_default_length=0.5
-animations/leave_default_length=0.5
-animations/leave_default_wait=true
-animations/join_default_wait=true
+animations/join_default_length=0.0
+animations/leave_default_length=0.0
+animations/leave_default_wait=false
+animations/join_default_wait=false
 choices/autofocus_first=true
 choices/delay=0.2
 choices/reveal_delay=0
@@ -159,13 +159,36 @@ text/split_at_new_lines=false
 translation/id_counter=315
 translation/locales=[]
 save/autosave=false
-layout/style_list=["res://DialogicStyles/Base.tres", "res://DialogicStyles/No-Box.tres", "res://DialogicStyles/No-Box-Dark.tres"]
+layout/style_list=["res://DialogicStyles/No-Box.tres", "res://DialogicStyles/No-Box-Dark.tres", "res://DialogicStyles/Base.tres"]
 layout/default_style=""
 portraits/default_portrait=""
 extensions_folder="res://addons/dialogic_additions"
 translation/intern/save_mode=0
 translation/intern/file_mode=0
 translation/intern/translation_folder="res://Dialogues/Español"
+layout/style_directory={
+"Base": "res://DialogicStyles/Base.tres",
+"No-Box": "res://DialogicStyles/No-Box.tres",
+"No-Box-Dark": "res://DialogicStyles/No-Box-Dark.tres"
+}
+text/advance_delay=0.1
+animations/cross_fade_default_length=0.0
+audio/channel_defaults={
+"": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": false,
+"volume": 0.0
+},
+"music": {
+"audio_bus": "",
+"fade_length": 0.0,
+"loop": true,
+"volume": 0.0
+}
+}
+animations/join_default="Fade In Up"
+animations/cross_fade_default="Fade Cross"
 
 [display]
 

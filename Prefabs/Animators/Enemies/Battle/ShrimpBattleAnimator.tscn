@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://b6cj47rw55blg"]
 
 [ext_resource type="AnimationLibrary" uid="uid://dhsd5etrx30pt" path="res://Animations/Battle/ShrimpFight.res" id="1_3mc76"]
+[ext_resource type="Texture2D" uid="uid://d2bpo84o7t8cl" path="res://Sprites/Battle/Enemies/shripmyang.png" id="1_i7klg"]
+[ext_resource type="Texture2D" uid="uid://bm1a1elihmf3n" path="res://Sprites/Battle/Enemies/_arm.png" id="2_7njpw"]
 
 [sub_resource type="Curve" id="Curve_0dopt"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
@@ -91,6 +93,30 @@ tracks/6/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [Vector2(0, 0)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("MainSprite:texture")
+tracks/7/interp = 1
+tracks/7/loop_wrap = false
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_i7klg")]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("MainSprite/Arms:texture")
+tracks/8/interp = 1
+tracks/8/loop_wrap = false
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("2_7njpw")]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j61uc"]

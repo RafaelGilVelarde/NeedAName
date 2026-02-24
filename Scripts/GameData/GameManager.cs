@@ -77,10 +77,10 @@ public partial class GameManager : Node
 			SetEXPLevels((PartyCharacterBase)InitialData.Party[i].Base);
 			InitialData.Party[i].NextLevelExp = ((PartyCharacterBase)InitialData.Party[i].Base).ExpForLevel[InitialData.Party[i].stats.Lv - 1];
 		}
-		if (GetTree().CurrentScene.Name != "MainMenu")
+		/*if (GetTree().CurrentScene.Name != "MainMenu")
 		{
 			InstantiateCharacters();
-		}
+		}*/
 	}
 	public void LoadFirstScene()
 	{

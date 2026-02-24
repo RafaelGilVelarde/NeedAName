@@ -82,6 +82,7 @@ public partial class OverworldController : Node2D
 		if (!control)
 		{
 			Axis = Vector2.Zero;
+			Parent.Velocity = Vector2.Zero;
 			AnimatorTree.Set("parameters/conditions/Idle", true);
 			AnimatorTree.Set("parameters/conditions/Walking", false);
 		}

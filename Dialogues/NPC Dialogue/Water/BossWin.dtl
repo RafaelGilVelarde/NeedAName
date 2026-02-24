@@ -1,4 +1,4 @@
-MC (Wondering): *pant* pant* #id:33
+MC (Angry): *pant* pant* #id:33
 MC (Happy): We won! #id:34
 if {GameManager.Data.Flags.EventFlags[9]} == true:
 	Halluci (Normal): At last.... #id:35

@@ -1,20 +1,22 @@
 {
 "@path": "res://addons/dialogic/Resources/character.gd",
 "@subpath": NodePath(""),
-"_translation_id": "139",
-"color": Color(1, 1, 1, 1),
-"custom_info": {
+&"_translation_id": "139",
+&"color": Color(1, 1, 1, 1),
+&"custom_info": {
+"prefix": "",
 "sound_mood_default": "",
 "sound_moods": {},
-"style": "Base"
+"style": "Base",
+"suffix": ""
 },
-"default_portrait": "Happy",
-"description": "",
-"display_name": "{GameManager.Data.Party[0].Name}",
-"mirror": false,
-"nicknames": [""],
-"offset": Vector2(0, 32),
-"portraits": {
+&"default_portrait": "Happy",
+&"description": "",
+&"display_name": "{GameManager.Data.Party[0].Name}",
+&"mirror": false,
+&"nicknames": [""],
+&"offset": Vector2(0, 32),
+&"portraits": {
 "Angry": {
 "export_overrides": {
 "image": "\"res://Sprites/DialogueBoxes/1/Angry.png\""
@@ -22,7 +24,7 @@
 "mirror": false,
 "offset": Vector2(0, 0),
 "scale": 1,
-"scene": ""
+"scene": "res://addons/dialogic/Modules/Character/default_portrait.tscn"
 },
 "Confused": {
 "export_overrides": {
@@ -63,5 +65,5 @@
 "scene": ""
 }
 },
-"scale": 1.0
+&"scale": 1.0
 }
