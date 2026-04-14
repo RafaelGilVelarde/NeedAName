@@ -124,8 +124,6 @@ public partial class BattleCharacter : CharacterBody2D
 					DodgeDir.X = Mathf.Clamp(DodgeDir.X, 0, 1);
 				}
 				AnimatorTree.Set("parameters/ActionState/2/blend_position", DodgeDir);
-				AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
-				Playback.Travel(Playback.GetCurrentNode());
 			}
 			if (Input.IsActionJustPressed("SelectedKey" + aux.PartyId))
 			{
@@ -582,6 +580,8 @@ public partial class BattleCharacter : CharacterBody2D
 		Show();
 		AnimatorTree.Active = false;
 		AnimatorTree.Active = true;
+		AnimationNodeStateMachinePlayback Playback = (AnimationNodeStateMachinePlayback)AnimatorTree.Get("parameters/playback");
+		Playback.Travel("Start");
 		HPBar.MaxValue = Character.TotalStats.MaxHP;
 		HPBar.Value = Character.stats.HP;
 		Reset();
@@ -628,48 +628,12 @@ public partial class BattleCharacter : CharacterBody2D
 		}
 	}
 
-	/*public void PlaySFX(int SFXPlayer, int SFX)
+	public void EmitHitParticles(Curve Scale, float lifetime = 0.4f, int amount = 22)
 	{
-		SoundEffectController.SFXPlayers[SFXPlayer].Stream = SoundEffectController.Lists[SFXPlayer].SoundEffects[SFX];					
-		/*switch (SFXPlayer)
-		{
-			case 0:
-				if (Character.Base.MoveSFX.Count > SFX && SFXPlayers.Count> SFXPlayer)
-				{
-					SFXPlayers[SFXPlayer].Stream = Character.Base.MoveSFX[SFX];					
-				}
-				break;
-			case 1:
-				if (Character.Base.HitSFX.Count > SFX && SFXPlayers.Count> SFXPlayer)
-				{
-					SFXPlayers[SFXPlayer].Stream = Character.Base.HitSFX[SFX];					
-				}
-				break;
-		}	
-		SFXPlayers[SFXPlayer].Play();
-		SoundEffectController.SFXPlayers[SFXPlayer].Play();
-		
+		HitParticles.ScaleAmountCurve = Scale;
+		HitParticles.Lifetime = lifetime;
+		HitParticles.Amount = amount;
+		HitParticles.Emitting = true;	
 	}
-	public void StopSFX()
-	{
-		Tween AudioTween  = CreateTween();
-		if (AudioTween != null)
-        {
-			AudioTween.Stop();            
-        }
-		AudioTween.SetParallel(true);
-		for(int i = 0; i < SoundEffectController.SFXPlayers.Count; i++)
-		{
-			AudioTween.TweenProperty(SoundEffectController.SFXPlayers[i],"volume_db",-80,0.3);
-		}
-		AudioTween.Finished += () =>
-		{
-			for(int i = 0; i < SoundEffectController.SFXPlayers.Count; i++)
-			{
-				SoundEffectController.SFXPlayers[i].Stop();			
-			}
-			AudioTween.Kill();			
-		};
-		
-	}*/
+
 }

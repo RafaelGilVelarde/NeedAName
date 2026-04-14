@@ -9,10 +9,8 @@ public partial class FirstBattle : BattleScene
     public override void StartTurnEffect()
     {
         base.StartTurnEffect();
-        Debug.WriteLine("Flag: "+GameManager.Instance.Data.Flags.EventFlags[1]);
         Debug.WriteLine("TurnCount: "+Battle.TurnCount);
         if(Battle.TurnCount == 1 && !GameManager.Instance.Data.Flags.EventFlags[1]){
-            Debug.WriteLine("Dialogue");
             Battle.CanStartTurn=false;
             GameManager.Instance.Data.Flags.EventFlags[1] = true;
             StartDialogue(Timeline,true,false,TimelineType.StartTurn);

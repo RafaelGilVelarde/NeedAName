@@ -12,11 +12,16 @@ public partial class Interact : CollisionShape2D
 {
         [Export] protected Vector2 FacingDirection;
     [Export] protected AnimationPlayer Animator;
-    [Export] protected AnimationTree AnimatorTree;
+    [Export] public AnimationTree AnimatorTree;
     [Export] protected VisualType visualType;
     [Export] protected Sprite2D MainSprite;
     [Export] protected Array<Sprite2D> Sprites;
     [Export] protected Array<Color> Colors;
+
+      [Export] protected bool FacingRight = true, Cutscene;
+    [Export] protected CutscenePlayer CutsceneAnimator;
+    [Export] public bool SpokenTo;
+
     public override void _Ready()
     {
         base._Ready();

@@ -1,3 +1,7 @@
+if {GameManager.Data.Flags.DialogueFlags[0]} == true:
+	jump CompanionNPC1-2/
+if {GameManager.Data.Flags.EventFlags[10]} == true:
+	jump CompanionNPC1-3/
 Halluci (Normal): It's calling me.... #id:5c
 MC (Confused): ? #id:5d
 Halluci (Normal): The tides.... #id:5e

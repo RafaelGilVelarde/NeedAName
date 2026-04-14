@@ -10,7 +10,6 @@ public partial class ItemInteract : InteractText
     [Export] protected Array<int> ItemID;
     [Export] bool Delete;
     [Export] protected Array<Items> ItemsToGive;
-    [Export] ItemBase.Type ItemType;
     Callable DoAction;
     public override void _Ready()
     {

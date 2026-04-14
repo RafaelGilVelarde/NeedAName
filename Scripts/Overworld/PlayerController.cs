@@ -15,7 +15,7 @@ public partial class PlayerController : OverworldController
 	[Export] public Area2D InteractCollider;
 	[Export] Interact Interactable;
 	
-	[Export] public TileMap DataMap;
+	[Export] public DataTileMap DataMap;
 	[Export] protected TileTypes tileTypes, PreviousTileType;
 	[Export] protected Node2D TileDetector;
 	[Export] protected Vector2 TileOffset;
@@ -69,9 +69,10 @@ public partial class PlayerController : OverworldController
 			Vector2 SceneCoords = new Vector2();
 			if (DataMap != null)
 			{
-				Coords = (Vector2I)(DataMap?.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset)));
-				Data = DataMap?.GetCellTileData(0, Coords);
-				SceneCoords = DataMap.MapToLocal(Coords);
+				TileMapLayer CurrentMapLayer = DataMap.Map[ZIndex%DataMap.Map.Count];
+				Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset));
+				Data = CurrentMapLayer.GetCellTileData(Coords);
+				SceneCoords = CurrentMapLayer.MapToLocal(Coords);
 			}
 			if(Data!=null){
 				PreviousTileType = tileTypes;
@@ -91,7 +92,7 @@ public partial class PlayerController : OverworldController
 						}
 						if (DataMap != null)
 						{
-							TileData TileAux = DataMap.GetCellTileData(0, Coords);
+							TileData TileAux = DataMap.Map[ZIndex%DataMap.Map.Count].GetCellTileData(Coords);
 							if (TileAux != null)
 							{
 								Axis = (Vector2)TileAux.GetCustomData("Direction");															
@@ -188,8 +189,14 @@ public partial class PlayerController : OverworldController
 	
 	void OnInteractionEnter(Node2D body){
 		if(body.IsInGroup("Interactable")){
-				Debug.WriteLine("In Body: "+body);
-			Interactable=body.GetChild<Interact>(0);
+			foreach(Node child in body.GetChildren())
+			{
+				if(typeof(Interact).IsAssignableFrom(child.GetType())){
+					Interactable=(Interact)child;				
+					Debug.WriteLine("In Body: "+body);
+				}
+					Debug.WriteLine("Shape: "+child.Name);					
+			}
         }
 	}
 	void OnInteractionExit(Node2D body){

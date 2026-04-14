@@ -92,6 +92,7 @@ public partial class MoveBase : Resource
     }
     public virtual void DealDamage(BattleCharacter Users, BattleCharacter Targets, bool blocked)
     {
+        Debug.WriteLine("Hit by: "+Users.Character.Base.Name+" With move: "+Name);
         for (int i = 0; i < Targets.Character.Equipment.Count; i++)
         {
             Targets.Character?.Equipment[i]?.GetHitEffect(Targets, this);
@@ -136,12 +137,8 @@ public partial class MoveBase : Resource
 
     public virtual void Hit(BattleCharacter User, BattleCharacter Target)
     {
-        Tween HitTween = User.CreateTween();
-        HitTween.TweenInterval(1 / Engine.GetFramesPerSecond());
-        Callable check = Callable.From(() => Check());
-
-        HitTween.TweenCallback(check);
-        HitTween.Finished += HitTween.Kill;
+        SceneTreeTimer HitTimer = User.GetTree().CreateTimer(1/Engine.GetFramesPerSecond());
+        HitTimer.Timeout+=Check;
         void Check()
         {
             if (!Target.BlockedEnemy)

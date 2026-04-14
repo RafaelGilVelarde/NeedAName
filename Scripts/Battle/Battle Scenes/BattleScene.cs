@@ -225,7 +225,6 @@ public partial class BattleScene : Resource
     public virtual void EndDialogue()
     {
         //if(argument=="End"){
-        Debug.WriteLine("Ended dialogue, type: " + timelineType);
         switch (timelineType)
         {
             case TimelineType.StartTurn:

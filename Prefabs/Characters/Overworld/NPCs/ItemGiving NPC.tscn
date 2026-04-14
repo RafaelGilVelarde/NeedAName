@@ -1,29 +1,31 @@
-[gd_scene load_steps=5 format=3 uid="uid://d08xurs20mlb6"]
+[gd_scene format=3 uid="uid://d08xurs20mlb6"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemCheckInteract.cs" id="1_bx8hm"]
+[ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="1_wkd7k"]
+[ext_resource type="Script" uid="uid://c1ul7bpbioofb" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemCheckInteractEffect.cs" id="3_wfrye"]
 [ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="4_qx5lk"]
-[ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="5_fnrdt"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7ixu"]
 
-[node name="NPC" type="StaticBody2D" groups=["Interactable"]]
+[node name="NPC" type="StaticBody2D" unique_id=773665626 groups=["Interactable"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=766230198 node_paths=PackedStringArray("Effects", "MainSprite", "Sprites")]
 shape = SubResource("RectangleShape2D_e7ixu")
-script = ExtResource("1_bx8hm")
-TakeItems = true
-ItemsToGive = Array[Object]([null])
-TimelineGroup = Array[Object]([null, null])
+script = ExtResource("1_wkd7k")
+TimelineGroup = Array[Object]([])
 PauseWhenDialogue = true
 Turn = true
-Sprites = []
+Variables = Array[Object]([])
+Effects = [NodePath("Node")]
+MainSprite = NodePath("Sprite2D")
+Sprites = Array[Object]([])
+Colors = Array[Object]([])
 
-[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D"]
+[node name="Sprite2D" type="Sprite2D" parent="CollisionShape2D" unique_id=1824165617]
 texture_filter = 1
 texture = ExtResource("4_qx5lk")
 hframes = 4
 vframes = 3
-frame = 8
+frame = 11
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -36,4 +38,8 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Overworld/NPCs/Isopod.aseprite"
 }
 
-[node name="AnimationPlayer2" parent="CollisionShape2D/Sprite2D" instance=ExtResource("5_fnrdt")]
+[node name="Node" type="Node" parent="CollisionShape2D" unique_id=1809328491 node_paths=PackedStringArray("interact")]
+script = ExtResource("3_wfrye")
+TakeItems = true
+ItemsToGive = Array[Object]([])
+interact = NodePath("..")

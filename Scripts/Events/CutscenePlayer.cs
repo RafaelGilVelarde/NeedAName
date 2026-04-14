@@ -10,7 +10,7 @@ public partial class CutscenePlayer : AnimationPlayer
     [Export] public Array<float> PositioningDurations, CutsceneDurations;
     [Export] public Array<string> CutsceneNames;
 
-    public virtual void PlayAnimation(string Animation, bool ChangePos = true)
+    public virtual void PlayAnimation(string Animation, bool ChangePos = true, float ChangePosTime = 0.2f)
     {
         Debug.WriteLine("Cutscene: "+Animation);
 
@@ -29,11 +29,11 @@ public partial class CutscenePlayer : AnimationPlayer
         {
             if (ChangePos)
             {
-                tween.TweenProperty(Game.Followers[i].Parent, "global_position", InitialPositions[i + InitialPositionStartIndex[Index%InitialPositionStartIndex.Count]], 0.2);                
+                Game.Followers[i].TweenMovement(InitialPositions[i+InitialPositionStartIndex[Index%InitialPositionStartIndex.Count]],ChangePosTime);
             }
             else
             {
-                tween.TweenProperty(Game.Followers[i].Parent, "global_position", Game.Followers[i].Parent.GlobalPosition, 0.2);
+                Game.Followers[i].TweenMovement(Game.Followers[i].Parent.GlobalPosition,ChangePosTime);
             }
         }
         tween.Finished += () =>

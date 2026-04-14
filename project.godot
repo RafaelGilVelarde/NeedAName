@@ -16,6 +16,7 @@ ResourceScriptDirectories=["res://"]
 
 [animation]
 
+warnings/check_invalid_track_paths=false
 compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
@@ -70,6 +71,8 @@ variables={
 "EventInt": {},
 "ItemGiven": {},
 "Items": {
+"ItemCheck": false,
+"ItemGiven": false,
 "ItemName": "aaa"
 },
 "Moves": {

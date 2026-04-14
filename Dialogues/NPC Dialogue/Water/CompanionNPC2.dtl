@@ -1,3 +1,7 @@
+if {GameManager.Data.Flags.DialogueFlags[1]} == true:
+	jump CompanionNPC2-2/
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	jump CompanionNPC2-3/
 Blobfish (Wondering): *Yaaawn* Leaving this place? #id:8a
 MC (Confused): I guess...not sure what's going on #id:8b
 Blobfish (Happy): Ooooh well, I can come with you through these tides! #id:8c

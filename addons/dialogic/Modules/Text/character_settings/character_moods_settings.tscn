@@ -195,6 +195,7 @@ alignment = 2
 step = 1.0
 
 [node name="Preview" type="AudioStreamPlayer" parent="." unique_id=1781375955]
+bus = &"SFX"
 script = ExtResource("5_yscws")
 play_every_character = 0
 

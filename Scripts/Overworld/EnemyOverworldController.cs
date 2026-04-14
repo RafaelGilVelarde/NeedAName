@@ -37,12 +37,6 @@ public partial class EnemyOverworldController : OverworldController
 			(RandMin, RandMax) = MinMaxArray(detectArea.Polygon.Polygon);
 		}
 		CachedTargetPosition = GlobalPosition;
-
-
-		if (AnimatorTree == null)
-		{
-			SetAnimators();
-		}
 	}
 	public override void _Process(double delta)
 	{

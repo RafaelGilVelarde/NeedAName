@@ -1,0 +1,127 @@
+[gd_scene format=3 uid="uid://do4leaba862pv"]
+
+[ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="1_5wtff"]
+[ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="2_8vusf"]
+[ext_resource type="Script" uid="uid://dkb1hq6bn1jwq" path="res://Scripts/Bases/Characters/CharacterBase.cs" id="3_mwv0s"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="4_465ta"]
+[ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="5_x4fy1"]
+[ext_resource type="Script" uid="uid://be52t7ry5g2rk" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffect.cs" id="6_thiy3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5wtff"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8vusf"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="Resource" id="Resource_xvol2"]
+script = ExtResource("3_mwv0s")
+MoveSFX = null
+HitSFX = null
+EffectLists = null
+
+[sub_resource type="Resource" id="Resource_f4quo"]
+script = ExtResource("4_465ta")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
+
+[sub_resource type="Resource" id="Resource_jv4yb"]
+script = ExtResource("4_465ta")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
+
+[sub_resource type="Resource" id="Resource_q0c02"]
+script = ExtResource("4_465ta")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
+
+[sub_resource type="Resource" id="Resource_mwv0s"]
+resource_local_to_scene = true
+script = ExtResource("5_x4fy1")
+Base = SubResource("Resource_xvol2")
+Moves = Array[Object]([])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_q0c02")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_465ta"]
+resource_local_to_scene = true
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4fy1"]
+resource_local_to_scene = true
+size = Vector2(20, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_thiy3"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[node name="Character" unique_id=1834513577 groups=["Interactable"] instance=ExtResource("1_5wtff")]
+
+[node name="CollisionShape2D" parent="." index="0" unique_id=1831021069]
+shape = SubResource("RectangleShape2D_5wtff")
+
+[node name="InteractShape" type="CollisionShape2D" parent="." index="1" unique_id=861861049 node_paths=PackedStringArray("Effects", "MainSprite", "Sprites")]
+shape = SubResource("RectangleShape2D_5wtff")
+script = ExtResource("2_8vusf")
+TimelineGroup = Array[Object]([])
+PauseWhenDialogue = true
+Variables = Array[Object]([])
+Effects = [NodePath("../Battle")]
+MainSprite = NodePath("../OverworldController/MainSprite")
+Sprites = Array[Object]([])
+
+[node name="OverworldController" parent="." index="2" unique_id=1701198914]
+movementController = null
+Speed = 0.0
+Friction = 0.0
+MaxSpeed = 0.0
+ZIndexList = Array[Object]([])
+CLayerList = Array[Object]([])
+CMaskList = Array[Object]([])
+AxisList = Array[Object]([])
+PositionList = Array[Object]([])
+AuxPositionList = Array[Object]([])
+
+[node name="CollisionShape2D" parent="OverworldController/Area2D" parent_id_path=PackedInt32Array(2071790070) index="0" unique_id=809018392]
+shape = SubResource("RectangleShape2D_8vusf")
+
+[node name="BattleCharacter" parent="." index="3" unique_id=1992698993]
+Character = SubResource("Resource_mwv0s")
+
+[node name="CollisionShape2D" parent="BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(440007294) index="0" unique_id=557952078]
+shape = SubResource("RectangleShape2D_465ta")
+
+[node name="CollisionShape2D" parent="BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(656277864) index="0" unique_id=365359841]
+shape = SubResource("RectangleShape2D_x4fy1")
+
+[node name="CollisionShape2D" parent="BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(172316861) index="0" unique_id=2023012338]
+shape = SubResource("RectangleShape2D_thiy3")
+
+[node name="Battle" type="Node" parent="." index="5" unique_id=1124682630 node_paths=PackedStringArray("battleStart")]
+script = ExtResource("6_thiy3")
+battleStart = NodePath("../OverworldController/BattleStart")

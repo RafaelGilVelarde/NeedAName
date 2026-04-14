@@ -3,10 +3,6 @@
 [ext_resource type="AnimationLibrary" uid="uid://dolvp7vqsyah" path="res://Animations/Battle/HalluciFight.res" id="1_134fi"]
 [ext_resource type="Texture2D" uid="uid://c8ibfinw542gn" path="res://Sprites/Battle/Party/HalluciBattle.png" id="1_xxnek"]
 
-[sub_resource type="Curve" id="Curve_1rl6r"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.4244032, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
 [sub_resource type="Animation" id="Animation_576bu"]
 length = 0.001
 tracks/0/type = "value"
@@ -132,58 +128,22 @@ tracks/9/keys = {
 tracks/10/type = "value"
 tracks/10/imported = false
 tracks/10/enabled = true
-tracks/10/path = NodePath("HitEffectParticles:amount")
+tracks/10/path = NodePath("MainSprite:centered")
 tracks/10/interp = 1
 tracks/10/loop_wrap = true
 tracks/10/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,
-"values": [22]
+"values": [true]
 }
 tracks/11/type = "value"
 tracks/11/imported = false
 tracks/11/enabled = true
-tracks/11/path = NodePath("HitEffectParticles:lifetime")
+tracks/11/path = NodePath("MainSprite:texture")
 tracks/11/interp = 1
 tracks/11/loop_wrap = true
 tracks/11/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0.75]
-}
-tracks/12/type = "value"
-tracks/12/imported = false
-tracks/12/enabled = true
-tracks/12/path = NodePath("HitEffectParticles:scale_amount_curve")
-tracks/12/interp = 1
-tracks/12/loop_wrap = true
-tracks/12/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [SubResource("Curve_1rl6r")]
-}
-tracks/13/type = "value"
-tracks/13/imported = false
-tracks/13/enabled = true
-tracks/13/path = NodePath("MainSprite:centered")
-tracks/13/interp = 1
-tracks/13/loop_wrap = true
-tracks/13/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/14/type = "value"
-tracks/14/imported = false
-tracks/14/enabled = true
-tracks/14/path = NodePath("MainSprite:texture")
-tracks/14/interp = 1
-tracks/14/loop_wrap = true
-tracks/14/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 1,

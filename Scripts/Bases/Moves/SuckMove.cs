@@ -15,6 +15,7 @@ public partial class SuckMove : MoveBase
         Vector2 Origin = Targets[0].GlobalPosition;
         Vector2 Direction = Vector2.Zero;
         Targets[0].Hurtbox.GlobalPosition = Origin;
+        Users[0].Hurtbox.GetChild<CollisionShape2D>(0).Disabled = false;
 
         float VelocityMult = 0;
         Targets[0].Moving = true;

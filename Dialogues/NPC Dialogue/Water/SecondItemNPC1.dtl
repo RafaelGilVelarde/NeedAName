@@ -1,3 +1,9 @@
+if {Items.ItemGiven} == false:
+	if {Items.ItemCheck} == true:
+		if {GameManager.Data.Flags.DialogueFlags[2]} == true:
+			jump SecondItemNPC3/
+else:
+	jump SecondItemNPC4/
 Lost soul drifting around eh? #id:d7
 MC (Confused): I.......guess? #id:d8
 Well I feel some strength in your past. #id:d9
@@ -6,3 +12,5 @@ if {GameManager.Data.Flags.EventFlags[9]} == true:
 if {GameManager.Data.Flags.EventFlags[10]} == true:
 	Blobfish (Wondering): Oooooh? #id:db
 If ya find a Soul Memory, give it to good ole me and I can help ya remember some of that power #id:dc
+if {Items.ItemCheck} == true:
+	jump SecondItemNPC3/

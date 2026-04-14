@@ -31,7 +31,7 @@ public partial class OverworldController : Node2D
 			BattleCharacter.Character.ResourceLocalToScene = true;
 			BattleCharacter.Character.NodeCharacter = Parent;
 		}
-		if (AnimatorTree == null)
+		if (AnimatorTree == null && Animator == null)
 		{
 			SetAnimators();
 		}
@@ -71,9 +71,14 @@ public partial class OverworldController : Node2D
 		}
 
 	}
-	public void TweenMovement(Vector2 Position, float Duration)
+	public void TweenMovement(Vector2 Position, float Duration,bool ChangeFacingDirection = true)
 	{
 		SetControllable(false);
+		if (ChangeFacingDirection)
+		{
+			Vector2 Aux = (Position-Parent.GlobalPosition).Normalized();
+			Axis = Aux;
+		}
 		Tween Move = CreateTween();
 		Move.TweenProperty(Parent, "position", Position, Duration);
 	}

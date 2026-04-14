@@ -1,3 +1,5 @@
+if {GameManager.Data.Flags.EventFlags[9]} == true:
+	jump CompanionNPC2-4/
 Blobfish (Normal): Hello #id:66
 Blobfish (Wondering): Changed your mind? #id:67
 - Reject #id:68

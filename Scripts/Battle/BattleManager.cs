@@ -136,6 +136,7 @@ public partial class BattleManager : Node
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
 				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
+			Debug.WriteLine("Turn "+i+": "+TurnOrder[i].Character.Base.Name);
 		}
 		scene.SetupBattleEffect();
 		ResetPositions();

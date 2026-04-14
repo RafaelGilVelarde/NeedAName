@@ -173,9 +173,6 @@ public partial class Character : Resource
     public void ShowTextLabel(string Text, Color color)
     {
         Node2D HPLabelParent = GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        Debug.WriteLine("Name: "+Base.Name);
-        Debug.WriteLine("Text: "+Text);
-        Debug.WriteLine("Node: "+NodeCharacter);
         RichTextLabel HPLabel = HPLabelParent.GetChild(0).GetChild<RichTextLabel>(0);
         HPLabel.Text = "[center]" + Text + "[/center]";
         HPLabel.AddThemeColorOverride("default_color", color);

@@ -9,9 +9,9 @@ public partial class InteractText : Interact
     [Export] protected int TimelineGroupIndex, TimelineIndex;
     [Export] protected string Timeline = "Test";
     [Export] bool PauseWhenDialogue, Turn;
-    [Export] protected bool SpokenTo, FacingRight = true, Cutscene;
-    [Export] protected CutscenePlayer CutsceneAnimator;
+  
     [Export] Array<DialogueVariables> Variables;
+    [Export] Array<InteractEffect> Effects = new Array<InteractEffect>();
 
 
     Callable disable, beginCutscene, endCutscene;
@@ -43,38 +43,20 @@ public partial class InteractText : Interact
             }
             AnimatorTree?.Set("parameters/Idle/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
         }
+        for(int i = 0; i < Effects?.Count; i++)
+        {
+            Effects[i].ConnectCall();
+            DialogicCSharp.instance.DialogicRoot.Connect("signal_event",Effects[i].StartInteract);
+            DialogicCSharp.instance.DialogicRoot.Connect("timeline_ended",Effects[i].EndInteract);
+        }
         if (SpokenTo && TimelineIndex < TimelineGroup[TimelineGroupIndex].DialogueTimelines.Count - 1)
         {
             TimelineIndex++;
         }
         SpokenTo = true;
 
-        Timelines timeline = TimelineGroup[TimelineGroupIndex];
-        Array<FlagType> flagTypes = timeline.flagTypes;
-        Flags flags = GameManager.Instance.Data.Flags;
-        if (flagTypes != null)
-        {
-            for (int i = 0; i < flagTypes.Count; i++)
-            {
-                switch (flagTypes[i])
-                {
-                    case FlagType.Puzzle:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Puzzle);
-                        break;
-                    case FlagType.Event:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Event);
-                        break;
-                    case FlagType.Item:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Item);
-                        break;
-                    case FlagType.Dialogue:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Dialogue);
-                        break;
-                }
-                Debug.WriteLine("AAAA");
-            }            
-        }
         Enable(TimelineIndex);
+ 
     }
 
     public void Enable(int id)
@@ -100,6 +82,7 @@ public partial class InteractText : Interact
     }
     public virtual void Disable()
     {
+        SetFlags();
         Array<PlayerController> party = GameManager.Instance.Characters;
         for (int i = 0; i < party.Count; i++)
         {
@@ -110,6 +93,11 @@ public partial class InteractText : Interact
         }
         DialogicCSharp DialogicInstance = DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended", disable);
+        for(int i = 0; i < Effects?.Count; i++)
+        {
+            DialogicInstance.DialogicRoot.Disconnect("signal_event",Effects[i].StartInteract);
+            DialogicInstance.DialogicRoot.Disconnect("timeline_ended",Effects[i].EndInteract);
+        }
         if (Cutscene)
         {
             DialogicInstance.DialogicRoot.Disconnect("signal_event",beginCutscene);
@@ -136,6 +124,33 @@ public partial class InteractText : Interact
         if (Argument == "EndCutscene")
         {
             CutsceneAnimator.EndAnimation();            
+        }
+    }
+    void SetFlags()
+    {
+        Timelines timeline = TimelineGroup[TimelineGroupIndex];
+        Array<FlagType> flagTypes = timeline.flagTypes;
+        Flags flags = GameManager.Instance.Data.Flags;
+        if (flagTypes != null)
+        {
+            for (int i = 0; i < flagTypes.Count; i++)
+            {
+                switch (flagTypes[i])
+                {
+                    case FlagType.Puzzle:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Puzzle);
+                        break;
+                    case FlagType.Event:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Event);
+                        break;
+                    case FlagType.Item:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Item);
+                        break;
+                    case FlagType.Dialogue:
+                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Dialogue);
+                        break;
+                }
+            }            
         }
     }
 }

@@ -1,2 +1,6 @@
+if {Items.ItemGiven} == true:
+	jump SecondItemNPC4/
+elif {Items.ItemCheck} == true:
+	jump SecondItemNPC3/
 Soul Memory, 'tis what ya need. Got it? #id:dd
 MC (Normal): Got it #id:de

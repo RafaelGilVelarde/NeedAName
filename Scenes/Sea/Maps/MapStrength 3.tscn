@@ -1,42 +1,29 @@
-[gd_scene load_steps=84 format=3 uid="uid://i1r7w4xb7dqs"]
+[gd_scene format=3 uid="uid://i1r7w4xb7dqs"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_0o4wx"]
+[ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_0o4wx"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="2_w38a5"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_h8l7l"]
-[ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_wctay"]
+[ext_resource type="Script" uid="uid://cw2en3slmkxs7" path="res://Scripts/Overworld/DataTileMap.cs" id="4_wctay"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="5_yjqsp"]
-[ext_resource type="Shader" path="res://Resources/Shaders/Intro.gdshader" id="6_l25r8"]
+[ext_resource type="Shader" uid="uid://cmiuft3kr01v" path="res://Resources/Shaders/Intro.gdshader" id="6_l25r8"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="7_kwe0i"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="8_5i46s"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="9_vv45y"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_l3025"]
 [ext_resource type="PackedScene" uid="uid://ddxto1kpe6l18" path="res://Prefabs/Overworld/Interactions/heal.tscn" id="11_8dgb5"]
-[ext_resource type="Script" path="res://Scripts/Overworld/EnemyOverworldController.cs" id="12_4l7oy"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/BattleInteract.cs" id="12_r466s"]
-[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="13_r7ese"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_s1wf7"]
-[ext_resource type="Script" path="res://Scripts/Overworld/EnemyCollision.cs" id="14_i6v0v"]
-[ext_resource type="Script" path="res://Scripts/Battle/StartBattle/BattleStart.cs" id="15_kd85v"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Scenes/ChangeFlagSimple.cs" id="16_3e53f"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/AICharacter.cs" id="17_t6yi5"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="19_q1g3i"]
+[ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_s1wf7"]
+[ext_resource type="Script" uid="uid://y1rrbh1j7kko" path="res://Scripts/Battle/Battle Scenes/ChangeFlagSimple.cs" id="16_3e53f"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="19_q1g3i"]
 [ext_resource type="Resource" uid="uid://be3pitacytxwu" path="res://Resources/CharacterBases/Enemies/WaterEnemy.tres" id="20_grvxg"]
-[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="21_g2s7r"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="24_axpqi"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="24_bj40n"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="24_ebpyt"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="25_spjyk"]
-[ext_resource type="Texture2D" uid="uid://bxol8k2rcwxa2" path="res://Sprites/Overworld/Enemies/starfish.png" id="26_0pjsp"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="27_wx7vk"]
-[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="28_u4ov7"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Setup/CheckFlagDelete.cs" id="32_48yg7"]
-[ext_resource type="Texture2D" uid="uid://l71fv1206kv4" path="res://Sprites/Battle/UI/StatUp.png" id="32_dlon5"]
-[ext_resource type="Script" path="res://Scripts/GameData/CheckFlags.cs" id="33_imqdf"]
-[ext_resource type="Texture2D" uid="uid://dv542evvmtd3v" path="res://Sprites/Battle/UI/StatDown.png" id="33_x5djp"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerGive.cs" id="34_c55hl"]
-[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="34_xh40e"]
+[ext_resource type="Script" uid="uid://cnghiawsylwhg" path="res://Scripts/GameData/Moves/Moves.cs" id="21_g2s7r"]
+[ext_resource type="Script" uid="uid://cbgw6teti2jjt" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="24_axpqi"]
+[ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="24_bj40n"]
+[ext_resource type="Script" uid="uid://dcm7tqhat5eer" path="res://Scripts/Overworld/Triggers/TriggerGive.cs" id="34_c55hl"]
 [ext_resource type="Resource" uid="uid://n6qtkvuadyar" path="res://Resources/Moves/Player/1/PlayerShoot.tres" id="35_mlme7"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/TriggerResources/ObjectToGive.cs" id="36_7bud0"]
+[ext_resource type="Script" uid="uid://cjoicl17xppy7" path="res://Scripts/Overworld/Triggers/TriggerResources/ObjectToGive.cs" id="36_7bud0"]
+[ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="38_tbbx3"]
+[ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="39_665lh"]
+[ext_resource type="Script" uid="uid://be52t7ry5g2rk" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffect.cs" id="40_tplio"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_g4heo"]
 frequency = 0.016
@@ -44,9 +31,9 @@ domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_hgy5v"]
 generate_mipmaps = false
+noise = SubResource("FastNoiseLite_g4heo")
 seamless = true
 normalize = false
-noise = SubResource("FastNoiseLite_g4heo")
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_4ogh6"]
 frequency = 0.016
@@ -54,279 +41,138 @@ domain_warp_enabled = true
 
 [sub_resource type="NoiseTexture2D" id="NoiseTexture2D_2reyu"]
 generate_mipmaps = false
+noise = SubResource("FastNoiseLite_4ogh6")
 seamless = true
 normalize = false
-noise = SubResource("FastNoiseLite_4ogh6")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5e1xr"]
 shader = ExtResource("6_l25r8")
+shader_parameter/noise = SubResource("NoiseTexture2D_hgy5v")
+shader_parameter/noise1 = SubResource("NoiseTexture2D_2reyu")
 shader_parameter/scroll = Vector2(0.05, 0.06)
 shader_parameter/scroll1 = Vector2(-0.05, -0.06)
 shader_parameter/distortion_strength = 0.291
 shader_parameter/tone_color = Color(0.192157, 0, 0.831373, 1)
-shader_parameter/noise = SubResource("NoiseTexture2D_hgy5v")
-shader_parameter/noise1 = SubResource("NoiseTexture2D_2reyu")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jldeo"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73dfx"]
 resource_local_to_scene = true
 size = Vector2(128, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_dr5kj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43172"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jqjrs"]
 size = Vector2(208, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_61dev"]
+[sub_resource type="Resource" id="Resource_wpgkk"]
+script = ExtResource("21_g2s7r")
+Base = ExtResource("35_mlme7")
+
+[sub_resource type="Resource" id="Resource_43w2v"]
+script = ExtResource("36_7bud0")
+Move = SubResource("Resource_wpgkk")
+index = 8
+Timeline = "MoveLearned"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_21xga"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_i3pne"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbbx3"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[sub_resource type="Resource" id="Resource_665lh"]
 script = ExtResource("13_s1wf7")
 DialogueTimelines = Array[String](["Miniboss3"])
-FlagIndexes = null
-flagTypes = null
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
+metadata/_custom_type_script = "uid://cnb8dnl86kpka"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qqjjj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6xfya"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
-[sub_resource type="Resource" id="Resource_2kfp5"]
+[sub_resource type="Resource" id="Resource_ykaue"]
 script = ExtResource("16_3e53f")
 FlagIndex = 8
-IntFlagValue = 0
 BoolFlagValue = true
-switchType = 0
-flagType = 0
-WinTimeline = "Win"
-PostBattleTimeline = ""
-EscapeChance = 100.0
-Horizontal = false
-Cutscene = false
 PartyFloorY = null
 EnemyFloorY = null
 BattleMusic = 1
-WinMusic = -1
 LoseMusic = 2
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3aaa"]
-size = Vector2(8, 8)
-
-[sub_resource type="Resource" id="Resource_f4quo"]
+[sub_resource type="Resource" id="Resource_c1uuu"]
 script = ExtResource("19_q1g3i")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_n5dm3"]
 script = ExtResource("24_axpqi")
-State = 2
 Speed = 3.0
 Combo = 2
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
 WP = 4
-Cost = 0
-TargetsParty = false
-Name = ""
 MoveTime = 3.0
 
-[sub_resource type="Resource" id="Resource_s3e00"]
+[sub_resource type="Resource" id="Resource_y8ftr"]
 script = ExtResource("21_g2s7r")
 Base = SubResource("Resource_n5dm3")
 Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_daa83"]
 script = ExtResource("24_axpqi")
-State = 2
 Speed = 2.0
-Combo = 1
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 1
 UserAmount = 1
 TargetAmount = 1
 WP = 2
-Cost = 0
-TargetsParty = false
-Name = ""
 MoveTime = 3.0
 
-[sub_resource type="Resource" id="Resource_gm4we"]
+[sub_resource type="Resource" id="Resource_q5n6d"]
 script = ExtResource("21_g2s7r")
 Base = SubResource("Resource_daa83")
 Chance = 60.0
 
-[sub_resource type="Resource" id="Resource_jv4yb"]
+[sub_resource type="Resource" id="Resource_0jpwb"]
 script = ExtResource("19_q1g3i")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
-[sub_resource type="Resource" id="Resource_66r5k"]
+[sub_resource type="Resource" id="Resource_n2kyj"]
 script = ExtResource("19_q1g3i")
 Lv = 8
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
-[sub_resource type="Resource" id="Resource_xltsy"]
+[sub_resource type="Resource" id="Resource_xbwb3"]
 resource_local_to_scene = true
 script = ExtResource("24_bj40n")
-Name = ""
 Base = ExtResource("20_grvxg")
-Moves = Array[Object]([SubResource("Resource_s3e00"), SubResource("Resource_gm4we")])
+Moves = Array[Object]([SubResource("Resource_y8ftr"), SubResource("Resource_q5n6d")])
 items = Array[Object]([])
 Equipment = Array[Object]([])
-stats = SubResource("Resource_66r5k")
-EquipStats = SubResource("Resource_f4quo")
-TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
+stats = SubResource("Resource_n2kyj")
+EquipStats = SubResource("Resource_c1uuu")
+TotalStats = SubResource("Resource_0jpwb")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4ukt"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pvvam"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s0pml"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_yixyu"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wpn1b"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ap6g1"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
-[sub_resource type="Gradient" id="Gradient_ea8j0"]
-offsets = PackedFloat32Array(0.338028, 1)
-colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_0pj2p"]
-gradient = SubResource("Gradient_ea8j0")
-
-[sub_resource type="Curve" id="Curve_ww72p"]
-min_value = -50.0
-max_value = 50.0
-_data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_uatdi"]
-curve = SubResource("Curve_ww72p")
-
-[sub_resource type="Curve" id="Curve_8h853"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.984456, 0.326316), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveTexture" id="CurveTexture_4u1mo"]
-curve = SubResource("Curve_8h853")
-
-[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_wfo7d"]
-particle_flag_disable_z = true
-emission_shape = 3
-emission_box_extents = Vector3(3, 0, 0)
-direction = Vector3(0, -1, 0)
-spread = 74.85
-initial_velocity_min = 10.0
-initial_velocity_max = 87.81
-gravity = Vector3(0, -98, 0)
-linear_accel_max = 11.21
-linear_accel_curve = SubResource("CurveTexture_uatdi")
-scale_max = 15.63
-scale_curve = SubResource("CurveTexture_4u1mo")
-color_ramp = SubResource("GradientTexture1D_0pj2p")
-
-[sub_resource type="Gradient" id="Gradient_p8sqr"]
-offsets = PackedFloat32Array(0, 0.673267, 1)
-colors = PackedColorArray(0.752941, 0, 0, 1, 0.754535, 0.434297, 0.345287, 1, 0.811371, 0.706337, 0.361686, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_y36m5"]
-gradient = SubResource("Gradient_p8sqr")
-
-[sub_resource type="Gradient" id="Gradient_6qoqx"]
-offsets = PackedFloat32Array(0, 0.438944, 0.861386, 1)
-colors = PackedColorArray(0, 0.741176, 0, 1, 0.41511, 0.845658, 0.610832, 1, 0.690036, 0.955324, 0.911021, 1, 0.666667, 1, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_d0dyv"]
-gradient = SubResource("Gradient_6qoqx")
-
-[sub_resource type="Gradient" id="Gradient_awthb"]
-offsets = PackedFloat32Array(0, 0.353135, 0.663366, 1)
-colors = PackedColorArray(0, 0, 0.760784, 1, 0.496331, 0.269289, 0.84728, 1, 0.770127, 0.593009, 0.959867, 1, 0.74902, 0.372549, 1, 1)
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_bb84a"]
-gradient = SubResource("Gradient_awthb")
-
-[sub_resource type="Gradient" id="Gradient_6uv37"]
-
-[sub_resource type="GradientTexture1D" id="GradientTexture1D_8n0m8"]
-gradient = SubResource("Gradient_6uv37")
-
-[sub_resource type="Curve" id="Curve_0dopt"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_s3x72"]
-max_value = 200.0
-_data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_67i4d"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hod4p"]
-bg_color = Color(0.286275, 0.690196, 0.529412, 1)
-
-[sub_resource type="Resource" id="Resource_fuqpy"]
-script = ExtResource("33_imqdf")
-flagType = 0
-index = 8
-intResult = 0
-boolResult = true
-ValueType = 1
-
-[sub_resource type="Resource" id="Resource_wpgkk"]
-script = ExtResource("21_g2s7r")
-Base = ExtResource("35_mlme7")
-Chance = 0.0
-
-[sub_resource type="Resource" id="Resource_43w2v"]
-script = ExtResource("36_7bud0")
-Move = SubResource("Resource_wpgkk")
-objectType = 0
-flagType = 0
-index = 8
-PartyIndex = 0
-Timeline = "MoveLearned"
-
-[node name="MapStrength3" type="Node2D"]
+[node name="MapStrength3" type="Node2D" unique_id=2085399124]
 y_sort_enabled = true
 script = ExtResource("1_0o4wx")
 BGMIndex = 3
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="TileMap" parent="." unique_id=898071221]
 top_level = true
 z_index = -1
 z_as_relative = false
@@ -337,16 +183,17 @@ navigation_visibility_mode = 1
 format = 2
 layer_0/z_index = -1
 layer_0/tile_data = PackedInt32Array(9, 1245185, 4, 196616, 1310721, 11, 327688, 1310721, 11, 327671, 1114113, 4, 327672, 1310721, 11, 327673, 1310721, 11, 262137, 1310721, 11, 262138, 1310721, 11, 262139, 1310721, 11, 196603, 1310721, 11, 196604, 1310721, 11, 196605, 1310721, 11, 196606, 1310721, 11, 131070, 1310721, 11, 65534, 1310721, 11, 65533, 1310721, 11, -3, 1310721, 11, -4, 1310721, 11, -5, 1310721, 11, -6, 1114113, 4, -7, 1310721, 11, 65529, 1114113, 4, 131065, 1310721, 11, 196601, 1310721, 11, 196602, 1310721, 11, 262140, 1310721, 11, 262141, 1310721, 11, -262135, 1245185, 4, -262136, 1245185, 4, -327672, 1245185, 4, -327673, 1310721, 11, -327674, 1310721, 11, -327675, 1310721, 11, -327676, 1310721, 11, -327677, 1310721, 11, -327678, 1310721, 11, -393214, 1310721, 11, -393215, 1310721, 11, -393216, 1310721, 11, -327681, 1310721, 11, -327682, 1310721, 11, -327683, 1310721, 11, -327684, 1310721, 11, -262148, 1310721, 11, -262149, 1310721, 11, -262150, 1114113, 4, -196614, 1114113, 4, -196615, 1114113, 4, -131079, 1114113, 4, -65543, 1310721, 11, 393210, 1114113, 4, 65544, 1245185, 4, 262153, 1245185, 3, -131064, 1245185, 3, -131063, 1245185, 3, -65527, 1245185, 3, 65545, 1245185, 4, 131081, 1245185, 3, 196617, 1245185, 3, 262149, 1245185, 4, 262150, 1245185, 4, 196614, 1245185, 4, 196615, 1245185, 4, 131080, 1245185, 4, 393212, 1114113, 4, 393211, 1114113, 4, 393209, 1114113, 4, 393208, 1114113, 4, 393207, 1114113, 4, 327670, 1114113, 4, 262134, 1114113, 4, 196598, 1114113, 4, 131063, 1114113, 4, 65527, 1114113, 4, 65528, 1114113, 4, 65530, 1114113, 4, -131078, 1114113, 4, -262154, 1114113, 4, -196616, 1114113, 4, -327690, 1114113, 4, -327689, 1114113, 4, -327688, 1114113, 4, -65546, 1114113, 4, 524295, 0, 9, 524296, 0, 9, 589831, 2162689, 7, 393224, 2162689, 7, 524280, 0, 9, 589820, 0, 9, 655359, 0, 9, 524285, 0, 9, 458749, 0, 9, 393213, 0, 9, 524284, 0, 9, 655356, 0, 9, 655355, 0, 9, 655354, 0, 9, 655353, 0, 9, 655352, 0, 9, 655351, 0, 9, 393218, 0, 9, 458754, 0, 9, 458755, 0, 9, 524291, 0, 9, 524292, 0, 9, 524293, 0, 9, 524294, 0, 9, 589832, 0, 9, 393225, 0, 9, 458761, 0, 9, 524297, 0, 9, 589829, 0, 9, 589828, 0, 9, 393219, 0, 9, 393220, 0, 9, 393221, 0, 9, 393222, 0, 9)
+layer_1/name = "Layer1"
 layer_1/tile_data = PackedInt32Array(-262150, 1179648, 8, -196614, 1179648, 9, -131078, 1179648, 9, -65542, 1179648, 9, -6, 1179648, 9, 65530, 1179648, 9, 131066, 1179648, 9, 196602, 1179648, 9, 262138, 1179648, 9, 327674, 1179648, 10, -262149, 1245184, 8, -196613, 1245184, 9, -131077, 1245184, 9, -65541, 1245184, 9, -5, 1245184, 9, 65531, 1245184, 9, 131067, 1245184, 9, 196603, 1245184, 9, 262139, 1245184, 9, 327675, 1245184, 10, -262148, 1245184, 8, -196612, 1245184, 9, -131076, 1245184, 9, -65540, 1245184, 9, -4, 1245184, 9, 65532, 1245184, 9, 131068, 1245184, 9, 196604, 1245184, 9, 262140, 1245184, 9, 327676, 1245184, 10, -262147, 1245184, 8, -196611, 1245184, 9, -131075, 1245184, 9, -65539, 1245184, 9, -3, 1245184, 9, 65533, 1245184, 9, 131069, 1245184, 9, 196605, 1245184, 9, 262141, 1245184, 9, 327677, 1245184, 10, -262146, 1245184, 8, -196610, 1245184, 9, -131074, 1245184, 9, -65538, 1245184, 9, -2, 1245184, 9, 65534, 1245184, 9, 131070, 1245184, 9, 196606, 1245184, 9, 262142, 1245184, 9, 327678, 1179648, 1610612747, -327681, 1179648, 9, -262145, 1179648, 11, -196609, 1245184, 9, -131073, 1245184, 9, -65537, 1245184, 9, -1, 1245184, 9, 65535, 1245184, 9, 131071, 1245184, 9, 196607, 1245184, 9, 262143, 1245184, 9, 327679, 1245185, 9, 393215, 1245185, 9, -393216, 1310720, 9, -327680, 1179648, 268435467, -262144, 1245184, 9, -196608, 1245184, 9, -131072, 1245184, 9, -65536, 1245184, 9, 0, 1245184, 9, 65536, 1245184, 9, 131072, 1245184, 9, 196608, 1245184, 9, 262144, 1245185, 9, 327680, 1245185, 9, -327679, 1245184, 8, -262143, 1245184, 9, -196607, 1245184, 9, -131071, 1245184, 9, -65535, 1245184, 9, 1, 1245184, 9, 65537, 1245184, 9, 131073, 1245184, 9, 196609, 1245184, 9, 262145, 1179648, 1879048203, -327678, 1245184, 8, -262142, 1245184, 9, -196606, 1245184, 9, -131070, 1245184, 9, -65534, 1245184, 9, 2, 1245184, 9, 65538, 1245184, 9, 131074, 1245184, 9, 196610, 1245184, 9, 262146, 1245184, 10, -327677, 1245184, 8, -262141, 1245184, 9, -196605, 1245184, 9, -131069, 1245184, 9, -65533, 1245184, 9, 3, 1245184, 9, 65539, 1245184, 9, 131075, 1245184, 9, 196611, 1245184, 9, 262147, 1245184, 10, -327676, 1245184, 8, -262140, 1245184, 9, -196604, 1245184, 9, -131068, 1245184, 9, -65532, 1245184, 9, 4, 1245184, 9, 65540, 1245184, 9, 131076, 1245184, 9, 196612, 1245184, 9, 262148, 1245184, 10, -327675, 1310720, 8, -262139, 1310720, 9, -196603, 1310720, 9, -131067, 1310720, 9, -65531, 1310720, 9, 5, 1310720, 9, 65541, 1310720, 9, 131077, 1310720, 9, 196613, 1310720, 9, 262149, 1310720, 10, 458751, 1245185, 9, 524287, 1245185, 9, 393216, 1245185, 9, 458752, 1245185, 9, 524288, 1245185, 9, 589823, 1245185, 9, 327681, 1310720, 9, 393217, 1310720, 9, 458753, 1310720, 9, 524289, 1310720, 9, 393214, 1179648, 9, 458750, 1179648, 9, 524286, 1179648, 9, 589822, 1179648, 9)
 
-[node name="DataTileMap" type="TileMap" parent="."]
+[node name="DataTileMap" type="TileMap" parent="." unique_id=679559414]
 visible = false
 tile_set = ExtResource("3_h8l7l")
 format = 2
 layer_0/tile_data = PackedInt32Array(-393227, 1, 0, -327691, 1, 0, -262155, 1, 0, -196619, 1, 0, -131083, 1, 0, -65547, 1, 0, -11, 1, 0, 65525, 1, 0, 131061, 1, 0, 196597, 1, 0, 262133, 1, 0, 327669, 1, 0, 393205, 1, 0, 393206, 1, 0, 393207, 1, 0, 393208, 1, 0, 393209, 1, 0, 393210, 1, 0, 393211, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, 327688, 1, 0, 327689, 1, 0, 327690, 1, 0, 262154, 1, 0, 196618, 1, 0, 131082, 1, 0, 65546, 1, 0, 10, 1, 0, -65526, 1, 0, -131062, 1, 0, -196598, 1, 0, -262134, 1, 0, -327670, 1, 0, -393206, 1, 0, -458742, 1, 0, -458743, 1, 0, -458744, 1, 0, -458745, 1, 0, -458746, 1, 0, -458747, 1, 0, -458748, 1, 0, -458749, 1, 0, -458750, 1, 0, -458751, 1, 0, -458752, 1, 0, -393217, 1, 0, -393218, 1, 0, -393219, 1, 0, -393220, 1, 0, -393221, 1, 0, -393222, 1, 0, -393223, 1, 0, -393224, 1, 0, -393225, 1, 0, -393226, 1, 0, -65535, 1, 0, -131071, 1, 0, -196607, 1, 0, -262143, 1, 0, -327679, 1, 0, -393215, 1, 0, -393216, 1, 0, -327681, 1, 0, -327682, 1, 0, -327683, 1, 0, -327684, 1, 0, -327685, 1, 0, -327686, 1, 0, -327687, 1, 0, -327688, 1, 0, -327689, 1, 0, -327690, 1, 0, -262154, 1, 0, -196618, 1, 0, -131082, 1, 0, -65546, 1, 0, -10, 1, 0, 65526, 1, 0, 131062, 1, 0, 196598, 1, 0, 262134, 1, 0, 327670, 1, 0, 327671, 1, 0, 262135, 1, 0, 196599, 1, 0, 131063, 1, 0, 65527, 1, 0, -9, 1, 0, -65545, 1, 0, -131081, 1, 0, -196617, 1, 0, -262153, 1, 0, -262152, 1, 0, -196616, 1, 0, -131080, 1, 0, -65544, 1, 0, -8, 1, 0, 65528, 1, 0, 131064, 1, 0, 196600, 1, 0, 262136, 1, 0, 327672, 1, 0, 327673, 1, 0, 262137, 1, 0, 196601, 1, 0, 131065, 1, 0, 65529, 1, 0, -7, 1, 0, -65543, 1, 0, -131079, 1, 0, -196615, 1, 0, -262151, 1, 0, -262150, 1, 0, -196614, 1, 0, -131078, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, 196602, 1, 0, 262138, 1, 0, 327674, 1, 0, 327675, 1, 0, 262139, 1, 0, 196603, 1, 0, 131067, 1, 0, 65531, 1, 0, -5, 1, 0, -65541, 1, 0, -131077, 1, 0, -196613, 1, 0, -262149, 1, 0, -262148, 1, 0, -196612, 1, 0, -131076, 1, 0, -65540, 1, 0, -4, 1, 0, 65532, 1, 0, 131068, 1, 0, 196604, 1, 0, 262140, 1, 0, 327676, 1, 0, 327677, 1, 0, 262141, 1, 0, 196605, 1, 0, 131069, 1, 0, 65533, 1, 0, -3, 1, 0, -65539, 1, 0, -131075, 1, 0, -196611, 1, 0, -262147, 1, 0, -262146, 1, 0, -196610, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, 327678, 1, 0, 327679, 1, 0, 262143, 1, 0, 196607, 1, 0, 131071, 1, 0, 65535, 1, 0, -1, 1, 0, -65537, 1, 0, -131073, 1, 0, -196609, 1, 0, -262145, 1, 0, -327680, 1, 0, -262144, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 262145, 1, 0, 196609, 1, 0, 131073, 1, 0, 65537, 1, 0, 1, 1, 0, 2, 1, 0, -65534, 1, 0, -131070, 1, 0, -196606, 1, 0, -262142, 1, 0, -327678, 1, 0, -393214, 1, 0, -393213, 1, 0, -327677, 1, 0, -262141, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, 262147, 1, 0, 196611, 1, 0, 131075, 1, 0, 131076, 1, 0, 65540, 1, 0, 4, 1, 0, -65532, 1, 0, -131068, 1, 0, -196604, 1, 0, -262140, 1, 0, -327676, 1, 0, -393212, 1, 0, -393211, 1, 0, -327675, 1, 0, -262139, 1, 0, -196603, 1, 0, -131067, 1, 0, -65531, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 196612, 1, 0, 262148, 1, 0, 262149, 1, 0, 262150, 1, 0, 196614, 1, 0, 131078, 1, 0, 65542, 1, 0, 6, 1, 0, -65530, 1, 0, -131066, 1, 0, -196602, 1, 0, -262138, 1, 0, -327674, 1, 0, -393210, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 262152, 1, 0, 196616, 1, 0, 131080, 1, 0, 65544, 1, 0, 8, 1, 0, -65528, 1, 0, -131064, 1, 0, -196600, 1, 0, -262136, 1, 0, -327672, 1, 0, -393208, 1, 0, -393207, 1, 0, -327671, 1, 0, -262135, 1, 0, -196599, 1, 0, -131063, 1, 0, -65527, 1, 0, 9, 1, 0, 65545, 1, 0, 131081, 1, 0, 196617, 1, 0, 262153, 1, 0)
 script = ExtResource("4_wctay")
 
-[node name="Cams" parent="." instance=ExtResource("5_yjqsp")]
+[node name="Cams" parent="." unique_id=225682950 instance=ExtResource("5_yjqsp")]
 
 [node name="OverworldCam" parent="Cams" index="0"]
 limit_left = -320
@@ -360,37 +207,40 @@ limit_top = -180
 limit_right = 320
 limit_bottom = 288
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=836806845]
 z_index = -1
 material = SubResource("ShaderMaterial_5e1xr")
 position = Vector2(-0.999968, 5.00679e-06)
 scale = Vector2(5, 5)
 texture = ExtResource("7_kwe0i")
 
-[node name="Borders" parent="." instance=ExtResource("8_5i46s")]
+[node name="Borders" parent="." unique_id=1045283544 instance=ExtResource("8_5i46s")]
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
 polygon = PackedVector2Array(328, 184, 72, 184, 72, 288, -72, 288, -72, 184, -328, 184, -328, -184, -40, -184, -24, -184, 24, -184, 40, -184, 328, -184, 328, 176, 320, 176, 320, -176, 32, -176, 24, -176, -24, -176, -32, -176, -320, -176, -320, 176, -64, 176, -64, 280, 64, 280, 64, 176, 328, 176)
 
-[node name="Door" parent="." instance=ExtResource("9_vv45y")]
+[node name="Door" parent="." unique_id=1566068867 instance=ExtResource("9_vv45y")]
 position = Vector2(0, 192)
 Scene = 27
 LoadPosition = Vector2(-687, 163)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 position = Vector2(0, 72)
-shape = SubResource("RectangleShape2D_jldeo")
+shape = SubResource("RectangleShape2D_73dfx")
 
-[node name="Door2" parent="." instance=ExtResource("9_vv45y")]
+[node name="Door2" parent="." unique_id=1454820377 instance=ExtResource("9_vv45y")]
 position = Vector2(0, -200)
 Scene = 22
 LoadPosition = Vector2(0, 160)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
-shape = SubResource("RectangleShape2D_dr5kj")
+shape = SubResource("RectangleShape2D_43172")
 
-[node name="Barrier" parent="." instance=ExtResource("10_l3025")]
+[node name="Barrier" parent="." unique_id=1318784998 instance=ExtResource("10_l3025")]
 position = Vector2(0, 144)
+
+[node name="AnimationPlayer" parent="Barrier/Sprite2D" index="0"]
+autoplay = &"WaterBarrier/Barrier"
 
 [node name="CollisionShape2D" parent="Barrier" index="1"]
 shape = SubResource("RectangleShape2D_jqjrs")
@@ -402,581 +252,77 @@ TimelineIndex = 0
 Timeline = "Test"
 PauseWhenDialogue = false
 Turn = false
-SpokenTo = false
-FacingRight = true
 FacingDirection = Vector2(0, 0)
 visualType = 0
+FacingRight = true
+SpokenTo = false
 
 [node name="Check" parent="Barrier" index="2"]
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 8
 
-[node name="Heal" parent="." instance=ExtResource("11_8dgb5")]
+[node name="Heal" parent="." unique_id=456701396 instance=ExtResource("11_8dgb5")]
 position = Vector2(-32, 216)
 
-[node name="Sprite2D" parent="Heal/CollisionShape2D" index="0"]
-frame = 11
+[node name="Sprite2D" parent="Heal/CollisionShape2D" parent_id_path=PackedInt32Array(456701396, 1682276729) index="0" unique_id=1779854913]
+frame = 8
 
-[node name="Character" type="CharacterBody2D" parent="." groups=["EnemyOverworldController", "Interactable"]]
-y_sort_enabled = true
-position = Vector2(72, -8)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character" node_paths=PackedStringArray("battleStart", "Sprites")]
-shape = SubResource("RectangleShape2D_61dev")
-script = ExtResource("12_r466s")
-battleStart = NodePath("../OverworldController/BattleStart")
-TimelineGroup = Array[Object]([SubResource("Resource_i3pne")])
-PauseWhenDialogue = true
-Sprites = []
-Colors = []
-
-[node name="OverworldController" type="Node2D" parent="Character" node_paths=PackedStringArray("enemyCollision", "Obstacles", "Battle", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
-script = ExtResource("12_4l7oy")
-enemyCollision = NodePath("Area2D")
-Obstacles = []
-LayerMask = 2
-Battle = NodePath("BattleStart")
-MainSprite = NodePath("MainSprite")
-Speed = 25.0
-Friction = 1000.0
-MaxSpeed = 50.0
-Parent = NodePath("..")
-OverworldCollider = NodePath("../CollisionShape2D")
-BattleCharacter = NodePath("../BattleCharacter")
-
-[node name="MainSprite" type="Sprite2D" parent="Character/OverworldController"]
-texture_filter = 1
-texture = ExtResource("13_r7ese")
-hframes = 7
-vframes = 6
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Overworld/Enemies",
-"o_name": "",
-"only_visible": false,
-"op_exp": true,
-"player": "OverworldController/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/Enemies/starfish.aseprite"
-}
-
-[node name="Area2D" type="Area2D" parent="Character/OverworldController" node_paths=PackedStringArray("battleStart")]
-script = ExtResource("14_i6v0v")
-battleStart = NodePath("../BattleStart")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/OverworldController/Area2D"]
-shape = SubResource("RectangleShape2D_qqjjj")
-disabled = true
-
-[node name="BattleStart" type="Node2D" parent="Character/OverworldController"]
-script = ExtResource("15_kd85v")
-scene = SubResource("Resource_2kfp5")
-EnemyCharacters = []
-CharacterPrefab = 1
-PartyPos = Array[Vector2]([Vector2(-100, 0), Vector2(-100, 100), Vector2(0, 0)])
-EnemyPos = Array[Vector2]([Vector2(75, 0)])
-
-[node name="InteractionCollider" type="Area2D" parent="Character/OverworldController"]
-position = Vector2(15, 0)
-disable_mode = 1
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/OverworldController/InteractionCollider"]
-shape = SubResource("RectangleShape2D_t3aaa")
-
-[node name="TileCollider" type="Node2D" parent="Character/OverworldController"]
-position = Vector2(-16, 0)
-
-[node name="BattleCharacter" type="CharacterBody2D" parent="Character" node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "StatMods", "SFXPlayers", "SoundEffectController")]
-process_mode = 4
-visible = false
-script = ExtResource("17_t6yi5")
-Character = SubResource("Resource_xltsy")
-Hitbox = NodePath("Hitbox")
-Hurtbox = NodePath("Hurtbox")
-Blockbox = NodePath("Blockbox")
-Overworld = NodePath("../OverworldController")
-StatMultiplier = []
-MultTimer = []
-PartyButtons = []
-EnemyButtons = []
-selectActions = NodePath("ActionMenu")
-MainSprite = NodePath("MainSprite")
-ThisParty = []
-EnemyParty = []
-StateParticles = NodePath("StateParticles")
-HitParticles = NodePath("HitEffectParticles")
-ShootNode = NodePath("Shoot")
-HPBar = NodePath("HPBarParent/HPBar")
-StatMods = NodePath("Node2D/HBoxContainer")
-SFXPlayers = [null, null]
-SoundEffectController = NodePath("../SFXController")
-battleState = 3
-actionState = 5
-
-[node name="Hitbox" type="Area2D" parent="Character/BattleCharacter" node_paths=PackedStringArray("Character") groups=["EnemyHitbox"]]
-script = ExtResource("24_ebpyt")
-Character = NodePath("..")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hitbox"]
-position = Vector2(0.06, 0)
-shape = SubResource("RectangleShape2D_s4ukt")
-disabled = true
-
-[node name="Hurtbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyHurtbox"]]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox"]
-shape = SubResource("RectangleShape2D_s0pml")
-disabled = true
-
-[node name="Blockbox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyBlockbox"]]
-script = ExtResource("25_spjyk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/Blockbox"]
-shape = SubResource("RectangleShape2D_wpn1b")
-disabled = true
-
-[node name="WPBox" type="Area2D" parent="Character/BattleCharacter" groups=["EnemyBlockbox"]]
-script = ExtResource("25_spjyk")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/BattleCharacter/WPBox"]
-shape = SubResource("RectangleShape2D_wpn1b")
-disabled = true
-
-[node name="MainSprite" type="Sprite2D" parent="Character/BattleCharacter"]
-texture_filter = 1
-texture = ExtResource("26_0pjsp")
-hframes = 7
-vframes = 6
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "",
-"o_ex_p": "_",
-"o_folder": "res://Sprites/Battle/Enemies",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/Enemies/shripmyang.aseprite"
-}
-
-[node name="Arms" type="Sprite2D" parent="Character/BattleCharacter/MainSprite"]
-texture_filter = 1
-metadata/_aseprite_wizard_config_ = {
-"keep_anim_length": false,
-"layer": "_arm",
-"o_ex_p": "",
-"o_folder": "res://Sprites/Battle/Enemies",
-"o_name": "",
-"only_visible": false,
-"op_exp": false,
-"player": "BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/Enemies/shripmyang.aseprite"
-}
-
-[node name="Weapon" type="Sprite2D" parent="Character/BattleCharacter/MainSprite"]
-visible = false
-
-[node name="Effects" type="AnimationPlayer" parent="Character/BattleCharacter"]
-
-[node name="ActionMenu" type="Node2D" parent="Character/BattleCharacter"]
-process_mode = 4
-visible = false
-script = ExtResource("27_wx7vk")
-
-[node name="Move" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
-
-[node name="Item" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
-
-[node name="Run" type="Sprite2D" parent="Character/BattleCharacter/ActionMenu"]
-
-[node name="StateParticles" type="GPUParticles2D" parent="Character/BattleCharacter"]
-process_mode = 3
-position = Vector2(0, -8)
-emitting = false
-amount = 20
-process_material = SubResource("ParticleProcessMaterial_wfo7d")
-lifetime = 0.5
-one_shot = true
-script = ExtResource("28_u4ov7")
-ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
-processMaterial = SubResource("ParticleProcessMaterial_wfo7d")
-
-[node name="HitEffectParticles" type="CPUParticles2D" parent="Character/BattleCharacter"]
-process_mode = 3
-position = Vector2(0, -18)
-emitting = false
-amount = 22
-lifetime = 0.75
-one_shot = true
-explosiveness = 1.0
-local_coords = true
-emission_shape = 1
-emission_sphere_radius = 14.7
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_max = 205.74
-scale_amount_min = 0.0
-scale_amount_max = 15.35
-scale_amount_curve = SubResource("Curve_0dopt")
-color = Color(0.580392, 0.968627, 0.937255, 1)
-anim_speed_max = 200.15
-anim_speed_curve = SubResource("Curve_s3x72")
-anim_offset_max = 0.9809
-
-[node name="Shoot" type="Node2D" parent="Character/BattleCharacter"]
-
-[node name="HPBarParent" type="Node2D" parent="Character/BattleCharacter"]
-z_index = 5
-position = Vector2(0, -60)
-
-[node name="HPBar" type="ProgressBar" parent="Character/BattleCharacter/HPBarParent"]
-modulate = Color(1, 1, 1, 0)
-layout_direction = 2
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = 19.0
-offset_right = 15.0
-offset_bottom = 24.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 1
-theme_override_constants/outline_size = 5
-theme_override_styles/background = SubResource("StyleBoxFlat_67i4d")
-theme_override_styles/fill = SubResource("StyleBoxFlat_hod4p")
-max_value = 50.0
-show_percentage = false
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
-visible = false
-layout_mode = 0
-offset_left = -3.0
-offset_top = -13.0
-offset_right = 177.0
-offset_bottom = 77.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 50
-bbcode_enabled = true
-text = "[center]50/50[/center]"
-scroll_active = false
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/HPBarParent/HPBar"]
-layout_mode = 0
-offset_left = -3.0
-offset_top = 4.0
-offset_right = 177.0
-offset_bottom = 94.0
-scale = Vector2(0.2, 0.2)
-theme_override_font_sizes/normal_font_size = 30
-bbcode_enabled = true
-text = "[center]50[/center]"
-scroll_active = false
-
-[node name="Node2D" type="Node2D" parent="Character/BattleCharacter"]
-z_index = 5
-position = Vector2(-20, 0)
-
-[node name="HBoxContainer" type="HBoxContainer" parent="Character/BattleCharacter/Node2D"]
-offset_left = -28.0
-offset_right = 68.0
-offset_bottom = 40.0
-alignment = 1
-
-[node name="TextureRect" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_dlon5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Atk[/center]"
-
-[node name="TextureRect2" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_dlon5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect2"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Def[/center]"
-
-[node name="TextureRect3" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_dlon5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect3"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpA[/center]"
-
-[node name="TextureRect4" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_dlon5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect4"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpD[/center]"
-
-[node name="TextureRect5" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("32_dlon5")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect5"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Spe[/center]"
-
-[node name="TextureRect6" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("33_x5djp")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect6"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Atk[/center]"
-
-[node name="TextureRect7" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("33_x5djp")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect7"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Def[/center]"
-
-[node name="TextureRect8" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("33_x5djp")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect8"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpA[/center]"
-
-[node name="TextureRect9" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("33_x5djp")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect9"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]SpD[/center]"
-
-[node name="TextureRect10" type="TextureRect" parent="Character/BattleCharacter/Node2D/HBoxContainer"]
-visible = false
-layout_mode = 2
-texture = ExtResource("33_x5djp")
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = 7.0
-offset_right = 41.0
-offset_bottom = 47.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]1[/center]"
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="Character/BattleCharacter/Node2D/HBoxContainer/TextureRect10"]
-layout_mode = 0
-offset_left = 1.0
-offset_top = -1.0
-offset_right = 41.0
-offset_bottom = 39.0
-scale = Vector2(0.35, 0.35)
-theme_override_font_sizes/normal_font_size = 20
-bbcode_enabled = true
-text = "[center]Spe[/center]"
-
-[node name="CheckDelete" type="Node" parent="Character" node_paths=PackedStringArray("MainNode")]
-script = ExtResource("32_48yg7")
-CheckFlags = Array[Object]([SubResource("Resource_fuqpy")])
-MainNode = NodePath("..")
-
-[node name="SFXController" parent="Character" instance=ExtResource("34_xh40e")]
-
-[node name="GiveMoves" type="Node" parent="."]
+[node name="GiveMoves" type="Node" parent="." unique_id=935528308]
 script = ExtResource("34_c55hl")
 Objects = Array[Object]([SubResource("Resource_43w2v")])
+
+[node name="Character2" parent="." unique_id=1834513577 groups=["Interactable"] instance=ExtResource("38_tbbx3")]
+position = Vector2(72, -8)
+
+[node name="CollisionShape2D" parent="Character2" index="0" unique_id=1831021069]
+shape = SubResource("RectangleShape2D_21xga")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Character2" unique_id=992897470 node_paths=PackedStringArray("Effects", "Sprites")]
+shape = SubResource("RectangleShape2D_tbbx3")
+script = ExtResource("39_665lh")
+TimelineGroup = Array[Object]([SubResource("Resource_665lh")])
+PauseWhenDialogue = true
+Turn = true
+Variables = Array[Object]([])
+Effects = [NodePath("../Node")]
+Sprites = Array[Object]([])
+
+[node name="OverworldController" parent="Character2" index="2" unique_id=1701198914]
+movementController = null
+Speed = 0.0
+Friction = 0.0
+MaxSpeed = 0.0
+ZIndexList = Array[Object]([])
+CLayerList = Array[Object]([])
+CMaskList = Array[Object]([])
+AxisList = Array[Object]([])
+PositionList = Array[Object]([])
+
+[node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" parent_id_path=PackedInt32Array(1834513577, 2071790070) index="0" unique_id=809018392]
+shape = SubResource("RectangleShape2D_6xfya")
+disabled = true
+
+[node name="BattleStart" parent="Character2/OverworldController" index="2" unique_id=597410356]
+scene = SubResource("Resource_ykaue")
+EnemyCharacters = Array[Object]([])
+EnemyPos = Array[Vector2]([Vector2(75, 0)])
+
+[node name="BattleCharacter" parent="Character2" index="3" unique_id=1992698993]
+Character = SubResource("Resource_xbwb3")
+
+[node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1834513577, 440007294) index="0" unique_id=557952078]
+shape = SubResource("RectangleShape2D_pvvam")
+
+[node name="CollisionShape2D" parent="Character2/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 656277864) index="0" unique_id=365359841]
+shape = SubResource("RectangleShape2D_yixyu")
+
+[node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1834513577, 172316861) index="0" unique_id=2023012338]
+shape = SubResource("RectangleShape2D_ap6g1")
+
+[node name="Node" type="Node" parent="Character2" unique_id=1969768825 node_paths=PackedStringArray("battleStart")]
+script = ExtResource("40_tplio")
+battleStart = NodePath("../OverworldController/BattleStart")
 
 [editable path="Cams"]
 [editable path="Borders"]
@@ -984,3 +330,4 @@ Objects = Array[Object]([SubResource("Resource_43w2v")])
 [editable path="Door2"]
 [editable path="Barrier"]
 [editable path="Heal"]
+[editable path="Character2"]

@@ -77,10 +77,10 @@ public partial class GameManager : Node
 			SetEXPLevels((PartyCharacterBase)InitialData.Party[i].Base);
 			InitialData.Party[i].NextLevelExp = ((PartyCharacterBase)InitialData.Party[i].Base).ExpForLevel[InitialData.Party[i].stats.Lv - 1];
 		}
-		/*if (GetTree().CurrentScene.Name != "MainMenu")
+		if (GetTree().CurrentScene.Name != "MainMenu")
 		{
 			InstantiateCharacters();
-		}*/
+		}
 	}
 	public void LoadFirstScene()
 	{
@@ -349,7 +349,7 @@ public partial class GameManager : Node
 			GetTree().Root.AddChild(aux);
 		}
 	}
-	public void SetDataTileMap(TileMap Map)
+	public void SetDataTileMap(DataTileMap Map)
 	{
 		for (int i = 0; i < Characters.Count; i++)
 		{

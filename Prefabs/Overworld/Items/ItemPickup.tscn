@@ -1,15 +1,18 @@
-[gd_scene load_steps=8 format=3 uid="uid://ri17sbak4ubw"]
+[gd_scene format=3 uid="uid://ri17sbak4ubw"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/ItemInteract.cs" id="1_5a7r1"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="4_bag0d"]
+[ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="1_sivto"]
+[ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="4_bag0d"]
+[ext_resource type="Script" uid="uid://dk7ychycyu3qr" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffect.cs" id="4_em7xq"]
 [ext_resource type="Texture2D" uid="uid://48gfi8aqt1oj" path="res://Sprites/Overworld/Objects/Water/Item.png" id="5_rbqq4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nh5ac"]
 
-[sub_resource type="Resource" id="Resource_iwgnt"]
-resource_local_to_scene = true
+[sub_resource type="Resource" id="Resource_em7xq"]
 script = ExtResource("4_bag0d")
 DialogueTimelines = Array[String](["ItemPick"])
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
+metadata/_custom_type_script = "uid://cnb8dnl86kpka"
 
 [sub_resource type="Animation" id="Animation_os0gx"]
 length = 0.6
@@ -77,24 +80,24 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_o5jm4"]
 _data = {
-"default": SubResource("Animation_os0gx")
+&"default": SubResource("Animation_os0gx")
 }
 
-[node name="ItemPickup" type="StaticBody2D" groups=["Interactable"]]
+[node name="ItemPickup" type="StaticBody2D" unique_id=1150169533 groups=["Interactable"]]
 collision_layer = 3
 
-[node name="ItemInteract" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Sprites")]
+[node name="ItemInteract" type="CollisionShape2D" parent="." unique_id=1282909236 node_paths=PackedStringArray("Animator", "MainSprite", "Sprites")]
 shape = SubResource("RectangleShape2D_nh5ac")
-script = ExtResource("1_5a7r1")
-ItemID = Array[int]([])
-Delete = true
-ItemsToGive = Array[Object]([null])
-ItemType = 1
-TimelineGroup = Array[Object]([SubResource("Resource_iwgnt")])
+script = ExtResource("1_sivto")
+TimelineGroup = Array[Object]([SubResource("Resource_em7xq")])
 PauseWhenDialogue = true
-Sprites = Array[int]([])
+Variables = Array[Object]([])
+Animator = NodePath("Sprite2D/AnimationPlayer")
+MainSprite = NodePath("Sprite2D")
+Sprites = Array[Object]([])
+Colors = Array[Object]([])
 
-[node name="Sprite2D" type="Sprite2D" parent="ItemInteract"]
+[node name="Sprite2D" type="Sprite2D" parent="ItemInteract" unique_id=105000028]
 texture_filter = 1
 texture = ExtResource("5_rbqq4")
 hframes = 3
@@ -111,8 +114,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Objects/Water/Item.aseprite"
 }
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemInteract/Sprite2D"]
-libraries = {
-"": SubResource("AnimationLibrary_o5jm4")
-}
-autoplay = "default"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="ItemInteract/Sprite2D" unique_id=1184620741]
+libraries/ = SubResource("AnimationLibrary_o5jm4")
+autoplay = &"default"
+
+[node name="Item" type="Node" parent="ItemInteract" unique_id=946507474]
+script = ExtResource("4_em7xq")
+Delete = true
