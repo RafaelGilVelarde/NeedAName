@@ -1,24 +1,24 @@
-[gd_scene load_steps=69 format=3 uid="uid://dvfopsva3d6kc"]
+[gd_scene format=4 uid="uid://dvfopsva3d6kc"]
 
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="1_1jve8"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_7mnrv"]
+[ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_7mnrv"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_0wu3x"]
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="3_odnhq"]
-[ext_resource type="Script" path="res://Scripts/Overworld/DataTileMap.cs" id="4_bgxd8"]
+[ext_resource type="Script" uid="uid://cw2en3slmkxs7" path="res://Scripts/Overworld/DataTileMap.cs" id="4_bgxd8"]
 [ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="5_l0xyo"]
 [ext_resource type="Texture2D" uid="uid://by4kl26agrfky" path="res://Sprites/Overworld/NPCs/Mollusk.png" id="6_tpe1d"]
 [ext_resource type="PackedScene" uid="uid://ckwqsf11orow2" path="res://Prefabs/Animators/NPCs/Water/Mollusk.tscn" id="7_djoto"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="7_huyn7"]
+[ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="7_huyn7"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="8_mhf5p"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="9_gr6nm"]
 [ext_resource type="PackedScene" uid="uid://ce7nskcq51oee" path="res://Prefabs/Overworld/EnemyArea.tscn" id="10_5sil6"]
 [ext_resource type="PackedScene" uid="uid://chhh4h1ln11bj" path="res://Prefabs/Overworld/enemy_spawner.tscn" id="11_58jnk"]
 [ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="14_vou6o"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/Stats.cs" id="15_mn1s2"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="15_mn1s2"]
 [ext_resource type="Resource" uid="uid://cqi3tmr64djan" path="res://Resources/Moves/Enemy/Beams/Bubblebeam.tres" id="16_ojs6m"]
-[ext_resource type="Script" path="res://Scripts/GameData/Moves/Moves.cs" id="17_r0y2x"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="18_e5jqb"]
-[ext_resource type="Script" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="19_hta7o"]
+[ext_resource type="Script" uid="uid://cnghiawsylwhg" path="res://Scripts/GameData/Moves/Moves.cs" id="17_r0y2x"]
+[ext_resource type="Script" uid="uid://cbgw6teti2jjt" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="18_e5jqb"]
+[ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="19_hta7o"]
 [ext_resource type="Resource" uid="uid://oinvkf7tklql" path="res://Resources/CharacterBases/Enemies/Star.tres" id="20_2fqbt"]
 [ext_resource type="Resource" uid="uid://bvtcpl6qec87k" path="res://Resources/Moves/Enemy/Spinning/Spin1.tres" id="21_kplw0"]
 [ext_resource type="Resource" uid="uid://ctdvr3y2a0x6g" path="res://Resources/Moves/Enemy/Projectyles/Bubble.tres" id="22_8jtgv"]
@@ -30,53 +30,41 @@ DialogueTimelines = Array[String](["NPC2", "NPC2-2"])
 FlagIndexes = Array[int]([])
 flagTypes = Array[int]([])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt1oy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rttg1"]
 resource_local_to_scene = true
 size = Vector2(32, 8)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_btlge"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gfdbp"]
 resource_local_to_scene = true
 size = Vector2(48, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y2nor"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8scae"]
 resource_local_to_scene = true
 size = Vector2(320, 40)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lriiy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eqhmi"]
+resource_local_to_scene = true
+size = Vector2(268, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_drw78"]
 resource_local_to_scene = true
 size = Vector2(268, 16)
 
 [sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("15_mn1s2")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_ul7as"]
 script = ExtResource("17_r0y2x")
 Base = ExtResource("16_ojs6m")
-Chance = 0.0
 
 [sub_resource type="Resource" id="Resource_uyt0w"]
 script = ExtResource("18_e5jqb")
-State = 2
 Speed = 2.0
 Combo = 2
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
-WP = 0
-Cost = 0
-TargetsParty = false
 Name = "Punchy"
 MoveTime = 2.0
 
@@ -87,18 +75,12 @@ Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_kn4l5"]
 script = ExtResource("18_e5jqb")
-State = 2
 Speed = 2.0
 Combo = 3
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
-WP = 0
-Cost = 0
-TargetsParty = false
 Name = "Punch2"
 MoveTime = 2.0
 
@@ -109,15 +91,6 @@ Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_jv4yb"]
 script = ExtResource("15_mn1s2")
-Lv = 0
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_jeao6"]
 script = ExtResource("15_mn1s2")
@@ -129,11 +102,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_ehv4y"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_ul7as"), SubResource("Resource_jubj6"), SubResource("Resource_7vs3k")])
 items = Array[Object]([])
@@ -141,10 +112,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_jeao6")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_onv4d"]
 script = ExtResource("17_r0y2x")
@@ -166,11 +133,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 2
-WP = 0
 
 [sub_resource type="Resource" id="Resource_qw1r2"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_onv4d"), SubResource("Resource_e1ncd")])
 items = Array[Object]([])
@@ -178,10 +143,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ugus2")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_65thx"]
 script = ExtResource("17_r0y2x")
@@ -203,11 +164,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_cl2et"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_65thx"), SubResource("Resource_512aa")])
 items = Array[Object]([])
@@ -215,10 +174,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_uvkim")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_eef0d"]
 script = ExtResource("17_r0y2x")
@@ -227,19 +182,13 @@ Chance = 40.0
 
 [sub_resource type="Resource" id="Resource_a8w2k"]
 script = ExtResource("18_e5jqb")
-State = 2
 Speed = 3.0
 Combo = 2
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
 WP = 2
-Cost = 0
-TargetsParty = false
-Name = ""
 MoveTime = 3.0
 
 [sub_resource type="Resource" id="Resource_0kq6h"]
@@ -249,19 +198,13 @@ Chance = 30.0
 
 [sub_resource type="Resource" id="Resource_uvgkn"]
 script = ExtResource("18_e5jqb")
-State = 2
 Speed = 3.0
 Combo = 3
 offset = Vector2(30, 0)
-Movement = true
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
 WP = 2
-Cost = 0
-TargetsParty = false
-Name = ""
 MoveTime = 3.0
 
 [sub_resource type="Resource" id="Resource_olqrn"]
@@ -272,18 +215,9 @@ Chance = 30.0
 [sub_resource type="Resource" id="Resource_inuk5"]
 script = ExtResource("15_mn1s2")
 Lv = 2
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_5g08o"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_eef0d"), SubResource("Resource_0kq6h"), SubResource("Resource_olqrn")])
 items = Array[Object]([])
@@ -291,10 +225,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_inuk5")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_fsjfo"]
 script = ExtResource("15_mn1s2")
@@ -306,11 +236,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_4rqrw"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_ul7as"), SubResource("Resource_jubj6"), SubResource("Resource_7vs3k")])
 items = Array[Object]([])
@@ -318,10 +246,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_fsjfo")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_nceiq"]
 script = ExtResource("15_mn1s2")
@@ -333,11 +257,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 2
-WP = 0
 
 [sub_resource type="Resource" id="Resource_bf2di"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_onv4d"), SubResource("Resource_e1ncd")])
 items = Array[Object]([])
@@ -345,10 +267,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_nceiq")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_76kva"]
 script = ExtResource("15_mn1s2")
@@ -360,11 +278,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_v21ns"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_65thx"), SubResource("Resource_512aa")])
 items = Array[Object]([])
@@ -372,26 +288,13 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_76kva")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_morvy"]
 script = ExtResource("15_mn1s2")
 Lv = 2
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_23fb8"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_eef0d"), SubResource("Resource_0kq6h"), SubResource("Resource_olqrn")])
 items = Array[Object]([])
@@ -399,10 +302,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_morvy")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_31hai"]
 script = ExtResource("15_mn1s2")
@@ -414,11 +313,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_6guei"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_ul7as"), SubResource("Resource_jubj6"), SubResource("Resource_7vs3k")])
 items = Array[Object]([])
@@ -426,10 +323,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_31hai")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_w5g3v"]
 script = ExtResource("15_mn1s2")
@@ -441,11 +334,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 2
-WP = 0
 
 [sub_resource type="Resource" id="Resource_5thmi"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_onv4d"), SubResource("Resource_e1ncd")])
 items = Array[Object]([])
@@ -453,10 +344,6 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_w5g3v")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_ddr52"]
 script = ExtResource("15_mn1s2")
@@ -468,11 +355,9 @@ Def = 2
 SpAtk = 1
 SpDef = 1
 Speed = 1
-WP = 0
 
 [sub_resource type="Resource" id="Resource_5ri7w"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("20_2fqbt")
 Moves = Array[Object]([SubResource("Resource_65thx"), SubResource("Resource_512aa")])
 items = Array[Object]([])
@@ -480,26 +365,13 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ddr52")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
 [sub_resource type="Resource" id="Resource_ge0d6"]
 script = ExtResource("15_mn1s2")
 Lv = 2
-MaxHP = 0
-HP = 0
-Atk = 0
-Def = 0
-SpAtk = 0
-SpDef = 0
-Speed = 0
-WP = 0
 
 [sub_resource type="Resource" id="Resource_yhqlo"]
 script = ExtResource("19_hta7o")
-Name = ""
 Base = ExtResource("14_vou6o")
 Moves = Array[Object]([SubResource("Resource_eef0d"), SubResource("Resource_0kq6h"), SubResource("Resource_olqrn")])
 items = Array[Object]([])
@@ -507,26 +379,32 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ge0d6")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
-isControlledByPlayer = false
-Active = true
-Key = 0
-status = 0
 
-[node name="Map7" type="Node2D"]
+[node name="Map7" type="Node2D" unique_id=1214100381]
 script = ExtResource("1_7mnrv")
 
-[node name="TileMap" type="TileMap" parent="."]
+[node name="TileMap" type="Node2D" parent="." unique_id=1867845104]
 top_level = true
 z_index = -1
 z_as_relative = false
-tile_set = ExtResource("1_1jve8")
-format = 2
-layer_0/tile_data = PackedInt32Array(-65536, 458752, 7, -1, 458752, 7, 65535, 458752, 7, 0, 458752, 7, -131075, 458752, 7, -65539, 458752, 7, -3, 458752, 7, 65533, 458752, 7, 131069, 458752, 7, 196605, 458752, 7, -131074, 458752, 7, -65538, 458752, 7, -2, 458752, 7, 65534, 458752, 7, 131070, 458752, 7, 196606, 458752, 7, -131073, 458752, 7, -65537, 458752, 7, 131071, 458752, 7, 196607, 458752, 7, -196608, 458752, 7, -131072, 458752, 7, 65536, 458752, 7, 131072, 458752, 7, -196607, 458752, 7, -131071, 458752, 7, -65535, 458752, 7, 1, 458752, 7, 65537, 458752, 7, 131073, 458752, 7, -196606, 458752, 7, -131070, 458752, 7, -65534, 458752, 7, 2, 458752, 7, 65538, 458752, 7, 131074, 458752, 7, -196612, 458752, 7, -131076, 458752, 7, -65540, 458752, 7, -4, 458752, 7, 65532, 458752, 7, 131068, 458752, 7, 196604, 458752, 7, 262140, 458752, 7, -196611, 458752, 7, 262141, 458752, 7, -196610, 458752, 7, 262142, 458752, 7, -196609, 458752, 7, 262143, 458752, 7, -262144, 458752, 7, 196608, 458752, 7, -262143, 458752, 7, 196609, 458752, 7, -262142, 458752, 7, 196610, 458752, 7, -262141, 458752, 7, -196605, 458752, 7, -131069, 458752, 7, -65533, 458752, 7, 3, 458752, 7, 65539, 458752, 7, 131075, 458752, 7, 196611, 458752, 7, -262140, 458752, 7, -196604, 458752, 7, -131068, 458752, 7, -65532, 458752, 7, 4, 458752, 7, 65540, 458752, 7, 131076, 458752, 7, 196612, 458752, 7, -262153, 720896, 8, -196617, 524288, 9, -131081, 524288, 9, -65545, 524288, 9, -9, 524288, 9, 65527, 524288, 9, 131063, 524288, 9, 196599, 524288, 9, 262135, 524288, 9, 327671, 720896, 9, 393207, 458752, 7, 393208, 458752, 7, 393209, 458752, 7, 393210, 458752, 7, 393211, 458752, 7, 393212, 720896, 1610612744, 393213, 589824, 9, 393214, 589824, 9, 393215, 589824, 9, 327680, 589824, 9, 327681, 589824, 9, 327682, 589824, 9, 327683, 589824, 9, 327684, 720896, 8, 327685, 458752, 7, 327686, 458752, 7, 327687, 458752, 7, 327688, 458752, 7, 262152, 458752, 7, 196616, 458752, 7, 196617, 458752, 7, 262153, 458752, 7, 327689, 458752, 7, -262136, 458752, 7, -327672, 458752, 7, -393208, 458752, 7, -327686, 458752, 7, -262150, 458752, 7, -196614, 458752, 7, -131078, 458752, 7, -65542, 458752, 7, -6, 458752, 7, 65530, 458752, 7, 131066, 458752, 7, 196602, 458752, 7, 262138, 458752, 7, 327674, 458752, 7, -327685, 458752, 7, -262149, 458752, 7, -196613, 458752, 7, -131077, 458752, 7, -65541, 458752, 7, -5, 458752, 7, 65531, 458752, 7, 131067, 458752, 7, 196603, 458752, 7, 262139, 458752, 7, 327675, 458752, 7, -327684, 720896, 1342177289, -262148, 458752, 7, 327676, 458752, 7, -327683, 589824, 536870921, -262147, 458752, 7, 327677, 458752, 7, -327682, 589824, 536870921, -262146, 458752, 7, 327678, 458752, 7, -327681, 589824, 536870921, -262145, 458752, 7, 327679, 458752, 7, -393216, 589824, 536870921, -327680, 458752, 7, 262144, 458752, 7, -393215, 589824, 536870921, -327679, 458752, 7, 262145, 458752, 7, -393214, 589824, 536870921, -327678, 458752, 7, 262146, 458752, 7, -393213, 589824, 536870921, -327677, 458752, 7, 262147, 458752, 7, -393212, 720896, 1342177288, -327676, 458752, 7, 262148, 458752, 7, -393211, 458752, 7, -327675, 458752, 7, -262139, 458752, 7, -196603, 458752, 7, -131067, 458752, 7, -65531, 458752, 7, 5, 458752, 7, 65541, 458752, 7, 131077, 458752, 7, 196613, 458752, 7, 262149, 458752, 7, -393210, 458752, 7, -327674, 458752, 7, -262138, 458752, 7, -196602, 458752, 7, -131066, 458752, 7, -65530, 458752, 7, 6, 458752, 7, 65542, 458752, 7, 131078, 458752, 7, 196614, 458752, 7, 262150, 458752, 7, -393209, 458752, 7, -327673, 458752, 7, -262137, 458752, 7, -196601, 458752, 7, -131065, 458752, 7, -65529, 458752, 7, 7, 458752, 7, 65543, 458752, 7, 131079, 458752, 7, 196615, 458752, 7, 262151, 458752, 7, -327688, 458752, 7, -262152, 458752, 7, -196616, 458752, 7, -131080, 458752, 7, -65544, 458752, 7, -8, 458752, 7, 65528, 458752, 7, 131064, 458752, 7, 196600, 458752, 7, 262136, 458752, 7, 327672, 458752, 7, -327687, 458752, 7, -262151, 458752, 7, -196615, 458752, 7, -131079, 458752, 7, -65543, 458752, 7, -7, 458752, 7, 65529, 458752, 7, 131065, 458752, 7, 196601, 458752, 7, 262137, 458752, 7, 327673, 458752, 7, -327689, 458752, 7, 131080, 458752, 7, 65544, 458752, 7, 8, 458752, 7, -65528, 458752, 7, -131064, 458752, 7, -196600, 458752, 7, -393207, 458752, 7, -327671, 458752, 7, -262135, 458752, 7, -196599, 458752, 7, -131063, 458752, 7, -65527, 458752, 7, 9, 458752, 7, 65545, 458752, 7, 131081, 458752, 7, -196598, 458752, 7, -131062, 458752, 7, -65526, 458752, 7, 10, 458752, 7, 65546, 458752, 7, 131082, 458752, 7)
-layer_1/tile_data = PackedInt32Array(-196598, 0, 536870930, -131062, 0, 17, -65526, 0, 17, 10, 0, 17, 65546, 0, 17, 131082, 0, 18, 196618, 458752, 7, 262154, 458752, 7, 327690, 458752, 7, 327691, 458752, 7, 262155, 458752, 7, 196619, 458752, 7, 131083, 458752, 7, 65547, 458752, 7, 11, 458752, 7, -65525, 458752, 7, -131061, 458752, 7, -196597, 458752, 7, -262133, 458752, 7, -327669, 458752, 7, -327670, 458752, 7, -262134, 458752, 7, -393206, 458752, 7, -393205, 458752, 7)
-layer_2/z_index = 1
-layer_2/tile_data = PackedInt32Array(-327688, 917504, 268435461, -262152, 917504, 268435461, -196616, 917504, 805306373, -131080, 917504, 805306373, -65544, 917504, 805306373, -8, 917504, 805306373, 65528, 917504, 805306373, 131064, 917504, 805306373, 196600, 917504, 805306373, 262136, 917504, 805306373, 327672, 917504, 268435461, 393208, 917504, 268435461, -327687, 196608, 1, -262151, 196608, 1, -196615, 196608, 1, -131079, 196608, 1, -65543, 196608, 1, -7, 196608, 1, 65529, 196608, 1, 131065, 196608, 1, 196601, 196608, 1, 262137, 196608, 1, 327673, 196608, 1, 393209, 196608, 1, -327686, 917504, 5, -262150, 917504, 5, -196614, 917504, 5, -131078, 917504, 5, -65542, 917504, 5, -6, 917504, 5, 65530, 917504, 5, 131066, 917504, 5, 196602, 917504, 5, 262138, 917504, 5, 327674, 917504, 5, 393210, 917504, 5)
 
-[node name="Cams" parent="." instance=ExtResource("2_0wu3x")]
+[node name="Layer0" type="TileMapLayer" parent="TileMap" unique_id=135205313]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAAAP//AAAHAAcAAAD/////AAAHAAcAAAD//wAAAAAHAAcAAAAAAAAAAAAHAAcAAAD9//3/AAAHAAcAAAD9//7/AAAHAAcAAAD9////AAAHAAcAAAD9/wAAAAAHAAcAAAD9/wEAAAAHAAcAAAD9/wIAAAAHAAcAAAD+//3/AAAHAAcAAAD+//7/AAAHAAcAAAD+////AAAHAAcAAAD+/wAAAAAHAAcAAAD+/wEAAAAHAAcAAAD+/wIAAAAHAAcAAAD///3/AAAHAAcAAAD///7/AAAHAAcAAAD//wEAAAAHAAcAAAD//wIAAAAHAAcAAAAAAP3/AAAHAAcAAAAAAP7/AAAHAAcAAAAAAAEAAAAHAAcAAAAAAAIAAAAHAAcAAAABAP3/AAAHAAcAAAABAP7/AAAHAAcAAAABAP//AAAHAAcAAAABAAAAAAAHAAcAAAABAAEAAAAHAAcAAAABAAIAAAAHAAcAAAACAP3/AAAHAAcAAAACAP7/AAAHAAcAAAACAP//AAAHAAcAAAACAAAAAAAHAAcAAAACAAEAAAAHAAcAAAACAAIAAAAHAAcAAAD8//z/AAAHAAcAAAD8//3/AAAHAAcAAAD8//7/AAAHAAcAAAD8////AAAHAAcAAAD8/wAAAAAHAAcAAAD8/wEAAAAHAAcAAAD8/wIAAAAHAAcAAAD8/wMAAAAHAAcAAAD9//z/AAAHAAcAAAD9/wMAAAAHAAcAAAD+//z/AAAHAAcAAAD+/wMAAAAHAAcAAAD///z/AAAHAAcAAAD//wMAAAAHAAcAAAAAAPz/AAAHAAcAAAAAAAMAAAAHAAcAAAABAPz/AAAHAAcAAAABAAMAAAAHAAcAAAACAPz/AAAHAAcAAAACAAMAAAAHAAcAAAADAPz/AAAHAAcAAAADAP3/AAAHAAcAAAADAP7/AAAHAAcAAAADAP//AAAHAAcAAAADAAAAAAAHAAcAAAADAAEAAAAHAAcAAAADAAIAAAAHAAcAAAADAAMAAAAHAAcAAAAEAPz/AAAHAAcAAAAEAP3/AAAHAAcAAAAEAP7/AAAHAAcAAAAEAP//AAAHAAcAAAAEAAAAAAAHAAcAAAAEAAEAAAAHAAcAAAAEAAIAAAAHAAcAAAAEAAMAAAAHAAcAAAD3//v/AAALAAgAAAD3//z/AAAIAAkAAAD3//3/AAAIAAkAAAD3//7/AAAIAAkAAAD3////AAAIAAkAAAD3/wAAAAAIAAkAAAD3/wEAAAAIAAkAAAD3/wIAAAAIAAkAAAD3/wMAAAAIAAkAAAD3/wQAAAALAAkAAAD3/wUAAAAHAAcAAAD4/wUAAAAHAAcAAAD5/wUAAAAHAAcAAAD6/wUAAAAHAAcAAAD7/wUAAAAHAAcAAAD8/wUAAAALAAgAAGD9/wUAAAAJAAkAAAD+/wUAAAAJAAkAAAD//wUAAAAJAAkAAAAAAAUAAAAJAAkAAAABAAUAAAAJAAkAAAACAAUAAAAJAAkAAAADAAUAAAAJAAkAAAAEAAUAAAALAAgAAAAFAAUAAAAHAAcAAAAGAAUAAAAHAAcAAAAHAAUAAAAHAAcAAAAIAAUAAAAHAAcAAAAIAAQAAAAHAAcAAAAIAAMAAAAHAAcAAAAJAAMAAAAHAAcAAAAJAAQAAAAHAAcAAAAJAAUAAAAHAAcAAAAIAPz/AAAHAAcAAAAIAPv/AAAHAAcAAAAIAPr/AAAHAAcAAAD6//r/AAAHAAcAAAD6//v/AAAHAAcAAAD6//z/AAAHAAcAAAD6//3/AAAHAAcAAAD6//7/AAAHAAcAAAD6////AAAHAAcAAAD6/wAAAAAHAAcAAAD6/wEAAAAHAAcAAAD6/wIAAAAHAAcAAAD6/wMAAAAHAAcAAAD6/wQAAAAHAAcAAAD7//r/AAAHAAcAAAD7//v/AAAHAAcAAAD7//z/AAAHAAcAAAD7//3/AAAHAAcAAAD7//7/AAAHAAcAAAD7////AAAHAAcAAAD7/wAAAAAHAAcAAAD7/wEAAAAHAAcAAAD7/wIAAAAHAAcAAAD7/wMAAAAHAAcAAAD7/wQAAAAHAAcAAAD8//r/AAALAAkAAFD8//v/AAAHAAcAAAD8/wQAAAAHAAcAAAD9//r/AAAJAAkAACD9//v/AAAHAAcAAAD9/wQAAAAHAAcAAAD+//r/AAAJAAkAACD+//v/AAAHAAcAAAD+/wQAAAAHAAcAAAD///r/AAAJAAkAACD///v/AAAHAAcAAAD//wQAAAAHAAcAAAAAAPr/AAAJAAkAACAAAPv/AAAHAAcAAAAAAAQAAAAHAAcAAAABAPr/AAAJAAkAACABAPv/AAAHAAcAAAABAAQAAAAHAAcAAAACAPr/AAAJAAkAACACAPv/AAAHAAcAAAACAAQAAAAHAAcAAAADAPr/AAAJAAkAACADAPv/AAAHAAcAAAADAAQAAAAHAAcAAAAEAPr/AAALAAgAAFAEAPv/AAAHAAcAAAAEAAQAAAAHAAcAAAAFAPr/AAAHAAcAAAAFAPv/AAAHAAcAAAAFAPz/AAAHAAcAAAAFAP3/AAAHAAcAAAAFAP7/AAAHAAcAAAAFAP//AAAHAAcAAAAFAAAAAAAHAAcAAAAFAAEAAAAHAAcAAAAFAAIAAAAHAAcAAAAFAAMAAAAHAAcAAAAFAAQAAAAHAAcAAAAGAPr/AAAHAAcAAAAGAPv/AAAHAAcAAAAGAPz/AAAHAAcAAAAGAP3/AAAHAAcAAAAGAP7/AAAHAAcAAAAGAP//AAAHAAcAAAAGAAAAAAAHAAcAAAAGAAEAAAAHAAcAAAAGAAIAAAAHAAcAAAAGAAMAAAAHAAcAAAAGAAQAAAAHAAcAAAAHAPr/AAAHAAcAAAAHAPv/AAAHAAcAAAAHAPz/AAAHAAcAAAAHAP3/AAAHAAcAAAAHAP7/AAAHAAcAAAAHAP//AAAHAAcAAAAHAAAAAAAHAAcAAAAHAAEAAAAHAAcAAAAHAAIAAAAHAAcAAAAHAAMAAAAHAAcAAAAHAAQAAAAHAAcAAAD4//r/AAAHAAcAAAD4//v/AAAHAAcAAAD4//z/AAAHAAcAAAD4//3/AAAHAAcAAAD4//7/AAAHAAcAAAD4////AAAHAAcAAAD4/wAAAAAHAAcAAAD4/wEAAAAHAAcAAAD4/wIAAAAHAAcAAAD4/wMAAAAHAAcAAAD4/wQAAAAHAAcAAAD5//r/AAAHAAcAAAD5//v/AAAHAAcAAAD5//z/AAAHAAcAAAD5//3/AAAHAAcAAAD5//7/AAAHAAcAAAD5////AAAHAAcAAAD5/wAAAAAHAAcAAAD5/wEAAAAHAAcAAAD5/wIAAAAHAAcAAAD5/wMAAAAHAAcAAAD5/wQAAAAHAAcAAAD3//r/AAAHAAcAAAAIAAIAAAAHAAcAAAAIAAEAAAAHAAcAAAAIAAAAAAAHAAcAAAAIAP//AAAHAAcAAAAIAP7/AAAHAAcAAAAIAP3/AAAHAAcAAAAJAPr/AAAHAAcAAAAJAPv/AAAHAAcAAAAJAPz/AAAHAAcAAAAJAP3/AAAHAAcAAAAJAP7/AAAHAAcAAAAJAP//AAAHAAcAAAAJAAAAAAAHAAcAAAAJAAEAAAAHAAcAAAAJAAIAAAAHAAcAAAAKAP3/AAAHAAcAAAAKAP7/AAAHAAcAAAAKAP//AAAHAAcAAAAKAAAAAAAHAAcAAAAKAAEAAAAHAAcAAAAKAAIAAAAHAAcAAAA=")
+tile_set = ExtResource("1_1jve8")
+
+[node name="Layer1" type="TileMapLayer" parent="TileMap" unique_id=1336483377]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAAKAP3/AAAAABIAACAKAP7/AAAAABEAAAAKAP//AAAAABEAAAAKAAAAAAAAABEAAAAKAAEAAAAAABEAAAAKAAIAAAAAABIAAAAKAAMAAAAHAAcAAAAKAAQAAAAHAAcAAAAKAAUAAAAHAAcAAAALAAUAAAAHAAcAAAALAAQAAAAHAAcAAAALAAMAAAAHAAcAAAALAAIAAAAHAAcAAAALAAEAAAAHAAcAAAALAAAAAAAHAAcAAAALAP//AAAHAAcAAAALAP7/AAAHAAcAAAALAP3/AAAHAAcAAAALAPz/AAAHAAcAAAALAPv/AAAHAAcAAAAKAPv/AAAHAAcAAAAKAPz/AAAHAAcAAAAKAPr/AAAHAAcAAAALAPr/AAAHAAcAAAA=")
+tile_set = ExtResource("1_1jve8")
+
+[node name="Layer2" type="TileMapLayer" parent="TileMap" unique_id=1609208850]
+z_index = 1
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD4//r/AAAOAAUAABD4//v/AAAOAAUAABD4//z/AAAOAAUAADD4//3/AAAOAAUAADD4//7/AAAOAAUAADD4////AAAOAAUAADD4/wAAAAAOAAUAADD4/wEAAAAOAAUAADD4/wIAAAAOAAUAADD4/wMAAAAOAAUAADD4/wQAAAAOAAUAABD4/wUAAAAOAAUAABD5//r/AAADAAEAAAD5//v/AAADAAEAAAD5//z/AAADAAEAAAD5//3/AAADAAEAAAD5//7/AAADAAEAAAD5////AAADAAEAAAD5/wAAAAADAAEAAAD5/wEAAAADAAEAAAD5/wIAAAADAAEAAAD5/wMAAAADAAEAAAD5/wQAAAADAAEAAAD5/wUAAAADAAEAAAD6//r/AAAOAAUAAAD6//v/AAAOAAUAAAD6//z/AAAOAAUAAAD6//3/AAAOAAUAAAD6//7/AAAOAAUAAAD6////AAAOAAUAAAD6/wAAAAAOAAUAAAD6/wEAAAAOAAUAAAD6/wIAAAAOAAUAAAD6/wMAAAAOAAUAAAD6/wQAAAAOAAUAAAD6/wUAAAAOAAUAAAA=")
+tile_set = ExtResource("1_1jve8")
+
+[node name="Cams" parent="." unique_id=147085586 instance=ExtResource("2_0wu3x")]
 
 [node name="OverworldCam" parent="Cams" index="0"]
 limit_left = -288
@@ -540,14 +418,17 @@ limit_top = -192
 limit_right = 352
 limit_bottom = 192
 
-[node name="TileMap2" type="TileMap" parent="."]
+[node name="TileMap2" type="Node2D" parent="." unique_id=1540896111 node_paths=PackedStringArray("Map")]
 visible = false
-tile_set = ExtResource("3_odnhq")
-format = 2
-layer_0/tile_data = PackedInt32Array(-196615, 1, 0, -131079, 1, 0, -65543, 1, 0, -7, 1, 0, 65529, 1, 0, 131065, 1, 0, 196601, 1, 0, 262137, 1, 0, 327673, 1, 0, 393209, 1, 0, -327687, 1, 0, -262151, 1, 0, -327689, 1, 0, -262153, 1, 0, -196617, 1, 0, -131081, 1, 0, -65545, 1, 0, -9, 1, 0, 65527, 1, 0, 131063, 1, 0, 196599, 1, 0, 262135, 1, 0, 327671, 1, 0, -327688, 1, 0, -262152, 1, 0, -196616, 1, 0, -131080, 1, 0, -65544, 1, 0, -8, 1, 0, 65528, 1, 0, 131064, 1, 0, 196600, 1, 0, 262136, 1, 0, 327672, 1, 0, 393207, 1, 0, 393208, 1, 0, -65542, 1, 0, -6, 1, 0, 65530, 1, 0, 131066, 1, 0, 196602, 1, 0, 262138, 1, 0, 327674, 1, 0, 393210, 1, 0, -65541, 1, 0, -5, 1, 0, 65531, 1, 0, 131067, 1, 0, 196603, 1, 0, 262139, 1, 0, 327675, 1, 0, 393211, 1, 0, -327686, 1, 0, -262150, 1, 0, -196614, 1, 0, -131078, 1, 0, -327685, 1, 0, -262149, 1, 0, -196613, 1, 0, -131077, 1, 0, -327684, 1, 0, -262148, 1, 0, -196612, 1, 0, -131076, 1, 0, -65540, 1, 0, -4, 1, 0, 65532, 1, 0, 131068, 1, 0, 196604, 1, 0, 262140, 1, 0, 327676, 1, 0, -327683, 1, 0, -262147, 1, 0, -196611, 1, 0, -131075, 1, 0, -65539, 1, 0, -3, 1, 0, 65533, 1, 0, 131069, 1, 0, 196605, 1, 0, 262141, 1, 0, 327677, 1, 0, -327682, 1, 0, -262146, 1, 0, -196610, 1, 0, -131074, 1, 0, -65538, 1, 0, -2, 1, 0, 65534, 1, 0, 131070, 1, 0, 196606, 1, 0, 262142, 1, 0, 327678, 1, 0, -327681, 1, 0, -262145, 1, 0, -196609, 1, 0, -131073, 1, 0, -65537, 1, 0, -1, 1, 0, 65535, 1, 0, 131071, 1, 0, 196607, 1, 0, 262143, 1, 0, 327679, 1, 0, -393216, 1, 0, -327680, 1, 0, -262144, 1, 0, -196608, 1, 0, -131072, 1, 0, -65536, 1, 0, 0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, -393215, 1, 0, -327679, 1, 0, -262143, 1, 0, -196607, 1, 0, -131071, 1, 0, -65535, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 262145, 1, 0, -393214, 1, 0, -327678, 1, 0, -262142, 1, 0, -196606, 1, 0, -131070, 1, 0, -65534, 1, 0, 2, 1, 0, 65538, 1, 0, 131074, 1, 0, 196610, 1, 0, 262146, 1, 0, -393213, 1, 0, -327677, 1, 0, -262141, 1, 0, -196605, 1, 0, -131069, 1, 0, -65533, 1, 0, 3, 1, 0, 65539, 1, 0, 131075, 1, 0, 196611, 1, 0, 262147, 1, 0, -393212, 1, 0, -327676, 1, 0, -262140, 1, 0, -196604, 1, 0, -131068, 1, 0, -65532, 1, 0, 4, 1, 0, 65540, 1, 0, 131076, 1, 0, 196612, 1, 0, 262148, 1, 0, -393211, 1, 0, -327675, 1, 0, -262139, 1, 0, -196603, 1, 0, -131067, 1, 0, -65531, 1, 0, 5, 1, 0, 65541, 1, 0, 131077, 1, 0, 196613, 1, 0, 262149, 1, 0, -393210, 1, 0, -327674, 1, 0, -262138, 1, 0, -196602, 1, 0, -131066, 1, 0, -65530, 1, 0, 6, 1, 0, 65542, 1, 0, 131078, 1, 0, 196614, 1, 0, 262150, 1, 0, -393209, 1, 0, -327673, 1, 0, -262137, 1, 0, -196601, 1, 0, -131065, 1, 0, -65529, 1, 0, 7, 1, 0, 65543, 1, 0, 131079, 1, 0, 196615, 1, 0, 262151, 1, 0, 393212, 1, 0, 393213, 1, 0, 393214, 1, 0, 393215, 1, 0, 327680, 1, 0, 327681, 1, 0, 327682, 1, 0, 327683, 1, 0, 327684, 1, 0, 327685, 1, 0, 327686, 1, 0, 327687, 1, 0, -393208, 1, 0, -327672, 1, 0, -262136, 1, 0, 196616, 1, 0, 262152, 1, 0, 327688, 1, 0, -196598, 196609, 0, -131062, 196609, 0, -65526, 196609, 0, 10, 196609, 0, 65546, 196609, 0, 131082, 196609, 0, 196618, 1, 0, 262154, 1, 0, 327690, 1, 0, 327689, 1, 0, 262153, 1, 0, 196617, 1, 0, 131081, 1, 0, 65545, 1, 0, 9, 1, 0, -65527, 1, 0, -131063, 1, 0, -196599, 1, 0, -262135, 1, 0, -327671, 1, 0, -393207, 1, 0, -393206, 1, 0, -327670, 1, 0, -262134, 1, 0, -196600, 1, 0, -131064, 1, 0, -65528, 1, 0, 8, 1, 0, 65544, 1, 0, 131080, 1, 0)
 script = ExtResource("4_bgxd8")
+Map = [NodePath("Layer0")]
 
-[node name="NPC" parent="." instance=ExtResource("5_l0xyo")]
+[node name="Layer0" type="TileMapLayer" parent="TileMap2" unique_id=170531910]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD5//z/AQAAAAAAAAD5//3/AQAAAAAAAAD5//7/AQAAAAAAAAD5////AQAAAAAAAAD5/wAAAQAAAAAAAAD5/wEAAQAAAAAAAAD5/wIAAQAAAAAAAAD5/wMAAQAAAAAAAAD5/wQAAQAAAAAAAAD5/wUAAQAAAAAAAAD5//r/AQAAAAAAAAD5//v/AQAAAAAAAAD3//r/AQAAAAAAAAD3//v/AQAAAAAAAAD3//z/AQAAAAAAAAD3//3/AQAAAAAAAAD3//7/AQAAAAAAAAD3////AQAAAAAAAAD3/wAAAQAAAAAAAAD3/wEAAQAAAAAAAAD3/wIAAQAAAAAAAAD3/wMAAQAAAAAAAAD3/wQAAQAAAAAAAAD4//r/AQAAAAAAAAD4//v/AQAAAAAAAAD4//z/AQAAAAAAAAD4//3/AQAAAAAAAAD4//7/AQAAAAAAAAD4////AQAAAAAAAAD4/wAAAQAAAAAAAAD4/wEAAQAAAAAAAAD4/wIAAQAAAAAAAAD4/wMAAQAAAAAAAAD4/wQAAQAAAAAAAAD3/wUAAQAAAAAAAAD4/wUAAQAAAAAAAAD6//7/AQAAAAAAAAD6////AQAAAAAAAAD6/wAAAQAAAAAAAAD6/wEAAQAAAAAAAAD6/wIAAQAAAAAAAAD6/wMAAQAAAAAAAAD6/wQAAQAAAAAAAAD6/wUAAQAAAAAAAAD7//7/AQAAAAAAAAD7////AQAAAAAAAAD7/wAAAQAAAAAAAAD7/wEAAQAAAAAAAAD7/wIAAQAAAAAAAAD7/wMAAQAAAAAAAAD7/wQAAQAAAAAAAAD7/wUAAQAAAAAAAAD6//r/AQAAAAAAAAD6//v/AQAAAAAAAAD6//z/AQAAAAAAAAD6//3/AQAAAAAAAAD7//r/AQAAAAAAAAD7//v/AQAAAAAAAAD7//z/AQAAAAAAAAD7//3/AQAAAAAAAAD8//r/AQAAAAAAAAD8//v/AQAAAAAAAAD8//z/AQAAAAAAAAD8//3/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD8/wIAAQAAAAAAAAD8/wMAAQAAAAAAAAD8/wQAAQAAAAAAAAD9//r/AQAAAAAAAAD9//v/AQAAAAAAAAD9//z/AQAAAAAAAAD9//3/AQAAAAAAAAD9//7/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAD9/wMAAQAAAAAAAAD9/wQAAQAAAAAAAAD+//r/AQAAAAAAAAD+//v/AQAAAAAAAAD+//z/AQAAAAAAAAD+//3/AQAAAAAAAAD+//7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAD+/wQAAQAAAAAAAAD///r/AQAAAAAAAAD///v/AQAAAAAAAAD///z/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAAAAAD//wQAAQAAAAAAAAAAAPr/AQAAAAAAAAAAAPv/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAP3/AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAABAPr/AQAAAAAAAAABAPv/AQAAAAAAAAABAPz/AQAAAAAAAAABAP3/AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAMAAQAAAAAAAAABAAQAAQAAAAAAAAACAPr/AQAAAAAAAAACAPv/AQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQAAAAAAAAACAAQAAQAAAAAAAAADAPr/AQAAAAAAAAADAPv/AQAAAAAAAAADAPz/AQAAAAAAAAADAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAADAAQAAQAAAAAAAAAEAPr/AQAAAAAAAAAEAPv/AQAAAAAAAAAEAPz/AQAAAAAAAAAEAP3/AQAAAAAAAAAEAP7/AQAAAAAAAAAEAP//AQAAAAAAAAAEAAAAAQAAAAAAAAAEAAEAAQAAAAAAAAAEAAIAAQAAAAAAAAAEAAMAAQAAAAAAAAAEAAQAAQAAAAAAAAAFAPr/AQAAAAAAAAAFAPv/AQAAAAAAAAAFAPz/AQAAAAAAAAAFAP3/AQAAAAAAAAAFAP7/AQAAAAAAAAAFAP//AQAAAAAAAAAFAAAAAQAAAAAAAAAFAAEAAQAAAAAAAAAFAAIAAQAAAAAAAAAFAAMAAQAAAAAAAAAFAAQAAQAAAAAAAAAGAPr/AQAAAAAAAAAGAPv/AQAAAAAAAAAGAPz/AQAAAAAAAAAGAP3/AQAAAAAAAAAGAP7/AQAAAAAAAAAGAP//AQAAAAAAAAAGAAAAAQAAAAAAAAAGAAEAAQAAAAAAAAAGAAIAAQAAAAAAAAAGAAMAAQAAAAAAAAAGAAQAAQAAAAAAAAAHAPr/AQAAAAAAAAAHAPv/AQAAAAAAAAAHAPz/AQAAAAAAAAAHAP3/AQAAAAAAAAAHAP7/AQAAAAAAAAAHAP//AQAAAAAAAAAHAAAAAQAAAAAAAAAHAAEAAQAAAAAAAAAHAAIAAQAAAAAAAAAHAAMAAQAAAAAAAAAHAAQAAQAAAAAAAAD8/wUAAQAAAAAAAAD9/wUAAQAAAAAAAAD+/wUAAQAAAAAAAAD//wUAAQAAAAAAAAAAAAUAAQAAAAAAAAABAAUAAQAAAAAAAAACAAUAAQAAAAAAAAADAAUAAQAAAAAAAAAEAAUAAQAAAAAAAAAFAAUAAQAAAAAAAAAGAAUAAQAAAAAAAAAHAAUAAQAAAAAAAAAIAPr/AQAAAAAAAAAIAPv/AQAAAAAAAAAIAPz/AQAAAAAAAAAIAAMAAQAAAAAAAAAIAAQAAQAAAAAAAAAIAAUAAQAAAAAAAAAKAP3/AQADAAAAAAAKAP7/AQADAAAAAAAKAP//AQADAAAAAAAKAAAAAQADAAAAAAAKAAEAAQADAAAAAAAKAAIAAQADAAAAAAAKAAMAAQAAAAAAAAAKAAQAAQAAAAAAAAAKAAUAAQAAAAAAAAAJAAUAAQAAAAAAAAAJAAQAAQAAAAAAAAAJAAMAAQAAAAAAAAAJAAIAAQAAAAAAAAAJAAEAAQAAAAAAAAAJAAAAAQAAAAAAAAAJAP//AQAAAAAAAAAJAP7/AQAAAAAAAAAJAP3/AQAAAAAAAAAJAPz/AQAAAAAAAAAJAPv/AQAAAAAAAAAJAPr/AQAAAAAAAAAKAPr/AQAAAAAAAAAKAPv/AQAAAAAAAAAKAPz/AQAAAAAAAAAIAP3/AQAAAAAAAAAIAP7/AQAAAAAAAAAIAP//AQAAAAAAAAAIAAAAAQAAAAAAAAAIAAEAAQAAAAAAAAAIAAIAAQAAAAAAAAA=")
+tile_set = ExtResource("3_odnhq")
+
+[node name="NPC" parent="." unique_id=1004591983 instance=ExtResource("5_l0xyo")]
 
 [node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
 TimelineGroup = Array[Object]([SubResource("Resource_t5uuj")])
@@ -555,19 +436,20 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
+frame = 10
 
-[node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" instance=ExtResource("7_djoto")]
+[node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" unique_id=1573220088 instance=ExtResource("7_djoto")]
 
 [node name="AnimationPlayer" parent="NPC/CollisionShape2D/Sprite2D" index="1"]
 process_mode = 4
 
-[node name="Borders" parent="." instance=ExtResource("8_mhf5p")]
+[node name="Borders" parent="." unique_id=1558600737 instance=ExtResource("8_mhf5p")]
 position = Vector2(-32, 48)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
 polygon = PackedVector2Array(392, 152, 184, 152, 184, 168, -96, 168, -96, 152, -144, 152, -144, 168, -208, 168, -208, 152, -264, 152, -264, 120, -312, 120, -312, -216, -264, -216, -264, -248, -208, -248, -208, -264, -144, -264, -144, -248, -96, -248, -96, -264, 184, -264, 184, -248, 392, -248, 392, -152, 424, -152, 424, 56, 392, 56, 392, 144, 384, 144, 384, 48, 416, 48, 416, -144, 384, -144, 384, -240, 176, -240, 176, -256, -88, -256, -88, -240, -152, -240, -152, -256, -200, -256, -200, -240, -256, -240, -256, -208, -304, -208, -304, 112, -256, 112, -256, 144, -200, 144, -200, 160, -152, 160, -152, 144, -88, 144, -88, 160, 176, 160, 176, 144, 392, 144)
 
-[node name="Door" parent="." instance=ExtResource("9_gr6nm")]
+[node name="Door" parent="." unique_id=53159140 instance=ExtResource("9_gr6nm")]
 position = Vector2(-208, -196)
 collision_layer = 2
 Scene = 2
@@ -578,9 +460,9 @@ MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0"]
 position = Vector2(0, 4)
-shape = SubResource("RectangleShape2D_vt1oy")
+shape = SubResource("RectangleShape2D_rttg1")
 
-[node name="Door2" parent="." instance=ExtResource("9_gr6nm")]
+[node name="Door2" parent="." unique_id=469625180 instance=ExtResource("9_gr6nm")]
 position = Vector2(-208, 200)
 collision_layer = 2
 Scene = 12
@@ -590,9 +472,9 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
-shape = SubResource("RectangleShape2D_btlge")
+shape = SubResource("RectangleShape2D_gfdbp")
 
-[node name="Door4" parent="." instance=ExtResource("9_gr6nm")]
+[node name="Door4" parent="." unique_id=1511429450 instance=ExtResource("9_gr6nm")]
 position = Vector2(-312, 0)
 rotation = 1.5708
 Scene = 5
@@ -600,53 +482,53 @@ LoadPosition = Vector2(240, 0)
 
 [node name="CollisionShape2D" parent="Door4" index="0"]
 position = Vector2(-1.49568e-05, -4)
-shape = SubResource("RectangleShape2D_y2nor")
+shape = SubResource("RectangleShape2D_8scae")
 
-[node name="Door5" parent="." instance=ExtResource("9_gr6nm")]
+[node name="Door5" parent="." unique_id=743065883 instance=ExtResource("9_gr6nm")]
 position = Vector2(8, 200)
 Scene = 12
 LoadPosition = Vector2(40, -208)
 
 [node name="CollisionShape2D" parent="Door5" index="0"]
 position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_lriiy")
+shape = SubResource("RectangleShape2D_eqhmi")
 
-[node name="Door6" parent="." instance=ExtResource("9_gr6nm")]
+[node name="Door6" parent="." unique_id=591710242 instance=ExtResource("9_gr6nm")]
 position = Vector2(8, -199)
 Scene = 2
 LoadPosition = Vector2(176, 272)
 
 [node name="CollisionShape2D" parent="Door6" index="0"]
 position = Vector2(2, 0)
-shape = SubResource("RectangleShape2D_lriiy")
+shape = SubResource("RectangleShape2D_drw78")
 
-[node name="Borders2" parent="." instance=ExtResource("8_mhf5p")]
+[node name="Borders2" parent="." unique_id=626260004 instance=ExtResource("8_mhf5p")]
 position = Vector2(-208, -200)
 collision_layer = 1
 
 [node name="CollisionPolygon2D" parent="Borders2" index="0"]
 polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 
-[node name="Borders3" parent="." instance=ExtResource("8_mhf5p")]
+[node name="Borders3" parent="." unique_id=1906176475 instance=ExtResource("8_mhf5p")]
 position = Vector2(-208, 200)
 collision_layer = 1
 
 [node name="CollisionPolygon2D" parent="Borders3" index="0"]
 polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 
-[node name="Area2D" parent="." instance=ExtResource("10_5sil6")]
+[node name="Area2D" parent="." unique_id=1844407977 instance=ExtResource("10_5sil6")]
 position = Vector2(48, -168)
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(136, 48, -112, 48, -112, 152, 136, 152)
 
-[node name="Area2D2" parent="." instance=ExtResource("10_5sil6")]
+[node name="Area2D2" parent="." unique_id=1388101816 instance=ExtResource("10_5sil6")]
 position = Vector2(24, 88)
 
 [node name="CollisionPolygon2D" parent="Area2D2" index="0"]
 polygon = PackedVector2Array(160, -72, -88, -72, -88, 40, 160, 40)
 
-[node name="Enemy Spawner" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
+[node name="Enemy Spawner" parent="." unique_id=687152618 node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
 position = Vector2(24, -88)
 MainEnemies = Array[Object]([SubResource("Resource_ehv4y"), SubResource("Resource_qw1r2")])
 SideEnemies = Array[Object]([SubResource("Resource_cl2et"), SubResource("Resource_5g08o")])
@@ -655,14 +537,14 @@ EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, 100)])
 Scene = ExtResource("23_gqx6i")
 detectArea = NodePath("../Area2D")
 
-[node name="Enemy Spawner2" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
+[node name="Enemy Spawner2" parent="." unique_id=1803000264 node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
 position = Vector2(160, 64)
 MainEnemies = Array[Object]([SubResource("Resource_4rqrw"), SubResource("Resource_bf2di")])
 SideEnemies = Array[Object]([SubResource("Resource_v21ns"), SubResource("Resource_23fb8")])
 Scene = ExtResource("23_gqx6i")
 detectArea = NodePath("../Area2D2")
 
-[node name="Enemy Spawner3" parent="." node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
+[node name="Enemy Spawner3" parent="." unique_id=1376365390 node_paths=PackedStringArray("detectArea") instance=ExtResource("11_58jnk")]
 position = Vector2(8, 64)
 MainEnemies = Array[Object]([SubResource("Resource_6guei"), SubResource("Resource_5thmi")])
 SideEnemies = Array[Object]([SubResource("Resource_5ri7w"), SubResource("Resource_yhqlo")])

@@ -18,9 +18,9 @@ public partial class WaterCurrentPuzzle : PuzzleCheck
         for(int i = 0;i<CurrentArray.Count;i++){ //4
             AtlasCoords.Add(new Array<Array<Vector2I>>());
             Cells.Add(new Array<Vector2I>());
-            for (int j = 0;j<CurrentArray[i].Currents.Map.Count;j++){ //2
+            for (int j = 0;j<CurrentArray[i].Currents.Count;j++){ //2
                 AtlasCoords[i].Add(new Array<Vector2I>());
-                Array<Vector2I> Aux = CurrentArray[i].Currents.Map[j].GetUsedCells();
+                Array<Vector2I> Aux = CurrentArray[i].Currents[j].GetUsedCells();
                 for(int k = 0; k < Aux.Count;k++){ //X
                     Cells[i].Add(Aux[k]);
                     AtlasCoords[i][j].Add(DataTileMap[j+1].GetCellAtlasCoords(Aux[k]));
@@ -30,12 +30,12 @@ public partial class WaterCurrentPuzzle : PuzzleCheck
         base._Ready();
     }
     void ChangeMap(int CurrentIndex){
-        DataTileMap CurrentCurrents = CurrentArray[CurrentIndex].Currents;
+        Array<TileMapLayer> CurrentCurrents = CurrentArray[CurrentIndex].Currents;
         //int EventIndex = CurrentArray[CurrentIndex].CurrentEventIndex;
         Flags flags = GameManager.Instance.Data.Flags;
         if(!flags.PuzzleFlags[FlagIndex]){
-            CurrentCurrents.Map[0].Show();
-            CurrentCurrents.Map[1].Hide();
+            CurrentCurrents[0].Show();
+            CurrentCurrents[1].Hide();
 
 
             int CellPointer;
@@ -46,8 +46,8 @@ public partial class WaterCurrentPuzzle : PuzzleCheck
             }   
         }
         else{
-            CurrentCurrents.Map[1].Show();
-            CurrentCurrents.Map[0].Hide();     
+            CurrentCurrents[1].Show();
+            CurrentCurrents[0].Hide();     
 
             int CellPointer;
             Array<Vector2I> Aux = Cells[CurrentIndex];

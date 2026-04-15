@@ -4,5 +4,5 @@ using System;
 
 public partial class WaterCurrents : Node
 {
-    [Export] public DataTileMap Currents;
+    [Export] public Array<TileMapLayer> Currents;
 }
