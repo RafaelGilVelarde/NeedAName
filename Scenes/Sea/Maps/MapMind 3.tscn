@@ -105,24 +105,33 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAD///z/AAAAABIAACAAAPz/AAAAABMAACABAPz/AAAAABMAACACAPz/AAAAAA4AADD///3/AAAAABIAAAAAAP3/AAAAABMAAAABAP3/AAAAABMAAAACAP3/AAAAAA4AABD///r/AAAAAA4AACD///v/AAAAAA4AAAAAAPr/AAAAAA8AACAAAPv/AAAAAA8AAAABAPr/AAAAAA8AACABAPv/AAAAAA8AAAACAPr/AAAAABIAADACAPv/AAAAABIAABA=")
 tile_set = ExtResource("1_66c23")
 
-[node name="Map2" type="TileMapLayer" parent="." unique_id=536094616]
+[node name="Node2D" type="Node2D" parent="." unique_id=873277338]
+top_level = true
+z_index = -1
+z_as_relative = false
+
+[node name="Map2" type="TileMapLayer" parent="Node2D" unique_id=536094616]
+modulate = Color(4, 0, 1, 1)
 use_parent_material = true
 tile_map_data = PackedByteArray("AADr/wgAAAAAABMAACDr/wkAAAAAABAAAADr/woAAAAAABMAAADs/wgAAAAAABMAACDs/wkAAAAAABAAAADs/woAAAAAABMAAADt/wgAAAAAAA4AADDt/wkAAAAAAA0AABDt/woAAAAAAA4AABDv//v/AAAAAA4AAFDv//z/AAAAABMAAHDv//3/AAAAABMAAHDv//7/AAAAABMAAHDv////AAAAABMAAHDv/wAAAAAAABMAAHDv/wEAAAAAABMAAHDv/wIAAAAAABMAAHDv/wMAAAAAABMAAHDv/wQAAAAAABMAAHDv/wUAAAAAABMAAHDv/wYAAAAAABIAAHDw//v/AAAAABMAACDw//z/AAAAABQAAFDw//3/AAAAABMAAGDw//7/AAAAABMAAGDw////AAAAABMAAGDw/wAAAAAAABMAAGDw/wEAAAAAABMAAGDw/wIAAAAAABMAAGDw/wMAAAAAABMAAGDw/wQAAAAAABMAAGDw/wUAAAAAABMAAGDw/wYAAAAAABIAAGDx//v/AAAAABMAACDx//z/AAAAABMAAADy//v/AAAAABMAACDy//z/AAAAABMAAADz//v/AAAAABMAACDz//z/AAAAABMAAAD0//v/AAAAABMAACD0//z/AAAAABMAAAD0/wcAAAAAABIAACD0/wgAAAAAABIAAAD0/wkAAAAAAA4AACD0/woAAAAAAA4AAAD1//v/AAAAABMAACD1//z/AAAAABMAAAD1/wcAAAAAABMAACD1/wgAAAAAABMAAAD1/wkAAAAAAA8AACD1/woAAAAAAA8AAAD2//v/AAAAABMAACD2//z/AAAAABMAAAD2/wcAAAAAABMAACD2/wgAAAAAABMAAAD2/wkAAAAAAA8AACD2/woAAAAAAA8AAAD3//v/AAAAAA4AADD3//z/AAAAAA4AABD3/wYAAAAAAA4AAFD3/wcAAAAAABQAABD3/wgAAAAAABMAAAD3/wkAAAAAAA8AACD3/woAAAAAAA8AAAD4/wYAAAAAABMAACD4/wcAAAAAABQAAFD4/wgAAAAAAA4AABD4/wkAAAAAAA8AACD4/woAAAAAAA8AAAD5/wYAAAAAABMAACD5/wcAAAAAABMAAAD5/wgAAAAAAA4AACD5/wkAAAAAABQAAGD5/woAAAAAAA8AAAD6/wYAAAAAABMAACD6/wcAAAAAABMAAAD6/wgAAAAAAA8AACD6/wkAAAAAABQAACD6/woAAAAAAA4AAGD7/wYAAAAAABMAACD7/wcAAAAAABMAAAD7/wgAAAAAAA8AACD7/wkAAAAAAA8AAAD8/wYAAAAAABMAACD8/wcAAAAAABMAAAD8/wgAAAAAAA8AACD8/wkAAAAAAA8AAAD9/wYAAAAAAA4AADD9/wcAAAAAAA4AABD9/wgAAAAAABIAADD9/wkAAAAAABIAABA=")
 tile_set = ExtResource("1_66c23")
 
-[node name="Map3" type="TileMapLayer" parent="." unique_id=1128848757]
+[node name="Map3" type="TileMapLayer" parent="Node2D" unique_id=1128848757]
 visible = false
+modulate = Color(3, 1, 1.2, 1)
 use_parent_material = true
 tile_map_data = PackedByteArray("AADr/wgAAAAAAA8AACDr/wkAAAAAAAwAAADr/woAAAAAAA8AAADs/wgAAAAAAA8AACDs/wkAAAAAAAwAAADs/woAAAAAAA8AAADt/wgAAAAAABIAADDt/woAAAAAABIAABDv//v/AAAAAA4AACDv//z/AAAAABMAAFDv//3/AAAAABMAAFDv//7/AAAAABMAAFDv////AAAAABMAAFDv/wAAAAAAABMAAFDv/wEAAAAAABMAAFDv/wIAAAAAABMAAFDv/wMAAAAAABMAAFDv/wQAAAAAABMAAFDv/wUAAAAAABMAAFDv/wYAAAAAAA4AAHDw//v/AAAAABMAADDw//z/AAAAABQAACDw//3/AAAAABMAAEDw//7/AAAAABMAAEDw////AAAAABMAAEDw/wAAAAAAABMAAEDw/wEAAAAAABMAAEDw/wIAAAAAABMAAEDw/wMAAAAAABMAAEDw/wQAAAAAABMAAEDw/wUAAAAAABMAAEDw/wYAAAAAAA4AAGDx//v/AAAAABMAADDx//z/AAAAABMAABDy//v/AAAAABMAADDy//z/AAAAABMAABDz//v/AAAAABMAADDz//z/AAAAABMAABD0//v/AAAAABMAADD0//z/AAAAABMAABD0/wcAAAAAAA4AACD0/wgAAAAAAA4AAAD0/wkAAAAAABIAACD0/woAAAAAABIAAAD1//v/AAAAABMAADD1//z/AAAAABMAABD1/wcAAAAAAA8AACD1/wgAAAAAAA8AAAD1/wkAAAAAABMAACD1/woAAAAAABMAAAD2//v/AAAAABMAADD2//z/AAAAABMAABD2/wcAAAAAAA8AACD2/wgAAAAAAA8AAAD2/wkAAAAAABMAACD2/woAAAAAABMAAAD3//v/AAAAABIAADD3//z/AAAAABIAABD3/wYAAAAAAA4AACD3/wcAAAAAABQAAGD3/wgAAAAAAA8AAAD3/wkAAAAAABMAACD3/woAAAAAABMAAAD4/wYAAAAAAA8AACD4/wcAAAAAABQAACD4/wgAAAAAAA4AAGD4/wkAAAAAABMAACD4/woAAAAAABMAAAD5/wYAAAAAAA8AACD5/wcAAAAAAA8AAAD5/wgAAAAAAA4AAFD5/wkAAAAAABUAAGD5/woAAAAAABMAAAD6/wYAAAAAAA8AACD6/wcAAAAAAA8AAAD6/wgAAAAAABMAACD6/wkAAAAAABQAAFD6/woAAAAAAA4AABD7/wYAAAAAAA8AACD7/wcAAAAAAA8AAAD7/wgAAAAAABMAACD7/wkAAAAAABMAAAD8/wYAAAAAAA8AACD8/wcAAAAAAA8AAAD8/wgAAAAAABMAACD8/wkAAAAAABMAAAD9/wYAAAAAABIAADD9/wcAAAAAABIAABD9/wgAAAAAAA4AADD9/wkAAAAAAA4AABDt/wkAAAAAABEAABA=")
 tile_set = ExtResource("1_66c23")
 
-[node name="Map4" type="TileMapLayer" parent="." unique_id=973520100]
+[node name="Map4" type="TileMapLayer" parent="Node2D" unique_id=973520100]
+modulate = Color(1, 4, 1, 1)
 use_parent_material = true
 tile_map_data = PackedByteArray("AADv/wsAAAAAABIAAFDw/wsAAAAAABIAAEA=")
 tile_set = ExtResource("1_66c23")
 
-[node name="Map5" type="TileMapLayer" parent="." unique_id=1043177912]
+[node name="Map5" type="TileMapLayer" parent="Node2D" unique_id=1043177912]
 visible = false
+modulate = Color(3, 3, 1, 1)
 use_parent_material = true
 tile_map_data = PackedByteArray("AADv/wsAAAAAAA4AAFDw/wsAAAAAAA4AAEA=")
 tile_set = ExtResource("1_66c23")
@@ -179,7 +188,7 @@ FlagIndex = 4
 
 [node name="Currents" type="Node" parent="Puzzle" unique_id=1128858705 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_6p4sy")
-Currents = [NodePath("../../Map2"), NodePath("../../Map3")]
+Currents = [NodePath("../../Node2D/Map2"), NodePath("../../Node2D/Map3")]
 
 [node name="Puzzle2" type="Node" parent="." unique_id=471951488 node_paths=PackedStringArray("CurrentArray", "DataTileMaps")]
 script = ExtResource("7_eas6n")
@@ -192,60 +201,40 @@ FlagIndex = 5
 
 [node name="Currents2" type="Node" parent="Puzzle2" unique_id=827981923 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_6p4sy")
-Currents = [NodePath("../../Map4"), NodePath("../../Map5")]
+Currents = [NodePath("../../Node2D/Map4"), NodePath("../../Node2D/Map5")]
 
 [node name="CurrentSwitch" parent="." unique_id=924694810 instance=ExtResource("9_q35mv")]
 position = Vector2(120, 264)
 
-[node name="CollisionShape2D" parent="CurrentSwitch" index="0" node_paths=PackedStringArray("Check")]
+[node name="CollisionShape2D" parent="CurrentSwitch" index="0" unique_id=1391934257 node_paths=PackedStringArray("Check")]
 Check = NodePath("../../Puzzle2")
 CheckAtStart = true
 Type = 0
 Colors = Array[Color]([Color(0.482353, 0.894118, 0.929412, 1), Color(0.317647, 0.54902, 1, 1)])
 
-[node name="Sprite" parent="CurrentSwitch" index="1"]
-visible = false
-texture = null
-
-[node name="Water" parent="CurrentSwitch/Sprite2D" index="0"]
-visible = false
+[node name="Water" parent="CurrentSwitch/Sprite2D" parent_id_path=PackedInt32Array(924694810, 467203574) index="0" unique_id=796026312]
 modulate = Color(0.482353, 0.894118, 0.929412, 1)
-texture = null
-frame = 0
-
-[node name="Shine" parent="CurrentSwitch/Sprite2D" index="1"]
-visible = false
-texture = null
-frame = 0
-
-[node name="AnimationPlayer" parent="CurrentSwitch" index="3"]
-autoplay = &"default"
 
 [node name="CurrentSwitch2" parent="." unique_id=349535739 instance=ExtResource("9_q35mv")]
 position = Vector2(-144, -200)
 
-[node name="CollisionShape2D" parent="CurrentSwitch2" index="0" node_paths=PackedStringArray("Check")]
+[node name="CollisionShape2D" parent="CurrentSwitch2" index="0" unique_id=1391934257 node_paths=PackedStringArray("Check")]
 Check = NodePath("../../Puzzle")
 CheckAtStart = true
 Type = 0
 Colors = Array[Color]([Color(4, 0, 1, 1), Color(0.513726, 0.101961, 0.976471, 1)])
 
-[node name="Sprite" parent="CurrentSwitch2" index="1"]
+[node name="Sprite" parent="CurrentSwitch2" index="1" unique_id=1975938561]
 visible = false
 texture = null
 
-[node name="Water" parent="CurrentSwitch2/Sprite2D" index="0"]
+[node name="Water" parent="CurrentSwitch2/Sprite2D" parent_id_path=PackedInt32Array(349535739, 467203574) index="0" unique_id=796026312]
 visible = false
 texture = null
-frame = 0
 
-[node name="Shine" parent="CurrentSwitch2/Sprite2D" index="1"]
+[node name="Shine" parent="CurrentSwitch2/Sprite2D" parent_id_path=PackedInt32Array(349535739, 467203574) index="1" unique_id=1580217123]
 visible = false
 texture = null
-frame = 0
-
-[node name="AnimationPlayer" parent="CurrentSwitch2" index="3"]
-autoplay = &"default"
 
 [node name="Borders" parent="." unique_id=1369305086 instance=ExtResource("10_p1f8h")]
 
