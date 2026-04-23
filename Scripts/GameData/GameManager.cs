@@ -20,7 +20,6 @@ public partial class GameManager : Node
 	[Export] PackedScene[] CharacterPrefabs;
 	[Export] public PackedScene[] TextEffectPrefabs;
 	[Export] public Array<PlayerController> Characters, Followers = new Array<PlayerController>();
-	[Export] public PlayerController Leader;
 	[Export] public Camera OverworldCam, BattleCam;
 	[Export] PackedScene StartScene;
 	[Export] public Scene CurrentScene;
@@ -188,8 +187,9 @@ public partial class GameManager : Node
 	{
 		A.Leader = false;
 		B.Leader = true;
-		Leader = B;
-		A.OverworldCollider.Disabled = false;
+		A.OverworldCollider.Disabled = true;
+		B.OverworldCollider.Disabled = false;
+		A.SetControllable(false);						
 		controller = B;
 		B.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = false;
 		for (int i = 0; i < Characters.Count; i++)
@@ -205,6 +205,7 @@ public partial class GameManager : Node
 		}
 		for (int i = 0; i < Followers.Count; i++)
 		{
+			Characters[i].Controller = B;
 			if (Followers[i] != A)
 			{
 				A._Follow -= Followers[i].FollowLeader;
@@ -214,6 +215,9 @@ public partial class GameManager : Node
 				B._Follow += Followers[i].FollowLeader;
 			}
 		}
+
+		B.Parent.Position = A.Parent.Position;
+		
 	}
 
 	public void BattleStart()

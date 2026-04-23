@@ -16,7 +16,7 @@ public partial class CutscenePlayer : AnimationPlayer
 
         int Index = CutsceneNames.IndexOf(Animation);
         GameManager Game = GameManager.Instance;
-        Game.Leader.OverworldCollider.Disabled = true;
+        Game.controller.OverworldCollider.Disabled = true;
         Game.OverworldCam.PositionSmoothingEnabled = false;
         Game.BattleCam.PositionSmoothingEnabled = false;
         Game.OverworldCam.Reparent(Game.OverworldCam.CameraParent);

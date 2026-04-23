@@ -47,6 +47,22 @@ public partial class PlayerController : OverworldController
 						Interactable.interact(this);
 					}
 				}
+				if(Input.IsActionJustPressed("Deny")){
+					GameManager Game = GameManager.Instance;
+					if (Game.Characters.Count > 1)
+					{
+						int index = Game.Characters.IndexOf(this);
+						Debug.WriteLine("Changing to "+ Game.Characters[(index + 1) % Game.Characters.Count].Parent.Name);
+						Game.ChangeLeader(this,Game.Characters[(index + 1) % Game.Characters.Count]);
+						Debug.WriteLine("Controller: "+ Controller.Parent.Name);
+
+						SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1);
+						SwitchTimer.Timeout+= () =>
+						{
+							Controller.SetControllable(true);							
+						};
+					}
+				}
 				if(Input.IsActionJustPressed("Menu")){
 					MainMenu.Instance.OpenCloseMenu(true);
 					SetControllable(false);

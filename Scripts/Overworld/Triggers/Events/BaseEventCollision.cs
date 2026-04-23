@@ -104,7 +104,7 @@ public partial class BaseEventCollision : Area2D
         {
             int Index = Aux2.ToInt();
             Tween tween = CreateTween();
-            CharacterBody2D Chara = GameManager.Instance.Leader.Parent;
+            CharacterBody2D Chara = GameManager.Instance.controller.Parent;
             tween.TweenProperty(Chara, "position", Chara.GlobalPosition + PushOffset[Index],PushTimes[Index]);
         }
     }
