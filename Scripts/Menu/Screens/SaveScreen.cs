@@ -159,7 +159,7 @@ public partial class SaveScreen : MenuScreens
             case Action.Load:
                 ChangeState(State.ChooseSave,false);
                 MainMenu.Instance.ChangeState(0);
-                MainMenu.Instance.OpenCloseMenu(false);
+                MainMenu.Instance.OpenCloseMenu(false,false);
                 GameManager.Instance.Load(index);
             break;
             case Action.Delete:

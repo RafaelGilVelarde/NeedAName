@@ -475,6 +475,7 @@ TimelineGroup = Array[Object]([SubResource("Resource_attgv")])
 Effects = [NodePath("Item")]
 
 [node name="Item" parent="ItemPickup/ItemInteract" index="1" unique_id=946507474 node_paths=PackedStringArray("interact")]
+GameID = 6
 ItemsToGive = Array[Object]([SubResource("Resource_8ngnv")])
 interact = NodePath("..")
 

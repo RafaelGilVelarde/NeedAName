@@ -7,7 +7,7 @@ if {GameManager.Data.Flags.EventFlags[9]} == true:
 if {GameManager.Data.Flags.EventFlags[10]} == true:
 	Blobfish (Happy): Weeeeeeeeeeeeeee did it #id:38
 	Blobfish (Happy): Seeeee yaaaa #id:39
-[signal arg="Cutscene2"]
+[signal arg="Cutscene2_false"]
 [wait time="1.3"]
 "No Box-Dark": Congratulations! #id:3a
 "No Box-Dark": You made it through! #id:3b

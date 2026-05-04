@@ -1,10 +1,10 @@
-[gd_resource type="Resource" script_class="ItemBase" load_steps=2 format=3 uid="uid://5ql8hfdj1knt"]
+[gd_resource type="Resource" script_class="ItemBase" format=3 uid="uid://5ql8hfdj1knt"]
 
-[ext_resource type="Script" path="res://Scripts/Bases/Items/ItemBase.cs" id="1_dbkoi"]
+[ext_resource type="Script" uid="uid://wqjrfksocxm8" path="res://Scripts/Bases/Items/ItemBase.cs" id="1_dbkoi"]
 
 [resource]
 script = ExtResource("1_dbkoi")
-ID = 0
 Name = "Soul Memory"
 Description = "...Feels Familiar"
 type = 2
+HasUse = false

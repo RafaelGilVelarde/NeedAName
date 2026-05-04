@@ -22,6 +22,7 @@ public partial class Boss1 : BattleScene
 
         Game.Characters.Clear();
         Game.controller = null;
+        Game.CurrentScene = null;
         Game.OverworldCam = null;
         Game.BattleCam = null;
         Game.Data.Position = Vector2.Zero;

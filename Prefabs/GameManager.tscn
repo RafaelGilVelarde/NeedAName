@@ -87,6 +87,8 @@
 [ext_resource type="AudioStream" uid="uid://b1h132cvveply" path="res://Music/COLD STEEL.mp3" id="69_nrpw7"]
 [ext_resource type="Script" uid="uid://c1wi4uabu2om8" path="res://Scripts/Menu/Screens/SettingsScreen.cs" id="83_dsr41"]
 [ext_resource type="Script" uid="uid://bim17s3v71adb" path="res://Scripts/Menu/Buttons/LanguageButtons.cs" id="84_vc7uq"]
+[ext_resource type="PackedScene" uid="uid://pjpv7pe0n1hd" path="res://Prefabs/Audio/VolumeSettings.tscn" id="87_upy2s"]
+[ext_resource type="Script" uid="uid://gxqeynlstpj8" path="res://Scripts/Overworld/FollowerLists.cs" id="88_r22xg"]
 
 [sub_resource type="Resource" id="Resource_pgs4m"]
 resource_local_to_scene = true
@@ -100,6 +102,15 @@ EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="InputEventKey" id="InputEventKey_lhcts"]
 keycode = 90
@@ -114,9 +125,27 @@ Base = ExtResource("7_l4d53")
 
 [sub_resource type="Resource" id="Resource_8yfa3"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jdfak"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_jsd81"]
 script = ExtResource("9_ncips")
@@ -136,6 +165,7 @@ Def = 3
 SpAtk = 3
 SpDef = 3
 Speed = 8
+WP = null
 
 [sub_resource type="Resource" id="Resource_72ep1"]
 script = ExtResource("8_3wvmt")
@@ -153,6 +183,7 @@ EventKey = SubResource("InputEventKey_lhcts")
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
+Lv = null
 MaxHP = 1
 HP = 1
 Atk = 1
@@ -160,6 +191,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = null
 
 [sub_resource type="Resource" id="Resource_lu2dh"]
 script = ExtResource("5_wfrc5")
@@ -206,6 +238,7 @@ Def = 1
 SpAtk = 1
 SpDef = 1
 Speed = 1
+WP = null
 
 [sub_resource type="Resource" id="Resource_q6csy"]
 script = ExtResource("8_3wvmt")
@@ -224,6 +257,15 @@ EventKey = SubResource("InputEventKey_3xffd")
 
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="InputEventKey" id="InputEventKey_45kqj"]
 device = -1
@@ -252,11 +294,27 @@ Base = SubResource("Resource_f4gq8")
 
 [sub_resource type="Resource" id="Resource_mnm8f"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_n6jfa"]
 script = ExtResource("3_qc7bw")
 Lv = 5
+MaxHP = null
 HP = 10
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_gsllo"]
 script = ExtResource("8_3wvmt")
@@ -274,6 +332,15 @@ EventKey = SubResource("InputEventKey_45kqj")
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="InputEventKey" id="InputEventKey_nea8u"]
 device = -1
@@ -307,11 +374,27 @@ Base = SubResource("Resource_smiot")
 
 [sub_resource type="Resource" id="Resource_h61cx"]
 script = ExtResource("3_qc7bw")
+Lv = null
+MaxHP = null
+HP = null
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_dsrgr"]
 script = ExtResource("3_qc7bw")
 Lv = 5
+MaxHP = null
 HP = 20
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [sub_resource type="Resource" id="Resource_db7dj"]
 script = ExtResource("8_3wvmt")
@@ -358,6 +441,7 @@ CollisionMask = Array[int]([1])
 
 [sub_resource type="Resource" id="Resource_g78ca"]
 script = ExtResource("29_pofe2")
+Volume = Array[float]([1.0, 1.0, 1.0])
 
 [sub_resource type="Resource" id="Resource_vdtia"]
 script = ExtResource("30_mj7rj")
@@ -400,17 +484,20 @@ _data = {
 &"Transition": SubResource("Animation_qxqcl")
 }
 
-[node name="GameManager" type="Node" unique_id=1116159278 node_paths=PackedStringArray("Characters", "TransitionAnimator", "TransitionOverlay", "MainAudio")]
+[node name="GameManager" type="Node" unique_id=1116159278 node_paths=PackedStringArray("Characters", "FollowerLists", "TransitionAnimator", "TransitionOverlay", "MainAudio")]
 script = ExtResource("1_mg7l2")
 SavePath = "C:/Users/nosoy/Documents/SavesTest"
 Saves = Array[Object]([null, null, null, null, null, null])
 Data = SubResource("Resource_2cy41")
 Settings = SubResource("Resource_g78ca")
+SavesExist = null
+CurrentSaveExists = null
 InitialData = SubResource("Resource_2cy41")
 AreaMaps = Array[Object]([SubResource("Resource_vdtia")])
 CharacterPrefabs = Array[PackedScene]([ExtResource("3_1w6wv"), ExtResource("11_b1kte")])
 TextEffectPrefabs = Array[PackedScene]([ExtResource("13_xpiea")])
 Characters = []
+FollowerLists = NodePath("FollowLists")
 StartScene = ExtResource("44_nc1im")
 TransitionAnimator = NodePath("CanvasLayer2/TextureRect/AnimationPlayer")
 TransitionOverlay = NodePath("CanvasLayer2/TextureRect")
@@ -420,34 +507,38 @@ ExpDistance = 5.0
 MainAudio = NodePath("AudioStreamPlayer")
 BGMs = [ExtResource("64_ax4vy"), ExtResource("65_t85lt"), ExtResource("66_1o21s"), ExtResource("67_bbmdv"), ExtResource("68_if2d4"), ExtResource("67_vhbxj"), ExtResource("68_0vpbf"), ExtResource("69_nrpw7")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=727657809 node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
+[node name="Menu" type="CanvasLayer" parent="." unique_id=727657809 node_paths=PackedStringArray("MainButtons", "CurrentScreen", "Screens")]
 visible = false
+offset = Vector2(15, 15)
+transform = Transform2D(1, 0, 0, 1, 15, 15)
 script = ExtResource("42_2n8ol")
 MainButtons = NodePath("Node2D/VBoxContainer")
 CurrentScreen = NodePath("Node2D/Stats")
 Screens = [NodePath("Node2D/Stats"), NodePath("Node2D/Items"), null, NodePath("Node2D/Settings"), NodePath("Node2D/Saves")]
+PointerIndex = null
+State = null
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer" unique_id=889744830]
+[node name="Node2D" type="Node2D" parent="Menu" unique_id=889744830]
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D" unique_id=334471911]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D" unique_id=334471911]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/VBoxContainer" unique_id=1198719642]
+[node name="Button" type="Button" parent="Menu/Node2D/VBoxContainer" unique_id=1198719642]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
 action_mode = 0
 button_mask = 0
 text = "Stats"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Node2D/VBoxContainer" unique_id=736234272]
+[node name="Button2" type="Button" parent="Menu/Node2D/VBoxContainer" unique_id=736234272]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
 action_mode = 0
 button_mask = 0
 text = "Items"
 
-[node name="Button3" type="Button" parent="CanvasLayer/Node2D/VBoxContainer" unique_id=1544320412]
+[node name="Button3" type="Button" parent="Menu/Node2D/VBoxContainer" unique_id=1544320412]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
 disabled = true
@@ -455,14 +546,14 @@ action_mode = 0
 button_mask = 0
 text = "???"
 
-[node name="Button4" type="Button" parent="CanvasLayer/Node2D/VBoxContainer" unique_id=1644583787]
+[node name="Button4" type="Button" parent="Menu/Node2D/VBoxContainer" unique_id=1644583787]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
 action_mode = 0
 button_mask = 0
 text = "Settings"
 
-[node name="Button5" type="Button" parent="CanvasLayer/Node2D/VBoxContainer" unique_id=1994523859]
+[node name="Button5" type="Button" parent="Menu/Node2D/VBoxContainer" unique_id=1994523859]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.909804, 0, 0, 1)
 disabled = true
@@ -470,7 +561,7 @@ action_mode = 0
 button_mask = 0
 text = "Save & Load"
 
-[node name="Stats" type="Control" parent="CanvasLayer/Node2D" unique_id=1022640153 node_paths=PackedStringArray("Equipments", "EquipList", "KeyButton", "CharacterList", "StatList", "CharacterName", "EquipmentButtons")]
+[node name="Stats" type="Control" parent="Menu/Node2D" unique_id=1022640153 node_paths=PackedStringArray("Equipments", "EquipList", "KeyButton", "CharacterList", "StatList", "CharacterName", "EquipmentButtons")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -486,6 +577,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(20, 20)
 script = ExtResource("43_h24bu")
+StatsScreenState = null
 Equipments = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2")
 EquipList = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip")
 KeyButton = NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton")
@@ -495,24 +587,24 @@ CharacterName = NodePath("VBoxContainer/VBoxContainer/RichTextLabel")
 EquipmentButtons = [NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel4"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/RichTextLabel5")]
 PreviousStates = []
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats" unique_id=1267344343]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Stats" unique_id=1267344343]
 layout_mode = 0
 offset_right = 47.0
 offset_bottom = 40.0
 theme_override_constants/separation = 36
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer" unique_id=1097317846]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer" unique_id=1097317846]
 layout_mode = 2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer" unique_id=1146055062 node_paths=PackedStringArray("Buttons")]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer" unique_id=1146055062 node_paths=PackedStringArray("Buttons")]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
 alignment = 1
 script = ExtResource("44_3bg8q")
 Buttons = [NodePath("TextureRect")]
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2064713255 node_paths=PackedStringArray("List")]
+[node name="Button" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=2064713255 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -520,13 +612,13 @@ script = ExtResource("45_b1lfr")
 startEnd = 1
 List = NodePath("..")
 
-[node name="TextureRect" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1101033160]
+[node name="TextureRect" type="TextureButton" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1101033160]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_gqqbf")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1681432956 node_paths=PackedStringArray("List")]
+[node name="Button2" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer/HBoxContainer" unique_id=1681432956 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -534,7 +626,7 @@ script = ExtResource("45_b1lfr")
 startEnd = 1
 List = NodePath("..")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer" unique_id=1515260158]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer" unique_id=1515260158]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Name[/center]"
@@ -542,22 +634,22 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer" unique_id=1849732714]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer" unique_id=1849732714]
 layout_mode = 2
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2" unique_id=656316326]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2" unique_id=656316326]
 layout_mode = 2
 theme_override_constants/separation = 64
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=190986923]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=190986923]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2" unique_id=1615340273]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2" unique_id=1615340273]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=446310736]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=446310736]
 layout_mode = 2
 bbcode_enabled = true
 text = "LV"
@@ -565,7 +657,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=1798399575]
+[node name="RichTextLabel7" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=1798399575]
 layout_mode = 2
 bbcode_enabled = true
 text = "HP"
@@ -573,7 +665,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=7181670]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=7181670]
 layout_mode = 2
 bbcode_enabled = true
 text = "Atk"
@@ -581,7 +673,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=2043619683]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=2043619683]
 layout_mode = 2
 bbcode_enabled = true
 text = "Def"
@@ -589,7 +681,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=1386363132]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=1386363132]
 layout_mode = 2
 bbcode_enabled = true
 text = "SpAtk"
@@ -597,7 +689,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=685299999]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=685299999]
 layout_mode = 2
 bbcode_enabled = true
 text = "SpDef"
@@ -605,7 +697,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=532191231]
+[node name="RichTextLabel6" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer" unique_id=532191231]
 layout_mode = 2
 bbcode_enabled = true
 text = "Speed"
@@ -613,10 +705,10 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2" unique_id=1340297882]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2" unique_id=1340297882]
 layout_mode = 2
 
-[node name="RichTextLabel7" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1113837719]
+[node name="RichTextLabel7" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1113837719]
 layout_mode = 2
 bbcode_enabled = true
 text = "LV"
@@ -624,7 +716,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=105087864]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=105087864]
 layout_mode = 2
 bbcode_enabled = true
 text = "HP"
@@ -632,7 +724,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1456747612]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1456747612]
 layout_mode = 2
 bbcode_enabled = true
 text = "Atk"
@@ -640,7 +732,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1528258867]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=1528258867]
 layout_mode = 2
 bbcode_enabled = true
 text = "Def"
@@ -648,7 +740,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=495103006]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=495103006]
 layout_mode = 2
 bbcode_enabled = true
 text = "SpAtk"
@@ -656,7 +748,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=425236637]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=425236637]
 layout_mode = 2
 bbcode_enabled = true
 text = "SpDef"
@@ -664,7 +756,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=327407561]
+[node name="RichTextLabel6" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer2/VBoxContainer2" unique_id=327407561]
 layout_mode = 2
 bbcode_enabled = true
 text = "Speed"
@@ -672,16 +764,16 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=493560074]
+[node name="HBoxContainer3" type="HBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=493560074]
 layout_mode = 2
 alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=180087418]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=180087418]
 layout_mode = 2
 theme_override_constants/separation = 12
 alignment = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1171610757]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1171610757]
 layout_mode = 2
 bbcode_enabled = true
 text = "Key"
@@ -689,7 +781,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=758425758]
+[node name="RichTextLabel5" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=758425758]
 layout_mode = 2
 bbcode_enabled = true
 text = "Head"
@@ -697,7 +789,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1244133572]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1244133572]
 layout_mode = 2
 bbcode_enabled = true
 text = "Body"
@@ -705,7 +797,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=264571072]
+[node name="RichTextLabel3" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=264571072]
 layout_mode = 2
 bbcode_enabled = true
 text = "Legs"
@@ -713,7 +805,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1338302808]
+[node name="RichTextLabel4" type="RichTextLabel" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=1338302808]
 layout_mode = 2
 bbcode_enabled = true
 text = "Weapon"
@@ -721,23 +813,23 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=1346462305]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=1346462305]
 layout_mode = 2
 alignment = 1
 
-[node name="KeyButton" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1472942887]
+[node name="KeyButton" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1472942887]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
 button_mask = 0
 text = "Key"
 
-[node name="Node" type="Node" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton" unique_id=356650124 node_paths=PackedStringArray("Screen")]
+[node name="Node" type="Node" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2/KeyButton" unique_id=356650124 node_paths=PackedStringArray("Screen")]
 process_mode = 4
 script = ExtResource("48_mm0p2")
 Screen = NodePath("../../../../../../..")
 
-[node name="RichTextLabel4" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=924547547]
+[node name="RichTextLabel4" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=924547547]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
@@ -745,7 +837,7 @@ button_mask = 0
 text = "Head"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1279389050]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1279389050]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
@@ -755,7 +847,7 @@ shortcut_in_tooltip = false
 text = "Body"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=2095425565]
+[node name="RichTextLabel3" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=2095425565]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
@@ -764,7 +856,7 @@ text = "Legs
 "
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1474902371]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1474902371]
 layout_mode = 2
 focus_mode = 0
 action_mode = 0
@@ -772,34 +864,36 @@ button_mask = 0
 text = "Weapon"
 script = ExtResource("49_fclsk")
 
-[node name="Equip" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=1203546061 node_paths=PackedStringArray("Buttons")]
+[node name="Equip" type="VBoxContainer" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3" unique_id=1203546061 node_paths=PackedStringArray("Buttons")]
 visible = false
 layout_mode = 2
 alignment = 1
 script = ExtResource("48_cq2x1")
 Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("RichTextLabel3"), NodePath("RichTextLabel5")]
 ItemType = 1
+EquipType = null
 items = []
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=724675629 node_paths=PackedStringArray("List")]
+[node name="TextureButton2" type="TextureButton" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=724675629 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
-[node name="Unequip" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1726487545]
+[node name="Unequip" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1726487545]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Unequip"
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1923276358]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1923276358]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item1"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=49017714]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=49017714]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -808,7 +902,7 @@ shortcut_in_tooltip = false
 text = "Item2"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1942832923]
+[node name="RichTextLabel3" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=1942832923]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -816,20 +910,20 @@ text = "Item3
 "
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=219324817]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=219324817]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item4"
 script = ExtResource("49_fclsk")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=2088329581 node_paths=PackedStringArray("List")]
+[node name="TextureButton" type="TextureButton" parent="Menu/Node2D/Stats/VBoxContainer/VBoxContainer2/HBoxContainer2/HBoxContainer3/Equip" unique_id=2088329581 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("45_b1lfr")
 startEnd = 1
 List = NodePath("..")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Stats" unique_id=1678661440]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Menu/Node2D/Stats" unique_id=1678661440]
 visible = false
 layout_mode = 0
 offset_left = 330.0
@@ -838,33 +932,33 @@ offset_right = 487.0
 offset_bottom = 295.0
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3" unique_id=1610614562]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Stats/VBoxContainer3" unique_id=1610614562]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Equip1"
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3" unique_id=135598556]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Stats/VBoxContainer3" unique_id=135598556]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Equip2
 "
 
-[node name="RichTextLabel6" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3" unique_id=1615895922]
+[node name="RichTextLabel6" type="Button" parent="Menu/Node2D/Stats/VBoxContainer3" unique_id=1615895922]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Equip3
 "
 
-[node name="RichTextLabel7" type="Button" parent="CanvasLayer/Node2D/Stats/VBoxContainer3" unique_id=1883657142]
+[node name="RichTextLabel7" type="Button" parent="Menu/Node2D/Stats/VBoxContainer3" unique_id=1883657142]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Equip4"
 
-[node name="Items" type="Control" parent="CanvasLayer/Node2D" unique_id=1029688047 node_paths=PackedStringArray("ItemTypes", "ChoiceForItem", "ItemList", "CharacterSelect", "TossItem", "ItemTitle", "ItemDesc")]
+[node name="Items" type="Control" parent="Menu/Node2D" unique_id=1029688047 node_paths=PackedStringArray("ItemTypes", "ChoiceForItem", "ItemList", "CharacterSelect", "TossItem", "ItemTitle", "ItemDesc")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -888,42 +982,42 @@ TossItem = NodePath("VBoxContainer4")
 ItemTitle = NodePath("VBoxContainer/VBoxContainer/RichTextLabel")
 ItemDesc = NodePath("VBoxContainer/VBoxContainer/RichTextLabel2")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Items" unique_id=651611928]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Menu/Node2D/Items" unique_id=651611928]
 visible = false
 layout_mode = 0
-offset_left = 193.0
+offset_left = 230.0
 offset_top = 184.0
-offset_right = 350.0
+offset_right = 387.00012
 offset_bottom = 250.0
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer3" unique_id=9481860]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Items/VBoxContainer3" unique_id=9481860]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Use
 "
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer3" unique_id=1245191268]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Items/VBoxContainer3" unique_id=1245191268]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Toss
 "
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items" unique_id=1391880501 node_paths=PackedStringArray("Screen", "Amount")]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Menu/Node2D/Items" unique_id=1391880501 node_paths=PackedStringArray("Screen", "Amount")]
 visible = false
 layout_mode = 0
-offset_left = 193.0
+offset_left = 230.0
 offset_top = 272.0
-offset_right = 350.0
+offset_right = 387.00012
 offset_bottom = 338.0
 alignment = 1
 script = ExtResource("50_v4jin")
 Screen = NodePath("..")
 Amount = NodePath("RichTextLabel2")
 
-[node name="RichTextLabel" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer4" unique_id=339715826 node_paths=PackedStringArray("List")]
+[node name="RichTextLabel" type="TextureButton" parent="Menu/Node2D/Items/VBoxContainer4" unique_id=339715826 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -931,34 +1025,35 @@ script = ExtResource("45_b1lfr")
 startEnd = 1
 List = NodePath("..")
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer4" unique_id=1353781099]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Items/VBoxContainer4" unique_id=1353781099]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "0"
 
-[node name="RichTextLabel3" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer4" unique_id=1252437811 node_paths=PackedStringArray("List")]
+[node name="RichTextLabel3" type="TextureButton" parent="Menu/Node2D/Items/VBoxContainer4" unique_id=1252437811 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("..")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items" unique_id=751842000]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Items" unique_id=751842000]
 layout_mode = 0
 offset_top = 66.0
 offset_right = 142.0
 offset_bottom = 320.0
 theme_override_constants/separation = 64
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer" unique_id=767976838]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer" unique_id=767976838]
 layout_mode = 2
 alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=559090188]
+[node name="TextureRect" type="TextureRect" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=559090188]
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=1971527217]
+[node name="RichTextLabel" type="RichTextLabel" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=1971527217]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Name[/center]"
@@ -966,7 +1061,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=1744091901]
+[node name="RichTextLabel2" type="RichTextLabel" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer" unique_id=1744091901]
 layout_mode = 2
 bbcode_enabled = true
 text = "[center]Desc[/center]"
@@ -974,12 +1069,12 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer" unique_id=1831771922]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer" unique_id=1831771922]
 layout_mode = 2
 theme_override_constants/separation = 16
 alignment = 1
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=1844206042 node_paths=PackedStringArray("Buttons")]
+[node name="HBoxContainer2" type="HBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=1844206042 node_paths=PackedStringArray("Buttons")]
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 8
@@ -989,13 +1084,13 @@ Buttons = [NodePath("RichTextLabel"), NodePath("RichTextLabel2"), NodePath("Rich
 FocusOff = Color(1, 1, 1, 1)
 FocusOn = Color(0.847059, 0, 0, 1)
 
-[node name="RichTextLabel" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=516247748]
+[node name="RichTextLabel" type="TextureButton" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=516247748]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_gqqbf")
 
-[node name="RichTextLabel2" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1133083215]
+[node name="RichTextLabel2" type="TextureButton" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1133083215]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1003,25 +1098,25 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 script = ExtResource("45_gqqbf")
 
-[node name="RichTextLabel3" type="TextureButton" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1302841826]
+[node name="RichTextLabel3" type="TextureButton" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer2" unique_id=1302841826]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_gqqbf")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=206981662]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=206981662]
 layout_mode = 2
 theme_override_constants/separation = 8
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=644870372]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=644870372]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Items
 "
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=788997382]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=788997382]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1029,20 +1124,21 @@ shortcut_feedback = false
 shortcut_in_tooltip = false
 text = "Equip"
 
-[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1494806883]
+[node name="RichTextLabel3" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer" unique_id=1494806883]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Key
 "
 
-[node name="HBoxContainer3" type="Control" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=1206601499 node_paths=PackedStringArray("Buttons")]
+[node name="HBoxContainer3" type="Control" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2" unique_id=1206601499 node_paths=PackedStringArray("Buttons")]
 layout_mode = 2
 script = ExtResource("48_8uklt")
 Buttons = [NodePath("VBoxContainer2/RichTextLabel"), NodePath("VBoxContainer2/RichTextLabel2"), NodePath("VBoxContainer2/RichTextLabel3"), NodePath("VBoxContainer2/RichTextLabel5"), NodePath("VBoxContainer3/RichTextLabel"), NodePath("VBoxContainer3/RichTextLabel2"), NodePath("VBoxContainer3/RichTextLabel3"), NodePath("VBoxContainer3/RichTextLabel5")]
+ItemType = null
 items = []
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=108769972]
+[node name="VBoxContainer2" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=108769972]
 layout_mode = 0
 offset_left = 7.0
 offset_right = 60.0
@@ -1050,14 +1146,14 @@ offset_bottom = 136.0
 focus_neighbor_left = NodePath("../VBoxContainer")
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1324076397]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1324076397]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item1"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1406189517]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1406189517]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1066,7 +1162,7 @@ shortcut_in_tooltip = false
 text = "Item2"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1741626271]
+[node name="RichTextLabel3" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1741626271]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1074,14 +1170,14 @@ text = "Item3
 "
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1073332235]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer2" unique_id=1073332235]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item4"
 script = ExtResource("49_fclsk")
 
-[node name="VBoxContainer3" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=251110641]
+[node name="VBoxContainer3" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=251110641]
 layout_mode = 0
 offset_left = 96.0
 offset_right = 149.0
@@ -1089,14 +1185,14 @@ offset_bottom = 136.0
 focus_neighbor_right = NodePath("../VBoxContainer4")
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=486081275]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=486081275]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item1"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=1287591781]
+[node name="RichTextLabel2" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=1287591781]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1105,7 +1201,7 @@ shortcut_in_tooltip = false
 text = "Item2"
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel3" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=700106813]
+[node name="RichTextLabel3" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=700106813]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1113,34 +1209,35 @@ text = "Item3
 "
 script = ExtResource("49_fclsk")
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=332107880]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer3" unique_id=332107880]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Item4"
 script = ExtResource("49_fclsk")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=745079938]
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=745079938]
 layout_mode = 0
 offset_left = -35.0
 offset_right = 5.0
 offset_bottom = 40.0
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=971667696 node_paths=PackedStringArray("List")]
+[node name="Button" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer" unique_id=971667696 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 script = ExtResource("45_b1lfr")
+startEnd = null
 List = NodePath("../..")
 
-[node name="VBoxContainer4" type="VBoxContainer" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=578480205]
+[node name="VBoxContainer4" type="VBoxContainer" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3" unique_id=578480205]
 layout_mode = 0
 offset_left = 155.0
 offset_top = 109.0
 offset_right = 195.0
 offset_bottom = 149.0
 
-[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer4" unique_id=36493955 node_paths=PackedStringArray("List")]
+[node name="Button2" type="Button" parent="Menu/Node2D/Items/VBoxContainer/VBoxContainer2/HBoxContainer3/VBoxContainer4" unique_id=36493955 node_paths=PackedStringArray("List")]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
@@ -1148,7 +1245,7 @@ script = ExtResource("45_b1lfr")
 startEnd = 1
 List = NodePath("../..")
 
-[node name="Saves" type="Control" parent="CanvasLayer/Node2D" unique_id=1912769597 node_paths=PackedStringArray("SavesList", "ChooseAction", "ConfirmAction")]
+[node name="Saves" type="Control" parent="Menu/Node2D" unique_id=1912769597 node_paths=PackedStringArray("SavesList", "ChooseAction", "ConfirmAction")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -1164,10 +1261,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("53_hb5i3")
 SavesList = NodePath("SaveScrolls")
+state = null
+action = null
+PreviousState = null
 ChooseAction = NodePath("ChooseAction")
 ConfirmAction = NodePath("Confirm")
+SavePointerIndex = null
 
-[node name="SaveScrolls" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" unique_id=1114813070 node_paths=PackedStringArray("Buttons")]
+[node name="SaveScrolls" type="VBoxContainer" parent="Menu/Node2D/Saves" unique_id=1114813070 node_paths=PackedStringArray("Buttons")]
 layout_mode = 0
 offset_right = 100.0
 offset_bottom = 206.0
@@ -1175,37 +1276,37 @@ theme_override_constants/separation = 10
 script = ExtResource("54_m2lkd")
 Buttons = [NodePath("Button"), NodePath("Button2"), NodePath("Button3"), NodePath("Button4"), NodePath("Button5"), NodePath("Button6")]
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=2144904859]
+[node name="Button" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=2144904859]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=199036613]
+[node name="Button2" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=199036613]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="Button3" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=476118388]
+[node name="Button3" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=476118388]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="Button4" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=1878508560]
+[node name="Button4" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=1878508560]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="Button5" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=172051033]
+[node name="Button5" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=172051033]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="Button6" type="Button" parent="CanvasLayer/Node2D/Saves/SaveScrolls" unique_id=441930155]
+[node name="Button6" type="Button" parent="Menu/Node2D/Saves/SaveScrolls" unique_id=441930155]
 layout_mode = 2
 text = "Save1"
 script = ExtResource("55_x45r2")
 
-[node name="ChooseAction" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" unique_id=1074417942]
+[node name="ChooseAction" type="VBoxContainer" parent="Menu/Node2D/Saves" unique_id=1074417942]
 visible = false
 layout_mode = 0
 offset_left = 190.0
@@ -1214,27 +1315,27 @@ offset_right = 347.0
 offset_bottom = 151.0
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction" unique_id=327581644]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Saves/ChooseAction" unique_id=327581644]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Save
 "
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction" unique_id=392355188]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Saves/ChooseAction" unique_id=392355188]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Load
 "
 
-[node name="RichTextLabel6" type="Button" parent="CanvasLayer/Node2D/Saves/ChooseAction" unique_id=1879720393]
+[node name="RichTextLabel6" type="Button" parent="Menu/Node2D/Saves/ChooseAction" unique_id=1879720393]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Delete"
 
-[node name="Confirm" type="VBoxContainer" parent="CanvasLayer/Node2D/Saves" unique_id=447514175]
+[node name="Confirm" type="VBoxContainer" parent="Menu/Node2D/Saves" unique_id=447514175]
 visible = false
 layout_mode = 0
 offset_left = 190.0
@@ -1243,19 +1344,19 @@ offset_right = 347.0
 offset_bottom = 151.0
 alignment = 1
 
-[node name="RichTextLabel" type="Button" parent="CanvasLayer/Node2D/Saves/Confirm" unique_id=1905284083]
+[node name="RichTextLabel" type="Button" parent="Menu/Node2D/Saves/Confirm" unique_id=1905284083]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "Yes"
 
-[node name="RichTextLabel5" type="Button" parent="CanvasLayer/Node2D/Saves/Confirm" unique_id=1705973204]
+[node name="RichTextLabel5" type="Button" parent="Menu/Node2D/Saves/Confirm" unique_id=1705973204]
 layout_mode = 2
 action_mode = 0
 button_mask = 0
 text = "No"
 
-[node name="Settings" type="Control" parent="CanvasLayer/Node2D" unique_id=524823218 node_paths=PackedStringArray("Main", "Languages", "languageButtons")]
+[node name="Settings" type="Control" parent="Menu/Node2D" unique_id=524823218 node_paths=PackedStringArray("Main", "Languages", "Volumes", "languageButtons", "VolumeSliders")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -1272,31 +1373,41 @@ grow_vertical = 2
 script = ExtResource("83_dsr41")
 Main = NodePath("MainSettings")
 Languages = NodePath("Languages")
+Volumes = NodePath("Volumes")
 languageButtons = [NodePath("Languages/Button"), NodePath("Languages/Button2")]
+VolumeSliders = [NodePath("Volumes/MainVol"), NodePath("Volumes/MainVol2")]
+PreviousState = null
+SettingsState = null
 
-[node name="MainSettings" type="VBoxContainer" parent="CanvasLayer/Node2D/Settings" unique_id=1510863427]
+[node name="MainSettings" type="VBoxContainer" parent="Menu/Node2D/Settings" unique_id=1510863427]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/Settings/MainSettings" unique_id=791637295]
+[node name="Button" type="Button" parent="Menu/Node2D/Settings/MainSettings" unique_id=791637295]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
 action_mode = 0
 button_mask = 0
 text = "Language"
 
-[node name="Languages" type="VBoxContainer" parent="CanvasLayer/Node2D/Settings" unique_id=2055558761]
+[node name="Button2" type="Button" parent="Menu/Node2D/Settings/MainSettings" unique_id=1462441823]
+layout_mode = 2
+theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
+action_mode = 0
+button_mask = 0
+text = "Volume"
+
+[node name="Languages" type="VBoxContainer" parent="Menu/Node2D/Settings" unique_id=2055558761]
 visible = false
 layout_mode = 0
 offset_left = 190.0
-offset_top = 50.0
 offset_right = 273.0
-offset_bottom = 116.0
+offset_bottom = 66.0
 alignment = 1
 
-[node name="Button" type="Button" parent="CanvasLayer/Node2D/Settings/Languages" unique_id=1801085768]
+[node name="Button" type="Button" parent="Menu/Node2D/Settings/Languages" unique_id=1801085768]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
 action_mode = 0
@@ -1305,7 +1416,7 @@ text = "English"
 script = ExtResource("84_vc7uq")
 Language = "en"
 
-[node name="Button2" type="Button" parent="CanvasLayer/Node2D/Settings/Languages" unique_id=943136122]
+[node name="Button2" type="Button" parent="Menu/Node2D/Settings/Languages" unique_id=943136122]
 layout_mode = 2
 theme_override_colors/font_focus_color = Color(0.756863, 0.301961, 0.243137, 1)
 action_mode = 0
@@ -1314,6 +1425,13 @@ text = "Español"
 script = ExtResource("84_vc7uq")
 Language = "es"
 
+[node name="Volumes" parent="Menu/Node2D/Settings" unique_id=552334343 instance=ExtResource("87_upy2s")]
+layout_mode = 0
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 40.0
+offset_bottom = 50.0
+
 [node name="CanvasLayer2" type="CanvasLayer" parent="." unique_id=709336803]
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer2" unique_id=734930902]
@@ -1321,10 +1439,10 @@ modulate = Color(0, 0, 0, 0)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -309.0
-offset_top = -213.0
-offset_right = 516.0
-offset_bottom = 312.0
+offset_left = -294.0
+offset_top = -214.0
+offset_right = 531.0
+offset_bottom = 311.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("60_46ljw")
@@ -1335,3 +1453,15 @@ libraries/ = SubResource("AnimationLibrary_yuimf")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=164721122]
 bus = &"BGM"
+
+[node name="FollowLists" type="Node" parent="." unique_id=596095590]
+script = ExtResource("88_r22xg")
+ZIndexList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+CLayerList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+CMaskList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+AuxPositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+
+[editable path="Menu/Node2D/Settings/Volumes"]
+[editable path="Menu/Node2D/Settings/Volumes/MainVol2"]

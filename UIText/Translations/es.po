@@ -187,6 +187,10 @@ msgid "Language"
 msgstr "Idioma"
 
 #: Prefabs/GameManager.tscn Scenes/MainMenu.tscn
+msgid "Volume"
+msgstr "Volumen"
+
+#: Prefabs/GameManager.tscn Scenes/MainMenu.tscn
 msgid "English"
 msgstr "English"
 
@@ -275,8 +279,8 @@ msgid "Block: Z"
 msgstr "Block: Z"
 
 #: Prefabs/BattleManager/battle_manager.tscn
-msgid "Dodge: Arrows+Z"
-msgstr "Dodge: Arrows+Z"
+msgid "Esquivar: Flechas + Z"
+msgstr "Esquivar: Flechas + Z"
 
 #: Prefabs/BattleManager/battle_manager.tscn
 msgid "Retry"
@@ -289,3 +293,9 @@ msgstr "Regresar a Partida"
 #: Prefabs/BattleManager/battle_manager.tscn
 msgid "Return to Title Screen"
 msgstr "Regresar a Menú de Inicio"
+
+msgid "Godot"
+msgstr "Godot"
+
+#~ msgid "Dodge: Arrows+Z"
+#~ msgstr "Dodge: Arrows+Z"

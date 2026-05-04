@@ -1,17 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://basqm5altirjf"]
+[gd_scene format=3 uid="uid://basqm5altirjf"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Triggers/Door.cs" id="1_bk5lo"]
+[ext_resource type="Script" uid="uid://c8y2wpnqkwdgb" path="res://Scripts/Overworld/Triggers/Door.cs" id="1_bk5lo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l01w8"]
 resource_local_to_scene = true
 size = Vector2(122, 16)
 
-[node name="Door" type="Area2D"]
+[node name="Door" type="Area2D" unique_id=1602749411]
 collision_layer = 3
 collision_mask = 3
 script = ExtResource("1_bk5lo")
 LayerOn = Array[int]([1])
 MaskOn = Array[int]([1])
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1179102348]
 shape = SubResource("RectangleShape2D_l01w8")

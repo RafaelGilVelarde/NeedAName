@@ -6,13 +6,15 @@ using System.Diagnostics;
 enum StartMenuState
 {
     LanguageSelect,
+    AudioMixerSelect,
+    VolumeSelect,
     Start,
     SavesList
 }
 public partial class StartMenu : Node
 {
-    [Export] BaseButton Start, Continue, Language;
-    [Export] Control Menu, LanguageMenu;
+    [Export] BaseButton Start, Continue, Language, Volume;
+    [Export] Control Menu, LanguageMenu, VolumeMenu;
     [Export] Array<LanguageButtons> Languages;
     [Export] MenuSavesList SavesList;
     [Export] PackedScene NewGameScene;
@@ -40,6 +42,22 @@ public partial class StartMenu : Node
                     MainMenu();
                 }
                 break;
+            case StartMenuState.AudioMixerSelect:
+                if (Input.IsActionJustPressed("Deny"))
+                {
+                    MainMenu();
+                }
+                break;
+            case StartMenuState.VolumeSelect:
+                if (Input.IsActionJustPressed("Deny"))
+                {
+                    ShowAudioMixerList();
+                    foreach (VolumeSlider slider in VolumeMenu.GetChildren())
+                    {
+                        slider.Disable();
+                    }  
+                }
+                break;
         }
     }
 
@@ -56,6 +74,7 @@ public partial class StartMenu : Node
                 MainSprite.Show();
             }
             PlayerName.Text = $"[center]{Game.Settings.DisplayName}[/center]";
+            Game.GetWindow().Title = Game.Settings.DisplayName;
             Game.PlayTransition( Color.Color8(0,0,0,0));
             Game.TransitionTween.Finished+=Setup;
             Game.StopAudio();
@@ -66,9 +85,12 @@ public partial class StartMenu : Node
         Start.Pressed += StartNewGame;
         Continue.Pressed += LoadSavesList;
         Language.Pressed += ShowLanguageList;
+        Volume.Pressed += ShowAudioMixerList;
+        
         GameManager.Instance.TransitionTween.Finished -= Setup;
         SetupSavesButtons();
         SetupLanguageButtons();
+        SetupVolumeButtons();
         if (GameManager.Instance.SavesExist)
         {
             MainMenu();
@@ -84,6 +106,7 @@ public partial class StartMenu : Node
 
     void StartNewGame()
     {
+        Menu.Hide();
         GameManager.Instance.PlayTransition(TransitionColor);
         GameManager.Instance.TransitionTween.Finished += () => GetTree().ChangeSceneToPacked(NewGameScene);
         //SceneTreeTimer timer = GetTree().CreateTimer(0.4f);
@@ -107,6 +130,28 @@ public partial class StartMenu : Node
         Languages[0].GrabFocus();
 
     }
+    void ShowAudioMixerList()
+    {
+        State = StartMenuState.AudioMixerSelect;
+        VolumeMenu.Show();
+        SavesList.Hide();
+        Menu.Hide();
+        foreach (VolumeSlider slider in VolumeMenu.GetChildren())
+        {
+            slider.SelectButton.FocusMode = Control.FocusModeEnum.All;
+        }     
+        ((VolumeSlider)VolumeMenu.GetChild(0)).SelectButton.GrabFocus();
+
+    }
+    void VolumeSelect()
+    {
+        State = StartMenuState.VolumeSelect;
+        foreach (VolumeSlider slider in VolumeMenu.GetChildren())
+        {
+            slider.SelectButton.FocusMode = Control.FocusModeEnum.None;
+        }     
+
+    }
     void SetupSavesButtons()
     {
         Array<MenuSaveButtons> Buttons = SavesList.Buttons;
@@ -123,9 +168,17 @@ public partial class StartMenu : Node
             button.Pressed+=MainMenu;
         }       
     }
+    void SetupVolumeButtons()
+    {
+        foreach (VolumeSlider slider in VolumeMenu.GetChildren())
+        {
+            slider.SelectButton.Pressed += VolumeSelect;
+        }       
+    }
     
     void LoadGame(MenuSaveButtons button)
     {
+        Menu.Hide();
         GameManager Game = GameManager.Instance;
         int Index = Game.Saves.IndexOf(button.Save);
         Game.Load(Index);
@@ -135,6 +188,7 @@ public partial class StartMenu : Node
     {
         State = StartMenuState.Start;
         LanguageMenu.Hide();
+        VolumeMenu.Hide();
         SavesList.Hide();
         Menu.Show();
         Continue.GrabFocus();

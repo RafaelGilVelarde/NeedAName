@@ -1073,7 +1073,10 @@ frame = 43
 [node name="HitEffectParticles" parent="Character/BattleCharacter" index="7" unique_id=11086012]
 scale_amount_curve = SubResource("Curve_0dopt")
 
-[node name="HPBar" parent="Character/BattleCharacter/HPBarParent" parent_id_path=PackedInt32Array(1834513577, 1298668657) index="0" unique_id=1244487150]
+[node name="HPBarParent" parent="Character/BattleCharacter" index="10" unique_id=1298668657]
+position = Vector2(0, 0)
+
+[node name="HPBar" parent="Character/BattleCharacter/HPBarParent" index="0" unique_id=1244487150]
 offset_top = -60.0
 offset_bottom = -55.0
 

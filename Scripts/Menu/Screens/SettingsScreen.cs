@@ -9,10 +9,14 @@ public partial class SettingsScreen : MenuScreens
     enum State
     {
         ChooseSettings,
-        ChooseLanguage
+        ChooseLanguage,
+        ChooseVolumeMixer,
+        ChooseVolume
+        
     }
-    [Export] Control Main, Languages;
+    [Export] Control Main, Languages, Volumes;
     [Export] Array<LanguageButtons> languageButtons;
+    [Export] Array<VolumeSlider> VolumeSliders;
     [Export] Array<State> PreviousState = new Array<State>();
     [Export] State SettingsState;
 
@@ -26,7 +30,16 @@ public partial class SettingsScreen : MenuScreens
                 PreviousState.Clear();
             break;
             case State.ChooseLanguage:
-                ChangeState(PreviousState[PreviousState.Count],false);
+                ChangeState(PreviousState[PreviousState.Count-1],false);
+                PreviousState.RemoveAt(PreviousState.Count-1);
+            break;
+            case State.ChooseVolumeMixer:
+                ChangeState(PreviousState[PreviousState.Count-1],false);
+                PreviousState.RemoveAt(PreviousState.Count-1);
+            break;
+            case State.ChooseVolume:
+                ChangeState(PreviousState[PreviousState.Count-1],false);
+                PreviousState.RemoveAt(PreviousState.Count-1);
             break;
         }
     }
@@ -35,6 +48,7 @@ public partial class SettingsScreen : MenuScreens
         base.Setup();
         SetupSettingsButtons();
         SetupLangButtons();
+        SetupVolButtons();
 
     }
     public override void Select()
@@ -45,7 +59,7 @@ public partial class SettingsScreen : MenuScreens
     void ChangeState(State state, bool AdvanceState = true)
     {
         if(AdvanceState){
-            PreviousState.Add(state);
+            PreviousState.Add(SettingsState);
         }
         SettingsState = state;
         switch (state)
@@ -54,6 +68,7 @@ public partial class SettingsScreen : MenuScreens
                 SwitchChildren(Main,true);
                 SwitchChildren(Languages,false);
                 Languages.Hide();
+                Volumes.Hide();
                 Main.GetChild<BaseButton>(0).GrabFocus();
             break;
             case State.ChooseLanguage:
@@ -61,6 +76,24 @@ public partial class SettingsScreen : MenuScreens
                 SwitchChildren(Languages,true);
                 Languages.Show();
                 languageButtons[0].GrabFocus();
+            break;
+            case State.ChooseVolumeMixer:
+                SwitchChildren(Main,false);
+                SwitchChildren((Control)Volumes.GetChild(0),true);
+                SwitchChildren((Control)Volumes.GetChild(1),true);
+                Volumes.Show();
+                VolumeSliders[0].SelectButton.GrabFocus();
+
+                for(int i = 0; i < VolumeSliders.Count; i++)
+                {
+                    VolumeSliders[i].ShowValue();
+                    VolumeSliders[i].Disable();
+                }
+            break;
+            case State.ChooseVolume:
+                SwitchChildren(Main,false);
+                SwitchChildren((Control)Volumes.GetChild(0),false);
+                SwitchChildren((Control)Volumes.GetChild(1),false);
             break;
         }
     }
@@ -79,14 +112,23 @@ public partial class SettingsScreen : MenuScreens
 
     void SetupSettingsButtons()
     {
-        for(int i = 0; i < Main.GetChildCount(); i++)
+        foreach (BaseButton button in Main.GetChildren())
         {
-            BaseButton button = Main.GetChild<BaseButton>(i);
-            button.Pressed+=()=>{
-                ChangeState((State)i);
-                Debug.WriteLine("changing to: "+(State)i);
+            button.Pressed += () =>
+            {
+                Debug.WriteLine(Main.GetChildren().IndexOf(button)+1);
+                ChangeState((State)(Main.GetChildren().IndexOf(button)+1));
             };
         }
+        /*for(int i = 0; i < Main.GetChildCount(); i++)
+        {
+            BaseButton button = Main.GetChild<BaseButton>(i);
+            Debug.WriteLine(((Button)button).Text + ": "+(State)i+1);
+            button.Pressed+=()=>{
+                ChangeState((State)i+1);
+                Debug.WriteLine("changing to: "+(State)i+1);
+            };
+        }*/
         
     }
     void SetupLangButtons()
@@ -97,6 +139,19 @@ public partial class SettingsScreen : MenuScreens
             button.Pressed+=()=>{
                 ChangeState(State.ChooseSettings,false);
                 PreviousState.Clear();
+            };
+        }
+    }
+    void SetupVolButtons()
+    {
+        foreach (VolumeSlider slider in VolumeSliders)
+        {
+            Debug.WriteLine(slider);
+            Debug.WriteLine("slider set up: "+slider.SelectButton);
+            slider.SelectButton.Pressed += () =>
+            {
+                Debug.WriteLine("PressedSelect");
+                ChangeState(State.ChooseVolume);
             };
         }
     }

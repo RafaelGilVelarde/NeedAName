@@ -270,11 +270,22 @@ public partial class BattleScene : Resource
 
     protected virtual void StartCutscene(string Cutscene)
     {
+        string[] CutsceneSplit = Cutscene.Split("_");
         Debug.WriteLine("ContainsCutscene: " + CutsceneAnimator.CutsceneNames.Contains(Cutscene));
-        if (CutsceneAnimator.CutsceneNames.Contains(Cutscene))
-        {
-            CutsceneAnimator.PlayAnimation(Cutscene);
-        }
+         if (CutsceneAnimator.CutsceneNames.Contains(CutsceneSplit[0]))
+            {
+                if (CutsceneSplit.Length > 1)
+                {
+                    if(CutsceneSplit[1] == "false")
+                    {
+                        CutsceneAnimator.PlayAnimation(CutsceneSplit[0],false);                        
+                    }             
+                }
+                else
+                {
+                    CutsceneAnimator.PlayAnimation(CutsceneSplit[0]);                        
+                }
+            }            
     }
     protected virtual void EndCutscene(string Argument)
     {

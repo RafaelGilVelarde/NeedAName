@@ -21,6 +21,7 @@ public partial class GameManager : Node
 	[Export] public PackedScene[] TextEffectPrefabs;
 	[Export] public Array<PlayerController> Characters, Followers = new Array<PlayerController>();
 	[Export] public Camera OverworldCam, BattleCam;
+	[Export] public FollowerLists FollowerLists;
 	[Export] PackedScene StartScene;
 	[Export] public Scene CurrentScene;
 	[Export] AnimationPlayer TransitionAnimator;
@@ -63,11 +64,13 @@ public partial class GameManager : Node
 			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
             if (Saves[Settings.CurrentSave] != null)
 			{
-				Debug.WriteLine("Exists");
 				Data = Saves[Settings.CurrentSave];
             }
         }
-
+		while (Settings.Volume.Count <= 3)
+		{
+            Settings.Volume.Add(1);							
+		}
 		TranslationServer.SetLocale(Settings.Language);
 		Debug.WriteLine(Saves.Count);
 
@@ -188,10 +191,8 @@ public partial class GameManager : Node
 		A.Leader = false;
 		B.Leader = true;
 		A.OverworldCollider.Disabled = true;
-		B.OverworldCollider.Disabled = false;
 		A.SetControllable(false);						
 		controller = B;
-		B.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = false;
 		for (int i = 0; i < Characters.Count; i++)
 		{
 			if (Characters[i] != A)
@@ -215,9 +216,42 @@ public partial class GameManager : Node
 				B._Follow += Followers[i].FollowLeader;
 			}
 		}
-
+		Vector2 AuxPos = B.Parent.Position;
 		B.Parent.Position = A.Parent.Position;
+		A.Parent.Position = AuxPos;
+
+		int AuxIndex = B.BattleCharacter.Character.FollowIndex;
+		B.BattleCharacter.Character.FollowIndex = A.BattleCharacter.Character.FollowIndex;
+		A.BattleCharacter.Character.FollowIndex = AuxIndex;
+
+		A.AxisOffset = A.BattleCharacter.Character.FollowIndex;
+		B.AxisOffset = B.BattleCharacter.Character.FollowIndex;
+
+		Vector2 AuxAxis = B.Axis;
+		int AuxZ = B.Parent.ZIndex;
+		uint AuxCol = B.Parent.CollisionLayer;
+		uint AuxMask = B.Parent.CollisionMask;
 		
+		B.Axis = A.Axis;
+		B.Parent.ZIndex = A.Parent.ZIndex;
+		B.Parent.CollisionLayer = A.Parent.CollisionLayer;
+		B.Parent.CollisionMask = A.Parent.CollisionMask;
+
+		A.Axis = AuxAxis;
+		A.Parent.ZIndex = AuxZ;
+		A.Parent.CollisionLayer = AuxCol;
+		A.Parent.CollisionMask = AuxMask;
+
+		if (OverworldCam != null)
+		{
+			AssignCharacterCamera(B);					
+		}
+		SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1);
+		SwitchTimer.Timeout+= () =>
+			{
+				B.OverworldCollider.Disabled = false;
+				B.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = false;
+			};
 	}
 
 	public void BattleStart()
@@ -255,8 +289,8 @@ public partial class GameManager : Node
 	}
 	void AssignCharacterCamera(Node2D Character)
 	{
-		OverworldCam.GetParent().RemoveChild(OverworldCam);
-		Character.AddChild(OverworldCam);
+		OverworldCam.Reparent(Character,false);
+		OverworldCam.ResetSmoothing();
 	}
 	void AssignBattleCamera(Node Scene)
 	{
@@ -314,13 +348,11 @@ public partial class GameManager : Node
 			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
 			SetLayers(GraphicsLayer,CollisionLayer, CollisionMask);
 
-			for(int i = 0; i < Characters.Count; i++)
-			{
-				for(int j = 0; j < Characters[i].ZIndexList.Count; j++)
+
+			for(int j = 0; j < FollowerLists.ZIndexList.Count; j++)
 				{
-					Characters[i].ZIndexList[j] = GraphicsLayer;					
+					FollowerLists.ZIndexList[j] = GraphicsLayer;					
 				}
-			}
 		};
 		/*SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
 		timer.Timeout+=()=>MoveCharactersToScene(Position);*/
@@ -381,7 +413,7 @@ public partial class GameManager : Node
 			aux.GetParent().RemoveChild(aux);
 			GetTree().CurrentScene.AddChild(aux);
 		}
-		Array<Vector2> Aux = controller.PositionList;
+		Array<Vector2> Aux = FollowerLists.PositionList;
 		for (int i = 0; i < Aux.Count; i++)
 		{
 			Aux[i] = controller.GlobalPosition;

@@ -14,10 +14,7 @@ public partial class OverworldController : Node2D
 	[Export] public AnimationTree AnimatorTree;
 	[Export] public CharacterBody2D Parent;
 	[Export] public CollisionShape2D OverworldCollider;
-	[Export] public Array<int> ZIndexList;
-	[Export] public Array<uint> CLayerList, CMaskList;
-	[Export] public Array<Vector2> AxisList;
-	[Export] public Array<Vector2> PositionList, AuxPositionList;
+
 	[Export] public int AxisOffset;
 
 	[Export] public Vector2 Axis = Vector2.Zero, AxisAux;
@@ -71,7 +68,7 @@ public partial class OverworldController : Node2D
 		}
 
 	}
-	public void TweenMovement(Vector2 Position, float Duration,bool ChangeFacingDirection = true)
+	public Tween TweenMovement(Vector2 Position, float Duration,bool ChangeFacingDirection = true,int Transition = (int)Tween.TransitionType.Linear, int Ease = (int)Tween.EaseType.InOut)
 	{
 		SetControllable(false);
 		if (ChangeFacingDirection)
@@ -80,7 +77,8 @@ public partial class OverworldController : Node2D
 			Axis = Aux;
 		}
 		Tween Move = CreateTween();
-		Move.TweenProperty(Parent, "position", Position, Duration);
+		Move.TweenProperty(Parent, "position", Position, Duration).SetTrans((Tween.TransitionType)Transition).SetEase((Tween.EaseType)Ease);
+		return Move;
 	}
 	public void SetControllable(bool control)
 	{

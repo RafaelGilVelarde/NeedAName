@@ -22,11 +22,14 @@ public partial class MainMenu : CanvasLayer
         ReadyMainButtons();
         ProcessMode=ProcessModeEnum.Disabled;
     }
-    public void OpenCloseMenu(bool Open){
+    public void OpenCloseMenu(bool Open, bool Controllable = true){
         Visible = Open;
         EnableMainButtons(Open,0);
         if(!Open){
-            GameManager.Instance.controller.SetControllable(true);
+            if (Controllable)
+            {
+                GameManager.Instance.controller.SetControllable(true);                
+            }
             ProcessMode=ProcessModeEnum.Disabled;
         }
         else{

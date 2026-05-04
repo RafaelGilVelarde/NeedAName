@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="7_4vx3i"]
 [ext_resource type="TileSet" uid="uid://c7ywlinc72uj0" path="res://Resources/Tilesets/Maps/Water/Water Map 1.tres" id="8_308al"]
 [ext_resource type="Texture2D" uid="uid://bviuj5r6i2yxe" path="res://Sprites/TitleScreen/MainNormalMapLayer 4.png" id="9_jioku"]
+[ext_resource type="PackedScene" uid="uid://pjpv7pe0n1hd" path="res://Prefabs/Audio/VolumeSettings.tscn" id="11_if7li"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_5ua31"]
 frequency = 0.016
@@ -152,13 +153,15 @@ height = 192
 fill = 1
 fill_from = Vector2(0.5, 0.5)
 
-[node name="MainMenu" type="Node2D" unique_id=1030249181 node_paths=PackedStringArray("Start", "Continue", "Language", "Menu", "LanguageMenu", "Languages", "SavesList", "MainSprite", "PlayerName")]
+[node name="MainMenu" type="Node2D" unique_id=1030249181 node_paths=PackedStringArray("Start", "Continue", "Language", "Volume", "Menu", "LanguageMenu", "VolumeMenu", "Languages", "SavesList", "MainSprite", "PlayerName")]
 script = ExtResource("1_5qb0c")
 Start = NodePath("MainMenu/Button")
 Continue = NodePath("MainMenu/Button2")
 Language = NodePath("MainMenu/Button3")
+Volume = NodePath("MainMenu/Button4")
 Menu = NodePath("MainMenu")
 LanguageMenu = NodePath("LanguageMenu")
+VolumeMenu = NodePath("Volumes")
 Languages = [NodePath("LanguageMenu/Button"), NodePath("LanguageMenu/Button2")]
 SavesList = NodePath("SaveScrolls")
 NewGameScene = ExtResource("2_8k5ur")
@@ -193,6 +196,11 @@ text = "Continue"
 light_mask = 0
 layout_mode = 2
 text = "Language"
+
+[node name="Button4" type="Button" parent="MainMenu" unique_id=991182338]
+light_mask = 0
+layout_mode = 2
+text = "Volume"
 
 [node name="LanguageMenu" type="VBoxContainer" parent="." unique_id=1515856083]
 visible = false
@@ -254,6 +262,12 @@ script = ExtResource("2_0epxr")
 layout_mode = 2
 text = "Save1"
 script = ExtResource("2_0epxr")
+
+[node name="Volumes" parent="." unique_id=552334343 instance=ExtResource("11_if7li")]
+offset_left = 608.0
+offset_top = 392.0
+offset_right = 648.0
+offset_bottom = 442.0
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=889459487]
 visible = false

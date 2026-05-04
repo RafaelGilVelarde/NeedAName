@@ -10,11 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="8_yarpm"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="9_wsavl"]
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="10_bvxbb"]
-[ext_resource type="Script" uid="uid://bmy35woanbh8c" path="res://Scripts/Overworld/Behaviours/Steering/DangerBehaviour.cs" id="12_l0oxy"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="13_1185c"]
-[ext_resource type="Script" uid="uid://bmjnf8bn42o3b" path="res://Scripts/Overworld/Behaviours/Steering/IdleBehaviour.cs" id="13_y78pp"]
-[ext_resource type="Script" uid="uid://d2ds23ub01ol2" path="res://Scripts/Overworld/Behaviours/Steering/TargetBehaviours.cs" id="14_gub7h"]
-[ext_resource type="Script" uid="uid://bo6u3n4tfa56y" path="res://Scripts/Overworld/Behaviours/MovementController.cs" id="15_snw5g"]
 [ext_resource type="Script" uid="uid://y1rrbh1j7kko" path="res://Scripts/Battle/Battle Scenes/ChangeFlagSimple.cs" id="17_edb8d"]
 [ext_resource type="Resource" uid="uid://6iy5icea64kl" path="res://Resources/CharacterBases/Enemies/Shrimpy.tres" id="18_obcnl"]
 [ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="19_dgm2o"]
@@ -63,50 +59,22 @@ shader_parameter/top_color = Color(0, 0, 0, 1)
 shader_parameter/light_start = 0.0
 shader_parameter/light_end = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_od44s"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20xr1"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtm5n"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u6m1n"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qpauk"]
 size = Vector2(208, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2hiuy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pb78d"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_6i3qx"]
-resource_local_to_scene = true
-script = ExtResource("12_l0oxy")
-radius = 50.0
-
-[sub_resource type="Resource" id="Resource_rvao6"]
-resource_local_to_scene = true
-script = ExtResource("13_y78pp")
-ReachThreshold = 40.0
-
-[sub_resource type="Resource" id="Resource_whbc0"]
-resource_local_to_scene = true
-script = ExtResource("12_l0oxy")
-radius = 50.0
-
-[sub_resource type="Resource" id="Resource_po1o4"]
-resource_local_to_scene = true
-script = ExtResource("14_gub7h")
-ReachThreshold = 30.0
-InterestVariable = 60.0
-
-[sub_resource type="Resource" id="Resource_jcge0"]
-resource_local_to_scene = true
-script = ExtResource("15_snw5g")
-SteeringForce = 2.0
-SeekBehaviours = Array[Object]([SubResource("Resource_whbc0"), SubResource("Resource_po1o4")])
-IdleBehaviours = Array[Object]([SubResource("Resource_6i3qx"), SubResource("Resource_rvao6")])
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_36n63"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wp4bl"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
@@ -225,7 +193,7 @@ script = ExtResource("19_dgm2o")
 script = ExtResource("19_dgm2o")
 Lv = 5
 
-[sub_resource type="Resource" id="Resource_66p1m"]
+[sub_resource type="Resource" id="Resource_l0oxy"]
 resource_local_to_scene = true
 script = ExtResource("29_lmbpy")
 Base = ExtResource("24_ks15f")
@@ -236,15 +204,15 @@ stats = SubResource("Resource_spw3s")
 EquipStats = SubResource("Resource_c0252")
 TotalStats = SubResource("Resource_7cwt1")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ifvp6"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y78pp"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_csajx"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gub7h"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kk5cj"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_snw5g"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
@@ -329,7 +297,7 @@ Scene = 21
 LoadPosition = Vector2(0, 160)
 
 [node name="CollisionShape2D" parent="Door" index="0"]
-shape = SubResource("RectangleShape2D_od44s")
+shape = SubResource("RectangleShape2D_20xr1")
 
 [node name="Door2" parent="." unique_id=854661610 instance=ExtResource("9_wsavl")]
 position = Vector2(0, 192)
@@ -337,7 +305,7 @@ Scene = 23
 LoadPosition = Vector2(0, -160)
 
 [node name="CollisionShape2D" parent="Door2" index="0"]
-shape = SubResource("RectangleShape2D_mtm5n")
+shape = SubResource("RectangleShape2D_u6m1n")
 
 [node name="Barrier" parent="." unique_id=853702014 instance=ExtResource("10_bvxbb")]
 position = Vector2(0, 144)
@@ -359,23 +327,17 @@ FlagIndex = 7
 position = Vector2(88, 0)
 
 [node name="CollisionShape2D" parent="Character2" index="0" unique_id=1831021069]
-shape = SubResource("RectangleShape2D_2hiuy")
+shape = SubResource("RectangleShape2D_pb78d")
 
 [node name="OverworldController" parent="Character2" index="1" unique_id=1701198914]
-movementController = SubResource("Resource_jcge0")
+movementController = null
 state = 0
 Speed = 0.0
 Friction = 0.0
 MaxSpeed = 0.0
-ZIndexList = Array[Object]([])
-CLayerList = Array[Object]([])
-CMaskList = Array[Object]([])
-AxisList = Array[Object]([])
-PositionList = Array[Object]([])
-AuxPositionList = Array[Object]([])
 
 [node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" parent_id_path=PackedInt32Array(1834513577, 2071790070) index="0" unique_id=809018392]
-shape = SubResource("RectangleShape2D_36n63")
+shape = SubResource("RectangleShape2D_wp4bl")
 
 [node name="BattleStart" parent="Character2/OverworldController" index="2" unique_id=597410356]
 scene = SubResource("Resource_gsnok")
@@ -384,16 +346,16 @@ PartyPos = Array[Vector2]([Vector2(-75, 0), Vector2(-75, 100), Vector2(0, 0)])
 EnemyPos = Array[Vector2]([Vector2(75, 0), Vector2(75, 100), Vector2(75, -100)])
 
 [node name="BattleCharacter" parent="Character2" index="2" unique_id=1992698993]
-Character = SubResource("Resource_66p1m")
+Character = SubResource("Resource_l0oxy")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1834513577, 440007294) index="0" unique_id=557952078]
-shape = SubResource("RectangleShape2D_ifvp6")
+shape = SubResource("RectangleShape2D_y78pp")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 656277864) index="0" unique_id=365359841]
-shape = SubResource("RectangleShape2D_csajx")
+shape = SubResource("RectangleShape2D_gub7h")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1834513577, 172316861) index="0" unique_id=2023012338]
-shape = SubResource("RectangleShape2D_kk5cj")
+shape = SubResource("RectangleShape2D_snw5g")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="Character2" unique_id=1187712109 node_paths=PackedStringArray("Effects", "MainSprite", "Sprites")]
 shape = SubResource("RectangleShape2D_c0252")

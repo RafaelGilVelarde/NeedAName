@@ -22,8 +22,7 @@ public partial class EquipmentBase : ItemBase
 {
     [Export] public EquipmentType EquipType;
     [Export] public Stats stats = new Stats();
-    [Export] public PackedScene Animator;
-    
+    [Export] public PackedScene Animator;    
     [Export] int StatChange;
     public virtual void FightStartEffect(BattleCharacter Character){
 

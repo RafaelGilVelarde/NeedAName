@@ -14,6 +14,7 @@ public partial class ItemBase : Resource
     [Export] public string Name;
     [Export] public string Description;
     [Export] public Type type;
+    [Export] public bool HasUse = true;
     public virtual void Effect(Array<Character> Targets){
         
     }

@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bl8d80pdpybud"]
+
+[ext_resource type="Script" uid="uid://cniv85n27otht" path="res://Scripts/Menu/Sliders/VolumeSlider.cs" id="1_b6iws"]
+
+[node name="MainVol" type="Control" unique_id=2129350475 node_paths=PackedStringArray("Slider", "SelectButton")]
+process_mode = 4
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_b6iws")
+Slider = NodePath("ProgressBar")
+AudioBus = "BGM"
+SelectButton = NodePath("Button")
+
+[node name="Button" type="Button" parent="." unique_id=104660170]
+process_mode = 3
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "BGM"
+
+[node name="ProgressBar" type="ProgressBar" parent="." unique_id=1341432961]
+layout_mode = 0
+offset_left = 60.0
+offset_right = 160.0
+offset_bottom = 31.0
+max_value = 1.0

@@ -186,6 +186,11 @@ msgstr ""
 
 #: Prefabs/GameManager.tscn
 #: Scenes/MainMenu.tscn
+msgid "Volume"
+msgstr ""
+
+#: Prefabs/GameManager.tscn
+#: Scenes/MainMenu.tscn
 msgid "English"
 msgstr ""
 
@@ -275,7 +280,7 @@ msgid "Block: Z"
 msgstr ""
 
 #: Prefabs/BattleManager/battle_manager.tscn
-msgid "Dodge: Arrows+Z"
+msgid "Esquivar: Flechas + Z"
 msgstr ""
 
 #: Prefabs/BattleManager/battle_manager.tscn
@@ -288,4 +293,7 @@ msgstr ""
 
 #: Prefabs/BattleManager/battle_manager.tscn
 msgid "Return to Title Screen"
+msgstr ""
+
+msgid "Godot"
 msgstr ""

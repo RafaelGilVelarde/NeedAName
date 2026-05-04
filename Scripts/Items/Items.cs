@@ -9,14 +9,17 @@ public partial class Items: Resource
     [Export] public int Amount;
 
     public virtual void Use(Array<Character> Targets){
-        Array<Items> Aux = GameManager.Instance.Data.items[(int)Base.type].items;
-        Base.Effect(Targets);
-        Amount--;
-        if(Amount<=0){
-            Amount = 0;
-            if(Aux.Contains(this)){
-                Aux.Remove(this);
-            }
+        if (Base.HasUse)
+        {
+            Array<Items> Aux = GameManager.Instance.Data.items[(int)Base.type].items;
+            Base.Effect(Targets);
+            Amount--;
+            if(Amount<=0){
+                Amount = 0;
+                if(Aux.Contains(this)){
+                    Aux.Remove(this);
+                }
+            }            
         }
     }
         public virtual void Toss(int amount){

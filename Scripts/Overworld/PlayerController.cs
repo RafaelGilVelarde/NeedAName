@@ -27,12 +27,15 @@ public partial class PlayerController : OverworldController
 
 	[Signal]public delegate void _FollowEventHandler(bool follow);
 
+	GameManager Game;
+
 
     public override void _Ready()
     {
         InteractCollider.BodyEntered+=OnInteractionEnter;
 		InteractCollider.BodyExited+=OnInteractionExit;
 
+		Game = GameManager.Instance;
         Callable.From(ActorSetup).CallDeferred();	
     }
     public override void _Input(InputEvent @event)
@@ -47,14 +50,11 @@ public partial class PlayerController : OverworldController
 						Interactable.interact(this);
 					}
 				}
-				if(Input.IsActionJustPressed("Deny")){
-					GameManager Game = GameManager.Instance;
+				/*if(Input.IsActionJustPressed("Deny")){
 					if (Game.Characters.Count > 1)
 					{
 						int index = Game.Characters.IndexOf(this);
-						Debug.WriteLine("Changing to "+ Game.Characters[(index + 1) % Game.Characters.Count].Parent.Name);
 						Game.ChangeLeader(this,Game.Characters[(index + 1) % Game.Characters.Count]);
-						Debug.WriteLine("Controller: "+ Controller.Parent.Name);
 
 						SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1);
 						SwitchTimer.Timeout+= () =>
@@ -62,7 +62,7 @@ public partial class PlayerController : OverworldController
 							Controller.SetControllable(true);							
 						};
 					}
-				}
+				}*/
 				if(Input.IsActionJustPressed("Menu")){
 					MainMenu.Instance.OpenCloseMenu(true);
 					SetControllable(false);
@@ -235,11 +235,11 @@ public partial class PlayerController : OverworldController
 		AnimatorTree.Set("parameters/conditions/Walking",follow);
 		if (follow)
 		{
-			Axis = Controller.AxisList[AxisOffset];
-			Parent.Position = Controller.PositionList[AxisOffset];
-			Parent.ZIndex = Controller.ZIndexList[AxisOffset];
-			Parent.CollisionLayer = Controller.CLayerList[AxisOffset];
-			Parent.CollisionMask = Controller.CMaskList[AxisOffset];
+			Axis = Game.FollowerLists.AxisList[AxisOffset];
+			Parent.Position = Game.FollowerLists.PositionList[AxisOffset];
+			Parent.ZIndex = Game.FollowerLists.ZIndexList[AxisOffset];
+			Parent.CollisionLayer = Game.FollowerLists.CLayerList[AxisOffset];
+			Parent.CollisionMask = Game.FollowerLists.CMaskList[AxisOffset];
 		}
 		else
 		{
@@ -254,12 +254,12 @@ public partial class PlayerController : OverworldController
 		//Parent.Velocity=Controller.VelocityList[AxisOffset];
 	}
 	void RecordAxis(){
-		if(Axis!=Vector2.Zero&&PositionList[PositionList.Count-1]!=GlobalPosition){
-			PositionList.RemoveAt(0);
-			PositionList.Add(GlobalPosition);
+		if(Axis!=Vector2.Zero&& Game.FollowerLists.PositionList[Game.FollowerLists.PositionList.Count-1]!=GlobalPosition){
+			Game.FollowerLists.PositionList.RemoveAt(0);
+			Game.FollowerLists.PositionList.Add(GlobalPosition);
 			//AuxPositionList=PositionList;
-			AxisList.RemoveAt(0);
-			AxisList.Add(Axis);
+			Game.FollowerLists.AxisList.RemoveAt(0);
+			Game.FollowerLists.AxisList.Add(Axis);
 			RecordLayers();
 			EmitSignal("_Follow",true);
 		}
@@ -269,18 +269,18 @@ public partial class PlayerController : OverworldController
 	}
 	void RecordLayers()
 	{
-		CLayerList.RemoveAt(0);
-		CLayerList.Add(Parent.CollisionLayer);
-		CMaskList.RemoveAt(0);
-		CMaskList.Add(Parent.CollisionMask);
-		ZIndexList.RemoveAt(0);
-		ZIndexList.Add(Parent.ZIndex);
+		Game.FollowerLists.CLayerList.RemoveAt(0);
+		Game.FollowerLists.CLayerList.Add(Parent.CollisionLayer);
+		Game.FollowerLists.CMaskList.RemoveAt(0);
+		Game.FollowerLists.CMaskList.Add(Parent.CollisionMask);
+		Game.FollowerLists.ZIndexList.RemoveAt(0);
+		Game.FollowerLists.ZIndexList.Add(Parent.ZIndex);
 	}
 	void ClearAxis(){
 		if(Controller!=null){
-			for(int i=0;i<AxisList.Count;i++){
-				Controller.AxisList[i]=Vector2.Zero;
-				Controller.PositionList[i]=Controller.GlobalPosition;
+			for(int i=0;i<Game.FollowerLists.AxisList.Count;i++){
+				Controller.Game.FollowerLists.AxisList[i]=Vector2.Zero;
+				Controller.Game.FollowerLists.PositionList[i]=Controller.GlobalPosition;
 			}
 		}
 	}

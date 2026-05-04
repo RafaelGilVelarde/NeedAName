@@ -22,27 +22,32 @@ public partial class CutscenePlayer : AnimationPlayer
         Game.OverworldCam.Reparent(Game.OverworldCam.CameraParent);
         Game.BattleCam.Reparent(Game.OverworldCam.CameraParent);
 
-        Tween tween = CreateTween();
-        tween.SetParallel(true);
+        int aux = 0;
 
         for (int i = 0; i < Game.Followers.Count; i++)
         {
             if (ChangePos)
             {
-                Game.Followers[i].TweenMovement(InitialPositions[i+InitialPositionStartIndex[Index%InitialPositionStartIndex.Count]],ChangePosTime);
+                Tween Move = Game.Followers[i].TweenMovement(InitialPositions[i+InitialPositionStartIndex[Index%InitialPositionStartIndex.Count]],ChangePosTime,false);
+                Move.Finished+=StartScene;
             }
             else
             {
-                Game.Followers[i].TweenMovement(Game.Followers[i].Parent.GlobalPosition,ChangePosTime);
+                Tween Move = Game.Followers[i].TweenMovement(Game.Followers[i].Parent.GlobalPosition,ChangePosTime,false);
+                Move.Finished+=StartScene;
             }
         }
-        tween.Finished += () =>
+        
+        void StartScene()
         {
-            Game.OverworldCam.PositionSmoothingEnabled = true;
-            Game.BattleCam.PositionSmoothingEnabled = true;
-            Play(Animation);
-            tween.Kill();
-        };
+            aux++;
+            if(aux == Game.Followers.Count)
+            {
+                Game.OverworldCam.PositionSmoothingEnabled = true;
+                Game.BattleCam.PositionSmoothingEnabled = true;
+                Play(Animation);                         
+            }
+        }
     }
     public virtual void EndAnimation()
     {

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://pjpv7pe0n1hd"]
+
+[ext_resource type="PackedScene" uid="uid://bl8d80pdpybud" path="res://Prefabs/Audio/VolumeSlider.tscn" id="1_v0man"]
+
+[node name="Volumes" type="VBoxContainer" unique_id=552334343]
+visible = false
+offset_left = 190.0
+offset_top = 50.0
+offset_right = 230.0
+offset_bottom = 90.0
+theme_override_constants/separation = 50
+
+[node name="MainVol" parent="." unique_id=2129350475 instance=ExtResource("1_v0man")]
+layout_mode = 2
+
+[node name="MainVol2" parent="." unique_id=917187992 instance=ExtResource("1_v0man")]
+layout_mode = 2
+AudioBus = "SFX"
+
+[node name="Button" parent="MainVol2" index="0" unique_id=104660170]
+text = "SFX"
+
+[editable path="MainVol2"]

@@ -1612,12 +1612,6 @@ Friction = 1000.0
 MaxSpeed = 6000.0
 Parent = NodePath("..")
 OverworldCollider = NodePath("../CollisionShape2D")
-ZIndexList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-CLayerList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-CMaskList = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-AuxPositionList = Array[Vector2]([])
 AxisOffset = 5
 Axis = null
 AxisAux = null
@@ -1836,7 +1830,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_mctvn")
+texture = SubResource("AtlasTexture_7cjed")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Fight",
@@ -1864,7 +1858,7 @@ offset_right = 32.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.63, 0.63)
+scale = Vector2(1, 0.25)
 pivot_offset = Vector2(16, 9)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1873,6 +1867,7 @@ text = "Fight"
 scroll_active = false
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D" unique_id=1164079459]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1891,7 +1886,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_kskeb")
+texture = SubResource("AtlasTexture_vgxlo")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Item",
@@ -1918,7 +1913,7 @@ offset_right = 32.0
 offset_bottom = 9.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(0.63, 0.63)
+scale = Vector2(1, 0.25)
 pivot_offset = Vector2(16, 9)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1927,6 +1922,7 @@ fit_content = true
 scroll_active = false
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D" unique_id=1639749877]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -1945,7 +1941,7 @@ offset_top = -23.0
 offset_right = 35.0
 offset_bottom = 41.0
 pivot_offset = Vector2(35, 0)
-texture = SubResource("AtlasTexture_t077f")
+texture = SubResource("AtlasTexture_k6qqc")
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Run",
@@ -1970,7 +1966,7 @@ offset_left = -16.0
 offset_top = -9.0
 offset_right = 32.0
 offset_bottom = 9.0
-scale = Vector2(0.63, 0.63)
+scale = Vector2(1, 0.25)
 pivot_offset = Vector2(16, 9)
 theme_override_colors/default_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/normal_font_size = 13
@@ -1978,6 +1974,7 @@ text = "Run"
 fit_content = true
 
 [node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D" unique_id=1113576670]
+modulate = Color(1, 1, 1, 0)
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9

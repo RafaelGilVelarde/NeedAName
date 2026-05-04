@@ -18,6 +18,7 @@ public partial class Character : Resource
     [Export] public bool Active = true;
     [Export] public Key Key { get; private set; }
     [Export] public InputEventKey EventKey { get; private set; }
+    [Export] public int FollowIndex;
 
 
     [Signal]
