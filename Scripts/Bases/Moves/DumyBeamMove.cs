@@ -59,7 +59,7 @@ public partial class DumyBeamMove : MoveBase
 			Debug.WriteLine($"Controlled: {User.Character.isControlledByPlayer}");
 			if (User.Character.isControlledByPlayer)
 			{
-				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.3, true, true, true);
+				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.3, true, true);
 				User.Character.ShowTextLabel($"{User.Character.Key}", User.Character.Base.TextEffectColor);
 				User._DoAction += ManualShoot;
 				User.changeState(BattleCharacter.BattleState.Attacking);

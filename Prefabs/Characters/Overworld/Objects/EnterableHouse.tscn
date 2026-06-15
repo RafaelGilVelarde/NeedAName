@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://bbvmtunwlfmvt"]
+
+[ext_resource type="Texture2D" uid="uid://bce5fam4cder5" path="res://Sprites/Overworld/Objects/Forest/Tree.png" id="1_awp3q"]
+
+[node name="Tree" type="StaticBody2D" unique_id=1579021998]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1976083370]
+texture = ExtResource("1_awp3q")
+
+[node name="Sprite2D" type="Sprite2D" parent="Sprite2D" unique_id=454748581]
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "",
+"source": ""
+}
+
+[node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1046380330]
+polygon = PackedVector2Array(-32, 0, 32, 0, 64, 64, 16, 48, 16, 4, -16, 4, -16, 48, -64, 64)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1639865197]

@@ -9,6 +9,7 @@ public partial class Character : Resource
     public Node2D NodeCharacter;
     [Export] public string Name;
     [Export] public CharacterBase Base { get; private set; }
+    [Export] public FieldMoves FieldMove;
     [Export] public Array<Moves> Moves;
     [Export] public Array<Items> items;
     [Export] public Array<EquipmentBase> Equipment;
@@ -19,6 +20,8 @@ public partial class Character : Resource
     [Export] public Key Key { get; private set; }
     [Export] public InputEventKey EventKey { get; private set; }
     [Export] public int FollowIndex;
+
+    int LabelAmount;
 
 
     [Signal]
@@ -180,11 +183,23 @@ public partial class Character : Resource
         NodeCharacter.GetTree().CurrentScene.AddChild(HPLabelParent);
         HPLabelParent.Position = NodeCharacter.GlobalPosition;
         HPLabelParent.ZIndex = 20;
+
+        if (LabelAmount > 0)
+        {
+            HPLabelParent.Position+=new Vector2(0,-50);
+        }
+        LabelAmount++;
+        SceneTreeTimer Timer = HPLabelParent.GetTree().CreateTimer(0.1,true,true);
+        Timer.Timeout += () =>
+        {
+            LabelAmount--;
+        };
     }
 
     public virtual void ResetCharacter()
     {
         stats.HP = TotalStats.MaxHP;
+        status = Status.Normal;
         stats.WP = 0;
     }
     public void LearnMove(Moves Move)

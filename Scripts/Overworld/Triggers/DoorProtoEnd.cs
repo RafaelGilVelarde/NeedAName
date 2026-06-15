@@ -20,7 +20,7 @@ public partial class DoorProtoEnd : Area2D
     }
     	private async void ActorSetup()
     {
-        await ToSignal(GetTree().CreateTimer(0.1f,true),"timeout");
+        await ToSignal(GetTree().CreateTimer(0.1f,true,true),"timeout");
         BodyEntered+=OnCollisionEntered;        
     }
     void SwitchScene(){

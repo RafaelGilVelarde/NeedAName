@@ -3,7 +3,7 @@ if {GameManager.Data.Flags.EventFlags[9]} == true:
 	... #id:b7
 if {GameManager.Data.Flags.EventFlags[10]} == true:
 	Blobfish (Happy): Hellooooo! #id:b8
-	... #id:b9
+	.... #id:b9
 	Blobfish (Wondering): ? #id:ba
 MC (Confused): Do i have to........fight you? #id:bb
 ... #id:bc

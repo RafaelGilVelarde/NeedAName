@@ -23,4 +23,4 @@ HPHeal = 5
 ItemMove = SubResource("Resource_nlgn2")
 ID = 1
 Name = "Refresher"
-Description = "Vitalizes your soul! Heals 5 HP"
+Description = "RefresherDesc"

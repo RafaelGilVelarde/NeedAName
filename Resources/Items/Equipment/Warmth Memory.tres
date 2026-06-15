@@ -12,5 +12,5 @@ script = ExtResource("1_p21lu")
 stats = SubResource("Resource_aijb6")
 ID = 2
 Name = "Warmth Memory"
-Description = "Maintains your spirit warm. +2 Def"
+Description = "WarmthMemDesc"
 type = 1

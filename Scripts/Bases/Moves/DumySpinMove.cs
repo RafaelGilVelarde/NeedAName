@@ -49,7 +49,7 @@ public partial class DumySpinMove : MoveBase
 		tween.Finished+=tween.Kill;
 		void End(){
 			Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",true);
-			SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,false);
+			SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,true);
             AnimEndTimer.Timeout += () =>
             {
 				Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);                

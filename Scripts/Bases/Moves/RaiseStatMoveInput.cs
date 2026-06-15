@@ -21,7 +21,7 @@ public partial class RaiseStatMoveInput : RaiseStatMove
         {
             character._DoAction += Action;
             character._Shoot -= Countdown;
-            SceneTreeTimer Timer = character.GetTree().CreateTimer(0.2, true, true, true);
+            SceneTreeTimer Timer = character.GetTree().CreateTimer(0.2, true, true);
             character.Character.ShowTextLabel($"{character.Character.Key}", character.Character.Base.TextEffectColor);
             Timer.Timeout += () =>
             {

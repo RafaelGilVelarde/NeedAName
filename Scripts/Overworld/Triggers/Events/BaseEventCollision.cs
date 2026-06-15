@@ -26,7 +26,7 @@ public partial class BaseEventCollision : Area2D
     }
     public override void _Ready()
     {
-        SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true, true);
+        SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
         disable = new Callable(this, MethodName.Disable);
         push = new Callable(this, MethodName.Push);
         changeFlag = new Callable(this, MethodName.ManualFlagUpdate);

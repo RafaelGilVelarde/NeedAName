@@ -19,7 +19,7 @@ public partial class InteractText : Interact
     {
         base._Ready();
         disable = new Callable(this, MethodName.Disable);
-        SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true, true);
+        SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
         Timer.Timeout += () =>
         {
             if (GameManager.Instance.CurrentScene.CutsceneAnimator != null && Cutscene)

@@ -109,7 +109,7 @@ Power = 2
 UserAmount = 1
 TargetAmount = 1
 WP = 4
-MoveTime = 3.0
+MoveTime = 2.0
 
 [sub_resource type="Resource" id="Resource_y8ftr"]
 script = ExtResource("21_g2s7r")
@@ -124,7 +124,7 @@ Power = 1
 UserAmount = 1
 TargetAmount = 1
 WP = 2
-MoveTime = 3.0
+MoveTime = 2.0
 
 [sub_resource type="Resource" id="Resource_q5n6d"]
 script = ExtResource("21_g2s7r")
@@ -244,7 +244,7 @@ position = Vector2(0, 192)
 Scene = 27
 LoadPosition = Vector2(-687, 163)
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(0, 72)
 shape = SubResource("RectangleShape2D_seepm")
 
@@ -253,7 +253,7 @@ position = Vector2(0, -200)
 Scene = 22
 LoadPosition = Vector2(0, 160)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_slpwl")
 
 [node name="Barrier" parent="." unique_id=1318784998 instance=ExtResource("10_l3025")]

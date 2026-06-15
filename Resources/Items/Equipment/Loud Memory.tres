@@ -13,5 +13,5 @@ EquipType = 2
 stats = SubResource("Resource_0w6sl")
 ID = 3
 Name = "Loud Memory"
-Description = "Makes your soul scream wildly! +2 Atk"
+Description = "LoudMemDesc"
 type = 1

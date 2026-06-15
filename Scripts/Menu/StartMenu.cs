@@ -64,7 +64,7 @@ public partial class StartMenu : Node
     public override void _Ready()
     {
         GameManager Game = new GameManager();
-        SceneTreeTimer Timer = GetTree().CreateTimer(0.3, true, true, true);
+        SceneTreeTimer Timer = GetTree().CreateTimer(0.3, true, true);
         Timer.Timeout += () =>
         {
             Game = GameManager.Instance;

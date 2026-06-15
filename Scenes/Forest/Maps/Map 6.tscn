@@ -6,6 +6,78 @@
 [ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="2_r67xv"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="3_r67xv"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="6_cetg0"]
+[ext_resource type="PackedScene" uid="uid://bbvmtunwlfmvt" path="res://Prefabs/Characters/Overworld/Objects/EnterableHouse.tscn" id="7_qdcy2"]
+[ext_resource type="Texture2D" uid="uid://cjnk440eewue6" path="res://Sprites/Overworld/Objects/Forest/Tree2.png" id="8_ypv6c"]
+[ext_resource type="Texture2D" uid="uid://bjpdr2l3bc300" path="res://Sprites/Overworld/Objects/Forest/Tree2LeavesLayer 2.png" id="9_32n2f"]
+
+[sub_resource type="Animation" id="Animation_sdveh"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D/Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("9_32n2f")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D/Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D/Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D/Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D/Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0fxwa"]
+_data = {
+&"default": SubResource("Animation_sdveh")
+}
 
 [node name="Node2D" type="Node2D" unique_id=985481873]
 script = ExtResource("1_8o38d")
@@ -21,6 +93,7 @@ tile_map_data = PackedByteArray("AAD///b/AQAAAAAAAAD///f/AQAAAAAAAAD///j/AQAAAAA
 tile_set = ExtResource("2_r67xv")
 
 [node name="Node2D" type="Node2D" parent="." unique_id=17683768]
+z_index = -1
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="Node2D" unique_id=164814829]
 tile_map_data = PackedByteArray("AAABAPn/AAABAAAAAAABAPr/AAABAAAAAAABAPv/AAABAAAAAAABAPz/AAABAAAAAAABAP3/AAABAAAAAAABAP7/AAABAAAAAAACAPn/AAABAAAAAAACAPr/AAABAAAAAAACAPv/AAABAAAAAAACAPz/AAABAAAAAAACAP3/AAABAAAAAAACAP7/AAABAAAAAAADAPn/AAABAAAAAAADAPr/AAABAAAAAAADAPv/AAABAAAAAAADAPz/AAABAAAAAAADAP3/AAABAAAAAAADAP7/AAABAAAAAAAEAPn/AAABAAAAAAAEAPr/AAABAAAAAAAEAPv/AAABAAAAAAAEAPz/AAABAAAAAAAEAP3/AAABAAAAAAAEAP7/AAABAAAAAAAFAPn/AAABAAAAAAAFAPr/AAABAAAAAAAFAPv/AAABAAAAAAAFAPz/AAABAAAAAAAFAP3/AAABAAAAAAAFAP7/AAABAAAAAAAGAPn/AAABAAAAAAAGAPr/AAABAAAAAAAGAPv/AAABAAAAAAAGAPz/AAABAAAAAAAGAP3/AAABAAAAAAAGAP7/AAABAAAAAAAHAPn/AAABAAAAAAAHAPr/AAABAAAAAAAHAPv/AAABAAAAAAAHAPz/AAABAAAAAAAHAP3/AAABAAAAAAAHAP7/AAABAAAAAAAIAPn/AAABAAAAAAAIAPr/AAABAAAAAAAIAPv/AAABAAAAAAAIAPz/AAABAAAAAAAIAP3/AAABAAAAAAAIAP7/AAABAAAAAAD1//z/AAADAAIAAAD1//3/AAADAAIAAAD1//7/AAADAAIAAAD1////AAADAAIAAAD1/wAAAAADAAIAAAD2//z/AAADAAIAAAD2//3/AAADAAIAAAD2//7/AAADAAIAAAD2////AAADAAIAAAD2/wAAAAADAAIAAAD3//z/AAADAAIAAAD3//3/AAADAAIAAAD3//7/AAADAAIAAAD3////AAADAAIAAAD3/wAAAAADAAIAAAD4//z/AAADAAIAAAD4//3/AAADAAIAAAD4//7/AAADAAIAAAD4////AAADAAIAAAD4/wAAAAADAAIAAAAEAAMAAAACAAIAAAAEAAQAAAACAAIAAAAEAAUAAAACAAIAAAAEAAYAAAACAAIAAAAEAAcAAAACAAIAAAAEAAgAAAACAAIAAAAEAAkAAAACAAIAAAAEAAoAAAACAAIAAAAFAAoAAAACAAIAAAAGAAoAAAACAAIAAAAHAAoAAAACAAIAAAAIAAoAAAACAAIAAAAJAAoAAAACAAIAAAAKAAoAAAACAAIAAAALAAoAAAACAAIAAAAMAAoAAAACAAIAAAANAAoAAAACAAIAAAANAAcAAAACAAIAAAANAAgAAAACAAIAAAANAAkAAAACAAIAAAAGAAcAAAACAAIAAAAHAAcAAAACAAIAAAAIAAcAAAACAAIAAAAJAAcAAAACAAIAAAAKAAcAAAACAAIAAAALAAcAAAACAAIAAAAMAAcAAAACAAIAAAAGAAMAAAACAAIAAAAGAAQAAAACAAIAAAAGAAUAAAACAAIAAAAGAAYAAAACAAIAAAAFAAMAAAACAAIAAAD2/wIAAAAAAAAAAAD2/wMAAAAAAAAAAAD2/wQAAAAAAAAAAAD2/wUAAAAAAAAAAAD2/wYAAAAAAAAAAAD2/wcAAAAAAAAAAAD2/wgAAAAAAAAAAAD2/wkAAAAAAAAAAAD3/wIAAAAAAAAAAAD3/wMAAAAAAAAAAAD3/wQAAAAAAAAAAAD3/wUAAAAAAAAAAAD3/wYAAAAAAAAAAAD3/wcAAAAAAAAAAAD3/wgAAAAAAAAAAAD3/wkAAAAAAAAAAAD4/wIAAAAAAAAAAAD4/wMAAAAAAAAAAAD4/wQAAAAAAAAAAAD4/wUAAAAAAAAAAAD4/wYAAAAAAAAAAAD4/wcAAAAAAAAAAAD4/wgAAAAAAAAAAAD4/wkAAAAAAAAAAAD5/wIAAAAAAAAAAAD5/wMAAAAAAAAAAAD5/wQAAAAAAAAAAAD5/wUAAAAAAAAAAAD5/wYAAAAAAAAAAAD5/wcAAAAAAAAAAAD5/wgAAAAAAAAAAAD5/wkAAAAAAAAAAAD6/wIAAAAAAAAAAAD6/wMAAAAAAAAAAAD6/wQAAAAAAAAAAAD6/wUAAAAAAAAAAAD6/wYAAAAAAAAAAAD6/wcAAAAAAAAAAAD6/wgAAAAAAAAAAAD6/wkAAAAAAAAAAAD7/wIAAAAAAAAAAAD7/wMAAAAAAAAAAAD7/wQAAAAAAAAAAAD7/wUAAAAAAAAAAAD7/wYAAAAAAAAAAAD7/wcAAAAAAAAAAAD7/wgAAAAAAAAAAAD7/wkAAAAAAAAAAAD8/wIAAAAAAAAAAAD8/wMAAAAAAAAAAAD8/wQAAAAAAAAAAAD8/wUAAAAAAAAAAAD8/wYAAAAAAAAAAAD8/wcAAAAAAAAAAAD8/wgAAAAAAAAAAAD8/wkAAAAAAAAAAAA=")
@@ -54,5 +127,34 @@ position = Vector2(104, -32)
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
 polygon = PackedVector2Array(444, 388, -460, 392, -460, -292, 444, -292, 444, 384, 440, 384, 440, -288, -456, -288, -456, 384, 444, 384)
 
+[node name="Tree" parent="." unique_id=1579021998 instance=ExtResource("7_qdcy2")]
+position = Vector2(136, -144)
+
+[node name="Sprite2D" parent="Tree" index="0" unique_id=1976083370]
+texture = ExtResource("8_ypv6c")
+
+[node name="Sprite2D" parent="Tree/Sprite2D" index="0" unique_id=454748581]
+texture_filter = 1
+texture = ExtResource("9_32n2f")
+hframes = 3
+vframes = 2
+frame = 2
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "Layer 2",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Objects/Forest",
+"o_name": "Tree2Leaves",
+"only_visible": false,
+"op_exp": false,
+"player": "Tree/AnimationPlayer",
+"source": "res://Aseprites/Objects/Forest/Tree2.aseprite"
+}
+
+[node name="AnimationPlayer" parent="Tree" index="2" unique_id=1639865197]
+libraries/ = SubResource("AnimationLibrary_0fxwa")
+autoplay = &"default"
+
 [editable path="Cams"]
 [editable path="Borders"]
+[editable path="Tree"]

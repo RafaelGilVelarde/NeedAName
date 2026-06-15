@@ -1,35 +1,16 @@
-[gd_resource type="Resource" script_class="RaiseStatMoveInput" load_steps=2 format=3 uid="uid://c8sli2udx617g"]
+[gd_resource type="Resource" script_class="RaiseStatMoveInput" format=3 uid="uid://c8sli2udx617g"]
 
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/RaiseStatMoveInput.cs" id="1_h2hw6"]
+[ext_resource type="Script" uid="uid://ckc6ukgh0g8bk" path="res://Scripts/Bases/Moves/RaiseStatMoveInput.cs" id="1_h2hw6"]
 
 [resource]
 script = ExtResource("1_h2hw6")
 TimerSums = PackedInt32Array(0, 0, 1, 0, 0)
-AtkTime = 0
-DefTime = 0
-SpAtkTime = 0
 SpDefTime = 2
-SpeedTime = 0
-AtkMult = 0.0
-DefMult = 0.0
-SpAtkMult = 0.0
 SpDefMult = 1.5
-SpeedMult = 0.0
-HPIncrease = 0.0
-WPIncrease = 0.0
-Atk = false
-Def = false
-Spatk = false
 Spdef = true
-Speed = false
-HP = false
-WPUp = false
-type = 0
-Power = 0
 UserAmount = 1
 TargetAmount = 1
-WP = 0
 Cost = 5
 TargetsParty = true
 Name = "SpDefUp"
-MoveTime = 3.0
+MoveTime = 1.5

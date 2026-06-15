@@ -16,7 +16,7 @@ public partial class SpinSpamMove : MoveBase
 
 
         int Spam = 0;
-        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.05,true,true,true);
+        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.05,true,true);
         float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);
 
 
@@ -73,7 +73,7 @@ public partial class SpinSpamMove : MoveBase
                     Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Hit",false);
 
                     Users[0].Character.ShowTextLabel($"{Users[0].Character.Key}",Users[0].Character.Base.TextEffectColor);
-                    SceneTreeTimer AuxTimer= Users[0].GetTree().CreateTimer(0.5,true,true,true);
+                    SceneTreeTimer AuxTimer= Users[0].GetTree().CreateTimer(0.5,true,true);
                     AuxTimer.Timeout+=()=>{
                         if(AttackAvailable){
                             AttackAvailable = false;
@@ -138,7 +138,7 @@ public partial class SpinSpamMove : MoveBase
                 AttackAvailable = false;
                 Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",true);
                 
-                SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,false);
+                SceneTreeTimer AnimEndTimer = Users[0].GetTree().CreateTimer(0.1,true,true);
                 AnimEndTimer.Timeout += () =>
                 {
                     Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/MoveEnded",false);                
@@ -154,7 +154,7 @@ public partial class SpinSpamMove : MoveBase
                 Users[0].changeState(BattleCharacter.BattleState.Idle);
                 Users[0].SoundEffectController.StopSFX();
                 if(MainTimer.TimeLeft>0.1){
-                    SceneTreeTimer timer = Users[0].GetTree().CreateTimer(0.1,true,true,true);
+                    SceneTreeTimer timer = Users[0].GetTree().CreateTimer(0.1,true,true);
                     timer.Timeout+=()=>{
                         MainTimer.TimeLeft = 0;
                         Debug.WriteLine("Time: "+MainTimer.TimeLeft);

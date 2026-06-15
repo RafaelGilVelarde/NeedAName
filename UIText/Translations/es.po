@@ -60,11 +60,11 @@ msgstr "Def"
 
 #: Prefabs/GameManager.tscn
 msgid "SpAtk"
-msgstr "AtSpe"
+msgstr "AtEsp"
 
 #: Prefabs/GameManager.tscn
 msgid "SpDef"
-msgstr "DefSpe"
+msgstr "DefEsp"
 
 #: Prefabs/GameManager.tscn
 msgid "Speed"

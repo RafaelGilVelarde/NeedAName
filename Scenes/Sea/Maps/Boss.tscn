@@ -390,6 +390,20 @@ tracks/5/keys = {
 "method": &"play"
 }]
 }
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Character/SFXController")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [2, 0],
+"method": &"PlaySFX"
+}]
+}
 
 [sub_resource type="Animation" id="Animation_wal5m"]
 length = 3.0
@@ -445,25 +459,18 @@ tracks/3/keys = {
 "method": &"play"
 }]
 }
-
-[sub_resource type="Animation" id="Animation_5aagx"]
-resource_name = "joke"
-length = 2.1
-tracks/0/type = "method"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Cutscenes")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.93333334, 1.9333333),
-"transitions": PackedFloat32Array(1, 1),
+tracks/4/type = "method"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Character/SFXController")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
 "values": [{
-"args": [],
-"method": &"StopAudio"
-}, {
-"args": [7],
-"method": &"PlayAudio"
+"args": [2, 0],
+"method": &"PlaySFX"
 }]
 }
 
@@ -472,8 +479,7 @@ _data = {
 &"Cutscene1": SubResource("Animation_vv0w8"),
 &"Cutscene2": SubResource("Animation_3708d"),
 &"Cutscene3": SubResource("Animation_xqnr8"),
-&"Cutscene4": SubResource("Animation_wal5m"),
-&"joke": SubResource("Animation_5aagx")
+&"Cutscene4": SubResource("Animation_wal5m")
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3r24e"]
@@ -739,6 +745,7 @@ script = ExtResource("26_8x2fq")
 Proyectile = ExtResource("25_40e4m")
 Offset = Vector2(-50, -36)
 Tag = "EnemyHitbox"
+type = 1
 Power = 2
 UserAmount = 1
 TargetAmount = 1
@@ -981,7 +988,8 @@ shape = SubResource("RectangleShape2D_airv7")
 libraries/ = SubResource("AnimationLibrary_kwfww")
 script = ExtResource("38_5jbol")
 InitialPositions = Array[Vector2]([Vector2(116, 164), Vector2(68, 164), Vector2(-5, 168), Vector2(-105, 164)])
-InitialPositionStartIndex = Array[int]([0, 0, 2, 2])
+InitialPositionStartIndex = Array[int]([0, 2, 0, 0])
+PositioningDurations = Array[float]([])
 CutsceneDurations = Array[float]([1.5])
 CutsceneNames = Array[String](["Cutscene1", "Cutscene2", "Cutscene3", "Cutscene4", "joke"])
 
@@ -1032,7 +1040,7 @@ shape = SubResource("RectangleShape2D_4o1nk")
 
 [node name="BattleStart" parent="Character/OverworldController" index="2" unique_id=597410356]
 scene = SubResource("Resource_6ajbo")
-EnemyCharacters = Array[Object]([])
+EnemyCharacters = Array[float]([])
 PartyPos = Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)])
 EnemyPos = Array[Vector2]([Vector2(0, -36)])
 
@@ -1068,7 +1076,7 @@ shape = SubResource("RectangleShape2D_odqh0")
 texture = ExtResource("12_c83it")
 hframes = 8
 vframes = 8
-frame = 43
+frame = 5
 
 [node name="HitEffectParticles" parent="Character/BattleCharacter" index="7" unique_id=11086012]
 scale_amount_curve = SubResource("Curve_0dopt")

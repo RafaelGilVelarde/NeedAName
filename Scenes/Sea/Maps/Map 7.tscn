@@ -436,7 +436,7 @@ Sprites = []
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
 texture = ExtResource("6_tpe1d")
-frame = 10
+frame = 9
 
 [node name="AnimationPlayer2" parent="NPC/CollisionShape2D/Sprite2D" index="0" unique_id=1573220088 instance=ExtResource("7_djoto")]
 
@@ -458,7 +458,7 @@ LoadPosition = Vector2(-80, 270)
 LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_rttg1")
 
@@ -471,7 +471,7 @@ LoadPosition = Vector2(-176, -190)
 LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_gfdbp")
 
 [node name="Door4" parent="." unique_id=1511429450 instance=ExtResource("9_gr6nm")]
@@ -480,7 +480,7 @@ rotation = 1.5708
 Scene = 5
 LoadPosition = Vector2(240, 0)
 
-[node name="CollisionShape2D" parent="Door4" index="0"]
+[node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
 position = Vector2(-1.49568e-05, -4)
 shape = SubResource("RectangleShape2D_8scae")
 
@@ -489,7 +489,7 @@ position = Vector2(8, 200)
 Scene = 12
 LoadPosition = Vector2(40, -208)
 
-[node name="CollisionShape2D" parent="Door5" index="0"]
+[node name="CollisionShape2D" parent="Door5" index="0" unique_id=1179102348]
 position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_eqhmi")
 
@@ -498,7 +498,7 @@ position = Vector2(8, -199)
 Scene = 2
 LoadPosition = Vector2(176, 272)
 
-[node name="CollisionShape2D" parent="Door6" index="0"]
+[node name="CollisionShape2D" parent="Door6" index="0" unique_id=1179102348]
 position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_drw78")
 
@@ -520,7 +520,7 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 position = Vector2(48, -168)
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
-polygon = PackedVector2Array(136, 48, -112, 48, -112, 152, 136, 152)
+polygon = PackedVector2Array(136, 72, -112, 72, -112, 152, 136, 152)
 
 [node name="Area2D2" parent="." unique_id=1388101816 instance=ExtResource("10_5sil6")]
 position = Vector2(24, 88)
@@ -532,8 +532,8 @@ polygon = PackedVector2Array(160, -72, -88, -72, -88, 40, 160, 40)
 position = Vector2(24, -88)
 MainEnemies = Array[Object]([SubResource("Resource_ehv4y"), SubResource("Resource_qw1r2")])
 SideEnemies = Array[Object]([SubResource("Resource_cl2et"), SubResource("Resource_5g08o")])
-PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 100)])
-EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, 100)])
+PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 50)])
+EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, 50)])
 Scene = ExtResource("23_gqx6i")
 detectArea = NodePath("../Area2D")
 

@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_dbkoi")
 Name = "Soul Memory"
-Description = "...Feels Familiar"
+Description = "SoulMemDesc"
 type = 2
 HasUse = false

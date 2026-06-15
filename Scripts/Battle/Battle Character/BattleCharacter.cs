@@ -177,7 +177,7 @@ public partial class BattleCharacter : CharacterBody2D
 	public void changeAction(ActionState state)
 	{
 
-		AnimatorPlayer.Play("RESET");
+		//AnimatorPlayer.Play("RESET");
 		AnimatorTree.Set("parameters/ActionState/blend_position", (int)state);
 		if(actionState != state)
 		{
@@ -510,31 +510,31 @@ public partial class BattleCharacter : CharacterBody2D
 		if (StatMultiplier[Stat] > 1)
 		{
 			Texture.Texture = UpStat;
-			UpDown = "Up!";
+			UpDown = "+!";
 		}
 		else
 		{
 			Texture.Texture = DownStat;
-			UpDown = "Down...";
+			UpDown = "-...";
 		}
 		Texture.Visible = true;
 
 		switch (Stat)
 		{
 			case 0:
-				StatChanged = "Attack";
+				StatChanged = Tr("Attack");
 				break;
 			case 1:
-				StatChanged = "Defense";
+				StatChanged = Tr("Defense");
 				break;
 			case 2:
-				StatChanged = "SpAttack";
+				StatChanged = Tr("SpAttack");
 				break;
 			case 3:
-				StatChanged = "SpDefense";
+				StatChanged = Tr("SpDefense");
 				break;
 			case 4:
-				StatChanged = "Speed";
+				StatChanged = Tr("Speed");
 				break;
 		}
 

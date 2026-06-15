@@ -243,7 +243,7 @@ public partial class StatsScreen : MenuScreens
         CurrentCharacter.ChangeKey((InputEventKey)@event);
         ((Button)KeyButton).Text = CurrentCharacter.Key.ToString();
 
-        SceneTreeTimer timer = GetTree().CreateTimer(0.2f, true, true, true);
+        SceneTreeTimer timer = GetTree().CreateTimer(0.2f, true, true);
         timer.Timeout += end;
 
         void end()

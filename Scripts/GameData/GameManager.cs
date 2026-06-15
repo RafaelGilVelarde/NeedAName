@@ -246,7 +246,7 @@ public partial class GameManager : Node
 		{
 			AssignCharacterCamera(B);					
 		}
-		SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1);
+		SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1,true,true);
 		SwitchTimer.Timeout+= () =>
 			{
 				B.OverworldCollider.Disabled = false;
@@ -483,6 +483,7 @@ public partial class GameManager : Node
 	{
 		if (Saves[Save] != null)
 		{
+			CurrentSaveExists = true;
 			for (int i = 0; i < Characters.Count; i++)
 			{
 				Characters[i].Parent.Name = "deleting";

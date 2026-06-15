@@ -1,4 +1,4 @@
-[gd_resource type="NoiseTexture2D" load_steps=2 format=3 uid="uid://x7l0sn7mrt74"]
+[gd_resource type="NoiseTexture2D" format=3 uid="uid://x7l0sn7mrt74"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_rxb4l"]
 frequency = 0.016
@@ -6,6 +6,6 @@ domain_warp_enabled = true
 
 [resource]
 generate_mipmaps = false
+noise = SubResource("FastNoiseLite_rxb4l")
 seamless = true
 normalize = false
-noise = SubResource("FastNoiseLite_rxb4l")

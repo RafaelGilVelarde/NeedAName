@@ -9,6 +9,9 @@ public partial class BezierProyectile : Node2D
     [Export] public BattleCharacter Target;
     [Export] public bool Ended, CanStart=true, Acting = true;
     [Export] protected float Speed = 1;
+
+    [Signal]public delegate void _EndPathEventHandler();
+
     protected double Time;
     public override void _PhysicsProcess(double delta)
     {
@@ -17,6 +20,7 @@ public partial class BezierProyectile : Node2D
             Time+=delta*Speed;
             if(Time>=1){
                 Time=0;
+                EmitSignal("_EndPath");
             }
         }
     }

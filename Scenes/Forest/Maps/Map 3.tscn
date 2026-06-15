@@ -1,5 +1,6 @@
 [gd_scene format=4 uid="uid://fqq1dduco4pt"]
 
+[ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_12wxr"]
 [ext_resource type="TileSet" uid="uid://by3v27ctnj6tn" path="res://Resources/Tilesets/Maps/Forest/ForestMap.tres" id="1_nhn7i"]
 [ext_resource type="Shader" uid="uid://cmiuft3kr01v" path="res://Resources/Shaders/Intro.gdshader" id="2_0l3eg"]
 [ext_resource type="Texture2D" uid="uid://bi2s4om1jkhk8" path="res://icon.svg" id="3_cumyl"]
@@ -41,8 +42,10 @@ shader_parameter/light_start = 0.34800001653
 shader_parameter/light_end = 0.66800003173
 
 [node name="Map3" type="Node2D" unique_id=1595786119]
+script = ExtResource("1_12wxr")
 
 [node name="TileMaps" type="Node2D" parent="." unique_id=50015193]
+z_index = -1
 
 [node name="TileMapLayer2" type="TileMapLayer" parent="TileMaps" unique_id=502767537]
 tile_map_data = PackedByteArray("AAAcAPf/AAAMAAEAAAAbAPf/AAAMAAEAAAAaAPf/AAAMAAEAAAAZAPf/AAAMAAEAAAAYAPf/AAAMAAEAAAAXAPf/AAAMAAEAAAAWAPf/AAAMAAEAAAAVAPf/AAAMAAEAAAAUAPf/AAAMAAEAAAATAPf/AAAMAAEAAAASAPf/AAAMAAEAAAARAPf/AAAMAAEAAAAQAPf/AAAMAAEAAAAPAPf/AAAMAAEAAAAOAPf/AAAMAAEAAAANAPf/AAAMAAEAAAAMAPf/AAAMAAEAAAALAPf/AAAMAAEAAAAKAPf/AAAMAAEAAAAJAPf/AAAMAAEAAAAIAPf/AAAMAAEAAAAHAPf/AAAMAAEAAAAGAPf/AAAMAAEAAAAFAPf/AAAMAAEAAAAEAPf/AAAMAAEAAAADAPf/AAAMAAEAAAACAPf/AAAMAAEAAAABAPf/AAAMAAEAAAAAAPf/AAAMAAEAAAD///f/AAAMAAEAAAD+//f/AAAMAAEAAAD9//f/AAAMAAEAAAD8//f/AAAMAAEAAAD7//f/AAAMAAEAAAD6//f/AAAMAAEAAAD5//f/AAAMAAEAAAD4//f/AAAMAAEAAAD3//f/AAAMAAEAAAD2//f/AAAMAAEAAAA=")
@@ -54,6 +57,7 @@ tile_set = ExtResource("1_nhn7i")
 collision_visibility_mode = 1
 
 [node name="Underwater TileMaps" type="Node2D" parent="." unique_id=1649066527]
+z_index = -1
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Underwater TileMaps" unique_id=1780794881]
 z_index = -1
@@ -71,7 +75,7 @@ tile_map_data = PackedByteArray("AAD1//j/AAAMAAEAAAD2//j/AAAMAAEAAAD3//j/AAAMAAE
 tile_set = ExtResource("1_nhn7i")
 
 [node name="WaterShaderMask" type="Sprite2D" parent="." unique_id=1788195385]
-z_index = -1
+z_index = -2
 y_sort_enabled = true
 material = SubResource("ShaderMaterial_cumyl")
 position = Vector2(284, 0)

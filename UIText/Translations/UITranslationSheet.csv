@@ -11,7 +11,8 @@ Starfish,Spinstar,Estrella Fugaz
 Save: ,Save: ,Partida: 
 Refresher,Mindfresh,Refremente
 Soul Memory,Soul Memory,Recuerdo de Alma
-Loud Memory,Loud Memory,Memoria Ruidosa
+Loud Memory,Loud Memory,Recuerdo Ruidoso
+Rest Memory,Rest Memory,Recuerdo de Descanso
 Warmth Memory,Warmth Memory,Recuerdo Cálido
 attack,Splunch,Chapunchón
 Beam,Hydroray,Hidrorayo
@@ -21,3 +22,13 @@ Spinner,Revspin,A rodar
 Brave,¡Will!,¡Voluntad!
 Suck,Vaaccuuum,Aaaspiraar
 Bubshield,Buuble,Buuurbuja
+Attack,Atk,¡Atq
+Defense,Def,¡Def
+SpAttack,SpAtk,¡AtEsp
+SpDefense,SpDef,¡DefEsp
+Speed,Speed,¡Vel
+RefresherDesc,Vitalizes your soul! Heals 5 HP,¡Revitaliza tu alma! Cura 5PS
+LoudMemDesc,Makes your soul scream wildly! +2 Atk,¡Hace rugir a tu alma! +2 Atq
+RestMemDesc,So sleeeppyyyyy.... +5HP, Pero que sueeeeeño.... +5PS
+WarmthMemDesc,Maintains your soul warm. +2 Def,Mantiene cálida a tu alma. +2 Def
+SoulMemDesc,...Feels Familiar,...Un tanto familiar

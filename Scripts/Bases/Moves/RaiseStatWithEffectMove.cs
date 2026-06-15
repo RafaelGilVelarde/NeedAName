@@ -85,7 +85,7 @@ public partial class RaiseStatWithEffectMove : RaiseStatMove
 		}		
 
         void End(){
-			SceneTreeTimer sceneTreeTimer = Users[0].GetTree().CreateTimer(0.5,true,true,true);
+			SceneTreeTimer sceneTreeTimer = Users[0].GetTree().CreateTimer(0.5,true,true);
 			sceneTreeTimer.Timeout+=()=>{
 				Users[0]._Shoot-=shoot;
 				for(int i=0;i<Users.Count;i++){

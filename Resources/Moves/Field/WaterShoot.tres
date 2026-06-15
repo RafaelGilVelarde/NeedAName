@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="WaterShoot" format=3 uid="uid://b547usnttbm87"]
+
+[ext_resource type="PackedScene" uid="uid://b7yn0nhscvc8d" path="res://Prefabs/BattleProjectyles/WaterBubble.tscn" id="1_yc2if"]
+[ext_resource type="Script" uid="uid://tkh8lbhxipfr" path="res://Scripts/Bases/FieldMoves/WaterShoot.cs" id="2_xbkax"]
+
+[resource]
+script = ExtResource("2_xbkax")
+Bubble = ExtResource("1_yc2if")
+Distance = 2
+Height = 3.0
+metadata/_custom_type_script = "uid://tkh8lbhxipfr"

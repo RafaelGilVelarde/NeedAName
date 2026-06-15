@@ -17,7 +17,7 @@ public partial class PlayerController : OverworldController
 	
 	[Export] public DataTileMap DataMap;
 	[Export] protected TileTypes tileTypes, PreviousTileType;
-	[Export] protected Node2D TileDetector;
+	[Export] protected Node2D TileDetector, TileDetector2;
 	[Export] protected Vector2 TileOffset;
 
 
@@ -26,6 +26,13 @@ public partial class PlayerController : OverworldController
 	[Export] public PlayerController Controller;
 
 	[Signal]public delegate void _FollowEventHandler(bool follow);
+
+	
+	[Signal]public delegate void _ConfirmEventHandler();
+	[Signal]public delegate void _DenyEventHandler();
+	[Signal]public delegate void _SwitchEventHandler();
+	[Signal]public delegate void _MenuEventHandler();
+
 
 	GameManager Game;
 
@@ -50,19 +57,26 @@ public partial class PlayerController : OverworldController
 						Interactable.interact(this);
 					}
 				}
-				/*if(Input.IsActionJustPressed("Deny")){
+				if(Input.IsActionJustPressed("Switch")){
 					if (Game.Characters.Count > 1)
 					{
 						int index = Game.Characters.IndexOf(this);
 						Game.ChangeLeader(this,Game.Characters[(index + 1) % Game.Characters.Count]);
 
-						SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1);
+						SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1,true,true);
 						SwitchTimer.Timeout+= () =>
 						{
 							Controller.SetControllable(true);							
 						};
 					}
-				}*/
+				}
+				if(Input.IsActionJustPressed("Deny")){
+					Debug.WriteLine("Move: "+BattleCharacter.Character.FieldMove);
+					if (BattleCharacter.Character.FieldMove != null)
+					{
+						BattleCharacter.Character.FieldMove.Base.Effect(this);						
+					}
+				}
 				if(Input.IsActionJustPressed("Menu")){
 					MainMenu.Instance.OpenCloseMenu(true);
 					SetControllable(false);
@@ -73,7 +87,7 @@ public partial class PlayerController : OverworldController
     public override void _Process(double delta)
     {
 		PlayAnimations(Axis);
-			if(Axis!=Vector2.Zero){
+			if(Axis!=Vector2.Zero && Axis.X*Axis.Y == 0){
 				FacingDirection=Axis;
 			}
 		if(Controllable){
@@ -85,8 +99,20 @@ public partial class PlayerController : OverworldController
 			Vector2 SceneCoords = new Vector2();
 			if (DataMap != null)
 			{
-				TileMapLayer CurrentMapLayer = DataMap.Map[ZIndex%DataMap.Map.Count];
-				Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset));
+				CurrentMapLayer = DataMap.Map[ZIndex%DataMap.Map.Count];
+				PrevCoords = Coords;
+				Vector2I BaseCoords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition);
+				Vector2I CoordAux = BaseCoords - Coords;
+
+				if(CoordAux.X!= FacingDirection.X && CoordAux.Y!= FacingDirection.Y)
+				{
+					Coords = BaseCoords;
+				}
+				else
+				{
+					Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset));
+				}
+
 				Data = CurrentMapLayer.GetCellTileData(Coords);
 				SceneCoords = CurrentMapLayer.MapToLocal(Coords);
 			}

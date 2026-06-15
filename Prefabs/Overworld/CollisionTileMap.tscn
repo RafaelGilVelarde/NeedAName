@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://diqlf0l7iyh8u"]
+
+[ext_resource type="TileSet" uid="uid://nuwrgj2n7ur4" path="res://Resources/Tilesets/Maps/CollisionTiles.tres" id="1_fasea"]
+
+[node name="CollisionMap" type="Node2D" unique_id=204500188]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=464207528]
+tile_set = ExtResource("1_fasea")

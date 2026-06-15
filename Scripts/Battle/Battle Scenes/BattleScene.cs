@@ -229,7 +229,7 @@ public partial class BattleScene : Resource
         {
             case TimelineType.StartTurn:
                 Battle.CanStartTurn = true;
-                SceneTreeTimer timer = Battle.GetTree().CreateTimer(0.2);
+                SceneTreeTimer timer = Battle.GetTree().CreateTimer(0.2,true,true);
                 timer.Timeout += () =>
                 Battle.StartTurn();
                 break;

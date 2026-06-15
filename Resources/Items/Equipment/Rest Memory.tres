@@ -12,5 +12,5 @@ script = ExtResource("1_3tir1")
 stats = SubResource("Resource_aiiyy")
 ID = 4
 Name = "Rest Memory"
-Description = "So sleeeppyyyyy.... +5HP"
+Description = "RestMemDesc"
 type = 1

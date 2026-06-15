@@ -20,13 +20,13 @@ public partial class SpamMove : MoveBase
         Users[0]._ReturnToIdle+=SpamInterval;
 
         void SpamInterval(BattleCharacter character){
-            SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.2,true,true,true);
+            SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.2,true,true);
             AuxTimer.Timeout+=()=>{
             character.changeState(BattleCharacter.BattleState.Attacking);
             character.Character.ShowTextLabel($"{character.Character.Key}",character.Character.Base.TextEffectColor);
             int auxSpam = Spam;
             character._DoAction+=IncreaseSpam;
-            SceneTreeTimer Timer= character.GetTree().CreateTimer(0.5,true,true,true);
+            SceneTreeTimer Timer= character.GetTree().CreateTimer(0.5,true,true);
             Timer.Timeout+=()=>{
                 if(auxSpam == Spam){
                     character._DoAction-=IncreaseSpam;
@@ -45,7 +45,7 @@ public partial class SpamMove : MoveBase
         }   
 
 
-        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.5,true,true,true);
+        SceneTreeTimer Timer = Users[0].GetTree().CreateTimer(MoveTime-0.5,true,true);
         Timer.Timeout+=End;
 
         float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);

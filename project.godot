@@ -199,7 +199,6 @@ window/size/viewport_width=1280
 window/size/viewport_height=720
 window/size/resizable=false
 window/stretch/mode="viewport"
-window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
 [dotnet]
@@ -303,12 +302,17 @@ SelectedKey3={
 "events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":67,"key_label":0,"unicode":99,"location":0,"echo":false,"script":null)
 ]
 }
+Switch={
+"deadzone": 0.5,
+"events": [Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":-1,"window_id":0,"alt_pressed":false,"shift_pressed":false,"ctrl_pressed":false,"meta_pressed":false,"pressed":false,"keycode":0,"physical_keycode":4194325,"key_label":0,"unicode":0,"location":0,"echo":false,"script":null)
+]
+}
 
 [internationalization]
 
 locale/translations=PackedStringArray("res://UIText/Translations/en.po", "res://UIText/Translations/es.po", "res://UIText/Translations/UITranslationSheet.en.translation", "res://UIText/Translations/UITranslationSheet.es.translation", "res://Dialogues/Español/dialogic_character_translations.en.translation", "res://Dialogues/Español/dialogic_timeline_translations.en.translation", "res://Dialogues/Español/dialogic_character_translations.es.translation", "res://Dialogues/Español/dialogic_timeline_translations.es.translation")
 locale/translations_pot_files=PackedStringArray("res://Prefabs/GameManager.tscn", "res://Prefabs/Characters/PartyCharacter.tscn", "res://Scenes/MainMenu.tscn", "res://Prefabs/BattleManager/battle_manager.tscn")
-locale/test="es"
+locale/test="en"
 save_mode=0
 
 [rendering]
