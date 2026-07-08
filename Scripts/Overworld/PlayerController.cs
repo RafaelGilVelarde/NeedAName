@@ -57,7 +57,7 @@ public partial class PlayerController : OverworldController
 						Interactable.interact(this);
 					}
 				}
-				if(Input.IsActionJustPressed("Switch")){
+				/*if(Input.IsActionJustPressed("Switch")){
 					if (Game.Characters.Count > 1)
 					{
 						int index = Game.Characters.IndexOf(this);
@@ -76,7 +76,7 @@ public partial class PlayerController : OverworldController
 					{
 						BattleCharacter.Character.FieldMove.Base.Effect(this);						
 					}
-				}
+				}*/
 				if(Input.IsActionJustPressed("Menu")){
 					MainMenu.Instance.OpenCloseMenu(true);
 					SetControllable(false);

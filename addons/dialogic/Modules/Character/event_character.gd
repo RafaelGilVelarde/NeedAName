@@ -264,7 +264,6 @@ func from_text(string:String) -> void:
 	character = DialogicResourceUtil.get_character_resource(character_identifier)
 
 	var result := regex.search(string)
-
 	# ACTION
 	match result.get_string('type'):
 		"join": action = Actions.JOIN
@@ -275,7 +274,6 @@ func from_text(string:String) -> void:
 	var given_name := result.get_string('name').strip_edges()
 	var given_portrait := result.get_string('portrait').strip_edges()
 	var given_transform := result.get_string('transform').strip_edges()
-
 	if given_name:
 		if action == Actions.LEAVE and given_name == "--All--":
 			character_identifier = '--All--'

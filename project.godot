@@ -94,7 +94,6 @@ text/autoadvance_fixed_delay=1.0
 text/input_action="Confirm"
 directories/dch_directory={
 "Blobfish": "res://DialogicCharacters/Blobfish.dch",
-"COLD STEEL": "res://DialogicCharacters/COLD STEEL.dch",
 "Halluci": "res://DialogicCharacters/Halluci.dch",
 "MC": "res://DialogicCharacters/MC.dch",
 "No Box": "res://DialogicCharacters/No Box.dch",
@@ -153,7 +152,7 @@ directories/dtl_directory={
 "joke": "res://Dialogues/Scene Dialogue/Water/joke.dtl"
 }
 text/autoadvance_per_word_delay=0
-layout/end_behaviour=0
+layout/end_behaviour=1
 timer/process_in_physics=true
 translation/save_mode=0
 translation/add_separator=true
@@ -212,6 +211,10 @@ export/convert_text_resources_to_binary=false
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addons/MonoCustomResourceRegistry/plugin.cfg", "res://addons/dialogic/plugin.cfg")
+
+[global_group]
+
+CollisionTile=""
 
 [input]
 

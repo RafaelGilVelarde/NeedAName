@@ -32,6 +32,7 @@ func get_event(index:int) -> Variant:
 ## so they can be converted to DialogicEvent's when processed later
 func from_text(text:String) -> void:
 	events = text.split('\n', true)
+	#print("From_Text: ",events)
 	events_processed = false
 
 	## Take an initial guess about the indentation format
@@ -68,7 +69,7 @@ func as_text() -> String:
 			result += str(event)+"\n"
 
 		result.trim_suffix('\n')
-
+	#print("Result",result)
 	return result.strip_edges()
 
 

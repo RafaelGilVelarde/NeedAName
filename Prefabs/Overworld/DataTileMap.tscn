@@ -1,9 +1,11 @@
 [gd_scene format=3 uid="uid://cct1pnwomkbfr"]
 
 [ext_resource type="Script" uid="uid://cw2en3slmkxs7" path="res://Scripts/Overworld/DataTileMap.cs" id="1_yblsd"]
+[ext_resource type="TileSet" uid="uid://m623no56shc0" path="res://Resources/Tilesets/Maps/TileData.tres" id="2_5n6ao"]
 
 [node name="DataTileMap" type="Node2D" unique_id=1897485933 node_paths=PackedStringArray("Map")]
 script = ExtResource("1_yblsd")
 Map = [NodePath("TileMapLayer")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1095332286]
+tile_set = ExtResource("2_5n6ao")

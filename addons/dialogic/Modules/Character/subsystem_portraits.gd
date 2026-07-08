@@ -13,6 +13,7 @@ signal character_moved(info:Dictionary)
 
 ## The default portrait scene.
 var default_portrait_scene: PackedScene = load(get_script().resource_path.get_base_dir().path_join('default_portrait.tscn'))
+@export var aux_previous_portrait: String = ""
 
 
 #region STATE
@@ -47,7 +48,7 @@ func load_game_state(_load_flag:=LoadFlags.FULL_LOAD) -> void:
 	var speaker: Variant = dialogic.current_state_info.get("speaker", "")
 	if speaker:
 		dialogic.current_state_info["speaker"] = ""
-		change_speaker(DialogicResourceUtil.get_character_resource(speaker))
+		change_speaker(DialogicResourceUtil.get_character_resource(speaker),"aux_load_portrait")
 	dialogic.current_state_info["speaker"] = speaker
 
 
@@ -96,10 +97,8 @@ func _create_character_node(character:DialogicCharacter, container:DialogicNode_
 ## Changes the portrait of a specific [character node].
 func _change_portrait(character_node: Node2D, portrait: String, fade_animation:="", fade_length := 0.5) -> Dictionary:
 	var character: DialogicCharacter = character_node.get_meta('character')
-
 	if portrait.is_empty():
 		portrait = character.default_portrait
-
 	var info := {'character':character, 'portrait':portrait, 'same_scene':false}
 
 	if not portrait in character.portraits.keys():
@@ -156,7 +155,6 @@ func _change_portrait(character_node: Node2D, portrait: String, fade_animation:=
 		for i in copy_state_vars:
 			if i in portrait_node:
 				portrait_node.set(i, copy_state_vars[i])
-
 		portrait_node.set_meta('portrait', portrait)
 		character_node.set_meta('portrait', portrait)
 
@@ -373,7 +371,6 @@ func get_valid_portrait(character:DialogicCharacter, portrait:String) -> String:
 
 	if portrait.is_empty():
 		portrait = character.default_portrait
-
 	return portrait
 
 #endregion
@@ -631,10 +628,15 @@ func get_character_info(character:DialogicCharacter) -> Dictionary:
 
 
 #region SPEAKER PORTRAIT CONTAINERS
-####################################################################################################
+######################################################z##############################################
 
 ## Updates all portrait containers set to SPEAKER.
 func change_speaker(speaker: DialogicCharacter = null, portrait := "") -> void:
+	
+	if portrait == "aux_load_portrait":
+		portrait = aux_previous_portrait
+	else:
+		aux_previous_portrait = portrait
 	for container: Node in get_tree().get_nodes_in_group('dialogic_portrait_con_speaker'):
 		var just_joined := true
 		for character_node: Node in container.get_children():
@@ -676,7 +678,7 @@ func change_speaker(speaker: DialogicCharacter = null, portrait := "") -> void:
 
 		if container.portrait_prefix + portrait in speaker.portraits:
 			portrait = container.portrait_prefix + portrait
-
+		
 		await _change_portrait(character_node, portrait, fade_animation, fade_length)
 
 		# if the character has no portraits _change_portrait won't actually add a child node

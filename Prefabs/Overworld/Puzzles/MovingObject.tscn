@@ -1,0 +1,43 @@
+[gd_scene format=3 uid="uid://dw0qx2cfbpsbv"]
+
+[ext_resource type="Script" uid="uid://dryfya65jbjyn" path="res://Scripts/Overworld/Puzzles/Movable/MovingObject.cs" id="1_snb3r"]
+[ext_resource type="Script" uid="uid://dumb1hhi5ayjv" path="res://Scripts/Overworld/Puzzles/Movable/TileCollisionChangeNode.cs" id="2_hf5pc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vgmgg"]
+size = Vector2(32, 32)
+
+[node name="MovingObject" type="Node2D" unique_id=681756061 node_paths=PackedStringArray("CheckCollisionNode")]
+script = ExtResource("1_snb3r")
+CheckCollisionNode = [NodePath("Node2D3"), NodePath("Node2D"), NodePath("Node2D2")]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1585212813]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=600917770]
+position = Vector2(0, 64)
+shape = SubResource("RectangleShape2D_vgmgg")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=685106498]
+position = Vector2(32, 64)
+shape = SubResource("RectangleShape2D_vgmgg")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=4770510]
+position = Vector2(-32, 64)
+shape = SubResource("RectangleShape2D_vgmgg")
+
+[node name="Node2D" type="Node2D" parent="." unique_id=499036802 node_paths=PackedStringArray("Collider")]
+position = Vector2(0, 85)
+script = ExtResource("2_hf5pc")
+TilesetChangeTo = Vector2i(7, 0)
+Collider = NodePath("../StaticBody2D/CollisionShape2D")
+
+[node name="Node2D2" type="Node2D" parent="." unique_id=1984251371 node_paths=PackedStringArray("Collider")]
+position = Vector2(32, 85)
+script = ExtResource("2_hf5pc")
+TilesetChangeTo = Vector2i(7, 0)
+Collider = NodePath("../StaticBody2D/CollisionShape2D2")
+
+[node name="Node2D3" type="Node2D" parent="." unique_id=1898452155 node_paths=PackedStringArray("Collider")]
+position = Vector2(-32, 85)
+script = ExtResource("2_hf5pc")
+TilesetChangeTo = Vector2i(7, 0)
+Collider = NodePath("../StaticBody2D/CollisionShape2D3")
