@@ -6,92 +6,24 @@ using System.IO;
 [GlobalClass]
 public partial class RaiseStatMove : MoveBase
 {
-    [Export] int AtkTime, DefTime,SpAtkTime,SpDefTime, SpeedTime;
+    //[Export] StatusCondition Status;
+    //[Export] Array<StatusCondition> Alt;
+    [Export] protected StatChange Stats;
+    /*[Export] int AtkTime, DefTime,SpAtkTime,SpDefTime, SpeedTime, StatusTime, DelayTarget;
     [Export] float AtkMult,DefMult,SpAtkMult,SpDefMult,SpeedMult, HPIncrease, WPIncrease;
-    [Export] protected bool Atk,Def,Spatk,Spdef,Speed, HP, WPUp;
+    [Export] protected bool Atk,Def,Spatk,Spdef,Speed, HP, WPUp, DelayUp, StatCondition, AltStat;*/
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
 		SceneTreeTimer timer=Users[0].GetTree().CreateTimer(MoveTime,true,true);
         timer.Timeout+=End;
 
         Users[0].changeAction(BattleCharacter.ActionState.isStatus);
-        RaiseStat(Targets[0]);
+        Stats.RaiseStat(Targets[0]);
 
         void End()
         {
             BattleManager.instance.CallDeferred("EndMove");
 		}
     }
-    protected void RaiseStat(BattleCharacter Target, int[] TimerSum = null)
-    {
-        if (TimerSum == null)
-        {
-            TimerSum = new int[]{1,1,1,1,1};
-        }
-        if(Atk){
-            Target.AddStatMultiplier(AtkMult,AtkTime*TimerSum[0],0);
-        }
-        if(Def){
-            Target.AddStatMultiplier(DefMult,DefTime*TimerSum[1],1);
-        }
-        if(Spatk){
-            Target.AddStatMultiplier(SpAtkMult,SpAtkTime*TimerSum[2],2);
-        }
-        if(Spdef){
-            Target.AddStatMultiplier(SpDefMult,SpDefTime*TimerSum[3],3);
-        }
-        if(Speed){
-            Target.AddStatMultiplier(SpeedMult,SpeedTime*TimerSum[4],4);
-        }
-        if(HP){
-            Target.Character.ChangeHP((int)HPIncrease);
-        }
-        if(WPUp){
-            Target.Character.ChangeWP((int)WPIncrease);
-        }
-    }
-
-    public override float MultiplyChance(float Chance, BattleCharacter character)
-    {
-        bool active = false;
-        if(Atk){
-            if(character.MultTimer[0] != 0)
-            {
-                active = true;
-            }
-        }
-        if(Def){
-            if(character.MultTimer[1] != 0)
-            {
-                active = true;
-            }        
-        }
-        if(Spatk){
-            if(character.MultTimer[2] != 0)
-            {
-                active = true;
-            }        
-        }
-        if(Spdef){
-            if(character.MultTimer[3] != 0)
-            {
-                active = true;
-            }        
-        }
-        if(Speed){
-            if(character.MultTimer[4] != 0)
-            {
-                active = true;
-            }        
-        }
-
-        if (active)
-        {
-            return 0;
-        }
-        else
-        {
-            return Chance;            
-        }
-    }
+    
 }

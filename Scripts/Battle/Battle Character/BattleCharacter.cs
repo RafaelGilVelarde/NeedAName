@@ -19,7 +19,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Godot.Vector2 OriginPos;
 
 	[Export] public Array<float> StatMultiplier;
-	[Export] public int Combo = 1, HoldingMoveTimer = 0, PosIndex;
+	[Export] public int Combo = 1, HoldingMoveTimer = 0, PosIndex,CurrentDelay;
 	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping, Moving;
 	[Export] public Array<int> MultTimer;
 	[Export] public Array<CharacterButtons> PartyButtons, EnemyButtons;
@@ -261,6 +261,12 @@ public partial class BattleCharacter : CharacterBody2D
 				};
 			};
 		}
+		foreach (BattleCharacter chara in BattleManager.instance.UserCharacters)
+		{
+			chara.CurrentDelay =  move.Base.Delay/chara.Character.stats.Speed;
+		}
+		BattleManager.instance.ActiveTime+=CurrentDelay;
+		Debug.WriteLine("Delay: "+CurrentDelay);
 		selectActions.ProcessMode = ProcessModeEnum.Disabled;
 		
 	}
@@ -585,6 +591,7 @@ public partial class BattleCharacter : CharacterBody2D
 		HPBar.MaxValue = Character.TotalStats.MaxHP;
 		HPBar.Value = Character.stats.HP;
 		Reset();
+		//CurrentDelay = 0;
 		Character._GetHit += GetHit;
 		Character._ChangeHP += ShowChangeHPBar;
 		Character._Die += Die;
@@ -592,14 +599,15 @@ public partial class BattleCharacter : CharacterBody2D
 	}
 	public virtual void TurnOffBattle()
 	{
+		CurrentDelay = 0;
 		MoveUsed = null;
 		HoldingMove = false;
 		//ClearTimers();
 		ClearStatMultiplier();
 		selectActions.clearAll();
-		if (Character.status == Character.Status.KO)
+		if (Character.status.Base.Name == "KO")
 		{
-			Character.status = Character.Status.Normal;
+			Character.status = null;
 			Character.ChangeHP(1,false);
 		}
 		Character._GetHit -= GetHit;

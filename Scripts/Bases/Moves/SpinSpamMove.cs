@@ -68,7 +68,7 @@ public partial class SpinSpamMove : MoveBase
             Tween.TweenProperty(Users[0].GetParent(),"position",TargetPosition,1/Speed);
             
             Tween.Finished+=()=>{
-                if(!Failed && Timer.TimeLeft>((2/Speed)+0.5)&& Targets[0].Character.status != Character.Status.KO){
+                if(!Failed && Timer.TimeLeft>((2/Speed)+0.5)&& Targets[0].Character.status.Base.Name != "KO"){
                     AttackAvailable = true;
                     Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Hit",false);
 

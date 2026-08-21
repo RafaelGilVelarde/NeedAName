@@ -45,7 +45,7 @@ public partial class AICharacter : BattleCharacter
 		ProcessMode=ProcessModeEnum.Disabled;
 		AnimatorTree.Active=false;
 		AnimatorTree.Set("parameters/conditions/Ended",false);
-        if(Character.status!=Character.Status.KO){
+        if(Character.status.Base.Name!="KO"){
 		    Hide();
 		    Overworld.BattleEnd();
         }

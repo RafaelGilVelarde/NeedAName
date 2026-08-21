@@ -5,7 +5,15 @@
 
 [sub_resource type="Resource" id="Resource_aiiyy"]
 script = ExtResource("2_ahkvh")
+Lv = null
+MaxHP = null
 HP = 5
+Atk = null
+Def = null
+SpAtk = null
+SpDef = null
+Speed = null
+WP = null
 
 [resource]
 script = ExtResource("1_3tir1")

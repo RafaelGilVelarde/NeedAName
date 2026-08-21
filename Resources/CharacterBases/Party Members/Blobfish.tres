@@ -15,6 +15,7 @@
 
 [sub_resource type="Resource" id="Resource_q32qo"]
 script = ExtResource("1_mmhyr")
+Lv = null
 MaxHP = 6
 HP = 3
 Atk = 1
@@ -22,6 +23,7 @@ Def = 3
 SpAtk = 2
 SpDef = 3
 Speed = 2
+WP = null
 
 [sub_resource type="Resource" id="Resource_p4f0e"]
 script = ExtResource("6_wcrdj")

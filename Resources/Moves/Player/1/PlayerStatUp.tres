@@ -1,13 +1,20 @@
 [gd_resource type="Resource" script_class="RaiseStatMoveInput" format=3 uid="uid://c8sli2udx617g"]
 
 [ext_resource type="Script" uid="uid://ckc6ukgh0g8bk" path="res://Scripts/Bases/Moves/RaiseStatMoveInput.cs" id="1_h2hw6"]
+[ext_resource type="Script" uid="uid://lpkeic85k5nj" path="res://Scripts/GameData/Characters/StatChange.cs" id="1_o61h6"]
+
+[sub_resource type="Resource" id="Resource_73mhd"]
+script = ExtResource("1_o61h6")
+SpDefTime = 2
+SpDefMult = 1.5
+Spdef = true
+Alt = null
+metadata/_custom_type_script = "uid://lpkeic85k5nj"
 
 [resource]
 script = ExtResource("1_h2hw6")
 TimerSums = PackedInt32Array(0, 0, 1, 0, 0)
-SpDefTime = 2
-SpDefMult = 1.5
-Spdef = true
+Stats = SubResource("Resource_73mhd")
 UserAmount = 1
 TargetAmount = 1
 Cost = 5

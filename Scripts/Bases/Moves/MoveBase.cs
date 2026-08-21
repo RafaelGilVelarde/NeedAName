@@ -2,8 +2,6 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Diagnostics;
-using System.Reflection.Metadata;
-using System.Security.Cryptography.X509Certificates;
 [GlobalClass]
 
 public partial class MoveBase : Resource
@@ -17,7 +15,7 @@ public partial class MoveBase : Resource
         Revive
     }
     [Export] public Type type;
-    [Export] public int Power, UserAmount, TargetAmount, WP, Cost;
+    [Export] public int Power, UserAmount, TargetAmount, WP, Cost, Delay = 100;
     [Export] public bool TargetsParty;
     [Export] public String Name;
 

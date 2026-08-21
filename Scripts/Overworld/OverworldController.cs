@@ -21,7 +21,7 @@ public partial class OverworldController : Node2D
 	[Export] protected bool Controllable = true, OffsetsSet, inBattle;
 	[Export] public Vector2 FacingDirection { get; protected set; }
 	[Export] public Vector2I PrevCoords, Coords;
-	public TileMapLayer CurrentMapLayer;
+	[Export] public TileMapLayer CurrentMapLayer;
 	[Export] public BattleCharacter BattleCharacter;
 	public override void _EnterTree()
 	{

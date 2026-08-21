@@ -39,7 +39,8 @@ public partial class Character : Resource
         Normal,
         KO,
     };
-    [Export] public Status status;
+    [Export] public StatusCondition status, KO;
+    [Export] public Array<StatusCondition> AltStatus;
     public bool CheckWP(int WP)
     {
         if (stats.WP >= WP)
@@ -86,7 +87,7 @@ public partial class Character : Resource
         if (stats.HP <= 0)
         {
             stats.HP = 0;
-            status = Status.KO;
+            status = KO;
             EmitSignal("_Die");
         }
     }
@@ -199,7 +200,7 @@ public partial class Character : Resource
     public virtual void ResetCharacter()
     {
         stats.HP = TotalStats.MaxHP;
-        status = Status.Normal;
+        status = null;
         stats.WP = 0;
     }
     public void LearnMove(Moves Move)

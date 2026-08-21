@@ -8,4 +8,6 @@ script = ExtResource("1_dh56c")
 Map = [NodePath("TileMapLayer")]
 
 [node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=464207528]
+modulate = Color(0, 0, 0, 1)
+z_index = 2
 tile_set = ExtResource("1_fasea")

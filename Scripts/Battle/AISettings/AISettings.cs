@@ -91,7 +91,7 @@ public partial class AISettings : Resource
         if(!move.Base.TargetsParty){
             while(TargetCharacters.Count<move.Base.TargetAmount){
                 BattleCharacter target=BattleCharacter.EnemyParty[RNG.RandiRange(0,BattleCharacter.EnemyParty.Count-1)];
-                if(!TargetCharacters.Contains(target) && target.Character.status!=Character.Status.KO){
+                if(!TargetCharacters.Contains(target) && target.Character.status.Base.Name!="KO"){
                     TargetCharacters.Add(target);
                 }
             }
@@ -101,7 +101,7 @@ public partial class AISettings : Resource
         else{
             while(TargetCharacters.Count<move.Base.TargetAmount){
                 BattleCharacter target=BattleCharacter.ThisParty[RNG.RandiRange(0,BattleCharacter.ThisParty.Count-1)];
-                if(!TargetCharacters.Contains(target)&& target.Character.status!=Character.Status.KO){
+                if(!TargetCharacters.Contains(target)&& target.Character.status.Base.Name!="KO"){
                     TargetCharacters.Add(target);
                 }
             }

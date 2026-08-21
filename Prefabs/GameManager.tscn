@@ -34,6 +34,7 @@
 [ext_resource type="PackedScene" uid="uid://bqg4cb27njwuj" path="res://Scenes/Sea/Maps/Map 6.tscn" id="18_r5qh0"]
 [ext_resource type="PackedScene" uid="uid://dvfopsva3d6kc" path="res://Scenes/Sea/Maps/Map 7.tscn" id="19_36hit"]
 [ext_resource type="Resource" uid="uid://cxq6rcldsrgk0" path="res://Resources/CharacterBases/Party Members/Blobfish.tres" id="19_qecjo"]
+[ext_resource type="Script" uid="uid://lpkeic85k5nj" path="res://Scripts/GameData/Characters/StatChange.cs" id="20_0k1ly"]
 [ext_resource type="PackedScene" uid="uid://3kixx2q8tusp" path="res://Scenes/Sea/Maps/Map 8.tscn" id="20_livod"]
 [ext_resource type="Resource" uid="uid://b2cy8wlwo62vb" path="res://Resources/Moves/Player/3/SuckMove.tres" id="20_orhe1"]
 [ext_resource type="PackedScene" uid="uid://b4g462db2jmdj" path="res://Scenes/Sea/Maps/Map 9.tscn" id="21_7ndos"]
@@ -193,6 +194,7 @@ TotalStats = SubResource("Resource_8yfa3")
 isControlledByPlayer = true
 Key = 90
 EventKey = SubResource("InputEventKey_lhcts")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_wyd7f"]
 script = ExtResource("3_qc7bw")
@@ -267,6 +269,7 @@ isControlledByPlayer = true
 Active = false
 Key = 88
 EventKey = SubResource("InputEventKey_3xffd")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_jeahq"]
 script = ExtResource("3_qc7bw")
@@ -289,8 +292,17 @@ unicode = 99
 script = ExtResource("4_0i8ni")
 Base = ExtResource("17_sav1b")
 
+[sub_resource type="Resource" id="Resource_luhyj"]
+script = ExtResource("20_0k1ly")
+WPIncrease = 8.0
+WPUp = true
+Alt = null
+metadata/_custom_type_script = "uid://lpkeic85k5nj"
+
 [sub_resource type="Resource" id="Resource_f4gq8"]
 script = ExtResource("18_miyx3")
+Alt = null
+Stats = SubResource("Resource_luhyj")
 WPIncrease = 8.0
 WPUp = true
 type = 2
@@ -342,6 +354,7 @@ isControlledByPlayer = true
 Active = false
 Key = 67
 EventKey = SubResource("InputEventKey_45kqj")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_go2as"]
 script = ExtResource("3_qc7bw")
@@ -364,6 +377,14 @@ unicode = 99
 script = ExtResource("4_0i8ni")
 Base = ExtResource("20_orhe1")
 
+[sub_resource type="Resource" id="Resource_0k1ly"]
+script = ExtResource("20_0k1ly")
+DefTime = 3
+DefMult = 1.5
+Def = true
+Alt = null
+metadata/_custom_type_script = "uid://lpkeic85k5nj"
+
 [sub_resource type="Resource" id="Resource_smiot"]
 script = ExtResource("22_iif3q")
 Timer2 = 3.0
@@ -371,6 +392,8 @@ Height = 0.0
 Combo = 2
 Tag = "PlayerHitbox"
 Proyectile = ExtResource("21_w2gw7")
+Alt = null
+Stats = SubResource("Resource_0k1ly")
 DefTime = 3
 DefMult = 1.5
 Def = true
@@ -422,6 +445,7 @@ isControlledByPlayer = true
 Active = false
 Key = 67
 EventKey = SubResource("InputEventKey_nea8u")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_llqed"]
 script = ExtResource("17_307rp")

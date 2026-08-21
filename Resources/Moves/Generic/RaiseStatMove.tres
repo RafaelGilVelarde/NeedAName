@@ -1,15 +1,22 @@
 [gd_resource type="Resource" script_class="RaiseStatMove" format=3 uid="uid://dcaudxjbqu7i7"]
 
 [ext_resource type="Script" uid="uid://dmp66u1luukpm" path="res://Scripts/Bases/Moves/RaiseStatMove.cs" id="1_0nnxd"]
+[ext_resource type="Script" uid="uid://lpkeic85k5nj" path="res://Scripts/GameData/Characters/StatChange.cs" id="1_wv8f5"]
 
-[resource]
-script = ExtResource("1_0nnxd")
+[sub_resource type="Resource" id="Resource_hsifl"]
+script = ExtResource("1_wv8f5")
 AtkTime = 3
 SpAtkTime = 3
 AtkMult = 1.5
 SpAtkMult = 1.5
 Atk = true
 Spatk = true
+Alt = null
+metadata/_custom_type_script = "uid://lpkeic85k5nj"
+
+[resource]
+script = ExtResource("1_0nnxd")
+Stats = SubResource("Resource_hsifl")
 type = 2
 UserAmount = 1
 TargetAmount = 1

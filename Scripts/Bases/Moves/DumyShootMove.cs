@@ -48,11 +48,14 @@ public partial class DumyShootMove : MoveBase
         timer.Timeout+=End;
 		Users[0].GetTree().CurrentScene.AddChild(timer);
 		timer.Start();
-		Targets[0].Controllable=true;           
+		//Targets[0].Controllable=true;           
 		Users[0].changeCombo(Combo);
 		Users[0].changeAction(BattleCharacter.ActionState.isAttacking);
-		Targets[0].Controllable=true;
-		Targets[0].changeState(BattleCharacter.BattleState.Defending);
+		for(int i = 0; i < Targets.Count; i++)
+		{
+			Targets[i].Controllable=true;
+			Targets[i].changeState(BattleCharacter.BattleState.Defending);			
+		}
 
         void onHit(BattleCharacter Target){
 			Hit(Users[0],Target);
@@ -62,10 +65,12 @@ public partial class DumyShootMove : MoveBase
 			Block(Target);
 		}
 		void shoot(BattleCharacter User){
+            RandomNumberGenerator RNG=new RandomNumberGenerator();
+            int Target=RNG.RandiRange(0,Targets.Count-1);
 			if(proyectile.CanStart){
 				proyectile.PosStart=Users[0].ShootNode.GlobalPosition;
-				proyectile.PosEnd=Targets[0].GlobalPosition+new Vector2(offset.X*Dir,offset.Y);
-				proyectile.Target = Targets[0];
+				proyectile.PosEnd=Targets[Target].GlobalPosition+new Vector2(offset.X*Dir,offset.Y);
+				proyectile.Target = Targets[Target];
 				float MiddleX =proyectile.PosStart.X+((proyectile.PosEnd.X-proyectile.PosStart.X)/Middle);
 				proyectile.PosMiddle=new Vector2(MiddleX,Users[0].GlobalPosition.Y-Height);
 

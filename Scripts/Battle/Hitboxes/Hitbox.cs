@@ -23,7 +23,7 @@ public partial class Hitbox : Area2D
 	{
 	}
 	public virtual void OnTriggerEnter(Area2D node){
-		Debug.WriteLine(GetGroups()+ " Has Hit "+node.GetGroups());
+		//Debug.WriteLine(GetGroups()+ " Has Hit "+node.GetGroups());
 		if((node.IsInGroup("EnemyHurtbox")&&this.IsInGroup("PlayerHitbox"))||(node.IsInGroup("PlayerHurtbox")&&this.IsInGroup("EnemyHitbox"))){
 			BattleCharacter Target=node.GetNode<BattleCharacter>("..");
 		        for (int i=0;i<Character.Character.Equipment.Count;i++){

@@ -28,7 +28,7 @@ public partial class BattleManager : Node
 	Array<CharacterButtons> PartyButtons=new Array<CharacterButtons>(), EnemyButtons=new Array<CharacterButtons>();
 	[Export] Array<Vector2> partyPos= new Array<Vector2>(), enemyPos=new Array<Vector2>();
 	int AliveParty, AliveEnemy;
-	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = 0;
+	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = 0, ActiveTime = 0;
 	public BattleCharacter CurrentCharacter;
 	public static BattleManager instance;
 	public bool CanStartTurn=true, BattleEnded;
@@ -74,6 +74,7 @@ public partial class BattleManager : Node
 		BattleCamera.Enabled=true;*/
 		Scene=scene;
 
+		ActiveTime = 0;
 		for(int i = 0; i<Game.Followers.Count;i++){
 			Tween tween = CreateTween();
 			tween.SetParallel(true);
@@ -132,13 +133,16 @@ public partial class BattleManager : Node
 			EnemyButtons[i].FocusMode=Control.FocusModeEnum.All;
 		}
 
-		for(int i=0;i<TurnOrder.Count;i++){
+		/*for(int i=0;i<TurnOrder.Count;i++){
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
 				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 			}
 			Debug.WriteLine("Turn "+i+": "+TurnOrder[i].Character.Base.Name);
-		}
+		}*/
 		scene.SetupBattleEffect();
+
+		InitialDelay();
+
 		ResetPositions();
 	}
 
@@ -270,15 +274,36 @@ public partial class BattleManager : Node
 		}
 	}
 
-	void OrderTurns(){
+	void InitialDelay()
+	{
 		Array<BattleCharacter> Aux = TurnOrder.Duplicate();
 		IOrderedEnumerable<BattleCharacter> Order = Aux.OrderByDescending(character=>character.Character.TotalStats.Speed);
+		for(int i =0;i<Order.Count();i++){
+			BattleCharacter AuxChara = Order.ElementAt(i);
+			AuxChara.CurrentDelay = i;
+		}
+	}
+	void ReduceDelays()
+	{
+		Debug.WriteLine("Reducing Delays from: "+CurrentCharacter.Character.Base.Name+" by "+CurrentCharacter.CurrentDelay);
+		for(int i = 0; i < TurnOrder.Count; i++)
+		{
+			if (TurnOrder[i]!=CurrentCharacter)
+			{
+				TurnOrder[i].CurrentDelay-=CurrentCharacter.CurrentDelay;
+			}
+		}
+	}
+	void OrderTurns(){
+		Array<BattleCharacter> Aux = TurnOrder.Duplicate();
+		IOrderedEnumerable<BattleCharacter> Order = Aux.OrderBy(character=>character.CurrentDelay);
 		TurnOrder.Clear();
 		for(int i =0;i<Order.Count();i++){
 			TurnOrder.Add(Order.ElementAt(i));
+			Debug.WriteLine("Character: "+Order.ElementAt(i).Character.Base.Name+ " Delay: "+Order.ElementAt(i).CurrentDelay);
 		}
 		SetCharacterButtonNav();
-		StartRound();
+		//StartRound();
 	}
 	void StartRound(){
 		CurrentRound++;
@@ -305,6 +330,12 @@ public partial class BattleManager : Node
 		if(CanStartTurn){
 			CurrentCharacter.ReduceStatMultiplier();
 			CurrentCharacter.StartChoosingMove();
+			for(int i=0;i<TurnOrder.Count;i++){
+				for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
+					TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
+				}
+			}
+			ReduceDelays();
 		}
 	}
 	public void EndMove(){
@@ -339,11 +370,12 @@ public partial class BattleManager : Node
 		if(!BattleEnded){
 				CurrentTurn++;
 				TurnCount++;
-			if(CurrentTurn>=TurnOrder.Count || CurrentTurn ==0){
+				OrderTurns();
+			/*if(CurrentTurn>=TurnOrder.Count || CurrentTurn ==0){
 				EndRound();
-			}
-			else{
-				CurrentCharacter=TurnOrder[CurrentTurn%TurnOrder.Count];
+			}*/
+			//else{
+				CurrentCharacter=TurnOrder[0];
 				if(CurrentCharacter.UsedComboMove){
 					CurrentCharacter.UsedComboMove=false;
 					EndTurn();
@@ -351,13 +383,13 @@ public partial class BattleManager : Node
 				else{
 					StartTurn();
 				}
-			}
+			//}
 		}
 		else{
 			EndBattle();
 		}
 	}
-	public void EndRound(){
+	/*public void EndRound(){
 		CurrentTurn=0;
 		for(int i=0;i<TurnOrder.Count;i++){
 			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
@@ -365,7 +397,7 @@ public partial class BattleManager : Node
 			}
 		}
 		OrderTurns();
-	}
+	}*/
 	public void EndBattle(){
 
 		if(AliveParty==0){
@@ -408,7 +440,7 @@ public partial class BattleManager : Node
 			EnemyParty[i].HideChangeHPBar();
 			EnemyParty[i].HideStatsMods();
 		}		
-		if(EnemyParty[0].Character.status!=Character.Status.KO){
+		if(EnemyParty[0].Character.status.Base.Name!="KO"){
 			//MoveCharacters(tween,EnemyParty[0],EnemyEndPosition,(float)PositionMoveSpeed);				
 			EnemyParty[0].AnimatorTree.Set("parameters/conditions/Ended",true);
 		}
@@ -529,6 +561,7 @@ public partial class BattleManager : Node
 			EnemyParty[i].Character.ResetCharacter();
 			TurnOrder.Add(EnemyParty[i]);
 		}
+		InitialDelay();
 		ResetPositions();
 		Scene.StartBattleEffect();
 		//Clear();

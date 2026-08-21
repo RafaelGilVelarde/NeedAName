@@ -40,13 +40,13 @@ public partial class RaiseStatMoveInput : RaiseStatMove
             {
                 Sum[i] += TimerSums[i];
             }
-            RaiseStat(Targets[0], Sum);
+            Stats.RaiseStat(Targets[0], Sum);
         }
         void End()
         {
             if (!Succeeded)
             {
-                RaiseStat(Targets[0]);                
+                Stats.RaiseStat(Targets[0]);                
             }
             BattleManager.instance.CallDeferred("EndMove");
         }

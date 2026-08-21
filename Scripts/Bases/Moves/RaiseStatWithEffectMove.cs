@@ -12,6 +12,7 @@ public partial class RaiseStatWithEffectMove : RaiseStatMove
     [Export] Vector2 offset;
 	[Export] BattleCharacter.ActionState State;
 
+
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
 		Array<Vector2> ScaleAux=new Array<Vector2>();
@@ -76,7 +77,7 @@ public partial class RaiseStatWithEffectMove : RaiseStatMove
         void onHit(Area2D Target){
 			if((Hitbox.IsInGroup("PlayerHitbox") && Target.IsInGroup("PlayerHurtbox"))||(Hitbox.IsInGroup("EnemyHitbox")&&Target.IsInGroup("EnemyHurtbox"))){
 				BattleCharacter TargetChar=Target.GetNode<BattleCharacter>("..");
-				RaiseStat(TargetChar);
+				Stats.RaiseStat(TargetChar);
 				proyectile.Hit();
 				proyectile.Ended = true;
 				Hitbox.AreaEntered-=onHit;

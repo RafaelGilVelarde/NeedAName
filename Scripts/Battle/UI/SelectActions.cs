@@ -189,7 +189,7 @@ public partial class SelectActions : Node2D
 			break;
 			case SelectState.SelectUser:
 				for(int i=0;i<character.PartyButtons.Count;i++){
-					if(character.PartyButtons[i].Character!=character&&character.PartyButtons[i].Character.Character.status!=Character.Status.KO){
+					if(character.PartyButtons[i].Character!=character&&character.PartyButtons[i].Character.Character.status.Base.Name!="KO"){
 						character.PartyButtons[i].Show();
 						character.PartyButtons[i].GrabFocus();
 					}
@@ -198,13 +198,13 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectTarget:
 					if(move.Base.TargetsParty){
 						for(int i=0;i<character.PartyButtons.Count;i++){
-							if(character.PartyButtons[i].Character.Character.status!=Character.Status.KO && move.Base.type!=MoveBase.Type.Revive){
+							if(character.PartyButtons[i].Character.Character.status.Base.Name!="KO" && move.Base.type!=MoveBase.Type.Revive){
 								character.PartyButtons[i].Show();
 								possibleAmount++;
 								CurrentButtons.Add(character.PartyButtons[i]);
 								character.PartyButtons[i].GrabFocus();
 							}
-							else if(character.PartyButtons[i].Character.Character.status==Character.Status.KO && move.Base.type==MoveBase.Type.Revive){
+							else if(character.PartyButtons[i].Character.Character.status.Base.Name=="KO" && move.Base.type==MoveBase.Type.Revive){
 								character.PartyButtons[i].Show();
 								possibleAmount++;
 								CurrentButtons.Add(character.PartyButtons[i]);
@@ -214,7 +214,7 @@ public partial class SelectActions : Node2D
 					}
 					else{
 						for(int i=0;i<character.EnemyButtons.Count;i++){
-							if(character.EnemyButtons[i].Character.Character.status!=Character.Status.KO){
+							if(character.EnemyButtons[i].Character.Character.status.Base.Name!="KO"){
 								character.EnemyButtons[i].Show();
 								possibleAmount++;
 								CurrentButtons.Add(character.EnemyButtons[i]);
