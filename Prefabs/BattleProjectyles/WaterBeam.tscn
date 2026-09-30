@@ -1,12 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://cs53p3oec1d58"]
+[gd_scene format=3 uid="uid://cs53p3oec1d58"]
 
 [ext_resource type="Texture2D" uid="uid://bfhcsehlr1yo" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam5.png" id="1_fokbb"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/RayHitbox.cs" id="2_7jega"]
+[ext_resource type="Script" uid="uid://bydmehswmmpn" path="res://Scripts/Battle/Hitboxes/RayHitbox.cs" id="2_7jega"]
 [ext_resource type="Texture2D" uid="uid://dhy6oj7wp8r78" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam1.png" id="2_cnyta"]
 [ext_resource type="Texture2D" uid="uid://c3p8lnyml8jbe" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam2.png" id="3_6osqb"]
 [ext_resource type="Texture2D" uid="uid://cdyxokug6bwun" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam3.png" id="4_5cr7h"]
 [ext_resource type="Texture2D" uid="uid://dygfwsnn3xcnp" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam4.png" id="5_7fgp7"]
 [ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="7_hm3s8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_7a640"]
+diffuse_texture = ExtResource("1_fokbb")
+texture_repeat = 2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_4nfn6"]
 diffuse_texture = ExtResource("2_cnyta")
@@ -22,10 +26,6 @@ texture_repeat = 2
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_2mbrb"]
 diffuse_texture = ExtResource("5_7fgp7")
-texture_repeat = 2
-
-[sub_resource type="CanvasTexture" id="CanvasTexture_7a640"]
-diffuse_texture = ExtResource("1_fokbb")
 texture_repeat = 2
 
 [sub_resource type="Animation" id="Animation_8sf2i"]
@@ -73,27 +73,27 @@ tracks/2/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6s6es"]
 _data = {
-"WaterBeam": SubResource("Animation_8sf2i")
+&"WaterBeam": SubResource("Animation_8sf2i")
 }
 
-[node name="Line2D" type="Line2D"]
+[node name="Line2D" type="Line2D" unique_id=1195994559]
 process_mode = 3
+position = Vector2(-1, 0)
 points = PackedVector2Array(-10, 0, 304, 0)
 width = 40.0
-texture = SubResource("CanvasTexture_4nfn6")
-texture_mode = 2
+texture = SubResource("CanvasTexture_7a640")
+texture_mode = 1
 
-[node name="RayCast2D" type="RayCast2D" parent="."]
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1031959714]
 visible = false
+enabled = false
 target_position = Vector2(100, 0)
 collide_with_areas = true
 collide_with_bodies = false
 script = ExtResource("2_7jega")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_6s6es")
-}
-autoplay = "WaterBeam"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1615408658]
+libraries/ = SubResource("AnimationLibrary_6s6es")
+autoplay = &"WaterBeam"
 
-[node name="SFXController" parent="." instance=ExtResource("7_hm3s8")]
+[node name="SFXController" parent="." unique_id=1657152081 instance=ExtResource("7_hm3s8")]

@@ -7,7 +7,7 @@ using System.Diagnostics;
 public partial class SpinSpamMove : MoveBase
 {
     [Export] Vector2 offset;
-    [Export] float AtkMultiplier, Speed = 1;
+    [Export] float Speed = 1;
     [Export] int Combo = 1;
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {

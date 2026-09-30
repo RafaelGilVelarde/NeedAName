@@ -1,28 +1,30 @@
-[gd_scene load_steps=6 format=3 uid="uid://dahqyou68igt4"]
+[gd_scene format=3 uid="uid://dahqyou68igt4"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Puzzles/PuzzleBarriers/BarrierCheckFlag.cs" id="1_tddyv"]
+[ext_resource type="Script" uid="uid://bwlcngw1b6r4g" path="res://Scripts/Overworld/Puzzles/PuzzleBarriers/BarrierCheckFlag.cs" id="1_tddyv"]
 [ext_resource type="Texture2D" uid="uid://dhy6oj7wp8r78" path="res://Sprites/Battle/Effects/WaterBeam/WaterBeam1.png" id="2_8s3xc"]
 [ext_resource type="AnimationLibrary" uid="uid://c0awsl3dfhstk" path="res://Animations/Overworld/Effects/WaterBarrier.res" id="2_aycs1"]
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/Switches/Switch.cs" id="4_y35jc"]
+[ext_resource type="Script" uid="uid://bf1hvoi7ewquc" path="res://Scripts/Overworld/Interactions/Switches/Switch.cs" id="4_y35jc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3ypy8"]
 size = Vector2(64, 20)
 
-[node name="Barrier" type="StaticBody2D"]
+[node name="Barrier" type="StaticBody2D" unique_id=2125757591]
 z_index = 1
 position = Vector2(80, 176)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1233534797]
+texture_repeat = 2
 texture = ExtResource("2_8s3xc")
+region_enabled = true
+region_rect = Rect2(53, 0, 216, 80)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D"]
-libraries = {
-"WaterBarrier": ExtResource("2_aycs1")
-}
-autoplay = "WaterBarrier/Barrier"
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D" unique_id=1922234321]
+libraries/WaterBarrier = ExtResource("2_aycs1")
+autoplay = &"WaterBarrier/Barrier"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Check", "Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=242036911 node_paths=PackedStringArray("Check", "Sprites")]
 shape = SubResource("RectangleShape2D_3ypy8")
+disabled = true
 script = ExtResource("4_y35jc")
 Toggleable = null
 Check = NodePath("../Check")
@@ -35,13 +37,13 @@ TimelineIndex = null
 Timeline = null
 PauseWhenDialogue = null
 Turn = null
-SpokenTo = null
-FacingRight = null
 FacingDirection = null
 visualType = null
 Sprites = Array[Object]([])
+FacingRight = null
+SpokenTo = null
 
-[node name="Check" type="Node" parent="." node_paths=PackedStringArray("Animator", "Shape")]
+[node name="Check" type="Node" parent="." unique_id=216827243 node_paths=PackedStringArray("Animator", "Shape")]
 script = ExtResource("1_tddyv")
 Animator = NodePath("../Sprite2D/AnimationPlayer")
 Shape = NodePath("../CollisionShape2D")

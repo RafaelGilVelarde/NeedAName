@@ -200,7 +200,12 @@ public partial class Character : Resource
     public virtual void ResetCharacter()
     {
         stats.HP = TotalStats.MaxHP;
-        status = null;
+        status = new StatusCondition
+            {
+                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
+				Time = -1,
+				MaxTime = -1
+			};;
         stats.WP = 0;
     }
     public void LearnMove(Moves Move)

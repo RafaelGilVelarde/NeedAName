@@ -1,0 +1,46 @@
+[gd_resource type="Resource" script_class="PartyCharacterBase" format=3 uid="uid://ydcp0itcjib"]
+
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_xiqfj"]
+[ext_resource type="PackedScene" uid="uid://8giv571etko5" path="res://Prefabs/Animators/Party/Battle/ShadeBattleAnimator.tscn" id="2_ob2xp"]
+[ext_resource type="AudioStream" uid="uid://bflp06geki460" path="res://Music/BGM/Start/waves.mp3" id="3_r5bbo"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="4_g4pjp"]
+[ext_resource type="AudioStream" uid="uid://chb1i3tevub42" path="res://Music/SFX/Moves/Punch.wav" id="5_3cusl"]
+[ext_resource type="PackedScene" uid="uid://cwjfunvunwqrf" path="res://Prefabs/Animators/Party/Overworld/ShadeOverworldAnimator.tscn" id="6_crg7s"]
+[ext_resource type="Script" uid="uid://ct8077s5axxko" path="res://Scripts/Bases/Characters/PartyCharacterBase.cs" id="7_7dheo"]
+
+[sub_resource type="Resource" id="Resource_cxqgo"]
+script = ExtResource("1_xiqfj")
+Lv = 6
+MaxHP = 2
+HP = 2
+Atk = 3
+Def = 3
+SpAtk = 2
+SpDef = 2
+Speed = 2
+metadata/_custom_type_script = "uid://gxymflr1xik3"
+
+[sub_resource type="Resource" id="Resource_oq1gk"]
+script = ExtResource("4_g4pjp")
+SoundEffects = Array[AudioStream]([ExtResource("3_r5bbo")])
+metadata/_custom_type_script = "uid://v4e7r2ld5dmh"
+
+[sub_resource type="Resource" id="Resource_jvb47"]
+script = ExtResource("4_g4pjp")
+SoundEffects = Array[AudioStream]([ExtResource("5_3cusl")])
+metadata/_custom_type_script = "uid://v4e7r2ld5dmh"
+
+[resource]
+script = ExtResource("7_7dheo")
+PartyId = 4
+ExpSpeed = 5.0
+ExpDistance = 10.0
+ExpForLevel = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+BaseStats = SubResource("Resource_cxqgo")
+OverworldAnimator = ExtResource("6_crg7s")
+BattleAnimator = ExtResource("2_ob2xp")
+TextEffectColor = Color(0.654902, 0, 0.8117647, 1)
+MoveSFX = Array[AudioStream]([])
+HitSFX = Array[AudioStream]([])
+EffectLists = Array[Object]([SubResource("Resource_oq1gk"), SubResource("Resource_jvb47")])
+metadata/_custom_type_script = "uid://ct8077s5axxko"

@@ -46,6 +46,7 @@
 [ext_resource type="Resource" uid="uid://ccbpggt45xqro" path="res://Resources/Items/Consumable/Refresher.tres" id="24_ljuqi"]
 [ext_resource type="PackedScene" uid="uid://4jvi4almskcy" path="res://Scenes/Sea/Maps/Map 13.tscn" id="25_o7ox6"]
 [ext_resource type="PackedScene" uid="uid://1tlmx7skytd6" path="res://Scenes/Sea/Maps/Map 14.tscn" id="26_0jbi8"]
+[ext_resource type="Resource" uid="uid://ydcp0itcjib" path="res://Resources/CharacterBases/Party Members/Shade.tres" id="26_chxgl"]
 [ext_resource type="PackedScene" uid="uid://cmjnqqak8m3wt" path="res://Scenes/Sea/Maps/Map 15.tscn" id="27_w55j7"]
 [ext_resource type="PackedScene" uid="uid://6fds17egmq8u" path="res://Scenes/Sea/Maps/Map 16.tscn" id="28_edpib"]
 [ext_resource type="PackedScene" uid="uid://bxe65s7fnlvxl" path="res://Scenes/Sea/Maps/Map 17.tscn" id="29_i1r84"]
@@ -232,6 +233,7 @@ unicode = 120
 [sub_resource type="Resource" id="Resource_gt6au"]
 script = ExtResource("3_mdbab")
 Speed = 4.0
+AtkMultiplier = 0.5
 offset = Vector2(-15, 0)
 Power = 2
 UserAmount = 1
@@ -301,10 +303,7 @@ metadata/_custom_type_script = "uid://lpkeic85k5nj"
 
 [sub_resource type="Resource" id="Resource_f4gq8"]
 script = ExtResource("18_miyx3")
-Alt = null
 Stats = SubResource("Resource_luhyj")
-WPIncrease = 8.0
-WPUp = true
 type = 2
 UserAmount = 1
 TargetAmount = 1
@@ -392,11 +391,7 @@ Height = 0.0
 Combo = 2
 Tag = "PlayerHitbox"
 Proyectile = ExtResource("21_w2gw7")
-Alt = null
 Stats = SubResource("Resource_0k1ly")
-DefTime = 3
-DefMult = 1.5
-Def = true
 UserAmount = 1
 TargetAmount = 1
 Cost = 5
@@ -447,6 +442,77 @@ Key = 67
 EventKey = SubResource("InputEventKey_nea8u")
 AltStatus = null
 
+[sub_resource type="Resource" id="Resource_sq82r"]
+script = ExtResource("3_qc7bw")
+
+[sub_resource type="InputEventKey" id="InputEventKey_sq82r"]
+device = -1
+keycode = 67
+unicode = 99
+
+[sub_resource type="Resource" id="Resource_cxqgo"]
+script = ExtResource("3_mdbab")
+Speed = 3.0
+AtkMultiplier = 1.0
+offset = Vector2(-20, 0)
+Combo2 = 1
+Power = 2
+UserAmount = 1
+TargetAmount = 1
+WP = 2
+Name = "Chop 'Em"
+MoveTime = 3.0
+metadata/_custom_type_script = "uid://crky8j5xx8bin"
+
+[sub_resource type="Resource" id="Resource_5mscj"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_cxqgo")
+metadata/_custom_type_script = "uid://cnghiawsylwhg"
+
+[sub_resource type="Resource" id="Resource_oq1gk"]
+script = ExtResource("3_mdbab")
+Speed = 3.0
+offset = Vector2(-20, 0)
+Combo1 = 2
+Power = 3
+UserAmount = 1
+TargetAmount = 1
+WP = 3
+Cost = 3
+Name = "BBQ"
+MoveTime = 3.0
+metadata/_custom_type_script = "uid://crky8j5xx8bin"
+
+[sub_resource type="Resource" id="Resource_jvb47"]
+script = ExtResource("4_0i8ni")
+Base = SubResource("Resource_oq1gk")
+metadata/_custom_type_script = "uid://cnghiawsylwhg"
+
+[sub_resource type="Resource" id="Resource_f0o5s"]
+script = ExtResource("3_qc7bw")
+
+[sub_resource type="Resource" id="Resource_qfvhs"]
+script = ExtResource("3_qc7bw")
+Lv = 6
+HP = 30
+metadata/_custom_type_script = "uid://gxymflr1xik3"
+
+[sub_resource type="Resource" id="Resource_rbpvy"]
+script = ExtResource("8_3wvmt")
+Base = ExtResource("26_chxgl")
+Moves = Array[Object]([SubResource("Resource_5mscj"), SubResource("Resource_jvb47")])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_qfvhs")
+EquipStats = SubResource("Resource_sq82r")
+TotalStats = SubResource("Resource_f0o5s")
+isControlledByPlayer = true
+Key = 67
+EventKey = SubResource("InputEventKey_sq82r")
+FollowIndex = 4
+AltStatus = null
+metadata/_custom_type_script = "uid://ckxnx3l0hgv8x"
+
 [sub_resource type="Resource" id="Resource_llqed"]
 script = ExtResource("17_307rp")
 Base = ExtResource("24_ljuqi")
@@ -468,7 +534,7 @@ items = Array[Object]([])
 resource_local_to_scene = true
 resource_name = "AAAA"
 script = ExtResource("2_1hul1")
-Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy"), SubResource("Resource_gsllo"), SubResource("Resource_db7dj")])
+Party = Array[Object]([SubResource("Resource_72ep1"), SubResource("Resource_q6csy"), SubResource("Resource_gsllo"), SubResource("Resource_db7dj"), SubResource("Resource_rbpvy")])
 CurrentFollowers = Array[Object]([])
 AllFollwers = Array[Object]([null, null, null])
 items = Array[Object]([SubResource("Resource_0f1ho"), SubResource("Resource_wiso8"), SubResource("Resource_xtejg")])

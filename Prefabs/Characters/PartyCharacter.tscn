@@ -1,12 +1,13 @@
 [gd_scene format=3 uid="uid://ci40agixb3xuc"]
 
 [ext_resource type="Script" uid="uid://cc10yckuwpg6g" path="res://Scripts/Overworld/PlayerController.cs" id="1_yneer"]
-[ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_epm0v"]
+[ext_resource type="Texture2D" uid="uid://cuem70aamy4af" path="res://Sprites/Overworld/Shade.png" id="2_iaacx"]
 [ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="3_vk0g2"]
 [ext_resource type="Script" uid="uid://cvwfftsd5ebgu" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="4_6l7n6"]
 [ext_resource type="Script" uid="uid://dryu6ju55pgoq" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="5_5pejn"]
 [ext_resource type="Script" uid="uid://lckenq50ahit" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="6_7n8og"]
 [ext_resource type="Script" uid="uid://c6xmgyhy7yjx" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_h25v4"]
+[ext_resource type="Texture2D" uid="uid://crxqwyapxyjq7" path="res://Sprites/Battle/Party/shadeBattle.png" id="9_cnmp1"]
 [ext_resource type="Script" uid="uid://di3f7wcp6vslf" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_jx0hg"]
 [ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="9_p6osb"]
 [ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="10_0c27x"]
@@ -31,14 +32,11 @@ size = Vector2(20, 34)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kowf3"]
 resource_local_to_scene = true
-size = Vector2(46.475, 59)
+size = Vector2(31, 64)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m0rr7"]
 resource_local_to_scene = true
 size = Vector2(25, 42.5)
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_5l7bv"]
-load_path = "res://.godot/imported/HalluciBattle.png-961e73d9989a7f19a861d3eeed8a81d4.ctex"
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_epm0v"]
 particles_animation = true
@@ -1601,6 +1599,7 @@ y_sort_enabled = true
 floor_block_on_wall = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=578600613]
+visible = false
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 
@@ -1627,23 +1626,24 @@ BattleCharacter = NodePath("../BattleCharacter")
 
 [node name="MainSprite" type="Sprite2D" parent="OverworldController" unique_id=1165165640]
 texture_filter = 1
-texture = ExtResource("2_epm0v")
-hframes = 7
+texture = ExtResource("2_iaacx")
+hframes = 6
 vframes = 6
-frame = 14
+frame = 8
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
 "o_ex_p": "",
 "o_folder": "res://Sprites/Overworld",
-"o_name": "Blobfish",
+"o_name": "Shade",
 "only_visible": false,
-"op_exp": false,
+"op_exp": true,
 "player": "OverworldController/AnimationPlayer",
-"source": "res://Aseprites/Characters/Overworld/NPCs/Blobfish.aseprite"
+"source": "res://Aseprites/Characters/Overworld/Shade.aseprite"
 }
 
 [node name="InteractionCollider" type="Area2D" parent="OverworldController" unique_id=217945487]
+visible = false
 position = Vector2(0, 15)
 disable_mode = 1
 
@@ -1684,7 +1684,6 @@ MultTimer = Array[Vector2]([])
 PartyButtons = Array[Vector2]([])
 EnemyButtons = Array[Vector2]([])
 selectActions = NodePath("ActionMenu")
-DodgeDir = null
 MainSprite = NodePath("MainSprite")
 ThisParty = Array[Vector2]([])
 EnemyParty = Array[Vector2]([])
@@ -1715,16 +1714,19 @@ shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="BattleCharacter" unique_id=614108300 groups=["PlayerHurtbox"]]
+visible = false
 z_index = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox" unique_id=594037919]
 shape = SubResource("RectangleShape2D_6c1hy")
 
 [node name="Blockbox" type="Area2D" parent="BattleCharacter" unique_id=807161263 node_paths=PackedStringArray("Character") groups=["PlayerBlockbox"]]
+visible = false
 script = ExtResource("6_7n8og")
 Character = NodePath("..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox" unique_id=1435969016]
+position = Vector2(15.5, 0)
 shape = SubResource("RectangleShape2D_kowf3")
 disabled = true
 
@@ -1739,19 +1741,20 @@ disabled = true
 
 [node name="MainSprite" type="Sprite2D" parent="BattleCharacter" unique_id=1507358825]
 texture_filter = 1
-texture = SubResource("CompressedTexture2D_5l7bv")
-hframes = 8
-vframes = 8
+texture = ExtResource("9_cnmp1")
+hframes = 9
+vframes = 9
+frame = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
 "o_ex_p": "_",
 "o_folder": "res://Sprites/Battle/Party",
-"o_name": "waterBattle",
+"o_name": "shadeBattle",
 "only_visible": false,
 "op_exp": true,
 "player": "BattleCharacter/AnimationPlayer",
-"source": "res://Aseprites/Characters/Battle/waterBattle.aseprite"
+"source": "res://Aseprites/Characters/Battle/ShadeBattle.aseprite"
 }
 
 [node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite" unique_id=901393745]

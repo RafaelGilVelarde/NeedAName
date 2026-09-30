@@ -62,7 +62,7 @@ public partial class GameManager : Node
 		if (ResourceLoader.Exists(SettingsPath))
         {
 			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
-            if (Saves[Settings.CurrentSave] != null)
+            if (Saves[Settings.CurrentSave] != null && GetTree().CurrentScene.Name == "MainMenu")
 			{
 				Data = Saves[Settings.CurrentSave];
             }

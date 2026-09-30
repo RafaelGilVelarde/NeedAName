@@ -1,0 +1,8 @@
+[gd_resource type="Resource" script_class="StatusBase" format=3 uid="uid://dxjpsx62gq8wq"]
+
+[ext_resource type="Script" uid="uid://dvv1pqgwlymkm" path="res://Scripts/Bases/StatusConditions/StatusBase.cs" id="1_q7m4g"]
+
+[resource]
+script = ExtResource("1_q7m4g")
+Name = "Normal"
+metadata/_custom_type_script = "uid://dvv1pqgwlymkm"

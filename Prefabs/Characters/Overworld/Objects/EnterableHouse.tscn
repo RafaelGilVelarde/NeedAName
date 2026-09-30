@@ -21,6 +21,7 @@ metadata/_aseprite_wizard_config_ = {
 }
 
 [node name="CollisionShape2D" type="CollisionPolygon2D" parent="." unique_id=1046380330]
+visible = false
 polygon = PackedVector2Array(-32, 0, 32, 0, 64, 64, 16, 48, 16, 4, -16, 4, -16, 48, -64, 64)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1639865197]

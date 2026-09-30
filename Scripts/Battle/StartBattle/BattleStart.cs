@@ -38,16 +38,35 @@ public partial class BattleStart : Node2D
             Array<BattleCharacter> EnemyBattle=new Array<BattleCharacter>(); 
             for(int i=0;i<Characters.Count;i++){
                 Character aux= Characters[i].BattleCharacter.Character;
-                if (aux.Active && aux.status.Base.Name!="KO")
+                Debug.WriteLine(Characters[i].Parent.Name);
+                if (aux.Active)
                 {
-                    Party.Add(Characters[i].BattleCharacter);
-                    if (scene.Horizontal)
+                    if (aux.status != null)
                     {
-                        Party[Party.Count - 1].BattleOffset = Vector2.Zero;
+                        if (aux.status.Base.Name != "KO")
+                        {
+                            Party.Add(Characters[i].BattleCharacter);
+                            if (scene.Horizontal)
+                            {
+                                Party[Party.Count - 1].BattleOffset = Vector2.Zero;
+                            }
+                            else
+                            {
+                                Party[Party.Count - 1].BattleOffset = Party[Party.Count - 1].Character.Base.BattleOffset;
+                            }         
+                        }
                     }
                     else
                     {
-                        Party[Party.Count - 1].BattleOffset = Party[Party.Count - 1].Character.Base.BattleOffset;
+                        Party.Add(Characters[i].BattleCharacter);
+                        if (scene.Horizontal)
+                        {
+                            Party[Party.Count - 1].BattleOffset = Vector2.Zero;
+                        }
+                        else
+                        {
+                            Party[Party.Count - 1].BattleOffset = Party[Party.Count - 1].Character.Base.BattleOffset;
+                        }                        
                     }
                 }
             }

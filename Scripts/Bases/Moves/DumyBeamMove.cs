@@ -7,8 +7,8 @@ using System.Linq;
 
 public partial class DumyBeamMove : MoveBase
 {
-[Export] float Speed;
-[Export] int Combo = 1,AtkMultiplier;
+[Export] float Speed,AtkMultiplier;
+[Export] int Combo = 1;
 [Export] String Tag;
 [Export] PackedScene LineShoot;
 	[Export] Vector2 offset;
@@ -69,7 +69,7 @@ public partial class DumyBeamMove : MoveBase
 					User.changeState(BattleCharacter.BattleState.Idle);
 					if (Success)
 					{
-						User.StatMultiplier[2] += AtkMultiplier;
+						User.StatMultiplier[2] *= AtkMultiplier;
 						User.Character.ChangeWP(WP);
 						User.changeCombo(2);
 					}
@@ -122,7 +122,6 @@ public partial class DumyBeamMove : MoveBase
 		{
 			if (Users[0].Character.isControlledByPlayer)
 			{
-				Debug.WriteLine("EARSDgzvcx");
 				ShootSetup(Users[0]);
 			}
 			tween.Kill();

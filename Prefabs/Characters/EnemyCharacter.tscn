@@ -154,6 +154,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_0t4aj")
 EquipStats = SubResource("Resource_jipoy")
 TotalStats = SubResource("Resource_m514q")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_xvol2"]
 script = ExtResource("18_jyiej")
@@ -207,6 +208,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_q0c02")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8hcbx"]
 resource_local_to_scene = true
@@ -413,6 +415,7 @@ battleState = 3
 actionState = 5
 
 [node name="Hitbox" type="Area2D" parent="BattleCharacter" unique_id=440007294 node_paths=PackedStringArray("Character") groups=["EnemyHitbox"]]
+visible = false
 script = ExtResource("4_xi1xx")
 Character = NodePath("..")
 
@@ -422,6 +425,7 @@ shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
 [node name="Hurtbox" type="Area2D" parent="BattleCharacter" unique_id=656277864 groups=["EnemyHurtbox"]]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox" unique_id=365359841]
 shape = SubResource("RectangleShape2D_6c1hy")

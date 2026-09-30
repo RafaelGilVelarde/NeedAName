@@ -1,0 +1,82 @@
+[gd_scene format=3 uid="uid://cwjfunvunwqrf"]
+
+[ext_resource type="AnimationLibrary" uid="uid://bhdmmyexuhrjh" path="res://Animations/Overworld/ShadeOverworld.res" id="1_0miuf"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_iaacx"]
+animation = &"ShadeOverworld/idleback"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cnmp1"]
+animation = &"ShadeOverworld/idlefront"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_mru4l"]
+animation = &"ShadeOverworld/idleside"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2dk4w"]
+animation = &"ShadeOverworld/idleside"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_cuyfl"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_iaacx")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_cnmp1")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_mru4l")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_2dk4w")
+blend_point_3/pos = Vector2(-1, 0)
+snap = Vector2(1, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_cuyfl"]
+animation = &"ShadeOverworld/back"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_gckfe"]
+animation = &"ShadeOverworld/front"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_p3852"]
+animation = &"ShadeOverworld/side"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_glh2i"]
+animation = &"ShadeOverworld/side"
+
+[sub_resource type="AnimationNodeBlendSpace2D" id="AnimationNodeBlendSpace2D_gckfe"]
+blend_point_0/node = SubResource("AnimationNodeAnimation_cuyfl")
+blend_point_0/pos = Vector2(0, 1)
+blend_point_1/node = SubResource("AnimationNodeAnimation_gckfe")
+blend_point_1/pos = Vector2(0, -1)
+blend_point_2/node = SubResource("AnimationNodeAnimation_p3852")
+blend_point_2/pos = Vector2(1, 0)
+blend_point_3/node = SubResource("AnimationNodeAnimation_glh2i")
+blend_point_3/pos = Vector2(-1, 0)
+snap = Vector2(1, 1)
+blend_mode = 1
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_p3852"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_glh2i"]
+advance_mode = 2
+advance_condition = &"Walking"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_1yrfl"]
+advance_mode = 2
+advance_condition = &"Idle"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_jxfmr"]
+states/Idle/node = SubResource("AnimationNodeBlendSpace2D_cuyfl")
+states/Idle/position = Vector2(376.4, 96.8)
+states/Start/position = Vector2(178.4, 99.840004)
+states/Walking/node = SubResource("AnimationNodeBlendSpace2D_gckfe")
+states/Walking/position = Vector2(509.2, 100.96)
+transitions = ["Start", "Idle", SubResource("AnimationNodeStateMachineTransition_p3852"), "Idle", "Walking", SubResource("AnimationNodeStateMachineTransition_glh2i"), "Walking", "Idle", SubResource("AnimationNodeStateMachineTransition_1yrfl")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" unique_id=1525429365]
+libraries/ShadeOverworld = ExtResource("1_0miuf")
+
+[node name="AnimationTree" type="AnimationTree" parent="." unique_id=179772884]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_jxfmr")
+anim_player = NodePath("..")
+parameters/conditions/Idle = false
+parameters/conditions/Walking = false
+parameters/Idle/blend_position = Vector2(0.043521285, 0.40151513)
+parameters/Walking/blend_position = Vector2(0, 0)

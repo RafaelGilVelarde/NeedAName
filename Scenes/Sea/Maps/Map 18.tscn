@@ -127,7 +127,7 @@ PlayerZIndex = null
 Area = null
 LoadPosition = Vector2(32, -165)
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_2oeyj")
 
 [node name="Door2" parent="." unique_id=1777567702 instance=ExtResource("6_wm385")]
@@ -138,7 +138,7 @@ PlayerZIndex = null
 Area = null
 LoadPosition = Vector2(-632, 0)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 position = Vector2(4.60149e-05, 0)
 shape = SubResource("RectangleShape2D_o0ou7")
 
@@ -158,6 +158,9 @@ detectArea = NodePath("../Area2D")
 [node name="Barrier" parent="." unique_id=1627475773 instance=ExtResource("10_dgrkx")]
 position = Vector2(280, 0)
 rotation = 1.5708
+
+[node name="Sprite2D" parent="Barrier" index="0"]
+texture_repeat = 2
 
 [node name="AnimationPlayer" parent="Barrier/Sprite2D" index="0"]
 autoplay = &"WaterBarrier/Barrier"

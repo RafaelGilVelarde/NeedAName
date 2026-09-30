@@ -479,7 +479,6 @@ public partial class BattleCharacter : CharacterBody2D
 			{
 				tween.Finished += () =>
 				{
-					Debug.WriteLine("Level Up Bar");
 					ShowEXPBar(NextLvl, ExpEnd, AuxBase.ExpForLevel[Level],Level+1);
 				};
 			}			
@@ -596,6 +595,26 @@ public partial class BattleCharacter : CharacterBody2D
 		Character._ChangeHP += ShowChangeHPBar;
 		Character._Die += Die;
 		Character._ChangeWP += ShowChangeWPBar;
+
+		if(Character.status == null)
+		{
+            Character.status = new StatusCondition
+            {
+                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
+				Time = -1,
+				MaxTime = -1
+			};
+        }
+		Debug.WriteLine("Status: "+Character.status.Base.Name);
+		if(Character.KO == null)
+		{
+			Character.KO = new StatusCondition
+            {
+                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/KOStatus.tres"),
+				Time = -1,
+				MaxTime = -1
+			};			
+		}
 	}
 	public virtual void TurnOffBattle()
 	{
@@ -607,7 +626,12 @@ public partial class BattleCharacter : CharacterBody2D
 		selectActions.clearAll();
 		if (Character.status.Base.Name == "KO")
 		{
-			Character.status = null;
+			Character.status = new StatusCondition
+            {
+                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
+				Time = -1,
+				MaxTime = -1
+			};
 			Character.ChangeHP(1,false);
 		}
 		Character._GetHit -= GetHit;

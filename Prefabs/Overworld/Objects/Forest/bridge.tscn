@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://cikseu1huuod6"]
+
+[ext_resource type="Texture2D" uid="uid://par4ahguduk" path="res://Sprites/Overworld/Objects/Forest/Bridge.png" id="1_2x5wy"]
+[ext_resource type="Texture2D" uid="uid://bat2urfmmkhfw" path="res://Sprites/Overworld/Objects/Forest/Bridge-pole.png" id="2_70rh5"]
+[ext_resource type="Texture2D" uid="uid://br5h3jljrij7n" path="res://Sprites/Overworld/Objects/Forest/Bridge-rail-back.png" id="3_3y03g"]
+[ext_resource type="Texture2D" uid="uid://c40485j67g0uq" path="res://Sprites/Overworld/Objects/Forest/Bridge-rail-front.png" id="4_wmltn"]
+[ext_resource type="Texture2D" uid="uid://bg8nn2peiswv5" path="res://Sprites/Overworld/Effects/ripple-small.png" id="5_70rh5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fowmh"]
+size = Vector2(222, 7.5)
+
+[sub_resource type="Animation" id="Animation_ty5x8"]
+length = 0.4
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("5_70rh5")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [2]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath(".:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_3y03g"]
+_data = {
+&"default": SubResource("Animation_ty5x8")
+}
+
+[node name="Bridge" type="Sprite2D" unique_id=538132684]
+z_index = -1
+y_sort_enabled = true
+texture = ExtResource("1_2x5wy")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=379644618]
+z_index = -3
+texture = ExtResource("2_70rh5")
+
+[node name="Sprite2D2" type="Sprite2D" parent="." unique_id=427474350]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, -34)
+texture = ExtResource("3_3y03g")
+offset = Vector2(0, 34)
+
+[node name="Sprite2D3" type="Sprite2D" parent="." unique_id=793957884]
+z_index = 1
+y_sort_enabled = true
+position = Vector2(0, 35)
+texture = ExtResource("4_wmltn")
+offset = Vector2(0, -35)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=474422655]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=670893934]
+position = Vector2(0, -35.5)
+shape = SubResource("RectangleShape2D_fowmh")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1283511813]
+position = Vector2(0, 38)
+shape = SubResource("RectangleShape2D_fowmh")
+
+[node name="Sprite2D5" type="Sprite2D" parent="." unique_id=355672356]
+z_index = -1
+texture_filter = 1
+position = Vector2(-53, 47)
+texture = ExtResource("5_70rh5")
+hframes = 2
+vframes = 2
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Effects",
+"o_name": "ripple-small",
+"only_visible": false,
+"op_exp": false,
+"player": "BridgeV/Sprite2D2/AnimationPlayer",
+"source": "res://Aseprites/Effects/Overworld/Ripple-small.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D5" unique_id=2069553360]
+root_node = NodePath("../../Sprite2D5")
+libraries/ = SubResource("AnimationLibrary_3y03g")
+autoplay = &"default"
+
+[node name="Sprite2D6" type="Sprite2D" parent="." unique_id=952505957]
+z_index = -1
+texture_filter = 1
+position = Vector2(53, 47)
+texture = ExtResource("5_70rh5")
+hframes = 2
+vframes = 2
+frame = 3
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Overworld/Effects",
+"o_name": "ripple-small",
+"only_visible": false,
+"op_exp": false,
+"player": "BridgeV/Sprite2D2/AnimationPlayer",
+"source": "res://Aseprites/Effects/Overworld/Ripple-small.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite2D6" unique_id=1577144984]
+libraries/ = SubResource("AnimationLibrary_3y03g")
+autoplay = &"default"
