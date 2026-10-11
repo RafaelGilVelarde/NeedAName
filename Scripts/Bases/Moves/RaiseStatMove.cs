@@ -8,7 +8,7 @@ public partial class RaiseStatMove : MoveBase
 {
     //[Export] StatusCondition Status;
     //[Export] Array<StatusCondition> Alt;
-    [Export] protected StatChange Stats;
+    [Export] public StatChange Stats {get; protected set;}
     /*[Export] int AtkTime, DefTime,SpAtkTime,SpDefTime, SpeedTime, StatusTime, DelayTarget;
     [Export] float AtkMult,DefMult,SpAtkMult,SpDefMult,SpeedMult, HPIncrease, WPIncrease;
     [Export] protected bool Atk,Def,Spatk,Spdef,Speed, HP, WPUp, DelayUp, StatCondition, AltStat;*/

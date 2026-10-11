@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://d3cwauvtfr0d1" path="res://Scripts/Battle/AISettings/AISettings.cs" id="1_hyrbl"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="2_4l00k"]
 [ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="3_2e2qm"]
+[ext_resource type="Texture2D" uid="uid://2ko530iina7y" path="res://Sprites/Battle/UI/CharacterIcons/WaterIcon1.png" id="4_lt7jn"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="4_mpu23"]
 [ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_s11i6"]
 [ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="5_ddw3e"]
@@ -15,7 +16,6 @@ script = ExtResource("1_hyrbl")
 
 [sub_resource type="Resource" id="Resource_grl5b"]
 script = ExtResource("1_1vf6h")
-Lv = null
 MaxHP = 7
 HP = 7
 Atk = 3
@@ -23,7 +23,6 @@ Def = 3
 SpAtk = 2
 SpDef = 3
 Speed = 2
-WP = null
 
 [sub_resource type="Resource" id="Resource_1ksu2"]
 script = ExtResource("5_ddw3e")
@@ -41,6 +40,7 @@ BaseStats = SubResource("Resource_grl5b")
 OverworldAnimator = ExtResource("3_2e2qm")
 BattleAnimator = ExtResource("2_4l00k")
 TextEffectColor = Color(1, 0, 0, 1)
+BattleIcon = ExtResource("4_lt7jn")
 OverworldOffset = Vector2(0, -18)
 BattleOffset = Vector2(0, -18)
 MoveSFX = Array[AudioStream]([])

@@ -1,19 +1,15 @@
-[gd_resource type="Resource" script_class="DumySpinMove" load_steps=2 format=3 uid="uid://bvtcpl6qec87k"]
+[gd_resource type="Resource" script_class="DumySpinMove" format=3 uid="uid://bvtcpl6qec87k"]
 
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumySpinMove.cs" id="1_etq3m"]
+[ext_resource type="Script" uid="uid://ds6qtcdt3tb7s" path="res://Scripts/Bases/Moves/DumySpinMove.cs" id="1_etq3m"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("1_etq3m")
 SpinCount = 1.5
-Combo = 1
-offset = 15.0
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
-WP = 2
-Cost = 0
-TargetsParty = false
+WP = 1
+Delay = 120
 Name = "Spin"
 MoveTime = 4.0

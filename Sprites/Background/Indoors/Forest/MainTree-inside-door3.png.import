@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dk57fcsebwuk0"
-path="res://.godot/imported/ForestHouse1.png-1afba608faf5bea875c63d804b904eeb.ctex"
+uid="uid://brfdlhdf07hj3"
+path="res://.godot/imported/MainTree-inside-door3.png-ba789561a7a55dbaf87678d658187a68.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/Indoors/ForestHouse1.png"
-dest_files=["res://.godot/imported/ForestHouse1.png-1afba608faf5bea875c63d804b904eeb.ctex"]
+source_file="res://Sprites/Background/Indoors/Forest/MainTree-inside-door3.png"
+dest_files=["res://.godot/imported/MainTree-inside-door3.png-ba789561a7a55dbaf87678d658187a68.ctex"]
 
 [params]
 

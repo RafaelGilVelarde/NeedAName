@@ -9,6 +9,7 @@ script = ExtResource("2_vna1u")
 scene = ExtResource("2_baafe")
 overrides = {
 "global_bg_color": "Color(0, 0, 0, 0)",
+"global_font": "\"res://Fonts/atwriter.ttf\"",
 "global_font_size": "24.0"
 }
 

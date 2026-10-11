@@ -19,7 +19,6 @@ public partial class DumySpinMove : MoveBase
 		Vector2 Spin=new Vector2(1,1);
 
 		float Angle = MiddlePos.AngleToPoint(OriginPos);
-		Debug.WriteLine("Position: " + OriginPos);
 		Tween tween = Users[0].CreateTween();
 		
 		float Dir=(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X)/Mathf.Abs(Targets[0].GlobalPosition.X-Users[0].GlobalPosition.X);

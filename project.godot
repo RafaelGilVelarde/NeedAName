@@ -216,6 +216,10 @@ enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg", "res://addon
 
 CollisionTile=""
 
+[gui]
+
+theme/custom_font="uid://buuhr4qmog04h"
+
 [input]
 
 ui_accept={

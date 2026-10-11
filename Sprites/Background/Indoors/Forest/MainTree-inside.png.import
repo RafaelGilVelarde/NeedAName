@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://6usskn8qipqk"
-path="res://.godot/imported/MainTree-inside.png-db3b6c04faa23088f0edafbfb1903997.ctex"
+path="res://.godot/imported/MainTree-inside.png-1f1011d42c010132a8ca49703a194485.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/Indoors/MainTree-inside.png"
-dest_files=["res://.godot/imported/MainTree-inside.png-db3b6c04faa23088f0edafbfb1903997.ctex"]
+source_file="res://Sprites/Background/Indoors/Forest/MainTree-inside.png"
+dest_files=["res://.godot/imported/MainTree-inside.png-1f1011d42c010132a8ca49703a194485.ctex"]
 
 [params]
 

@@ -16,5 +16,6 @@ UserAmount = 1
 TargetAmount = 1
 WP = 3
 Cost = 8
+Delay = 160
 Name = "Beam"
 MoveTime = 3.0

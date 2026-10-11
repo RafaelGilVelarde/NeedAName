@@ -24,9 +24,10 @@ public partial class BattleManager : Node
 	[Export] public LossScreen Loss;
 	[Export] public Array<BattleCharacter> Party=new Array<BattleCharacter>(), EnemyParty=new Array<BattleCharacter>(),TurnOrder=new Array<BattleCharacter>();
 	public Array<BattleCharacter> UserCharacters=new Array<BattleCharacter>(),TargetCharacters=new Array<BattleCharacter>();
-	[Export] Node CharacterButtonParent;
 	Array<CharacterButtons> PartyButtons=new Array<CharacterButtons>(), EnemyButtons=new Array<CharacterButtons>();
+	[Export] Node CharacterButtonParent;
 	[Export] Array<Vector2> partyPos= new Array<Vector2>(), enemyPos=new Array<Vector2>();
+	[Export] public TurnList Turns;
 	int AliveParty, AliveEnemy;
 	public int ActiveMoves, CurrentRound, CurrentTurn=-1, TurnCount = 0, ActiveTime = 0;
 	public BattleCharacter CurrentCharacter;
@@ -40,7 +41,7 @@ public partial class BattleManager : Node
 	public ItemButtons CurrentItemButton;
 
 	[Export]double PositionMoveSpeed;
-	[Export] public TextureRect MenuUI,TutorialUI;
+	[Export] public Control MenuUI,TutorialUI;
 	[Export]public ItemList itemList;
 	[Export]public MoveList moveList;
     // Called when the node enters the scene tree for the first time.
@@ -133,12 +134,7 @@ public partial class BattleManager : Node
 			EnemyButtons[i].FocusMode=Control.FocusModeEnum.All;
 		}
 
-		/*for(int i=0;i<TurnOrder.Count;i++){
-			for (int j=0;j<TurnOrder[i].Character.Equipment.Count;j++){
-				TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
-			}
-			Debug.WriteLine("Turn "+i+": "+TurnOrder[i].Character.Base.Name);
-		}*/
+
 		scene.SetupBattleEffect();
 
 		InitialDelay();
@@ -282,15 +278,19 @@ public partial class BattleManager : Node
 			BattleCharacter AuxChara = Order.ElementAt(i);
 			AuxChara.CurrentDelay = i;
 		}
+		OrderTurns();
+		Turns.Start(TurnOrder);
 	}
 	void ReduceDelays()
 	{
-		Debug.WriteLine("Reducing Delays from: "+CurrentCharacter.Character.Base.Name+" by "+CurrentCharacter.CurrentDelay);
+		//Debug.WriteLine("Reducing Delays from: "+CurrentCharacter.Character.Base.Name+" by "+CurrentCharacter.CurrentDelay);
 		for(int i = 0; i < TurnOrder.Count; i++)
 		{
 			if (TurnOrder[i]!=CurrentCharacter)
 			{
-				TurnOrder[i].CurrentDelay-=CurrentCharacter.CurrentDelay;
+				int aux = TurnOrder[i].CurrentDelay-CurrentCharacter.CurrentDelay;
+				TurnOrder[i].CurrentDelay = (int)Mathf.Clamp(aux,0,Mathf.Inf);
+				Debug.WriteLine("Character: "+TurnOrder[i].GetParent().Name+" delay: "+TurnOrder[i].CurrentDelay);
 			}
 		}
 	}
@@ -300,7 +300,6 @@ public partial class BattleManager : Node
 		TurnOrder.Clear();
 		for(int i =0;i<Order.Count();i++){
 			TurnOrder.Add(Order.ElementAt(i));
-			Debug.WriteLine("Character: "+Order.ElementAt(i).Character.Base.Name+ " Delay: "+Order.ElementAt(i).CurrentDelay);
 		}
 		SetCharacterButtonNav();
 		//StartRound();
@@ -320,6 +319,8 @@ public partial class BattleManager : Node
 		Scene.StartTurnEffect();
 		if(UserCharacters.Count == 0){
 			UserCharacters.Add(CurrentCharacter);
+			ReduceDelays();
+			Turns.UpdateTurns(TurnOrder);
 			if(Party.Contains(CurrentCharacter)){
 				CurrentCharacter.ShowChangeHPBar(CurrentCharacter.Character.stats.HP);
 				CurrentCharacter.ShowChangeWPBar(CurrentCharacter.Character.stats.WP,false);
@@ -327,6 +328,10 @@ public partial class BattleManager : Node
 				CurrentCharacter.ShowStatsMods();
 			}
 		}
+		SceneTreeTimer Timer = GetTree().CreateTimer(0.5,true,true);
+		Timer.Timeout +=() =>
+		{
+			
 		if(CanStartTurn){
 			CurrentCharacter.ReduceStatMultiplier();
 			CurrentCharacter.StartChoosingMove();
@@ -335,10 +340,11 @@ public partial class BattleManager : Node
 					TurnOrder[i].Character?.Equipment[j]?.TurnStartEffect(TurnOrder[i]);
 				}
 			}
-			ReduceDelays();
 		}
+		};
 	}
 	public void EndMove(){
+		OrderTurns();
 		ActiveMoves--;
 		if(ActiveMoves<=0){
 			ActiveMoves = 0;
@@ -370,7 +376,6 @@ public partial class BattleManager : Node
 		if(!BattleEnded){
 				CurrentTurn++;
 				TurnCount++;
-				OrderTurns();
 			/*if(CurrentTurn>=TurnOrder.Count || CurrentTurn ==0){
 				EndRound();
 			}*/
@@ -488,6 +493,7 @@ public partial class BattleManager : Node
 		}
 
 		State=BattleState.Neutral;
+		Turns.Hide();
 		Party.Clear();
 		EnemyParty.Clear();
 		TurnOrder.Clear();

@@ -19,7 +19,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Godot.Vector2 OriginPos;
 
 	[Export] public Array<float> StatMultiplier;
-	[Export] public int Combo = 1, HoldingMoveTimer = 0, PosIndex,CurrentDelay;
+	[Export] public int Combo = 1, HoldingMoveTimer = 0, PosIndex,CurrentDelay, AuxDelay;
 	[Export] public bool HoldingMove, UsedComboMove, BlockedEnemy, Looping, Moving;
 	[Export] public Array<int> MultTimer;
 	[Export] public Array<CharacterButtons> PartyButtons, EnemyButtons;
@@ -266,7 +266,6 @@ public partial class BattleCharacter : CharacterBody2D
 			chara.CurrentDelay =  move.Base.Delay/chara.Character.stats.Speed;
 		}
 		BattleManager.instance.ActiveTime+=CurrentDelay;
-		Debug.WriteLine("Delay: "+CurrentDelay);
 		selectActions.ProcessMode = ProcessModeEnum.Disabled;
 		
 	}

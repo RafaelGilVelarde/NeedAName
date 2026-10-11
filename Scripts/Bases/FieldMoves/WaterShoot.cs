@@ -12,16 +12,11 @@ public partial class WaterShoot : FieldMoveBase
     public override void Effect(OverworldController Overworld)
     {
         base.Effect(Overworld);
-        Debug.WriteLine("Shooting");
         BezierProyectile proyectile = Bubble.Instantiate<BezierProyectile>();
         Vector2 Origin = Overworld.Parent.GlobalPosition;
         Vector2I TargetTile = (Vector2I)(Overworld.Coords + new Vector2I(Distance,Distance) * Overworld.FacingDirection);
         Vector2 Target = Overworld.CurrentMapLayer.MapToLocal(TargetTile);
-        
-        Debug.WriteLine("Origin Tile: "+Overworld.Coords);
-        Debug.WriteLine("Tile: "+TargetTile);
-        Debug.WriteLine("Origin: "+Origin);
-        Debug.WriteLine("Target: "+Target);
+       
 
         proyectile.Ended = true;
         proyectile.PosStart = Origin;

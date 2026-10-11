@@ -1,6 +1,11 @@
 [gd_scene format=3 uid="uid://bl8d80pdpybud"]
 
 [ext_resource type="Script" uid="uid://cniv85n27otht" path="res://Scripts/Menu/Sliders/VolumeSlider.cs" id="1_b6iws"]
+[ext_resource type="StyleBox" uid="uid://gfrc0jma8w50" path="res://Resources/Textures/MenuTextures/MenuButtonn.tres" id="2_1fx5v"]
+[ext_resource type="StyleBox" uid="uid://c85ovwymvifhw" path="res://Resources/Textures/MenuTextures/MenuButtonnPressed.tres" id="3_xsyu4"]
+[ext_resource type="StyleBox" uid="uid://6761vbibl56l" path="res://Resources/Textures/MenuTextures/MenuButtonnHover.tres" id="4_muvm7"]
+[ext_resource type="StyleBox" uid="uid://dh5ihq21dauwq" path="res://Resources/Textures/MenuTextures/MenuButtonnDisabled.tres" id="5_sh3fl"]
+[ext_resource type="StyleBox" uid="uid://37ofgt3ootds" path="res://Resources/Textures/MenuTextures/MenuButtonnFocus.tres" id="6_ddwwp"]
 
 [node name="MainVol" type="Control" unique_id=2129350475 node_paths=PackedStringArray("Slider", "SelectButton")]
 process_mode = 4
@@ -16,6 +21,11 @@ process_mode = 3
 layout_mode = 0
 offset_right = 8.0
 offset_bottom = 8.0
+theme_override_styles/normal = ExtResource("2_1fx5v")
+theme_override_styles/pressed = ExtResource("3_xsyu4")
+theme_override_styles/hover = ExtResource("4_muvm7")
+theme_override_styles/disabled = ExtResource("5_sh3fl")
+theme_override_styles/focus = ExtResource("6_ddwwp")
 text = "BGM"
 
 [node name="ProgressBar" type="ProgressBar" parent="." unique_id=1341432961]

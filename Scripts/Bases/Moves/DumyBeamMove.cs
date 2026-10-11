@@ -56,7 +56,6 @@ public partial class DumyBeamMove : MoveBase
 		}
 		void ShootSetup(BattleCharacter User)
 		{
-			Debug.WriteLine($"Controlled: {User.Character.isControlledByPlayer}");
 			if (User.Character.isControlledByPlayer)
 			{
 				SceneTreeTimer Timer = User.GetTree().CreateTimer(0.3, true, true);

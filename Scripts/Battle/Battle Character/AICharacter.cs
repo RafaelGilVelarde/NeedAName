@@ -19,11 +19,12 @@ public partial class AICharacter : BattleCharacter
         }
 	}
 	public override void StartChoosingUsers(Moves move){
-
+        BattleManager.instance.Turns.UpdateAuxTurns(move);
 	}
 
 	public override void StartChoosingTarget(Moves move){
         ((EnemyCharacterBase)Character.Base).AI.TargetChoosing(move,this);
+        BattleManager.instance.Turns.UpdateAuxTurns(move);
         UseMove(MoveUsed);
 	}
     public override void TurnOnBattle()

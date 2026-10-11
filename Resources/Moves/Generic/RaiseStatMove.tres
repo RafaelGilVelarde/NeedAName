@@ -20,6 +20,7 @@ Stats = SubResource("Resource_hsifl")
 type = 2
 UserAmount = 1
 TargetAmount = 1
+Delay = 80
 TargetsParty = true
 Name = "Ed"
 MoveTime = 1.0

@@ -5,11 +5,12 @@
 [resource]
 script = ExtResource("1_vlo55")
 offset = Vector2(-18, 0)
-AtkMultiplier = 1.1
+AtkMultiplier = 1.2
 Speed = 2.0
-Power = 2
+Power = 1
 UserAmount = 1
 TargetAmount = 1
 Cost = 10
+Delay = 150
 Name = "Spam"
 MoveTime = 3.0

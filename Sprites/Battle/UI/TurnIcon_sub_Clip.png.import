@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://nbxr15g551rd"
-path="res://.godot/imported/MainTree-inside-2.png-99ef7e361a3484e33cc93c021a331c17.ctex"
+uid="uid://dshncgwdktxan"
+path="res://.godot/imported/TurnIcon_sub_Clip.png-ca426898378e49a8cde9386683f4976a.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/Indoors/MainTree-inside-2.png"
-dest_files=["res://.godot/imported/MainTree-inside-2.png-99ef7e361a3484e33cc93c021a331c17.ctex"]
+source_file="res://Sprites/Battle/UI/TurnIcon_sub_Clip.png"
+dest_files=["res://.godot/imported/TurnIcon_sub_Clip.png-ca426898378e49a8cde9386683f4976a.ctex"]
 
 [params]
 

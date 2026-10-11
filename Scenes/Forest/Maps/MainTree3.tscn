@@ -1,6 +1,6 @@
 [gd_scene format=4 uid="uid://bwq4qyvq0cqgm"]
 
-[ext_resource type="Texture2D" uid="uid://ceacpjn3t18xr" path="res://Sprites/Background/Indoors/MainTree-inside-3.png" id="1_g0t3w"]
+[ext_resource type="Texture2D" uid="uid://ceacpjn3t18xr" path="res://Sprites/Background/Indoors/Forest/MainTree-inside-3.png" id="1_g0t3w"]
 [ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_x0i2s"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="2_u7oay"]
 [ext_resource type="PackedScene" uid="uid://cct1pnwomkbfr" path="res://Prefabs/Overworld/DataTileMap.tscn" id="4_ft351"]

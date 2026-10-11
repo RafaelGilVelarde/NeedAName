@@ -18,6 +18,7 @@ Stats = SubResource("Resource_73mhd")
 UserAmount = 1
 TargetAmount = 1
 Cost = 5
+Delay = 80
 TargetsParty = true
 Name = "SpDefUp"
 MoveTime = 1.5

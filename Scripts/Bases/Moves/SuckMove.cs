@@ -47,8 +47,7 @@ public partial class SuckMove : MoveBase
                 AuxTimer.Timeout += () =>
                 {
                     Direction = Users[0].ShootNode.GlobalPosition - Origin;
-                    Debug.WriteLine("Direction: " + Direction);
-                    Debug.WriteLine("Shootnode Position: " + Users[0].ShootNode.Position);
+
                     IncreaseVelocity();
                 };
             }

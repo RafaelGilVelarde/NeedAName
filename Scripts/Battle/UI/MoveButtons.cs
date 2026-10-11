@@ -19,6 +19,8 @@ public partial class MoveButtons : Control
 	void OnFocusEntered(){
 		BattleManager.instance.CurrentMoveButton=this;
 		BattleManager.instance.CurrentCharacter.ShowChangeWPAuxBar(move.Base.Cost);
+
+		BattleManager.instance.Turns.UpdateAuxTurns(move);
 		Modulate=Colors.Yellow;
 	}
 	void OnFocusExited(){

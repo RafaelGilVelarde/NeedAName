@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ceacpjn3t18xr"
-path="res://.godot/imported/MainTree-inside-3.png-2134dce2edf85036690b39d01715bd24.ctex"
+uid="uid://bfolsc18jm6wh"
+path="res://.godot/imported/HalluciIcon.png-0509fdcb947fdaa53908f2587377e850.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Sprites/Background/Indoors/MainTree-inside-3.png"
-dest_files=["res://.godot/imported/MainTree-inside-3.png-2134dce2edf85036690b39d01715bd24.ctex"]
+source_file="res://Sprites/Battle/UI/CharacterIcons/HalluciIcon.png"
+dest_files=["res://.godot/imported/HalluciIcon.png-0509fdcb947fdaa53908f2587377e850.ctex"]
 
 [params]
 

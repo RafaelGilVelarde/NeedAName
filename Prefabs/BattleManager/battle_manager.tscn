@@ -1,53 +1,68 @@
-[gd_scene load_steps=9 format=3 uid="uid://b7iiupkqy5jmj"]
+[gd_scene format=3 uid="uid://b7iiupkqy5jmj"]
 
-[ext_resource type="Script" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
-[ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="2_0iv6q"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/ScrollList.cs" id="3_w87jg"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/LossScreen.cs" id="7_bat71"]
+[ext_resource type="Script" uid="uid://bd3u2r3grdhtd" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
+[ext_resource type="Texture2D" uid="uid://bavjhpsfdgve2" path="res://Sprites/Battle/UI/MoveBox.png" id="2_aubgh"]
+[ext_resource type="Script" uid="uid://dti3gs0eugans" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
+[ext_resource type="Script" uid="uid://sr57o2ankqei" path="res://Scripts/Battle/UI/ScrollList.cs" id="3_w87jg"]
+[ext_resource type="Script" uid="uid://d0l56es7oyo4c" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
+[ext_resource type="Script" uid="uid://cj3gm301sjw0d" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
+[ext_resource type="Script" uid="uid://beihcjjso0l3e" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
+[ext_resource type="Script" uid="uid://4uaelx2mrc5e" path="res://Scripts/Battle/UI/LossScreen.cs" id="7_bat71"]
+[ext_resource type="Script" uid="uid://c1g5a6bin643o" path="res://Scripts/Battle/UI/TurnList.cs" id="9_su2wv"]
+[ext_resource type="PackedScene" uid="uid://b0hjlrnm03v57" path="res://Prefabs/BattleManager/BattleTurnBox.tscn" id="10_rvn62"]
 
-[node name="BattleManager" type="Node" node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "MenuUI", "TutorialUI", "itemList", "moveList")]
+[node name="BattleManager" type="Node" unique_id=1663861810 node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "Turns", "MenuUI", "TutorialUI", "itemList", "moveList")]
 process_mode = 4
 script = ExtResource("1_6q2le")
 BattleCamera = NodePath("Camera2D")
 TutorialLabels = NodePath("CanvasLayer/Controls")
 Loss = NodePath("CanvasLayer/LossScreen")
 CharacterButtonParent = NodePath("CharacterButtonParent")
-PositionMoveSpeed = 0.3
+Turns = NodePath("CanvasLayer/Turnorder")
+PositionMoveSpeed = 0.4
 MenuUI = NodePath("CanvasLayer/TextureRect")
 TutorialUI = NodePath("CanvasLayer/TextureRect2")
 itemList = NodePath("CanvasLayer/Items/ItemList")
 moveList = NodePath("CanvasLayer/Moves/MoveList")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1907941442]
 offset = Vector2(10, 10)
 transform = Transform2D(1, 0, 0, 1, 10, 10)
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect" type="NinePatchRect" parent="CanvasLayer" unique_id=1993923796]
 visible = false
-modulate = Color(0.34902, 0.34902, 0.670588, 0.560784)
-offset_right = 40.0
-offset_bottom = 40.0
-scale = Vector2(5, 3)
-texture = ExtResource("2_0iv6q")
+offset_right = 320.0
+offset_bottom = 192.0
+texture = ExtResource("2_aubgh")
+region_rect = Rect2(0, 0, 320, 192)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer"]
+[node name="TextureRect2" type="NinePatchRect" parent="CanvasLayer" unique_id=648209535]
 visible = false
-modulate = Color(0.34902, 0.34902, 0.670588, 0.560784)
-offset_right = 77.0
-offset_bottom = 64.0
-scale = Vector2(2.2056, 0.413581)
-texture = ExtResource("2_0iv6q")
+offset_right = 251.0
+offset_bottom = 45.0
+texture = ExtResource("2_aubgh")
+region_rect = Rect2(0, 0, 320, 192)
+patch_margin_left = 20
+patch_margin_top = 20
+patch_margin_right = 20
+patch_margin_bottom = 20
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
-[node name="Moves" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 436.0
-offset_bottom = 174.0
+[node name="Moves" type="HBoxContainer" parent="CanvasLayer" unique_id=1198818117]
+offset_left = 11.0
+offset_top = 6.0
+offset_right = 646.0
+offset_bottom = 180.0
 theme_override_constants/separation = 5
 
-[node name="MoveList" type="VBoxContainer" parent="CanvasLayer/Moves" node_paths=PackedStringArray("Buttons", "AmountList")]
+[node name="MoveList" type="VBoxContainer" parent="CanvasLayer/Moves" unique_id=1838913415 node_paths=PackedStringArray("Buttons", "AmountList")]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(130, 0)
@@ -57,125 +72,125 @@ script = ExtResource("2_s8gjb")
 Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
 AmountList = NodePath("../Amounts")
 
-[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Moves/MoveList" node_paths=PackedStringArray("List")]
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1056056703 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 List = NodePath("..")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1236208881]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton"]
-layout_mode = 2
-offset_right = 1155.0
-offset_bottom = 40.0
-text = "uyhjbknlkml"
-
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
-visible = false
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-button_mask = 0
-script = ExtResource("3_yw4cw")
-
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton" unique_id=1765572648]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=932746334]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton2" unique_id=2040352760]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1537964287]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton3" unique_id=1718609982]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Moves/MoveList"]
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1143372841]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("3_yw4cw")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton4" unique_id=1297850363]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Moves/MoveList" node_paths=PackedStringArray("List")]
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1762159054]
+visible = false
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+button_mask = 0
+script = ExtResource("3_yw4cw")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/MoveList/TextureButton5" unique_id=2017267924]
+layout_mode = 0
+offset_right = 1155.0
+offset_bottom = 40.0
+text = "uyhjbknlkml"
+
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1769359909 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 startEnd = 1
 List = NodePath("..")
 
-[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Moves"]
+[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Moves" unique_id=389375909]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=1828557283]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=988775163]
 visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
 text = "5555srf"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=28008429]
 visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=392117491]
 visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=261613411]
 visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=1887254444]
 visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="Items" type="HBoxContainer" parent="CanvasLayer"]
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="Items" type="HBoxContainer" parent="CanvasLayer" unique_id=1652448687]
+offset_right = 635.0
+offset_bottom = 174.0
 
-[node name="ItemList" type="VBoxContainer" parent="CanvasLayer/Items" node_paths=PackedStringArray("Buttons", "AmountList")]
+[node name="ItemList" type="VBoxContainer" parent="CanvasLayer/Items" unique_id=518574501 node_paths=PackedStringArray("Buttons", "AmountList")]
 z_index = 5
 custom_minimum_size = Vector2(110, 0)
 layout_mode = 2
@@ -183,129 +198,129 @@ script = ExtResource("4_debr0")
 Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
 AmountList = NodePath("../Amounts")
 
-[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Items/ItemList" node_paths=PackedStringArray("List")]
+[node name="MoveUp" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=2128315269 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 List = NodePath("..")
 
-[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
+[node name="TextureButton" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1471374233]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton" unique_id=2016296695]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1342935046]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton2"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton2" unique_id=1695909015]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=927733189]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton3"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton3" unique_id=2012112051]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1044477242]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton4"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton4" unique_id=1615543998]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Items/ItemList"]
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=2098963781]
 visible = false
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 button_mask = 0
 script = ExtResource("5_veub1")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton5"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/ItemList/TextureButton5" unique_id=2107751851]
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
 text = "uyhjbknlkml"
 
-[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Items/ItemList" node_paths=PackedStringArray("List")]
+[node name="MoveDown" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1262695212 node_paths=PackedStringArray("List")]
 layout_mode = 2
 script = ExtResource("3_w87jg")
 startEnd = 1
 List = NodePath("..")
 
-[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Items"]
+[node name="Amounts" type="VBoxContainer" parent="CanvasLayer/Items" unique_id=938227999]
 custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
-[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1776534685]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1773459205]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 text = "5555srf"
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1454874608]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1468001354]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1830541677]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Items/Amounts"]
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1609761859]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
 text = "uyhjbknlkml"
 
-[node name="Controls" type="Control" parent="CanvasLayer"]
+[node name="Controls" type="Control" parent="CanvasLayer" unique_id=1697417439]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 5.0
-offset_top = 1.0
-offset_right = 5.0
-offset_bottom = 1.0
+offset_left = 11.0
+offset_top = 10.0
+offset_right = 11.0
+offset_bottom = 10.0
 
-[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Controls"]
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Controls" unique_id=1842039146]
 visible = false
 clip_contents = false
 layout_direction = 2
@@ -323,7 +338,7 @@ text = "Attack: Z"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Controls"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Controls" unique_id=2030274882]
 visible = false
 clip_contents = false
 layout_direction = 2
@@ -341,7 +356,7 @@ text = "Block: Z"
 fit_content = true
 scroll_active = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Controls"]
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Controls" unique_id=1034403005]
 visible = false
 clip_contents = false
 layout_direction = 2
@@ -359,7 +374,7 @@ text = "Esquivar: Flechas + Z"
 fit_content = true
 scroll_active = false
 
-[node name="LossScreen" type="Control" parent="CanvasLayer" node_paths=PackedStringArray("Reload", "TitleScreen", "Retry")]
+[node name="LossScreen" type="Control" parent="CanvasLayer" unique_id=1714349483 node_paths=PackedStringArray("Reload", "TitleScreen", "Retry")]
 visible = false
 layout_mode = 3
 anchors_preset = 8
@@ -378,27 +393,140 @@ Reload = NodePath("VBoxContainer/Reload")
 TitleScreen = NodePath("VBoxContainer/Title Screen")
 Retry = NodePath("VBoxContainer/Retry")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LossScreen"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/LossScreen" unique_id=1056919848]
 layout_mode = 0
 offset_right = 176.0
 offset_bottom = 101.0
 alignment = 1
 
-[node name="Retry" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+[node name="Retry" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1901411392]
 layout_mode = 2
 text = "Retry"
 
-[node name="Reload" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+[node name="Reload" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1162740667]
 layout_mode = 2
 text = "Return to Last Save"
 
-[node name="Title Screen" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer"]
+[node name="Title Screen" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1901948686]
 layout_mode = 2
 text = "Return to Title Screen"
 
-[node name="CharacterButtonParent" type="BoxContainer" parent="."]
+[node name="Turnorder" type="Control" parent="CanvasLayer" unique_id=1920720230 node_paths=PackedStringArray("Turns", "TurnAux")]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_top = 203.0
+offset_right = 104.0
+offset_bottom = 1253.0
+scale = Vector2(1.5, 1.5)
+script = ExtResource("9_su2wv")
+HorizontalLocation = Vector2(0, 203)
+VerticalLocation = Vector2(369, 0)
+Turns = []
+TurnAux = []
+TurnPositions = []
+TurnAuxPositions = []
+Neutral = Color(1, 1, 1, 1)
+Current = Color(0.5715649, 0.9094818, 0.76925945, 1)
+AuxColor = Color(0.3764706, 0.4627451, 0.43529412, 0.5568628)
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="TurnBox" parent="CanvasLayer/Turnorder" unique_id=668688295 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_right = 104.0
+
+[node name="TurnBox2" parent="CanvasLayer/Turnorder" unique_id=90124205 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 30.0
+offset_right = 104.0
+offset_bottom = 30.0
+
+[node name="TurnBox3" parent="CanvasLayer/Turnorder" unique_id=1893454537 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 104.0
+offset_bottom = 60.0
+
+[node name="TurnBox4" parent="CanvasLayer/Turnorder" unique_id=787626650 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 90.0
+offset_right = 104.0
+offset_bottom = 90.0
+
+[node name="TurnBox5" parent="CanvasLayer/Turnorder" unique_id=1392723438 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 120.0
+offset_right = 104.0
+offset_bottom = 120.0
+
+[node name="TurnBox6" parent="CanvasLayer/Turnorder" unique_id=827572441 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 150.0
+offset_right = 104.0
+offset_bottom = 150.0
+
+[node name="TurnBox7" parent="CanvasLayer/Turnorder" unique_id=1272295849 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 180.0
+offset_right = 104.0
+offset_bottom = 180.0
+
+[node name="TurnBox8" parent="CanvasLayer/Turnorder" unique_id=855891226 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 210.0
+offset_right = 104.0
+offset_bottom = 210.0
+
+[node name="TurnBox9" parent="CanvasLayer/Turnorder" unique_id=1178620636 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 240.0
+offset_right = 104.0
+offset_bottom = 240.0
+
+[node name="TurnBox10" parent="CanvasLayer/Turnorder" unique_id=493594818 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 270.0
+offset_right = 104.0
+offset_bottom = 270.0
+
+[node name="TurnBox11" parent="CanvasLayer/Turnorder" unique_id=1407099720 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 300.0
+offset_right = 104.0
+offset_bottom = 300.0
+
+[node name="TurnBox12" parent="CanvasLayer/Turnorder" unique_id=724847936 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 330.0
+offset_right = 104.0
+offset_bottom = 330.0
+
+[node name="TurnBox13" parent="CanvasLayer/Turnorder" unique_id=1784881325 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 360.0
+offset_right = 104.0
+offset_bottom = 360.0
+
+[node name="TurnBox14" parent="CanvasLayer/Turnorder" unique_id=91853822 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 390.0
+offset_right = 104.0
+offset_bottom = 390.0
+
+[node name="TurnBox15" parent="CanvasLayer/Turnorder" unique_id=1351813102 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 420.0
+offset_right = 104.0
+offset_bottom = 420.0
+
+[node name="TurnBox16" parent="CanvasLayer/Turnorder" unique_id=1275095321 instance=ExtResource("10_rvn62")]
+layout_mode = 0
+offset_top = 450.0
+offset_right = 104.0
+offset_bottom = 450.0
+
+[node name="CharacterButtonParent" type="BoxContainer" parent="." unique_id=1338814334]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=473314037]
 enabled = false
 zoom = Vector2(2, 2)
 position_smoothing_enabled = true

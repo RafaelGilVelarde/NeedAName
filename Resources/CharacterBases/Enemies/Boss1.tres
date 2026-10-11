@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_xeqld"]
 [ext_resource type="PackedScene" uid="uid://bmlxetebltuvw" path="res://Prefabs/Animators/Enemies/Battle/BossBattleAnimator.tscn" id="2_h1ioe"]
 [ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="3_6kelj"]
+[ext_resource type="Texture2D" uid="uid://c78r836r4lb0c" path="res://Sprites/Battle/UI/CharacterIcons/BossIcon.png" id="4_e4w4u"]
 [ext_resource type="AudioStream" uid="uid://dnvo5bmf4mjlq" path="res://Music/SFX/Moves/WaterPunch.mp3" id="4_uxku7"]
 [ext_resource type="AudioStream" uid="uid://bghi2ejpivgln" path="res://Music/SFX/Moves/WaterBeam.mp3" id="5_bj8i1"]
 [ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_exog1"]
@@ -27,7 +28,6 @@ Def = 2
 SpAtk = 2
 SpDef = 2
 Speed = 3
-WP = null
 
 [sub_resource type="Resource" id="Resource_cumgu"]
 script = ExtResource("6_exog1")
@@ -50,6 +50,7 @@ Name = "???"
 OverworldAnimator = ExtResource("2_h1ioe")
 BattleAnimator = ExtResource("2_h1ioe")
 TextEffectColor = Color(1, 0.0509804, 0, 1)
+BattleIcon = ExtResource("4_e4w4u")
 Floor = Vector2(0, 48)
 MoveSFX = Array[AudioStream]([])
 HitSFX = Array[AudioStream]([])

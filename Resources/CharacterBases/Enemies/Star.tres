@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cp3deo572pc5j" path="res://Prefabs/Animators/Enemies/Battle/StarfishBattleAnimator.tscn" id="2_u36o3"]
 [ext_resource type="PackedScene" uid="uid://dhdsnhldpw4it" path="res://Prefabs/Animators/Enemies/Overworld/StarfishOverworldAnimator.tscn" id="3_kuw07"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="4_b73xn"]
+[ext_resource type="Texture2D" uid="uid://bbkpsuas7ju58" path="res://Sprites/Battle/UI/CharacterIcons/StarfishIcon.png" id="4_ii354"]
 [ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_usypa"]
 [ext_resource type="AudioStream" uid="uid://bkdrsqacrbp31" path="res://Music/SFX/Moves/Spin.mp3" id="6_e8qfa"]
 [ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_mevuo"]
@@ -16,15 +17,12 @@ script = ExtResource("1_nyon4")
 
 [sub_resource type="Resource" id="Resource_467lk"]
 script = ExtResource("1_e2dfw")
-Lv = null
 MaxHP = 8
-HP = null
 Atk = 3
 Def = 2
 SpAtk = 2
 SpDef = 1
 Speed = 6
-WP = null
 
 [sub_resource type="Resource" id="Resource_8n1k1"]
 script = ExtResource("6_mevuo")
@@ -43,6 +41,7 @@ Name = "Starfish"
 OverworldAnimator = ExtResource("3_kuw07")
 BattleAnimator = ExtResource("2_u36o3")
 TextEffectColor = Color(1, 0, 0, 1)
+BattleIcon = ExtResource("4_ii354")
 Floor = Vector2(0, 25)
 MoveSFX = null
 HitSFX = null

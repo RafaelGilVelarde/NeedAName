@@ -89,21 +89,6 @@ public partial class SpinSpamMove : MoveBase
             };
         }
 
-        /*void IncreaseSpam(){
-            Users[0]._DoAction-=IncreaseSpam;
-            Users[0].changeCombo((Spam%MaxCombo)+1);
-            Debug.WriteLine("Spam: "+(Spam%MaxCombo)+1);
-            Spam++;
-            Users[0].changeState(BattleCharacter.BattleState.Idle);
-            if(MultIndex ==  Users[0].MultiplierAtk.Count){
-                Users[0].AddAtkMultiplier(AtkMultiplier,1);
-            }
-            else{
-                Users[0].MultiplierAtk[MultIndex]*=AtkMultiplier;
-            }
-        }   */
-
-		//Users[0]._ReturnToIdle+=End;
         void Attack(){
             Users[0].Character.ChangeWP(WP);
             Users[0].changeState(BattleCharacter.BattleState.Idle);

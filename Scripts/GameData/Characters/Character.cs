@@ -71,11 +71,11 @@ public partial class Character : Resource
             EmitSignal("_ChangeHP", hp);
             if (hp != 0)
             {
-                ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor);
+                ShowTextLabel($"[center]{hp}[/center]", Base.TextEffectColor, 1);
             }
             else
             {
-                ShowTextLabel("[center]"+Tr("BLOCKED")+"[/center]", Base.TextEffectColor);
+                ShowTextLabel("[center]"+Tr("BLOCKED")+"[/center]", Base.TextEffectColor, 2);
             }            
         }
         
@@ -175,10 +175,10 @@ public partial class Character : Resource
         Equipment[(int)type] = null;
         SetTotalStats();
     }
-    public void ShowTextLabel(string Text, Color color)
+    public void ShowTextLabel(string Text, Color color, int index = 1)
     {
-        Node2D HPLabelParent = GameManager.Instance.TextEffectPrefabs[0].Instantiate<Node2D>();
-        RichTextLabel HPLabel = HPLabelParent.GetChild(0).GetChild<RichTextLabel>(0);
+        TextPrompt HPLabelParent = GameManager.Instance.TextEffectPrefabs[index].Instantiate<TextPrompt>();
+        RichTextLabel HPLabel = HPLabelParent.Text;
         HPLabel.Text = "[center]" + Text + "[/center]";
         HPLabel.AddThemeColorOverride("default_color", color);
         NodeCharacter.GetTree().CurrentScene.AddChild(HPLabelParent);

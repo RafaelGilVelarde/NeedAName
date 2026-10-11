@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="1_mmhyr"]
 [ext_resource type="PackedScene" uid="uid://cmcaiorqvr7ek" path="res://Prefabs/Animators/Party/Battle/BlobfishBattleAnimator.tscn" id="2_slfhf"]
+[ext_resource type="Texture2D" uid="uid://b8vynk5jtdjsk" path="res://Sprites/Battle/UI/CharacterIcons/BlobIcon.png" id="3_64x0r"]
 [ext_resource type="Texture2D" uid="uid://benr528xq6tin" path="res://Sprites/DialogueBoxes/Blob/Normal.png" id="3_dtglb"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="3_qiek6"]
 [ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="4_f4k0e"]
@@ -15,7 +16,6 @@
 
 [sub_resource type="Resource" id="Resource_q32qo"]
 script = ExtResource("1_mmhyr")
-Lv = null
 MaxHP = 6
 HP = 3
 Atk = 1
@@ -23,7 +23,6 @@ Def = 3
 SpAtk = 2
 SpDef = 3
 Speed = 2
-WP = null
 
 [sub_resource type="Resource" id="Resource_p4f0e"]
 script = ExtResource("6_wcrdj")
@@ -45,6 +44,7 @@ OverworldAnimator = ExtResource("4_f4k0e")
 BattleAnimator = ExtResource("2_slfhf")
 TextEffectColor = Color(1, 0, 0, 1)
 Icon = ExtResource("3_dtglb")
+BattleIcon = ExtResource("3_64x0r")
 Floor = Vector2(0, 17)
 MoveSFX = Array[AudioStream]([])
 HitSFX = Array[AudioStream]([])

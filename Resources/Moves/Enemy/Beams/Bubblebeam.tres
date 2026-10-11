@@ -1,22 +1,19 @@
-[gd_resource type="Resource" script_class="DumyBeamMove" load_steps=3 format=3 uid="uid://cqi3tmr64djan"]
+[gd_resource type="Resource" script_class="DumyBeamMove" format=3 uid="uid://cqi3tmr64djan"]
 
 [ext_resource type="PackedScene" uid="uid://cs53p3oec1d58" path="res://Prefabs/BattleProjectyles/WaterBeam.tscn" id="1_6jcft"]
-[ext_resource type="Script" path="res://Scripts/Bases/Moves/DumyBeamMove.cs" id="2_1do1o"]
+[ext_resource type="Script" uid="uid://df7y6ap6qek2c" path="res://Scripts/Bases/Moves/DumyBeamMove.cs" id="2_1do1o"]
 
 [resource]
 resource_local_to_scene = true
 script = ExtResource("2_1do1o")
 Speed = 3.0
-Combo = 1
 Tag = "EnemyHitbox"
 LineShoot = ExtResource("1_6jcft")
 offset = Vector2(100, 0)
-type = 0
 Power = 2
 UserAmount = 1
 TargetAmount = 1
 WP = 2
-Cost = 0
-TargetsParty = false
+Delay = 80
 Name = "Bubblebeam"
 MoveTime = 2.0

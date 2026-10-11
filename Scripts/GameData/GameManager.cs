@@ -312,6 +312,10 @@ public partial class GameManager : Node
 				Overworld.Parent.Name = $"Party {((PartyCharacterBase)character.Base).PartyId}";				
 			}			
 		}
+		else
+		{
+			Overworld.Parent.Name = Tr(character.Base.Name);				
+		}
 		//Overworld.InteractCollider.GetChild<CollisionShape2D>(0).Disabled = true;
 
 		character.SetStats();

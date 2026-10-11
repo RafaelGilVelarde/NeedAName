@@ -174,6 +174,7 @@ public partial class SelectActions : Node2D
 					WaitForAnimation();
 					Animator.Set("parameters/conditions/Start",true);
 					Animator.Set("parameters/conditions/Choice",false);
+					BattleManager.instance.Turns.HideAuxTurns();
 			break;
 			case SelectState.SelectMove:
 				BattleManager.instance.moveList.GetParent<Control>().Show();
@@ -189,6 +190,7 @@ public partial class SelectActions : Node2D
 			break;
 			case SelectState.SelectUser:
 				for(int i=0;i<character.PartyButtons.Count;i++){
+					character.PartyButtons[i].isTarget = false;
 					if(character.PartyButtons[i].Character!=character&&character.PartyButtons[i].Character.Character.status.Base.Name!="KO"){
 						character.PartyButtons[i].Show();
 						character.PartyButtons[i].GrabFocus();
@@ -198,6 +200,7 @@ public partial class SelectActions : Node2D
 			case SelectState.SelectTarget:
 					if(move.Base.TargetsParty){
 						for(int i=0;i<character.PartyButtons.Count;i++){
+							character.PartyButtons[i].isTarget = true;
 							if(character.PartyButtons[i].Character.Character.status.Base.Name!="KO" && move.Base.type!=MoveBase.Type.Revive){
 								character.PartyButtons[i].Show();
 								possibleAmount++;
@@ -214,6 +217,7 @@ public partial class SelectActions : Node2D
 					}
 					else{
 						for(int i=0;i<character.EnemyButtons.Count;i++){
+							character.EnemyButtons[i].isTarget = true;
 							if(character.EnemyButtons[i].Character.Character.status.Base.Name!="KO"){
 								character.EnemyButtons[i].Show();
 								possibleAmount++;
