@@ -1,18 +1,24 @@
 using Godot;
 using System;
+using System.ComponentModel;
 using System.Diagnostics;
 
-public partial class BezierProyectile : Node2D
+public partial class BezierProyectile : Projectile
 {
     [Export] public Vector2 PosStart, PosMiddle, PosEnd;
 
     [Export] public BattleCharacter Target;
-    [Export] public bool Ended, CanStart=true, Acting = true;
     [Export] protected float Speed = 1;
 
     [Signal]public delegate void _EndPathEventHandler();
 
-    protected double Time;
+
+    public override void _Ready()
+    {
+        base._Ready();
+
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if(Acting){
@@ -31,11 +37,12 @@ public partial class BezierProyectile : Node2D
         return Result;
     }
 
-    public virtual void Hit(){
+    public override void Hit(){
         Acting = false;
         GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Hit",true);
 		GetChild<AnimationPlayer>(2).GetChild<AnimationTree>(0).Set("parameters/conditions/Start",false);
     }
+
         void Disable(){
             ProcessMode=ProcessModeEnum.Disabled;
         }
@@ -50,5 +57,12 @@ public partial class BezierProyectile : Node2D
             Time=0;
             Acting = true;
             CanStart=false;
+    }
+    public void Stop()
+    {
+            ProcessMode=ProcessModeEnum.Disabled;
+            Time=0;
+            Acting = false;
+            CanStart=true; 
     }
 }

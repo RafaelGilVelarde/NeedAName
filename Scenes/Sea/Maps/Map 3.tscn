@@ -94,7 +94,7 @@ position = Vector2(256, -232)
 Scene = null
 LoadPosition = Vector2(64, 230)
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_uto71")
 
 [node name="Door2" parent="." unique_id=954045832 instance=ExtResource("5_t85o1")]
@@ -103,12 +103,12 @@ rotation = 1.5708
 Scene = 7
 LoadPosition = Vector2(-270, 64)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 position = Vector2(-2.89599e-05, -8)
 shape = SubResource("RectangleShape2D_xs6lx")
 
 [node name="Door3" parent="." unique_id=2032379784 instance=ExtResource("5_t85o1")]
-position = Vector2(-80, 296)
+position = Vector2(-80, 320)
 collision_layer = 2
 Scene = 6
 PlayerZIndex = 1
@@ -117,18 +117,18 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="Door4" parent="." unique_id=1603882046 instance=ExtResource("5_t85o1")]
-position = Vector2(176, 296)
+position = Vector2(176, 320)
 Scene = 6
 LoadPosition = Vector2(8, -170)
 
-[node name="CollisionShape2D" parent="Door4" index="0"]
+[node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_7d0f1")
 
 [node name="Borders" parent="." unique_id=1050962746 instance=ExtResource("6_jphsr")]
 position = Vector2(8, 64)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(-304, 232, -160, 232, -160, 248, -16, 248, -16, 232, 32, 232, 32, 248, 304, 248, 304, 232, 464, 232, 464, -136, 512, -136, 512, -296, 464, -296, 464, -312, 360, -312, 360, -288, 472, -288, 472, -152, 440, -152, 440, 224, 296, 224, 296, 240, 40, 240, 40, 224, -24, 224, -24, 240, -152, 240, -152, 224, -296, 224, -296, -288, 152, -288, 152, -304, 344, -304, 344, -288, 360, -288, 360, -312, 144, -312, 144, -296, -280, -296, -304, -296)
+polygon = PackedVector2Array(-304, 232, -160, 232, -160, 280, -16, 280, -16, 232, 32, 232, 32, 304, 304, 304, 304, 232, 464, 232, 464, -136, 512, -136, 512, -296, 464, -296, 464, -312, 360, -312, 360, -288, 504, -288, 504, -160, 440, -160, 440, 224, 296, 224, 296, 296, 40, 296, 40, 224, -24, 224, -24, 272, -152, 272, -152, 224, -296, 224, -296, -288, 152, -288, 152, -304, 344, -304, 344, -288, 360, -288, 360, -312, 144, -312, 144, -296, -280, -296, -304, -296)
 
 [node name="Borders2" parent="." unique_id=1025765362 instance=ExtResource("6_jphsr")]
 position = Vector2(-72, 296)

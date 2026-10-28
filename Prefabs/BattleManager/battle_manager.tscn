@@ -2,14 +2,25 @@
 
 [ext_resource type="Script" uid="uid://bd3u2r3grdhtd" path="res://Scripts/Battle/BattleManager.cs" id="1_6q2le"]
 [ext_resource type="Texture2D" uid="uid://bavjhpsfdgve2" path="res://Sprites/Battle/UI/MoveBox.png" id="2_aubgh"]
+[ext_resource type="Resource" uid="uid://dxjpsx62gq8wq" path="res://Resources/Statuses/NormalStatus.tres" id="2_s0j0j"]
 [ext_resource type="Script" uid="uid://dti3gs0eugans" path="res://Scripts/Battle/UI/MoveList.cs" id="2_s8gjb"]
+[ext_resource type="Resource" uid="uid://o4yhjkgdmkdu" path="res://Resources/Statuses/KOStatus.tres" id="3_djwup"]
 [ext_resource type="Script" uid="uid://sr57o2ankqei" path="res://Scripts/Battle/UI/ScrollList.cs" id="3_w87jg"]
 [ext_resource type="Script" uid="uid://d0l56es7oyo4c" path="res://Scripts/Battle/UI/MoveButtons.cs" id="3_yw4cw"]
 [ext_resource type="Script" uid="uid://cj3gm301sjw0d" path="res://Scripts/Battle/UI/ItemList.cs" id="4_debr0"]
 [ext_resource type="Script" uid="uid://beihcjjso0l3e" path="res://Scripts/Battle/UI/ItemButtons.cs" id="5_veub1"]
+[ext_resource type="FontFile" uid="uid://cnichvklfure5" path="res://Fonts/atwriter.ttf" id="6_0leph"]
 [ext_resource type="Script" uid="uid://4uaelx2mrc5e" path="res://Scripts/Battle/UI/LossScreen.cs" id="7_bat71"]
 [ext_resource type="Script" uid="uid://c1g5a6bin643o" path="res://Scripts/Battle/UI/TurnList.cs" id="9_su2wv"]
+[ext_resource type="StyleBox" uid="uid://gfrc0jma8w50" path="res://Resources/Textures/MenuTextures/MenuButtonn.tres" id="10_nauap"]
 [ext_resource type="PackedScene" uid="uid://b0hjlrnm03v57" path="res://Prefabs/BattleManager/BattleTurnBox.tscn" id="10_rvn62"]
+[ext_resource type="Texture2D" uid="uid://cku8m0ju6wbjw" path="res://Sprites/Menu/MenuButton.png" id="11_aubgh"]
+[ext_resource type="StyleBox" uid="uid://c85ovwymvifhw" path="res://Resources/Textures/MenuTextures/MenuButtonnPressed.tres" id="11_s0j0j"]
+[ext_resource type="StyleBox" uid="uid://6761vbibl56l" path="res://Resources/Textures/MenuTextures/MenuButtonnHover.tres" id="12_djwup"]
+[ext_resource type="StyleBox" uid="uid://dh5ihq21dauwq" path="res://Resources/Textures/MenuTextures/MenuButtonnDisabled.tres" id="13_5qtvy"]
+[ext_resource type="StyleBox" uid="uid://37ofgt3ootds" path="res://Resources/Textures/MenuTextures/MenuButtonnFocus.tres" id="14_rvarb"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_knscg"]
 
 [node name="BattleManager" type="Node" unique_id=1663861810 node_paths=PackedStringArray("BattleCamera", "TutorialLabels", "Loss", "CharacterButtonParent", "Turns", "MenuUI", "TutorialUI", "itemList", "moveList")]
 process_mode = 4
@@ -24,6 +35,7 @@ MenuUI = NodePath("CanvasLayer/TextureRect")
 TutorialUI = NodePath("CanvasLayer/TextureRect2")
 itemList = NodePath("CanvasLayer/Items/ItemList")
 moveList = NodePath("CanvasLayer/Moves/MoveList")
+StatusConditions = Array[Object]([ExtResource("2_s0j0j"), ExtResource("3_djwup")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1907941442]
 offset = Vector2(10, 10)
@@ -31,7 +43,8 @@ transform = Transform2D(1, 0, 0, 1, 10, 10)
 
 [node name="TextureRect" type="NinePatchRect" parent="CanvasLayer" unique_id=1993923796]
 visible = false
-offset_right = 320.0
+offset_left = 96.0
+offset_right = 416.0
 offset_bottom = 192.0
 texture = ExtResource("2_aubgh")
 region_rect = Rect2(0, 0, 320, 192)
@@ -44,7 +57,8 @@ axis_stretch_vertical = 1
 
 [node name="TextureRect2" type="NinePatchRect" parent="CanvasLayer" unique_id=648209535]
 visible = false
-offset_right = 251.0
+offset_left = 96.0
+offset_right = 347.0
 offset_bottom = 45.0
 texture = ExtResource("2_aubgh")
 region_rect = Rect2(0, 0, 320, 192)
@@ -56,13 +70,13 @@ axis_stretch_horizontal = 1
 axis_stretch_vertical = 1
 
 [node name="Moves" type="HBoxContainer" parent="CanvasLayer" unique_id=1198818117]
-offset_left = 11.0
-offset_top = 6.0
-offset_right = 646.0
-offset_bottom = 180.0
+offset_left = 107.0
+offset_top = 8.0
+offset_right = 742.0
+offset_bottom = 182.0
 theme_override_constants/separation = 5
 
-[node name="MoveList" type="VBoxContainer" parent="CanvasLayer/Moves" unique_id=1838913415 node_paths=PackedStringArray("Buttons", "AmountList")]
+[node name="MoveList" type="VBoxContainer" parent="CanvasLayer/Moves" unique_id=1838913415 node_paths=PackedStringArray("Buttons", "AmountList", "DelayList")]
 z_index = 5
 z_as_relative = false
 custom_minimum_size = Vector2(130, 0)
@@ -71,6 +85,7 @@ size_flags_horizontal = 3
 script = ExtResource("2_s8gjb")
 Buttons = [NodePath("TextureButton"), NodePath("TextureButton2"), NodePath("TextureButton3"), NodePath("TextureButton4"), NodePath("TextureButton5")]
 AmountList = NodePath("../Amounts")
+DelayList = NodePath("../Delay")
 
 [node name="MoveUp" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1056056703 node_paths=PackedStringArray("List")]
 layout_mode = 2
@@ -88,7 +103,9 @@ script = ExtResource("3_yw4cw")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
-text = "uyhjbknlkml"
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "A
+"
 
 [node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=932746334]
 visible = false
@@ -101,6 +118,7 @@ script = ExtResource("3_yw4cw")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1537964287]
@@ -114,6 +132,7 @@ script = ExtResource("3_yw4cw")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1143372841]
@@ -127,6 +146,7 @@ script = ExtResource("3_yw4cw")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1762159054]
@@ -140,6 +160,7 @@ script = ExtResource("3_yw4cw")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="MoveDown" type="TextureButton" parent="CanvasLayer/Moves/MoveList" unique_id=1769359909 node_paths=PackedStringArray("List")]
@@ -153,42 +174,94 @@ custom_minimum_size = Vector2(40, 0)
 layout_mode = 2
 
 [node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=1828557283]
-custom_minimum_size = Vector2(500, 0)
+custom_minimum_size = Vector2(50, 0)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=988775163]
 visible = false
-custom_minimum_size = Vector2(500, 30)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "5555srf"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=28008429]
 visible = false
-custom_minimum_size = Vector2(500, 30)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=392117491]
 visible = false
-custom_minimum_size = Vector2(500, 30)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=261613411]
 visible = false
-custom_minimum_size = Vector2(500, 30)
+custom_minimum_size = Vector2(50, 30)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Moves/Amounts" unique_id=1887254444]
 visible = false
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "uyhjbknlkml"
+
+[node name="Delay" type="VBoxContainer" parent="CanvasLayer/Moves" unique_id=1866657560]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=1590391873]
+custom_minimum_size = Vector2(500, 0)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=703184810]
+visible = false
 custom_minimum_size = Vector2(500, 30)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "5555srf"
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=793754299]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=2066766355]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=1337913360]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "uyhjbknlkml"
+
+[node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Moves/Delay" unique_id=1707110013]
+visible = false
+custom_minimum_size = Vector2(500, 30)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="Items" type="HBoxContainer" parent="CanvasLayer" unique_id=1652448687]
-offset_right = 635.0
-offset_bottom = 174.0
+offset_left = 107.0
+offset_top = 8.0
+offset_right = 742.0
+offset_bottom = 182.0
 
 [node name="ItemList" type="VBoxContainer" parent="CanvasLayer/Items" unique_id=518574501 node_paths=PackedStringArray("Buttons", "AmountList")]
 z_index = 5
@@ -214,7 +287,8 @@ script = ExtResource("5_veub1")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
-text = "uyhjbknlkml"
+theme_override_fonts/normal_font = ExtResource("6_0leph")
+text = "A"
 
 [node name="TextureButton2" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1342935046]
 visible = false
@@ -227,6 +301,7 @@ script = ExtResource("5_veub1")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton3" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=927733189]
@@ -240,6 +315,7 @@ script = ExtResource("5_veub1")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton4" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1044477242]
@@ -253,6 +329,7 @@ script = ExtResource("5_veub1")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="TextureButton5" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=2098963781]
@@ -266,6 +343,7 @@ script = ExtResource("5_veub1")
 layout_mode = 0
 offset_right = 1155.0
 offset_bottom = 40.0
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="MoveDown" type="TextureButton" parent="CanvasLayer/Items/ItemList" unique_id=1262695212 node_paths=PackedStringArray("List")]
@@ -281,44 +359,50 @@ layout_mode = 2
 [node name="RichTextLabel6" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1776534685]
 custom_minimum_size = Vector2(500, 0)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1773459205]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "5555srf"
 
 [node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1454874608]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1468001354]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel4" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1830541677]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="RichTextLabel5" type="RichTextLabel" parent="CanvasLayer/Items/Amounts" unique_id=1609761859]
 visible = false
 custom_minimum_size = Vector2(500, 50)
 layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 text = "uyhjbknlkml"
 
 [node name="Controls" type="Control" parent="CanvasLayer" unique_id=1697417439]
 layout_mode = 3
 anchors_preset = 0
-offset_left = 11.0
-offset_top = 10.0
-offset_right = 11.0
-offset_bottom = 10.0
+offset_left = 107.0
+offset_top = 12.0
+offset_right = 107.0
+offset_bottom = 12.0
 
 [node name="RichTextLabel3" type="RichTextLabel" parent="CanvasLayer/Controls" unique_id=1842039146]
 visible = false
@@ -333,6 +417,7 @@ offset_bottom = 652.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(37, 12)
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 bbcode_enabled = true
 text = "Attack: Z"
 fit_content = true
@@ -351,6 +436,7 @@ offset_bottom = 652.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(37, 12)
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 bbcode_enabled = true
 text = "Block: Z"
 fit_content = true
@@ -369,6 +455,7 @@ offset_bottom = 652.0
 grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(37, 12)
+theme_override_fonts/normal_font = ExtResource("6_0leph")
 bbcode_enabled = true
 text = "Esquivar: Flechas + Z"
 fit_content = true
@@ -401,24 +488,42 @@ alignment = 1
 
 [node name="Retry" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1901411392]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("10_nauap")
+theme_override_styles/pressed = ExtResource("11_s0j0j")
+theme_override_styles/hover = ExtResource("12_djwup")
+theme_override_styles/disabled = ExtResource("13_5qtvy")
+theme_override_styles/focus = ExtResource("14_rvarb")
 text = "Retry"
 
 [node name="Reload" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1162740667]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("10_nauap")
+theme_override_styles/pressed = ExtResource("11_s0j0j")
+theme_override_styles/hover = ExtResource("12_djwup")
+theme_override_styles/disabled = ExtResource("13_5qtvy")
+theme_override_styles/focus = ExtResource("14_rvarb")
 text = "Return to Last Save"
 
 [node name="Title Screen" type="Button" parent="CanvasLayer/LossScreen/VBoxContainer" unique_id=1901948686]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("10_nauap")
+theme_override_styles/pressed = ExtResource("11_s0j0j")
+theme_override_styles/hover = ExtResource("12_djwup")
+theme_override_styles/disabled = ExtResource("13_5qtvy")
+theme_override_styles/focus = ExtResource("14_rvarb")
 text = "Return to Title Screen"
 
-[node name="Turnorder" type="Control" parent="CanvasLayer" unique_id=1920720230 node_paths=PackedStringArray("Turns", "TurnAux")]
+[node name="Turnorder" type="Control" parent="CanvasLayer" unique_id=1920720230 node_paths=PackedStringArray("Turns", "TurnAux", "MainContainer")]
 visible = false
 layout_mode = 3
 anchors_preset = 0
-offset_top = 203.0
-offset_right = 104.0
-offset_bottom = 1253.0
-scale = Vector2(1.5, 1.5)
+offset_left = 10.0
+offset_top = 20.0
+offset_right = 114.0
+offset_bottom = 1070.0
 script = ExtResource("9_su2wv")
 HorizontalLocation = Vector2(0, 203)
 VerticalLocation = Vector2(369, 0)
@@ -429,6 +534,7 @@ TurnAuxPositions = []
 Neutral = Color(1, 1, 1, 1)
 Current = Color(0.5715649, 0.9094818, 0.76925945, 1)
 AuxColor = Color(0.3764706, 0.4627451, 0.43529412, 0.5568628)
+MainContainer = NodePath("TextureRect")
 
 [node name="TurnBox" parent="CanvasLayer/Turnorder" unique_id=668688295 instance=ExtResource("10_rvn62")]
 layout_mode = 0
@@ -523,6 +629,22 @@ layout_mode = 0
 offset_top = 450.0
 offset_right = 104.0
 offset_bottom = 450.0
+
+[node name="TextureRect" type="NinePatchRect" parent="CanvasLayer/Turnorder" unique_id=980172765]
+z_index = -2
+material = SubResource("CanvasItemMaterial_knscg")
+layout_mode = 0
+offset_left = -9.0
+offset_top = -19.0
+offset_right = 72.0
+offset_bottom = 548.0
+texture = ExtResource("11_aubgh")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+axis_stretch_horizontal = 1
+axis_stretch_vertical = 1
 
 [node name="CharacterButtonParent" type="BoxContainer" parent="." unique_id=1338814334]
 

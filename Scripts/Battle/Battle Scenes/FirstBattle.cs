@@ -9,7 +9,6 @@ public partial class FirstBattle : BattleScene
     public override void StartTurnEffect()
     {
         base.StartTurnEffect();
-        Debug.WriteLine("TurnCount: "+Battle.TurnCount);
         if(Battle.TurnCount == 1 && !GameManager.Instance.Data.Flags.EventFlags[1]){
             Battle.CanStartTurn=false;
             GameManager.Instance.Data.Flags.EventFlags[1] = true;

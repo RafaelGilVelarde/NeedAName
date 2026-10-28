@@ -4,6 +4,7 @@
 [ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_mqvhs"]
 [ext_resource type="PackedScene" uid="uid://diqlf0l7iyh8u" path="res://Prefabs/Overworld/CollisionTileMap.tscn" id="2_630bs"]
 [ext_resource type="PackedScene" uid="uid://cct1pnwomkbfr" path="res://Prefabs/Overworld/DataTileMap.tscn" id="3_630bs"]
+[ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="3_nyruu"]
 [ext_resource type="TileSet" uid="uid://by3v27ctnj6tn" path="res://Resources/Tilesets/Maps/Forest/ForestMap.tres" id="4_4dvxe"]
 
 [node name="Node2D" type="Node2D" unique_id=2022063542]
@@ -22,6 +23,9 @@ limit_left = -489
 limit_top = -576
 limit_right = 490
 limit_bottom = 512
+
+[node name="Door" parent="Cams" unique_id=1602749411 instance=ExtResource("3_nyruu")]
+position = Vector2(-4, 452)
 
 [node name="CollisionMap" parent="." unique_id=204500188 instance=ExtResource("2_630bs")]
 visible = false

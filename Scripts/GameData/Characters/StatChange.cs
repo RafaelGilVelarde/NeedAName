@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 [GlobalClass]
 public partial class StatChange : Resource
@@ -11,7 +12,7 @@ public partial class StatChange : Resource
     [Export] public StatusCondition Status;
     [Export] public Array<StatusCondition> Alt;
 
-     public void RaiseStat(BattleCharacter Target, int[] TimerSum = null)
+     public void RaiseStat(BattleCharacter Target, int[] TimerSum = null, BattleCharacter User = null)
     {
         if (TimerSum == null)
         {
@@ -33,7 +34,8 @@ public partial class StatChange : Resource
             Target.AddStatMultiplier(SpeedMult,SpeedTime*TimerSum[4],4);
         }
         if(HP){
-            Target.Character.ChangeHP((int)HPIncrease);
+            Debug.WriteLine("Healing user mult: "+User.StatMultiplier[2]);
+            Target.Character.ChangeHP(Mathf.RoundToInt(User.Character.TotalStats.SpAtk * HPIncrease* User.StatMultiplier[2]));
         }
         if(WPUp){
             Target.Character.ChangeWP((int)WPIncrease);

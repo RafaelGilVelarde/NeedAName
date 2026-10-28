@@ -101,11 +101,13 @@ public partial class MoveBase : Resource
             switch (type)
             {
                 case Type.Physical:
+                Debug.WriteLine("Attack power: "+Users.Character.TotalStats.Atk * Power * Users.StatMultiplier[0]);
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.Atk * Power * Users.StatMultiplier[0] - Targets.Character.TotalStats.Def * Targets.StatMultiplier[1]) * -1;
                     Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, -1);
                     Targets.Character.ChangeHP(Calc);
                     break;
                 case Type.Special:
+                Debug.WriteLine("Spatk mult: "+Users.StatMultiplier[2]);
                     Calc = Mathf.RoundToInt(Users.Character.TotalStats.SpAtk * Power * Users.StatMultiplier[2] - Targets.Character.TotalStats.SpDef * Targets.StatMultiplier[3]) * -1;
                     Calc = (int)Mathf.Clamp(Calc, -Mathf.Inf, -1);
                     Targets.Character.ChangeHP(Calc);

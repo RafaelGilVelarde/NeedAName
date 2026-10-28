@@ -52,9 +52,12 @@ Text/39/text,Seeeee yaaaa,Adiooooos
 Text/3a/text,Congratulations!,¡Felicidades!
 Text/3b/text,You made it through!,¡Lo lograste!
 Text/3c/text,"I am curious though, what might your name be?",Aunque quisiera saber...¿Cómo te llamas?
-Text/3d/text,{Characters.CharName}....an interesting name to be sure,{Characters.CharName}......vaya que interesante....
-Text/3e/text,"Well then, {Characters.CharName}, may you have","Entonces, {Characters.CharName}. Que tengas"
-Text/3f/text,A wonderful life!,¡Una maravillosa vida!
+"Text Input/13c
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/text",What is your name?,
+"Text Input/13c
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/placeholder",,
+"Text Input/13c
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/default",,
 ,,
 Text/40/text,You return...,Con que regresas.....
 Choice/41/text,Reject,Rechazar
@@ -185,7 +188,7 @@ Text/a4/text,Let's get to it,Hagámoslo rápido
 Text/a5/text,See you!,¡Nooos vemos!
 ,,
 Text/a6/text,Oh you have it! Do you want me to jog up your memory?,Ooh ¡Lo obtuviste! ¿Quieres que te haga recordar?
-Choice/a7/text,Give the Soul Memory ,Dar Recuerdo de Alma
+Choice/a7/text,Give the Soul Memory,Dar Recuerdo de Alma
 Choice/a7/disabled_text,,
 Text/a8/text,Here you go!,¡Aquí está!
 Text/a9/text,Thanks! Just give me......one...secooooond....aaaand,¡Gracias! Sólo.......dame un segundito....yaaaaaaa
@@ -207,7 +210,7 @@ Text/b5/text,Thanks!,¡Gracias!
 Text/b6/text,Must....be an enemy,Debe ser...un enemigo
 Text/b7/text,...,...
 Text/b8/text,Hellooooo!,¡Hooolaaaa!
-Text/b9/text,...,...
+Text/b9/text,....,...
 Text/ba/text,?,?
 Text/bb/text,Do i have to........fight you?,Debería....¿Pelear contra ti?
 Text/bc/text,...,...
@@ -293,6 +296,8 @@ Text/f8/text,That purple bar is your Will Points,Esa barra morada son tus Puntos
 Text/f9/text,You will need them to be able to use some of your moves,Necesitarás estos puntos para utilizar algunos de tus movimientos
 Text/fa/text,You can gain them through doing special actions during your moves,Puedes obtenerlos durante acciones especiales en tus movimientos
 Text/fb/text,"Also through blocking, or good timing when dodging enemy attacks",Al igual que al bloquear o esquivar en el momento correcto
+Text/13d/text,Each of your moves causes a delay for your next turn,Cada ataque tiene una demora para tu siguiente turno
+Text/13e/text,"The lower the delay and higher your speed, the faster your next turn will come",Tu turno llegará más pronto mientras tu velocidad sea mayor y la demora sea menor
 Text/fc/text,"Welp imma go try see what is going on here, have fun!","Bueno, me voy a ver qué está ocurriendo aquí ¡Nos vemos!"
 ,,
 Text/fd/text,...,...
@@ -315,9 +320,12 @@ Text/10b/text,Huh?,¿Eh?
 Text/10c/text,Congratulations!,¡Felicidades!
 Text/10d/text,You made it through!,¡Lo lograste!
 Text/10e/text,"I am curious though, what might your name be?",Aunque me pregunto ¿Cómo te llamas?
-Text/10f/text,{Characters.CharName}....an interesting name to be sure,{Characters.CharName}......vaya vaya....
-Text/110/text,"Well then, {Characters.CharName}, may you have","Entonces, {Characters.CharName}. Que tengas"
-Text/111/text,A wonderful life!,¡Una maravillosa vida!
+"Text Input/13f
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/text",What is your name,
+"Text Input/13f
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/placeholder",,
+"Text Input/13f
+""No Box-Dark"": {Characters.CharName}....an interesting name to be sure/default",,
 ,,
 Text/112/text,Yeah so......things are messed up here,Ahhh.....todo aquí va mal
 Text/113/text,WAY more than I thought,MUCHO peor de lo que me esperaba
@@ -325,6 +333,21 @@ Text/114/text,Don't have much time to explain but,"No tengo much tiempo para exp
 Text/115/text,The two exits' failsafes have activated in response,Se activaron dos salidas como respaldo
 Text/116/text,"Find one, get through its trial, and leave","Encuentra una, completa su prueba, y escapa"
 Text/117/text,I believe in you,Confío en tí
+,,
+Text/29/text,This...thing...,Esta cosa....
+Text/2a/text,Hooow straaangeee,Ooooh vayaaaaa
+Text/2b/text,This is.......What is it?,Pero qué es......
+Text/2c/text,"A bad omen, that's what","Una mala señal, eso es"
+Text/2d/text,What do you mean?,¿A qué te refieres?
+Text/2e/text,"Sorry, there's no time, you'll have to fight","No hay tiempo, deben luchar. Lo siento."
+Text/2f/text,"It's the only way, good luck",Es la única manera. Buena suerte
+Text/30/text,In.......my way.....,En..mi.....camino
+Text/31/text,Ooone moore enemyyy,Uuuuuuun enemigo máaaaaaaas
+Text/32/text,"Fine then, guess there's no choice","Bueno, supongo que no hay otra opción"
+Text/140/text,That won't be necessary,
+Text/141/text,IS IT HIM,
+Text/142/text,"REAN ""THE ASHEN CHEVALIER"" COLD STEEL 3??????????",
+Text/143/text,Haha....,
 ,,
 Text/118/text,You are walking a path that will test your mind,Cruzar este camino pondrá tu mente a prueba
 ,,

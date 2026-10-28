@@ -20,6 +20,7 @@ public partial class Character : Resource
     [Export] public Key Key { get; private set; }
     [Export] public InputEventKey EventKey { get; private set; }
     [Export] public int FollowIndex;
+    [Export] public Vector2 LabelOffset;
 
     int LabelAmount;
 
@@ -182,7 +183,7 @@ public partial class Character : Resource
         HPLabel.Text = "[center]" + Text + "[/center]";
         HPLabel.AddThemeColorOverride("default_color", color);
         NodeCharacter.GetTree().CurrentScene.AddChild(HPLabelParent);
-        HPLabelParent.Position = NodeCharacter.GlobalPosition;
+        HPLabelParent.Position = NodeCharacter.GlobalPosition+LabelOffset;
         HPLabelParent.ZIndex = 20;
 
         if (LabelAmount > 0)

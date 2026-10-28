@@ -10,18 +10,20 @@ public partial class RaiseStatMoveInput : RaiseStatMove
     {
 
         int[] Sum = { 1, 1, 1, 1, 1 };
+        float HPMult = 1.5f;
         bool Succeeded = false;
         Users[0]._Shoot += Countdown;
         SceneTreeTimer timer = Users[0].GetTree().CreateTimer(MoveTime, true, true);
         timer.Timeout += End;
 
         Users[0].changeAction(BattleCharacter.ActionState.isStatus);
-
+        
         void Countdown(BattleCharacter character)
         {
             character._DoAction += Action;
+            character.changeState(BattleCharacter.BattleState.Attacking);
             character._Shoot -= Countdown;
-            SceneTreeTimer Timer = character.GetTree().CreateTimer(0.2, true, true);
+            SceneTreeTimer Timer = character.GetTree().CreateTimer(0.5, true, true);
             character.Character.ShowTextLabel($"{character.Character.Key}", character.Character.Base.TextEffectColor);
             Timer.Timeout += () =>
             {
@@ -40,13 +42,21 @@ public partial class RaiseStatMoveInput : RaiseStatMove
             {
                 Sum[i] += TimerSums[i];
             }
-            Stats.RaiseStat(Targets[0], Sum);
+            if (Succeeded)
+            {
+                Users[0].StatMultiplier[2] *= HPMult;
+            }
+            Stats.RaiseStat(Targets[0], Sum, Users[0]);
         }
         void End()
         {
             if (!Succeeded)
             {
-                Stats.RaiseStat(Targets[0]);                
+                Stats.RaiseStat(Targets[0],null,Users[0]);                
+            }
+            else if (Stats.HP)
+            {
+                Users[0].StatMultiplier[2]/=HPMult;
             }
             BattleManager.instance.CallDeferred("EndMove");
         }

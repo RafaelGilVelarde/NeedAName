@@ -30,7 +30,7 @@ public partial class BattleCharacter : CharacterBody2D
 	[Export] public Array<BattleCharacter> ThisParty, EnemyParty;
 	[Export] StateParticleEffects StateParticles;
 	[Export] CpuParticles2D HitParticles;
-	[Export] public Node2D ShootNode, FloorNode;
+	[Export] public Node2D ShootNode, FloorNode, TargetNode, TextNode;
 	[Export] RichTextLabel HPText, NameText, WPText;
 	[Export] public Consumables CurrentItem;
 	[Export] public ProgressBar HPBar, EXPBar, WPBar, WPAuxBar;
@@ -97,6 +97,7 @@ public partial class BattleCharacter : CharacterBody2D
 		{
 			FloorNode.Position = Character.Base.Floor;
 		}
+		Character.LabelOffset= TextNode.Position;
 	}
 	public override void _Input(InputEvent @event)
 	{
@@ -243,6 +244,7 @@ public partial class BattleCharacter : CharacterBody2D
 			tween.SetParallel(true);
 			for (int i = 0; i < BattleManager.instance.TargetCharacters.Count; i++)
 			{
+				BattleManager.instance.TargetCharacters[i].TargetNode.GetChild<AnimationPlayer>(0).Play("Target");
 				tween.TweenProperty(BattleManager.instance.TargetCharacters[i], "modulate", Colors.IndianRed, 0.15);
 			}
 			tween.Finished += () =>
@@ -542,7 +544,7 @@ public partial class BattleCharacter : CharacterBody2D
 				break;
 		}
 
-		Character.ShowTextLabel($"{StatChanged} {UpDown}", Character.Base.TextEffectColor);
+		Character.ShowTextLabel($"{StatChanged} {UpDown}", Character.Base.TextEffectColor,2);
 	}
 	public void ReduceStatMultiplier()
 	{
@@ -599,7 +601,7 @@ public partial class BattleCharacter : CharacterBody2D
 		{
             Character.status = new StatusCondition
             {
-                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
+                Base = BattleManager.instance.StatusConditions[0],
 				Time = -1,
 				MaxTime = -1
 			};
@@ -609,7 +611,7 @@ public partial class BattleCharacter : CharacterBody2D
 		{
 			Character.KO = new StatusCondition
             {
-                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/KOStatus.tres"),
+                Base = BattleManager.instance.StatusConditions[1],
 				Time = -1,
 				MaxTime = -1
 			};			
@@ -627,7 +629,7 @@ public partial class BattleCharacter : CharacterBody2D
 		{
 			Character.status = new StatusCondition
             {
-                Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
+                Base = BattleManager.instance.StatusConditions[0],
 				Time = -1,
 				MaxTime = -1
 			};
@@ -651,6 +653,7 @@ public partial class BattleCharacter : CharacterBody2D
 	{
 		HPBar.GetParent<Node2D>().Position += Character.Base.BattleOffset;
 		StatMods.GetParent<Node2D>().Position += Character.Base.BattleOffset;
+		TargetNode.Position += Character.Base.BattleOffset;
 		selectActions.Position += Character.Base.BattleOffset;
 		if (Character.isControlledByPlayer)
 		{

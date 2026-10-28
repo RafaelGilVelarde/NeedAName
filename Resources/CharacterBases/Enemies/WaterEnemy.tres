@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://d3cwauvtfr0d1" path="res://Scripts/Battle/AISettings/AISettings.cs" id="1_hyrbl"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="2_4l00k"]
 [ext_resource type="PackedScene" uid="uid://bmhkp2rg2ouvk" path="res://Prefabs/Animators/Party/Overworld/WaterOverworldAnimator.tscn" id="3_2e2qm"]
-[ext_resource type="Texture2D" uid="uid://2ko530iina7y" path="res://Sprites/Battle/UI/CharacterIcons/WaterIcon1.png" id="4_lt7jn"]
+[ext_resource type="Texture2D" uid="uid://bvacey3t0ew7m" path="res://Sprites/Battle/UI/CharacterIcons/WaterEnemy.png" id="4_lt7jn"]
 [ext_resource type="AudioStream" uid="uid://bf8begcyyoxkk" path="res://Music/SFX/GetHit/WaterHit.mp3" id="4_mpu23"]
 [ext_resource type="Script" uid="uid://kcsrgtg6hcqr" path="res://Scripts/Bases/Characters/EnemyCharacterBase.cs" id="4_s11i6"]
 [ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="5_ddw3e"]
@@ -34,7 +34,7 @@ SoundEffects = Array[AudioStream]([ExtResource("4_mpu23"), ExtResource("5_h83sc"
 
 [resource]
 script = ExtResource("4_s11i6")
-ExpYield = 10.0
+ExpYield = 5.0
 AI = SubResource("Resource_0nsyi")
 BaseStats = SubResource("Resource_grl5b")
 OverworldAnimator = ExtResource("3_2e2qm")

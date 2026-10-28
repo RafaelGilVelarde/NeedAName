@@ -2,35 +2,17 @@
 
 [ext_resource type="Script" uid="uid://gvdydigsiaxn" path="res://Scripts/Battle/UI/TurnBox.cs" id="1_2vmwi"]
 [ext_resource type="Texture2D" uid="uid://bd6fvkqrvjxoa" path="res://Sprites/Battle/UI/TurnIcon.png" id="1_4gyyk"]
+[ext_resource type="FontFile" uid="uid://cnichvklfure5" path="res://Fonts/atwriter.ttf" id="2_uj6fd"]
 [ext_resource type="Texture2D" uid="uid://dshncgwdktxan" path="res://Sprites/Battle/UI/TurnIcon_sub_Clip.png" id="3_446ju"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_pr310"]
-atlas = ExtResource("1_4gyyk")
-region = Rect2(0, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_d48jj"]
-atlas = ExtResource("3_446ju")
-region = Rect2(0, 64, 64, 64)
-filter_clip = true
-
-[sub_resource type="Animation" id="Animation_8rcws"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
+[ext_resource type="Texture2D" uid="uid://c78r836r4lb0c" path="res://Sprites/Battle/UI/CharacterIcons/BossIcon.png" id="4_446ju"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_2bk0o"]
 atlas = ExtResource("1_4gyyk")
+region = Rect2(0, 64, 64, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2duqs"]
+atlas = ExtResource("3_446ju")
 region = Rect2(0, 64, 64, 64)
 filter_clip = true
 
@@ -52,11 +34,6 @@ filter_clip = true
 [sub_resource type="AtlasTexture" id="AtlasTexture_7bkbg"]
 atlas = ExtResource("1_4gyyk")
 region = Rect2(192, 192, 64, 64)
-filter_clip = true
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_2duqs"]
-atlas = ExtResource("3_446ju")
-region = Rect2(0, 64, 64, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5nmcb"]
@@ -130,6 +107,11 @@ tracks/3/keys = {
 "values": [SubResource("AtlasTexture_2duqs"), SubResource("AtlasTexture_5nmcb"), SubResource("AtlasTexture_in4sk"), SubResource("AtlasTexture_4xivi"), SubResource("AtlasTexture_8i2xr")]
 }
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr310"]
+atlas = ExtResource("1_4gyyk")
+region = Rect2(0, 64, 64, 64)
+filter_clip = true
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_fi7a6"]
 atlas = ExtResource("1_4gyyk")
 region = Rect2(64, 64, 64, 64)
@@ -163,6 +145,11 @@ filter_clip = true
 [sub_resource type="AtlasTexture" id="AtlasTexture_3o85s"]
 atlas = ExtResource("1_4gyyk")
 region = Rect2(192, 128, 64, 64)
+filter_clip = true
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_d48jj"]
+atlas = ExtResource("3_446ju")
+region = Rect2(0, 64, 64, 64)
 filter_clip = true
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_os5o3"]
@@ -294,7 +281,6 @@ filter_clip = true
 
 [sub_resource type="Animation" id="Animation_0wdim"]
 length = 0.4
-loop_mode = 1
 tracks/0/type = "method"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -360,7 +346,6 @@ tracks/4/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ds0vk"]
 _data = {
-&"RESET": SubResource("Animation_8rcws"),
 &"end": SubResource("Animation_d48jj"),
 &"idle": SubResource("Animation_4xivi"),
 &"start": SubResource("Animation_0wdim")
@@ -380,6 +365,7 @@ offset_left = 47.0
 offset_top = 46.0
 offset_right = 168.0
 offset_bottom = 69.0
+theme_override_fonts/normal_font = ExtResource("2_uj6fd")
 bbcode_enabled = true
 fit_content = true
 scroll_active = false
@@ -389,9 +375,11 @@ autowrap_mode = 0
 z_index = -1
 texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_pr310")
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_2bk0o")
+expand_mode = 1
+stretch_mode = 4
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -408,9 +396,11 @@ metadata/_aseprite_wizard_config_ = {
 clip_children = 2
 texture_filter = 1
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = SubResource("AtlasTexture_d48jj")
+offset_right = 64.0
+offset_bottom = 64.0
+texture = SubResource("AtlasTexture_2duqs")
+expand_mode = 1
+stretch_mode = 5
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "_Clip",
@@ -427,6 +417,9 @@ metadata/_aseprite_wizard_config_ = {
 layout_mode = 0
 offset_right = 64.0
 offset_bottom = 64.0
+texture = ExtResource("4_446ju")
+expand_mode = 1
+stretch_mode = 5
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=546063952]
 libraries/ = SubResource("AnimationLibrary_ds0vk")

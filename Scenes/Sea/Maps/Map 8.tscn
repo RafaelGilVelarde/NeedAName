@@ -126,7 +126,7 @@ position = Vector2(-304, 64)
 rotation = 1.5708
 Scene = 2
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(0, -4)
 shape = SubResource("RectangleShape2D_54y35")
 
@@ -135,7 +135,7 @@ position = Vector2(-112, -208)
 Scene = 8
 LoadPosition = Vector2(-112, 176)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_1xduu")
 
 [node name="Door3" parent="." unique_id=848170729 instance=ExtResource("6_ixm3s")]
@@ -143,7 +143,7 @@ position = Vector2(-80, -208)
 Scene = 8
 LoadPosition = Vector2(-80, 176)
 
-[node name="CollisionShape2D" parent="Door3" index="0"]
+[node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_ttk6g")
 
 [node name="Door4" parent="." unique_id=1261815092 instance=ExtResource("6_ixm3s")]
@@ -151,7 +151,7 @@ position = Vector2(-48, -208)
 Scene = 8
 LoadPosition = Vector2(-48, 176)
 
-[node name="CollisionShape2D" parent="Door4" index="0"]
+[node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_gbewp")
 
 [node name="Door5" parent="." unique_id=1146180083 instance=ExtResource("6_ixm3s")]
@@ -159,7 +159,7 @@ position = Vector2(-16, -208)
 Scene = 8
 LoadPosition = Vector2(-16, 176)
 
-[node name="CollisionShape2D" parent="Door5" index="0"]
+[node name="CollisionShape2D" parent="Door5" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_l1bup")
 
 [node name="Door6" parent="." unique_id=539894474 instance=ExtResource("6_ixm3s")]
@@ -167,7 +167,7 @@ position = Vector2(16, -208)
 Scene = 8
 LoadPosition = Vector2(-16, 176)
 
-[node name="CollisionShape2D" parent="Door6" index="0"]
+[node name="CollisionShape2D" parent="Door6" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_df7xu")
 
 [node name="Door7" parent="." unique_id=2074582792 instance=ExtResource("6_ixm3s")]
@@ -175,7 +175,7 @@ position = Vector2(48, -208)
 Scene = 8
 LoadPosition = Vector2(80, 176)
 
-[node name="CollisionShape2D" parent="Door7" index="0"]
+[node name="CollisionShape2D" parent="Door7" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_2dvlx")
 
 [node name="Door8" parent="." unique_id=271279218 instance=ExtResource("6_ixm3s")]
@@ -183,15 +183,15 @@ position = Vector2(80, -208)
 Scene = 8
 LoadPosition = Vector2(112, 176)
 
-[node name="CollisionShape2D" parent="Door8" index="0"]
+[node name="CollisionShape2D" parent="Door8" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_dq2m4")
 
 [node name="Door9" parent="." unique_id=1984119774 instance=ExtResource("6_ixm3s")]
-position = Vector2(112, 144)
+position = Vector2(136, 144)
 Scene = 20
 LoadPosition = Vector2(-200, 176)
 
-[node name="CollisionShape2D" parent="Door9" index="0"]
+[node name="CollisionShape2D" parent="Door9" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_4811j")
 
 [node name="Area2D" parent="." unique_id=183947134 instance=ExtResource("8_ajh4c")]
@@ -217,7 +217,7 @@ AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1" unique_id=2144246926]
 texture = ExtResource("10_e1nka")
-frame = 3
+frame = 1
 
 [node name="Node" parent="FollowNPC/CollisionShape2D" index="2" unique_id=558135658]
 character = SubResource("Resource_mkc7l")

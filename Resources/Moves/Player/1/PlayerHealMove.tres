@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="RaiseStatMoveInput" format=3 uid="uid://bndddos3x4gk0"]
+
+[ext_resource type="Script" uid="uid://lpkeic85k5nj" path="res://Scripts/GameData/Characters/StatChange.cs" id="1_mtinh"]
+[ext_resource type="Script" uid="uid://ckc6ukgh0g8bk" path="res://Scripts/Bases/Moves/RaiseStatMoveInput.cs" id="2_bx0bl"]
+
+[sub_resource type="Resource" id="Resource_73mhd"]
+script = ExtResource("1_mtinh")
+HPIncrease = 1.5
+HP = true
+Alt = Array[Object]([])
+metadata/_custom_type_script = "uid://lpkeic85k5nj"
+
+[resource]
+script = ExtResource("2_bx0bl")
+TimerSums = PackedInt32Array(0, 0, 1, 0, 0)
+Stats = SubResource("Resource_73mhd")
+type = 3
+UserAmount = 1
+TargetAmount = 1
+Cost = 5
+Delay = 80
+TargetsParty = true
+Name = "Soothe"
+MoveTime = 1.5

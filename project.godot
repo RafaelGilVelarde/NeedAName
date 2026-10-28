@@ -21,8 +21,9 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="Godot"
 run/main_scene="res://Scenes/MainMenu.tscn"
+config/use_custom_user_dir=true
+config/custom_user_dir_name="NaNGame"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/show_image=false
@@ -158,17 +159,18 @@ translation/save_mode=0
 translation/add_separator=true
 choices/hotkey_behaviour=0
 text/split_at_new_lines=false
-translation/id_counter=315
+translation/id_counter=323
 translation/locales=[]
 save/autosave=false
 layout/style_list=["res://DialogicStyles/No-Box.tres", "res://DialogicStyles/No-Box-Dark.tres", "res://DialogicStyles/Base.tres"]
-layout/default_style=""
+layout/default_style="res://DialogicStyles/Base.tres"
 portraits/default_portrait=""
 extensions_folder="res://addons/dialogic_additions"
 translation/intern/save_mode=0
 translation/intern/file_mode=0
 translation/intern/translation_folder="res://Dialogues/Español"
 layout/style_directory={
+"": "res://DialogicStyles/Base.tres",
 "Base": "res://DialogicStyles/Base.tres",
 "No-Box": "res://DialogicStyles/No-Box.tres",
 "No-Box-Dark": "res://DialogicStyles/No-Box-Dark.tres"
@@ -322,7 +324,7 @@ SelectedKey4={
 
 [internationalization]
 
-locale/translations=PackedStringArray("res://UIText/Translations/en.po", "res://UIText/Translations/es.po", "res://UIText/Translations/UITranslationSheet.en.translation", "res://UIText/Translations/UITranslationSheet.es.translation", "res://Dialogues/Español/dialogic_character_translations.en.translation", "res://Dialogues/Español/dialogic_timeline_translations.en.translation", "res://Dialogues/Español/dialogic_character_translations.es.translation", "res://Dialogues/Español/dialogic_timeline_translations.es.translation")
+locale/translations=PackedStringArray("res://UIText/Translations/en.po", "res://UIText/Translations/es.po", "res://Dialogues/Español/dialogic_character_translations.en.translation", "res://Dialogues/Español/dialogic_timeline_translations.en.translation", "res://Dialogues/Español/dialogic_character_translations.es.translation", "res://Dialogues/Español/dialogic_timeline_translations.es.translation", "res://UIText/Translations/UITranslationSheet.en.translation", "res://UIText/Translations/UITranslationSheet.es.translation")
 locale/translations_pot_files=PackedStringArray("res://Prefabs/GameManager.tscn", "res://Prefabs/Characters/PartyCharacter.tscn", "res://Scenes/MainMenu.tscn", "res://Prefabs/BattleManager/battle_manager.tscn")
 locale/test="en"
 save_mode=0
@@ -332,3 +334,4 @@ save_mode=0
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+2d/snap/snap_2d_transforms_to_pixel=true

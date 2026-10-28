@@ -14,13 +14,14 @@ public partial class TurnList : Control
     [Export] float Separation = 64;
     [Export] Color Neutral, Current, AuxColor;
     [Export] bool isVertical = true;
+    [Export] NinePatchRect MainContainer;
 
     Tween MainTween;
 
     public override void _Ready()
     {
         base._Ready();
-        for(int i = 0; i < GetChildCount(); i++)
+        for(int i = 0; i < GetChildCount()-1; i++)
         {
             if (i%2 == 0)
             {
@@ -51,13 +52,23 @@ public partial class TurnList : Control
             Turns[i].Show();
             Turns[i].Animator.Play("start");
             Turns[i].CurrentCharacter = Characters[i];
-            Debug.WriteLine("Start character: "+Turns[i].CurrentCharacter);
             //Turns[i].ActiveTime.Text = Turns[i].CurrentCharacter.CurrentDelay.ToString();
             Turns[i].CharacterSprite.Texture = (Texture2D)Turns[i].CurrentCharacter.Character.Base.BattleIcon;
         }
         for(int i = Characters.Count; i < Turns.Count; i++)
         {
             Turns[i].Hide();
+        }
+        Tween ContainerTween = CreateTween();
+        if (isVertical)
+        {
+            MainContainer.Size = new Vector2(81,0);
+            ContainerTween.TweenProperty(MainContainer,"size",new Vector2(81,567),0.4);
+        }
+        else
+        {
+            MainContainer.Size = new Vector2(0,81);
+            ContainerTween.TweenProperty(MainContainer,"size",new Vector2(567,81),0.4);
         }
         Turns[0].CharacterSprite.Modulate = Current;
     }
@@ -77,7 +88,6 @@ public partial class TurnList : Control
 
     public void UpdateTurns(Array<BattleCharacter> Characters)
     {
-        Debug.WriteLine("UpdatingTurns");
 
         RestartTween(MainTween);
         MainTween = CreateTween();
@@ -91,7 +101,6 @@ public partial class TurnList : Control
             int CharIndex = Characters.IndexOf(Turns[i].CurrentCharacter);
             if (CharIndex >= 0)
             {
-                Debug.WriteLine("Character: "+i+" "+Turns[i]?.CurrentCharacter.GetParent().Name+" index: "+CharIndex);
                 if (isVertical)
                 {
                     MainTween.TweenProperty(Turns[i],"position",new Vector2(Turns[i].Position.X,TurnPositions[CharIndex].Y),0.2);                                                
@@ -117,20 +126,17 @@ public partial class TurnList : Control
                 {
                     if (AuxArray[j].CurrentCharacter != null)
                     {
-                        Debug.WriteLine("comparing: "+AuxArray[j].CurrentCharacter.GetParent().Name+" with :"+Characters[i].GetParent().Name);
                         if(AuxArray[j].CurrentCharacter == Characters[i])
                         {
                             chara = j;
                         }
                     }
                 }
-                Debug.WriteLine("currentn character index: "+chara);
                 Control Aux = Turns[i];
                 if (chara >= 0)
                 {
 
                     Turns[i] = AuxArray[chara];
-                    Debug.WriteLine("index: "+i+ "is now: "+AuxArray[chara].CurrentCharacter.GetParent().Name);
                     Turns[i].Show();
                     //Turns[i].ActiveTime.Text = Turns[i].CurrentCharacter.CurrentDelay.ToString();
                     Turns[i].CharacterSprite.Modulate = Neutral; 
@@ -141,10 +147,7 @@ public partial class TurnList : Control
         {
             Turns[i+Characters.Count] = Dispose[i];
         }
-        for(int i = 0; i < Turns.Count; i++)
-        {
-            Debug.WriteLine("Turn: "+i+" :"+Turns[i].CurrentCharacter);
-        }
+
         Turns[0].CharacterSprite.Modulate = Current;
         MainTween.Finished += () =>
         {
@@ -158,7 +161,6 @@ public partial class TurnList : Control
     }
     public void UpdateAuxTurns(Moves move, BattleCharacter AddUser = null, BattleCharacter AddTarget = null)
     {
-        Debug.WriteLine("UpdatingAux");
        Array<int> indexes = new Array<int>();
         Array<BattleCharacter> TurnOrder= BattleManager.instance.TurnOrder.Duplicate();
         Array<BattleCharacter> TotalCharacters= new Array<BattleCharacter>();
@@ -206,7 +208,6 @@ public partial class TurnList : Control
         for(int i = 0; i < TotalCharacters.Count(); i++)
         {
             indexes.Add(Aux.IndexOf(TotalCharacters[i]));
-            Debug.WriteLine(TotalCharacters[i].GetParent().Name+": "+indexes[indexes.Count()-1]);
         }
 
 
@@ -238,10 +239,10 @@ public partial class TurnList : Control
         }
         for(int i = 0;i<indexes.Count;i++)
         {
-            TurnAux[indexes[i]].Show();
             TurnAux[indexes[i]].CharacterSprite.Texture = (Texture2D)TotalCharacters[i].Character.Base.BattleIcon;
             TurnAux[indexes[i]].ActiveTime.Text = TotalCharacters[i].AuxDelay.ToString();
             TurnAux[indexes[i]].Animator.Play("start");
+            TurnAux[indexes[i]].Show();
         }
         for(int i = 0; i < TurnAux.Count; i++)
         {
@@ -265,7 +266,6 @@ public partial class TurnList : Control
 
     public void HideAuxTurns()
     {
-        Debug.WriteLine("Hiding Aux");
         RestartTween(MainTween);
         MainTween = CreateTween();
         MainTween.SetProcessMode(Tween.TweenProcessMode.Physics);

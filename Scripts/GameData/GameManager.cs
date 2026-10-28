@@ -64,7 +64,8 @@ public partial class GameManager : Node
 			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
             if (Saves[Settings.CurrentSave] != null && GetTree().CurrentScene.Name == "MainMenu")
 			{
-				Data = Saves[Settings.CurrentSave];
+				//changed
+				Data = Saves[Settings.CurrentSave].DuplicateData();
             }
         }
 		while (Settings.Volume.Count <= 3)
@@ -191,7 +192,8 @@ public partial class GameManager : Node
 		A.Leader = false;
 		B.Leader = true;
 		A.OverworldCollider.Disabled = true;
-		A.SetControllable(false);						
+		A.SetControllable(false);	
+		A.EnableHurtbox(false);					
 		controller = B;
 		for (int i = 0; i < Characters.Count; i++)
 		{
@@ -347,9 +349,9 @@ public partial class GameManager : Node
 			RootCharacters();
 			OverworldCam = null;
 			BattleCam = null;
-			controller?.SetControllable(false);
 			PositionToMove = Position;
-			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
+			controller?.SetControllable(false);
+			controller?.EnableHurtbox(false);
 			SetLayers(GraphicsLayer,CollisionLayer, CollisionMask);
 
 
@@ -357,6 +359,7 @@ public partial class GameManager : Node
 				{
 					FollowerLists.ZIndexList[j] = GraphicsLayer;					
 				}
+			GetTree().ChangeSceneToPacked(AreaMaps[Area].maps[scene]);
 		};
 		/*SceneTreeTimer timer = GetTree().CreateTimer(0.5f,true,true,true);
 		timer.Timeout+=()=>MoveCharactersToScene(Position);*/
@@ -393,11 +396,11 @@ public partial class GameManager : Node
 	{
 		for (int i = 0; i < Characters.Count; i++)
 		{
-			Characters[i].DataMap = Map;
+			Characters[i].Tile.DataMap = Map;
 		}
 		for (int i = 0; i < Followers.Count; i++)
 		{
-			Followers[i].DataMap = Map;
+			Followers[i].Tile.DataMap = Map;
 		}
 	}
 	public void MoveCharactersToScene(Scene scene)
@@ -465,23 +468,15 @@ public partial class GameManager : Node
 			if (ResourceLoader.Exists(Path))
 			{
 				SavesExist = true;
-				Saves[i] = (DataManager)ResourceLoader.Load<DataManager>(Path, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
+				//changed
+				Saves[i] = ResourceLoader.Load<DataManager>(Path, null, ResourceLoader.CacheMode.Replace).DuplicateData();
 			}
 			else
 			{
 				Saves[i] = null;
 			}
 		}
-		/*string SettingsPath = "user://" + "settings" + ".tres";
-        if (ResourceLoader.Exists(SettingsPath))
-        {
-			Settings = (MainSettings)ResourceLoader.Load<MainSettings>(SettingsPath, null, ResourceLoader.CacheMode.Replace).Duplicate(true);
-            if (Saves[Settings.CurrentSave] != null)
-			{
-				Debug.WriteLine("Exists");
-				Data = Saves[Settings.CurrentSave];
-            }
-        }*/
+
 	}
 	public void Load(int Save)
 	{

@@ -1,18 +1,18 @@
-[gd_scene load_steps=167 format=3 uid="uid://cgngdxrff32se"]
+[gd_scene format=3 uid="uid://cgngdxrff32se"]
 
-[ext_resource type="Script" path="res://Scripts/Overworld/Interactions/InteractFollowNPC.cs" id="1_0y2tr"]
-[ext_resource type="Script" path="res://Scripts/Overworld/PlayerController.cs" id="1_3bvdq"]
+[ext_resource type="Script" uid="uid://dpe4ml8ed6qgy" path="res://Scripts/Overworld/Interactions/InteractFollowNPC.cs" id="1_0y2tr"]
+[ext_resource type="Script" uid="uid://cc10yckuwpg6g" path="res://Scripts/Overworld/PlayerController.cs" id="1_3bvdq"]
 [ext_resource type="Texture2D" uid="uid://dbe15ejd3qsfr" path="res://Sprites/Overworld/waterIdle.png" id="2_alsse"]
-[ext_resource type="Script" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="3_1rsro"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="4_uoxpk"]
-[ext_resource type="Script" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="5_1bgh8"]
-[ext_resource type="Script" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_3i2a6"]
-[ext_resource type="Script" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_sekui"]
+[ext_resource type="Script" uid="uid://cvwfftsd5ebgu" path="res://Scripts/Battle/Battle Character/BattleCharacter.cs" id="3_1rsro"]
+[ext_resource type="Script" uid="uid://6bdfdsmvxp5n" path="res://Scripts/Overworld/TileCheck.cs" id="4_onx07"]
+[ext_resource type="Script" uid="uid://dryu6ju55pgoq" path="res://Scripts/Battle/Hitboxes/Hitbox.cs" id="4_uoxpk"]
+[ext_resource type="Script" uid="uid://lckenq50ahit" path="res://Scripts/Battle/Hitboxes/BlockHitbox.cs" id="5_1bgh8"]
+[ext_resource type="Script" uid="uid://c6xmgyhy7yjx" path="res://Scripts/Battle/Effects/StateParticleEffects.cs" id="8_3i2a6"]
+[ext_resource type="Script" uid="uid://di3f7wcp6vslf" path="res://Scripts/Battle/UI/SelectActions.cs" id="9_sekui"]
 [ext_resource type="Texture2D" uid="uid://d1eykh5jcnfhe" path="res://Sprites/Battle/Party/Menu/_Fight.png" id="10_imaof"]
 [ext_resource type="Texture2D" uid="uid://butfvsicr7733" path="res://Sprites/Battle/Party/Menu/_Item.png" id="11_h2kqt"]
 [ext_resource type="Texture2D" uid="uid://dnq7v2srfl0ii" path="res://Sprites/Battle/Party/Menu/_Run.png" id="12_1d1h4"]
 [ext_resource type="PackedScene" uid="uid://w4uy187ejgjn" path="res://Prefabs/Animators/Party/Battle/WaterBattleAnimator.tscn" id="13_ebyqd"]
-[ext_resource type="AnimationLibrary" uid="uid://b76bup8thrdd8" path="res://Animations/Battle/WaterFight.res" id="14_r8qca"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7nva1"]
 radius = 12.0
@@ -42,7 +42,7 @@ _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.425, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
 [sub_resource type="Curve" id="Curve_3g4di"]
-max_value = 200.0
+_limits = [0.0, 200.0, 0.0, 1.0]
 _data = [Vector2(0, 157.895), 0.0, 0.0, 0, 0, Vector2(0.970149, 0), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -54,8 +54,7 @@ colors = PackedColorArray(0.705882, 0, 0, 1, 1, 1, 1, 1)
 gradient = SubResource("Gradient_gkvkl")
 
 [sub_resource type="Curve" id="Curve_d1v2y"]
-min_value = -50.0
-max_value = 50.0
+_limits = [-50.0, 50.0, 0.0, 1.0]
 _data = [Vector2(0, 5.78947), 0.0, 0.0, 0, 0, Vector2(0.997409, 21.5789), 0.0, 0.0, 0, 0]
 point_count = 2
 
@@ -1472,12 +1471,12 @@ tracks/14/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_pdon8"]
 _data = {
-"Fight": SubResource("Animation_cyg6k"),
-"Idle": SubResource("Animation_wo0lk"),
-"Item": SubResource("Animation_l8num"),
-"RESET": SubResource("Animation_iwxqx"),
-"Run": SubResource("Animation_j61mk"),
-"Start": SubResource("Animation_vojd5")
+&"Fight": SubResource("Animation_cyg6k"),
+&"Idle": SubResource("Animation_wo0lk"),
+&"Item": SubResource("Animation_l8num"),
+&"RESET": SubResource("Animation_iwxqx"),
+&"Run": SubResource("Animation_j61mk"),
+&"Start": SubResource("Animation_vojd5")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_16cwp"]
@@ -1622,7 +1621,7 @@ tracks/6/keys = {
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_mkiqx"]
 _data = {
-"RESET": SubResource("Animation_igyyp")
+&"RESET": SubResource("Animation_igyyp")
 }
 
 [sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_26rrj"]
@@ -1748,7 +1747,7 @@ advance_mode = 2
 switch_mode = 2
 advance_mode = 2
 
-[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_ah3ft"]
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_onx07"]
 resource_local_to_scene = true
 states/ActionState/node = SubResource("AnimationNodeBlendSpace1D_vtlmn")
 states/ActionState/position = Vector2(566, 10.8326)
@@ -1765,36 +1764,32 @@ graph_offset = Vector2(0, -54.1674)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f6q52"]
 bg_color = Color(0.286275, 0.690196, 0.529412, 1)
 
-[node name="Character" type="CharacterBody2D" groups=["Interactable"]]
+[node name="Character" type="CharacterBody2D" unique_id=1587765966 groups=["Interactable"]]
 y_sort_enabled = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." node_paths=PackedStringArray("Follower", "Sprites")]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=322592572 node_paths=PackedStringArray("Sprites")]
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 script = ExtResource("1_0y2tr")
-Follower = NodePath("../OverworldController")
 PauseWhenDialogue = true
 Sprites = []
 
-[node name="OverworldController" type="Node2D" parent="." node_paths=PackedStringArray("InteractCollider", "TileDetector", "MainSprite", "Parent", "OverworldCollider", "BattleCharacter")]
+[node name="OverworldController" type="Node2D" parent="." unique_id=1379118464 node_paths=PackedStringArray("InteractCollider", "MainSprite", "Parent", "OverworldCollider", "Tile", "BattleCharacter")]
 process_mode = 4
 script = ExtResource("1_3bvdq")
 InteractCollider = NodePath("InteractionCollider")
-TileDetector = NodePath("TileCollider")
-TileOffset = Vector2(9, 9)
 MainSprite = NodePath("MainSprite")
 Speed = 5000.0
 Friction = 1000.0
 MaxSpeed = 6000.0
 Parent = NodePath("..")
 OverworldCollider = NodePath("../CollisionShape2D")
-AxisList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-PositionList = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
 AxisOffset = 5
 Controllable = false
+Tile = NodePath("TileCollider")
 BattleCharacter = NodePath("../BattleCharacter")
 
-[node name="MainSprite" type="Sprite2D" parent="OverworldController"]
+[node name="MainSprite" type="Sprite2D" parent="OverworldController" unique_id=1710505526]
 texture_filter = 1
 texture = ExtResource("2_alsse")
 hframes = 7
@@ -1812,16 +1807,19 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Overworld/waterIdle.aseprite"
 }
 
-[node name="InteractionCollider" type="Area2D" parent="OverworldController"]
+[node name="InteractionCollider" type="Area2D" parent="OverworldController" unique_id=757921517]
 position = Vector2(0, -15)
 disable_mode = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OverworldController/InteractionCollider" unique_id=1164929825]
 shape = SubResource("RectangleShape2D_dwf8m")
 
-[node name="TileCollider" type="Node2D" parent="OverworldController"]
+[node name="TileCollider" type="Node2D" parent="OverworldController" unique_id=1699722935 node_paths=PackedStringArray("BaseNode")]
+script = ExtResource("4_onx07")
+BaseNode = NodePath("..")
+TileOffset = Vector2(16, 16)
 
-[node name="BattleCharacter" type="CharacterBody2D" parent="." node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar")]
+[node name="BattleCharacter" type="CharacterBody2D" parent="." unique_id=1981316816 node_paths=PackedStringArray("AnimatorTree", "Hitbox", "Hurtbox", "Blockbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "HPBar", "SFXPlayers")]
 process_mode = 4
 visible = false
 script = ExtResource("3_1rsro")
@@ -1830,54 +1828,44 @@ Hitbox = NodePath("Hitbox")
 Hurtbox = NodePath("Hurtbox")
 Blockbox = NodePath("Blockbox")
 Overworld = NodePath("../OverworldController")
-MultiplierAtk = Array[float]([1.0])
-MultiplierDef = Array[float]([1.0])
-MultiplierSpAtk = Array[float]([1.0])
-MultiplierSpDef = Array[float]([1.0])
-MultiplierSpeed = Array[float]([1.0])
-TimerAtk = Array[int]([1])
-TimerDef = Array[int]([1])
-TimerSpAtk = Array[int]([1])
-TimerSpDef = Array[int]([1])
-TimerSpeed = Array[int]([1])
 PartyButtons = []
 EnemyButtons = []
 selectActions = NodePath("ActionMenu")
 MainSprite = NodePath("MainSprite")
 ThisParty = []
 EnemyParty = []
-SelectKey = 90
 StateParticles = NodePath("StateParticles")
 HitParticles = NodePath("HitEffectParticles")
 ShootNode = NodePath("Shoot")
 HPBar = NodePath("HPBar")
+SFXPlayers = []
 battleState = 3
 actionState = 5
 
-[node name="Hitbox" type="Area2D" parent="BattleCharacter" node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
+[node name="Hitbox" type="Area2D" parent="BattleCharacter" unique_id=1413372648 node_paths=PackedStringArray("Character") groups=["PlayerHitbox"]]
 script = ExtResource("4_uoxpk")
 Character = NodePath("..")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hitbox" unique_id=1907911634]
 position = Vector2(0.06, -18)
 shape = SubResource("RectangleShape2D_8hcbx")
 disabled = true
 
-[node name="Hurtbox" type="Area2D" parent="BattleCharacter" groups=["PlayerHurtbox"]]
+[node name="Hurtbox" type="Area2D" parent="BattleCharacter" unique_id=1904103938 groups=["PlayerHurtbox"]]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Hurtbox" unique_id=1001999085]
 position = Vector2(0, -17)
 shape = SubResource("RectangleShape2D_6c1hy")
 
-[node name="Blockbox" type="Area2D" parent="BattleCharacter" groups=["PlayerBlockbox"]]
+[node name="Blockbox" type="Area2D" parent="BattleCharacter" unique_id=2043275888 groups=["PlayerBlockbox"]]
 script = ExtResource("5_1bgh8")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BattleCharacter/Blockbox" unique_id=2069298491]
 position = Vector2(25.75, 3)
 shape = SubResource("RectangleShape2D_kowf3")
 disabled = true
 
-[node name="MainSprite" type="Sprite2D" parent="BattleCharacter"]
+[node name="MainSprite" type="Sprite2D" parent="BattleCharacter" unique_id=194553668]
 texture_filter = 1
 texture = SubResource("CompressedTexture2D_lpari")
 hframes = 9
@@ -1895,7 +1883,7 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Battle/Birb.aseprite"
 }
 
-[node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite"]
+[node name="Arms" type="Sprite2D" parent="BattleCharacter/MainSprite" unique_id=29376562]
 texture_filter = 1
 texture = SubResource("CompressedTexture2D_wm40p")
 hframes = 5
@@ -1913,10 +1901,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/Characters/Battle/Birb.aseprite"
 }
 
-[node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite"]
+[node name="Weapon" type="Sprite2D" parent="BattleCharacter/MainSprite" unique_id=912910673]
 visible = false
 
-[node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter"]
+[node name="HitEffectParticles" type="CPUParticles2D" parent="BattleCharacter" unique_id=1168001493]
 process_mode = 3
 position = Vector2(0, -18)
 emitting = false
@@ -1938,21 +1926,21 @@ anim_speed_max = 200.15
 anim_speed_curve = SubResource("Curve_3g4di")
 anim_offset_max = 0.9809
 
-[node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter"]
+[node name="StateParticles" type="GPUParticles2D" parent="BattleCharacter" unique_id=298869410]
 process_mode = 3
 position = Vector2(0, 10)
 emitting = false
 amount = 20
-process_material = SubResource("ParticleProcessMaterial_3dsfc")
 lifetime = 0.5
 one_shot = true
+process_material = SubResource("ParticleProcessMaterial_3dsfc")
 script = ExtResource("8_3i2a6")
 ColorRamps = Array[Texture2D]([SubResource("GradientTexture1D_y36m5"), SubResource("GradientTexture1D_d0dyv"), SubResource("GradientTexture1D_bb84a"), SubResource("GradientTexture1D_8n0m8")])
 processMaterial = SubResource("ParticleProcessMaterial_3dsfc")
 
-[node name="Effects" type="AnimationPlayer" parent="BattleCharacter"]
+[node name="Effects" type="AnimationPlayer" parent="BattleCharacter" unique_id=885737706]
 
-[node name="ActionMenu" type="Node2D" parent="BattleCharacter" node_paths=PackedStringArray("character", "Animator")]
+[node name="ActionMenu" type="Node2D" parent="BattleCharacter" unique_id=1116645097 node_paths=PackedStringArray("character", "Animator")]
 process_mode = 4
 visible = false
 position = Vector2(-50, -25)
@@ -1960,24 +1948,19 @@ script = ExtResource("9_sekui")
 character = NodePath("..")
 Animator = NodePath("AnimationPlayer/AnimationTree")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="BattleCharacter/ActionMenu" unique_id=360776000]
 root_node = NodePath("../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
+libraries/ = SubResource("AnimationLibrary_pdon8")
 
-[node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer"]
+[node name="AnimationTree" type="AnimationTree" parent="BattleCharacter/ActionMenu/AnimationPlayer" unique_id=617213839]
 root_node = NodePath("../../../..")
-libraries = {
-"": SubResource("AnimationLibrary_pdon8")
-}
 tree_root = SubResource("AnimationNodeStateMachine_ygbtl")
 anim_player = NodePath("..")
 parameters/conditions/Choice = false
 parameters/conditions/Start = false
 parameters/Choice/blend_position = 0.998211
 
-[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Fight" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=269259889]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
@@ -1997,10 +1980,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Fight" unique_id=203249954]
 position = Vector2(34, 21)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D" unique_id=1209456198]
 layout_direction = 2
 anchors_preset = -1
 anchor_right = 0.4
@@ -2018,7 +2001,7 @@ bbcode_enabled = true
 text = "Fight"
 scroll_active = false
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D"]
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Fight/Node2D" unique_id=1402505431]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -2030,7 +2013,7 @@ text = "[center]Z[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Item" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=993566614]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
@@ -2050,10 +2033,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Item"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Item" unique_id=1719371141]
 position = Vector2(34, 32)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D" unique_id=2042283081]
 anchors_preset = -1
 anchor_right = 0.4
 anchor_bottom = 0.1
@@ -2070,7 +2053,7 @@ text = "Item"
 fit_content = true
 scroll_active = false
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D"]
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Item/Node2D" unique_id=1472086235]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -2082,7 +2065,7 @@ text = "[center]X[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu"]
+[node name="Run" type="TextureRect" parent="BattleCharacter/ActionMenu" unique_id=1983712413]
 texture_filter = 1
 offset_left = -35.0
 offset_top = -23.0
@@ -2102,10 +2085,10 @@ metadata/_aseprite_wizard_config_ = {
 "source": "res://Aseprites/ActionMenu.aseprite"
 }
 
-[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Run"]
+[node name="Node2D" type="Node2D" parent="BattleCharacter/ActionMenu/Run" unique_id=427607073]
 position = Vector2(34, 43)
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D" unique_id=1136646949]
 anchors_preset = -1
 anchor_right = 0.4
 anchor_bottom = 0.1
@@ -2119,7 +2102,7 @@ theme_override_font_sizes/normal_font_size = 13
 text = "Run"
 fit_content = true
 
-[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D"]
+[node name="Button" type="RichTextLabel" parent="BattleCharacter/ActionMenu/Run/Node2D" unique_id=2030036069]
 offset_left = -26.9
 offset_top = -11.0
 offset_right = -10.9
@@ -2131,26 +2114,18 @@ text = "[center]C[/center]"
 scroll_active = false
 visible_characters = 1
 
-[node name="AnimationPlayer" parent="BattleCharacter" instance=ExtResource("13_ebyqd")]
+[node name="AnimationPlayer" parent="BattleCharacter" unique_id=684549504 instance=ExtResource("13_ebyqd")]
 process_mode = 4
-libraries = {
-"": SubResource("AnimationLibrary_mkiqx"),
-"WaterFight": ExtResource("14_r8qca")
-}
+libraries/ = SubResource("AnimationLibrary_mkiqx")
 
-[node name="AnimationTree" parent="BattleCharacter/AnimationPlayer" index="0"]
+[node name="AnimationTree" parent="BattleCharacter/AnimationPlayer" index="0" unique_id=2102782390]
 process_mode = 4
-active = false
-libraries = {
-"": SubResource("AnimationLibrary_mkiqx"),
-"WaterFight": ExtResource("14_r8qca")
-}
-tree_root = SubResource("AnimationNodeStateMachine_ah3ft")
+tree_root = SubResource("AnimationNodeStateMachine_onx07")
 parameters/ActionState/blend_position = 3.43571
 
-[node name="Shoot" type="Node2D" parent="BattleCharacter"]
+[node name="Shoot" type="Node2D" parent="BattleCharacter" unique_id=667417506]
 
-[node name="HPBar" type="ProgressBar" parent="BattleCharacter"]
+[node name="HPBar" type="ProgressBar" parent="BattleCharacter" unique_id=1502208150]
 layout_direction = 2
 anchors_preset = 8
 anchor_left = 0.5
@@ -2170,7 +2145,7 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_f6q52")
 max_value = 50.0
 show_percentage = false
 
-[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar"]
+[node name="RichTextLabel" type="RichTextLabel" parent="BattleCharacter/HPBar" unique_id=775248580]
 layout_mode = 0
 offset_left = -3.0
 offset_top = -13.0

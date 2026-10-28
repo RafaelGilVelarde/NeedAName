@@ -6,7 +6,7 @@ using System.Diagnostics;
 public partial class MoveList : StuffList
 {
 	[Export]public Array<MoveButtons> Buttons;
-	[Export] VBoxContainer AmountList;
+	[Export] VBoxContainer AmountList, DelayList;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -58,6 +58,8 @@ public partial class MoveList : StuffList
 				Buttons[i].GetChild(0).GetNode<RichTextLabel>(".").Text=Tr(Buttons[i].move.Base.Name);
 				AmountList.GetChild<RichTextLabel>(i+1).Show();
 				AmountList.GetChild<RichTextLabel>(i+1).Text = Tr("WP: ")+Buttons[i].move.Base.Cost;
+				DelayList.GetChild<RichTextLabel>(i+1).Show();
+				DelayList.GetChild<RichTextLabel>(i+1).Text = Tr("Delay: ")+Buttons[i].move.Base.Delay;
 				activeButtons++;
 				if(StartEnd==ScrollList.StartEnd.End){
 					Buttons[i].GrabFocus();
@@ -65,6 +67,7 @@ public partial class MoveList : StuffList
 			}
 			else{
 				AmountList.GetChild<RichTextLabel>(i+1).Hide();
+				DelayList.GetChild<RichTextLabel>(i+1).Hide();
 				Buttons[i].move=null;
 				Buttons[i].Hide();
 			}

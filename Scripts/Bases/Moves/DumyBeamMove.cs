@@ -64,7 +64,6 @@ public partial class DumyBeamMove : MoveBase
 				User.changeState(BattleCharacter.BattleState.Attacking);
 				Timer.Timeout += () =>
 				{
-					Debug.WriteLine("Shoot");
 					User.changeState(BattleCharacter.BattleState.Idle);
 					if (Success)
 					{

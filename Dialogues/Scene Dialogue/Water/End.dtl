@@ -2,7 +2,7 @@
 "No Box-Dark": Congratulations! #id:10c
 "No Box-Dark": You made it through! #id:10d
 "No Box-Dark": I am curious though, what might your name be? #id:10e
-[text_input text="What is your name" var="Characters.CharName"]
+[text_input text="What is your name" var="Characters.CharName"] #id:13f
 "No Box-Dark": {Characters.CharName}....an interesting name to be sure #id:10f
 "No Box-Dark": Well then, {Characters.CharName}, may you have #id:110
 "No Box-Dark": A wonderful life! #id:111

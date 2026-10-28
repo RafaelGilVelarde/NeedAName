@@ -19,6 +19,7 @@
 [ext_resource type="Script" uid="uid://gv8mqbjor5nu" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.gd" id="15_06fj1"]
 [ext_resource type="Script" uid="uid://biqpjv0qyefvf" path="res://addons/dialogic/Modules/TextInput/node_text_input.gd" id="16_56d3c"]
 [ext_resource type="PackedScene" uid="uid://cuoywrmvda1yg" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/example_history_item.tscn" id="16_blkym"]
+[ext_resource type="StyleBox" uid="uid://gfrc0jma8w50" path="res://Resources/Textures/MenuTextures/MenuButtonn.tres" id="18_ibb56"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dmg1w"]
 bg_color = Color(0.254902, 0.254902, 0.254902, 0)
@@ -340,6 +341,12 @@ autowrap_mode = 3
 
 [node name="InputField" type="LineEdit" parent="TextInputLayer/DialogicNode_TextInput/TextInputPanel/VBoxContainer" unique_id=1084648838]
 layout_mode = 2
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/clear_button_color = Color(1, 1, 1, 1)
+theme_override_styles/normal = ExtResource("18_ibb56")
+theme_override_styles/read_only = ExtResource("18_ibb56")
+theme_override_styles/focus = ExtResource("18_ibb56")
+alignment = 1
 max_length = 8
 context_menu_enabled = false
 deselect_on_focus_loss_enabled = false

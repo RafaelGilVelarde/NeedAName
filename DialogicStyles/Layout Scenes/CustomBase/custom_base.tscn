@@ -6,8 +6,13 @@
 [ext_resource type="Resource" uid="uid://107x2vbu77is" path="res://DialogicCharacters/Halluci.dch" id="5_21q3m"]
 [ext_resource type="PackedScene" uid="uid://by6waso0mjpjp" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_SpeakerPortraitTextbox/textbox_with_speaker_portrait.tscn" id="6_6cdfa"]
 [ext_resource type="PackedScene" uid="uid://dsbwnp5hegnu3" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_Glossary/glossary_popup_layer.tscn" id="8_f030n"]
+[ext_resource type="StyleBox" uid="uid://gfrc0jma8w50" path="res://Resources/Textures/MenuTextures/MenuButtonn.tres" id="10_6lart"]
 [ext_resource type="PackedScene" uid="uid://dhk6j6eb6e3q" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_VN_Choices/vn_choice_layer.tscn" id="10_xh8gl"]
+[ext_resource type="StyleBox" uid="uid://c85ovwymvifhw" path="res://Resources/Textures/MenuTextures/MenuButtonnPressed.tres" id="11_d31uw"]
 [ext_resource type="PackedScene" uid="uid://cvgf4c6gg0tsy" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_TextInput/text_input_layer.tscn" id="12_5ej51"]
+[ext_resource type="StyleBox" uid="uid://6761vbibl56l" path="res://Resources/Textures/MenuTextures/MenuButtonnHover.tres" id="12_klwoa"]
+[ext_resource type="StyleBox" uid="uid://dh5ihq21dauwq" path="res://Resources/Textures/MenuTextures/MenuButtonnDisabled.tres" id="13_vx1wk"]
+[ext_resource type="StyleBox" uid="uid://37ofgt3ootds" path="res://Resources/Textures/MenuTextures/MenuButtonnFocus.tres" id="14_lbf8h"]
 [ext_resource type="PackedScene" uid="uid://lx24i8fl6uo" path="res://addons/dialogic/Modules/DefaultLayoutParts/Layer_History/history_layer.tscn" id="14_oripu"]
 
 [node name="Custom" type="CanvasLayer" unique_id=509308052]
@@ -45,12 +50,18 @@ debug_character = ExtResource("5_21q3m")
 apply_overrides_on_ready = true
 
 [node name="VN_ChoiceLayer" parent="." unique_id=1826440357 instance=ExtResource("10_xh8gl")]
+boxes_stylebox_normal = "uid://gfrc0jma8w50"
+boxes_stylebox_hovered = "uid://6761vbibl56l"
+boxes_stylebox_pressed = "uid://c85ovwymvifhw"
+boxes_stylebox_disabled = "uid://dh5ihq21dauwq"
+boxes_stylebox_focused = "uid://37ofgt3ootds"
 apply_overrides_on_ready = true
 
 [node name="TextInputLayer" parent="." unique_id=1098838200 instance=ExtResource("12_5ej51")]
 apply_overrides_on_ready = true
 
 [node name="ExampleHistoryScene" parent="." unique_id=675283974 instance=ExtResource("14_oripu")]
+visible = false
 font_use_global_size = true
 font_custom_size = 15
 font_use_global_fonts = true
@@ -60,6 +71,27 @@ font_custom_italics = ""
 disabled = false
 apply_overrides_on_ready = true
 
+[node name="ShowHistory" parent="ExampleHistoryScene" index="1"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("10_6lart")
+theme_override_styles/pressed = ExtResource("11_d31uw")
+theme_override_styles/hover = ExtResource("12_klwoa")
+theme_override_styles/disabled = ExtResource("13_vx1wk")
+theme_override_styles/focus = ExtResource("14_lbf8h")
+
+[node name="HideHistory" parent="ExampleHistoryScene" index="2"]
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 30
+theme_override_styles/normal = ExtResource("10_6lart")
+theme_override_styles/pressed = ExtResource("11_d31uw")
+theme_override_styles/hover = ExtResource("12_klwoa")
+theme_override_styles/disabled = ExtResource("13_vx1wk")
+theme_override_styles/focus = ExtResource("14_lbf8h")
+
 [editable path="BackgroundLayer"]
 [editable path="FullAdvanceInputLayer"]
 [editable path="TextboxWithSpeakerPortrait"]
+[editable path="VN_ChoiceLayer"]
+[editable path="TextInputLayer"]
+[editable path="ExampleHistoryScene"]

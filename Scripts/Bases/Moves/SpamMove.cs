@@ -8,32 +8,35 @@ public partial class SpamMove : MoveBase
 {
     [Export] Vector2 offset;
     [Export] float AtkMultiplier, Speed = 1;
-    [Export] int MaxCombo = 2;
+    [Export] int MaxCombo = 2, MaxSpam = 3;
     public override void Effect(Array<BattleCharacter> Users, Array<BattleCharacter> Targets)
     {
         base.Effect(Users, Targets);
 		BattleScene CurrentScene = BattleManager.instance.Scene;
-
+        bool finished = false;
 
         int Spam = 0;
         float OriginMultiplier = Users[0].StatMultiplier[0];
         Users[0]._ReturnToIdle+=SpamInterval;
 
         void SpamInterval(BattleCharacter character){
-            SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.2,true,true);
-            AuxTimer.Timeout+=()=>{
-            character.changeState(BattleCharacter.BattleState.Attacking);
-            character.Character.ShowTextLabel($"{character.Character.Key}",character.Character.Base.TextEffectColor);
-            int auxSpam = Spam;
-            character._DoAction+=IncreaseSpam;
-            SceneTreeTimer Timer= character.GetTree().CreateTimer(0.5,true,true);
-            Timer.Timeout+=()=>{
-                if(auxSpam == Spam){
-                    character._DoAction-=IncreaseSpam;
-                    End();
-                }
-                };
-            };
+            if (!finished)
+            {
+                SceneTreeTimer AuxTimer= character.GetTree().CreateTimer(0.2,true,true);
+                AuxTimer.Timeout+=()=>{
+                character.changeState(BattleCharacter.BattleState.Attacking);
+                character.Character.ShowTextLabel($"{character.Character.Key}",character.Character.Base.TextEffectColor);
+                int auxSpam = Spam;
+                character._DoAction+=IncreaseSpam;
+                SceneTreeTimer Timer= character.GetTree().CreateTimer(0.5,true,true);
+                Timer.Timeout+=()=>{
+                    if(auxSpam == Spam){
+                        character._DoAction-=IncreaseSpam;
+                        End();
+                    }
+                    };
+                };                
+            }
         }
 
         void IncreaseSpam(){
@@ -42,6 +45,7 @@ public partial class SpamMove : MoveBase
             Spam++;
             Users[0].changeState(BattleCharacter.BattleState.Idle);
             Users[0].StatMultiplier[0]*=AtkMultiplier;
+            Debug.WriteLine("Multiplier: "+Users[0].StatMultiplier);
         }   
 
 
@@ -71,11 +75,16 @@ public partial class SpamMove : MoveBase
 		tween.TweenCallback(Callable.From(()=>SpamInterval(Users[0])));
 		
 		tween.Finished+=tween.Kill;
-
+        MainTimer.Timeout+=Reset;
         void End(){
             Users[0].changeState(BattleCharacter.BattleState.Idle);
-            Users[0].StatMultiplier[0] = OriginMultiplier; 
             Users[0]._ReturnToIdle-=SpamInterval;
+            finished = true;
+        }
+        void Reset()
+        {
+            Users[0].StatMultiplier[0] = OriginMultiplier; 
+            MainTimer.Timeout-=Reset;            
         }
     }
 

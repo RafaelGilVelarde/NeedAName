@@ -3,10 +3,7 @@ using Godot.Collections;
 using System;
 using System.Diagnostics;
 
-public enum TileTypes{
-	Normal,
-	Water
-}
+
 public partial class PlayerController : OverworldController
 {
 
@@ -15,11 +12,6 @@ public partial class PlayerController : OverworldController
 	[Export] public Area2D InteractCollider;
 	[Export] Interact Interactable;
 	
-	[Export] public DataTileMap DataMap;
-	[Export] protected TileTypes tileTypes, PreviousTileType;
-	[Export] protected Node2D TileDetector, TileDetector2;
-	[Export] protected Vector2 TileOffset;
-
 
 	[Export] protected RandomBattleStart random;
 	public bool Leader = false;
@@ -44,6 +36,7 @@ public partial class PlayerController : OverworldController
 
 		Game = GameManager.Instance;
         Callable.From(ActorSetup).CallDeferred();	
+		base._Ready();
     }
     public override void _Input(InputEvent @event)
     {
@@ -79,7 +72,9 @@ public partial class PlayerController : OverworldController
 				}*/
 				if(Input.IsActionJustPressed("Menu")){
 					MainMenu.Instance.OpenCloseMenu(true);
+					Hurtbox.GetChild<CollisionShape2D>(0).Disabled = true;
 					SetControllable(false);
+					EnableHurtbox(false);
 				}
 			}
 		}
@@ -91,11 +86,8 @@ public partial class PlayerController : OverworldController
 				FacingDirection=Axis;
 			}
 		if(Controllable){
-			AxisAux = Axis;
-			if(Axis.X*Axis.Y!=0){
-				AxisAux = new Vector2(Axis.X,0);
-			}
-			TileData Data = null;
+			Tile.FacingDirection = FacingDirection;
+			/*TileData Data = null;
 			Vector2 SceneCoords = new Vector2();
 			if (DataMap != null)
 			{
@@ -104,13 +96,13 @@ public partial class PlayerController : OverworldController
 				Vector2I BaseCoords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition);
 				Vector2I CoordAux = BaseCoords - Coords;
 
-				if(CoordAux.X!= FacingDirection.X && CoordAux.Y!= FacingDirection.Y)
+				if(CoordAux.X!= FacingDirection.X || CoordAux.Y!= FacingDirection.Y)
 				{
 					Coords = BaseCoords;
 				}
 				else
 				{
-					Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (AxisAux * TileOffset));
+					Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (FacingDirection * TileOffset));
 				}
 
 				Data = CurrentMapLayer.GetCellTileData(Coords);
@@ -119,22 +111,23 @@ public partial class PlayerController : OverworldController
 			if(Data!=null){
 				PreviousTileType = tileTypes;
 				tileTypes = (TileTypes)(int)Data.GetCustomData("TileType");
-			}
+			}*/
+			Tile.CheckTile();
 			if (Leader)
 			{
-				switch (tileTypes)
+				switch (Tile.tileTypes)
 				{
 					case TileTypes.Normal:
 						Axis = GetInput();
 						break;
 					case TileTypes.Water:
-						if (tileTypes != PreviousTileType)
+						if (Tile.tileTypes != Tile.PreviousTileType)
 						{
-							Parent.Position = SceneCoords;
+							Parent.Position = Tile.SceneCoords;
 						}
-						if (DataMap != null)
+						if (Tile.DataMap != null)
 						{
-							TileData TileAux = DataMap.Map[ZIndex%DataMap.Map.Count].GetCellTileData(Coords);
+							TileData TileAux = Tile.DataMap.Map[ZIndex%Tile.DataMap.Map.Count].GetCellTileData(Tile.Coords);
 							if (TileAux != null)
 							{
 								Axis = (Vector2)TileAux.GetCustomData("Direction");															
@@ -149,24 +142,33 @@ public partial class PlayerController : OverworldController
     }
     public override void _PhysicsProcess(double delta)
 	{
-		if (Controllable)
-		{
+		/*if (Controllable)
+		{*/
 			if(Leader){
-				Move(Speed * Axis * (float)delta);
+				if(Controller?.Axis==Vector2.Zero){
+						ApplyFriction((float)(Friction * delta));
+				}
+				Move(Speed * Axis * SpeedModifier*(float)delta);
+				DirModifier = DirModifier.Lerp(new Vector2(0,0), (float)(ModifierDecay * delta));
+				if (DirModifier.Length() < 0.5)
+				{
+					DirModifier = Vector2.Zero;
+				}
+
 			}
-			if(Controller?.Axis==Vector2.Zero){
-					ApplyFriction((float)(Friction * delta));
-			}
-		}
+		//}
 		Parent.MoveAndSlide();			
 	}
 	public Vector2 GetInput(){
-		Vector2 Axis;
-		Axis = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");
+		Vector2 Axis = Vector2.Zero;
+		if (Controllable)
+		{
+			Axis = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");			
+		}
 		return Axis.Normalized();	
 	}
 	public void Move(Vector2 accel){
-		Parent.Velocity=accel;
+		Parent.Velocity=accel+DirModifier;
 	}
 	public void ApplyFriction(float amount){
 		if (Parent.Velocity.Length()>amount){
@@ -177,6 +179,7 @@ public partial class PlayerController : OverworldController
 			Parent.Velocity.LimitLength(MaxSpeed);
 		}
 	}
+
 	void PlayAnimations(Vector2 Axis){
 		Vector2 Direction = new Vector2(FacingDirection.X,-FacingDirection.Y);
 		bool AuxDir = false;
@@ -225,6 +228,7 @@ public partial class PlayerController : OverworldController
 		ProcessMode=ProcessModeEnum.Inherit;
 		if(Leader){
 			SetControllable(true);
+			EnableHurtbox(true);
 		}
 		Show();
 	}
@@ -317,6 +321,7 @@ public partial class PlayerController : OverworldController
 		if (!inBattle)
 		{
 			SetControllable(!Enter);			
+			EnableHurtbox(!Enter);
 		}
 	}
 

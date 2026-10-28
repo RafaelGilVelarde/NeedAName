@@ -28,7 +28,9 @@ public partial class MainMenu : CanvasLayer
         if(!Open){
             if (Controllable)
             {
-                GameManager.Instance.controller.SetControllable(true);                
+                GameManager.Instance.controller.SetControllable(true);   
+                GameManager.Instance.controller.EnableHurtbox(true);    
+
             }
             ProcessMode=ProcessModeEnum.Disabled;
         }

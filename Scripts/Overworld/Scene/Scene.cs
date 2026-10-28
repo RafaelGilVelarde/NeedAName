@@ -30,6 +30,7 @@ public partial class Scene : Node2D
     {
         GameManager Game = GameManager.Instance;
         Game.controller.SetControllable(true);
+        Game.controller.EnableHurtbox(true);
         Game.OverworldCam.PositionSmoothingEnabled = true;
         Game.OverworldCam.CameraParent = GetNode("./Cams");	
         Game.BattleCam.CameraParent = GetNode("./Cams");			

@@ -3,8 +3,13 @@
 [ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_i7n7t"]
 [ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="1_syi4c"]
 [ext_resource type="PackedScene" uid="uid://diqlf0l7iyh8u" path="res://Prefabs/Overworld/CollisionTileMap.tscn" id="2_uidld"]
+[ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="3_ecpr4"]
 [ext_resource type="PackedScene" uid="uid://cct1pnwomkbfr" path="res://Prefabs/Overworld/DataTileMap.tscn" id="3_uidld"]
 [ext_resource type="TileSet" uid="uid://by3v27ctnj6tn" path="res://Resources/Tilesets/Maps/Forest/ForestMap.tres" id="4_4wxan"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_45cgg"]
+resource_local_to_scene = true
+size = Vector2(16, 122)
 
 [node name="Node2D" type="Node2D" unique_id=894774006]
 script = ExtResource("1_i7n7t")
@@ -16,6 +21,9 @@ limit_left = -555
 limit_top = -745
 limit_right = 1184
 limit_bottom = 224
+
+[node name="Door" parent="." unique_id=1602749411 instance=ExtResource("3_ecpr4")]
+position = Vector2(-444, 164)
 
 [node name="CollisionMap" parent="." unique_id=204500188 instance=ExtResource("2_uidld")]
 visible = false
@@ -56,6 +64,13 @@ tile_set = ExtResource("4_4wxan")
 tile_map_data = PackedByteArray("AAD///f/AAAFAA4AAAAJAPf/AAAFAA4AAGAJAPD/AAAFAA4AAAASAPT/AAAFAA4AACAdAPT/AAAFAA4AAEAVAPj/AAAFAA4AACAVAP3/AAAFAA4AAEAdAAAAAAAFAA4AAED8//v/AAAFAA4AAFD0//T/AAAFAA4AAGDv/wMAAAAEABAAACDw/wMAAAAEABAAACDz/wMAAAAEABAAACD0/wMAAAAEABAAACD1/wMAAAAEABAAACD2/wMAAAAEABAAACD3/wMAAAAEABAAACD4/wMAAAAEABAAACD5/wMAAAAEABAAACD6/wMAAAAEABAAACD7/wMAAAAEABAAACD8/wMAAAAEABAAACD9/wMAAAAEABAAACD+/wMAAAAEABAAACD//wMAAAAEABAAACAAAAMAAAAEABAAACABAAMAAAAEABAAACACAAMAAAAEABAAACADAAMAAAAEABAAACAEAAMAAAAEABAAACAFAAMAAAAEABAAACAGAAMAAAAEABAAACAHAAMAAAAEABAAACAIAAMAAAAEABAAACAJAAMAAAAEABAAACAKAAMAAAAEABAAACALAAMAAAAEABAAACAMAAMAAAAEABAAACANAAMAAAAEABAAACAOAAMAAAAEABAAACAPAAMAAAAEABAAACAQAAMAAAAEABAAACARAAMAAAAEABAAACASAAMAAAAEABAAACATAAMAAAAEABAAACAUAAMAAAAEABAAACAVAAMAAAAEABAAACAWAAMAAAAEABAAACAXAAMAAAAEABAAACAZAAMAAAAEABAAACAaAAMAAAAEABAAACAbAAMAAAAEABAAACAcAAMAAAAEABAAACAdAAMAAAAEABAAACAeAAMAAAAEABAAACAYAAMAAAAEABAAACAfAAMAAAAEABAAACAgAAMAAAAEABAAACAhAAIAAAAEABAAAHAhAAEAAAAEABAAAHAhAAAAAAAEABAAAHAhAP//AAAEABAAAHAhAP7/AAAEABAAAHAhAP3/AAAEABAAAHAhAPz/AAAEABAAAHAhAPv/AAAEABAAAHAhAPr/AAAEABAAAHAhAPn/AAAEABAAAHAhAPj/AAAEABAAAHAhAPf/AAAEABAAAHAhAPb/AAAEABAAAHAhAPX/AAAEABAAAHAhAPT/AAAEABAAAHAhAPH/AAAEABAAAHAhAPD/AAAEABAAAHAhAO//AAAEABAAAHAiAO7/AAAEABAAACAjAO7/AAAEABAAACAkAO7/AAAEABAAACAhAAMAAAAFAA8AAFDu/wQAAAAEABAAAFDu/wUAAAAEABAAAFDu/wYAAAAEABAAAFAiAPL/AAAFAA4AAFAiAPP/AAAFAA4AAFA=")
 tile_set = ExtResource("4_4wxan")
 
+[node name="Door2" parent="." unique_id=1733732815 instance=ExtResource("3_ecpr4")]
+position = Vector2(1124, -416)
+
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
+shape = SubResource("RectangleShape2D_45cgg")
+
 [editable path="Cams"]
 [editable path="CollisionMap"]
 [editable path="DataTileMap"]
+[editable path="Door2"]

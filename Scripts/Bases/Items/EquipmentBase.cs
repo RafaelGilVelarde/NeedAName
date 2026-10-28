@@ -52,8 +52,8 @@ public partial class EquipmentBase : ItemBase
         Aux.SpAtk += stats.SpAtk;
         Aux.SpDef += stats.SpDef;
         Aux.Speed += stats.Speed;
-        Debug.WriteLine("EqAtk: "+stats.Def);
-        Debug.WriteLine("Atk: "+Targets[0].EquipStats.Def);
+        Debug.WriteLine("EqHP: "+stats.MaxHP);
+        Debug.WriteLine("TotalHP: "+Targets[0].TotalStats.MaxHP);
     }
 
     public virtual void UnEquipEffect(Character character)
@@ -65,6 +65,5 @@ public partial class EquipmentBase : ItemBase
         Aux.SpAtk -= stats.SpAtk;
         Aux.SpDef -= stats.SpDef;
         Aux.Speed -= stats.Speed;
-        Debug.WriteLine("Equip: "+Aux.Def);
     }
 }

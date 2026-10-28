@@ -112,6 +112,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_jeao6")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_onv4d"]
 script = ExtResource("17_r0y2x")
@@ -143,6 +144,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ugus2")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_65thx"]
 script = ExtResource("17_r0y2x")
@@ -174,6 +176,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_uvkim")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_eef0d"]
 script = ExtResource("17_r0y2x")
@@ -225,6 +228,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_inuk5")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_fsjfo"]
 script = ExtResource("15_mn1s2")
@@ -246,6 +250,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_fsjfo")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_nceiq"]
 script = ExtResource("15_mn1s2")
@@ -267,6 +272,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_nceiq")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_76kva"]
 script = ExtResource("15_mn1s2")
@@ -288,6 +294,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_76kva")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_morvy"]
 script = ExtResource("15_mn1s2")
@@ -302,6 +309,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_morvy")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_31hai"]
 script = ExtResource("15_mn1s2")
@@ -323,6 +331,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_31hai")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_w5g3v"]
 script = ExtResource("15_mn1s2")
@@ -344,6 +353,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_w5g3v")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_ddr52"]
 script = ExtResource("15_mn1s2")
@@ -365,6 +375,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ddr52")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_ge0d6"]
 script = ExtResource("15_mn1s2")
@@ -379,6 +390,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_ge0d6")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [node name="Map7" type="Node2D" unique_id=1214100381]
 script = ExtResource("1_7mnrv")
@@ -447,10 +459,10 @@ process_mode = 4
 position = Vector2(-32, 48)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(392, 152, 184, 152, 184, 168, -96, 168, -96, 152, -144, 152, -144, 168, -208, 168, -208, 152, -264, 152, -264, 120, -312, 120, -312, -216, -264, -216, -264, -248, -208, -248, -208, -264, -144, -264, -144, -248, -96, -248, -96, -264, 184, -264, 184, -248, 392, -248, 392, -152, 424, -152, 424, 56, 392, 56, 392, 144, 384, 144, 384, 48, 416, 48, 416, -144, 384, -144, 384, -240, 176, -240, 176, -256, -88, -256, -88, -240, -152, -240, -152, -256, -200, -256, -200, -240, -256, -240, -256, -208, -304, -208, -304, 112, -256, 112, -256, 144, -200, 144, -200, 160, -152, 160, -152, 144, -88, 144, -88, 160, 176, 160, 176, 144, 392, 144)
+polygon = PackedVector2Array(392, 152, 184, 152, 184, 208, -96, 208, -96, 152, -144, 152, -144, 208, -208, 208, -208, 152, -264, 152, -264, 120, -312, 120, -312, -216, -264, -216, -264, -248, -208, -248, -208, -296, -144, -296, -144, -248, -96, -248, -96, -296, 184, -296, 184, -248, 392, -248, 392, -152, 424, -152, 424, 56, 392, 56, 392, 144, 384, 144, 384, 48, 416, 48, 416, -144, 384, -144, 384, -240, 176, -240, 176, -288, -88, -288, -88, -240, -152, -240, -152, -288, -200, -288, -200, -240, -256, -240, -256, -208, -304, -208, -304, 112, -256, 112, -256, 144, -200, 144, -200, 200, -152, 200, -152, 144, -88, 144, -88, 200, 176, 200, 176, 144, 392, 144)
 
 [node name="Door" parent="." unique_id=53159140 instance=ExtResource("9_gr6nm")]
-position = Vector2(-208, -196)
+position = Vector2(-208, -224)
 collision_layer = 2
 Scene = 2
 PlayerZIndex = 1
@@ -463,7 +475,7 @@ position = Vector2(0, 4)
 shape = SubResource("RectangleShape2D_rttg1")
 
 [node name="Door2" parent="." unique_id=469625180 instance=ExtResource("9_gr6nm")]
-position = Vector2(-208, 200)
+position = Vector2(-208, 224)
 collision_layer = 2
 Scene = 12
 PlayerZIndex = 1
@@ -475,7 +487,7 @@ MaskOn = Array[int]([2])
 shape = SubResource("RectangleShape2D_gfdbp")
 
 [node name="Door4" parent="." unique_id=1511429450 instance=ExtResource("9_gr6nm")]
-position = Vector2(-312, 0)
+position = Vector2(-336, 0)
 rotation = 1.5708
 Scene = 5
 LoadPosition = Vector2(240, 0)
@@ -485,7 +497,7 @@ position = Vector2(-1.49568e-05, -4)
 shape = SubResource("RectangleShape2D_8scae")
 
 [node name="Door5" parent="." unique_id=743065883 instance=ExtResource("9_gr6nm")]
-position = Vector2(8, 200)
+position = Vector2(8, 224)
 Scene = 12
 LoadPosition = Vector2(40, -208)
 
@@ -494,12 +506,11 @@ position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_eqhmi")
 
 [node name="Door6" parent="." unique_id=591710242 instance=ExtResource("9_gr6nm")]
-position = Vector2(8, -199)
+position = Vector2(8, -224)
 Scene = 2
 LoadPosition = Vector2(176, 272)
 
 [node name="CollisionShape2D" parent="Door6" index="0" unique_id=1179102348]
-position = Vector2(2, 0)
 shape = SubResource("RectangleShape2D_drw78")
 
 [node name="Borders2" parent="." unique_id=626260004 instance=ExtResource("8_mhf5p")]

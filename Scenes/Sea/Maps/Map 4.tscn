@@ -80,7 +80,7 @@ rotation = 1.5708
 position = Vector2(-88, 152)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(376, 240, 352, 240, 352, 256, 112, 256, 112, 240, -16, 240, -16, 256, -160, 256, -160, 240, -272, 240, -272, -480, 384, -480, 384, 232, 376, 232, 376, -472, -264, -472, -264, 232, -152, 232, -152, 248, -24, 248, -24, 232, 120, 232, 120, 248, 344, 248, 344, 232, 376, 232)
+polygon = PackedVector2Array(376, 240, 352, 240, 352, 296, 112, 296, 112, 240, -16, 240, -16, 296, -160, 296, -160, 240, -272, 240, -272, -480, 384, -480, 384, 232, 376, 232, 376, -472, -264, -472, -264, 232, -152, 232, -152, 288, -24, 288, -24, 232, 120, 232, 120, 288, 344, 288, 344, 232, 376, 232)
 
 [node name="Borders2" parent="." unique_id=960505120 instance=ExtResource("6_eumls")]
 position = Vector2(-376, 192)
@@ -99,7 +99,7 @@ position = Vector2(192, 200)
 polygon = PackedVector2Array(40, 8, 40, -8, -24, -8, -24, 8)
 
 [node name="Door" parent="." unique_id=1997818112 instance=ExtResource("7_vlvwc")]
-position = Vector2(-168, 392)
+position = Vector2(-168, 416)
 collision_layer = 2
 Scene = 4
 PlayerZIndex = 1
@@ -107,26 +107,26 @@ LoadPosition = Vector2(-240, -230)
 LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_bdegs")
 
 [node name="Door2" parent="." unique_id=122797373 instance=ExtResource("7_vlvwc")]
-position = Vector2(136, 392)
+position = Vector2(136, 416)
 Scene = 4
 LoadPosition = Vector2(0, -230)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 position = Vector2(8, 0)
 shape = SubResource("RectangleShape2D_jylaw")
 
 [node name="Door3" parent="." unique_id=1844164408 instance=ExtResource("7_vlvwc")]
-position = Vector2(80, -224)
+position = Vector2(104, -224)
 rotation = 1.5708
 Scene = 19
 LoadPosition = Vector2(-848, 176)
 
-[node name="CollisionShape2D" parent="Door3" index="0"]
+[node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_fj8ev")
 
 [node name="Enemy Spawner" parent="." unique_id=1676548405 node_paths=PackedStringArray("detectArea") instance=ExtResource("8_i4lib")]

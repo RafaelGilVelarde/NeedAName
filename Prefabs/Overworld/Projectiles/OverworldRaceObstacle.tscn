@@ -1,0 +1,252 @@
+[gd_scene format=3 uid="uid://ckhtsbratak8c"]
+
+[ext_resource type="Script" uid="uid://cil8cm6edxayc" path="res://Scripts/Battle/Proyectiles/BezierProyectile.cs" id="1_gsiwc"]
+[ext_resource type="Script" uid="uid://rh5nu8eiyord" path="res://Scripts/Overworld/Triggers/OverworldHitbox.cs" id="2_h8vvt"]
+[ext_resource type="Texture2D" uid="uid://dmyuxrk1ti83" path="res://Sprites/Battle/Effects/WaterBubble/WaterBubble.png" id="3_f5ivn"]
+[ext_resource type="PackedScene" uid="uid://dcbu84xm8wcl3" path="res://Prefabs/Audio/SFX Controller.tscn" id="4_wanoh"]
+[ext_resource type="AudioStream" uid="uid://dnvo5bmf4mjlq" path="res://Music/SFX/Moves/WaterPunch.mp3" id="5_5vndt"]
+[ext_resource type="Script" uid="uid://v4e7r2ld5dmh" path="res://Scripts/Audio/SFXList.cs" id="6_oke75"]
+[ext_resource type="Script" uid="uid://dhmm71i3qium1" path="res://Scripts/Overworld/Projectiles/ProjectileEffects/ProjectilePushEffect.cs" id="7_h8vvt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_owmsc"]
+
+[sub_resource type="Animation" id="Animation_83my6"]
+length = 0.5
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_f5ivn")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4]
+}
+
+[sub_resource type="Animation" id="Animation_j23nv"]
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("3_f5ivn")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:vframes")
+tracks/2/interp = 1
+tracks/2/loop_wrap = false
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Sprite2D:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = false
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Sprite2D:frame")
+tracks/4/interp = 1
+tracks/4/loop_wrap = false
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [5, 6, 7, 8]
+}
+tracks/5/type = "method"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath(".")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0.4),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"EndSplash"
+}]
+}
+tracks/6/type = "method"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SFXController")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [0, 0],
+"method": &"PlaySFX"
+}]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_0rm7r"]
+_data = {
+&"idle": SubResource("Animation_83my6"),
+&"splash": SubResource("Animation_j23nv")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yy0lk"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_qcyna"]
+animation = &"splash"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_f7t04"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_o1khq"]
+advance_mode = 2
+advance_condition = &"Hit"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_btul0"]
+advance_mode = 2
+advance_condition = &"Start"
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_4okq6"]
+states/idle/node = SubResource("AnimationNodeAnimation_yy0lk")
+states/idle/position = Vector2(358, 100)
+states/splash/node = SubResource("AnimationNodeAnimation_qcyna")
+states/splash/position = Vector2(642, 109)
+transitions = ["Start", "idle", SubResource("AnimationNodeStateMachineTransition_f7t04"), "idle", "splash", SubResource("AnimationNodeStateMachineTransition_o1khq"), "splash", "idle", SubResource("AnimationNodeStateMachineTransition_btul0")]
+
+[sub_resource type="Resource" id="Resource_lfdeg"]
+script = ExtResource("6_oke75")
+SoundEffects = Array[AudioStream]([ExtResource("5_5vndt")])
+
+[node name="Bubble" type="Node2D" unique_id=1045767020 node_paths=PackedStringArray("HitEffect")]
+script = ExtResource("1_gsiwc")
+HitEffect = NodePath("Effect")
+Overworld = true
+
+[node name="Area2D" type="Area2D" parent="." unique_id=460461851 node_paths=PackedStringArray("HitEffect")]
+script = ExtResource("2_h8vvt")
+HurtboxTag = "PlayerOverworldHurtbox"
+HitEffect = NodePath("../Effect")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1017336798]
+shape = SubResource("RectangleShape2D_owmsc")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1017344387]
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("3_f5ivn")
+hframes = 3
+vframes = 3
+frame = 3
+metadata/_aseprite_wizard_config_ = {
+"keep_anim_length": false,
+"layer": "",
+"o_ex_p": "",
+"o_folder": "res://Sprites/Battle/Effects/WaterBubble",
+"o_name": "",
+"only_visible": false,
+"op_exp": true,
+"player": "Node2D2/AnimationPlayer",
+"source": "res://Aseprites/Effects/BAttle/WaterBubble.aseprite"
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1881230538]
+process_mode = 3
+libraries/ = SubResource("AnimationLibrary_0rm7r")
+
+[node name="AnimationTree" type="AnimationTree" parent="AnimationPlayer" unique_id=564378470]
+root_node = NodePath("../..")
+tree_root = SubResource("AnimationNodeStateMachine_4okq6")
+anim_player = NodePath("..")
+parameters/conditions/Hit = false
+parameters/conditions/Start = false
+
+[node name="Effect" type="Node" parent="." unique_id=1340087853 node_paths=PackedStringArray("Main")]
+script = ExtResource("7_h8vvt")
+Force = 100.0
+Decay = 4.0
+Main = NodePath("..")
+
+[node name="SFXController" parent="." unique_id=639321507 instance=ExtResource("4_wanoh")]
+Lists = [SubResource("Resource_lfdeg")]

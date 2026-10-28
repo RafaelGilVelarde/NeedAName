@@ -93,10 +93,10 @@ tile_set = ExtResource("3_3yxba")
 position = Vector2(-24, 0)
 
 [node name="CollisionPolygon2D" parent="Borders" index="0"]
-polygon = PackedVector2Array(352, 168, -304, 168, -304, -264, -248, -264, -248, -280, -184, -280, -184, -264, -48, -264, -48, -280, 96, -280, 96, -264, 352, -264, 352, 160, 344, 160, 344, -256, 88, -256, 88, -272, -40, -272, -40, -256, -192, -256, -192, -272, -240, -272, -240, -256, -296, -256, -296, 160, 352, 160)
+polygon = PackedVector2Array(352, 168, -304, 168, -304, -264, -248, -264, -248, -320, -184, -320, -184, -264, -48, -264, -48, -312, 96, -312, 96, -264, 352, -264, 352, 160, 344, 160, 344, -256, 88, -256, 88, -304, -40, -304, -40, -256, -192, -256, -192, -312, -240, -312, -240, -256, -296, -256, -296, 160, 352, 160)
 
 [node name="Door" parent="." unique_id=684491553 instance=ExtResource("6_5pxjj")]
-position = Vector2(-240, -264)
+position = Vector2(-240, -288)
 collision_layer = 2
 Scene = 3
 PlayerZIndex = 1
@@ -104,15 +104,15 @@ LoadPosition = Vector2(-168, 360)
 LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
-[node name="CollisionShape2D" parent="Door" index="0"]
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_km1im")
 
 [node name="Door2" parent="." unique_id=1332900811 instance=ExtResource("6_5pxjj")]
-position = Vector2(0, -264)
+position = Vector2(0, -288)
 Scene = 3
 LoadPosition = Vector2(136, 360)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_x7q4h")
 
 [node name="Borders2" parent="." unique_id=916273373 instance=ExtResource("5_a4cwd")]
@@ -142,7 +142,7 @@ texture_filter = 1
 texture = ExtResource("10_gfqhf")
 hframes = 4
 vframes = 3
-frame = 9
+frame = 8
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",

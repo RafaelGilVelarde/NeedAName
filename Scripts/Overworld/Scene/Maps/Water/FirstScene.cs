@@ -25,5 +25,6 @@ public partial class FirstScene : Scene
         GameManager.Instance.Data.Flags.EventFlags[EventFlag] = true;
         GameManager.Instance.PlayAudio(BGMIndex);
         GameManager.Instance.controller.SetControllable(true);
+        GameManager.Instance.controller.EnableHurtbox(true);
     }
 }

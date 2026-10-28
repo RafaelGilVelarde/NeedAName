@@ -8,12 +8,12 @@ public partial class EnemyCollision : Area2D
     [Export] BattleStart battleStart;
     public override void _Ready()
     {
-        BodyEntered+=OnCollisionEntered;
+        AreaEntered+=OnCollisionEntered;
     }
 
     private void OnCollisionEntered(Node2D body)
     {
-        if(body.IsInGroup("PlayerOverworldController")){
+        if(body.IsInGroup("PlayerOverworldHurtbox")){
             battleStart.CallDeferred("StartBattle");
         }
     }

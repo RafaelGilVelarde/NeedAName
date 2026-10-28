@@ -44,6 +44,7 @@ public partial class BattleManager : Node
 	[Export] public Control MenuUI,TutorialUI;
 	[Export]public ItemList itemList;
 	[Export]public MoveList moveList;
+	[Export] public Array<StatusBase> StatusConditions;
     // Called when the node enters the scene tree for the first time.
     public override void _EnterTree()
     {
@@ -283,14 +284,12 @@ public partial class BattleManager : Node
 	}
 	void ReduceDelays()
 	{
-		//Debug.WriteLine("Reducing Delays from: "+CurrentCharacter.Character.Base.Name+" by "+CurrentCharacter.CurrentDelay);
 		for(int i = 0; i < TurnOrder.Count; i++)
 		{
 			if (TurnOrder[i]!=CurrentCharacter)
 			{
 				int aux = TurnOrder[i].CurrentDelay-CurrentCharacter.CurrentDelay;
 				TurnOrder[i].CurrentDelay = (int)Mathf.Clamp(aux,0,Mathf.Inf);
-				Debug.WriteLine("Character: "+TurnOrder[i].GetParent().Name+" delay: "+TurnOrder[i].CurrentDelay);
 			}
 		}
 	}

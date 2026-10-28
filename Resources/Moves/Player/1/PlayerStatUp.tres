@@ -5,7 +5,7 @@
 
 [sub_resource type="Resource" id="Resource_73mhd"]
 script = ExtResource("1_o61h6")
-SpDefTime = 2
+SpDefTime = 3
 SpDefMult = 1.5
 Spdef = true
 Alt = null
@@ -13,7 +13,7 @@ metadata/_custom_type_script = "uid://lpkeic85k5nj"
 
 [resource]
 script = ExtResource("1_h2hw6")
-TimerSums = PackedInt32Array(0, 0, 1, 0, 0)
+TimerSums = PackedInt32Array(0, 0, 0, 1, 0)
 Stats = SubResource("Resource_73mhd")
 UserAmount = 1
 TargetAmount = 1

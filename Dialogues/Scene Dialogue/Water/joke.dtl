@@ -19,9 +19,9 @@ elif {GameManager.Data.Flags.EventFlags[10]} == true:
 else:
 	[signal arg="Cutscene4"]
 [wait time="3.0"]
-"No Box": That won't be necessary
+"No Box": That won't be necessary #id:140
 [signal arg="joke"]
 [wait time="2.6"]
-Halluci (Happiness): IS IT HIM
-MC (Happy): REAN "THE ASHEN CHEVALIER" COLD STEEL 3??????????
-"COLD STEEL" (Cold Steel): Haha....
+Halluci (Happiness): IS IT HIM #id:141
+MC (Happy): REAN "THE ASHEN CHEVALIER" COLD STEEL 3?????????? #id:142
+"COLD STEEL" (Cold Steel): Haha.... #id:143

@@ -93,7 +93,6 @@ public partial class SpinSpamMove : MoveBase
             Users[0].Character.ChangeWP(WP);
             Users[0].changeState(BattleCharacter.BattleState.Idle);
             Spam++;
-            Debug.WriteLine("Spam Increased: "+Spam);
             Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Windup",true);
             //Users[0].AnimatorTree.Set("parameters/ActionState/0/0/"+Combo+"/conditions/Windup",false);
             //Users[0]._DoAction-=Attack;
@@ -142,7 +141,6 @@ public partial class SpinSpamMove : MoveBase
                     SceneTreeTimer timer = Users[0].GetTree().CreateTimer(0.1,true,true);
                     timer.Timeout+=()=>{
                         MainTimer.TimeLeft = 0;
-                        Debug.WriteLine("Time: "+MainTimer.TimeLeft);
                     };
                 }
             }

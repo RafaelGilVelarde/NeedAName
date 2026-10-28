@@ -10,18 +10,18 @@ public partial class DetectArea : Area2D
     public override void _EnterTree()
     {
         Polygon.Polygon = Collision.Polygon;
-        BodyEntered+=OnCollisionEntered;
-        BodyExited+=OnCollisionExited;
+        AreaEntered+=OnCollisionEntered;
+        AreaExited+=OnCollisionExited;
     }
     private void OnCollisionEntered(Node2D body)
     {
-        if(body.IsInGroup("PlayerOverworldController")){
+        if(body.IsInGroup("PlayerOverworldHurtbox")){
             Entered=true;
         }
     }
     private void OnCollisionExited(Node2D body)
     {
-        if(body.IsInGroup("PlayerOverworldController")){
+        if(body.IsInGroup("PlayerOverworldHurtbox")){
             Entered=false;
         }
     }

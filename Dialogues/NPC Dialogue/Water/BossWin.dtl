@@ -13,7 +13,7 @@ if {GameManager.Data.Flags.EventFlags[10]} == true:
 "No Box-Dark": You made it through! #id:3b
 "No Box-Dark": I am curious though, what might your name be? #id:3c
 [clear time="0.0" step="false" style="false"]
-[text_input text="What is your name?" var="Characters.CharName"]
+[text_input text="What is your name?" var="Characters.CharName"] #id:13c
 "No Box-Dark": {Characters.CharName}....an interesting name to be sure #id:3d
 "No Box-Dark": Well then, {Characters.CharName}, may you have #id:3e
 "No Box-Dark": A wonderful life! #id:3f
