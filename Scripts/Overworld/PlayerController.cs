@@ -82,36 +82,13 @@ public partial class PlayerController : OverworldController
     public override void _Process(double delta)
     {
 		PlayAnimations(Axis);
-			if(Axis!=Vector2.Zero && Axis.X*Axis.Y == 0){
-				FacingDirection=Axis;
-			}
+		if (Axis != Vector2.Zero)
+		{
+			FacingDirection=Axis;			
+		}
 		if(Controllable){
 			Tile.FacingDirection = FacingDirection;
-			/*TileData Data = null;
-			Vector2 SceneCoords = new Vector2();
-			if (DataMap != null)
-			{
-				CurrentMapLayer = DataMap.Map[ZIndex%DataMap.Map.Count];
-				PrevCoords = Coords;
-				Vector2I BaseCoords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition);
-				Vector2I CoordAux = BaseCoords - Coords;
 
-				if(CoordAux.X!= FacingDirection.X || CoordAux.Y!= FacingDirection.Y)
-				{
-					Coords = BaseCoords;
-				}
-				else
-				{
-					Coords = CurrentMapLayer.LocalToMap(Parent.GlobalPosition - (FacingDirection * TileOffset));
-				}
-
-				Data = CurrentMapLayer.GetCellTileData(Coords);
-				SceneCoords = CurrentMapLayer.MapToLocal(Coords);
-			}
-			if(Data!=null){
-				PreviousTileType = tileTypes;
-				tileTypes = (TileTypes)(int)Data.GetCustomData("TileType");
-			}*/
 			Tile.CheckTile();
 			if (Leader)
 			{
@@ -124,13 +101,15 @@ public partial class PlayerController : OverworldController
 						if (Tile.tileTypes != Tile.PreviousTileType)
 						{
 							Parent.Position = Tile.SceneCoords;
+							TileData TileAux = Tile.DataMap.Map[ZIndex%Tile.DataMap.Map.Count].GetCellTileData(Tile.Coords);
+							Axis = (Vector2)TileAux.GetCustomData("Direction");
 						}
 						if (Tile.DataMap != null)
 						{
 							TileData TileAux = Tile.DataMap.Map[ZIndex%Tile.DataMap.Map.Count].GetCellTileData(Tile.Coords);
 							if (TileAux != null)
 							{
-								Axis = (Vector2)TileAux.GetCustomData("Direction");															
+								Axis = Axis.MoveToward((Vector2)TileAux.GetCustomData("Direction"), (float)(delta*60/16));															
 							}
 						}
 						break;
@@ -148,7 +127,7 @@ public partial class PlayerController : OverworldController
 				if(Controller?.Axis==Vector2.Zero){
 						ApplyFriction((float)(Friction * delta));
 				}
-				Move(Speed * Axis * SpeedModifier*(float)delta);
+				Move(Speed * Axis * SpeedModifier);
 				DirModifier = DirModifier.Lerp(new Vector2(0,0), (float)(ModifierDecay * delta));
 				if (DirModifier.Length() < 0.5)
 				{
@@ -163,7 +142,7 @@ public partial class PlayerController : OverworldController
 		Vector2 Axis = Vector2.Zero;
 		if (Controllable)
 		{
-			Axis = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown");			
+			Axis = Input.GetVector("MoveLeft", "MoveRight", "MoveUp", "MoveDown").Normalized();			
 		}
 		return Axis.Normalized();	
 	}
@@ -182,6 +161,14 @@ public partial class PlayerController : OverworldController
 
 	void PlayAnimations(Vector2 Axis){
 		Vector2 Direction = new Vector2(FacingDirection.X,-FacingDirection.Y);
+		if (Mathf.Abs(Direction.X) > Mathf.Abs(Direction.Y))
+		{
+			Direction = new Vector2(Direction.X/Mathf.Abs(Direction.X),0);
+		}
+		else if (Mathf.Abs(Direction.Y) > Mathf.Abs(Direction.X))
+		{
+			Direction = new Vector2(0,Direction.Y/Mathf.Abs(Direction.Y));
+		}
 		bool AuxDir = false;
 		if ((Vector2)AnimatorTree.Get("parameters/Idle/blend_position") != Direction)
 		{

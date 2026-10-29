@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
 
 public enum FlagType{
     Puzzle, 
@@ -11,6 +12,7 @@ public enum FlagType{
 [GlobalClass]
 public partial class Flags : Resource
 {
+    [Export] public Godot.Collections.Dictionary<string,Variant> Dict = new Godot.Collections.Dictionary<string, Variant>();
     [Export] public Array<bool> ItemGiven;
     [Export] public Array<bool> DialogueFlags;
     [Export] public Array<bool> PuzzleFlags;
@@ -30,6 +32,9 @@ public partial class Flags : Resource
     public delegate void _ItemFlagsBoolChangedEventHandler(int Change, bool Changed);
     [Signal]
     public delegate void _DialogueFlagsBoolChangedEventHandler(int Change, bool Changed);
+
+    [Signal]
+    public delegate void _DictFlagsChangedEventHandler(string Key, bool Changed);
 
     public void ChangeBoolFlag(int index, bool change, FlagType type){
         bool changed = false;
@@ -70,6 +75,12 @@ public partial class Flags : Resource
                 EmitSignal("_EventFlagsIntChanged",index,changed);
             break;
         }
+
+    }
+    public void ChangeDictFlag(string Key, Variant variant)
+    {
+        Dict[Key] = variant;
+        EmitSignal("_DictFlagsChanged");
     }
 
 

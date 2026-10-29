@@ -23,10 +23,12 @@ public partial class TileCheck : Node2D
 			if (DataMap != null)
 			{
 				CurrentMapLayer = DataMap.Map[BaseNode.ZIndex%DataMap.Map.Count];
-				PrevCoords = Coords;
-				Vector2I BaseCoords = CurrentMapLayer.LocalToMap(BaseNode.GlobalPosition);
-				Vector2I CoordAux = BaseCoords - Coords;
-
+                Coords = CurrentMapLayer.LocalToMap(BaseNode.GlobalPosition);
+				//PrevCoords = Coords;
+				/*Vector2I BaseCoords = CurrentMapLayer.LocalToMap(BaseNode.GlobalPosition);
+				Vector2I CoordAux = BaseCoords - PrevCoords;*/
+                //Coords = CurrentMapLayer.LocalToMap(BaseNode.GlobalPosition - (CoordAux * TileOffset));
+                /*
 				if(CoordAux.X!= FacingDirection.X || CoordAux.Y!= FacingDirection.Y)
 				{
 					Coords = BaseCoords;
@@ -34,7 +36,7 @@ public partial class TileCheck : Node2D
 				else
 				{
 					Coords = CurrentMapLayer.LocalToMap(BaseNode.GlobalPosition - (FacingDirection * TileOffset));
-				}
+				}*/
 
 				Data = CurrentMapLayer.GetCellTileData(Coords);
 				SceneCoords = CurrentMapLayer.MapToLocal(Coords);
