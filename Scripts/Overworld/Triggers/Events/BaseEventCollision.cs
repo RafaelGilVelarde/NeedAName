@@ -2,23 +2,26 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class BaseEventCollision : Area2D
 {
-    [Export] int BoolIndex, CurrentTimeline, TimelineIndex;
-    [Export] Array<Timelines> Timelines;
-    [Export] protected bool Cutscene, ManualBoolUpdate;
-    [Export] protected Array<Vector2> PushOffset;
-    [Export] protected Array<float> PushTimes;
 
+    [Export] Dictionary<string, Variant> CheckDict, ChangeDict;
+    [Export] int CurrentTimeline, TimelineIndex;
+    [Export] Array<Timelines> Timelines;
 
     [Export] Array<CheckValueTimeline> CheckValues;
-    [Export] CheckValueTimeline CheckManualDisableValues;
 
-    [Export] protected CutscenePlayer CutsceneAnimator;
+
     [Export] protected Array<float> TweenTimes;
     [Export] protected Array<DialogueVariables> Variables;
-    Callable beginCutscene, endCutscene, disable, changeFlag, push;
+    [Export] protected Array<InteractEffect> Effects;
+    [Export] protected Array<InteractEffectResource> EffectResources;
+
+    [Export] Array<CheckQuests> checkQuests = new Array<CheckQuests>();
+
+    Callable disable;
 
     public override void _EnterTree()
     {
@@ -28,24 +31,40 @@ public partial class BaseEventCollision : Area2D
     {
         SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
         disable = new Callable(this, MethodName.Disable);
-        push = new Callable(this, MethodName.Push);
-        changeFlag = new Callable(this, MethodName.ManualFlagUpdate);
-        Timer.Timeout += () =>
+        for(int i = 0; i < EffectResources.Count; i++)
         {
-            if (GameManager.Instance.CurrentScene.CutsceneAnimator != null && Cutscene)
-            {
-                CutsceneAnimator = GameManager.Instance.CurrentScene.CutsceneAnimator;
-                beginCutscene = new Callable(this, MethodName.StartCutscene);
-                endCutscene = new Callable(this, MethodName.EndCutscene);
-            }
-        };
+            EffectResources[i].BaseNode = this;
+            EffectResources[i].Ready();
+        }
+
+
     }
     protected virtual void OnCollisionEntered(Node2D body)
     {
+        int auxcheck = 0;
+        DataManager Data = GameManager.Instance.Data;
+        for(int i = 0; i < CheckDict.Keys.Count; i++)
+        {
+            string AuxKey = CheckDict.Keys.ElementAt(i);
+            if (Data.Flags.Dict[AuxKey].Equals(CheckDict[AuxKey]))
+            {
+                auxcheck++;
+            }
+        }
+
+        for(int i = 0; i < checkQuests.Count; i++)
+        {
+            if (checkQuests[i].Check())
+            {
+                auxcheck++;
+            }
+        }
+
+
+        int AuxCheckTarget = CheckDict.Keys.Count+checkQuests.Count;
         if (body.IsInGroup("PlayerOverworldController"))
         {
-            DataManager Data = GameManager.Instance.Data;
-            if (!Data.Flags.EventFlags[BoolIndex])
+            if (auxcheck == AuxCheckTarget)
             {
                 DialogicCSharp Dialogic = DialogicCSharp.instance;
                 
@@ -57,22 +76,19 @@ public partial class BaseEventCollision : Area2D
                 }
 
 
-                if (!ManualBoolUpdate)
-                {
-                    Data.Flags.ChangeBoolFlag(BoolIndex, true, FlagType.Event);
-                }
-                else
-                {
-                    Dialogic.DialogicRoot.Connect("signal_event", changeFlag);
-                }
+                    for(int i = 0; i < ChangeDict.Keys.Count; i++)
+                    {
+                        string AuxKey = ChangeDict.Keys.ElementAt(i);
+                        Data.Flags.ChangeDictFlag(AuxKey,ChangeDict[AuxKey]);
+                    }               
 
-                if (Cutscene)
+                for(int i = 0; i < EffectResources?.Count; i++)
                 {
-                    Dialogic.DialogicRoot.Connect("signal_event", beginCutscene);
-                    Dialogic.DialogicRoot.Connect("signal_event", endCutscene);
-                }
-                Dialogic.DialogicRoot.Connect("signal_event", push);
-                        
+                    EffectResources[i].ConnectCall();
+                    Dialogic.DialogicRoot.Connect("signal_event",EffectResources[i].StartInteract);
+                    Dialogic.DialogicRoot.Connect("timeline_ended",EffectResources[i].EndInteract);
+                }        
+
                 if (Variables != null)
                 {
                     for (int i = 0; i < Variables.Count; i++)
@@ -84,98 +100,17 @@ public partial class BaseEventCollision : Area2D
             }
         }
     }
-    protected virtual void StartCutscene(string Cutscene)
-    {
-        if (CutsceneAnimator.CutsceneNames.Contains(Cutscene))
-        {
-            CutsceneAnimator.PlayAnimation(Cutscene);
-        }
-    }
-    protected virtual void Push(string argument)
-    {
-        string Aux = "";
-        string Aux2 = "";
-        if (argument.Contains("_"))
-        {
-            Aux = argument.Split("_")[0];
-            Aux2 = argument.Split("_")[1];
-        }
-        if (Aux == "Push")
-        {
-            int Index = Aux2.ToInt();
-            Tween tween = CreateTween();
-            CharacterBody2D Chara = GameManager.Instance.controller.Parent;
-            tween.TweenProperty(Chara, "position", Chara.GlobalPosition + PushOffset[Index],PushTimes[Index]);
-        }
-    }
-    protected virtual void ManualFlagUpdate(string argument)
-    {
-        string[] Aux = argument.Split("_");
-        string Aux1 = "VariableType";
-        int Aux2 = 0;//"Index";
-        int Aux3 = 0;//"Value";
-        int Aux4 = 0;//"FlagType";
-        bool Aux3Bool = false;
-        if (Aux.Length == 4)
-        {
-            Aux1 = Aux[0];
-            Aux2 = Aux[1].ToInt();
-            Aux3 = Aux[2].ToInt();
-            Aux4 = Aux[3].ToInt();
-
-            if (Aux3 == 0)
-            {
-                Aux3Bool = false;
-            }
-            else
-            {
-                Aux3Bool = true;
-            }
-        }
-        Flags flags = GameManager.Instance.Data.Flags;
-        Debug.WriteLine("Aux: " +Aux1);
-        switch (Aux1)
-        {
-            case "Bool":
-                Debug.WriteLine("Set: " + Aux3Bool);
-                flags.ChangeBoolFlag(Aux2, Aux3Bool, (FlagType)Aux4);
-                break;
-            case "Int":
-                flags.ChangeIntFlag(Aux2, Aux3, (FlagType)Aux4);
-                break;
-        }
-
-
-    }
-    protected virtual void EndCutscene(string Argument)
-    {
-        if (Argument == "EndCutscene")
-        {
-            CutsceneAnimator.EndAnimation();
-        }
-    }
+ 
     protected virtual void Disable()
     {
-        DataManager Data = GameManager.Instance.Data;
         DialogicCSharp Dialogic = DialogicCSharp.instance;
-        if (Cutscene)
+
+        for(int i = 0; i < EffectResources?.Count; i++)
         {
-            Dialogic.DialogicRoot.Disconnect("signal_event", beginCutscene);
-            Dialogic.DialogicRoot.Disconnect("signal_event", endCutscene);
+            Dialogic.DialogicRoot.Disconnect("signal_event",EffectResources[i].StartInteract);
+            Dialogic.DialogicRoot.Disconnect("timeline_ended",EffectResources[i].EndInteract);
         }
-        if (ManualBoolUpdate)
-        {
-            Dialogic.DialogicRoot.Disconnect("signal_event", changeFlag);
-            if (CheckManualDisableValues.GetTimeline(0) == 1)
-            {
-                SetDeferred("monitoring", false);
-            }
-        }
-        if (Data.Flags.EventFlags[BoolIndex])
-        {
-            SetDeferred("monitoring", false);
-        }
-        Dialogic.DialogicRoot.Disconnect("signal_event", push);
+
         Dialogic.DialogicRoot.Disconnect("timeline_ended", disable);
     }
 }

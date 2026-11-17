@@ -20,12 +20,15 @@
 [ext_resource type="Resource" uid="uid://ctdvr3y2a0x6g" path="res://Resources/Moves/Enemy/Projectyles/Bubble.tres" id="18_8ut63"]
 [ext_resource type="Script" uid="uid://cbgw6teti2jjt" path="res://Scripts/Bases/Moves/DumyEnemyMove.cs" id="19_hs7qn"]
 [ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="23_a4yty"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="24_syqwy"]
+[ext_resource type="Script" uid="uid://uv41agbbvlq5" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffectResource.cs" id="25_mtgkg"]
 [ext_resource type="Resource" uid="uid://bgagykpbh0qsh" path="res://Resources/Moves/Enemy/BaseHit/Boss1BaseMove.tres" id="27_u7llr"]
-[ext_resource type="Script" uid="uid://bc5o80khg8keh" path="res://Scripts/Overworld/Setup/CheckFlagDelete.cs" id="35_qrfk4"]
+[ext_resource type="Script" uid="uid://c8211jt3rhuhk" path="res://Scripts/Overworld/Setup/CheckFlagEffects/CheckFlagEffects.cs" id="28_mtgkg"]
+[ext_resource type="Script" uid="uid://vjkf4y3c36wp" path="res://Scripts/Overworld/Setup/CheckFlagEffects/DeleteFlagEffect.cs" id="29_853dw"]
+[ext_resource type="Script" uid="uid://bc5o80khg8keh" path="res://Scripts/Overworld/Setup/CheckFlagNode.cs" id="35_qrfk4"]
 [ext_resource type="Script" uid="uid://bw4nrvy4lspmm" path="res://Scripts/GameData/CheckFlags.cs" id="36_se15h"]
 [ext_resource type="PackedScene" uid="uid://bwechl06etngi" path="res://Prefabs/Characters/EnemyCharacter.tscn" id="38_j6yui"]
 [ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="39_8t7fk"]
-[ext_resource type="Script" uid="uid://be52t7ry5g2rk" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffect.cs" id="40_8t7fk"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_ym7do"]
 frequency = 0.016
@@ -59,29 +62,36 @@ shader_parameter/top_color = Color(0, 0, 0, 1)
 shader_parameter/light_start = 0.0
 shader_parameter/light_end = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fxp0l"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbmco"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lltre"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8luy"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cpwlj"]
 size = Vector2(208, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_syqwy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_somvg"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mtgkg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkm08"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8tl1e"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_8t7fk"]
 script = ExtResource("14_ab6jc")
-FlagIndex = 6
-BoolFlagValue = true
+Value = 1
+DictKey = "WaterStrengthBarrier1"
+ChangeValue = Dictionary[String, Variant]({
+"WaterStrengthBarrier1": 1
+})
 EscapeChance = 0.0
 PartyFloorY = Array[float]([])
 EnemyFloorY = Array[float]([])
@@ -194,7 +204,7 @@ script = ExtResource("14_tvs0c")
 script = ExtResource("14_tvs0c")
 Lv = 4
 
-[sub_resource type="Resource" id="Resource_853dw"]
+[sub_resource type="Resource" id="Resource_q4fm3"]
 resource_local_to_scene = true
 script = ExtResource("23_a4yty")
 Base = ExtResource("17_0vd2s")
@@ -206,15 +216,15 @@ EquipStats = SubResource("Resource_por34")
 TotalStats = SubResource("Resource_2kyfs")
 AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jbmco"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nravh"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_d8luy"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_evkop"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_somvg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rcjjn"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
@@ -225,15 +235,24 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_mmbuk"]
 script = ExtResource("13_sb8f5")
 DialogueTimelines = Array[String](["Miniboss1"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
+
+[sub_resource type="Resource" id="Resource_rcjjn"]
+script = ExtResource("25_mtgkg")
+BattleStartPaths = Array[String](["../OverworldController/BattleStart"])
+metadata/_custom_type_script = "uid://uv41agbbvlq5"
 
 [sub_resource type="Resource" id="Resource_fxp0l"]
 script = ExtResource("36_se15h")
-index = 6
-boolResult = true
-ValueType = 1
+KeyIndex = "WaterStrengthBarrier1"
+Result = 1
+
+[sub_resource type="Resource" id="Resource_3i0um"]
+script = ExtResource("29_853dw")
+metadata/_custom_type_script = "uid://vjkf4y3c36wp"
 
 [node name="MapStrength1" type="Node2D" unique_id=988612866]
 y_sort_enabled = true
@@ -298,7 +317,7 @@ Scene = 19
 LoadPosition = Vector2(80, 176)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_fxp0l")
+shape = SubResource("RectangleShape2D_jbmco")
 disabled = true
 
 [node name="Door2" parent="." unique_id=1282309344 instance=ExtResource("9_p6pto")]
@@ -307,13 +326,14 @@ Scene = 22
 LoadPosition = Vector2(0, -160)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_lltre")
+shape = SubResource("RectangleShape2D_d8luy")
 
 [node name="Barrier" parent="." unique_id=1134617307 instance=ExtResource("10_a7ye7")]
 position = Vector2(0, 144)
 
 [node name="CollisionShape2D" parent="Barrier" index="1" unique_id=242036911]
 shape = SubResource("RectangleShape2D_cpwlj")
+disabled = false
 Toggleable = false
 HasDialogue = false
 SwitchState = 0
@@ -328,15 +348,15 @@ FacingRight = true
 SpokenTo = false
 
 [node name="Check" parent="Barrier" index="2" unique_id=216827243]
+CheckFlag = 1
 HasDialogue = false
-ChecksBool = true
-FlagIndex = 6
+KeyIndex = "WaterStrengthBarrier1"
 
 [node name="Character2" parent="." unique_id=1834513577 groups=["Interactable"] instance=ExtResource("38_j6yui")]
 position = Vector2(96, 0)
 
 [node name="CollisionShape2D" parent="Character2" index="0" unique_id=1831021069]
-shape = SubResource("RectangleShape2D_syqwy")
+shape = SubResource("RectangleShape2D_somvg")
 
 [node name="OverworldController" parent="Character2" index="1" unique_id=1701198914]
 movementController = null
@@ -350,24 +370,25 @@ Friction = 0.0
 MaxSpeed = 0.0
 AxisOffset = 0
 Axis = Vector2(0, 0)
-AxisAux = Vector2(0, 0)
 Controllable = true
 OffsetsSet = false
 FacingDirection = Vector2(0, 0)
-Coords = Vector2i(0, 0)
 
 [node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" parent_id_path=PackedInt32Array(1834513577, 2071790070) index="0" unique_id=809018392]
-shape = SubResource("RectangleShape2D_mtgkg")
+shape = SubResource("RectangleShape2D_bkm08")
 disabled = true
 
-[node name="BattleStart" parent="Character2/OverworldController" index="2" unique_id=597410356]
+[node name="CollisionShape2D" parent="Character2/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_8tl1e")
+
+[node name="BattleStart" parent="Character2/OverworldController" index="3" unique_id=597410356]
 scene = SubResource("Resource_8t7fk")
 EnemyCharacters = Array[Object]([SubResource("Resource_8evkf"), SubResource("Resource_xhx3j")])
 BorderOffset = Vector2(0, 0)
 EnemyPos = Array[Vector2]([Vector2(50, 0), Vector2(50, 100), Vector2(50, -100)])
 
 [node name="BattleCharacter" parent="Character2" index="2" unique_id=1992698993]
-Character = SubResource("Resource_853dw")
+Character = SubResource("Resource_q4fm3")
 Controllable = false
 OriginPos = Vector2(0, 0)
 Combo = 1
@@ -380,13 +401,13 @@ Moving = false
 DodgeDir = Vector2(0, 0)
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1834513577, 440007294) index="0" unique_id=557952078]
-shape = SubResource("RectangleShape2D_jbmco")
+shape = SubResource("RectangleShape2D_nravh")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 656277864) index="0" unique_id=365359841]
-shape = SubResource("RectangleShape2D_d8luy")
+shape = SubResource("RectangleShape2D_evkop")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1834513577, 172316861) index="0" unique_id=2023012338]
-shape = SubResource("RectangleShape2D_somvg")
+shape = SubResource("RectangleShape2D_rcjjn")
 
 [node name="Battle" type="CollisionShape2D" parent="Character2" unique_id=682966762 node_paths=PackedStringArray("Effects", "Sprites")]
 shape = SubResource("RectangleShape2D_8evkf")
@@ -395,17 +416,15 @@ TimelineGroup = Array[Object]([SubResource("Resource_mmbuk")])
 PauseWhenDialogue = true
 Turn = true
 Variables = []
-Effects = [NodePath("Node")]
+Effects = [null]
+EffectResources = Array[ExtResource("24_syqwy")]([SubResource("Resource_rcjjn")])
 Sprites = []
-
-[node name="Node" type="Node" parent="Character2/Battle" unique_id=105754883 node_paths=PackedStringArray("battleStart")]
-script = ExtResource("40_8t7fk")
-battleStart = NodePath("../../OverworldController/BattleStart")
 
 [node name="CheckDelete" type="Node" parent="Character2" unique_id=33449214 node_paths=PackedStringArray("MainNode")]
 script = ExtResource("35_qrfk4")
 CheckFlags = Array[Object]([SubResource("Resource_fxp0l")])
 MainNode = NodePath("..")
+CheckEffects = Array[ExtResource("28_mtgkg")]([SubResource("Resource_3i0um")])
 
 [editable path="Cams"]
 [editable path="Borders"]

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="QuestBase" format=3 uid="uid://88rhnre4o37v"]
+
+[ext_resource type="Script" uid="uid://bi3g5girv0q5h" path="res://Scripts/Bases/Quests/QuestBase.cs" id="1_68io6"]
+
+[resource]
+script = ExtResource("1_68io6")
+GameID = 2
+Days = 1
+Title = "Sidequest3"
+Description = "Sidequest3Desc"
+Logs = Array[String]([])
+LogStateCheck = Array[int]([])
+metadata/_custom_type_script = "uid://bi3g5girv0q5h"

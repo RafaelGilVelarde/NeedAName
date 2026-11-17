@@ -113,14 +113,13 @@ public partial class BattleStart : Node2D
                 PartyPosGlobal.Add(Aux);
             }
             for (int i=0;i<EnemyBattle.Count;i++){
-                Debug.WriteLine("ThisPos: "+GlobalPosition);
                 Vector2 AuxPos = GlobalPosition + EnemyPos[i] - EnemyBattle[i].BattleOffset;
+                
                 if (scene.Horizontal)
                 {
                     AuxPos = new Vector2(AuxPos.X, scene.EnemyFloorY[i] - EnemyBattle[i].FloorNode.Position.Y);
                 }
                 Vector2 Aux=CheckPosition(AuxPos);
-                Debug.WriteLine("FinalPos: "+Aux);
                 EnemyPosGlobal.Add(Aux);
             }
             BattleManager.instance.ProcessMode=ProcessModeEnum.Inherit;
@@ -142,7 +141,13 @@ public partial class BattleStart : Node2D
                         Debug.WriteLine("Collider: "+aux);
                         FinalPos=result["position"].As<Vector2>();
                         if(!aux.IsInGroup("Borders")){
-                            Vector2 Normalized = new Vector2(FinalPos.X/Mathf.Abs(FinalPos.X),FinalPos.Y/Mathf.Abs(FinalPos.Y));
+                            float AuxX = FinalPos.X/Math.Abs(FinalPos.X);
+                            float AuxY = FinalPos.Y/Math.Abs(FinalPos.Y);
+                            if (FinalPos.Y == 0)
+                            {
+                                AuxY = 0;
+                            }
+                            Vector2 Normalized = new Vector2(AuxX,AuxY);
                             FinalPos-=Normalized*BorderOffset;
                         }
                 }

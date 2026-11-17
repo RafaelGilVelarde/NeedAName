@@ -69,7 +69,8 @@ public partial class StartMenu : Node
         {
             Game = GameManager.Instance;
             Flags flags = Game.Data.Flags;
-            if (flags.EventFlags[0])
+            Debug.WriteLine(flags.Dict.Keys);
+            if ((bool)flags.Dict["Intro"])
             {
                 MainSprite.Show();
             }

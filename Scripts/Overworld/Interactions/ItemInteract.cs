@@ -6,16 +6,16 @@ using System.Diagnostics;
 [GlobalClass]
 public partial class ItemInteract : InteractText
 {
-    [Export] protected int GameID;
-    [Export] protected Array<int> ItemID;
+    [Export] protected string KeyGameID;
     [Export] bool Delete;
     [Export] protected Array<Items> ItemsToGive;
     Callable DoAction;
     public override void _Ready()
     {
         base._Ready();
-        Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
-        if(ItemGiven[GameID]){
+        Dictionary<string, Variant> ItemGiven = GameManager.Instance.Data.Flags.Dict;
+        if((bool)ItemGiven[KeyGameID])
+        {
             SpokenTo=true;
             Destroy();
         }
@@ -54,7 +54,7 @@ public partial class ItemInteract : InteractText
             Items.Add(ItemsToGive[i]);*/
         }
         AnimatorTree?.Set("parameters/conditions/Taking",true);
-        GameManager.Instance.Data.Flags.ItemGiven[GameID] = true;
+        GameManager.Instance.Data.Flags.Dict[KeyGameID] = true;
     }
 
     public override void Disable()

@@ -1,8 +1,8 @@
 ... #id:be
 ... #id:bf
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Anger): Yet another... #id:c0
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Wondering): Aww...mooooore fighting... #id:c1
 MC (Confused): You don't talk....? #id:c2
 MC (Angry): Ok then, let's do this again #id:c3

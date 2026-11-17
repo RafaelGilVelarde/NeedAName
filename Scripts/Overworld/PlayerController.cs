@@ -87,7 +87,6 @@ public partial class PlayerController : OverworldController
 			FacingDirection=Axis;			
 		}
 		if(Controllable){
-			Tile.FacingDirection = FacingDirection;
 
 			Tile.CheckTile();
 			if (Leader)
@@ -112,6 +111,9 @@ public partial class PlayerController : OverworldController
 								Axis = Axis.MoveToward((Vector2)TileAux.GetCustomData("Direction"), (float)(delta*60/16));															
 							}
 						}
+						break;
+					case TileTypes.Lava:
+						Axis = GetInput();
 						break;
 				}		
 				RecordAxis();	

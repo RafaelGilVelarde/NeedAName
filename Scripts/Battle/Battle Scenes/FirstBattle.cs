@@ -9,24 +9,11 @@ public partial class FirstBattle : BattleScene
     public override void StartTurnEffect()
     {
         base.StartTurnEffect();
-        if(Battle.TurnCount == 1 && !GameManager.Instance.Data.Flags.EventFlags[1]){
+        if(Battle.TurnCount == 1 && !(bool)GameManager.Instance.Data.Flags.Dict["BattleTutorial"]){
             Battle.CanStartTurn=false;
-            GameManager.Instance.Data.Flags.EventFlags[1] = true;
+            GameManager.Instance.Data.Flags.Dict["BattleTutorial"] = true;
             StartDialogue(Timeline,true,false,TimelineType.StartTurn);
         }
     }
-    /*public override void ReturnToOverworld()
-    {
-        base.ReturnToOverworld();
-        if(!GameManager.Instance.Data.Flags.EventFlags[1]){
-            BattleManager Battle=BattleManager.instance;
-            BattleState State=Battle.State;
-            switch (State){
-                case BattleState.Win:
-                    GameManager.Instance.Data.Flags.EventFlags[1] = true;
-                    DialogicCSharp.instance.StartDialogue(Timeline,true,false);
-                break;
-            }
-        }
-    }*/
+
 }

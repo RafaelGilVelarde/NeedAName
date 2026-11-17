@@ -1,21 +1,21 @@
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Wondering): This...thing... #id:29
-elif {GameManager.Data.Flags.EventFlags[10]} == true:
+elif {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Wondering): Hooow straaangeee #id:2a
 MC (Confused): This is.......What is it? #id:2b
 "No Box": A bad omen, that's what #id:2c
 MC (Confused): What do you mean? #id:2d
 "No Box": Sorry, there's no time, you'll have to fight #id:2e
 "No Box": It's the only way, good luck #id:2f
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Anger): In.......my way..... #id:30
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Angry): Ooone moore enemyyy #id:31
 MC (Angry): Fine then, guess there's no choice #id:32
 [clear time="0.0" step="false"]
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	[signal arg="Cutscene1"]
-elif {GameManager.Data.Flags.EventFlags[10]} == true:
+elif {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	[signal arg="Cutscene3"]
 else:
 	[signal arg="Cutscene4"]

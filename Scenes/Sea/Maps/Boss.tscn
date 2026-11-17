@@ -12,9 +12,14 @@
 [ext_resource type="Texture2D" uid="uid://c1me4p2pod0o1" path="res://Sprites/Overworld/Effects/Soul/soul4.png" id="10_kjnia"]
 [ext_resource type="Texture2D" uid="uid://bvvxwoiwvkb4o" path="res://Sprites/Battle/Enemies/Boss1.png" id="12_c83it"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="12_ccuw4"]
+[ext_resource type="Script" uid="uid://e6kv65i8u347" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/CutsceneInteractEffect.cs" id="16_4o1nk"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="16_odqh0"]
 [ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="16_q3s3b"]
 [ext_resource type="Script" uid="uid://cfaoqrjffnra8" path="res://Scripts/Battle/Battle Scenes/Boss1.cs" id="17_lkv6f"]
+[ext_resource type="Script" uid="uid://uv41agbbvlq5" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffectResource.cs" id="17_uq7ov"]
 [ext_resource type="PackedScene" uid="uid://brf1kg03d66t7" path="res://Scenes/MainMenu.tscn" id="17_wjl1s"]
+[ext_resource type="Script" uid="uid://ddrrpguh68ss6" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/CutsceneInteractEffectResource.cs" id="18_tirut"]
+[ext_resource type="Script" uid="uid://cxvl201jx7h07" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffectResource.cs" id="20_uq7ov"]
 [ext_resource type="Resource" uid="uid://bj4l2qn2leh4c" path="res://Resources/CharacterBases/Enemies/Boss1.tres" id="20_yycnn"]
 [ext_resource type="Script" uid="uid://cnghiawsylwhg" path="res://Scripts/GameData/Moves/Moves.cs" id="21_8a1uq"]
 [ext_resource type="Resource" uid="uid://bgagykpbh0qsh" path="res://Resources/Moves/Enemy/BaseHit/Boss1BaseMove.tres" id="22_f8onq"]
@@ -482,35 +487,34 @@ _data = {
 &"Cutscene4": SubResource("Animation_wal5m")
 }
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3r24e"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tirut"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
 [sub_resource type="Resource" id="Resource_d7n11"]
 script = ExtResource("12_ccuw4")
 DialogueTimelines = Array[String](["Boss"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_4o1nk"]
+[sub_resource type="Resource" id="Resource_4paaq"]
+script = ExtResource("17_uq7ov")
+BattleStartPaths = Array[String](["../OverworldController/BattleStart"])
+metadata/_custom_type_script = "uid://uv41agbbvlq5"
+
+[sub_resource type="Resource" id="Resource_6o5gn"]
+script = ExtResource("18_tirut")
+metadata/_custom_type_script = "uid://ddrrpguh68ss6"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x1itl"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
-[sub_resource type="Resource" id="Resource_6ajbo"]
-script = ExtResource("17_lkv6f")
-PackedScene = ExtResource("17_wjl1s")
-TransitionColor = Color(1, 1, 1, 1)
-VariableName = "CharName"
-VariableFolder = "Characters"
-PostBattleTimeline = "BossWin"
-EscapeChance = 0.0
-Horizontal = true
-Cutscene = true
-PartyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
-EnemyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
-BattleMusic = 4
-LoseMusic = 2
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4paaq"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
 
 [sub_resource type="Animation" id="Animation_r1hrf"]
 resource_name = "Battle_Cutscene"
@@ -727,6 +731,31 @@ _data = {
 
 [sub_resource type="AnimationRootNode" id="AnimationRootNode_3r24e"]
 
+[sub_resource type="Resource" id="Resource_ahtky"]
+script = ExtResource("18_tirut")
+metadata/_custom_type_script = "uid://ddrrpguh68ss6"
+
+[sub_resource type="Resource" id="Resource_g3va2"]
+script = ExtResource("20_uq7ov")
+ItemsToGive = null
+
+[sub_resource type="Resource" id="Resource_6ajbo"]
+script = ExtResource("17_lkv6f")
+PackedScene = ExtResource("17_wjl1s")
+DictFlag = "Boss1Win"
+TransitionColor = Color(1, 1, 1, 1)
+VariableName = "CharName"
+VariableFolder = "Characters"
+PostBattleTimeline = "BossWin"
+EscapeChance = 0.0
+Horizontal = true
+Cutscene = true
+PartyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
+EnemyFloorY = Array[float]([177.0, 177.0, 177.0, 177.0])
+BattleMusic = 4
+LoseMusic = 2
+Effects = Array[ExtResource("16_odqh0")]([SubResource("Resource_ahtky")])
+
 [sub_resource type="Resource" id="Resource_5aagx"]
 script = ExtResource("16_q3s3b")
 
@@ -784,16 +813,17 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_17t3e")
 EquipStats = SubResource("Resource_5aagx")
 TotalStats = SubResource("Resource_b2n85")
+AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nkuaf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ajbo"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1qacv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d7n11"]
 resource_local_to_scene = true
 size = Vector2(20, 38)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_odqh0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_csl6b"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
@@ -1014,16 +1044,17 @@ rotation = 3.1415927
 scale = Vector2(1, -1)
 
 [node name="CollisionShape2D" parent="Character" index="0" unique_id=1831021069]
-shape = SubResource("RectangleShape2D_3r24e")
+shape = SubResource("RectangleShape2D_tirut")
 
-[node name="InteractShape" parent="Character" index="1" unique_id=861861049 node_paths=PackedStringArray("Animator", "CutsceneAnimator")]
+[node name="InteractShape" parent="Character" index="1" unique_id=861861049 node_paths=PackedStringArray("Effects", "Animator")]
 position = Vector2(0, 36)
-shape = SubResource("RectangleShape2D_3r24e")
+shape = SubResource("RectangleShape2D_tirut")
 TimelineGroup = Array[Object]([SubResource("Resource_d7n11")])
+Effects = [null, NodePath("../CutsceneInteract")]
+EffectResources = Array[ExtResource("16_odqh0")]([SubResource("Resource_4paaq"), SubResource("Resource_6o5gn")])
 Animator = NodePath("../OverworldController/AnimationPlayer")
 FacingRight = false
 Cutscene = true
-CutsceneAnimator = NodePath("../../Cutscenes")
 
 [node name="OverworldController" parent="Character" index="2" unique_id=1701198914 node_paths=PackedStringArray("Animator", "AnimatorTree")]
 Animator = NodePath("AnimationPlayer")
@@ -1036,13 +1067,10 @@ vframes = 8
 frame = 49
 
 [node name="CollisionShape2D" parent="Character/OverworldController/Area2D" parent_id_path=PackedInt32Array(1834513577, 2071790070) index="0" unique_id=809018392]
-shape = SubResource("RectangleShape2D_4o1nk")
+shape = SubResource("RectangleShape2D_x1itl")
 
-[node name="BattleStart" parent="Character/OverworldController" index="2" unique_id=597410356]
-scene = SubResource("Resource_6ajbo")
-EnemyCharacters = Array[float]([])
-PartyPos = Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)])
-EnemyPos = Array[Vector2]([Vector2(0, -36)])
+[node name="CollisionShape2D" parent="Character/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_4paaq")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Character/OverworldController" index="3" unique_id=1303543268]
 libraries/ = SubResource("AnimationLibrary_0pth0")
@@ -1054,6 +1082,12 @@ root_node = NodePath("../..")
 tree_root = SubResource("AnimationRootNode_3r24e")
 anim_player = NodePath("..")
 
+[node name="BattleStart" parent="Character/OverworldController" index="4" unique_id=597410356]
+scene = SubResource("Resource_6ajbo")
+EnemyCharacters = Array[float]([])
+PartyPos = Array[Vector2]([Vector2(-150, 0), Vector2(-250, 0)])
+EnemyPos = Array[Vector2]([Vector2(0, -36)])
+
 [node name="BattleCharacter" parent="Character" index="3" unique_id=1992698993 node_paths=PackedStringArray("AnimatorTree", "AnimatorPlayer")]
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 AnimatorPlayer = NodePath("AnimationPlayer")
@@ -1061,16 +1095,16 @@ Character = SubResource("Resource_wml83")
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1834513577, 440007294) index="0" unique_id=557952078]
 position = Vector2(0, 0)
-shape = SubResource("RectangleShape2D_nkuaf")
+shape = SubResource("RectangleShape2D_6ajbo")
 
 [node name="Hurtbox" parent="Character/BattleCharacter" index="1" unique_id=656277864]
 position = Vector2(-34, 33)
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox" index="0" unique_id=365359841]
-shape = SubResource("RectangleShape2D_1qacv")
+shape = SubResource("RectangleShape2D_d7n11")
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1834513577, 172316861) index="0" unique_id=2023012338]
-shape = SubResource("RectangleShape2D_odqh0")
+shape = SubResource("RectangleShape2D_csl6b")
 
 [node name="MainSprite" parent="Character/BattleCharacter" index="3" unique_id=915002412]
 texture = ExtResource("12_c83it")
@@ -1095,6 +1129,10 @@ position = Vector2(-20, 32)
 
 [node name="AnimationTree" parent="Character/BattleCharacter/AnimationPlayer" index="0" unique_id=1119668007]
 parameters/ActionState/blend_position = 6.0
+
+[node name="CutsceneInteract" type="Node" parent="Character" unique_id=941430767 node_paths=PackedStringArray("CutsceneAnimator")]
+script = ExtResource("16_4o1nk")
+CutsceneAnimator = NodePath("../../Cutscenes")
 
 [editable path="Cams"]
 [editable path="Character"]

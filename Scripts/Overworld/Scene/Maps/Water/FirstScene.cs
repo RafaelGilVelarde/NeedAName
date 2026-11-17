@@ -3,12 +3,11 @@ using System;
 
 public partial class FirstScene : Scene
 {
-    [Export] string Timeline;
-    [Export] int EventFlag;
+    [Export] string Timeline, KeyFlag;
     Callable EndDialogueCall;
     public override void Setup()
     {
-        if(!GameManager.Instance.Data.Flags.EventFlags[EventFlag]){
+        if(!(bool)GameManager.Instance.Data.Flags.Dict[KeyFlag]){
             GameManager.Instance.StopAudio();
             EndDialogueCall = new Callable(this,MethodName.EndDialogue);
             DialogicCSharp DialogicInstance = DialogicCSharp.instance;
@@ -22,7 +21,7 @@ public partial class FirstScene : Scene
     void EndDialogue(){
         DialogicCSharp DialogicInstance = DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended",EndDialogueCall);
-        GameManager.Instance.Data.Flags.EventFlags[EventFlag] = true;
+        GameManager.Instance.Data.Flags.Dict[KeyFlag] = true;
         GameManager.Instance.PlayAudio(BGMIndex);
         GameManager.Instance.controller.SetControllable(true);
         GameManager.Instance.controller.EnableHurtbox(true);

@@ -14,6 +14,7 @@ public partial class OverworldController : Node2D
 	[Export] public AnimationPlayer Animator, EffectAnimator;
 	[Export] public AnimationTree AnimatorTree;
 	[Export] public CharacterBody2D Parent;
+	[Export] public Node2D Grandparent {get; protected set;}
 	[Export] public CollisionShape2D OverworldCollider;
 
 	[Export] public int AxisOffset;
@@ -26,6 +27,8 @@ public partial class OverworldController : Node2D
 	[Export] public BattleCharacter BattleCharacter;
 
 	[Export] protected OverworldHurtbox Hurtbox;
+
+	[Export] public RemoteTransform2D CameraController;
 	public override void _EnterTree()
 	{
 		if(BattleCharacter.Character.NodeCharacter == null){
@@ -144,5 +147,20 @@ public partial class OverworldController : Node2D
 	public void EnableHurtbox(bool enable)
 	{
 		Hurtbox.GetChild<CollisionShape2D>(0).SetDeferred("disabled",!enable);
+	}
+	public void SetGrandparent(Node2D node = null)
+	{
+		Grandparent = node;
+	}
+	public void GrandParentNode()
+	{
+		if (Grandparent != null)
+		{
+			Parent.CallDeferred("reparent",Grandparent);			
+		}
+		else
+		{
+			Parent.CallDeferred("reparent",GetTree().CurrentScene);
+		}
 	}
 }

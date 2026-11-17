@@ -72,6 +72,23 @@ public partial class TurnList : Control
         }
         Turns[0].CharacterSprite.Modulate = Current;
     }
+    public void End()
+    {
+        for(int i = 0; i < Turns.Count; i++)
+        {
+            Turns[i].Animator.Play("end");
+            Turns[i].CurrentCharacter = null;
+        }
+        Tween ContainerTween = CreateTween();
+        if (isVertical)
+        {
+            ContainerTween.TweenProperty(MainContainer,"size",new Vector2(81,0),0.4);
+        }
+        else
+        {
+            ContainerTween.TweenProperty(MainContainer,"size",new Vector2(0,81),0.4);
+        }
+    }
     public void ChooseLocation(bool Vertical)
     {
         if (Vertical)

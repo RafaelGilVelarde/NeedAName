@@ -16,6 +16,8 @@
 [sub_resource type="Resource" id="Resource_674l3"]
 script = ExtResource("7_giy8a")
 DialogueTimelines = Array[String](["SwitchHint"])
+KeyIndexes = Array[String]([])
+Variants = []
 FlagIndexes = null
 flagTypes = null
 

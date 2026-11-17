@@ -5,10 +5,10 @@ Oh you have it! Do you want me to jog up your memory? #id:a6
 	Ok there it is! Take it! #id:aa
 	MC (Wondering): I can remember.....warmth...it feels strange... #id:ab
 	MC (Happy): But thanks! #id:ac
-	if {GameManager.Data.Flags.EventFlags[9]} == true:
+	if {GameManager.Data.Flags..Dict["Companion1Has"]} == true:
 		Halluci (Wondering): This feeling... #id:ad
 		Halluci (Happiness): Even I feel calm #id:ae
-	if {GameManager.Data.Flags.EventFlags[10]} == true:
+	if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 		Blobfish (Happy): Your face is...happy! #id:af
 	Glad to be of help. Put it on your heart if you wanna feel the effects #id:b0
 	[signal arg="GiveItem"]

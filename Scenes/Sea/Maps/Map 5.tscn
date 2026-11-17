@@ -11,17 +11,19 @@
 [ext_resource type="Resource" uid="uid://5ql8hfdj1knt" path="res://Resources/Items/Key/Soul Memory.tres" id="9_hnk1l"]
 [ext_resource type="Script" uid="uid://v1cgtdjjxke3" path="res://Scripts/Items/Items.cs" id="10_dc5yr"]
 [ext_resource type="Texture2D" uid="uid://cons1d420hhfo" path="res://Sprites/Overworld/NPCs/Isopod.png" id="10_gfqhf"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="10_t6khn"]
 [ext_resource type="PackedScene" uid="uid://n1mlp7dl7nw6" path="res://Prefabs/Animators/NPCs/Water/Isopod.tscn" id="11_1ia12"]
 [ext_resource type="Script" uid="uid://dodbxq2rl22x" path="res://Scripts/Items/Equipment.cs" id="11_6rvsl"]
 [ext_resource type="Resource" uid="uid://ucx4gbjlxlfk" path="res://Resources/Items/Equipment/Warmth Memory.tres" id="11_7otv1"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="12_86o1t"]
+[ext_resource type="Script" uid="uid://dkopnvstsaf46" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemCheckInteractEffectResource.cs" id="15_t4qoq"]
 [ext_resource type="Script" uid="uid://c1ul7bpbioofb" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemCheckInteractEffect.cs" id="17_x7q4h"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_km1im"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kt8l7"]
 resource_local_to_scene = true
 size = Vector2(48, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_x7q4h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_eyjr2"]
 resource_local_to_scene = true
 size = Vector2(128, 16)
 
@@ -30,9 +32,18 @@ size = Vector2(128, 16)
 [sub_resource type="Resource" id="Resource_t4qoq"]
 script = ExtResource("12_86o1t")
 DialogueTimelines = Array[String](["FirstItemNPC1", "FirstItemNPC1-1"])
-FlagIndexes = Array[int]([2])
-flagTypes = Array[int]([3])
+KeyIndexes = Array[String](["ItemNPC1Dialogue"])
+Variants = [true]
+TimelineDict = Dictionary[String, Variant]({
+"ItemNPC1Dialogue": true
+})
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
+
+[sub_resource type="Resource" id="Resource_x7q4h"]
+script = ExtResource("11_6rvsl")
+Base = ExtResource("11_7otv1")
+Amount = 1
+metadata/_custom_type_script = "uid://dodbxq2rl22x"
 
 [sub_resource type="Resource" id="Resource_t6khn"]
 script = ExtResource("10_dc5yr")
@@ -40,11 +51,13 @@ Base = ExtResource("9_hnk1l")
 Amount = 1
 metadata/_custom_type_script = "uid://v1cgtdjjxke3"
 
-[sub_resource type="Resource" id="Resource_x7q4h"]
-script = ExtResource("11_6rvsl")
-Base = ExtResource("11_7otv1")
-Amount = 1
-metadata/_custom_type_script = "uid://dodbxq2rl22x"
+[sub_resource type="Resource" id="Resource_yomqv"]
+script = ExtResource("15_t4qoq")
+TakeItems = true
+ItemsToTake = Array[ExtResource("10_dc5yr")]([SubResource("Resource_t6khn")])
+KeyGameID = "SidequestWater1"
+ItemsToGive = Array[Object]([SubResource("Resource_x7q4h")])
+metadata/_custom_type_script = "uid://dkopnvstsaf46"
 
 [node name="Map5" type="Node2D" unique_id=1716065006]
 script = ExtResource("1_aqvd6")
@@ -105,7 +118,7 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_km1im")
+shape = SubResource("RectangleShape2D_kt8l7")
 
 [node name="Door2" parent="." unique_id=1332900811 instance=ExtResource("6_5pxjj")]
 position = Vector2(0, -288)
@@ -113,7 +126,7 @@ Scene = 3
 LoadPosition = Vector2(136, 360)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_x7q4h")
+shape = SubResource("RectangleShape2D_eyjr2")
 
 [node name="Borders2" parent="." unique_id=916273373 instance=ExtResource("5_a4cwd")]
 position = Vector2(-240, -264)
@@ -130,19 +143,19 @@ script = ExtResource("8_km1im")
 TimelineGroup = Array[Object]([SubResource("Resource_t4qoq")])
 PauseWhenDialogue = true
 Turn = true
-Variables = Array[Object]([])
 Effects = [NodePath("Node")]
+EffectResources = Array[ExtResource("10_t6khn")]([SubResource("Resource_yomqv")])
 Animator = NodePath("Sprite2D/AnimationPlayer2")
 MainSprite = NodePath("Sprite2D")
-Sprites = Array[Object]([])
-Colors = Array[Object]([])
+Sprites = []
+Colors = []
 
 [node name="Sprite2D" type="Sprite2D" parent="NPC/CollisionShape2D" unique_id=92574509]
 texture_filter = 1
 texture = ExtResource("10_gfqhf")
 hframes = 4
 vframes = 3
-frame = 8
+frame = 10
 metadata/_aseprite_wizard_config_ = {
 "keep_anim_length": false,
 "layer": "",
@@ -161,7 +174,7 @@ metadata/_aseprite_wizard_config_ = {
 script = ExtResource("17_x7q4h")
 TakeItems = true
 ItemsToTake = Array[ExtResource("10_dc5yr")]([SubResource("Resource_t6khn")])
-GameID = 1
+KeyGameID = "SidequestWater1"
 ItemsToGive = Array[Object]([SubResource("Resource_x7q4h")])
 interact = NodePath("..")
 

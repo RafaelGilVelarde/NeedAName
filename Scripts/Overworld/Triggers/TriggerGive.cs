@@ -12,17 +12,18 @@ public partial class TriggerGive : Node
     {
         base._Ready();
         Data =   GameManager.Instance.Data;
-        Data.Flags._EventFlagsBoolChanged += GiveObjects;
-        Data.Flags._PuzzleFlagsBoolChanged += GiveObjects;
+    /*    Data.Flags._EventFlagsBoolChanged += GiveObjects;
+        Data.Flags._PuzzleFlagsBoolChanged += GiveObjects;*/
+        Data.Flags._DictFlagsChanged+=GiveObjects;
     }
 
-    private void GiveObjects(int Change, bool Changed)
+    private void GiveObjects(string Change, bool Changed)
     {
         if (Changed)
         {
             for (int i = 0; i < Objects.Count; i++)
             {
-                if (Change == Objects[i].index)
+                if (Change == Objects[i].KeyIndex && Data.Flags.Dict[Change].Equals(Objects[i].KeyValue))
                 {
                     switch (Objects[i].objectType)
                     {
@@ -48,8 +49,9 @@ public partial class TriggerGive : Node
     public override void _ExitTree()
     {
         base._ExitTree();
-        Data.Flags._EventFlagsBoolChanged -= GiveObjects;
-        Data.Flags._PuzzleFlagsBoolChanged -= GiveObjects;
+        Data.Flags._DictFlagsChanged-=GiveObjects;
+       /* Data.Flags._EventFlagsBoolChanged -= GiveObjects;
+        Data.Flags._PuzzleFlagsBoolChanged -= GiveObjects;*/
     }
 
 

@@ -24,24 +24,27 @@
 [ext_resource type="Resource" uid="uid://cxqb868icnqmh" path="res://Resources/BattleScenes/FirstBattle.tres" id="20_p5oso"]
 [ext_resource type="Script" uid="uid://bggkcfmmxwh6y" path="res://Scripts/Overworld/Interactions/InteractText.cs" id="22_mky88"]
 [ext_resource type="Texture2D" uid="uid://48gfi8aqt1oj" path="res://Sprites/Overworld/Objects/Water/Item.png" id="23_rakky"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="23_yx0v1"]
 [ext_resource type="Resource" uid="uid://ccbpggt45xqro" path="res://Resources/Items/Consumable/Refresher.tres" id="25_mky88"]
 [ext_resource type="Script" uid="uid://dk7ychycyu3qr" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffect.cs" id="25_vtjq6"]
+[ext_resource type="Script" uid="uid://cxvl201jx7h07" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffectResource.cs" id="26_p3x5o"]
 
 [sub_resource type="Resource" id="Resource_xlhq5"]
 script = ExtResource("13_ade6h")
 DialogueTimelines = Array[String](["NPC1"])
-FlagIndexes = null
-flagTypes = null
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = Dictionary[String, Variant]({})
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mky88"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o2ajn"]
 resource_local_to_scene = true
 size = Vector2(127, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_rakky"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3glbp"]
 resource_local_to_scene = true
 size = Vector2(80, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_yx0v1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_iwn8h"]
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
@@ -311,9 +314,25 @@ AltStatus = null
 [sub_resource type="Resource" id="Resource_3glbp"]
 script = ExtResource("13_ade6h")
 DialogueTimelines = Array[String](["ItemPick"])
-FlagIndexes = Array[int]([3])
-flagTypes = Array[int]([2])
+KeyIndexes = Array[String](["WaterItem1"])
+Variants = [true]
+TimelineDict = Dictionary[String, Variant]({
+"WaterItem1": true
+})
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
+
+[sub_resource type="Resource" id="Resource_f4lil"]
+script = ExtResource("15_8voyv")
+Base = ExtResource("25_mky88")
+Amount = 1
+metadata/_custom_type_script = "uid://dbdef31it6o02"
+
+[sub_resource type="Resource" id="Resource_0gjw0"]
+script = ExtResource("26_p3x5o")
+KeyGameID = "WaterItem1"
+Delete = true
+ItemsToGive = Array[Object]([SubResource("Resource_f4lil")])
+metadata/_custom_type_script = "uid://cxvl201jx7h07"
 
 [sub_resource type="Animation" id="Animation_os0gx"]
 length = 0.6
@@ -440,9 +459,9 @@ tile_set = ExtResource("3_jnjlj")
 TimelineGroup = Array[Object]([SubResource("Resource_xlhq5")])
 TimelineGroupIndex = null
 TimelineIndex = null
-Timeline = null
 FacingDirection = null
 Sprites = []
+Colors = []
 SpokenTo = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
@@ -456,15 +475,15 @@ LoadPosition = Vector2(-300, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(8, -3.49691e-07)
-shape = SubResource("RectangleShape2D_mky88")
+shape = SubResource("RectangleShape2D_o2ajn")
 
 [node name="Door2" parent="." unique_id=248274767 instance=ExtResource("6_222lk")]
 position = Vector2(-160, 640)
 Scene = 5
-LoadPosition = Vector2(0, -120)
+LoadPosition = Vector2(0, -168)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_rakky")
+shape = SubResource("RectangleShape2D_3glbp")
 
 [node name="Borders" parent="." unique_id=2102335737 instance=ExtResource("7_hw13a")]
 position = Vector2(-24, 120)
@@ -478,7 +497,7 @@ Scene = 19
 LoadPosition = Vector2(32, -592)
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_yx0v1")
+shape = SubResource("RectangleShape2D_iwn8h")
 
 [node name="Enemy Spawner" parent="." unique_id=1251075581 node_paths=PackedStringArray("detectArea") instance=ExtResource("8_aago7")]
 position = Vector2(112, 96)
@@ -516,6 +535,7 @@ script = ExtResource("22_mky88")
 TimelineGroup = Array[Object]([SubResource("Resource_3glbp")])
 PauseWhenDialogue = true
 Effects = [NodePath("Node")]
+EffectResources = Array[ExtResource("23_yx0v1")]([SubResource("Resource_0gjw0")])
 Animator = NodePath("Sprite2D/AnimationPlayer")
 Sprites = []
 
@@ -542,7 +562,7 @@ autoplay = &"default"
 
 [node name="Node" type="Node" parent="ItemPickup/ItemInteract" unique_id=1099127531 node_paths=PackedStringArray("interact")]
 script = ExtResource("25_vtjq6")
-GameID = 3
+KeyGameID = "WaterItem1"
 Delete = true
 ItemsToGive = Array[Object]([SubResource("Resource_p3x5o")])
 interact = NodePath("..")

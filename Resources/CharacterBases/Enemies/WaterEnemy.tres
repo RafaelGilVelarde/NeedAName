@@ -36,6 +36,7 @@ SoundEffects = Array[AudioStream]([ExtResource("4_mpu23"), ExtResource("5_h83sc"
 script = ExtResource("4_s11i6")
 ExpYield = 5.0
 AI = SubResource("Resource_0nsyi")
+Drops = null
 BaseStats = SubResource("Resource_grl5b")
 OverworldAnimator = ExtResource("3_2e2qm")
 BattleAnimator = ExtResource("2_4l00k")

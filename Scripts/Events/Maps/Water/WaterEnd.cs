@@ -19,7 +19,7 @@ public partial class WaterEnd : Node
     void EndDialogue()
     {
         DialogicCSharp Dialogic = DialogicCSharp.instance;
-        GameManager.Instance.Data.Party[0].Name = Dialogic.GetVariable(VariableName, VariableFolder);
+        GameManager.Instance.Data.Party[0].Name = (string)Dialogic.GetVariable(VariableName, VariableFolder);
         Dialogic.SetVariable(VariableName, VariableFolder, "");
         GetTree().ChangeSceneToPacked(PackedScene);
     }

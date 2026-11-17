@@ -1,0 +1,9 @@
+Testquest
+- Yes
+	[signal arg="Cutscene1"]
+	[wait time="5.0"]
+	Test2
+	[signal arg="Fight"]
+	[signal arg="EndCutscene"]
+- No
+	Hi

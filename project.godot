@@ -23,7 +23,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 run/main_scene="res://Scenes/MainMenu.tscn"
 config/use_custom_user_dir=true
-config/custom_user_dir_name="NaNGame"
+config/custom_user_dir_name="NaNGameRun"
 config/features=PackedStringArray("4.6", "C#", "GL Compatibility")
 boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
 boot_splash/show_image=false
@@ -74,16 +74,22 @@ variables={
 "Items": {
 "ItemCheck": false,
 "ItemGiven": false,
-"ItemName": "aaa"
+"ItemName_0": "aaa",
+"ItemName_1": "",
+"ItemName_2": ""
 },
 "Moves": {
 "MoveName": ""
 },
 "Number": {
-"ItemAmount": 0
+"ItemAmount_0": 0,
+"ItemAmount_1": 0,
+"ItemAmount_2": 0,
+"ItemCount": 0
 },
 "Puzzle": {},
-"PuzzleInt": {}
+"PuzzleInt": {},
+"TimelineJump": 0
 }
 translation/enabled=true
 translation/original_locale="en"
@@ -121,6 +127,9 @@ directories/dtl_directory={
 "FirstItemNPC2": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC2.dtl",
 "FirstItemNPC3": "res://Dialogues/NPC Dialogue/Water/FirstItemNPC3.dtl",
 "FirstScene": "res://Dialogues/Scene Dialogue/FirstScene.dtl",
+"ForestSidequest1": "res://Dialogues/NPC Dialogue/Forest/ForestSidequest1.dtl",
+"ForestSidequest2": "res://Dialogues/NPC Dialogue/Forest/ForestSidequest2.dtl",
+"ForestTestSidequest": "res://Dialogues/Scene Dialogue/Forest/ForestTestSidequest.dtl",
 "Heal": "res://Dialogues/Heal.dtl",
 "IntroCutscene": "res://Dialogues/Scene Dialogue/IntroCutscene.dtl",
 "Item1": "res://Dialogues/Item Obtained/Water/Item1.dtl",

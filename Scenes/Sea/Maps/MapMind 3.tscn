@@ -185,6 +185,7 @@ HasDialogue = false
 ChecksBool = true
 ChecksInt = null
 FlagIndex = 4
+KeyIndex = "WaterMindCurrent1"
 
 [node name="Currents" type="Node" parent="Puzzle" unique_id=1128858705 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_6p4sy")
@@ -198,6 +199,7 @@ HasDialogue = false
 ChecksBool = true
 ChecksInt = null
 FlagIndex = 5
+KeyIndex = "WaterMindCurrent2"
 
 [node name="Currents2" type="Node" parent="Puzzle2" unique_id=827981923 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_6p4sy")
@@ -223,18 +225,6 @@ Check = NodePath("../../Puzzle")
 CheckAtStart = true
 Type = 0
 Colors = Array[Color]([Color(4, 0, 1, 1), Color(0.513726, 0.101961, 0.976471, 1)])
-
-[node name="Sprite" parent="CurrentSwitch2" index="1" unique_id=1975938561]
-visible = false
-texture = null
-
-[node name="Water" parent="CurrentSwitch2/Sprite2D" parent_id_path=PackedInt32Array(349535739, 467203574) index="0" unique_id=796026312]
-visible = false
-texture = null
-
-[node name="Shine" parent="CurrentSwitch2/Sprite2D" parent_id_path=PackedInt32Array(349535739, 467203574) index="1" unique_id=1580217123]
-visible = false
-texture = null
 
 [node name="Borders" parent="." unique_id=1369305086 instance=ExtResource("10_p1f8h")]
 
@@ -272,12 +262,15 @@ scale = Vector2(2.4, 1)
 
 [node name="CollisionShape2D" parent="Barrier" index="1" unique_id=242036911]
 shape = SubResource("RectangleShape2D_xx6da")
+disabled = false
 Type = null
 
 [node name="Check" parent="Barrier" index="2" unique_id=216827243]
+CheckFlag = 1
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 3
+KeyIndex = "WaterMindBarrier2"
 
 [node name="Barrier2" parent="." unique_id=1093027397 instance=ExtResource("12_7dtei")]
 position = Vector2(80, 256)
@@ -286,11 +279,14 @@ scale = Vector2(0.9, 1)
 
 [node name="CollisionShape2D" parent="Barrier2" index="1" unique_id=242036911]
 shape = SubResource("RectangleShape2D_w5p2i")
+disabled = false
 
 [node name="Check" parent="Barrier2" index="2" unique_id=216827243]
+CheckFlag = 1
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 2
+KeyIndex = "WaterMindBarrier1"
 
 [editable path="Cams"]
 [editable path="CurrentSwitch"]

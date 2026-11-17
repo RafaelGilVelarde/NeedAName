@@ -5,6 +5,7 @@ using System;
 public partial class StatusBase : Resource
 {
     [Export] public string Name;
+    [Export] public int GameID;
     
     public virtual void Effect(BattleCharacter character)
     {

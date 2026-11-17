@@ -115,12 +115,40 @@
 [sub_resource type="Resource" id="Resource_pgs4m"]
 resource_local_to_scene = true
 script = ExtResource("2_a7det")
-ItemGiven = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
-DialogueFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
-PuzzleFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
-EventFlags = Array[bool]([false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false])
-PuzzleIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
-EventIntFlags = Array[int]([0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0])
+Dict = Dictionary[String, Variant]({
+"BattleTutorial": false,
+"Boss1Win": false,
+"Companion": 0,
+"Companion1Dialogue": false,
+"Companion1Has": false,
+"Companion2Dialogue": false,
+"Companion2Has": false,
+"EnemyOrder": 0,
+"Exit18": false,
+"Exit19": false,
+"Intro": false,
+"ItemNPC1Dialogue": false,
+"ItemNPC2Dialogue": false,
+"Key1": false,
+"Mainquests": [null, null, null],
+"SidequestWater1": false,
+"SidequestWater2": false,
+"Sidequests": [null, null, null],
+"TEST": false,
+"Warning": false,
+"WaterBarrier1": 0,
+"WaterBarrier2": 0,
+"WaterItem1": false,
+"WaterItem2": false,
+"WaterMindBarrier1": 0,
+"WaterMindBarrier2": 0,
+"WaterMindCurrent1": 0,
+"WaterMindCurrent2": 0,
+"WaterMindItem1": false,
+"WaterStrengthBarrier1": 0,
+"WaterStrengthBarrier2": 0,
+"WaterStrengthBarrier3": 0
+})
 
 [sub_resource type="Resource" id="Resource_nhj1g"]
 script = ExtResource("3_qc7bw")

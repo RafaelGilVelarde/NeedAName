@@ -1,14 +1,15 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 [GlobalClass]
 public partial class ChangeFlagSimple : BattleScene
 {
-    [Export] int FlagIndex, IntFlagValue;
-    [Export] bool BoolFlagValue;
-    [Export] SwitchType switchType;
-    [Export] FlagType flagType;
+    [Export] Variant Value;
+    [Export] string DictKey;
+    [Export] Dictionary<string,Variant> ChangeValue;
     public override void ReturnToOverworld(){
         
         base.ReturnToOverworld();
@@ -18,29 +19,11 @@ public partial class ChangeFlagSimple : BattleScene
             case BattleState.Win:
                 Debug.WriteLine("Changing Flag");
                 Flags Aux = GameManager.Instance.Data.Flags;
-                switch (switchType){
-                    case SwitchType.Bool:
-                        switch(flagType){
-                            case FlagType.Puzzle:
-                                Aux.ChangeBoolFlag(FlagIndex,BoolFlagValue,FlagType.Puzzle);
-                            break;
-                            case FlagType.Event:
-                                Aux.ChangeBoolFlag(FlagIndex,BoolFlagValue,FlagType.Event);
-                            break;
-                        }
-                    break;
-                    case SwitchType.Int:
-                        switch(flagType){
-                            case FlagType.Puzzle:
-                                Aux.ChangeIntFlag(FlagIndex,IntFlagValue,FlagType.Puzzle);
-                            break;
-                            case FlagType.Event:
-                                Aux.ChangeIntFlag(FlagIndex,IntFlagValue,FlagType.Event);
-                            break;
-                        }
-                    break;
+                //Aux.ChangeDictFlag(DictKey,Value);
+                for(int i = 0; i < ChangeValue.Keys.Count; i++)
+                {
+                    Aux.ChangeDictFlag(ChangeValue.Keys.ElementAt(i),ChangeValue[ChangeValue.Keys.ElementAt(i)]);
                 }
-                //EnemyOrderPuzzle.instance.EnemyDefeated(Order);
             break;
         }
     }

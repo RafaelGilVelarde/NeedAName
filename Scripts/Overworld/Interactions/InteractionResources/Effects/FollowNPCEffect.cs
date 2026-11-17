@@ -1,6 +1,7 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.Diagnostics;
 
 public partial class FollowNPCEffect : InteractEffect
 {
@@ -8,24 +9,26 @@ public partial class FollowNPCEffect : InteractEffect
     //[Export] PlayerController Follower;
     [Export] CharacterType character;
     [Export] Array<CharacterType> CheckDeleteCharacters;
-    [Export] Array<int> CheckEvents, CheckUnflagEvents;
-    [Export] int CharacterPrefab, EventIndex;
-    public override void _Ready()
+    [Export] int CharacterPrefab;
+    [Export] Array<string> CheckKey,CheckUnflagKey;
+
+    [Export] string KeyIndex;
+
+   /* public override void _Ready()
     {
         base._Ready();
         FollowNPC = new Callable(this,MethodName.Follow);
         //Animator = Follower.Animator;
         //AnimatorTree = Follower.AnimatorTree;
         Flags flags= GameManager.Instance.Data.Flags;
-        for(int i = 0;i<CheckEvents.Count;i++){
-            if(flags.EventFlags[CheckEvents[i]]){
+        for(int i = 0;i<CheckKey.Count;i++){
+            if((bool)flags.Dict[CheckKey[i]])
+            {
                 GetParent().QueueFree();
                 break;
             }
         }
-        /*if(GameManager.Instance.Data.Flags.EventFlags[EventIndex]){
-            GetParent().QueueFree();
-        }*/
+
     }
     public override void ConnectCall()
     {
@@ -49,7 +52,7 @@ public partial class FollowNPCEffect : InteractEffect
                 else{
                     AuxChar = Game.Data.AllFollwers[AuxType.CharacterIndex];
                 }
-                Flag.ChangeBoolFlag(CheckUnflagEvents[i%CheckUnflagEvents.Count],false,FlagType.Event);
+                Flag.ChangeDictFlag(CheckUnflagKey[i%CheckUnflagKey.Count],false);
                 for(int j = 0;j<Game.Followers.Count;j++){
                     PlayerController Follower = Game.Followers[j];
                     Character Chara = Follower.BattleCharacter.Character;
@@ -88,7 +91,7 @@ public partial class FollowNPCEffect : InteractEffect
                     GameManager.Instance.AddFollowingCharacter(Aux,true);
                 break;
             }
-            Game.Data.Flags.ChangeBoolFlag(EventIndex,true,FlagType.Event);
+            Game.Data.Flags.ChangeDictFlag(KeyIndex,true);
             GetParent().QueueFree();
-    }
+    }*/
 }

@@ -16,7 +16,6 @@ public partial class CollisionTileMap: Node2D
         UsedCells = Map[0].GetUsedCells();
         for(int i = 0; i < UsedCells.Count; i++)
         {
-            Debug.WriteLine("Cell: "+UsedCells[i]);
             OriginalCells.Add(Map[0].GetCellAtlasCoords(UsedCells[i]));
             /*int CurrentY = 0;
             if(UsedCells[i]!=new Vector2I(-1, -1))

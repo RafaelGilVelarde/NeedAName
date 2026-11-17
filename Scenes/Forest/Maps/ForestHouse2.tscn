@@ -1,0 +1,105 @@
+[gd_scene format=4 uid="uid://bcl30k35ce6vi"]
+
+[ext_resource type="Script" uid="uid://b0x4ctv0utr4l" path="res://Scripts/Overworld/Scene/Scene.cs" id="1_400m5"]
+[ext_resource type="Texture2D" uid="uid://dk57fcsebwuk0" path="res://Sprites/Background/Indoors/Forest/ForestHouse1.png" id="2_5g6rn"]
+[ext_resource type="Texture2D" uid="uid://ct0os0tgl3s1b" path="res://Sprites/DefaultSquare.png" id="3_5xrtx"]
+[ext_resource type="PackedScene" uid="uid://djo2i1fcdq2s" path="res://Prefabs/Camera/Cameras.tscn" id="4_xndf6"]
+[ext_resource type="PackedScene" uid="uid://cct1pnwomkbfr" path="res://Prefabs/Overworld/DataTileMap.tscn" id="5_y66fs"]
+[ext_resource type="PackedScene" uid="uid://b7g5dkmqek4r4" path="res://Prefabs/Characters/Overworld/NPCs/NPC Base.tscn" id="6_6irfi"]
+[ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="7_utw24"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="8_japeg"]
+[ext_resource type="Resource" uid="uid://kokjr03e2ece" path="res://Resources/Quests/Sidequests/Forest/Sidequest2.tres" id="9_o6a14"]
+[ext_resource type="Script" uid="uid://bfdd2cgvdp2u5" path="res://Scripts/Overworld/Interactions/InteractionResources/Quests/Quest.cs" id="10_36v60"]
+[ext_resource type="Script" uid="uid://gt343gatd8ao" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/GiveSidequestInteractEffectResource.cs" id="11_7fq10"]
+
+[sub_resource type="Resource" id="Resource_k2y8e"]
+script = ExtResource("7_utw24")
+DialogueTimelines = Array[String](["ForestSidequest1"])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = Dictionary[String, Variant]({})
+metadata/_custom_type_script = "uid://cnb8dnl86kpka"
+
+[sub_resource type="Resource" id="Resource_bmaxu"]
+script = ExtResource("10_36v60")
+Base = ExtResource("9_o6a14")
+CompletedQuestStates = Array[int]([])
+metadata/_custom_type_script = "uid://bfdd2cgvdp2u5"
+
+[sub_resource type="Resource" id="Resource_6b0jj"]
+script = ExtResource("11_7fq10")
+quest = Array[Object]([SubResource("Resource_bmaxu")])
+DictKey = "Sidequest"
+metadata/_custom_type_script = "uid://gt343gatd8ao"
+
+[node name="Node2D" type="Node2D" unique_id=767291747]
+script = ExtResource("1_400m5")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=779108674]
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D" unique_id=513833715]
+z_index = -1
+texture = ExtResource("2_5g6rn")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=1983266471]
+visible = false
+polygon = PackedVector2Array(128, 0, 120, 40, 96, 84, 68, 108, 36, 124, 20, 124, 20, 140, 16, 148, 8, 156, -8, 156, -16, 148, -20, 140, -20, 124, -36, 124, -68, 108, -96, 84, -120, 40, -128, 0, -128, 160, 128, 160)
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="StaticBody2D" unique_id=25103069]
+visible = false
+polygon = PackedVector2Array(-128, 0, -124, -20, -108, -48, -68, -72, -44, -80, -44, -64, -28, -52, 0, -48, 28, -52, 44, -64, 44, -80, 68, -72, 108, -48, 124, -20, 128, 0, 128, -160, -128, -160)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1387663600]
+modulate = Color(0, 0, 0, 1)
+z_index = -2
+scale = Vector2(6.7999988, 6.0399995)
+texture = ExtResource("3_5xrtx")
+
+[node name="Cams" parent="." unique_id=1775105697 instance=ExtResource("4_xndf6")]
+
+[node name="OverworldCam" parent="Cams" index="0"]
+zoom = Vector2(3, 3)
+limit_left = -128
+limit_top = -160
+limit_right = 128
+limit_bottom = 160
+
+[node name="BattleCam" parent="Cams" index="1"]
+zoom = Vector2(3, 3)
+limit_left = -128
+limit_top = -160
+limit_right = 128
+limit_bottom = 160
+
+[node name="DataTileMap" parent="." unique_id=1897485933 instance=ExtResource("5_y66fs")]
+visible = false
+
+[node name="TileMapLayer" parent="DataTileMap" index="0" unique_id=1095332286]
+tile_map_data = PackedByteArray("AAD8//v/AQAAAAAAAAD8//z/AQAAAAAAAAD8//3/AQAAAAAAAAD8//7/AQAAAAAAAAD8////AQAAAAAAAAD8/wAAAQAAAAAAAAD8/wEAAQAAAAAAAAD8/wIAAQAAAAAAAAD8/wMAAQAAAAAAAAD8/wQAAQAAAAAAAAD9//v/AQAAAAAAAAD9//z/AQAAAAAAAAD9//3/AQAAAAAAAAD9//7/AQAAAAAAAAD9////AQAAAAAAAAD9/wAAAQAAAAAAAAD9/wEAAQAAAAAAAAD9/wIAAQAAAAAAAAD9/wMAAQAAAAAAAAD9/wQAAQAAAAAAAAD+//v/AQAAAAAAAAD+//z/AQAAAAAAAAD+//3/AQAAAAAAAAD+//7/AQAAAAAAAAD+////AQAAAAAAAAD+/wAAAQAAAAAAAAD+/wEAAQAAAAAAAAD+/wIAAQAAAAAAAAD+/wMAAQAAAAAAAAD+/wQAAQAAAAAAAAD///v/AQAAAAAAAAD///z/AQAAAAAAAAD///3/AQAAAAAAAAD///7/AQAAAAAAAAD/////AQAAAAAAAAD//wAAAQAAAAAAAAD//wEAAQAAAAAAAAD//wIAAQAAAAAAAAD//wMAAQAAAAAAAAD//wQAAQAAAAAAAAAAAPv/AQAAAAAAAAAAAPz/AQAAAAAAAAAAAP3/AQAAAAAAAAAAAP7/AQAAAAAAAAAAAP//AQAAAAAAAAAAAAAAAQAAAAAAAAAAAAEAAQAAAAAAAAAAAAIAAQAAAAAAAAAAAAMAAQAAAAAAAAAAAAQAAQAAAAAAAAABAPv/AQAAAAAAAAABAPz/AQAAAAAAAAABAP3/AQAAAAAAAAABAP7/AQAAAAAAAAABAP//AQAAAAAAAAABAAAAAQAAAAAAAAABAAEAAQAAAAAAAAABAAIAAQAAAAAAAAABAAMAAQAAAAAAAAABAAQAAQAAAAAAAAACAPv/AQAAAAAAAAACAPz/AQAAAAAAAAACAP3/AQAAAAAAAAACAP7/AQAAAAAAAAACAP//AQAAAAAAAAACAAAAAQAAAAAAAAACAAEAAQAAAAAAAAACAAIAAQAAAAAAAAACAAMAAQAAAAAAAAACAAQAAQAAAAAAAAADAPv/AQAAAAAAAAADAPz/AQAAAAAAAAADAP3/AQAAAAAAAAADAP7/AQAAAAAAAAADAP//AQAAAAAAAAADAAAAAQAAAAAAAAADAAEAAQAAAAAAAAADAAIAAQAAAAAAAAADAAMAAQAAAAAAAAADAAQAAQAAAAAAAAA=")
+
+[node name="NPC" parent="." unique_id=2062534211 instance=ExtResource("6_6irfi")]
+position = Vector2(0, -4)
+
+[node name="CollisionShape2D" parent="NPC" index="0" node_paths=PackedStringArray("Sprites")]
+TimelineGroup = Array[Object]([SubResource("Resource_k2y8e")])
+EffectResources = Array[ExtResource("8_japeg")]([SubResource("Resource_6b0jj")])
+Sprites = []
+
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 11
+
+[node name="NPC2" parent="." unique_id=1371965137 instance=ExtResource("6_6irfi")]
+position = Vector2(-52, -4)
+
+[node name="CollisionShape2D" parent="NPC2" index="0" node_paths=PackedStringArray("Sprites")]
+TimelineGroup = Array[Object]([SubResource("Resource_k2y8e")])
+EffectResources = Array[ExtResource("8_japeg")]([SubResource("Resource_6b0jj")])
+Sprites = []
+
+[node name="Sprite2D" parent="NPC2/CollisionShape2D" index="0"]
+frame = 9
+
+[editable path="Cams"]
+[editable path="DataTileMap"]
+[editable path="NPC"]
+[editable path="NPC2"]

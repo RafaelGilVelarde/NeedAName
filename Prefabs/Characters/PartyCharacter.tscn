@@ -1969,7 +1969,7 @@ visible = false
 shape = SubResource("CircleShape2D_7nva1")
 disabled = true
 
-[node name="OverworldController" type="Node2D" parent="." unique_id=2025196906 node_paths=PackedStringArray("InteractCollider", "MainSprite", "EffectAnimator", "Parent", "OverworldCollider", "Tile", "BattleCharacter", "Hurtbox")]
+[node name="OverworldController" type="Node2D" parent="." unique_id=2025196906 node_paths=PackedStringArray("InteractCollider", "MainSprite", "EffectAnimator", "Parent", "OverworldCollider", "Tile", "BattleCharacter", "Hurtbox", "CameraController")]
 script = ExtResource("1_yneer")
 InteractCollider = NodePath("InteractionCollider")
 MainSprite = NodePath("MainSprite")
@@ -1990,6 +1990,7 @@ FacingDirection = null
 Tile = NodePath("TileCheck")
 BattleCharacter = NodePath("../BattleCharacter")
 Hurtbox = NodePath("OverworldHurtbox")
+CameraController = NodePath("RemoteTransform2D")
 
 [node name="MainSprite" type="Sprite2D" parent="OverworldController" unique_id=1165165640]
 texture_filter = 1
@@ -2027,7 +2028,8 @@ shape = SubResource("CircleShape2D_cnmp1")
 [node name="TileCheck" type="Node2D" parent="OverworldController" unique_id=1427624967 node_paths=PackedStringArray("BaseNode")]
 script = ExtResource("4_2dk4w")
 BaseNode = NodePath("..")
-TileOffset = Vector2(16, 16)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="OverworldController" unique_id=1410451415]
 
 [node name="BattleCharacter" type="CharacterBody2D" parent="." unique_id=749694235 node_paths=PackedStringArray("Hitbox", "Hurtbox", "Blockbox", "WPbox", "Overworld", "PartyButtons", "EnemyButtons", "selectActions", "MainSprite", "ThisParty", "EnemyParty", "StateParticles", "HitParticles", "ShootNode", "FloorNode", "TargetNode", "TextNode", "HPBar", "EXPBar", "WPBar", "WPAuxBar", "StatMods", "SFXPlayers", "SoundEffectController")]
 process_mode = 4

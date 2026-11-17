@@ -9,8 +9,9 @@ public partial class InteractFollowNPC : CheckValueInteract
     //[Export] PlayerController Follower;
     [Export] CharacterType character;
     [Export] Array<CharacterType> CheckDeleteCharacters;
-    [Export] Array<int> CheckEvents, CheckUnflagEvents;
-    [Export] int CharacterPrefab, EventIndex;
+    [Export] Array<string> CheckFlagEvents,CheckUnflagKey;
+    [Export] int CharacterPrefab;
+    [Export] string KeyIndex;
     public override void _Ready()
     {
         base._Ready();
@@ -18,8 +19,8 @@ public partial class InteractFollowNPC : CheckValueInteract
         //Animator = Follower.Animator;
         //AnimatorTree = Follower.AnimatorTree;
         Flags flags= GameManager.Instance.Data.Flags;
-        for(int i = 0;i<CheckEvents.Count;i++){
-            if(flags.EventFlags[CheckEvents[i]]){
+        for(int i = 0;i<CheckFlagEvents.Count;i++){
+            if((bool)flags.Dict[CheckFlagEvents[i]]){
                 GetParent().QueueFree();
                 break;
             }
@@ -57,7 +58,7 @@ public partial class InteractFollowNPC : CheckValueInteract
                 else{
                     AuxChar = Game.Data.AllFollwers[AuxType.CharacterIndex];
                 }
-                Flag.ChangeBoolFlag(CheckUnflagEvents[i%CheckUnflagEvents.Count],false,FlagType.Event);
+                Flag.ChangeDictFlag(CheckUnflagKey[i%CheckUnflagKey.Count],false);
                 for(int j = 0;j<Game.Followers.Count;j++){
                     PlayerController Follower = Game.Followers[j];
                     Character Chara = Follower.BattleCharacter.Character;
@@ -97,7 +98,7 @@ public partial class InteractFollowNPC : CheckValueInteract
                     GameManager.Instance.AddFollowingCharacter(Aux,true);
                 break;
             }
-            Game.Data.Flags.ChangeBoolFlag(EventIndex,true,FlagType.Event);
+            Game.Data.Flags.ChangeDictFlag(KeyIndex,true);
             GetParent().QueueFree();
     }
 }

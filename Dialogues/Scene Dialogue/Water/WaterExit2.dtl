@@ -1,2 +1,3 @@
 "No Box-Dark": This path will test your strength #id:119
+set {TimelineJump} = 1.0
 jump WaterExitSolo/

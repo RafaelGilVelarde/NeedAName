@@ -1,12 +1,15 @@
 using Godot;
 using Godot.Collections;
 using System;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 
 [GlobalClass]
 public partial class TypedItemList : Resource
 {
     [Export] public Array<Items> items;
+    [Signal] public delegate void _ItemAddedEventHandler();
 
     public void AddItem(Items item){
         bool ItemExists = false;
@@ -23,6 +26,7 @@ public partial class TypedItemList : Resource
         else{
             items.Add(item);
         }
+        EmitSignal_ItemAdded();
     }
 
 }

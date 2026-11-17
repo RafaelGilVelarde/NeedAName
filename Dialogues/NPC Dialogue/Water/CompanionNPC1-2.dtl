@@ -1,4 +1,4 @@
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	jump CompanionNPC1-4/
 Halluci (Wondering): You return... #id:40
 - Reject #id:41

@@ -18,8 +18,7 @@ public partial class Interact : CollisionShape2D
     [Export] protected Array<Sprite2D> Sprites;
     [Export] protected Array<Color> Colors;
 
-      [Export] protected bool FacingRight = true, Cutscene;
-    [Export] protected CutscenePlayer CutsceneAnimator;
+      [Export] protected bool FacingRight = true, Cutscene, Turn;
     [Export] public bool SpokenTo;
 
     public override void _Ready()
@@ -41,7 +40,25 @@ public partial class Interact : CollisionShape2D
             }
         }
     }
-    public virtual void interact(OverworldController Player){
+    public virtual void interact(OverworldController Player)
+    {
+        if (Turn)
+        {
+            FacingDirection = Player.FacingDirection * -1;
+            if (FacingDirection.X != 0)
+            {
+                Flip();
+            }
+            AnimatorTree?.Set("parameters/Idle/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
+        }
+    }
+    protected virtual void Flip()
+    {
+        if (FacingDirection.X / Mathf.Abs(FacingDirection.X) > 0 != FacingRight)
+        {
+            Scale = new Vector2(Scale.X * -1, Scale.Y);
+            FacingRight = !FacingRight;
+        }
     }
 
 }

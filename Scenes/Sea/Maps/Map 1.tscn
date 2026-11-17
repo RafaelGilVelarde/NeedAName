@@ -6,8 +6,6 @@
 [ext_resource type="Texture2D" uid="uid://ta1ltcypinpv" path="res://Sprites/Background/Tilemaps/Tilemap Data.png" id="2_lhpxa"]
 [ext_resource type="Script" uid="uid://cw2en3slmkxs7" path="res://Scripts/Overworld/DataTileMap.cs" id="3_17meg"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_7evjy"]
-[ext_resource type="Script" uid="uid://cmrj2dvx1yqrr" path="res://Scripts/Overworld/Behaviours/ThrowProjectile.cs" id="7_7344j"]
-[ext_resource type="PackedScene" uid="uid://ckhtsbratak8c" path="res://Prefabs/Overworld/Projectiles/OverworldRaceObstacle.tscn" id="8_bvlh5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fb8cl"]
 texture = ExtResource("2_lhpxa")
@@ -107,13 +105,14 @@ custom_data_layer_2/name = "Direction"
 custom_data_layer_2/type = 5
 sources/1 = SubResource("TileSetAtlasSource_fb8cl")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7344j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_moqcn"]
 resource_local_to_scene = true
 size = Vector2(122, 16)
 
 [node name="Node2D" type="Node2D" unique_id=1751697319]
 script = ExtResource("1_6p3ko")
 Timeline = "FirstScene"
+KeyFlag = "Intro"
 EventFlag = null
 
 [node name="TileMap" type="Node2D" parent="." unique_id=1447402275]
@@ -161,32 +160,19 @@ limit_bottom = 256
 position = Vector2(64, 288)
 Scene = 2
 PlayerZIndex = null
-Area = null
 LoadPosition = Vector2(248, -200)
 TransitionColor = null
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_7344j")
+shape = SubResource("RectangleShape2D_moqcn")
 
 [node name="Door2" parent="." unique_id=735539755 instance=ExtResource("5_7evjy")]
 position = Vector2(-352, 0)
 rotation = 1.5708
 Scene = 1
 PlayerZIndex = null
-Area = null
 LoadPosition = Vector2(360, -104)
 TransitionColor = null
-
-[node name="ThrowTest" type="Node2D" parent="." unique_id=1459923236 node_paths=PackedStringArray("ShootNode", "User")]
-script = ExtResource("7_7344j")
-Projectiles = Array[PackedScene]([ExtResource("8_bvlh5")])
-ProjectileIndex = null
-Middle = 2.0
-Height = 5.0
-OffsetBounds = Array[Vector2]([Vector2(-5, 5), Vector2(5, 10)])
-ShootNode = NodePath(".")
-User = NodePath(".")
-CanShoot = true
 
 [editable path="Cams"]
 [editable path="Door"]

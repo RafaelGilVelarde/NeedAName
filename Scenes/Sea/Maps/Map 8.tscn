@@ -12,27 +12,13 @@
 [ext_resource type="Texture2D" uid="uid://2jo6bpmuc3hl" path="res://Sprites/Overworld/Blobfish.png" id="10_e1nka"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_d27ae"]
 [ext_resource type="PackedScene" uid="uid://df6cllcaufk2p" path="res://Prefabs/Animators/Party/Overworld/BlobfishOverworldAnimator.tscn" id="11_jep7p"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="11_ttk6g"]
+[ext_resource type="Script" uid="uid://p06h6hjnyjj6" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/FollowNPCEffectResource.cs" id="13_gbewp"]
 [ext_resource type="Script" uid="uid://euobw3kxslvo" path="res://Scripts/Overworld/Interactions/InteractionResources/CharacterType.cs" id="15_2m1bq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_54y35"]
-resource_local_to_scene = true
-size = Vector2(192, 24)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1xduu"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ttk6g"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_gbewp"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_l1bup"]
 resource_local_to_scene = true
-size = Vector2(32, 32)
+size = Vector2(192, 24)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_df7xu"]
 resource_local_to_scene = true
@@ -50,11 +36,43 @@ size = Vector2(32, 32)
 resource_local_to_scene = true
 size = Vector2(32, 32)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mkc7l"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_78pgw"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rdcaw"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oa2ed"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="Resource" id="Resource_rdcaw"]
+script = ExtResource("11_d27ae")
+DialogueTimelines = Array[String](["Explanation"])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
+
 [sub_resource type="Resource" id="Resource_bes47"]
 script = ExtResource("11_d27ae")
 DialogueTimelines = Array[String](["CompanionNPC2", "CompanionNPC2-2"])
-FlagIndexes = Array[int]([1])
-flagTypes = Array[int]([3])
+KeyIndexes = Array[String](["Companion2Dialogue"])
+Variants = [true]
+TimelineDict = Dictionary[String, Variant]({
+"Companion2Dialogue": true
+})
+
+[sub_resource type="Resource" id="Resource_78pgw"]
+script = ExtResource("15_2m1bq")
+CharacterIndex = 2
+Party = true
+metadata/_custom_type_script = "uid://euobw3kxslvo"
 
 [sub_resource type="Resource" id="Resource_mkc7l"]
 script = ExtResource("15_2m1bq")
@@ -62,11 +80,14 @@ CharacterIndex = 3
 Party = true
 metadata/_custom_type_script = "uid://euobw3kxslvo"
 
-[sub_resource type="Resource" id="Resource_78pgw"]
-script = ExtResource("15_2m1bq")
-CharacterIndex = 2
-Party = true
-metadata/_custom_type_script = "uid://euobw3kxslvo"
+[sub_resource type="Resource" id="Resource_is4d8"]
+script = ExtResource("13_gbewp")
+character = SubResource("Resource_mkc7l")
+CheckDeleteCharacters = Array[Object]([SubResource("Resource_78pgw")])
+CheckKey = Array[String](["Companion2Has"])
+CheckUnflagKey = Array[String](["Companion1Has"])
+KeyIndex = "Companion2Has"
+metadata/_custom_type_script = "uid://p06h6hjnyjj6"
 
 [node name="Map8" type="Node2D" unique_id=1229720799]
 script = ExtResource("1_jv7g5")
@@ -128,7 +149,7 @@ Scene = 2
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 position = Vector2(0, -4)
-shape = SubResource("RectangleShape2D_54y35")
+shape = SubResource("RectangleShape2D_l1bup")
 
 [node name="Door2" parent="." unique_id=1389669583 instance=ExtResource("6_ixm3s")]
 position = Vector2(-112, -208)
@@ -136,7 +157,7 @@ Scene = 8
 LoadPosition = Vector2(-112, 176)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_1xduu")
+shape = SubResource("RectangleShape2D_df7xu")
 
 [node name="Door3" parent="." unique_id=848170729 instance=ExtResource("6_ixm3s")]
 position = Vector2(-80, -208)
@@ -144,7 +165,7 @@ Scene = 8
 LoadPosition = Vector2(-80, 176)
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_ttk6g")
+shape = SubResource("RectangleShape2D_2dvlx")
 
 [node name="Door4" parent="." unique_id=1261815092 instance=ExtResource("6_ixm3s")]
 position = Vector2(-48, -208)
@@ -152,7 +173,7 @@ Scene = 8
 LoadPosition = Vector2(-48, 176)
 
 [node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_gbewp")
+shape = SubResource("RectangleShape2D_dq2m4")
 
 [node name="Door5" parent="." unique_id=1146180083 instance=ExtResource("6_ixm3s")]
 position = Vector2(-16, -208)
@@ -160,7 +181,7 @@ Scene = 8
 LoadPosition = Vector2(-16, 176)
 
 [node name="CollisionShape2D" parent="Door5" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_l1bup")
+shape = SubResource("RectangleShape2D_4811j")
 
 [node name="Door6" parent="." unique_id=539894474 instance=ExtResource("6_ixm3s")]
 position = Vector2(16, -208)
@@ -168,7 +189,7 @@ Scene = 8
 LoadPosition = Vector2(-16, 176)
 
 [node name="CollisionShape2D" parent="Door6" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_df7xu")
+shape = SubResource("RectangleShape2D_mkc7l")
 
 [node name="Door7" parent="." unique_id=2074582792 instance=ExtResource("6_ixm3s")]
 position = Vector2(48, -208)
@@ -176,7 +197,7 @@ Scene = 8
 LoadPosition = Vector2(80, 176)
 
 [node name="CollisionShape2D" parent="Door7" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_2dvlx")
+shape = SubResource("RectangleShape2D_78pgw")
 
 [node name="Door8" parent="." unique_id=271279218 instance=ExtResource("6_ixm3s")]
 position = Vector2(80, -208)
@@ -184,7 +205,7 @@ Scene = 8
 LoadPosition = Vector2(112, 176)
 
 [node name="CollisionShape2D" parent="Door8" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_dq2m4")
+shape = SubResource("RectangleShape2D_rdcaw")
 
 [node name="Door9" parent="." unique_id=1984119774 instance=ExtResource("6_ixm3s")]
 position = Vector2(136, 144)
@@ -192,15 +213,26 @@ Scene = 20
 LoadPosition = Vector2(-200, 176)
 
 [node name="CollisionShape2D" parent="Door9" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_4811j")
+shape = SubResource("RectangleShape2D_oa2ed")
 
-[node name="Area2D" parent="." unique_id=183947134 instance=ExtResource("8_ajh4c")]
+[node name="Area2D" parent="." unique_id=183947134 node_paths=PackedStringArray("Effects") instance=ExtResource("8_ajh4c")]
 position = Vector2(-104, -56)
-PushOffset = Array[Vector2]([])
-PushTimes = Array[Vector2]([])
-CheckValues = Array[Vector2]([])
-TweenTimes = Array[Vector2]([])
-Variables = Array[Vector2]([])
+CheckDictKeys = Array[String](["Warning"])
+ChangeDictKeys = Array[String](["Warning"])
+CheckDictValues = [false]
+ChangeDictValues = [true]
+CheckDict = Dictionary[String, Variant]({
+"Warning": false
+})
+ChangeDict = Dictionary[String, Variant]({
+"Warning": true
+})
+Timelines = Array[Object]([SubResource("Resource_rdcaw")])
+CheckValues = Array[String]([])
+TweenTimes = Array[String]([])
+Variables = Array[String]([])
+Effects = Array[String]([])
+EffectResources = Array[String]([])
 
 [node name="CollisionPolygon2D" parent="Area2D" index="0"]
 polygon = PackedVector2Array(-96, 16, -96, 224, -184, 224, -184, 240, -72, 240, -72, 0, -184, 0, -184, 16)
@@ -210,6 +242,7 @@ position = Vector2(-40, 64)
 
 [node name="CollisionShape2D" parent="FollowNPC" index="0" unique_id=1768724887 node_paths=PackedStringArray("Animator", "AnimatorTree")]
 TimelineGroup = Array[Object]([SubResource("Resource_bes47")])
+EffectResources = Array[ExtResource("11_ttk6g")]([SubResource("Resource_is4d8")])
 Animator = NodePath("AnimationPlayer")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 
@@ -217,14 +250,14 @@ AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1" unique_id=2144246926]
 texture = ExtResource("10_e1nka")
-frame = 1
+frame = 3
 
 [node name="Node" parent="FollowNPC/CollisionShape2D" index="2" unique_id=558135658]
 character = SubResource("Resource_mkc7l")
 CheckDeleteCharacters = Array[Object]([SubResource("Resource_78pgw")])
-CheckEvents = Array[int]([10])
-CheckUnflagEvents = Array[int]([9])
-EventIndex = 10
+CheckKey = Array[String](["Companion2Has"])
+CheckUnflagKey = Array[String](["Companion1Has"])
+KeyIndex = "Companion2Has"
 
 [editable path="Cams"]
 [editable path="Borders"]

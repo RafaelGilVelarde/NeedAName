@@ -15,14 +15,16 @@ public partial class BattleScene : Resource
 {
     protected DialogicCSharp Dialog;
     protected BattleManager Battle;
-    protected Callable endDialogue, beginCutscene, endCutscene, endPostBattle;
+    protected Callable endDialogue, beginCutscene, endCutscene, endPostBattle, CheckCurrentTimeline;
     protected TimelineType timelineType;
-    [Export] public string WinTimeline = "Win", PostBattleTimeline = "";
+    [Export] public string WinTimeline = "Win", PostBattleTimeline = "", CurrentTimeline;
     public bool DialogueFlag;
     [Export] public float EscapeChance = 100;
     [Export] public bool Horizontal, Cutscene;
     [Export] public Array<float> PartyFloorY, EnemyFloorY;
     [Export] protected int BattleMusic = -1, WinMusic = -1, LoseMusic = -1;
+    [Export] public ItemInteractEffectResource Itemdrops = new ItemInteractEffectResource();
+    [Export] public Array<InteractEffectResource> Effects = new Array<InteractEffectResource>();
     protected CutscenePlayer CutsceneAnimator;
     public virtual void SetupBattleEffect()
     {
@@ -30,16 +32,19 @@ public partial class BattleScene : Resource
         Dialog = DialogicCSharp.instance;
         Battle = BattleManager.instance;
         endDialogue = new Callable(this, MethodName.EndDialogue);
-        Dialog?.DialogicRoot?.Connect("timeline_ended", endDialogue);
+        CheckCurrentTimeline =  new Callable(this,MethodName.CheckTimeline);
+        //Dialog?.DialogicRoot?.Connect("timeline_ended", endDialogue);
 
+        Itemdrops.ItemsToGive.Clear();
+
+        endPostBattle = new Callable(this, MethodName.EndPostBattle);
         if (GameManager.Instance.CurrentScene.CutsceneAnimator != null && Cutscene)
         {
-            CutsceneAnimator = GameManager.Instance.CurrentScene.CutsceneAnimator;
+            /*CutsceneAnimator = GameManager.Instance.CurrentScene.CutsceneAnimator;
             beginCutscene = new Callable(this, MethodName.StartCutscene);
             endCutscene = new Callable(this, MethodName.EndCutscene);
-            endPostBattle = new Callable(this, MethodName.EndPostBattle);
             Dialog?.DialogicRoot?.Connect("signal_event", beginCutscene);
-            Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);
+            Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);*/
         }
         StartBattleEffect();
     }
@@ -88,11 +93,11 @@ public partial class BattleScene : Resource
                 BattleManager.instance.ReturnToOverworld();
                 break;
         }
+        Itemdrops.ItemsToGive.Clear();
 
     }
     public virtual void ReturnToOverworld()
     {
-        Dialog?.DialogicRoot?.Disconnect("timeline_ended", endDialogue);
         if (Cutscene)
         {
             Dialog?.DialogicRoot?.Disconnect("signal_event", beginCutscene);
@@ -129,10 +134,10 @@ public partial class BattleScene : Resource
                 }
                 if (PostBattleTimeline != "")
                 {
-                    Dialog?.DialogicRoot?.Connect("signal_event", beginCutscene);
-                    Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);
+                    /*Dialog?.DialogicRoot?.Connect("signal_event", beginCutscene);
+                    Dialog?.DialogicRoot?.Connect("signal_event", endCutscene);*/
                     Dialog?.DialogicRoot?.Connect("timeline_ended", endPostBattle);
-                    Dialog?.StartDialogue(PostBattleTimeline, true, false);
+                    StartDialogue(PostBattleTimeline, true, false,TimelineType.None);
                 }
                 break;
             case BattleState.Lose:
@@ -216,6 +221,7 @@ public partial class BattleScene : Resource
     public void StartDialogue(string timeline, bool Pause, bool Auto, TimelineType type)
     {
         timelineType = type;
+        Dialog.DialogicRoot.Connect("timeline_started",CheckCurrentTimeline);
         Dialog.StartDialogue(timeline, Pause, Auto);
         if (Auto)
         {
@@ -225,6 +231,15 @@ public partial class BattleScene : Resource
     public virtual void EndDialogue()
     {
         //if(argument=="End"){
+        Dialog.DialogicRoot.Disconnect("timeline_started",CheckCurrentTimeline);
+        Dialog?.DialogicRoot?.Disconnect("timeline_ended", endDialogue);
+
+        for(int i = 0; i < Effects?.Count; i++)
+            {
+                Effects[i].ConnectCall();
+                Dialog.DialogicRoot.Disconnect("signal_event",Effects[i].StartInteract);
+                Dialog.DialogicRoot.Disconnect("timeline_ended",Effects[i].EndInteract);
+            }            
         switch (timelineType)
         {
             case TimelineType.StartTurn:
@@ -297,7 +312,20 @@ public partial class BattleScene : Resource
     protected virtual void EndPostBattle()
     {
         Dialog?.DialogicRoot?.Disconnect("timeline_ended", endPostBattle);
-        Dialog?.DialogicRoot?.Disconnect("signal_event", beginCutscene);
-        Dialog?.DialogicRoot?.Disconnect("signal_event", endCutscene);
+    }
+
+    void CheckTimeline()
+    {
+        if(Dialog.Timelines[0] == CurrentTimeline)
+        {
+            Dialog?.DialogicRoot?.Connect("timeline_ended", endDialogue);
+            for(int i = 0; i < Effects?.Count; i++)
+            {
+                Debug.WriteLine("Connecting events");
+                Effects[i].ConnectCall();
+                Dialog.DialogicRoot.Connect("signal_event",Effects[i].StartInteract);
+                Dialog.DialogicRoot.Connect("timeline_ended",Effects[i].EndInteract);
+            }            
+        }
     }
 }

@@ -8,28 +8,44 @@
 [ext_resource type="Script" uid="uid://cw2en3slmkxs7" path="res://Scripts/Overworld/DataTileMap.cs" id="4_ajnuj"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="5_jp614"]
 [ext_resource type="PackedScene" uid="uid://ddxto1kpe6l18" path="res://Prefabs/Overworld/Interactions/heal.tscn" id="7_7q820"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="9_0q2la"]
 [ext_resource type="PackedScene" uid="uid://de7lr25jkcecs" path="res://Prefabs/Overworld/Interactions/follow_npc.tscn" id="9_piu75"]
+[ext_resource type="Script" uid="uid://cf6tceb3r6eye" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/HealInteractEffectResource.cs" id="10_46s88"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="10_rdewt"]
 [ext_resource type="PackedScene" uid="uid://bm2amy8d04d0j" path="res://Prefabs/Animators/Party/Overworld/HalluciOverworldAnimator.tscn" id="12_6ncgw"]
+[ext_resource type="Script" uid="uid://p06h6hjnyjj6" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/FollowNPCEffectResource.cs" id="14_rq2ds"]
 [ext_resource type="Script" uid="uid://euobw3kxslvo" path="res://Scripts/Overworld/Interactions/InteractionResources/CharacterType.cs" id="15_fxiba"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_mc0u8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0q2la"]
 resource_local_to_scene = true
 size = Vector2(192, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_f75ut"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46s88"]
 resource_local_to_scene = true
 size = Vector2(192, 16)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3yy7"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rq2ds"]
 resource_local_to_scene = true
 size = Vector2(128, 16)
+
+[sub_resource type="Resource" id="Resource_gd8jh"]
+script = ExtResource("10_46s88")
+metadata/_custom_type_script = "uid://cf6tceb3r6eye"
 
 [sub_resource type="Resource" id="Resource_2r7rt"]
 script = ExtResource("10_rdewt")
 DialogueTimelines = Array[String](["CompanionNPC1", "CompanionNPC1-2"])
-FlagIndexes = Array[int]([0])
-flagTypes = Array[int]([3])
+KeyIndexes = Array[String](["Companion1Dialogue"])
+Variants = [true]
+TimelineDict = Dictionary[String, Variant]({
+"Companion1Dialogue": true
+})
+
+[sub_resource type="Resource" id="Resource_46s88"]
+script = ExtResource("15_fxiba")
+CharacterIndex = 3
+Party = true
+metadata/_custom_type_script = "uid://euobw3kxslvo"
 
 [sub_resource type="Resource" id="Resource_rq2ds"]
 script = ExtResource("15_fxiba")
@@ -37,11 +53,14 @@ CharacterIndex = 2
 Party = true
 metadata/_custom_type_script = "uid://euobw3kxslvo"
 
-[sub_resource type="Resource" id="Resource_46s88"]
-script = ExtResource("15_fxiba")
-CharacterIndex = 3
-Party = true
-metadata/_custom_type_script = "uid://euobw3kxslvo"
+[sub_resource type="Resource" id="Resource_cuiye"]
+script = ExtResource("14_rq2ds")
+character = SubResource("Resource_rq2ds")
+CheckDeleteCharacters = Array[Object]([SubResource("Resource_46s88")])
+CheckKey = Array[String](["Companion1Has"])
+CheckUnflagKey = Array[String](["Companion2Has"])
+KeyIndex = "Companion1Has"
+metadata/_custom_type_script = "uid://p06h6hjnyjj6"
 
 [node name="Map6" type="Node2D" unique_id=662993319]
 script = ExtResource("1_fbwph")
@@ -61,11 +80,22 @@ use_parent_material = true
 tile_map_data = PackedByteArray("AAADAP3/AAAAAAQAAAAEAP3/AAAEAAMAAAADAPz/AAAFAAIAADAEAPz/AAADAAEAAAADAAIAAAAGAAQAADADAAMAAAABAAEAAAAEAAIAAAAEAAMAADD8/wIAAAAGAAAAAAD8/wMAAAAFAAIAAAD7/wEAAAAFAAIAAAD7/wAAAAAFAAIAAAD7////AAAFAAIAAAD7//7/AAAFAAIAAAD8//z/AAAFAAIAAAD7//3/AAAFAAMAAAD8//3/AAAGAAQAAAD7/wIAAAAFAAMAAGD7/wMAAAADAAEAAAAEAAMAAAADAAEAAAD7//z/AAADAAEAAAD8/wQAAAAFAAIAAAD8//v/AAAFAAIAAAADAPv/AAAFAAIAADADAAQAAAAFAAIAADAFAAIAAAAFAAIAAGAGAAIAAAAFAAIAAGAHAAIAAAAFAAIAAGAHAAMAAAADAAEAAAAIAAIAAAAFAAIAAGAIAP3/AAAFAAIAAFAHAP3/AAAFAAIAAFAGAP3/AAAFAAIAAFAFAP3/AAAFAAIAAFAEAPv/AAADAAEAAAAFAPv/AAADAAEAAAAFAPz/AAADAAEAAAAGAPv/AAADAAEAAAAGAPz/AAADAAEAAAAHAPv/AAADAAEAAAAHAPz/AAADAAEAAAAIAPv/AAADAAEAAAAIAPz/AAADAAEAAAAEAAQAAAADAAEAAAAFAAMAAAADAAEAAAAFAAQAAAADAAEAAAAGAAMAAAADAAEAAAAGAAQAAAADAAEAAAAHAAQAAAADAAEAAAAIAAMAAAADAAEAAAAIAAQAAAADAAEAAAD3//v/AAADAAEAAAD3//z/AAADAAEAAAD4//v/AAADAAEAAAD4//z/AAADAAEAAAD5//v/AAADAAEAAAD5//z/AAADAAEAAAD6//v/AAADAAEAAAD6//z/AAADAAEAAAD7//v/AAADAAEAAAD3//3/AAADAAEAAAD3//7/AAADAAEAAAD3////AAADAAEAAAD3/wAAAAADAAEAAAD3/wEAAAADAAEAAAD3/wIAAAADAAEAAAD3/wMAAAADAAEAAAD3/wQAAAADAAEAAAD4//3/AAADAAEAAAD4//7/AAADAAEAAAD4////AAADAAEAAAD4/wAAAAADAAEAAAD4/wEAAAADAAEAAAD4/wIAAAADAAEAAAD4/wMAAAADAAEAAAD4/wQAAAADAAEAAAD5//3/AAADAAEAAAD5//7/AAADAAEAAAD5////AAADAAEAAAD5/wAAAAADAAEAAAD5/wEAAAADAAEAAAD5/wIAAAADAAEAAAD5/wMAAAADAAEAAAD5/wQAAAADAAEAAAD6//3/AAADAAEAAAD6//7/AAADAAEAAAD6////AAADAAEAAAD6/wAAAAADAAEAAAD6/wEAAAADAAEAAAD6/wIAAAADAAEAAAD6/wMAAAADAAEAAAD6/wQAAAADAAEAAAD7/wQAAAADAAEAAAD8//r/AAAFAAIAAAADAPr/AAAFAAIAADD8//n/AAAGAAAAAAADAPn/AAAGAAAAAGAJAP3/AAAGAAAAAFAJAAIAAAAGAAAAAAADAAUAAAAGAAAAADD8/wUAAAAGAAAAAFD3/wUAAAADAAEAAAD4/wUAAAADAAEAAAD5/wUAAAADAAEAAAD6/wUAAAADAAEAAAD7/wUAAAADAAEAAAAEAAUAAAADAAEAAAAFAAUAAAADAAEAAAAGAAUAAAADAAEAAAAHAAUAAAADAAEAAAAIAAUAAAADAAEAAAAJAAMAAAADAAEAAAAJAAQAAAADAAEAAAAJAAUAAAADAAEAAAAEAPn/AAADAAEAAAAEAPr/AAADAAEAAAAFAPn/AAADAAEAAAAFAPr/AAADAAEAAAAGAPn/AAADAAEAAAAGAPr/AAADAAEAAAAHAPn/AAADAAEAAAAHAPr/AAADAAEAAAAIAPn/AAADAAEAAAAIAPr/AAADAAEAAAAJAPn/AAADAAEAAAAJAPr/AAADAAEAAAAJAPv/AAADAAEAAAAJAPz/AAADAAEAAAD3//n/AAADAAEAAAD3//r/AAADAAEAAAD4//n/AAADAAEAAAD4//r/AAADAAEAAAD5//n/AAADAAEAAAD5//r/AAADAAEAAAD6//n/AAADAAEAAAD6//r/AAADAAEAAAD7//n/AAADAAEAAAD7//r/AAADAAEAAAD2//n/AAADAAEAAAD2//r/AAADAAEAAAD2//7/AAADAAEAAAD2//3/AAADAAEAAAD2//z/AAADAAEAAAD2//v/AAADAAEAAAD2////AAADAAEAAAD2/wAAAAADAAEAAAD2/wEAAAADAAEAAAD2/wIAAAADAAEAAAD2/wMAAAADAAEAAAD2/wQAAAADAAEAAAD2/wUAAAADAAEAAAAKAP3/AAAEAAMAAAALAP3/AAAEAAMAAAAMAP3/AAAEAAMAAAAKAAIAAAAEAAMAACALAAIAAAAEAAMAACAMAAIAAAAEAAMAACADAAYAAAAEAAMAAHADAAcAAAAEAAMAAHADAAgAAAAEAAMAAHD8/wYAAAAEAAMAAGD8/wcAAAAEAAMAAGD8/wgAAAAEAAMAAGD8//j/AAAEAAMAAGD8//f/AAAEAAMAAGD8//b/AAAEAAMAAGADAPj/AAAEAAMAAGADAPf/AAAEAAMAAGADAPb/AAAEAAMAAGA=")
 tile_set = ExtResource("1_1u4e7")
 
-[node name="Area2D" parent="." unique_id=1805295595 instance=ExtResource("3_qdq56")]
-PushOffset = Array[Vector2]([])
-PushTimes = Array[Vector2]([])
-CheckValues = Array[Vector2]([])
-TweenTimes = Array[Vector2]([])
+[node name="Area2D" parent="." unique_id=1805295595 node_paths=PackedStringArray("Effects") instance=ExtResource("3_qdq56")]
+CheckDictKeys = Array[String](["Warning"])
+ChangeDictKeys = Array[String](["Warning"])
+CheckDictValues = [false]
+ChangeDictValues = [true]
+CheckDict = Dictionary[String, Variant]({
+"Warning": false
+})
+ChangeDict = Dictionary[String, Variant]({
+"Warning": true
+})
+CheckValues = Array[String]([])
+TweenTimes = Array[String]([])
+Variables = Array[String]([])
+Effects = Array[String]([])
+EffectResources = Array[String]([])
 
 [node name="Cams" parent="." unique_id=1961253811 instance=ExtResource("2_1nb3s")]
 
@@ -97,7 +127,7 @@ Scene = 11
 LoadPosition = Vector2(0, -180)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_mc0u8")
+shape = SubResource("RectangleShape2D_0q2la")
 
 [node name="Door2" parent="." unique_id=704411584 instance=ExtResource("5_jp614")]
 position = Vector2(0, -216)
@@ -105,7 +135,7 @@ Scene = 1
 LoadPosition = Vector2(-160, 585)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_f75ut")
+shape = SubResource("RectangleShape2D_46s88")
 
 [node name="Door3" parent="." unique_id=423557248 instance=ExtResource("5_jp614")]
 position = Vector2(352, 0)
@@ -114,18 +144,22 @@ Scene = 6
 LoadPosition = Vector2(-260, 0)
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_l3yy7")
+shape = SubResource("RectangleShape2D_rq2ds")
 
 [node name="Heal" parent="." unique_id=636264292 instance=ExtResource("7_7q820")]
 position = Vector2(-112, 0)
 
-[node name="Sprite2D" parent="Heal/CollisionShape2D" parent_id_path=PackedInt32Array(636264292, 1682276729) index="0" unique_id=1779854913]
-frame = 10
+[node name="CollisionShape2D" parent="Heal" index="0" unique_id=1682276729]
+EffectResources = Array[ExtResource("9_0q2la")]([SubResource("Resource_gd8jh")])
+
+[node name="Sprite2D" parent="Heal/CollisionShape2D" index="0" unique_id=1779854913]
+frame = 8
 
 [node name="FollowNPC" parent="." unique_id=498162992 instance=ExtResource("9_piu75")]
 
 [node name="CollisionShape2D" parent="FollowNPC" index="0" unique_id=1768724887 node_paths=PackedStringArray("Animator", "AnimatorTree")]
 TimelineGroup = Array[Object]([SubResource("Resource_2r7rt")])
+EffectResources = Array[ExtResource("9_0q2la")]([SubResource("Resource_cuiye")])
 Animator = NodePath("AnimationPlayer")
 AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 
@@ -135,14 +169,14 @@ AnimatorTree = NodePath("AnimationPlayer/AnimationTree")
 parameters/Idle/blend_position = Vector2(-0.00287634, 0.026455)
 
 [node name="MainSprite" parent="FollowNPC/CollisionShape2D" index="1" unique_id=2144246926]
-frame = 6
+frame = 4
 
 [node name="Node" parent="FollowNPC/CollisionShape2D" index="2" unique_id=558135658]
 character = SubResource("Resource_rq2ds")
 CheckDeleteCharacters = Array[Object]([SubResource("Resource_46s88")])
-CheckEvents = Array[int]([9])
-CheckUnflagEvents = Array[int]([10])
-EventIndex = 9
+CheckKey = Array[String](["Companion1Has"])
+CheckUnflagKey = Array[String](["Companion2Has"])
+KeyIndex = "Companion1Has"
 
 [editable path="Area2D"]
 [editable path="Cams"]

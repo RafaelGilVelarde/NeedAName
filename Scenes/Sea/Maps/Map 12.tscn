@@ -70,7 +70,7 @@ polygon = PackedVector2Array(424, 176, -296, 176, -296, -256, -200, -256, -200, 
 [node name="Door" parent="." unique_id=2126336405 instance=ExtResource("6_d5n3r")]
 position = Vector2(0, -264)
 Scene = 5
-LoadPosition = Vector2(0, 128)
+LoadPosition = Vector2(0, 160)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
 shape = SubResource("RectangleShape2D_jmccq")

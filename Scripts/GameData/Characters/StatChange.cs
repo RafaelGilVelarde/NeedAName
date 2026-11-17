@@ -46,7 +46,7 @@ public partial class StatChange : Resource
         }
         if (StatCondition)
         {
-            Target.Character.status = Status;
+            Target.Character.ChangeStatus(Status);
         }
         if (AltStat)
         {

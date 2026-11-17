@@ -6,10 +6,96 @@
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="3_bvr0w"]
 [ext_resource type="PackedScene" uid="uid://cct1pnwomkbfr" path="res://Prefabs/Overworld/DataTileMap.tscn" id="3_mikvq"]
 [ext_resource type="TileSet" uid="uid://by3v27ctnj6tn" path="res://Resources/Tilesets/Maps/Forest/ForestMap.tres" id="4_5hrow"]
+[ext_resource type="PackedScene" uid="uid://do4leaba862pv" path="res://Prefabs/Characters/EnemyInteractCharacter.tscn" id="7_q8ek8"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="8_6kmm5"]
+[ext_resource type="Script" uid="uid://uv41agbbvlq5" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/BattleInteractEffectResource.cs" id="9_3x1d4"]
+[ext_resource type="Script" uid="uid://y1rrbh1j7kko" path="res://Scripts/Battle/Battle Scenes/ChangeFlagSimple.cs" id="10_5yuor"]
+[ext_resource type="Script" uid="uid://dkb1hq6bn1jwq" path="res://Scripts/Bases/Characters/CharacterBase.cs" id="11_uqmrw"]
+[ext_resource type="Script" uid="uid://gxymflr1xik3" path="res://Scripts/GameData/Characters/Stats.cs" id="12_5p1lv"]
+[ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="13_qogu0"]
+[ext_resource type="Script" uid="uid://bc5o80khg8keh" path="res://Scripts/Overworld/Setup/CheckFlagNode.cs" id="14_88toc"]
+[ext_resource type="Script" uid="uid://bw4nrvy4lspmm" path="res://Scripts/GameData/CheckFlags.cs" id="15_6kmm5"]
+[ext_resource type="Script" uid="uid://c8211jt3rhuhk" path="res://Scripts/Overworld/Setup/CheckFlagEffects/CheckFlagEffects.cs" id="16_5yuor"]
+[ext_resource type="Script" uid="uid://vjkf4y3c36wp" path="res://Scripts/Overworld/Setup/CheckFlagEffects/DeleteFlagEffect.cs" id="17_uqmrw"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qvx1h"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5p1lv"]
 resource_local_to_scene = true
 size = Vector2(16, 122)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qogu0"]
+resource_local_to_scene = true
+size = Vector2(24, 24)
+
+[sub_resource type="Resource" id="Resource_88toc"]
+resource_local_to_scene = true
+script = ExtResource("9_3x1d4")
+BattleStartPaths = Array[String](["../OverworldController/BattleStart"])
+metadata/_custom_type_script = "uid://uv41agbbvlq5"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vp1yv"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_oggxn"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="Resource" id="Resource_kmesr"]
+script = ExtResource("10_5yuor")
+Value = null
+ChangeValue = Dictionary[String, Variant]({})
+PartyFloorY = null
+EnemyFloorY = null
+metadata/_custom_type_script = "uid://y1rrbh1j7kko"
+
+[sub_resource type="Resource" id="Resource_xvol2"]
+script = ExtResource("11_uqmrw")
+MoveSFX = null
+HitSFX = null
+EffectLists = null
+
+[sub_resource type="Resource" id="Resource_f4quo"]
+script = ExtResource("12_5p1lv")
+
+[sub_resource type="Resource" id="Resource_jv4yb"]
+script = ExtResource("12_5p1lv")
+
+[sub_resource type="Resource" id="Resource_q0c02"]
+script = ExtResource("12_5p1lv")
+
+[sub_resource type="Resource" id="Resource_v6y72"]
+resource_local_to_scene = true
+script = ExtResource("13_qogu0")
+Base = SubResource("Resource_xvol2")
+Moves = Array[Object]([])
+items = Array[Object]([])
+Equipment = Array[Object]([])
+stats = SubResource("Resource_q0c02")
+EquipStats = SubResource("Resource_f4quo")
+TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xha3o"]
+resource_local_to_scene = true
+size = Vector2(22, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3lo5v"]
+resource_local_to_scene = true
+size = Vector2(20, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kmesr"]
+resource_local_to_scene = true
+size = Vector2(46.475, 59)
+
+[sub_resource type="Resource" id="Resource_3x1d4"]
+script = ExtResource("15_6kmm5")
+KeyIndex = "VolcanoMonster"
+Result = true
+metadata/_custom_type_script = "uid://bw4nrvy4lspmm"
+
+[sub_resource type="Resource" id="Resource_rcny7"]
+script = ExtResource("17_uqmrw")
+metadata/_custom_type_script = "uid://vjkf4y3c36wp"
 
 [node name="Node2D" type="Node2D" unique_id=467388653]
 script = ExtResource("1_ed4hh")
@@ -27,7 +113,7 @@ position = Vector2(-4, 224)
 position = Vector2(288, -64)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_qvx1h")
+shape = SubResource("RectangleShape2D_5p1lv")
 
 [node name="Cams" parent="." unique_id=2008517220 instance=ExtResource("2_mikvq")]
 
@@ -58,7 +144,45 @@ tile_set = ExtResource("4_5hrow")
 tile_map_data = PackedByteArray("AAD///r/AAAAABEAAAD///v/AAAAABEAAAD///z/AAAAABEAAAD///3/AAAAABIAAAD///7/AAABABIAAAD/////AAAAABEAAAD//wAAAAABABIAAAD//wEAAAAAABEAAAAAAPr/AAAAABEAAAAAAPv/AAAAABIAAAAAAPz/AAAAABIAAAAAAP3/AAABABIAAAAAAP7/AAAAABEAAAAAAP//AAABABIAAAAAAAAAAAAAABEAAAAAAAEAAAAAABEAAAD9//v/AAAAABIAAAD9//z/AAAAABIAAAD9//3/AAABABIAAAD9//7/AAAAABIAAAD9////AAAAABIAAAD9/wAAAAAAABEAAAD+//v/AAABABIAAAD+//z/AAAAABIAAAD+//3/AAABABIAAAD+//7/AAABABIAAAD+////AAAAABIAAAD+/wAAAAAAABEAAAABAPv/AAAAABIAAAABAPz/AAAAABIAAAABAP3/AAAAABIAAAABAP7/AAABABIAAAABAP//AAAAABIAAAABAAAAAAAAABEAAAACAPv/AAABABIAAAACAPz/AAAAABIAAAACAP3/AAABABIAAAACAP7/AAABABIAAAACAP//AAABABIAAAACAAAAAAABABIAAAD7//3/AAAAABEAAAD7//7/AAABABIAAAD8//3/AAABABIAAAD8//7/AAABABIAAAADAP3/AAABABIAAAADAP7/AAABABIAAAAEAP3/AAAAABIAAAAEAP7/AAABABIAAAD8//z/AAAAABIAAAD8////AAAAABEAAAADAPz/AAABABIAAAADAP//AAAAABEAAAA=")
 tile_set = ExtResource("4_5hrow")
 
+[node name="Character" parent="." unique_id=1834513577 instance=ExtResource("7_q8ek8")]
+position = Vector2(-4, -160)
+
+[node name="CollisionShape2D" parent="Character" index="0" unique_id=1831021069]
+shape = SubResource("RectangleShape2D_qogu0")
+
+[node name="InteractShape" parent="Character" index="1" unique_id=861861049]
+shape = SubResource("RectangleShape2D_qogu0")
+EffectResources = Array[ExtResource("8_6kmm5")]([SubResource("Resource_88toc")])
+
+[node name="CollisionShape2D" parent="Character/OverworldController/Area2D" parent_id_path=PackedInt32Array(1834513577, 2071790070) index="0" unique_id=809018392]
+shape = SubResource("RectangleShape2D_vp1yv")
+
+[node name="CollisionShape2D" parent="Character/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_oggxn")
+
+[node name="BattleStart" parent="Character/OverworldController" parent_id_path=PackedInt32Array(1834513577, 1701198914) index="3" unique_id=597410356]
+scene = SubResource("Resource_kmesr")
+
+[node name="BattleCharacter" parent="Character" index="3" unique_id=1992698993]
+Character = SubResource("Resource_v6y72")
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1834513577, 440007294) index="0" unique_id=557952078]
+shape = SubResource("RectangleShape2D_xha3o")
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(1834513577, 656277864) index="0" unique_id=365359841]
+shape = SubResource("RectangleShape2D_3lo5v")
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1834513577, 172316861) index="0" unique_id=2023012338]
+shape = SubResource("RectangleShape2D_kmesr")
+
+[node name="CheckDelete" type="Node" parent="Character" unique_id=869049817 node_paths=PackedStringArray("MainNode")]
+script = ExtResource("14_88toc")
+CheckFlags = Array[Object]([SubResource("Resource_3x1d4")])
+MainNode = NodePath("..")
+CheckEffects = Array[ExtResource("16_5yuor")]([SubResource("Resource_rcny7")])
+
 [editable path="CollisionMap"]
 [editable path="Door2"]
 [editable path="Cams"]
 [editable path="DataTileMap"]
+[editable path="Character"]

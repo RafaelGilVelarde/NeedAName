@@ -6,7 +6,7 @@ using System.Diagnostics;
 public partial class BattleSceneOrderPuzzle : BattleScene
 {
     [Export] int Order;
-    [Export] int FlagIndex;
+    [Export] string KeyIndex;
 
     public override void ReturnToOverworld(){
         
@@ -16,11 +16,11 @@ public partial class BattleSceneOrderPuzzle : BattleScene
         switch (State){
             case BattleState.Win:
                 Flags Aux = GameManager.Instance.Data.Flags;
-                if(Order == Aux.PuzzleIntFlags[FlagIndex]){
-                    Aux.ChangeIntFlag(FlagIndex,Order+1,FlagType.Puzzle);
+                if((int)Aux.Dict[KeyIndex]==Order){
+                    Aux.ChangeDictFlag(KeyIndex,Order+1);
                 }
                 else{
-                    Aux.ChangeIntFlag(FlagIndex,0,FlagType.Puzzle);
+                    Aux.ChangeDictFlag(KeyIndex,0);
                 }
                 //EnemyOrderPuzzle.instance.EnemyDefeated(Order);
             break;

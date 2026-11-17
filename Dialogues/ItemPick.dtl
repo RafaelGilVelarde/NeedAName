@@ -1,5 +1,14 @@
-if {Number.ItemAmount} > 1:
-	You got {Items.ItemName} x{Number.ItemAmount}! #id:23
-else:
-	You got a {Items.ItemName}! #id:24
-[signal arg="argument"]
+[signal arg="Give"]
+label 1
+if {Number.ItemAmount_0} > 0.0:
+	You got {Items.ItemName_0} x{Number.ItemAmount_0}!
+if {Number.ItemAmount_1} > 0.0:
+	You got {Items.ItemName_0} x{Number.ItemAmount_0}!\
+	You got {Items.ItemName_1} x{Number.ItemAmount_1}!
+if {Number.ItemAmount_2} > 0.0:
+	You got {Items.ItemName_0} x{Number.ItemAmount_0}!\
+	You got {Items.ItemName_1} x{Number.ItemAmount_1}!\
+	You got {Items.ItemName_2} x{Number.ItemAmount_2}!
+if {Number.ItemCount} > 0.0:
+	[signal arg="Loop"]
+	jump 1

@@ -127,7 +127,7 @@ public partial class EnemyOverworldController : OverworldController
 	{
 		base.BattleEnd();
 		ProcessMode = ProcessModeEnum.Inherit;
-		OverworldCollider.Disabled = false;
+		//OverworldCollider.Disabled = false;
 		Show();
 		enemyCollision.ProcessMode = ProcessModeEnum.Inherit;
 	}

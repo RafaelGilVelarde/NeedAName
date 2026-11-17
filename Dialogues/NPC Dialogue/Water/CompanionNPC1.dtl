@@ -1,6 +1,6 @@
-if {GameManager.Data.Flags.DialogueFlags[0]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Dialogue"]} == true:
 	jump CompanionNPC1-2/
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	jump CompanionNPC1-3/
 Halluci (Normal): It's calling me.... #id:5c
 MC (Confused): ? #id:5d

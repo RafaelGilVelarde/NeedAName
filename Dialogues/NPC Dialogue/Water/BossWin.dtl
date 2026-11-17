@@ -1,10 +1,10 @@
 MC (Angry): *pant* pant* #id:33
 MC (Happy): We won! #id:34
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Normal): At last.... #id:35
 	Halluci (Happiness): Going......home! #id:36
 	Halluci (Happiness): I will see you....one day... #id:37
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Happy): Weeeeeeeeeeeeeee did it #id:38
 	Blobfish (Happy): Seeeee yaaaa #id:39
 [signal arg="Cutscene2_false"]
@@ -14,6 +14,4 @@ if {GameManager.Data.Flags.EventFlags[10]} == true:
 "No Box-Dark": I am curious though, what might your name be? #id:3c
 [clear time="0.0" step="false" style="false"]
 [text_input text="What is your name?" var="Characters.CharName"] #id:13c
-"No Box-Dark": {Characters.CharName}....an interesting name to be sure #id:3d
-"No Box-Dark": Well then, {Characters.CharName}, may you have #id:3e
-"No Box-Dark": A wonderful life! #id:3f
+"No Box-Dark": {Characters.CharName}....an interesting name to be sure

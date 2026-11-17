@@ -34,8 +34,10 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_7jscj"]
 script = ExtResource("10_gjexl")
 DialogueTimelines = Array[String](["PuzzleComplete"])
-FlagIndexes = null
-flagTypes = null
+KeyIndexes = Array[String]([])
+Variants = []
+FlagIndexes = Array[int]([])
+flagTypes = Array[int]([])
 
 [sub_resource type="Animation" id="Animation_i4bmx"]
 resource_name = "Win"
@@ -180,13 +182,11 @@ modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("11_jle6m")
 hframes = 5
 vframes = 4
-frame = 4
 
 [node name="Shine" type="Sprite2D" parent="Barrier/Sprite2D" unique_id=775514667]
 texture = ExtResource("12_8opig")
 hframes = 4
 vframes = 3
-frame = 4
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier" unique_id=133139459]
 libraries/ = SubResource("AnimationLibrary_h7ggg")
@@ -199,8 +199,10 @@ Animator = NodePath("../AnimationPlayer")
 Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
+CheckFlag = 1
 HasDialogue = false
 ChecksBool = true
+KeyIndex = "WaterBarrier1"
 
 [editable path="Cams"]
 [editable path="Borders"]

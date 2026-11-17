@@ -5,15 +5,16 @@ using System.Diagnostics;
 
 public partial class ItemInteractEffect : InteractEffect
 {
-    [Export] protected int GameID;
+    [Export] protected string KeyGameID;
     [Export] bool Delete;
     [Export] protected Array<Items> ItemsToGive;
     [Export] protected Interact interact;
     public override void _Ready()
     {
         base._Ready();
-        Array<bool> ItemGiven = GameManager.Instance.Data.Flags.ItemGiven;
-        if(ItemGiven[GameID]){
+        Dictionary<string,Variant> ItemGiven = GameManager.Instance.Data.Flags.Dict;
+        if((bool)ItemGiven[KeyGameID])
+        {
             interact.SpokenTo=true;
             Destroy();
         }
@@ -21,7 +22,7 @@ public partial class ItemInteractEffect : InteractEffect
     }
     public override void ConnectCall()
     {
-        DialogicCSharp.instance.SetVariable("ItemGiven", "Items", GameManager.Instance.Data.Flags.ItemGiven[GameID]);
+        DialogicCSharp.instance.SetVariable("ItemGiven", "Items", GameManager.Instance.Data.Flags.Dict[KeyGameID]);
         if (ItemsToGive.Count == 1)
         {
             DialogicCSharp.instance.SetVariable("ItemName", "Items", Tr(ItemsToGive[0].Base.Name));
@@ -40,7 +41,7 @@ public partial class ItemInteractEffect : InteractEffect
             Debug.WriteLine("Amount: "+ItemLists[(int)ItemsToGive[i].Base.type].items[ItemLists[(int)ItemsToGive[i].Base.type].items.Count-1].Amount);
         }
         interact.AnimatorTree?.Set("parameters/conditions/Taking",true);
-        GameManager.Instance.Data.Flags.ItemGiven[GameID] = true;
+        GameManager.Instance.Data.Flags.Dict[KeyGameID] = true;
     }
 
     public override void DisconnectCall()

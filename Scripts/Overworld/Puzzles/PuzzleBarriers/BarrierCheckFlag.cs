@@ -7,8 +7,20 @@ public partial class BarrierCheckFlag : PuzzleCheck
     [Export] AnimationPlayer Animator;
     [Export] CollisionShape2D Shape;
     [Export] string DisableAnimation, Dialogue = "";
-    [Export] int CheckIntFlag;
-    public override void Check(int Index, bool Changed){
+    [Export] Variant CheckFlag;
+    public override void CheckDict(string Key, bool Changed)
+    {
+
+
+        if(KeyIndex == Key)
+        {
+            if(GameManager.Instance.Data.Flags.Dict[Key].Equals(CheckFlag))
+            {
+                ActivateEffect();
+            }
+        }
+    }
+   /* public override void Check(int Index, bool Changed){
         Debug.WriteLine("Checking: "+Index +" Changed: "+Changed);
         if(FlagIndex == Index){
             if(GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex]){
@@ -24,10 +36,10 @@ public partial class BarrierCheckFlag : PuzzleCheck
                 ActivateEffect();
             }
         }    
-    }
+    }*/
     public override void ActivateEffect(){
         //Shape.Disabled = true;
-        Debug.WriteLine("Puzzle: "+GameManager.Instance.Data.Flags.PuzzleFlags[FlagIndex] + "Index: "+ FlagIndex);
+        Debug.WriteLine("Puzzle: "+GameManager.Instance.Data.Flags.Dict[KeyIndex] + "Index: "+ KeyIndex);
         if(Animator!=null){
             Animator?.Play(DisableAnimation);
             Animator.Autoplay = "";

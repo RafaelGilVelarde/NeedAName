@@ -37,6 +37,7 @@ SoundEffects = Array[AudioStream]([ExtResource("4_rva7y"), ExtResource("5_sxa5x"
 script = ExtResource("4_exoht")
 ExpYield = 1.0
 AI = SubResource("Resource_6a4b1")
+Drops = null
 BaseStats = SubResource("Resource_ubpnd")
 Name = "Shrimpy"
 OverworldAnimator = ExtResource("3_agffr")

@@ -17,6 +17,8 @@
 [sub_resource type="Resource" id="Resource_4fxq3"]
 script = ExtResource("5_6pm4r")
 DialogueTimelines = Array[String](["NPC5"])
+KeyIndexes = Array[String]([])
+Variants = []
 FlagIndexes = null
 flagTypes = null
 
@@ -88,6 +90,9 @@ visualType = null
 Sprites = []
 FacingRight = null
 SpokenTo = null
+
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 10
 
 [node name="ChangeLayer" parent="." unique_id=536819422 instance=ExtResource("6_yosl0")]
 position = Vector2(16, 16)

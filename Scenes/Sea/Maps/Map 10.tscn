@@ -14,38 +14,49 @@
 [ext_resource type="PackedScene" uid="uid://ckwqsf11orow2" path="res://Prefabs/Animators/NPCs/Water/Mollusk.tscn" id="10_6wuln"]
 [ext_resource type="Script" uid="uid://v1cgtdjjxke3" path="res://Scripts/Items/Items.cs" id="10_xpfnf"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="11_anry4"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="11_j2vou"]
 [ext_resource type="Resource" uid="uid://b0u10v1376rb0" path="res://Resources/Items/Equipment/Loud Memory.tres" id="12_ds34p"]
+[ext_resource type="Script" uid="uid://dkopnvstsaf46" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemCheckInteractEffectResource.cs" id="16_py2j4"]
 [ext_resource type="Script" uid="uid://dodbxq2rl22x" path="res://Scripts/Items/Equipment.cs" id="16_vm78s"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vm78s"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_c81qj"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_j2vou"]
-resource_local_to_scene = true
-size = Vector2(32, 32)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_py2j4"]
-resource_local_to_scene = true
-size = Vector2(48, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ms27h"]
 resource_local_to_scene = true
-size = Vector2(96, 32)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kdjow"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qcfv3"]
+resource_local_to_scene = true
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3xdpj"]
+resource_local_to_scene = true
+size = Vector2(48, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2tc20"]
+resource_local_to_scene = true
+size = Vector2(96, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wjgxc"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="Resource" id="Resource_ygo20"]
 script = ExtResource("11_anry4")
 DialogueTimelines = Array[String](["SecondItemNPC1", "SecondItemNPC2"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String](["ItemNPC2Dialogue"])
+Variants = [true]
+TimelineDict = Dictionary[String, Variant]({
+"ItemNPC2Dialogue": true
+})
+
+[sub_resource type="Resource" id="Resource_3xdpj"]
+script = ExtResource("16_vm78s")
+Base = ExtResource("12_ds34p")
+Amount = 1
+metadata/_custom_type_script = "uid://dodbxq2rl22x"
 
 [sub_resource type="Resource" id="Resource_kdjow"]
 script = ExtResource("10_xpfnf")
@@ -53,11 +64,13 @@ Base = ExtResource("10_4bh6t")
 Amount = 1
 metadata/_custom_type_script = "uid://v1cgtdjjxke3"
 
-[sub_resource type="Resource" id="Resource_3xdpj"]
-script = ExtResource("16_vm78s")
-Base = ExtResource("12_ds34p")
-Amount = 1
-metadata/_custom_type_script = "uid://dodbxq2rl22x"
+[sub_resource type="Resource" id="Resource_kvj0r"]
+script = ExtResource("16_py2j4")
+TakeItems = true
+ItemsToTake = Array[ExtResource("10_xpfnf")]([SubResource("Resource_kdjow")])
+KeyGameID = "SidequestWater2"
+ItemsToGive = Array[Object]([SubResource("Resource_3xdpj")])
+metadata/_custom_type_script = "uid://dkopnvstsaf46"
 
 [node name="Map10" type="Node2D" unique_id=695109692]
 script = ExtResource("1_wl176")
@@ -126,7 +139,7 @@ Scene = 8
 LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_vm78s")
+shape = SubResource("RectangleShape2D_ms27h")
 
 [node name="Door2" parent="." unique_id=1407555228 instance=ExtResource("7_pq43u")]
 position = Vector2(-304, 48)
@@ -134,7 +147,7 @@ Scene = 8
 LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_c81qj")
+shape = SubResource("RectangleShape2D_kdjow")
 
 [node name="Door3" parent="." unique_id=1016971352 instance=ExtResource("7_pq43u")]
 position = Vector2(-304, -16)
@@ -142,7 +155,7 @@ Scene = 8
 LoadPosition = Vector2(260, 16)
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_j2vou")
+shape = SubResource("RectangleShape2D_qcfv3")
 
 [node name="Door4" parent="." unique_id=584094875 instance=ExtResource("7_pq43u")]
 position = Vector2(-96, 208)
@@ -151,7 +164,7 @@ LoadPosition = Vector2(-96, -170)
 
 [node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
 position = Vector2(-8, 0)
-shape = SubResource("RectangleShape2D_py2j4")
+shape = SubResource("RectangleShape2D_3xdpj")
 
 [node name="Door5" parent="." unique_id=1946696333 instance=ExtResource("7_pq43u")]
 position = Vector2(-16, 232)
@@ -159,7 +172,7 @@ Scene = 10
 LoadPosition = Vector2(32, -170)
 
 [node name="CollisionShape2D" parent="Door5" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_ms27h")
+shape = SubResource("RectangleShape2D_2tc20")
 
 [node name="Door6" parent="." unique_id=537871962 instance=ExtResource("7_pq43u")]
 position = Vector2(128, 232)
@@ -171,7 +184,7 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door6" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_kdjow")
+shape = SubResource("RectangleShape2D_wjgxc")
 
 [node name="NPC" parent="." unique_id=2144070302 instance=ExtResource("8_og6k7")]
 position = Vector2(160, -240)
@@ -179,6 +192,7 @@ position = Vector2(160, -240)
 [node name="CollisionShape2D" parent="NPC" index="0" unique_id=766230198 node_paths=PackedStringArray("Animator", "AnimatorTree")]
 TimelineGroup = Array[Object]([SubResource("Resource_ygo20")])
 TimelineGroupIndex = null
+EffectResources = Array[ExtResource("11_j2vou")]([SubResource("Resource_kvj0r")])
 FacingDirection = null
 Animator = NodePath("Sprite2D/AnimationPlayer")
 AnimatorTree = NodePath("Sprite2D/AnimationPlayer/AnimationTree")
@@ -186,6 +200,7 @@ SpokenTo = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0" unique_id=1824165617]
 texture = ExtResource("9_8yric")
+frame = 8
 
 [node name="AnimationPlayer" parent="NPC/CollisionShape2D/Sprite2D" index="0" unique_id=575047199 instance=ExtResource("10_6wuln")]
 
@@ -194,7 +209,7 @@ parameters/Idle/blend_position = Vector2(0, -0.555556)
 
 [node name="Node" parent="NPC/CollisionShape2D" index="1" unique_id=1809328491]
 ItemsToTake = Array[ExtResource("10_xpfnf")]([SubResource("Resource_kdjow")])
-GameID = 2
+KeyGameID = "SidequestWater2"
 ItemsToGive = Array[Object]([SubResource("Resource_3xdpj")])
 
 [editable path="Cams"]

@@ -368,7 +368,7 @@ public partial class BattleCharacter : CharacterBody2D
 			HoldingMoveTimer--;
 		}
 	}
-	protected void Die()
+	protected virtual void Die()
 	{
 		Looping = true;
 		Hurtbox.GetChild<CollisionShape2D>(0).SetDeferred("disabled", true);
@@ -599,12 +599,12 @@ public partial class BattleCharacter : CharacterBody2D
 
 		if(Character.status == null)
 		{
-            Character.status = new StatusCondition
+            Character.ChangeStatus(new StatusCondition
             {
                 Base = BattleManager.instance.StatusConditions[0],
 				Time = -1,
 				MaxTime = -1
-			};
+			});
         }
 		Debug.WriteLine("Status: "+Character.status.Base.Name);
 		if(Character.KO == null)
@@ -627,12 +627,12 @@ public partial class BattleCharacter : CharacterBody2D
 		selectActions.clearAll();
 		if (Character.status.Base.Name == "KO")
 		{
-			Character.status = new StatusCondition
+			Character.ChangeStatus(new StatusCondition
             {
                 Base = BattleManager.instance.StatusConditions[0],
 				Time = -1,
 				MaxTime = -1
-			};
+			});
 			Character.ChangeHP(1,false);
 		}
 		Character._GetHit -= GetHit;

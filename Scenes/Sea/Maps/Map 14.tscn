@@ -23,12 +23,15 @@
 [ext_resource type="Script" uid="uid://btth50s6kipxf" path="res://Scripts/GameData/Characters/EnemyCharacter.cs" id="21_e8qqv"]
 [ext_resource type="Resource" uid="uid://ctdvr3y2a0x6g" path="res://Resources/Moves/Enemy/Projectyles/Bubble.tres" id="22_v53hd"]
 [ext_resource type="PackedScene" uid="uid://ddxto1kpe6l18" path="res://Prefabs/Overworld/Interactions/heal.tscn" id="23_hyod5"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="24_nu5sf"]
+[ext_resource type="Script" uid="uid://cf6tceb3r6eye" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/HealInteractEffectResource.cs" id="25_vik3x"]
 
 [sub_resource type="Resource" id="Resource_m2l0g"]
 script = ExtResource("7_cgkd5")
 DialogueTimelines = Array[String](["NPC3", "NPC4"])
-FlagIndexes = null
-flagTypes = null
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = Dictionary[String, Variant]({})
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_exkr6"]
 size = Vector2(32, 8)
@@ -225,21 +228,25 @@ EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_en4me")
 AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hyod5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tnovo"]
 resource_local_to_scene = true
 size = Vector2(320, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2n17a"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_womua"]
 resource_local_to_scene = true
 size = Vector2(320, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_nu5sf"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ubv15"]
 resource_local_to_scene = true
 size = Vector2(48, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vik3x"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vageo"]
 resource_local_to_scene = true
 size = Vector2(224, 24)
+
+[sub_resource type="Resource" id="Resource_ww20k"]
+script = ExtResource("25_vik3x")
+metadata/_custom_type_script = "uid://cf6tceb3r6eye"
 
 [node name="Map14" type="Node2D" unique_id=1894087391]
 script = ExtResource("1_mxof8")
@@ -301,6 +308,9 @@ position = Vector2(-240, -24)
 TimelineGroup = Array[Object]([SubResource("Resource_m2l0g")])
 Sprites = []
 
+[node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
+frame = 11
+
 [node name="ChangeLayer" parent="." unique_id=300923579 instance=ExtResource("6_blkad")]
 position = Vector2(-208, -16)
 
@@ -337,7 +347,7 @@ Scene = 6
 LoadPosition = Vector2(336, 0)
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_hyod5")
+shape = SubResource("RectangleShape2D_tnovo")
 
 [node name="Door2" parent="." unique_id=2077533113 instance=ExtResource("8_gkpdk")]
 position = Vector2(0, -232)
@@ -345,7 +355,7 @@ Scene = 14
 LoadPosition = Vector2(0, 168)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_2n17a")
+shape = SubResource("RectangleShape2D_womua")
 
 [node name="Door3" parent="." unique_id=1198998858 instance=ExtResource("8_gkpdk")]
 position = Vector2(-208, 232)
@@ -357,7 +367,7 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_nu5sf")
+shape = SubResource("RectangleShape2D_ubv15")
 
 [node name="Door4" parent="." unique_id=1531668934 instance=ExtResource("8_gkpdk")]
 position = Vector2(80, 208)
@@ -366,7 +376,7 @@ LoadPosition = Vector2(32, -168)
 
 [node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
 position = Vector2(-8, 8)
-shape = SubResource("RectangleShape2D_vik3x")
+shape = SubResource("RectangleShape2D_vageo")
 
 [node name="Area2D" parent="." unique_id=429878298 instance=ExtResource("18_jr6bq")]
 position = Vector2(136, 16)
@@ -381,6 +391,9 @@ polygon = PackedVector2Array(24, 8, 24, -8, -24, -8, -24, 8)
 [node name="Heal" parent="." unique_id=244017196 instance=ExtResource("23_hyod5")]
 position = Vector2(-176, -24)
 
+[node name="CollisionShape2D" parent="Heal" index="0" unique_id=1682276729]
+EffectResources = Array[ExtResource("24_nu5sf")]([SubResource("Resource_ww20k")])
+
 [editable path="Cams"]
 [editable path="NPC"]
 [editable path="ChangeLayer"]
@@ -391,3 +404,4 @@ position = Vector2(-176, -24)
 [editable path="Door4"]
 [editable path="Area2D"]
 [editable path="Borders2"]
+[editable path="Heal"]

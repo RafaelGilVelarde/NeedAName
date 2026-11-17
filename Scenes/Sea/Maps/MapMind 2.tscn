@@ -15,7 +15,9 @@
 [ext_resource type="PackedScene" uid="uid://ri17sbak4ubw" path="res://Prefabs/Overworld/Items/ItemPickup.tscn" id="12_wban4"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="14_4s2ue"]
 [ext_resource type="Resource" uid="uid://du1fel58q8in6" path="res://Resources/Items/Equipment/Rest Memory.tres" id="14_6yvjd"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="15_qiejb"]
 [ext_resource type="Script" uid="uid://dodbxq2rl22x" path="res://Scripts/Items/Equipment.cs" id="15_typ2r"]
+[ext_resource type="Script" uid="uid://cxvl201jx7h07" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffectResource.cs" id="18_a04yq"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_kj6p5"]
 frequency = 0.016
@@ -49,27 +51,28 @@ shader_parameter/top_color = Color(0, 0, 0, 1)
 shader_parameter/light_start = 0.0
 shader_parameter/light_end = 0.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3o8j"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b0hu5"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_3frh0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vaajy"]
 resource_local_to_scene = true
 size = Vector2(32, 64)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiejb"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b5il1"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_a04yq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0bipy"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="Resource" id="Resource_a04yq"]
 script = ExtResource("14_4s2ue")
 DialogueTimelines = Array[String](["ItemPick"])
-FlagIndexes = Array[int]([5])
-flagTypes = Array[int]([2])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = Dictionary[String, Variant]({})
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
 
 [sub_resource type="Resource" id="Resource_b0hu5"]
@@ -77,6 +80,13 @@ script = ExtResource("15_typ2r")
 Base = ExtResource("14_6yvjd")
 Amount = 1
 metadata/_custom_type_script = "uid://dodbxq2rl22x"
+
+[sub_resource type="Resource" id="Resource_27pev"]
+script = ExtResource("18_a04yq")
+KeyGameID = "WaterMindItem1"
+Delete = true
+ItemsToGive = Array[Object]([SubResource("Resource_b0hu5")])
+metadata/_custom_type_script = "uid://cxvl201jx7h07"
 
 [node name="MapMind1" type="Node2D" unique_id=198236374]
 script = ExtResource("1_pibpq")
@@ -188,9 +198,7 @@ script = ExtResource("7_3ukjg")
 CurrentArray = [NodePath("Currents")]
 DataTileMaps = NodePath("../DataTileMap")
 HasDialogue = false
-ChecksBool = true
-ChecksInt = null
-FlagIndex = 4
+KeyIndex = "WaterMindCurrent1"
 
 [node name="Currents" type="Node" parent="Puzzle" unique_id=1122553968 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_xvc4f")
@@ -201,9 +209,7 @@ script = ExtResource("7_3ukjg")
 CurrentArray = [NodePath("Currents2")]
 DataTileMaps = NodePath("../DataTileMap")
 HasDialogue = false
-ChecksBool = true
-ChecksInt = null
-FlagIndex = 5
+KeyIndex = "WaterMindCurrent2"
 
 [node name="Currents2" type="Node" parent="Puzzle2" unique_id=1115986031 node_paths=PackedStringArray("Currents")]
 script = ExtResource("8_xvc4f")
@@ -216,7 +222,6 @@ position = Vector2(96, 152)
 debug_color = Color(0, 0.6, 0.7019608, 0.41960785)
 Check = NodePath("../../Puzzle")
 CheckAtStart = true
-Type = 0
 Colors = Array[Color]([Color(4, 0, 1, 1), Color(0.513726, 0.101961, 0.976471, 1)])
 
 [node name="Water" parent="CurrentSwitch/Sprite2D" parent_id_path=PackedInt32Array(210580773, 467203574) index="0" unique_id=796026312]
@@ -235,32 +240,32 @@ position = Vector2(-688, 128)
 Scene = 24
 LoadPosition = Vector2(-288, 368)
 
-[node name="CollisionShape2D" parent="Door" index="0"]
-shape = SubResource("RectangleShape2D_y3o8j")
+[node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
+shape = SubResource("RectangleShape2D_b0hu5")
 
 [node name="Door2" parent="." unique_id=1027901763 instance=ExtResource("11_ayp8n")]
 position = Vector2(-688, 256)
 Scene = 24
 LoadPosition = Vector2(-480, 368)
 
-[node name="CollisionShape2D" parent="Door2" index="0"]
-shape = SubResource("RectangleShape2D_3frh0")
+[node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
+shape = SubResource("RectangleShape2D_vaajy")
 
 [node name="Door3" parent="." unique_id=741262784 instance=ExtResource("11_ayp8n")]
 position = Vector2(288, -496)
 Scene = 26
 LoadPosition = Vector2(-512, 368)
 
-[node name="CollisionShape2D" parent="Door3" index="0"]
-shape = SubResource("RectangleShape2D_qiejb")
+[node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
+shape = SubResource("RectangleShape2D_b5il1")
 
 [node name="Door4" parent="." unique_id=585839826 instance=ExtResource("11_ayp8n")]
 position = Vector2(-448, -496)
 Scene = 24
 LoadPosition = Vector2(160, 368)
 
-[node name="CollisionShape2D" parent="Door4" index="0"]
-shape = SubResource("RectangleShape2D_a04yq")
+[node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
+shape = SubResource("RectangleShape2D_0bipy")
 
 [node name="CurrentSwitch3" parent="." unique_id=1376543842 instance=ExtResource("9_4ehok")]
 visible = false
@@ -269,7 +274,6 @@ position = Vector2(-112, 440)
 [node name="CollisionShape2D" parent="CurrentSwitch3" index="0" unique_id=1391934257 node_paths=PackedStringArray("Check")]
 Check = NodePath("../../Puzzle2")
 CheckAtStart = true
-Type = 0
 visualType = null
 
 [node name="Sprite" parent="CurrentSwitch3" index="1" unique_id=1975938561]
@@ -294,6 +298,7 @@ TimelineIndex = null
 Timeline = null
 Turn = null
 Effects = [NodePath("Item")]
+EffectResources = Array[ExtResource("15_qiejb")]([SubResource("Resource_27pev")])
 FacingDirection = null
 FacingRight = null
 SpokenTo = null
@@ -302,7 +307,7 @@ SpokenTo = null
 frame = 2
 
 [node name="Item" parent="ItemPickup/ItemInteract" index="1" unique_id=946507474 node_paths=PackedStringArray("interact")]
-GameID = 5
+KeyGameID = "WaterMindItem1"
 ItemsToGive = Array[Object]([SubResource("Resource_b0hu5")])
 interact = NodePath("..")
 

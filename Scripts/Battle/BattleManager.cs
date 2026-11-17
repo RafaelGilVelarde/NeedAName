@@ -449,6 +449,7 @@ public partial class BattleManager : Node
 			EnemyParty[0].AnimatorTree.Set("parameters/conditions/Ended",true);
 		}
 		GameManager.Instance.ChangeCam(Vector2.Zero,false,(float)PositionMoveSpeed);
+		Turns.End();
 		tween.TweenInterval(0.5);
 		//tween.Call("Clear");
 		tween.Finished+=Clear;

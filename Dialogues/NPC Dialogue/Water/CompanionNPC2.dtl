@@ -1,6 +1,6 @@
-if {GameManager.Data.Flags.DialogueFlags[1]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Dialogue"]} == true:
 	jump CompanionNPC2-2/
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	jump CompanionNPC2-3/
 Blobfish (Wondering): *Yaaawn* Leaving this place? #id:8a
 MC (Confused): I guess...not sure what's going on #id:8b

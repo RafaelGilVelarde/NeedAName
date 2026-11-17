@@ -73,9 +73,14 @@ IdleBehaviours = Array[Object]([SubResource("Resource_3iuvs"), SubResource("Reso
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_upf7u"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
 [sub_resource type="Resource" id="Resource_gvn2q"]
 script = ExtResource("13_22wqw")
 Order = 2
+KeyIndex = "EnemyOrder"
 PartyFloorY = null
 EnemyFloorY = null
 BattleMusic = 1
@@ -95,7 +100,7 @@ script = ExtResource("16_6qvww")
 script = ExtResource("16_6qvww")
 Lv = 5
 
-[sub_resource type="Resource" id="Resource_upf7u"]
+[sub_resource type="Resource" id="Resource_cl4jm"]
 resource_local_to_scene = true
 script = ExtResource("19_3pf0u")
 Base = ExtResource("13_wowv4")
@@ -107,36 +112,41 @@ EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
 AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cl4jm"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs8iw"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_cs8iw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4gs"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_1l4gs"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn4ag"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hn4ag"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xpn5l"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_xpn5l"]
+[sub_resource type="Resource" id="Resource_5kikc"]
 resource_local_to_scene = true
 script = ExtResource("12_yl3i6")
 SteeringForce = 2.0
 SeekBehaviours = Array[Object]([SubResource("Resource_31rvb"), SubResource("Resource_ew2qi")])
 IdleBehaviours = Array[Object]([SubResource("Resource_3iuvs"), SubResource("Resource_k1vgm")])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5kikc"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l1j8g"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pswh5"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_2602s"]
 script = ExtResource("13_22wqw")
 Order = 1
+KeyIndex = "EnemyOrder"
 PartyFloorY = null
 EnemyFloorY = null
 BattleMusic = 1
@@ -165,7 +175,7 @@ Base = SubResource("Resource_1vth6")
 script = ExtResource("16_6qvww")
 Lv = 6
 
-[sub_resource type="Resource" id="Resource_l1j8g"]
+[sub_resource type="Resource" id="Resource_jshve"]
 resource_local_to_scene = true
 script = ExtResource("19_3pf0u")
 Base = ExtResource("19_7rswv")
@@ -177,35 +187,40 @@ EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
 AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pswh5"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20ni8"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jshve"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmtto"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_20ni8"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qy3jl"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_qmtto"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pirl2"]
 resource_local_to_scene = true
 size = Vector2(24, 24)
 
-[sub_resource type="Resource" id="Resource_qy3jl"]
+[sub_resource type="Resource" id="Resource_ib5hu"]
 resource_local_to_scene = true
 script = ExtResource("12_yl3i6")
 SteeringForce = 2.0
 SeekBehaviours = Array[Object]([SubResource("Resource_31rvb"), SubResource("Resource_ew2qi")])
 IdleBehaviours = Array[Object]([SubResource("Resource_3iuvs"), SubResource("Resource_k1vgm")])
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pirl2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cmub"]
+resource_local_to_scene = true
+size = Vector2(25, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6quvd"]
 resource_local_to_scene = true
 size = Vector2(25, 25)
 
 [sub_resource type="Resource" id="Resource_rxaul"]
 script = ExtResource("13_22wqw")
+KeyIndex = "EnemyOrder"
 PartyFloorY = null
 EnemyFloorY = null
 BattleMusic = 1
@@ -230,7 +245,7 @@ Base = SubResource("Resource_tktx7")
 script = ExtResource("16_6qvww")
 Lv = 6
 
-[sub_resource type="Resource" id="Resource_ib5hu"]
+[sub_resource type="Resource" id="Resource_vcpxg"]
 resource_local_to_scene = true
 script = ExtResource("19_3pf0u")
 Base = ExtResource("19_7rswv")
@@ -242,15 +257,15 @@ EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
 AltStatus = null
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_0cmub"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4swj2"]
 resource_local_to_scene = true
 size = Vector2(22, 20)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6quvd"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u257m"]
 resource_local_to_scene = true
 size = Vector2(20, 34)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vcpxg"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l3a4k"]
 resource_local_to_scene = true
 size = Vector2(46.475, 59)
 
@@ -378,67 +393,76 @@ detectArea = NodePath("../../Area2D3")
 [node name="CollisionShape2D" parent="Character/OverworldController/Area2D" parent_id_path=PackedInt32Array(2073580027, 2071790070) index="0" unique_id=809018392]
 shape = SubResource("RectangleShape2D_pqyj7")
 
-[node name="BattleStart" parent="Character/OverworldController" index="2" unique_id=597410356]
+[node name="CollisionShape2D" parent="Character/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(2073580027, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_upf7u")
+
+[node name="BattleStart" parent="Character/OverworldController" index="3" unique_id=597410356]
 scene = SubResource("Resource_gvn2q")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 50), Vector2(0, 0)])
 
 [node name="BattleCharacter" parent="Character" index="2" unique_id=1992698993]
-Character = SubResource("Resource_upf7u")
+Character = SubResource("Resource_cl4jm")
 
 [node name="CollisionShape2D" parent="Character/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(2073580027, 440007294) index="0" unique_id=557952078]
-shape = SubResource("RectangleShape2D_cl4jm")
-
-[node name="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(2073580027, 656277864) index="0" unique_id=365359841]
 shape = SubResource("RectangleShape2D_cs8iw")
 
-[node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(2073580027, 172316861) index="0" unique_id=2023012338]
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(2073580027, 656277864) index="0" unique_id=365359841]
 shape = SubResource("RectangleShape2D_1l4gs")
+
+[node name="CollisionShape2D" parent="Character/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(2073580027, 172316861) index="0" unique_id=2023012338]
+shape = SubResource("RectangleShape2D_hn4ag")
 
 [node name="Character2" parent="." unique_id=162691845 instance=ExtResource("8_t47ti")]
 position = Vector2(-152, 8)
 
 [node name="CollisionShape2D" parent="Character2" index="0" unique_id=1831021069]
-shape = SubResource("RectangleShape2D_hn4ag")
+shape = SubResource("RectangleShape2D_xpn5l")
 
 [node name="OverworldController" parent="Character2" index="1" unique_id=1701198914 node_paths=PackedStringArray("detectArea")]
-movementController = SubResource("Resource_xpn5l")
+movementController = SubResource("Resource_5kikc")
 detectArea = NodePath("../../Area2D")
 
 [node name="CollisionShape2D" parent="Character2/OverworldController/Area2D" parent_id_path=PackedInt32Array(162691845, 2071790070) index="0" unique_id=809018392]
-shape = SubResource("RectangleShape2D_5kikc")
+shape = SubResource("RectangleShape2D_l1j8g")
 
-[node name="BattleStart" parent="Character2/OverworldController" index="2" unique_id=597410356]
+[node name="CollisionShape2D" parent="Character2/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(162691845, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_pswh5")
+
+[node name="BattleStart" parent="Character2/OverworldController" index="3" unique_id=597410356]
 scene = SubResource("Resource_2602s")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, 50), Vector2(0, 0)])
 
 [node name="BattleCharacter" parent="Character2" index="2" unique_id=1992698993]
-Character = SubResource("Resource_l1j8g")
+Character = SubResource("Resource_jshve")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(162691845, 440007294) index="0" unique_id=557952078]
-shape = SubResource("RectangleShape2D_pswh5")
+shape = SubResource("RectangleShape2D_20ni8")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(162691845, 656277864) index="0" unique_id=365359841]
-shape = SubResource("RectangleShape2D_jshve")
+shape = SubResource("RectangleShape2D_qmtto")
 
 [node name="CollisionShape2D" parent="Character2/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(162691845, 172316861) index="0" unique_id=2023012338]
-shape = SubResource("RectangleShape2D_20ni8")
+shape = SubResource("RectangleShape2D_qy3jl")
 
 [node name="Character3" parent="." unique_id=1121226745 instance=ExtResource("8_t47ti")]
 position = Vector2(0, 112)
 
 [node name="CollisionShape2D" parent="Character3" index="0" unique_id=1831021069]
-shape = SubResource("RectangleShape2D_qmtto")
+shape = SubResource("RectangleShape2D_pirl2")
 
 [node name="OverworldController" parent="Character3" index="1" unique_id=1701198914 node_paths=PackedStringArray("detectArea")]
-movementController = SubResource("Resource_qy3jl")
+movementController = SubResource("Resource_ib5hu")
 detectArea = NodePath("../../Area2D2")
 
 [node name="CollisionShape2D" parent="Character3/OverworldController/Area2D" parent_id_path=PackedInt32Array(1121226745, 2071790070) index="0" unique_id=809018392]
-shape = SubResource("RectangleShape2D_pirl2")
+shape = SubResource("RectangleShape2D_0cmub")
 
-[node name="BattleStart" parent="Character3/OverworldController" index="2" unique_id=597410356]
+[node name="CollisionShape2D" parent="Character3/OverworldController/Hurtbox" parent_id_path=PackedInt32Array(1121226745, 844753452) index="0" unique_id=301743739]
+shape = SubResource("RectangleShape2D_6quvd")
+
+[node name="BattleStart" parent="Character3/OverworldController" index="3" unique_id=597410356]
 scene = SubResource("Resource_rxaul")
 EnemyCharacters = Array[Object]([])
 PartyPos = Array[Vector2]([Vector2(-50, 0), Vector2(-50, -50), Vector2(0, 0)])
@@ -446,16 +470,16 @@ EnemyPos = Array[Vector2]([Vector2(100, 0), Vector2(100, -100)])
 
 [node name="BattleCharacter" parent="Character3" index="2" unique_id=1992698993]
 process_mode = 3
-Character = SubResource("Resource_ib5hu")
+Character = SubResource("Resource_vcpxg")
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Hitbox" parent_id_path=PackedInt32Array(1121226745, 440007294) index="0" unique_id=557952078]
-shape = SubResource("RectangleShape2D_0cmub")
+shape = SubResource("RectangleShape2D_4swj2")
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Hurtbox" parent_id_path=PackedInt32Array(1121226745, 656277864) index="0" unique_id=365359841]
-shape = SubResource("RectangleShape2D_6quvd")
+shape = SubResource("RectangleShape2D_u257m")
 
 [node name="CollisionShape2D" parent="Character3/BattleCharacter/Blockbox" parent_id_path=PackedInt32Array(1121226745, 172316861) index="0" unique_id=2023012338]
-shape = SubResource("RectangleShape2D_vcpxg")
+shape = SubResource("RectangleShape2D_l3a4k")
 
 [node name="MainSprite" parent="Character3/BattleCharacter" index="3" unique_id=915002412]
 frame = 29
@@ -491,14 +515,16 @@ polygon = PackedVector2Array(32, -64, -120, -64, -128, 80, 32, 80)
 
 [node name="OrderPuzzle" type="Node" parent="." unique_id=1317557027]
 script = ExtResource("23_7gyxu")
-EnemiesBeaten = null
 NextEnemy = null
 TotalEnemies = 3
 FlagBoolIndex = 1
+ChangeValue = 1
+ChangeKeyIndex = "WaterBarrier2"
 HasDialogue = false
 ChecksBool = null
 ChecksInt = true
 FlagIndex = null
+KeyIndex = "EnemyOrder"
 
 [editable path="Cams"]
 [editable path="ChangeLayer"]

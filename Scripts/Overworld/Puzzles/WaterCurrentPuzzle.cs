@@ -33,7 +33,7 @@ public partial class WaterCurrentPuzzle : PuzzleCheck
         Array<TileMapLayer> CurrentCurrents = CurrentArray[CurrentIndex].Currents;
         //int EventIndex = CurrentArray[CurrentIndex].CurrentEventIndex;
         Flags flags = GameManager.Instance.Data.Flags;
-        if(!flags.PuzzleFlags[FlagIndex]){
+        if((int)flags.Dict[KeyIndex] ==0){
             CurrentCurrents[0].Show();
             CurrentCurrents[1].Hide();
 
@@ -57,12 +57,17 @@ public partial class WaterCurrentPuzzle : PuzzleCheck
             }   
         }
     }
-    public override void Check(int Index, bool Changed)
+    /*public override void Check(int Index, bool Changed)
     {
         if(FlagIndex == Index){
             ActivateEffect();
         }
-    }
+    }*/
+    public override void CheckDict(string Key, bool Changed)
+    {
+        if(KeyIndex == Key){
+            ActivateEffect();
+        }    }
     public override void ActivateEffect()
     {
         base.ActivateEffect();

@@ -12,7 +12,9 @@ public partial class DialogicCSharp : Node
     Node Styles;
     [Export] bool Paused, autoAdvance;
     Callable Check;
-    [Export] Array<string> DialogueStyles, Timelines = new Array<string>();
+    [Export] Array<string> DialogueStyles; 
+    
+    [Export] public Array<string> Timelines = new Array<string>();
 
 
     Array<InputEvent> EventAux = new Array<InputEvent>();
@@ -158,9 +160,17 @@ public partial class DialogicCSharp : Node
         GodotObject Aux = (GodotObject)Var.Get(Folder);
         Aux.Set(VariableName, Value);
     }
-    public string GetVariable(string VariableName,string Folder){
+    public Variant GetVariable(string VariableName,string Folder){
         Node Var = (Node)DialogicRoot.Get("VAR");
         GodotObject Aux = (GodotObject)Var.Get(Folder);
-        return (string)Aux.Get(VariableName);
+        return Aux.Get(VariableName);
+    }
+    public void ClearItemVariables()
+    {
+        for(int i = 0; i < 3; i++)
+        {
+            SetVariable("ItemName_"+i, "Items", "");
+            SetVariable("ItemAmount_"+i,"Number",0);
+        }
     }
 }

@@ -12,83 +12,86 @@
 [ext_resource type="PackedScene" uid="uid://dahqyou68igt4" path="res://Prefabs/Overworld/Puzzles/barrier.tscn" id="12_6hj8d"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="14_kmhmi"]
 [ext_resource type="Script" uid="uid://cycwpn6nhvlm4" path="res://Scripts/Overworld/Triggers/Events/BaseEventCollision.cs" id="15_7tkwt"]
+[ext_resource type="Script" uid="uid://chn0fjulxqygf" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/SetVariableManuallyInteractEffectResource.cs" id="16_neu5a"]
 [ext_resource type="Script" uid="uid://p5816myhrbfk" path="res://Scripts/Overworld/Interactions/InteractionResources/CheckValueTimeline.cs" id="16_nmg1h"]
-[ext_resource type="Script" uid="uid://doc3veuy6hu47" path="res://Scripts/DialogueVariables.cs" id="16_uvflj"]
+[ext_resource type="Script" uid="uid://ch3pgsvpk6okn" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/PushInteractEffectResource.cs" id="17_fqa6t"]
+[ext_resource type="Script" uid="uid://bcameo6semmyx" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/SetVariableManuallyInteractEffect.cs" id="17_wg424"]
+[ext_resource type="Script" uid="uid://dcj87wglxippt" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/PushInteractEffect.cs" id="18_neu5a"]
 [ext_resource type="PackedScene" uid="uid://dq6edj6l6xo0c" path="res://Prefabs/Overworld/borders.tscn" id="33_roql3"]
 [ext_resource type="PackedScene" uid="uid://basqm5altirjf" path="res://Prefabs/Overworld/door.tscn" id="34_o1vnt"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_kv52d"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pc325"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_drhrw"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ryw3b"]
 resource_local_to_scene = true
 size = Vector2(256, 56)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wg424"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m8f0p"]
 resource_local_to_scene = true
 size = Vector2(64, 32)
 
 [sub_resource type="Resource" id="Resource_i5mts"]
 script = ExtResource("14_kmhmi")
 DialogueTimelines = Array[String](["OrderPuzzleHint"])
-FlagIndexes = null
-flagTypes = null
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 
 [sub_resource type="Resource" id="Resource_7j361"]
 script = ExtResource("14_kmhmi")
 DialogueTimelines = Array[String](["WaterExitSolo"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 
 [sub_resource type="Resource" id="Resource_jigeu"]
 script = ExtResource("14_kmhmi")
 DialogueTimelines = Array[String](["WaterExit1"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 
 [sub_resource type="Resource" id="Resource_dtwsi"]
 script = ExtResource("14_kmhmi")
 DialogueTimelines = Array[String](["WaterExit2"])
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+Variants = []
+TimelineDict = null
 
 [sub_resource type="Resource" id="Resource_0btuc"]
 script = ExtResource("16_nmg1h")
-FlagIndexes = Array[int]([])
-flagTypes = Array[int]([])
+KeyIndexes = Array[String]([])
+DictValues = []
+Values = null
 
 [sub_resource type="Resource" id="Resource_rr0af"]
 script = ExtResource("16_nmg1h")
 TimelineIndex = 1
-FlagIndexes = Array[int]([9])
-flagTypes = Array[int]([0])
+KeyIndexes = Array[String]([])
+DictValues = []
+Values = null
 
 [sub_resource type="Resource" id="Resource_qhna2"]
 script = ExtResource("16_nmg1h")
 TimelineIndex = 2
-FlagIndexes = Array[int]([10])
-flagTypes = Array[int]([0])
+KeyIndexes = Array[String]([])
+DictValues = []
+Values = null
 
-[sub_resource type="Resource" id="Resource_88e1r"]
-script = ExtResource("16_nmg1h")
-TimelineIndex = 1
-FlagIndexes = Array[int]([3])
-flagTypes = Array[int]([1])
+[sub_resource type="Resource" id="Resource_s037e"]
+script = ExtResource("16_neu5a")
+ManualChange = Dictionary[String, Variant]({
+"Exit19": true
+})
+metadata/_custom_type_script = "uid://chn0fjulxqygf"
 
-[sub_resource type="Resource" id="Resource_lkvom"]
-script = ExtResource("16_uvflj")
-Flagtype = 1
-index = 9
-BoolFlag = true
-VariableName = "Comp1"
-
-[sub_resource type="Resource" id="Resource_emcen"]
-script = ExtResource("16_uvflj")
-Flagtype = 1
-index = 10
-BoolFlag = true
-VariableName = "Comp2"
+[sub_resource type="Resource" id="Resource_m8uc3"]
+script = ExtResource("17_fqa6t")
+PushOffset = Array[Vector2]([Vector2(0, -40)])
+PushTimes = Array[float]([0.5])
+metadata/_custom_type_script = "uid://ch3pgsvpk6okn"
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ng8ih"]
 size = Vector2(7.99998, 48)
@@ -179,7 +182,7 @@ LayerOn = Array[int]([2])
 MaskOn = Array[int]([2])
 
 [node name="CollisionShape2D" parent="Door" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_kv52d")
+shape = SubResource("RectangleShape2D_pc325")
 
 [node name="Door2" parent="." unique_id=1544578211 instance=ExtResource("34_o1vnt")]
 position = Vector2(-376, 0)
@@ -189,7 +192,7 @@ LoadPosition = Vector2(224, 32)
 
 [node name="CollisionShape2D" parent="Door2" index="0" unique_id=1179102348]
 position = Vector2(-1.74846e-07, -4)
-shape = SubResource("RectangleShape2D_drhrw")
+shape = SubResource("RectangleShape2D_ryw3b")
 
 [node name="Borders2" parent="Door2" unique_id=225096365 instance=ExtResource("33_roql3")]
 position = Vector2(-208, 200)
@@ -204,7 +207,7 @@ Scene = 21
 LoadPosition = Vector2(0, -160)
 
 [node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
-shape = SubResource("RectangleShape2D_wg424")
+shape = SubResource("RectangleShape2D_m8f0p")
 
 [node name="Enemy Spawner" parent="." unique_id=2029494976 node_paths=PackedStringArray("detectArea") instance=ExtResource("8_1c0n3")]
 position = Vector2(232, -40)
@@ -231,7 +234,7 @@ FacingRight = null
 SpokenTo = null
 
 [node name="Sprite2D" parent="NPC/CollisionShape2D" index="0"]
-frame = 10
+frame = 11
 
 [node name="Barrier" parent="." unique_id=1456569810 instance=ExtResource("12_6hj8d")]
 position = Vector2(80, 184)
@@ -241,33 +244,51 @@ collision_layer = 2
 position = Vector2(3.8147e-06, -9.53674e-07)
 scale = Vector2(0.2, 1)
 
-[node name="Check" parent="Barrier" index="2" unique_id=216827243]
-HasDialogue = false
-ChecksBool = true
-FlagIndex = 1
+[node name="CollisionShape2D" parent="Barrier" index="1" unique_id=242036911]
+disabled = false
 
-[node name="CheckPartner" type="Area2D" parent="." unique_id=600342607]
+[node name="Check" parent="Barrier" index="2" unique_id=216827243]
+CheckFlag = 1
+HasDialogue = false
+KeyIndex = "WaterBarrier2"
+
+[node name="CheckPartner" type="Area2D" parent="." unique_id=600342607 node_paths=PackedStringArray("Effects")]
 position = Vector2(80, 184)
 rotation = 1.5708
 collision_layer = 2
 collision_mask = 2
 script = ExtResource("15_7tkwt")
-BoolIndex = 4
+CheckDictKeys = Array[String](["Exit19"])
+ChangeDictKeys = []
+CheckDictValues = [false]
+ChangeDictValues = []
+CheckDict = Dictionary[String, Variant]({
+"Exit19": false
+})
+ChangeDict = Dictionary[String, Variant]({})
 CurrentTimeline = null
 TimelineIndex = null
 Timelines = Array[Object]([SubResource("Resource_7j361"), SubResource("Resource_jigeu"), SubResource("Resource_dtwsi")])
-Cutscene = null
-ManualBoolUpdate = true
-PushOffset = Array[Vector2]([Vector2(0, -40)])
-PushTimes = Array[float]([0.5])
 CheckValues = Array[Object]([SubResource("Resource_0btuc"), SubResource("Resource_rr0af"), SubResource("Resource_qhna2")])
-CheckManualDisableValues = SubResource("Resource_88e1r")
 TweenTimes = Array[float]([0.2])
-Variables = Array[Object]([SubResource("Resource_lkvom"), SubResource("Resource_emcen")])
+Variables = []
+Effects = []
+EffectResources = Array[Object]([SubResource("Resource_s037e"), SubResource("Resource_m8uc3")])
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CheckPartner" unique_id=1820426836]
 position = Vector2(-3.99998, 1.52588e-05)
 shape = SubResource("RectangleShape2D_ng8ih")
+
+[node name="ManualVariable" type="Node" parent="CheckPartner" unique_id=1355562911]
+script = ExtResource("17_wg424")
+ManualChange = Dictionary[String, Variant]({
+"Exit19": true
+})
+
+[node name="Push" type="Node" parent="CheckPartner" unique_id=1663803276]
+script = ExtResource("18_neu5a")
+PushOffset = Array[Vector2]([Vector2(0, -40)])
+PushTimes = Array[float]([0.5])
 
 [editable path="Cams"]
 [editable path="Area2D"]

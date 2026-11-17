@@ -11,26 +11,12 @@ public partial class Switch : InteractText
     [Export] bool Toggleable;
     [Export] PuzzleCheck Check;
     [Export] bool CheckAtStart = true, HasDialogue;
-    [Export] SwitchType Type;
     [Export] int SwitchState, MaxStates;
     public override void _Ready()
     {
         base._Ready();
         if(CheckAtStart){
-            switch (Type){
-                case SwitchType.Bool:
-                    MaxStates = 2;
-                    if(!GameManager.Instance.Data.Flags.PuzzleFlags[Check.FlagIndex]){
-                        SwitchState = 0;
-                    }
-                    else{
-                        SwitchState = 1;
-                    }
-                break;
-                case SwitchType.Int:
-                    SwitchState = GameManager.Instance.Data.Flags.PuzzleIntFlags[Check.FlagIndex];
-                break;
-            }
+            SwitchState = (int)GameManager.Instance.Data.Flags.Dict[Check.KeyIndex];
             Press(SwitchState % MaxStates);
         }
     }
@@ -38,18 +24,13 @@ public partial class Switch : InteractText
     public override void interact(OverworldController Player)
     {
         int StateAux = 0;
-        switch (Type){
-            case SwitchType.Bool:
-            if(Toggleable){
-                SwitchState++;
-            }
-            else{
-                SwitchState = 1;
-            }
-            break;
-            case SwitchType.Int:
+        if (Toggleable)
+        {
             SwitchState++;
-            break;
+        }
+        else
+        {
+            SwitchState = 1;
         }
 
         StateAux = SwitchState % MaxStates;
@@ -72,21 +53,10 @@ public partial class Switch : InteractText
         }
 
         Flags Aux = GameManager.Instance.Data.Flags;
-        int FlagIndex = Check.FlagIndex;
-        switch (Type){
-            case SwitchType.Bool:
-                bool Pressed = State == 1;
-                Aux.ChangeBoolFlag(FlagIndex,Pressed,FlagType.Puzzle);
-                SpokenTo = Pressed;
-               /* else{
-                    if(!Aux.PuzzleFlags[FlagIndex]){
-                        Aux.ChangeBoolFlag(FlagIndex,true,FlagType.Puzzle);       
-                    }
-                }*/
-            break;
-            case SwitchType.Int:
-                Aux.ChangeIntFlag(FlagIndex,State,FlagType.Puzzle);
-            break;
+        Aux.ChangeDictFlag(Check.KeyIndex,State);
+        if (State > 0)
+        {
+            SpokenTo = true;
         }
         //Check.ActivateEffect();
     }

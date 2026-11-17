@@ -2,60 +2,47 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Diagnostics;
+using System.Linq;
 
 public partial class InteractText : Interact
 {
     [Export] protected Array<Timelines> TimelineGroup;
     [Export] protected int TimelineGroupIndex, TimelineIndex;
     [Export] protected string Timeline = "Test";
-    [Export] bool PauseWhenDialogue, Turn;
+    [Export] bool PauseWhenDialogue;
   
     [Export] Array<DialogueVariables> Variables;
     [Export] Array<InteractEffect> Effects = new Array<InteractEffect>();
+    [Export] Array<InteractEffectResource> EffectResources = new Array<InteractEffectResource>();
 
 
-    Callable disable, beginCutscene, endCutscene;
+    Callable disable, CheckTimeline;
     public override void _Ready()
     {
         base._Ready();
         disable = new Callable(this, MethodName.Disable);
-        SceneTreeTimer Timer = GetTree().CreateTimer(0.5, true, true);
-        Timer.Timeout += () =>
+        CheckTimeline = new Callable(this,MethodName.CheckIfCurrentTimeline);
+
+        for(int i = 0; i < EffectResources.Count; i++)
         {
-            if (GameManager.Instance.CurrentScene.CutsceneAnimator != null && Cutscene)
-            {
-                CutsceneAnimator = GameManager.Instance.CurrentScene.CutsceneAnimator;
-                beginCutscene = new Callable(this, MethodName.StartCutscene);
-                endCutscene = new Callable(this, MethodName.EndCutscene);
-            }
-        };
+            Debug.WriteLine("Ready effect: "+i);
+            EffectResources[i].BaseNode = this;
+            EffectResources[i].Ready();
+        }
+
     }
 
 
     public override void interact(OverworldController Player)
     {
-        if (Turn)
-        {
-            FacingDirection = Player.FacingDirection * -1;
-            if (FacingDirection.X != 0)
-            {
-                Flip();
-            }
-            AnimatorTree?.Set("parameters/Idle/blend_position", new Vector2(FacingDirection.X, -FacingDirection.Y));
-        }
-        for(int i = 0; i < Effects?.Count; i++)
-        {
-            Effects[i].ConnectCall();
-            DialogicCSharp.instance.DialogicRoot.Connect("signal_event",Effects[i].StartInteract);
-            DialogicCSharp.instance.DialogicRoot.Connect("timeline_ended",Effects[i].EndInteract);
-        }
+        DialogicCSharp.instance.DialogicRoot.Connect("timeline_started",CheckTimeline);
         if (SpokenTo && TimelineIndex < TimelineGroup[TimelineGroupIndex].DialogueTimelines.Count - 1)
         {
             TimelineIndex++;
         }
+        Enable(TimelineIndex);
         SpokenTo = true;
 
-        Enable(TimelineIndex);
  
     }
 
@@ -64,20 +51,16 @@ public partial class InteractText : Interact
         Timeline = TimelineGroup[TimelineGroupIndex].DialogueTimelines[id];
         Debug.WriteLine("Tiemline: " + Timeline + " id: " + id + " count: " + TimelineGroup[TimelineGroupIndex].DialogueTimelines.Count);
         DialogicCSharp DialogicInstance = DialogicCSharp.instance;
-        DialogicInstance.DialogicRoot.Connect("timeline_ended", disable);
-        if (Cutscene)
-        {
-            DialogicInstance.DialogicRoot.Connect("signal_event",beginCutscene);
-            DialogicInstance.DialogicRoot.Connect("signal_event",endCutscene);            
-        }
+        //DialogicInstance.DialogicRoot.Connect("timeline_ended", disable);
 
-        if (Variables != null)
+
+        /*if (Variables != null)
         {
             for (int i = 0; i < Variables.Count; i++)
             {
                 Variables[i].SetVariable();
             }            
-        }
+        }*/
         DialogicInstance.StartDialogue(Timeline, PauseWhenDialogue, false);
     }
     public virtual void Disable()
@@ -93,64 +76,50 @@ public partial class InteractText : Interact
         }
         DialogicCSharp DialogicInstance = DialogicCSharp.instance;
         DialogicInstance.DialogicRoot.Disconnect("timeline_ended", disable);
-        for(int i = 0; i < Effects?.Count; i++)
+        DialogicInstance.DialogicRoot.Disconnect("timeline_started", CheckTimeline);
+        Debug.WriteLine("Effectresources: "+EffectResources?.Count);
+        for(int i = 0; i < EffectResources?.Count; i++)
         {
-            DialogicInstance.DialogicRoot.Disconnect("signal_event",Effects[i].StartInteract);
-            DialogicInstance.DialogicRoot.Disconnect("timeline_ended",Effects[i].EndInteract);
+            Debug.WriteLine("Disconnecting Effects");
+            DialogicInstance.DialogicRoot.Disconnect("signal_event",EffectResources[i].StartInteract);
+            DialogicInstance.DialogicRoot.Disconnect("timeline_ended",EffectResources[i].EndInteract);
         }
-        if (Cutscene)
-        {
-            DialogicInstance.DialogicRoot.Disconnect("signal_event",beginCutscene);
-            DialogicInstance.DialogicRoot.Disconnect("signal_event",endCutscene);            
-        }
+
     }
-    protected virtual void Flip()
-    {
-        if (FacingDirection.X / Mathf.Abs(FacingDirection.X) > 0 != FacingRight)
-        {
-            Scale = new Vector2(Scale.X * -1, Scale.Y);
-            FacingRight = !FacingRight;
-        }
-    }
-    protected virtual void StartCutscene(string Cutscene)
-    {
-        if (CutsceneAnimator.CutsceneNames.Contains(Cutscene))
-        {
-            CutsceneAnimator.PlayAnimation(Cutscene);
-        }
-    }
-    protected virtual void EndCutscene(string Argument)
-    {
-        if (Argument == "EndCutscene")
-        {
-            CutsceneAnimator.EndAnimation();            
-        }
-    }
+
     void SetFlags()
     {
         Timelines timeline = TimelineGroup[TimelineGroupIndex];
-        Array<FlagType> flagTypes = timeline.flagTypes;
         Flags flags = GameManager.Instance.Data.Flags;
-        if (flagTypes != null)
+        if (timeline.TimelineDict != null)
         {
-            for (int i = 0; i < flagTypes.Count; i++)
+            for(int i = 0; i < timeline.TimelineDict.Keys.Count; i++)
             {
-                switch (flagTypes[i])
-                {
-                    case FlagType.Puzzle:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Puzzle);
-                        break;
-                    case FlagType.Event:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Event);
-                        break;
-                    case FlagType.Item:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Item);
-                        break;
-                    case FlagType.Dialogue:
-                        flags.ChangeBoolFlag(timeline.FlagIndexes[i], true, FlagType.Dialogue);
-                        break;
-                }
+                string KeyAux = timeline.TimelineDict.Keys.ElementAt(i);
+                flags.ChangeDictFlag(KeyAux,timeline.TimelineDict[KeyAux]);
             }            
+        }
+    }
+    void CheckIfCurrentTimeline()
+    {
+        DialogicCSharp DialogicInstance = DialogicCSharp.instance;
+        if(DialogicInstance.Timelines[0] == Timeline)
+        {
+            DialogicInstance.DialogicRoot.Connect("timeline_ended", disable);
+            for(int i = 0; i < EffectResources?.Count; i++)
+            {
+                Debug.WriteLine("Connecting events");
+                EffectResources[i].ConnectCall();
+                DialogicInstance.DialogicRoot.Connect("signal_event",EffectResources[i].StartInteract);
+                DialogicInstance.DialogicRoot.Connect("timeline_ended",EffectResources[i].EndInteract);
+            }            
+            if (Variables != null)
+            {
+                for (int i = 0; i < Variables.Count; i++)
+                {
+                    Variables[i].SetVariable();
+                }            
+            }
         }
     }
 }

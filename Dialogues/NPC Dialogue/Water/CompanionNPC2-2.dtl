@@ -1,4 +1,4 @@
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	jump CompanionNPC2-4/
 Blobfish (Normal): Hello #id:66
 Blobfish (Wondering): Changed your mind? #id:67

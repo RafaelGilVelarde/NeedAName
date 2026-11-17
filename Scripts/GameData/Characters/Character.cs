@@ -16,7 +16,7 @@ public partial class Character : Resource
 
     [Export] public Stats stats, EquipStats = new Stats(), TotalStats = new Stats();
     [Export] public bool isControlledByPlayer;
-    [Export] public bool Active = true;
+    [Export] public bool Active = true, Minced;
     [Export] public Key Key { get; private set; }
     [Export] public InputEventKey EventKey { get; private set; }
     [Export] public int FollowIndex;
@@ -40,7 +40,7 @@ public partial class Character : Resource
         Normal,
         KO,
     };
-    [Export] public StatusCondition status, KO;
+    [Export] public StatusCondition status, KO, PreviousStatus;
     [Export] public Array<StatusCondition> AltStatus;
     public bool CheckWP(int WP)
     {
@@ -87,9 +87,9 @@ public partial class Character : Resource
 
         if (stats.HP <= 0)
         {
-            stats.HP = 0;
-            status = KO;
             EmitSignal("_Die");
+            stats.HP = 0;
+            ChangeStatus(KO);
         }
     }
     public virtual void SetStats()
@@ -201,17 +201,23 @@ public partial class Character : Resource
     public virtual void ResetCharacter()
     {
         stats.HP = TotalStats.MaxHP;
-        status = new StatusCondition
+        ChangeStatus(new StatusCondition
             {
                 Base = (StatusBase)ResourceLoader.Load("res://Resources/Statuses/NormalStatus.tres"),
 				Time = -1,
 				MaxTime = -1
-			};;
+			});
         stats.WP = 0;
     }
     public void LearnMove(Moves Move)
     {
         Debug.WriteLine("Move Learned: "+Move.Base.Name);
         Moves.Add((Moves)Move.Duplicate());
+    }
+
+    public void ChangeStatus(StatusCondition Change)
+    {
+        PreviousStatus = status;
+        status = Change;
     }
 }

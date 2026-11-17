@@ -8,5 +8,8 @@ using System.Linq;
 public partial class EnemyCharacterBase : CharacterBase
 {
     [Export] public float ExpYield;
-    [Export] public AISettings AI;    
+    [Export] public AISettings AI;   
+    [Export] public Array<EnemyDrops> Drops;
+
+
 }

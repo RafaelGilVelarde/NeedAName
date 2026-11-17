@@ -1,21 +1,23 @@
 if {Items.ItemGiven} == false:
 	if {Items.ItemCheck} == true:
-		if {GameManager.Data.Flags.DialogueFlags[2]} == true:
+		if {GameManager.Data.Flags.Dict["ItemNPC1Dialogue"]} == true:
 			jump FirstItemNPC2/
 else:
 	jump FirstItemNPC3/
+if {GameManager.Data.Flags.Dict["ItemNPC1Dialogue"]} == true:
+	jump FirstItemNPC1-1/
 Hello? Have I...seen you before? #id:96
 MC (Confused): I...can't remember #id:97
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Normal): Let's leave #id:98
 Need to jog up your memory huh #id:99
 I MAY be able help you! #id:9a
 MC (Wondering): You can? #id:9b
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Sad): Uuuuuuuuuuuuuughhhhhhhh #id:9c
 	MC (Normal): It'll be fine #id:9d
 	MC (Wondering): It's just...something I feel #id:9e
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Happy): Yaaaaaaaay.....Memories! #id:9f
 	MC (Happy): Yep! #id:a0
 Well......juust a bit, but the memory may help protect you from damage! #id:a1
@@ -23,7 +25,7 @@ So if you find one feel free to come here #id:a2
 if {Items.ItemCheck} == true:
 	jump FirstItemNPC2/
 MC (Happy): Thanks! #id:a3
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Normal): Let's get to it #id:a4
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Happy): See you! #id:a5

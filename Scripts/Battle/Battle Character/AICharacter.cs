@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 using System;
 using System.Diagnostics;
 
@@ -51,5 +52,23 @@ public partial class AICharacter : BattleCharacter
 		    Overworld.BattleEnd();
         }
         TurnOffBattle();
+    }
+    protected override void Die()
+    {
+        base.Die();
+        int Aux = 0;
+        Array<EnemyDrops> Drops = ((EnemyCharacterBase)Character.Base).Drops;
+        if (Drops.Count > 0)
+        {
+            if (Character.Minced)
+            {
+                Aux = 1;
+            }
+            else
+            {
+                Aux = Character.PreviousStatus.Base.GameID;
+            }
+        }
+        BattleManager.instance.Scene.Itemdrops.ItemsToGive.Add(Drops[Aux].ChooseDrop());
     }
 }

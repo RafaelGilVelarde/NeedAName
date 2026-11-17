@@ -22,14 +22,16 @@
 [ext_resource type="Resource" uid="uid://bvtcpl6qec87k" path="res://Resources/Moves/Enemy/Spinning/Spin1.tres" id="17_li4ff"]
 [ext_resource type="Resource" uid="uid://ctdvr3y2a0x6g" path="res://Resources/Moves/Enemy/Projectyles/Bubble.tres" id="18_mcehg"]
 [ext_resource type="Script" uid="uid://cnb8dnl86kpka" path="res://Scripts/Overworld/Interactions/Timelines.cs" id="20_1pmvr"]
+[ext_resource type="Script" uid="uid://b85h0am1yqcei" path="res://Scripts/Overworld/Interactions/InteractionResources/InteractEffectResource.cs" id="21_aff1k"]
+[ext_resource type="Script" uid="uid://cxvl201jx7h07" path="res://Scripts/Overworld/Interactions/InteractionResources/Effects/ItemInteractEffectResource.cs" id="24_vo7e5"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_8ngnv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_n5ywg"]
 resource_local_to_scene = true
-size = Vector2(32, 32)
+size = Vector2(8, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_attgv"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gju6h"]
 resource_local_to_scene = true
-size = Vector2(32, 32)
+size = Vector2(32, 8)
 
 [sub_resource type="Resource" id="Resource_f4quo"]
 script = ExtResource("11_1g5j4")
@@ -93,6 +95,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_2dffu")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_onv4d"]
 script = ExtResource("13_ry40x")
@@ -124,6 +127,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_oq4bf")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_65thx"]
 script = ExtResource("13_ry40x")
@@ -155,6 +159,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_vgk0c")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_eef0d"]
 script = ExtResource("13_ry40x")
@@ -206,6 +211,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_iaggj")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_pr4vu"]
 script = ExtResource("11_1g5j4")
@@ -269,6 +275,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_hlnql")
 EquipStats = SubResource("Resource_pr4vu")
 TotalStats = SubResource("Resource_yhvkc")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_6lgau"]
 script = ExtResource("13_ry40x")
@@ -300,6 +307,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_fbvh4")
 EquipStats = SubResource("Resource_pr4vu")
 TotalStats = SubResource("Resource_yhvkc")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_mmq8j"]
 script = ExtResource("11_1g5j4")
@@ -321,6 +329,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_mmq8j")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_cm2qx"]
 script = ExtResource("11_1g5j4")
@@ -335,12 +344,14 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_cm2qx")
 EquipStats = SubResource("Resource_f4quo")
 TotalStats = SubResource("Resource_jv4yb")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_attgv"]
 script = ExtResource("20_1pmvr")
 DialogueTimelines = Array[String](["ItemPick"])
-FlagIndexes = Array[int]([4])
-flagTypes = Array[int]([2])
+KeyIndexes = Array[String](["WaterItem2"])
+Variants = [true]
+TimelineDict = null
 metadata/_custom_type_script = "uid://cnb8dnl86kpka"
 
 [sub_resource type="Resource" id="Resource_8ngnv"]
@@ -348,6 +359,13 @@ script = ExtResource("12_sbnd0")
 Base = ExtResource("11_og0cg")
 Amount = 1
 metadata/_custom_type_script = "uid://dbdef31it6o02"
+
+[sub_resource type="Resource" id="Resource_quhw6"]
+script = ExtResource("24_vo7e5")
+KeyGameID = "WaterItem2"
+Delete = true
+ItemsToGive = Array[Object]([SubResource("Resource_8ngnv")])
+metadata/_custom_type_script = "uid://cxvl201jx7h07"
 
 [sub_resource type="Resource" id="Resource_rqc2j"]
 script = ExtResource("13_e5qep")
@@ -358,6 +376,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_hlnql")
 EquipStats = SubResource("Resource_pr4vu")
 TotalStats = SubResource("Resource_yhvkc")
+AltStatus = null
 
 [sub_resource type="Resource" id="Resource_jjrc1"]
 script = ExtResource("13_e5qep")
@@ -368,6 +387,7 @@ Equipment = Array[Object]([])
 stats = SubResource("Resource_fbvh4")
 EquipStats = SubResource("Resource_pr4vu")
 TotalStats = SubResource("Resource_yhvkc")
+AltStatus = null
 
 [node name="Node2D" type="Node2D" unique_id=530375440]
 script = ExtResource("1_xlri6")
@@ -424,22 +444,22 @@ limit_right = 703
 limit_bottom = 800
 
 [node name="Door3" parent="." unique_id=1057457322 instance=ExtResource("5_0or4s")]
-visible = false
 position = Vector2(-240, 176)
 Scene = 7
 LoadPosition = Vector2(80, 144)
 
-[node name="CollisionShape2D" parent="Door3" index="0"]
-shape = SubResource("RectangleShape2D_8ngnv")
+[node name="CollisionShape2D" parent="Door3" index="0" unique_id=1179102348]
+position = Vector2(-12, 0)
+shape = SubResource("RectangleShape2D_n5ywg")
 
 [node name="Door4" parent="." unique_id=1683898404 instance=ExtResource("5_0or4s")]
-visible = false
 position = Vector2(112, 784)
 Scene = 14
 LoadPosition = Vector2(144, -48)
 
-[node name="CollisionShape2D" parent="Door4" index="0"]
-shape = SubResource("RectangleShape2D_attgv")
+[node name="CollisionShape2D" parent="Door4" index="0" unique_id=1179102348]
+position = Vector2(0, 12)
+shape = SubResource("RectangleShape2D_gju6h")
 
 [node name="Enemy Spawner" parent="." unique_id=570726936 node_paths=PackedStringArray("detectArea") instance=ExtResource("6_4yr0v")]
 position = Vector2(-112, 48)
@@ -473,9 +493,10 @@ position = Vector2(592, 224)
 [node name="ItemInteract" parent="ItemPickup" index="0" unique_id=1282909236 node_paths=PackedStringArray("Effects")]
 TimelineGroup = Array[Object]([SubResource("Resource_attgv")])
 Effects = [NodePath("Item")]
+EffectResources = Array[ExtResource("21_aff1k")]([SubResource("Resource_quhw6")])
 
 [node name="Item" parent="ItemPickup/ItemInteract" index="1" unique_id=946507474 node_paths=PackedStringArray("interact")]
-GameID = 6
+KeyGameID = "WaterItem2"
 ItemsToGive = Array[Object]([SubResource("Resource_8ngnv")])
 interact = NodePath("..")
 

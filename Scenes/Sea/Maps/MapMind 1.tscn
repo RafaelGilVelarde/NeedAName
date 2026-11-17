@@ -84,6 +84,8 @@ size = Vector2(24, 24)
 [sub_resource type="Resource" id="Resource_7jscj"]
 script = ExtResource("18_iagnx")
 DialogueTimelines = Array[String](["PuzzleComplete"])
+KeyIndexes = null
+Variants = null
 FlagIndexes = null
 flagTypes = null
 
@@ -116,6 +118,8 @@ script = ExtResource("23_8k1ps")
 Move = SubResource("Resource_wnbjk")
 index = 3
 Timeline = "MoveLearned"
+KeyIndex = "WaterMindBarrier2"
+KeyValue = 1
 
 [sub_resource type="Resource" id="Resource_anue5"]
 script = ExtResource("22_31q2b")
@@ -127,6 +131,8 @@ script = ExtResource("23_8k1ps")
 Move = SubResource("Resource_anue5")
 index = 2
 Timeline = "MoveLearned"
+KeyIndex = "WaterMindBarrier1"
+KeyValue = 1
 metadata/_custom_type_script = "uid://cjoicl17xppy7"
 
 [node name="MapMind1" type="Node2D" unique_id=1686238498]
@@ -260,6 +266,7 @@ DataTileMaps = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 4
+KeyIndex = "WaterMindCurrent1"
 
 [node name="Currents" type="Node" parent="Puzzle" unique_id=435867076 node_paths=PackedStringArray("Currents")]
 script = ExtResource("9_reetp")
@@ -272,6 +279,7 @@ DataTileMaps = NodePath("../DataTileMap")
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 5
+KeyIndex = "WaterMindCurrent2"
 
 [node name="Currents2" type="Node" parent="Puzzle2" unique_id=1075242548 node_paths=PackedStringArray("Currents")]
 script = ExtResource("9_reetp")
@@ -349,12 +357,14 @@ hframes = 2
 texture = ExtResource("15_1dykf")
 hframes = 4
 vframes = 3
+frame = 6
 
 [node name="Water" type="Sprite2D" parent="Barrier3/Sprite2D" unique_id=341442023]
 modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("16_4i2g4")
 hframes = 5
 vframes = 4
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier3" unique_id=712839028]
 libraries/ = SubResource("AnimationLibrary_h7ggg")
@@ -367,9 +377,11 @@ Animator = NodePath("../AnimationPlayer")
 Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
+CheckFlag = 1
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 3
+KeyIndex = "WaterMindBarrier2"
 
 [node name="Barrier4" type="StaticBody2D" parent="." unique_id=1884984843 groups=["Interactable"]]
 position = Vector2(-64, -416)
@@ -394,14 +406,14 @@ hframes = 2
 texture = ExtResource("15_1dykf")
 hframes = 4
 vframes = 3
-frame = 3
+frame = 6
 
 [node name="Water" type="Sprite2D" parent="Barrier4/Sprite2D" unique_id=68223623]
 modulate = Color(0.670588, 1, 0.815686, 1)
 texture = ExtResource("16_4i2g4")
 hframes = 5
 vframes = 4
-frame = 3
+frame = 6
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Barrier4" unique_id=1899284101]
 libraries/ = SubResource("AnimationLibrary_h7ggg")
@@ -414,9 +426,11 @@ Animator = NodePath("../AnimationPlayer")
 Shape = NodePath("../CollisionShape2D")
 DisableAnimation = "Switch"
 Dialogue = "PuzzleComplete"
+CheckFlag = 1
 HasDialogue = false
 ChecksBool = true
 FlagIndex = 2
+KeyIndex = "WaterMindBarrier1"
 
 [node name="CurrentSwitch" parent="." unique_id=1879062442 instance=ExtResource("19_yi770")]
 visible = false

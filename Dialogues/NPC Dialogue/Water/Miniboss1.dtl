@@ -1,7 +1,7 @@
-if {GameManager.Data.Flags.EventFlags[9]} == true:
+if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 	Halluci (Wondering): Must....be an enemy #id:b6
 	... #id:b7
-if {GameManager.Data.Flags.EventFlags[10]} == true:
+if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 	Blobfish (Happy): Hellooooo! #id:b8
 	.... #id:b9
 	Blobfish (Wondering): ? #id:ba

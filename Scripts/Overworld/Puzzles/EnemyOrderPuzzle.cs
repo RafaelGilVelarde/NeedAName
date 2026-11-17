@@ -6,18 +6,25 @@ using System.Diagnostics;
 public partial class EnemyOrderPuzzle: PuzzleCheck
 {
     [Export] Array<int> EnemiesBeaten = new Array<int>();
-    [Export] int NextEnemy, TotalEnemies, FlagBoolIndex;
+    [Export] int NextEnemy, TotalEnemies;
+    [Export] Variant ChangeValue;
+    [Export] string ChangeKeyIndex;
 
     public override void _Ready()
     {
+        Flags flags = GameManager.Instance.Data.Flags;
+        if((int)flags.Dict[KeyIndex] != TotalEnemies)
+        {
+            flags.ChangeDictFlag(KeyIndex,0);
+        }
         /*instance = this;
         GameManager.Instance.Data.Flags._PuzzleFlagsIntChanged+=EnemyDefeated;*/
     }
-    public override void CheckInt(int Index, bool Changed)
+    public override void CheckDict(string Key, bool Changed)
     {
         Flags flags = GameManager.Instance.Data.Flags;
-        if(Index == FlagIndex){
-            if(flags.PuzzleIntFlags[Index] == TotalEnemies && Changed){
+        if(Key == KeyIndex){
+            if((int)flags.Dict[Key] == TotalEnemies && Changed){
                 ActivateEffect();
             }
         }
@@ -25,7 +32,7 @@ public partial class EnemyOrderPuzzle: PuzzleCheck
 
     public override void ActivateEffect()
     {
-        GameManager.Instance.Data.Flags.ChangeBoolFlag(FlagBoolIndex,true,FlagType.Puzzle);
+        GameManager.Instance.Data.Flags.ChangeDictFlag(ChangeKeyIndex,ChangeValue);
         DialogicCSharp Dialog=DialogicCSharp.instance;
         Dialog.StartDialogue("PuzzleComplete",true,false);
     }

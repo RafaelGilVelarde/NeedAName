@@ -6,9 +6,9 @@ So, wanna remember your power? #id:df
 	[signal arg="GiveItem"]
 	MC (Wondering): It feels.............loud? #id:e4
 	I dunno that's for you to find out #id:e5
-	if {GameManager.Data.Flags.EventFlags[9]} == true:
+	if {GameManager.Data.Flags.Dict["Companion1Has"]} == true:
 		Halluci (Happiness): Heh, this is invigorating #id:e6
-	if {GameManager.Data.Flags.EventFlags[10]} == true:
+	if {GameManager.Data.Flags.Dict["Companion2Has"]} == true:
 		Blobfish (Sad): My head huuuurts #id:e7
 	[Received the Loud Memory] #id:e8
 - I'd......rather not #id:e9

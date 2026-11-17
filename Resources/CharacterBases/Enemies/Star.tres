@@ -36,6 +36,7 @@ SoundEffects = Array[AudioStream]([ExtResource("4_b73xn"), ExtResource("8_w13t7"
 script = ExtResource("4_usypa")
 ExpYield = 2.0
 AI = SubResource("Resource_3d8p3")
+Drops = null
 BaseStats = SubResource("Resource_467lk")
 Name = "Starfish"
 OverworldAnimator = ExtResource("3_kuw07")

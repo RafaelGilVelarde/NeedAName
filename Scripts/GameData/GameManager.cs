@@ -1,12 +1,8 @@
 using Godot;
 using Godot.Collections;
-using GodotPlugins.Game;
-using MonoCustomResourceRegistry;
-using System;
-using System.Collections.Generic;
+
 using System.Diagnostics;
-using System.IO;
-using System.Threading;
+using System.Linq;
 
 public partial class GameManager : Node
 {
@@ -14,7 +10,7 @@ public partial class GameManager : Node
 	[Export] public Array<DataManager> Saves;
 	[Export] public DataManager Data;
 	[Export] public MainSettings Settings;
-	[Export] public bool SavesExist, CurrentSaveExists;
+	[Export] public bool SavesExist, CurrentSaveExists, Loaded;
 	[Export] DataManager InitialData;
 	[Export] public Array<Maps> AreaMaps;
 	[Export] PackedScene[] CharacterPrefabs;
@@ -55,6 +51,7 @@ public partial class GameManager : Node
 		//InitialData = (DataManager)Data.Duplicate();
 		//InstantiateCharacters();
 		ResourceLoader.Exists("user://" + "save" + 0.ToString() + ".tres");
+		UpdateDict();
 		DisplaySaves();
 		
 		
@@ -83,6 +80,46 @@ public partial class GameManager : Node
 		if (GetTree().CurrentScene.Name != "MainMenu")
 		{
 			InstantiateCharacters();
+		}
+	}
+	void UpdateDict()
+	{
+		for (int i = 0; i < Saves.Count; i++)
+		{
+			string Path = "user://" + "save" + i.ToString() + ".tres";
+			Saves[i] = null;
+			if (ResourceLoader.Exists(Path))
+			{
+				Saves[i] = ResourceLoader.Load<DataManager>(Path, null, ResourceLoader.CacheMode.Replace).DuplicateData();
+				for(int j = 0; j < InitialData.Flags.Dict.Keys.Count; j++)
+				{
+					if (!Saves[i].Flags.Dict.ContainsKey(InitialData.Flags.Dict.Keys.ElementAt(j)))
+					{
+						Saves[i].Flags.Dict[InitialData.Flags.Dict.Keys.ElementAt(j)] = InitialData.Flags.Dict[InitialData.Flags.Dict.Keys.ElementAt(j)];
+					}
+					
+				}
+				Array<string> KeyRemove = new Array<string>();
+				for(int j = 0; j < Saves[i].Flags.Dict.Keys.Count; j++)
+				{
+					if (!InitialData.Flags.Dict.ContainsKey(Saves[i].Flags.Dict.Keys.ElementAt(j)))
+					{
+						KeyRemove.Add(Saves[i].Flags.Dict.Keys.ElementAt(j));
+					}
+				}
+				for(int j = 0; j < KeyRemove.Count; j++)
+				{
+					Saves[i].Flags.Dict.Remove(KeyRemove[j]);
+				}
+
+				if (!Godot.FileAccess.FileExists(Path))
+				{
+					Godot.FileAccess file = Godot.FileAccess.Open(Path, Godot.FileAccess.ModeFlags.WriteRead);
+				}
+				ResourceSaver.Save(Saves[i], Path);
+				SaveSettings();
+				Saves[i].TakeOverPath(Path);
+			}
 		}
 	}
 	public void LoadFirstScene()
@@ -148,6 +185,7 @@ public partial class GameManager : Node
 	public void AddFollowingCharacter(PlayerController A, bool NPC)
 	{
 		A.OverworldCollider.Disabled = true;
+		A.EnableHurtbox(false);
 		Tween tween = CreateTween();
 		tween.TweenProperty(A.Parent, "position", controller.GlobalPosition, 0.2f);
 		tween.Finished += () =>
@@ -246,7 +284,7 @@ public partial class GameManager : Node
 
 		if (OverworldCam != null)
 		{
-			AssignCharacterCamera(B);					
+			AssignCharacterCamera(B.CameraController);					
 		}
 		SceneTreeTimer SwitchTimer = GetTree().CreateTimer(0.1,true,true);
 		SwitchTimer.Timeout+= () =>
@@ -289,9 +327,9 @@ public partial class GameManager : Node
 		tween.Finished += tween.Kill;
 
 	}
-	void AssignCharacterCamera(Node2D Character)
+	void AssignCharacterCamera(RemoteTransform2D Remote)
 	{
-		OverworldCam.Reparent(Character,false);
+		Remote.RemotePath = OverworldCam.GetPath();
 		OverworldCam.ResetSmoothing();
 	}
 	void AssignBattleCamera(Node Scene)
@@ -332,7 +370,7 @@ public partial class GameManager : Node
 	public void SetCamera(Camera cam)
 	{
 		OverworldCam = cam;
-		AssignCharacterCamera(controller);
+		AssignCharacterCamera(controller.CameraController);
 	}
 	public void SetBattleCamera(Camera cam)
 	{
@@ -497,8 +535,47 @@ public partial class GameManager : Node
 				{
 					Characters[i].Parent.QueueFree();
 				}
+				Array<Quest> MainQuests =  (Array<Quest>)Data.Flags.Dict["Mainquests"];
+				Array<Quest> SideQuests =  (Array<Quest>)Data.Flags.Dict["Sidequests"];
+
+				if (Loaded)
+				{
+					
+					for(int i = 0; i < MainQuests.Count; i++)
+					{
+						if (MainQuests[i] != null)
+						{
+							MainQuests[i].Base.DisconnectSignals(MainQuests[i]);						
+						}
+					}
+					for(int i = 0; i < SideQuests.Count; i++)
+					{
+						if (SideQuests[i] != null)
+						{
+							SideQuests[i].Base.DisconnectSignals(SideQuests[i]);						
+						}
+					}
+				}
 				Data = null;
 				Data = Saves[Save].DuplicateData();
+
+				MainQuests =  (Array<Quest>)Data.Flags.Dict["Mainquests"];
+				SideQuests =  (Array<Quest>)Data.Flags.Dict["Sidequests"];
+
+				for(int i = 0; i < MainQuests.Count; i++)
+				{
+					if (MainQuests[i] != null)
+					{
+						MainQuests[i].Base.ConnectSignals(MainQuests[i]);						
+					}
+				}
+				for(int i = 0; i < SideQuests.Count; i++)
+				{
+					if (SideQuests[i] != null)
+					{
+						SideQuests[i].Base.ConnectSignals(SideQuests[i]);						
+					}
+				}
 				Settings.CurrentSave = Save;
 				Characters.Clear();
 				Followers.Clear();
@@ -512,7 +589,7 @@ public partial class GameManager : Node
 				Debug.WriteLine("SaveScene :" + Saves[Save].Scene);
 				Debug.WriteLine("DataScene :" + Data.Scene);
 				Debug.WriteLine("Cam :" + OverworldCam);
-
+				Loaded = true;
 				InstantiateCharacters();
 				CallDeferred("SwitchScene", Data.Scene, Data.AreaIndex, Data.Position, TransitionColor, Data.GraphicsLayer, Data.CollisionLayer, Data.CollisionMask);				
 			};
@@ -535,8 +612,29 @@ public partial class GameManager : Node
 		CurrentScene = null;
 		OverworldCam = null;
 		BattleCam = null;
+		Loaded = false;
+		Array<Quest> MainQuests =  (Array<Quest>)Data.Flags.Dict["Mainquests"];
+		Array<Quest> SideQuests =  (Array<Quest>)Data.Flags.Dict["Sidequests"];
+
+		for(int i = 0; i < MainQuests.Count; i++)
+			{
+				if (MainQuests[i] != null)
+				{
+					MainQuests[i].Base.DisconnectSignals(MainQuests[i]);						
+				}
+			}
+		for(int i = 0; i < SideQuests.Count; i++)
+			{
+				if (SideQuests[i] != null)
+				{
+					SideQuests[i].Base.DisconnectSignals(SideQuests[i]);						
+				}
+			}
+		
+		
 		GetTree().ChangeSceneToPacked(StartScene);
 	}
+
 	public void SetEXPLevels(PartyCharacterBase CharBase)
     {
         for (int i = 0; i < 100; i++)
